@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
 
@@ -21,11 +20,11 @@ class _MyAppState extends State<MyApp> {
       future: AppTheme().themeDataLight,
       builder: (context, snapshot) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Schools',
+        title: 'School',
         theme: snapshot.data,
         home: const SplashScreen(),
       ),
-    );;
+    );
   }
 }
 
