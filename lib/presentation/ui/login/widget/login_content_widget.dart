@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/card_widget.dart';
 
 class LoginContentWidget extends StatefulWidget {
@@ -12,11 +13,8 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        CardWidget(child: Text("Hello")),
-        CardWidget(child: Text("Hello")),
-        CardWidget(child: Text("Hello")),
-        CardWidget(child: Text("Hello")),
+      children: const  [
+        CardWidget(imagePath: ImagesPath.schoolItem,grade: "Grade A",section: "Section A",),
       ],
     );
   }
