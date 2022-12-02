@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:schools/presentation/ui/authuntication/verify/widgets/actions_row_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/pin_code_field_widget.dart';
+import 'package:schools/presentation/ui/authuntication/verify/widgets/privcy_and_pulicy.dart';
+import 'package:schools/presentation/ui/authuntication/verify/widgets/send_agin_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/verify_header_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/verify_title_widget.dart';
 
@@ -25,9 +28,15 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
            const  VerifyTitleWidget(),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 30,),
             PinCodeTextFiledWidget(
-                pinController: pinController)
+                pinController: pinController),
+            const SizedBox(height: 10,),
+            SendAgainWidget(onTap: (){}),
+            const SizedBox(height: 35,),
+            const ActionsRowWidget(),
+            const SizedBox(height: 35,),
+            const PrivacyAndPolicyWidget(),
           ],
         ),
       ),

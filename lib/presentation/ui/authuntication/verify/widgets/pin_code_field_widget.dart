@@ -15,6 +15,8 @@ class PinCodeTextFiledWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 50),
       child: PinCodeTextField(
+        cursorColor: ColorsManager.primaryColor,
+        keyboardType: TextInputType.number,
         textStyle: const TextStyle(color: ColorsManager.grayColor),
         appContext: context,
         length: 6,
