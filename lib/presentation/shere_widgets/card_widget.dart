@@ -12,7 +12,7 @@ class CardWidget extends StatelessWidget {
   const CardWidget(
       {Key? key,
       required this.imagePath,
-      this.height = 160,
+      this.height = 200,
       this.width = 130,
       required this.grade,
       required this.section})
@@ -20,44 +20,25 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: ColorsManager.whiteColor),
-            color: ColorsManager.whiteColor,
-            boxShadow: const [
-              BoxShadow(blurRadius: 5, color: ColorsManager.grayColor),
-            ]),
-        height: height,
-        width: width,
+    return  Card(
+        color: ColorsManager.whiteColor,
+        elevation: 8,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12))),
         child: Column(
           children: [
+            ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+                child: Image.asset(imagePath, fit: BoxFit.cover)),
             Expanded(
-                flex: 8,
-                child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(8),
-                        topLeft: Radius.circular(8)),
-                    child: Image.asset(imagePath, fit: BoxFit.cover))),
+              child: BoldTextWidget(
+                  text: grade, fontSize: 12, color: ColorsManager.blackColor),
+            ),
             Expanded(
-              flex: 5,
-              child:  Align(
-                alignment: Alignment.center,
-                child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BoldTextWidget(
-                            text: grade,
-                            fontSize: 15,
-                            color: ColorsManager.blackColor),
-                        BoldTextWidget(
-                            text: section,
-                            fontSize: 15,
-                            color: ColorsManager.blackColor),
-                      ],
-                    ),
-              )),
+              child: BoldTextWidget(
+                  text: section, fontSize: 12, color: ColorsManager.blackColor),
+            ),
           ],
         ));
   }
