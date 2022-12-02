@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schools/presentation/ui/authuntication/login/login_screen.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/actions_row_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/pin_code_field_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/privcy_and_pulicy.dart';
@@ -41,7 +42,12 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                 SendAgainWidget(onTap: () {}),
                 sizedBox(),
                 ActionsRowWidget(
-                  changeMobileNumberAction: () {},
+                  changeMobileNumberAction: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => const LoginScreen()),
+                        (route) => false);
+                  },
                   nextAction: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (_) => const HomeScreen()));
