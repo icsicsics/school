@@ -345,13 +345,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.1.0"
-  pinput:
+  pin_code_fields:
     dependency: "direct main"
     description:
-      name: pinput
+      name: pin_code_fields
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.16"
+    version: "7.4.0"
   platform:
     dependency: transitive
     description:
@@ -448,13 +448,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  smart_auth:
-    dependency: transitive
-    description:
-      name: smart_auth
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.6"
   source_span:
     dependency: transitive
     description:

@@ -1,61 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 
-class PinCodeFiledWidget extends StatelessWidget {
+class PinCodeTextFiledWidget extends StatelessWidget {
   final TextEditingController pinController;
 
-  const PinCodeFiledWidget({
+  const PinCodeTextFiledWidget({
     Key? key,
     required this.pinController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Pinput(
-      keyboardType: TextInputType.number,
-      controller: pinController,
-      length: 6,
-      showCursor: false,
-      textInputAction: TextInputAction.send,
-      defaultPinTheme: PinTheme(
-          textStyle:
-          Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14),
-          height: 44,
-          width: 66,
-          padding: const EdgeInsets.all(8),
-          margin: const EdgeInsets.all(8),
-          decoration:
-          _pinDecoration(context, ColorsManager.primaryColor.withOpacity(.1))),
-      submittedPinTheme: PinTheme(
-          textStyle:
-          Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14),
-          height: 44,
-          width: 66,
-          padding: const EdgeInsets.all(8),
-          margin: const EdgeInsets.all(8),
-          decoration: _pinDecoration(context, ColorsManager.whiteColor)),
-      followingPinTheme: PinTheme(
-        textStyle:
-        Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14),
-        height: 44,
-        width: 66,
-        padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.all(8),
-        decoration: _pinDecoration(
-          context,
-          ColorsManager.primaryColor.withOpacity(.1),
+    return Padding(
+      padding: const EdgeInsets.only(right: 50),
+      child: PinCodeTextField(
+        textStyle: const TextStyle(color: ColorsManager.grayColor),
+        appContext: context,
+        length: 6,
+        onChanged: (value) {},
+        controller: pinController,
+        pinTheme: PinTheme(
+          activeColor: ColorsManager.secondaryColor,
+          inactiveColor: ColorsManager.secondaryColor,
+          activeFillColor: ColorsManager.secondaryColor,
         ),
       ),
-      onChanged: (value) { },
-    );
-  }
-
-  BoxDecoration _pinDecoration(BuildContext context, Color color) {
-    return BoxDecoration(
-      borderRadius: BorderRadius.circular(12),
-      color: color,
-      border: Border.all(color: ColorsManager.primaryColor),
     );
   }
 }
