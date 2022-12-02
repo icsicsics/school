@@ -12,7 +12,7 @@ class ClearButtonWidget extends StatelessWidget {
       onPressed: clearAction,
       borderRadius: 20,
       buttonColor: ColorsManager.whiteColor,
-      borderColor: ColorsManager.darkGrayColor,
+      borderColor: ColorsManager.borderColor,
       buttonTextSize: 14,
       buttonText: "Clear",
       buttonTextColor: ColorsManager.buttonColor,

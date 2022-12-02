@@ -3,7 +3,9 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
 
 class ActionsRowWidget extends StatelessWidget {
-  const ActionsRowWidget({Key? key}) : super(key: key);
+  final Function() changeMobileNumberAction;
+  final Function() nextAction;
+  const ActionsRowWidget({Key? key,required this.changeMobileNumberAction,required this.nextAction}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +13,17 @@ class ActionsRowWidget extends StatelessWidget {
       children: [
         Expanded(
             child: CustomButtonWidget(
-          onPressed: () {},
+          onPressed: changeMobileNumberAction,
           buttonText: "Change Mobile Number",
           buttonTextSize: 12,
-          buttonTextColor: ColorsManager.darkGrayColor,
+          buttonTextColor: ColorsManager.borderColor,
           buttonColor: ColorsManager.whiteColor,
-              borderColor:ColorsManager.darkGrayColor,
+              borderColor:ColorsManager.borderColor,
         )),
-        SizedBox(width: 15,),
+       const SizedBox(width: 15,),
         Expanded(
             child: CustomButtonWidget(
-          onPressed: () {},
+          onPressed: nextAction,
           buttonText: "Next",
               buttonColor: ColorsManager.buttonColor,
               buttonTextColor: ColorsManager.whiteColor,

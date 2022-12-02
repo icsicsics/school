@@ -4,10 +4,12 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 
 class PinCodeTextFiledWidget extends StatelessWidget {
   final TextEditingController pinController;
+  final void Function(String value)  onChanged;
 
   const PinCodeTextFiledWidget({
     Key? key,
     required this.pinController,
+    required this.onChanged
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class PinCodeTextFiledWidget extends StatelessWidget {
         textStyle: const TextStyle(color: ColorsManager.grayColor),
         appContext: context,
         length: 6,
-        onChanged: (value) {},
+        onChanged:onChanged,
         controller: pinController,
         pinTheme: PinTheme(
           activeColor: ColorsManager.secondaryColor,

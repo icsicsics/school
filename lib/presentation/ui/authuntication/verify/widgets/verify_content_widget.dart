@@ -18,30 +18,43 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const   VerifyHeaderWidget(),
-      Padding(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-           const  VerifyTitleWidget(),
-            const SizedBox(height: 30,),
-            PinCodeTextFiledWidget(
-                pinController: pinController),
-            const SizedBox(height: 10,),
-            SendAgainWidget(onTap: (){}),
-            const SizedBox(height: 35,),
-            const ActionsRowWidget(),
-            const SizedBox(height: 35,),
-            const PrivacyAndPolicyWidget(),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const VerifyHeaderWidget(),
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const VerifyTitleWidget(),
+                sizedBox(height: 30),
+                PinCodeTextFiledWidget(pinController: pinController,
+                  onChanged: (value) {
+                  print(value);
+                  },),
+                sizedBox(height: 10),
+                SendAgainWidget(onTap: () {}),
+                sizedBox(),
+                ActionsRowWidget(
+                  changeMobileNumberAction: () {},
+                  nextAction: () {},
+                ),
+                sizedBox(),
+                PrivacyAndPolicyWidget(
+                  privacyPolicyAction: () {},
+                  termOfUseAction: () {},
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-
-      ],
     );
   }
+
+  sizedBox({double height = 35}) => SizedBox(
+        height: height,
+      );
 }

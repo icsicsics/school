@@ -13,8 +13,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
 
   @override
   Widget baseBuild(BuildContext context) {
-    return Scaffold(
-      body: const LoginContentWidget(),
+    return const  Scaffold(
+      body:  LoginContentWidget(),
     );
   }
 
