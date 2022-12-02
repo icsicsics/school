@@ -11,4 +11,5 @@ class ColorsManager {
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color blackColor = Color(0xFF1B1C1E);
   static const Color backgroundColor = Color(0xffF6F6F6);
+  static const Color buttonColor = Color.fromRGBO(44	,158	,219, 1);
 }

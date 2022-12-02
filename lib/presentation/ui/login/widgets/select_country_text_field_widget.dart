@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 
 class SelectCountryTextFieldWidget extends StatefulWidget {
-  const SelectCountryTextFieldWidget({Key? key}) : super(key: key);
+  final TextEditingController controller ;
+  const SelectCountryTextFieldWidget({Key? key,required this.controller}) : super(key: key);
 
   @override
   State<SelectCountryTextFieldWidget> createState() =>
@@ -13,7 +13,6 @@ class SelectCountryTextFieldWidget extends StatefulWidget {
 
 class _SelectCountryTextFieldWidgetState
     extends State<SelectCountryTextFieldWidget> {
-  final TextEditingController controller = TextEditingController();
   String initialCountry = 'NG';
   PhoneNumber number = PhoneNumber(isoCode: 'EG');
 
@@ -26,7 +25,7 @@ class _SelectCountryTextFieldWidgetState
           child: Container(
             width: 40,
             height: 40,
-            margin: EdgeInsets.only(top: 5),
+            margin: const EdgeInsets.only(top: 5),
             decoration:  BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: ColorsManager.whiteColor),
@@ -39,27 +38,21 @@ class _SelectCountryTextFieldWidgetState
         Padding(
           padding: const EdgeInsets.only(left: 5),
           child: InternationalPhoneNumberInput(
-            onInputChanged: (PhoneNumber number) {
-              if (kDebugMode) {
-                print(number.phoneNumber);
-              }
-            },
-            onInputValidated: (bool value) {
-              if (kDebugMode) {
-                print(value);
-              }
-            },
+
+            onInputChanged: (PhoneNumber number) {},
+            onInputValidated: (bool value) {},
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
               showFlags: true,
               useEmoji: true,
+
 
             ),
             ignoreBlank: true,
             autoValidateMode: AutovalidateMode.disabled,
             selectorTextStyle: const TextStyle(color: Colors.black),
             initialValue: number,
-            textFieldController: controller,
+            textFieldController: widget.controller,
             formatInput: true,
             spaceBetweenSelectorAndTextField: 0,
             inputDecoration: const InputDecoration(
@@ -70,7 +63,6 @@ class _SelectCountryTextFieldWidgetState
             const TextInputType.numberWithOptions(signed: true, decimal: true),
             inputBorder: InputBorder.none,
             onSaved: (PhoneNumber number) {
-              print('On Saved: $number');
             },
           ),
         ),

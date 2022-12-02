@@ -2,23 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
-class SplashContentWidget extends StatelessWidget {
-  const SplashContentWidget({Key? key}) : super(key: key);
+class HeaderWidget extends StatelessWidget {
+  const HeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration:  const BoxDecoration(
           gradient: LinearGradient(
-            // begin: Alignment.topLeft,
-            // end: Alignment.bottomRight,
             colors: [
               ColorsManager.primaryColor,
               ColorsManager.secondaryColor,
             ],
             stops: [0.5, 0.8],
           )),
-      height: MediaQuery.of(context).size.height / 3,
+      height: MediaQuery.of(context).size.height / 5,
       child:  Align(
         alignment: Alignment.center,
         child: Column(
@@ -32,7 +30,7 @@ class SplashContentWidget extends StatelessWidget {
               color: ColorsManager.whiteColor,
             ),
             BoldTextWidget(
-              text: 'Interactive school Councelling',
+              text: 'Interactive school Counselling',
               fontSize: 20,
               color: ColorsManager.whiteColor,
             )
