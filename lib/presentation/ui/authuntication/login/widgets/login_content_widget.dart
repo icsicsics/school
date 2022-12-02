@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:schools/presentation/ui/login/widgets/clear_button_widget.dart';
-import 'package:schools/presentation/ui/login/widgets/confirm_button_widget.dart';
-import 'package:schools/presentation/ui/login/widgets/header_widget.dart';
-import 'package:schools/presentation/ui/login/widgets/select_country_text_field_widget.dart';
-import 'package:schools/presentation/ui/login/widgets/welcome_text_widget.dart';
+import 'package:schools/presentation/ui/authuntication/login/widgets/clear_button_widget.dart';
+import 'package:schools/presentation/ui/authuntication/login/widgets/confirm_button_widget.dart';
+import 'package:schools/presentation/ui/authuntication/login/widgets/header_widget.dart';
+import 'package:schools/presentation/ui/authuntication/login/widgets/select_country_text_field_widget.dart';
+import 'package:schools/presentation/ui/authuntication/login/widgets/welcome_text_widget.dart';
+import 'package:schools/presentation/ui/authuntication/verify/verify_screen.dart';
+
 
 class LoginContentWidget extends StatefulWidget {
   const LoginContentWidget({Key? key}) : super(key: key);
@@ -20,8 +22,8 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
     return SingleChildScrollView(
       child: Column(
         children: [
-         const  HeaderWidget(),
-          WelcomeTextWidget(),
+         const  LoginHeaderWidget(),
+          const WelcomeTextWidget(),
           Padding(
             padding: const EdgeInsets.all(40),
             child: Column(
@@ -38,7 +40,7 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                     ),
                     ConfirmButtonWidget(
                       confirmAction: () {
-                        print("confirm");
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=>VerifyScreen()));
                       },
                     ),
                   ],

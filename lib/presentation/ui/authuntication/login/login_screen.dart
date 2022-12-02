@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
-import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
-import 'package:schools/presentation/ui/login/widgets/login_content_widget.dart';
+import 'package:schools/presentation/ui/authuntication/login/widgets/login_content_widget.dart';
 
 class LoginScreen extends BaseStatefulWidget {
   const LoginScreen({super.key});

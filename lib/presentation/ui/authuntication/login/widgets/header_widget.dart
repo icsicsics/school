@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
-class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({Key? key}) : super(key: key);
+class LoginHeaderWidget extends StatelessWidget {
+  const LoginHeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
