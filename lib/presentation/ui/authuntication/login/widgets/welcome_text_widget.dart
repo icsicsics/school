@@ -9,10 +9,18 @@ class WelcomeTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        SizedBox(height: 25,),
-        MediumTextWidget(text: "Login", fontSize: 25, color: ColorsManager.grayColor),
-        SizedBox(height: 25,),
-        MediumTextWidget(text: "Enter your Phone Number", fontSize: 15, color: ColorsManager.primaryColor),
+        SizedBox(
+          height: 25,
+        ),
+        MediumTextWidget(
+            text: "Login", fontSize: 25, color: ColorsManager.grayColor),
+        SizedBox(
+          height: 25,
+        ),
+        MediumTextWidget(
+            text: "Enter your Phone Number",
+            fontSize: 15,
+            color: ColorsManager.primaryColor),
       ],
     );
   }

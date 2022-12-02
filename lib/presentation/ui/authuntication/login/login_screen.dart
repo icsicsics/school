@@ -6,16 +6,14 @@ class LoginScreen extends BaseStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  BaseState<BaseStatefulWidget> baseCreateState()=>_LoginScreenState();
-
+  BaseState<BaseStatefulWidget> baseCreateState() => _LoginScreenState();
 }
-class _LoginScreenState extends BaseState<LoginScreen> {
 
+class _LoginScreenState extends BaseState<LoginScreen> {
   @override
   Widget baseBuild(BuildContext context) {
-    return const  Scaffold(
-      body:  LoginContentWidget(),
+    return const Scaffold(
+      body: LoginContentWidget(),
     );
   }
-
 }

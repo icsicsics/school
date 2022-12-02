@@ -6,7 +6,6 @@ import 'package:schools/presentation/ui/authuntication/login/widgets/select_coun
 import 'package:schools/presentation/ui/authuntication/login/widgets/welcome_text_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/verify_screen.dart';
 
-
 class LoginContentWidget extends StatefulWidget {
   const LoginContentWidget({Key? key}) : super(key: key);
 
@@ -22,7 +21,7 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
     return SingleChildScrollView(
       child: Column(
         children: [
-         const  LoginHeaderWidget(),
+          const LoginHeaderWidget(),
           const WelcomeTextWidget(),
           Padding(
             padding: const EdgeInsets.all(40),
@@ -31,7 +30,9 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                 SelectCountryTextFieldWidget(
                   controller: countryController,
                 ),
-                const SizedBox(height: 100,),
+                const SizedBox(
+                  height: 100,
+                ),
                 Row(
                   children: [
                     ClearButtonWidget(clearAction: () {}),
@@ -40,7 +41,8 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                     ),
                     ConfirmButtonWidget(
                       confirmAction: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=>VerifyScreen()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => VerifyScreen()));
                       },
                     ),
                   ],

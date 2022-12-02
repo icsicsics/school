@@ -5,14 +5,15 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class SendAgainWidget extends StatelessWidget {
   final Function() onTap;
-  const SendAgainWidget({Key? key,required this.onTap}) : super(key: key);
+
+  const SendAgainWidget({Key? key, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:  [
-        const  SizedBox(
+      children: [
+        const SizedBox(
           height: 15,
         ),
         const BoldTextWidget(
@@ -20,8 +21,8 @@ class SendAgainWidget extends StatelessWidget {
             fontSize: 14,
             color: ColorsManager.grayColor),
         InkWell(
-          onTap: onTap ,
-          child:const MediumTextWidget(
+          onTap: onTap,
+          child: const MediumTextWidget(
               text: "Send it again",
               fontSize: 14,
               color: ColorsManager.primaryColor),

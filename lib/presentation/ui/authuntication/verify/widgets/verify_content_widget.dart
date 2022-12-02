@@ -30,10 +30,12 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
               children: [
                 const VerifyTitleWidget(),
                 sizedBox(height: 30),
-                PinCodeTextFiledWidget(pinController: pinController,
+                PinCodeTextFiledWidget(
+                  pinController: pinController,
                   onChanged: (value) {
-                  print(value);
-                  },),
+                    print(value);
+                  },
+                ),
                 sizedBox(height: 10),
                 SendAgainWidget(onTap: () {}),
                 sizedBox(),

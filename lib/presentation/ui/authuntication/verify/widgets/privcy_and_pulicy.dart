@@ -30,16 +30,18 @@ class PrivacyAndPolicyWidget extends StatelessWidget {
                     color: ColorsManager.buttonColor)),
           ],
         ),
-        Row(children: [
+        Row(
+          children: [
             const MediumTextWidget(
                 text: " and ", fontSize: 13, color: ColorsManager.grayColor),
             InkWell(
                 onTap: termOfUseAction,
-                child:const  MediumTextWidget(
+                child: const MediumTextWidget(
                     text: "Term of Use",
                     fontSize: 13,
                     color: ColorsManager.buttonColor)),
-          ],)
+          ],
+        )
       ],
     );
   }

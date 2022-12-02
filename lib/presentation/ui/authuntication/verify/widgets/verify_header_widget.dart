@@ -8,16 +8,16 @@ class VerifyHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  const BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              ColorsManager.primaryColor,
-              ColorsManager.secondaryColor,
-            ],
-            stops: [0.5, 0.8],
-          )),
+        colors: [
+          ColorsManager.primaryColor,
+          ColorsManager.secondaryColor,
+        ],
+        stops: [0.5, 0.8],
+      )),
       height: MediaQuery.of(context).size.height / 5,
-      child:  Align(
+      child: Align(
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
