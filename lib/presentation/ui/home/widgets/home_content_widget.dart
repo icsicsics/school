@@ -15,10 +15,12 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HomeAppBarWidget(onTapMenu: () {  },),
+        HomeAppBarWidget(
+          onTapMenu: () {},
+        ),
         const SizedBox(height: 5),
         const TitleWidget(),
-       HomeListWidget()
+        const HomeListWidget()
       ],
     );
   }

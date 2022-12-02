@@ -5,6 +5,7 @@ import 'package:schools/presentation/ui/authuntication/verify/widgets/privcy_and
 import 'package:schools/presentation/ui/authuntication/verify/widgets/send_agin_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/verify_header_widget.dart';
 import 'package:schools/presentation/ui/authuntication/verify/widgets/verify_title_widget.dart';
+import 'package:schools/presentation/ui/home/home_screen.dart';
 
 class VerifyContentWidget extends StatefulWidget {
   const VerifyContentWidget({Key? key}) : super(key: key);
@@ -41,7 +42,10 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                 sizedBox(),
                 ActionsRowWidget(
                   changeMobileNumberAction: () {},
-                  nextAction: () {},
+                  nextAction: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => const HomeScreen()));
+                  },
                 ),
                 sizedBox(),
                 PrivacyAndPolicyWidget(

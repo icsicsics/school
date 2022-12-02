@@ -4,7 +4,8 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
-  const HomeAppBarWidget({Key? key,required this.onTapMenu}) : super(key: key);
+
+  const HomeAppBarWidget({Key? key, required this.onTapMenu}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +30,20 @@ class HomeAppBarWidget extends StatelessWidget {
                   color: ColorsManager.whiteColor,
                   size: 30,
                 )),
-          const   Expanded(
+            const Expanded(
               child: MediumTextWidget(
                   text: "Interactive School Counselling",
                   fontSize: 18,
                   color: ColorsManager.whiteColor),
             ),
-            const  Padding(
-               padding:  EdgeInsets.symmetric(horizontal: 10),
-               child: Icon(Icons.mail_lock,color: ColorsManager.whiteColor,size: 25,),
-             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Icon(
+                Icons.mail_lock,
+                color: ColorsManager.whiteColor,
+                size: 25,
+              ),
+            ),
           ],
         ),
       ),
