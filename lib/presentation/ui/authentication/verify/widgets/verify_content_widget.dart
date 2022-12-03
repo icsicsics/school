@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:schools/presentation/ui/authuntication/login/login_screen.dart';
-import 'package:schools/presentation/ui/authuntication/verify/widgets/actions_row_widget.dart';
-import 'package:schools/presentation/ui/authuntication/verify/widgets/pin_code_field_widget.dart';
-import 'package:schools/presentation/ui/authuntication/verify/widgets/privcy_and_pulicy.dart';
-import 'package:schools/presentation/ui/authuntication/verify/widgets/send_agin_widget.dart';
-import 'package:schools/presentation/ui/authuntication/verify/widgets/verify_header_widget.dart';
-import 'package:schools/presentation/ui/authuntication/verify/widgets/verify_title_widget.dart';
+import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
+import 'package:schools/presentation/ui/authentication/verify/widgets/actions_row_widget.dart';
+import 'package:schools/presentation/ui/authentication/verify/widgets/pin_code_field_widget.dart';
+import 'package:schools/presentation/ui/authentication/verify/widgets/privcy_and_pulicy.dart';
+import 'package:schools/presentation/ui/authentication/verify/widgets/send_agin_widget.dart';
+import 'package:schools/presentation/ui/authentication/verify/widgets/verify_header_widget.dart';
+import 'package:schools/presentation/ui/authentication/verify/widgets/verify_title_widget.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
 
 class VerifyContentWidget extends StatefulWidget {
