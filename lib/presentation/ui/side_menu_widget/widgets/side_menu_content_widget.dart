@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_header.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_item.dart';
@@ -35,7 +37,8 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                 SideMenuItem(
                     icon: Icons.home_filled,
                     title: "School Homes",
-                    onTap: () {}),
+                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                        .add(SideMenuHomeEvent())),
                 _line(),
                 SideMenuItem(
                     icon: Icons.settings, title: "Settings", onTap: () {}),
