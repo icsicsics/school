@@ -45,7 +45,7 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                     ),
                     ConfirmButtonWidget(
                         confirmAction: () => BlocProvider.of<LoginBloc>(context)
-                            .add(LoginClearButtonEvent())),
+                            .add(LoginConfirmButtonEvent())),
                   ],
                 )
               ],

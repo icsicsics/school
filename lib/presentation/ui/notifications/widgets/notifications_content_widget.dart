@@ -5,7 +5,7 @@ import 'package:schools/presentation/ui/notifications/widgets/titiles_row_widget
 class NotificationsContentWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> globalKey;
 
-  const NotificationsContentWidget({Key? key, required this.globalKey})
+  const  NotificationsContentWidget({Key? key, required this.globalKey})
       : super(key: key);
 
   @override

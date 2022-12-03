@@ -20,14 +20,10 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   }
 
   @override
-  Widget baseBuild(BuildContext context) {
-    return const SplashContentWidget();
-  }
+  Widget baseBuild(BuildContext context) => const SplashContentWidget();
 
-  void _navigationToLoginScreen() {
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const LoginScreen())));
-  }
+  void _navigationToLoginScreen() => Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => const LoginScreen())));
 }
