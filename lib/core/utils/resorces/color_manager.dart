@@ -13,4 +13,5 @@ class ColorsManager {
   static const Color backgroundColor = Color(0xffF6F6F6);
   static const Color buttonColor = Color.fromRGBO(44	,158	,219, 1);
   static const Color borderColor = Color.fromRGBO(104	,104	,104, 1);
+  static const Color yellow = Color.fromRGBO(248	,150	,16, 1);
 }

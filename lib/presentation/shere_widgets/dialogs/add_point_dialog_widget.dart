@@ -26,7 +26,7 @@ class AddPointDialogWidget extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            const Icon(Icons.star, size: 40, color: Colors.orange),
+            const Icon(Icons.star, size: 40, color: ColorsManager.yellow),
             const BoldTextWidget(
                 text: "Add Points",
                 fontSize: 14,

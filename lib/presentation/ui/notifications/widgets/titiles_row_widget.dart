@@ -10,12 +10,50 @@ class TitlesRowWidget extends StatefulWidget {
 }
 
 class _TitlesRowWidgetState extends State<TitlesRowWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0,right: 8.0,),
       child: Row(
         children: [
+          Expanded(
+            child: InkWell(
+                onTap: () {},
+                child: Column(
+                  children: [
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      elevation: 0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.notifications,
+                              color: ColorsManager.secondaryColor,
+                              size: 26,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            BoldTextWidget(
+                                text: "Notifications (2)",
+                                fontSize: 17,
+                                color: ColorsManager.blackColor)
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      color: ColorsManager.secondaryColor,
+                      height: 3,
+                      width: MediaQuery.of(context).size.width / 2.5,
+                    )
+                  ],
+                )),
+          ),
           Expanded(
             child: InkWell(
               onTap: () {},
@@ -30,7 +68,7 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
                       child: Row(
                         children: const [
                           Icon(
-                            Icons.notifications,
+                            Icons.mail_outline,
                             color: ColorsManager.secondaryColor,
                             size: 26,
                           ),
@@ -38,7 +76,7 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
                             width: 10,
                           ),
                           BoldTextWidget(
-                              text: "Notifications (2)",
+                              text: "Inbox (1)",
                               fontSize: 17,
                               color: ColorsManager.blackColor)
                         ],
@@ -51,51 +89,11 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
                     width: MediaQuery.of(context).size.width / 2.5,
                   )
                 ],
-              )),
-          ),
-          Expanded(
-            child: InkWell(
-              onTap: () {},
-              child: Column(
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.mail_outline,
-                              color: ColorsManager.secondaryColor,
-                              size: 26,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            BoldTextWidget(
-                                text: "Inbox (1)",
-                                fontSize: 17,
-                                color: ColorsManager.blackColor)
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      color: ColorsManager.secondaryColor,
-                      height: 3,
-                      width: MediaQuery.of(context).size.width / 2.5,
-                    )
-                  ],
-                ),
               ),
+            ),
           ),
-
         ],
       ),
     );
   }
-
-  selectColor() {}
 }
