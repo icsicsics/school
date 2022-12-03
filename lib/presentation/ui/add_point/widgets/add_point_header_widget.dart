@@ -52,9 +52,16 @@ class AddPointHeaderWidget extends StatelessWidget {
                 )),
             Align(
               alignment: Alignment.center,
-              child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  child: Image.asset(ImagesPath.schoolItem, fit: BoxFit.cover)),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 4,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 30),
+                  child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      child: Image.asset(ImagesPath.schoolItem,
+                          fit: BoxFit.fitHeight)),
+                ),
+              ),
             ),
           ],
         ));
