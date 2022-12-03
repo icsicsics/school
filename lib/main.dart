@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
+import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
@@ -31,8 +32,8 @@ class _MyAppState extends State<MyApp> {
           BlocProvider<HomeBloc>(create: (BuildContext context) => HomeBloc()),
           BlocProvider<NotificationsBloc>(
               create: (BuildContext context) => NotificationsBloc()),
-          BlocProvider<SideMenuBloc>(
-              create: (BuildContext context) => SideMenuBloc()),
+          BlocProvider<SideMenuBloc>(create: (BuildContext context) => SideMenuBloc()),
+          BlocProvider<AddPointBloc>(create: (BuildContext context) => AddPointBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),
