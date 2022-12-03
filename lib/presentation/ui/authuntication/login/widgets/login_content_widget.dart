@@ -41,8 +41,10 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                     ),
                     ConfirmButtonWidget(
                       confirmAction: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => VerifyScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const VerifyScreen()));
                       },
                     ),
                   ],
