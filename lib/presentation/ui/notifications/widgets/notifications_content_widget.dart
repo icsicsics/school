@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/ui/notifications/widgets/notifications_app_bar_widget.dart';
+import 'package:schools/presentation/ui/notifications/widgets/titiles_row_widget.dart';
 
 class NotificationsContentWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> globalKey;
@@ -20,7 +21,8 @@ class _NotificationsContentWidgetState
       children: [
         NotificationsAppBarWidget(
             onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
-            onTapNotifications: () {})
+            onTapNotifications: () {}),
+        const TitlesRowWidget()
       ],
     );
   }
