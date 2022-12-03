@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/presentation/ui/home/widgets/home_app_bar_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/home_list_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/title_widget.dart';
+import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class HomeContentWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> globalKey;
@@ -20,6 +21,10 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
       children: [
         HomeAppBarWidget(
           onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
+          onTapNotifications: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const NotificationsScreen()));
+          },
         ),
         const SizedBox(height: 5),
         const TitleWidget(),

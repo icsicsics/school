@@ -4,8 +4,9 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
+  final Function() onTapNotifications;
 
-  const HomeAppBarWidget({Key? key, required this.onTapMenu}) : super(key: key);
+  const HomeAppBarWidget({Key? key, required this.onTapMenu,required this.onTapNotifications}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +37,15 @@ class HomeAppBarWidget extends StatelessWidget {
                   fontSize: 18,
                   color: ColorsManager.whiteColor),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Icon(
+             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: IconButton(
+                onPressed: onTapNotifications,
+                icon: const Icon(
                 Icons.mail_lock,
                 color: ColorsManager.whiteColor,
                 size: 25,
-              ),
+              ),)
             ),
           ],
         ),
