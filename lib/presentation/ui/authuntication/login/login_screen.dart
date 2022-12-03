@@ -12,15 +12,21 @@ class LoginScreen extends BaseStatefulWidget {
 }
 
 class _LoginScreenState extends BaseState<LoginScreen> {
+  TextEditingController countryController = TextEditingController();
+
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
-          // TODO: implement listener
+          if (state is LoginClearButtonState) {
+            countryController.clear();
+          }
         },
         builder: (context, state) {
-          return const LoginContentWidget();
+          return LoginContentWidget(
+            countryController: countryController,
+          );
         },
       ),
     );
