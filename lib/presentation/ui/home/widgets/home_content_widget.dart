@@ -26,7 +26,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
                 MaterialPageRoute(builder: (_) => const NotificationsScreen()));
           },
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 2),
         const TitleWidget(),
         const HomeListWidget()
       ],

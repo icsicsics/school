@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
+import 'package:schools/presentation/ui/home/home_screen.dart';
+import 'package:schools/presentation/ui/profile/profile_screen.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
 
 class SideMenuScreen extends StatelessWidget {
@@ -13,9 +15,9 @@ class SideMenuScreen extends StatelessWidget {
         child: BlocConsumer<SideMenuBloc, SideMenuState>(
           listener: (context, state) {
             if (state is SideMenuHomeState) {
-              _onSideMenuHomeState();
+              _onSideMenuHomeState(context);
             } else if (state is SideMenuSettingsState) {
-              _onSideMenuSettingsState();
+              _onSideMenuSettingsState(context);
             } else if (state is SideMenuContactUsState) {
               _onSideMenuContactUsState();
             } else if (state is SideMenuAboutAppState) {
@@ -28,9 +30,16 @@ class SideMenuScreen extends StatelessWidget {
         ));
   }
 
-  void _onSideMenuHomeState() {}
+  void _onSideMenuHomeState(context) =>
+      Navigator.pushAndRemoveUntil(
+          context, MaterialPageRoute(builder: (_) => const HomeScreen()), (
+          route) => false);
 
-  void _onSideMenuSettingsState() {}
+  void _onSideMenuSettingsState(context) {
+    Navigator.pop(context);
+    Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+  }
 
   void _onSideMenuContactUsState() {}
 

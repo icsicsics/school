@@ -5,6 +5,7 @@ import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
+import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
@@ -34,6 +35,7 @@ class _MyAppState extends State<MyApp> {
               create: (BuildContext context) => NotificationsBloc()),
           BlocProvider<SideMenuBloc>(create: (BuildContext context) => SideMenuBloc()),
           BlocProvider<AddPointBloc>(create: (BuildContext context) => AddPointBloc()),
+          BlocProvider<ProfileBloc>(create: (BuildContext context) => ProfileBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),
