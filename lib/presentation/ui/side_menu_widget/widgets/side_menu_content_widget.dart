@@ -49,7 +49,6 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                 _line(),
                 SideMenuItem(
                     icon: Icons.info_outline, title: "About App", onTap: () {}),
-                _line()
               ],
             ),
           ),
