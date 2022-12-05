@@ -22,7 +22,7 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Card(
         color: ColorsManager.whiteColor,
-        elevation: 8,
+        elevation: 1,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(12))),
         child: Column(
