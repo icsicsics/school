@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/ui/profile/widgets/profile_header_widget.dart';
+import 'package:schools/presentation/ui/profile/widgets/profile_info_content_widget.dart';
 
 class ProfileContentWidget extends StatefulWidget {
   const ProfileContentWidget({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ProfileHeaderWidget()
+        ProfileHeaderWidget(),
+        ProfileInfoContentWidget()
 
       ],
     );
