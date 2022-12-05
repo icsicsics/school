@@ -17,6 +17,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsManager.backgroundColor,
         appBar: _appBar(),
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
