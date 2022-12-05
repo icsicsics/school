@@ -41,7 +41,8 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                         .add(SideMenuHomeEvent())),
                 _line(),
                 SideMenuItem(
-                    icon: Icons.settings, title: "Settings", onTap: () {}),
+                    icon: Icons.settings, title: "Settings", onTap: ()=> BlocProvider.of<SideMenuBloc>(context)
+                    .add(SideMenuSettingsEvent())),
                 _line(),
                 SideMenuItem(
                     icon: Icons.mail, title: "Contact Us", onTap: () {}),
