@@ -6,6 +6,7 @@ import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
+import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
@@ -26,16 +27,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider<LoginBloc>(
-              create: (BuildContext context) => LoginBloc()),
-          BlocProvider<VerifyBloc>(
-              create: (BuildContext context) => VerifyBloc()),
+          BlocProvider<LoginBloc>(create: (BuildContext context) => LoginBloc()),
+          BlocProvider<VerifyBloc>(create: (BuildContext context) => VerifyBloc()),
           BlocProvider<HomeBloc>(create: (BuildContext context) => HomeBloc()),
-          BlocProvider<NotificationsBloc>(
-              create: (BuildContext context) => NotificationsBloc()),
+          BlocProvider<NotificationsBloc>(create: (BuildContext context) => NotificationsBloc()),
           BlocProvider<SideMenuBloc>(create: (BuildContext context) => SideMenuBloc()),
           BlocProvider<AddPointBloc>(create: (BuildContext context) => AddPointBloc()),
           BlocProvider<ProfileBloc>(create: (BuildContext context) => ProfileBloc()),
+          BlocProvider<SchoolHousesBloc>(create: (BuildContext context) => SchoolHousesBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),

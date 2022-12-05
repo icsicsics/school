@@ -41,14 +41,22 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                         .add(SideMenuHomeEvent())),
                 _line(),
                 SideMenuItem(
-                    icon: Icons.settings, title: "Settings", onTap: ()=> BlocProvider.of<SideMenuBloc>(context)
-                    .add(SideMenuSettingsEvent())),
+                    icon: Icons.settings,
+                    title: "Settings",
+                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                        .add(SideMenuSettingsEvent())),
                 _line(),
                 SideMenuItem(
-                    icon: Icons.mail, title: "Contact Us", onTap: () {}),
+                    icon: Icons.mail,
+                    title: "Contact Us",
+                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                        .add(SideMenuContactUsEvent())),
                 _line(),
                 SideMenuItem(
-                    icon: Icons.info_outline, title: "About App", onTap: () {}),
+                    icon: Icons.info_outline,
+                    title: "About App",
+                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                        .add(SideMenuAboutAppEvent())),
               ],
             ),
           ),
