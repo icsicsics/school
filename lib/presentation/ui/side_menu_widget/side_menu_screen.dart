@@ -35,9 +35,11 @@ class SideMenuScreen extends StatelessWidget {
           context, MaterialPageRoute(builder: (_) => const HomeScreen()), (
           route) => false);
 
-  void _onSideMenuSettingsState(context) =>
-      Navigator.push(
+  void _onSideMenuSettingsState(context) {
+    Navigator.pop(context);
+    Navigator.push(
           context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+  }
 
   void _onSideMenuContactUsState() {}
 
