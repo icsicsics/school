@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/presentation/ui/school_houses/widgets/chart_content_widget.dart';
 
 class SchoolHousesChartWidget extends StatelessWidget {
   const SchoolHousesChartWidget({Key? key}) : super(key: key);
@@ -26,7 +27,11 @@ class SchoolHousesChartWidget extends StatelessWidget {
                       bottomRight: Radius.circular(50),
                       bottomLeft: Radius.circular(50))),
             ),
-            Align(alignment: Alignment.topCenter, child: Container()),
+            const Align(alignment: Alignment.bottomCenter, child:Padding(
+              padding: const EdgeInsets.only(top: 150),
+              child:   ChartContentWidget()),
+
+            ),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
