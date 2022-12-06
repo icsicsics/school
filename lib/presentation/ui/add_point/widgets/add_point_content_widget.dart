@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/ui/add_point/widgets/add_point_header_widget.dart';
-import 'package:schools/presentation/ui/add_point/widgets/add_point_item_widget.dart';
 import 'package:schools/presentation/ui/add_point/widgets/add_point_list_widget.dart';
 
 class AddPointContentWidget extends StatefulWidget {
