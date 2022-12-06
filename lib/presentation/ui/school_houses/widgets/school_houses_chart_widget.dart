@@ -28,7 +28,7 @@ class SchoolHousesChartWidget extends StatelessWidget {
                       bottomLeft: Radius.circular(50))),
             ),
             const Align(alignment: Alignment.bottomCenter, child:Padding(
-              padding: const EdgeInsets.only(top: 150),
+              padding:  EdgeInsets.only(top: 150),
               child:   ChartContentWidget()),
 
             ),
@@ -51,6 +51,21 @@ class SchoolHousesChartWidget extends StatelessWidget {
                     )),
               ),
             ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 30,left: 60,bottom: 45),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
+                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
+                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
+                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
+                ],),
+              ),
+            )
           ],
         ));
   }

@@ -52,7 +52,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
             isVisibleInLegend: false,
             spacing: 1.5),
       ],
-      margin: const EdgeInsets.only(top: 80, left: 50, right: 50),
+      margin: const EdgeInsets.only(top: 60, left: 50, right: 50,bottom: 60),
     );
   }
 }
