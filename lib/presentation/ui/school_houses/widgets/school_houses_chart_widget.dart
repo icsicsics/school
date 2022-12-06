@@ -27,11 +27,7 @@ class SchoolHousesChartWidget extends StatelessWidget {
                       bottomRight: Radius.circular(50),
                       bottomLeft: Radius.circular(50))),
             ),
-            const Align(alignment: Alignment.bottomCenter, child:Padding(
-              padding:  EdgeInsets.only(top: 150),
-              child:   ChartContentWidget()),
-
-            ),
+            const  ChartContentWidget(),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -47,7 +43,7 @@ class SchoolHousesChartWidget extends StatelessWidget {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(100))),
                       child: const Icon(Icons.currency_bitcoin,
-                          color: ColorsManager.yellow, size: 50),
+                          color: ColorsManager.yellow, size: 80),
                     )),
               ),
             ),
@@ -58,15 +54,18 @@ class SchoolHousesChartWidget extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
-                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
-                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
-                  Icon(Icons.confirmation_num_sharp,color: Colors.yellow,size: 30,),
+                  children:  [
+                  _iconData(Icons.confirmation_num_sharp),
+                  _iconData(Icons.confirmation_num_sharp),
+                  _iconData(Icons.confirmation_num_sharp),
+                  _iconData(Icons.confirmation_num_sharp),
                 ],),
               ),
             )
           ],
         ));
   }
+
+
+  Widget _iconData(IconData icon)=> Icon(icon,color: Colors.yellow,size: 30,);
 }

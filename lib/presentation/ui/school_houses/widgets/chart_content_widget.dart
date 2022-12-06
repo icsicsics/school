@@ -18,42 +18,50 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SfCartesianChart(
-      primaryXAxis: CategoryAxis(
-        borderColor: Colors.white,
-        borderWidth: 0,
-        isVisible: true,
-        labelStyle: const TextStyle(color: Colors.transparent),
-        majorGridLines: const MajorGridLines(color: Colors.transparent),
-        axisLine: const AxisLine(color: Colors.white),
-      ),
-      primaryYAxis: NumericAxis(
-          labelStyle: const TextStyle(color: Colors.white),
-          isVisible: true,
-          majorGridLines: const MajorGridLines(color: Colors.transparent),
-          axisLine: const AxisLine(color: Colors.white),
-          minorGridLines: const MinorGridLines(color: Colors.transparent),
-          borderColor: Colors.transparent,
-          borderWidth: 0,
-          placeLabelsNearAxisLine: false),
-      borderColor: Colors.transparent,
-      borderWidth: 0,
-      legend: Legend(isVisible: false),
-      plotAreaBorderColor: Colors.transparent,
-      series: <ChartSeries>[
-        ColumnSeries<SalesData, String>(
-            dataSource: columnData,
-            xValueMapper: (SalesData salesData, _) => salesData.x,
-            yValueMapper: (SalesData salesData, _) => salesData.y,
-            color: Colors.white,
-            trackColor: Colors.transparent,
-            isTrackVisible: true,
-            dataLabelSettings: const DataLabelSettings(color: Colors.white),
-            isVisibleInLegend: false,
-            spacing: 1.5),
-      ],
-      margin: const EdgeInsets.only(top: 60, left: 50, right: 50,bottom: 60),
-    );
+    return Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+            padding: const  EdgeInsets.only(top: 150),
+            child: SfCartesianChart(
+              primaryXAxis: CategoryAxis(
+                borderColor: Colors.white,
+                borderWidth: 0,
+                isVisible: true,
+                labelStyle: const TextStyle(color: Colors.transparent),
+                majorGridLines: const MajorGridLines(color: Colors.transparent),
+                axisLine: const AxisLine(color: Colors.white),
+              ),
+              primaryYAxis: NumericAxis(
+                  labelStyle: const TextStyle(color: Colors.white),
+                  isVisible: true,
+                  majorGridLines:
+                      const MajorGridLines(color: Colors.transparent),
+                  axisLine: const AxisLine(color: Colors.white),
+                  minorGridLines:
+                      const MinorGridLines(color: Colors.transparent),
+                  borderColor: Colors.transparent,
+                  borderWidth: 0,
+                  placeLabelsNearAxisLine: false),
+              borderColor: Colors.transparent,
+              borderWidth: 0,
+              legend: Legend(isVisible: false),
+              plotAreaBorderColor: Colors.transparent,
+              series: <ChartSeries>[
+                ColumnSeries<SalesData, String>(
+                    dataSource: columnData,
+                    xValueMapper: (SalesData salesData, _) => salesData.x,
+                    yValueMapper: (SalesData salesData, _) => salesData.y,
+                    color: Colors.white,
+                    trackColor: Colors.transparent,
+                    isTrackVisible: true,
+                    dataLabelSettings:
+                        const DataLabelSettings(color: Colors.white),
+                    isVisibleInLegend: false,
+                    spacing: 1.5),
+              ],
+              margin: const EdgeInsets.only(
+                  top: 60, left: 50, right: 50, bottom: 60),
+            )));
   }
 }
 
