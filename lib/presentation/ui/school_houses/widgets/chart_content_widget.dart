@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartContentWidget extends StatefulWidget {
   const ChartContentWidget({Key? key}) : super(key: key);
@@ -9,47 +9,60 @@ class ChartContentWidget extends StatefulWidget {
 }
 
 class _ChartContentWidgetState extends State<ChartContentWidget> {
-  List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', 28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
-  ];
+
+
+    List<SalesData> columnData=[
+      SalesData(x: "hello 1",y: 1.0),
+      SalesData(x: "hello 2",y: 1.0),
+      SalesData(x: "hello 3",y: 1.0),
+      SalesData(x: "hello 4",y: 1.0),
+    ];
+
 
   @override
   Widget build(BuildContext context) {
-
-
     return  Padding(
         padding: const EdgeInsets.all(50),
-        //Initialize the spark charts widget
-        child: SfSparkBarChart(
-          axisLineDashArray: [1.1,5,4,4,4],
-          data: const [12,1,1,1,4],
-          trackball: const  SparkChartTrackball(
-            borderRadius: BorderRadius.all(Radius.circular(45)),
-            borderColor: Colors.blueAccent,
-            width: 15,
-            borderWidth: 20,
-              activationMode: SparkChartActivationMode.tap),
-          color: Colors.white,
-          axisLineWidth: 1,
-          axisLineColor: Colors.black,
-          borderWidth: 5,
-          isInversed: false,
-          axisCrossesAt: 20.0,
+        child: SfCartesianChart(
+          primaryXAxis: CategoryAxis(
+            borderColor: Colors.white,
+            borderWidth: 0,
+            isVisible: true,
+              majorGridLines:const MajorGridLines(color: Colors.transparent),
+            axisLine:const  AxisLine(color: Colors.white),
+
+          ),
+          primaryYAxis: NumericAxis(
+            isVisible: true,
+            majorGridLines:const MajorGridLines(color: Colors.transparent),
+            axisLine:const  AxisLine(color: Colors.white),
+            minorGridLines:const MinorGridLines(color: Colors.transparent) ,
+            borderColor: Colors.transparent,
+            borderWidth: 0,
+            placeLabelsNearAxisLine: false
+          ),
           borderColor: Colors.transparent,
-        ),
+          borderWidth: 0,
+          legend: Legend(isVisible: false),
+
+          plotAreaBorderColor: Colors.transparent,
+          series: <ChartSeries> [
+            ColumnSeries<SalesData, String>(
+              dataSource: columnData,
+              xValueMapper: (SalesData salesData,_)=>salesData.x,
+              yValueMapper: (SalesData salesData,_)=>salesData.y,
+            )
+          ],
+
+        )
     );
 
 }
 
 }
 
-class _SalesData {
-  _SalesData(this.year, this.sales);
-
-  final String year;
-  final double sales;
+class SalesData {
+  SalesData({required this.x,required  this.y});
+  final String x;
+  final double y;
 }
