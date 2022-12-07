@@ -31,7 +31,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height / 3,
+        height: 280,
         decoration: const BoxDecoration(
             color: ColorsManager.whiteColor,
             borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -50,6 +50,10 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             const SizedBox(
               height: 5,
             ),
+           const  MediumTextWidget(
+                text: "Choose Why Leen Desrive this point",
+                fontSize: 12,
+                color: ColorsManager.blackColor),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
@@ -58,10 +62,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                     child: DropdownButton(
                       value: dropdownValue,
                       isExpanded: true,
-                      hint: const MediumTextWidget(
-                          text: "Choose Why Leen Desrive this point",
-                          fontSize: 15,
-                          color: ColorsManager.mediumGrayColor),
+
                       icon: const Icon(
                         Icons.arrow_drop_down_sharp,
                         size: 27,
@@ -99,8 +100,11 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            Visibility(
+              visible: showCommint,
+              child: const SizedBox(
+                height: 20,
+              ),
             ),
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 4,
