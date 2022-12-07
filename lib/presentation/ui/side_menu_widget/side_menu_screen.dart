@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
-import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
+import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
 
 class SideMenuScreen extends StatelessWidget {
@@ -30,15 +30,13 @@ class SideMenuScreen extends StatelessWidget {
         ));
   }
 
-  void _onSideMenuHomeState(context) =>
-      Navigator.pushAndRemoveUntil(
-          context, MaterialPageRoute(builder: (_) => const HomeScreen()), (
-          route) => false);
+  void _onSideMenuHomeState(context) => Navigator.push(
+      context, MaterialPageRoute(builder: (_) => const SchoolHousesScreen()));
 
   void _onSideMenuSettingsState(context) {
     Navigator.pop(context);
     Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+        context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
   }
 
   void _onSideMenuContactUsState() {}
