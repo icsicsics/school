@@ -30,4 +30,5 @@ class _HomeScreenState extends BaseState<HomeScreen> {
       ),
     );
   }
+
 }

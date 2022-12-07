@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/card_widget.dart';
-import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 
-class HomeListWidget extends StatelessWidget {
+class HomeListWidget extends StatefulWidget {
   const HomeListWidget({Key? key}) : super(key: key);
 
   @override
+  State<HomeListWidget> createState() => _HomeListWidgetState();
+}
+
+class _HomeListWidgetState extends State<HomeListWidget> {
+  @override
   Widget build(BuildContext context) {
+    TextEditingController addController = TextEditingController();
+
+
+
     return Expanded(
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -21,23 +30,16 @@ class HomeListWidget extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const AddPointScreen()));
-                // if (index == 0) {
-                //   showAddPointWithCommintFunction(context: context,
-                //       addAction: () {
-                //         Navigator.pop(context);
-                //       },
-                //       addController: addController,
-                //       commintController: addController);
-                // }else if(index==1){
-                //   showAddPointFunction(
-                //       context: context,
-                //       addAction: () {
-                //         Navigator.pop(context);
-                //       },
-                //       addController: addController);
-                // }
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (_) => const AddPointScreen()));
+                if (index == 0) {
+                  showAddPointFunction(
+                      context: context,
+                      addAction: () {
+                        Navigator.pop(context);
+                      },
+                      addController: addController);
+                }
               },
               child: const CardWidget(
                 section: "Section A",
