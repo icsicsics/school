@@ -7,6 +7,7 @@ import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
+import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
@@ -53,6 +54,8 @@ class _MyAppState extends State<MyApp> {
               create: (BuildContext context) => SchoolHousesBloc()),
           BlocProvider<AboutBloc>(
               create: (BuildContext context) => AboutBloc()),
+          BlocProvider<MyChildrenBloc>(
+              create: (BuildContext context) => MyChildrenBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),
