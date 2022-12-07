@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
+import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
@@ -16,7 +17,7 @@ import 'package:schools/presentation/ui/splash/splash_screen.dart';
 void main() {
   runApp(const MyApp());
   SystemChrome.setSystemUIOverlayStyle(
-    const  SystemUiOverlayStyle(
+    const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: ColorsManager.secondaryColor,
     ),
@@ -35,14 +36,23 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider<LoginBloc>(create: (BuildContext context) => LoginBloc()),
-          BlocProvider<VerifyBloc>(create: (BuildContext context) => VerifyBloc()),
+          BlocProvider<LoginBloc>(
+              create: (BuildContext context) => LoginBloc()),
+          BlocProvider<VerifyBloc>(
+              create: (BuildContext context) => VerifyBloc()),
           BlocProvider<HomeBloc>(create: (BuildContext context) => HomeBloc()),
-          BlocProvider<NotificationsBloc>(create: (BuildContext context) => NotificationsBloc()),
-          BlocProvider<SideMenuBloc>(create: (BuildContext context) => SideMenuBloc()),
-          BlocProvider<AddPointBloc>(create: (BuildContext context) => AddPointBloc()),
-          BlocProvider<ProfileBloc>(create: (BuildContext context) => ProfileBloc()),
-          BlocProvider<SchoolHousesBloc>(create: (BuildContext context) => SchoolHousesBloc()),
+          BlocProvider<NotificationsBloc>(
+              create: (BuildContext context) => NotificationsBloc()),
+          BlocProvider<SideMenuBloc>(
+              create: (BuildContext context) => SideMenuBloc()),
+          BlocProvider<AddPointBloc>(
+              create: (BuildContext context) => AddPointBloc()),
+          BlocProvider<ProfileBloc>(
+              create: (BuildContext context) => ProfileBloc()),
+          BlocProvider<SchoolHousesBloc>(
+              create: (BuildContext context) => SchoolHousesBloc()),
+          BlocProvider<AboutBloc>(
+              create: (BuildContext context) => AboutBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),
