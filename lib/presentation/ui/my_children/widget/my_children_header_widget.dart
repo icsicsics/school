@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
+import 'package:schools/presentation/ui/my_children/widget/points_widget.dart';
 
 class MyChildrenHeaderWidget extends StatefulWidget {
+   
 
-  const MyChildrenHeaderWidget({Key? key}) : super(key: key);
+   const MyChildrenHeaderWidget({Key? key}) : super(key: key);
 
   @override
   State<MyChildrenHeaderWidget> createState() => _MyChildrenHeaderWidgetState();
 }
 
 class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
+  bool isShowPoints=false;
   @override
   Widget build(BuildContext context) {
+    return  BlocConsumer<MyChildrenBloc, MyChildrenState>(
+  listener: (context, state) {},
+  builder: (context, state) {
+    if(state is MyChildrenShowPointsState){
+      isShowPoints = state.isShowPoints;
+    }
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -34,7 +45,9 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                       bottomRight: Radius.circular(50),
                       bottomLeft: Radius.circular(50))),
             ),
-
+             Visibility(
+               visible: isShowPoints,
+                 child: PointsWidget()),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -63,7 +76,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      children: const  [
                         MediumTextWidget(text: "Leen Eiz Deen", fontSize: 20, color: ColorsManager.whiteColor),
                         SizedBox(height: 20,),
                         MediumTextWidget(text: "Interactive Values School", fontSize: 15, color: ColorsManager.whiteColor),
@@ -74,6 +87,9 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
               ),
             ),
           ],
-        ));
+        ),
+);
+  },
+);
   }
 }
