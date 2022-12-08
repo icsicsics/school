@@ -9,3 +9,8 @@ class MyChildrenShowPointsState extends MyChildrenState {
 
   MyChildrenShowPointsState({required this.isShowPoints});
 }
+class MyChildrenShowHousesState extends MyChildrenState {
+  final bool isShowHouses;
+
+  MyChildrenShowHousesState({required this.isShowHouses});
+}

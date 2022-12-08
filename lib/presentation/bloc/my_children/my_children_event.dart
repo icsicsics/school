@@ -8,3 +8,8 @@ class MyChildrenShowPointsEvent extends MyChildrenEvent {
 
   MyChildrenShowPointsEvent({required this.isShowPoints});
 }
+class MyChildrenShowHousesEvent extends MyChildrenEvent {
+  final bool isShowHouses;
+
+  MyChildrenShowHousesEvent({required this.isShowHouses});
+}

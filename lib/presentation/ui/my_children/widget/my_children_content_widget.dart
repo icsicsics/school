@@ -30,7 +30,6 @@ class _MyChildrenContentWidgetState extends State<MyChildrenContentWidget> {
               const MyChildrenHeaderWidget(),
               MyChildrenBodyWidget(
                 onTapShowPoints: () {
-                  setState(() {
                     if (isShowPoints == true) {
                       BlocProvider.of<MyChildrenBloc>(context).add(
                           MyChildrenShowPointsEvent(isShowPoints: false));
@@ -38,7 +37,6 @@ class _MyChildrenContentWidgetState extends State<MyChildrenContentWidget> {
                       BlocProvider.of<MyChildrenBloc>(context).add(
                           MyChildrenShowPointsEvent(isShowPoints: true));
                     }
-                  });
                 },
               ),
             ],

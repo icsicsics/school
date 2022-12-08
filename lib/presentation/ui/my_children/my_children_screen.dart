@@ -14,36 +14,81 @@ class MyChildrenScreen extends BaseStatefulWidget {
 }
 
 class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
+  bool isShowPoint = false;
+  bool isHomes = false;
+
   @override
   Widget baseBuild(BuildContext context) {
-    return  Scaffold(
-      appBar: _appBar(),
-      body: BlocConsumer<MyChildrenBloc, MyChildrenState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return const  MyChildrenContentWidget();
-        },
+    return BlocConsumer<MyChildrenBloc, MyChildrenState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is MyChildrenShowPointsState) {
+          isShowPoint = state.isShowPoints;
+        } else if(state is MyChildrenShowHousesState){
+          isHomes=state.isShowHouses;
+        }
+        return Scaffold(
+            floatingActionButton: _points(),
+            appBar: _appBar(),
+            body: const MyChildrenContentWidget());
+      },
+    );
+  }
+
+  PreferredSizeWidget _appBar() => AppBar(
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back_ios,
+              color: ColorsManager.secondaryColor, size: 25),
+        ),
+        centerTitle: false,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications_active,
+                color: ColorsManager.secondaryColor, size: 25),
+          ),
+        ],
+        title: const BoldTextWidget(
+            color: ColorsManager.secondaryColor,
+            fontSize: 20,
+            text: "My Children"),
+      );
+
+  Widget _points() {
+    return Visibility(
+      visible: isHomes,
+      child: InkWell(
+        onTap: () {
+            if (isShowPoint == true) {
+              BlocProvider.of<MyChildrenBloc>(context)
+                  .add(MyChildrenShowPointsEvent(isShowPoints: false));
+            } else {
+              BlocProvider.of<MyChildrenBloc>(context)
+                  .add(MyChildrenShowPointsEvent(isShowPoints: true));
+            }},
+        child: Card(
+            color: ColorsManager.whiteColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+                side:
+                    const BorderSide(width: 2, color: ColorsManager.grayColor)),
+            elevation: 0,
+            child: Padding(
+                padding: const EdgeInsets.all(0),
+                child: SizedBox(
+                  height: 40,
+                  width: 40,
+                  child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      color: ColorsManager.secondaryColor,
+                      elevation: 0,
+                      child:
+                          const Icon(Icons.star, color: ColorsManager.yellow)),
+                ))),
       ),
     );
   }
-  PreferredSizeWidget _appBar() => AppBar(
-    elevation: 0,
-    leading: IconButton(
-      onPressed: () =>Navigator.pop(context),
-      icon: const Icon(Icons.arrow_back_ios,
-          color: ColorsManager.secondaryColor, size: 25),
-    ),
-    centerTitle: false,
-    actions: [
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.notifications_active,
-            color: ColorsManager.secondaryColor, size: 25),
-      ),
-    ],
-    title: const BoldTextWidget(
-        color: ColorsManager.secondaryColor, fontSize: 20, text: "My Children"),
-  );
 }

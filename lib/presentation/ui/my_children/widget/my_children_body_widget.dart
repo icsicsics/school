@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/ui/my_children/widget/houses_widget.dart';
 
 class MyChildrenBodyWidget extends StatefulWidget {
   final Function () onTapShowPoints;
-  const MyChildrenBodyWidget({Key? key,required this.onTapShowPoints}) : super(key: key);
+
+  const MyChildrenBodyWidget({Key? key, required this.onTapShowPoints})
+      : super(key: key);
 
   @override
   State<MyChildrenBodyWidget> createState() => _MyChildrenBodyWidgetState();
@@ -16,7 +20,12 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return BlocBuilder<MyChildrenBloc, MyChildrenState>(
+      builder: (context, state) {
+        if(state is MyChildrenShowHousesState){
+          isHomes=state.isShowHouses;
+        }
+        return Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
@@ -27,7 +36,7 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                        onPressed:widget.onTapShowPoints,
+                        onPressed: widget.onTapShowPoints,
                         icon: const Icon(
                           Icons.star,
                           color: ColorsManager.yellow,
@@ -35,8 +44,9 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
                         )),
                     IconButton(
                         onPressed: () {
+                          BlocProvider.of<MyChildrenBloc>(context).add(
+                              MyChildrenShowHousesEvent(isShowHouses: true));
                           setState(() {
-                            isHomes = true;
                             selectOptions = false;
                           });
                         },
@@ -51,8 +61,10 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
               Visibility(visible: isHomes, child: const HousesWidget()),
             ],
           ),
-        
 
+
+        );
+      },
     );
   }
 }
