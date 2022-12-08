@@ -18,24 +18,27 @@ class SideMenuHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage(
-                      ImagesPath.schoolItem,
+              Padding(
+                padding: const EdgeInsets.only(right: 80),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const CircleAvatar(
+                      backgroundImage: AssetImage(
+                        ImagesPath.schoolItem,
+                      ),
+                      radius: 50,
                     ),
-                    radius: 50,
-                  ),
-                  IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(
-                        Icons.supervised_user_circle,
-                        color: ColorsManager.secondaryColor,
-                        size: 30,
-                      ))
-                ],
+                    IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(
+                          Icons.supervised_user_circle,
+                          color: ColorsManager.secondaryColor,
+                          size: 30,
+                        ))
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 15,
