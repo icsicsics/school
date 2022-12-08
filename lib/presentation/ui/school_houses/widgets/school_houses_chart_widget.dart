@@ -24,8 +24,8 @@ class SchoolHousesChartWidget extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(50),
-                      bottomLeft: Radius.circular(50))),
+                      bottomRight: Radius.elliptical(200.0,15.0),
+                      bottomLeft: Radius.elliptical(200.0,15.0))),
             ),
             const  ChartContentWidget(),
             Align(

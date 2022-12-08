@@ -25,8 +25,8 @@ class AddPointHeaderWidget extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(70),
-                      bottomLeft: Radius.circular(70))),
+                      bottomRight: Radius.elliptical(200.0,20.0),
+                      bottomLeft: Radius.elliptical(200.0,20.0))),
             ),
             Align(
                 alignment: Alignment.bottomCenter,

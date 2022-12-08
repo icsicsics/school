@@ -39,15 +39,15 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           children: [
             Container(
               height: 150,
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(50),
-                      bottomLeft: Radius.circular(50))),
+                      bottomRight: Radius.elliptical(200.0,15.0),
+                      bottomLeft: Radius.elliptical(200.0,15.0))),
             ),
              Visibility(
                visible: isShowPoints,
-                 child: PointsWidget()),
+                 child: const PointsWidget()),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
