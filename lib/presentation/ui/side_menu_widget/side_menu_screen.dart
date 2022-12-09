@@ -36,6 +36,7 @@ class SideMenuScreen extends StatelessWidget {
           },
           builder: (context, state) {
             return const SideMenuContentWidget();
+
           },
         ));
   }

@@ -16,7 +16,7 @@ class LoginHeaderWidget extends StatelessWidget {
         ],
         stops: [0.5, 0.8],
       )),
-      height: MediaQuery.of(context).size.height / 5,
+      height: 200,
       child: Align(
         alignment: Alignment.center,
         child: Column(
