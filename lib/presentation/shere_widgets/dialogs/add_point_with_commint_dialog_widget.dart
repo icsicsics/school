@@ -7,8 +7,9 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 class AddPointDialogWidget extends StatefulWidget {
   final Function() addAction;
   final String childName;
+
   const AddPointDialogWidget(
-      {Key? key, required this.addAction,required this.childName})
+      {Key? key, required this.addAction, required this.childName})
       : super(key: key);
 
   @override
@@ -48,9 +49,10 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             const SizedBox(
               height: 5,
             ),
-             MediumTextWidget(
-              textAlign: TextAlign.center,
-                text: "Choose Why Leen Desrive this point to \n ${widget.childName}",
+            MediumTextWidget(
+                textAlign: TextAlign.center,
+                text:
+                    "Choose Why Leen Deserve this point to \n ${widget.childName}",
                 fontSize: 12,
                 color: ColorsManager.blackColor),
             Padding(
@@ -82,10 +84,9 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                 ],
               ),
             ),
-          const  SizedBox(
-                height: 20,
-              ),
-
+            const SizedBox(
+              height: 20,
+            ),
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 4,
                 onPressed: widget.addAction,
