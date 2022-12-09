@@ -8,12 +8,16 @@ part 'side_menu_event.dart';
 part 'side_menu_state.dart';
 
 class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
-  SideMenuBloc() : super(SideMenuInitial()) {
+  SideMenuBloc() : super(SideMenuInitialState()) {
+    on<GetSideMenuEvent>(_onGetSideMenuEvent);
     on<SideMenuHomeEvent>(_onSideMenuHomeEvent);
     on<SideMenuSettingsEvent>(_onSideMenuSettingsEvent);
     on<SideMenuContactUsEvent>(_onSideMenuContactUsEvent);
     on<SideMenuAboutAppEvent>(_oSideMenuAboutAppEvent);
   }
+
+  FutureOr<void> _onGetSideMenuEvent(
+      GetSideMenuEvent event, Emitter<SideMenuState> emit) {}
 
   FutureOr<void> _onSideMenuHomeEvent(
       SideMenuHomeEvent event, Emitter<SideMenuState> emit) {

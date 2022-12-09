@@ -8,9 +8,10 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(LoginInitial()) {
+  LoginBloc() : super(LoginInitialState()) {
     on<LoginClearButtonEvent>(_onLoginClearButtonEvent);
     on<LoginConfirmButtonEvent>(_onLoginConfirmButtonEvent);
+    on<GetLoginEvent>(_onGetLoginEvent);
   }
 
   FutureOr<void> _onLoginClearButtonEvent(
@@ -18,7 +19,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginClearButtonState());
   }
 
-  FutureOr<void> _onLoginConfirmButtonEvent(LoginConfirmButtonEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> _onLoginConfirmButtonEvent(
+      LoginConfirmButtonEvent event, Emitter<LoginState> emit) {
     emit(LoginConfirmButtonState());
   }
+
+  FutureOr<void> _onGetLoginEvent(
+      GetLoginEvent event, Emitter<LoginState> emit) {}
 }

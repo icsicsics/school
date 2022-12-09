@@ -13,3 +13,4 @@ class MyChildrenShowHousesEvent extends MyChildrenEvent {
 
   MyChildrenShowHousesEvent({required this.isShowHouses});
 }
+ class GetMyChildrenEvent extends MyChildrenEvent {}
