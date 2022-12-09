@@ -29,7 +29,10 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                       ColorsManager.secondaryColor,
                     ],
                     stops: [0.5, 0.8],
-                  )),
+                  ),
+              borderRadius:  BorderRadius.only(
+                      topRight: Radius.elliptical(15, 300),
+                      bottomRight:  Radius.elliptical(200, 500))),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Column(

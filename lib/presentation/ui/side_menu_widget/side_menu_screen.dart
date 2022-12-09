@@ -13,6 +13,10 @@ class SideMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.horizontal(left: Radius.elliptical(0, 0),right: Radius.elliptical(180,500)),
+
+      ),
         backgroundColor: Colors.white,
         child: BlocConsumer<SideMenuBloc, SideMenuState>(
           listener: (context, state) {

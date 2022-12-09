@@ -28,13 +28,16 @@ class SideMenuHeader extends StatelessWidget {
                     ),
                     radius: 50,
                   ),
-                  IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(
-                        Icons.supervised_user_circle,
-                        color: ColorsManager.secondaryColor,
-                        size: 30,
-                      ))
+                  Padding(
+                    padding: const EdgeInsets.only(right: 70),
+                    child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(
+                          Icons.supervised_user_circle,
+                          color: ColorsManager.secondaryColor,
+                          size: 30,
+                        )),
+                  )
                 ],
               ),
               const SizedBox(
