@@ -4,7 +4,8 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class AddPointItemWidget extends StatelessWidget {
-  const AddPointItemWidget({Key? key}) : super(key: key);
+  final String childName;
+  const AddPointItemWidget({Key? key,required this.childName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +56,8 @@ class AddPointItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          const MediumTextWidget(
-              text: "Leen Eiz Deen",
+           MediumTextWidget(
+              text: childName,
               fontSize: 12,
               color: ColorsManager.blackColor)
         ],

@@ -4,7 +4,7 @@ import 'package:schools/presentation/shere_widgets/dialogs/add_point_with_commin
 Future<void> showAddPointFunction(
         {required BuildContext context,
         required Function() addAction,
-        required TextEditingController addController}) =>
+        required String childName}) =>
     showDialog(
         barrierDismissible: true,
         context: context,
@@ -13,4 +13,4 @@ Future<void> showAddPointFunction(
             backgroundColor: Colors.transparent,
             child: AddPointDialogWidget(
               addAction: addAction,
-              addController: addController)));
+                    childName: childName,)));
