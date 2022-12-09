@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/clear_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/confirm_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/header_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/select_country_text_field_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/welcome_text_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginContentWidget extends StatefulWidget {
   final TextEditingController countryController;
@@ -18,6 +20,14 @@ class LoginContentWidget extends StatefulWidget {
 }
 
 class _LoginContentWidgetState extends State<LoginContentWidget> {
+
+
+  @override
+  void initState() {
+    test();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -54,5 +64,12 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
         ],
       ),
     );
+  }
+
+
+  test()async{
+    final prefs = await SharedPreferencesManager.getDeviceToken();
+    print(prefs);
+
   }
 }
