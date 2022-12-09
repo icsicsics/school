@@ -14,7 +14,11 @@ class SideMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.horizontal(left: Radius.elliptical(0, 0),right: Radius.elliptical(180,500)),
+        borderRadius:
+            BorderRadius.only(
+                topRight: Radius.circular(100),
+                bottomRight: Radius.circular(100))
+
 
       ),
         backgroundColor: Colors.white,

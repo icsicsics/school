@@ -11,7 +11,7 @@ class SideMenuHeader extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 50),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height / 3.9,
+        height: 230,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -29,7 +29,7 @@ class SideMenuHeader extends StatelessWidget {
                     radius: 50,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 70),
+                    padding: const EdgeInsets.only(right: 20  ),
                     child: IconButton(
                         onPressed: () => Navigator.pop(context),
                         icon: const Icon(
