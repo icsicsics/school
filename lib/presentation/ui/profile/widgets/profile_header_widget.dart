@@ -17,21 +17,21 @@ class ProfileHeaderWidget extends StatelessWidget {
           ],
           stops: [0.5, 0.8],
         )),
-        height: MediaQuery.of(context).size.height / 3,
+        height: 350,
         child: Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height / 8,
+              height: 150,
               decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(50),
-                      bottomLeft: Radius.circular(50))),
+                      bottomRight: Radius.elliptical(200.0,15.0),
+                      bottomLeft: Radius.elliptical(200.0,15.0))),
             ),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 25),
+                  padding: const EdgeInsets.only(bottom: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [

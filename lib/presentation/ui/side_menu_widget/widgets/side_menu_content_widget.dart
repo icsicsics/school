@@ -22,45 +22,45 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
         const SideMenuHeader(),
         Expanded(
             child: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [
-              ColorsManager.primaryColor,
-              ColorsManager.secondaryColor,
-            ],
-            stops: [0.5, 0.8],
-          )),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Column(
-              children: [
-                SideMenuItem(
-                    icon: Icons.home_filled,
-                    title: "School Homes",
-                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                        .add(SideMenuHomeEvent())),
-                _line(),
-                SideMenuItem(
-                    icon: Icons.settings,
-                    title: "Settings",
-                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                        .add(SideMenuSettingsEvent())),
-                _line(),
-                SideMenuItem(
-                    icon: Icons.mail,
-                    title: "Contact Us",
-                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                        .add(SideMenuContactUsEvent())),
-                _line(),
-                SideMenuItem(
-                    icon: Icons.info_outline,
-                    title: "About App",
-                    onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                        .add(SideMenuAboutAppEvent())),
-              ],
-            ),
-          ),
-        )),
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      ColorsManager.primaryColor,
+                      ColorsManager.secondaryColor,
+                    ],
+                    stops: [0.5, 0.8],
+                  )),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Column(
+                  children: [
+                    SideMenuItem(
+                        icon: Icons.home_filled,
+                        title: "School Homes",
+                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                            .add(SideMenuHomeEvent())),
+                    _line(),
+                    SideMenuItem(
+                        icon: Icons.settings,
+                        title: "Settings",
+                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                            .add(SideMenuSettingsEvent())),
+                    _line(),
+                    SideMenuItem(
+                        icon: Icons.mail,
+                        title: "Contact Us",
+                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                            .add(SideMenuContactUsEvent())),
+                    _line(),
+                    SideMenuItem(
+                        icon: Icons.info_outline,
+                        title: "About App",
+                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                            .add(SideMenuAboutAppEvent())),
+                  ],
+                ),
+              ),
+            )),
       ],
     );
   }

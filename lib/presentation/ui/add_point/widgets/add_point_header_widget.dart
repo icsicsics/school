@@ -21,12 +21,12 @@ class AddPointHeaderWidget extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height / 3.5,
+              height: 200,
               decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(70),
-                      bottomLeft: Radius.circular(70))),
+                      bottomRight: Radius.elliptical(200.0,20.0),
+                      bottomLeft: Radius.elliptical(200.0,20.0))),
             ),
             Align(
                 alignment: Alignment.bottomCenter,
@@ -53,11 +53,12 @@ class AddPointHeaderWidget extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: SizedBox(
-                height: MediaQuery.of(context).size.height / 4,
+                height: 320,
+                width: 220,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
+                  padding: const EdgeInsets.only(bottom: 80),
                   child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(60)),
                       child: Image.asset(ImagesPath.schoolItem,
                           fit: BoxFit.fitHeight)),
                 ),

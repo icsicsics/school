@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/card_widget.dart';
-import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 
 class HomeListWidget extends StatefulWidget {
@@ -14,10 +13,6 @@ class HomeListWidget extends StatefulWidget {
 class _HomeListWidgetState extends State<HomeListWidget> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController addController = TextEditingController();
-
-
-
     return Expanded(
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -31,17 +26,8 @@ class _HomeListWidgetState extends State<HomeListWidget> {
             padding: const EdgeInsets.all(5),
             child: InkWell(
               onTap: () {
-                if (index == 0) {
-                  showAddPointFunction(
-                      context: context,
-                      addAction: () {
-                        Navigator.pop(context);
-                      },
-                      addController: addController);
-                }else{
                   Navigator.push(context,
                       MaterialPageRoute(builder: (_) => const AddPointScreen()));
-                }
               },
               child: const CardWidget(
                 section: "Section A",
