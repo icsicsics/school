@@ -13,6 +13,14 @@ class SideMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      shape: const RoundedRectangleBorder(
+        borderRadius:
+            BorderRadius.only(
+                topRight: Radius.circular(100),
+                bottomRight: Radius.circular(100))
+
+
+      ),
         backgroundColor: Colors.white,
         child: BlocConsumer<SideMenuBloc, SideMenuState>(
           listener: (context, state) {
@@ -28,6 +36,7 @@ class SideMenuScreen extends StatelessWidget {
           },
           builder: (context, state) {
             return const SideMenuContentWidget();
+
           },
         ));
   }

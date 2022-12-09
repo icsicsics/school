@@ -10,90 +10,97 @@ class TitlesRowWidget extends StatefulWidget {
 }
 
 class _TitlesRowWidgetState extends State<TitlesRowWidget> {
+  bool isSelectedNotification = true;
+  bool isSelectedIndex = false;
+  Color selectedColor = ColorsManager.secondaryColor;
+  Color unselectedColor = Colors.transparent;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0,right: 8.0,),
+      padding: const EdgeInsets.only(
+        left: 8.0,
+        right: 8.0,
+      ),
       child: Row(
         children: [
-          Expanded(
-            child: InkWell(
-                onTap: () {},
-                child: Column(
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.notifications,
-                              color: ColorsManager.secondaryColor,
-                              size: 26,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            BoldTextWidget(
-                                text: "Notifications (2)",
-                                fontSize: 17,
-                                color: ColorsManager.blackColor)
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      color: ColorsManager.secondaryColor,
-                      height: 3,
-                      width: MediaQuery.of(context).size.width / 2.5,
-                    )
-                  ],
-                )),
+          _indexAndNotificationItem(
+            onTap: () => _selectNotification(),
+            title: "Notifications (2)",
+            icon: Icons.notifications,
+            color: isSelectedNotification ? selectedColor : unselectedColor,
           ),
-          Expanded(
-            child: InkWell(
-              onTap: () {},
-              child: Column(
-                children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    elevation: 0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.mail_outline,
-                            color: ColorsManager.secondaryColor,
-                            size: 26,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          BoldTextWidget(
-                              text: "Inbox (1)",
-                              fontSize: 17,
-                              color: ColorsManager.blackColor)
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: ColorsManager.secondaryColor,
-                    height: 3,
-                    width: MediaQuery.of(context).size.width / 2.5,
-                  )
-                ],
-              ),
-            ),
-          ),
+          _indexAndNotificationItem(
+              onTap: () => _selectIndex(),
+              title: "Inbox (1)",
+              icon: Icons.mail_outline,
+              color: isSelectedIndex ? selectedColor : unselectedColor),
         ],
       ),
     );
+  }
+
+  Widget _indexAndNotificationItem(
+          {required Function() onTap,
+          required String title,
+          required IconData icon,
+          required Color color}) =>
+      Expanded(
+        child: InkWell(
+          onTap: onTap,
+          child: Column(
+            children: [
+              Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      Icon(
+                        icon,
+                        color: ColorsManager.secondaryColor,
+                        size: 26,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: BoldTextWidget(
+                            text: title,
+                            fontSize: 17,
+                            color: ColorsManager.blackColor),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                color: color,
+                height: 3,
+                width: MediaQuery.of(context).size.width / 2.5,
+              )
+            ],
+          ),
+        ),
+      );
+
+  void _selectIndex() {
+    setState(() {
+      if (isSelectedIndex == false && isSelectedNotification == true) {
+        isSelectedNotification = false;
+        isSelectedIndex = true;
+      }
+    });
+  }
+
+  void _selectNotification() {
+    if (isSelectedIndex == true && isSelectedNotification == false) {
+      setState(() {
+        isSelectedNotification = true;
+        isSelectedIndex = false;
+      });
+    }
   }
 }
