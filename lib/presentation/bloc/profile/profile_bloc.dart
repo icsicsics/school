@@ -7,9 +7,10 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  ProfileBloc() : super(ProfileInitial()) {
-    on<ProfileEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  ProfileBloc() : super(ProfileInitialState()) {
+    on<GetProfileEvent>(_onGetProfileEvent);
+  }
+
+  FutureOr<void> _onGetProfileEvent(GetProfileEvent event, Emitter<ProfileState> emit) {
   }
 }

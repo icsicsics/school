@@ -16,7 +16,7 @@ class TitleWidget extends StatelessWidget {
           ],
           stops: [0.5, 0.8],
         )),
-        height: MediaQuery.of(context).size.height / 7,
+        height: 100,
         child: Padding(
           padding: const EdgeInsets.all(0),
           child: Row(
@@ -42,18 +42,38 @@ class TitleWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  MediumTextWidget(
+                children: [
+                  const MediumTextWidget(
                       text: "Weather",
                       fontSize: 16,
                       color: ColorsManager.whiteColor),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  MediumTextWidget(
-                      text: "Sunny Day",
-                      fontSize: 15,
-                      color: ColorsManager.whiteColor),
+                  Row(
+                    children: [
+                      Container(
+                          decoration: const BoxDecoration(
+                              color: ColorsManager.whiteColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          child: const Padding(
+                            padding: EdgeInsets.all(1),
+                            child: Icon(
+                              Icons.sunny,
+                              color: ColorsManager.yellow,
+                              size: 15,
+                            ),
+                          )),
+                      const SizedBox(
+                        width: 2,
+                      ),
+                      const MediumTextWidget(
+                          text: "33 Sunny Day",
+                          fontSize: 15,
+                          color: ColorsManager.whiteColor),
+                    ],
+                  ),
                 ],
               ),
             ],
