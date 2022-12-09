@@ -30,7 +30,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: 280,
+        height: 250,
         decoration: const BoxDecoration(
             color: ColorsManager.whiteColor,
             borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -38,9 +38,6 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 5,
-            ),
             const Icon(Icons.star, size: 40, color: ColorsManager.yellow),
             const BoldTextWidget(
                 text: "Add Point",
@@ -85,7 +82,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 4,
