@@ -33,7 +33,6 @@ void main() async {
     ),
   );
   NotificationService().initializeNotificationService();
-  await NotificationService().getToken();
   runApp(const MyApp());
 }
 
@@ -49,27 +48,17 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider<LoginBloc>(
-              create: (BuildContext context) => LoginBloc()),
-          BlocProvider<VerifyBloc>(
-              create: (BuildContext context) => VerifyBloc()),
+          BlocProvider<LoginBloc>(create: (BuildContext context) => LoginBloc()),
+          BlocProvider<VerifyBloc>(create: (BuildContext context) => VerifyBloc()),
           BlocProvider<HomeBloc>(create: (BuildContext context) => HomeBloc()),
-          BlocProvider<NotificationsBloc>(
-              create: (BuildContext context) => NotificationsBloc()),
-          BlocProvider<SideMenuBloc>(
-              create: (BuildContext context) => SideMenuBloc()),
-          BlocProvider<AddPointBloc>(
-              create: (BuildContext context) => AddPointBloc()),
-          BlocProvider<ProfileBloc>(
-              create: (BuildContext context) => ProfileBloc()),
-          BlocProvider<SchoolHousesBloc>(
-              create: (BuildContext context) => SchoolHousesBloc()),
-          BlocProvider<AboutBloc>(
-              create: (BuildContext context) => AboutBloc()),
-          BlocProvider<MyChildrenBloc>(
-              create: (BuildContext context) => MyChildrenBloc()),
-          BlocProvider<ChildDetailsBloc>(
-              create: (BuildContext context) => ChildDetailsBloc()),
+          BlocProvider<NotificationsBloc>(create: (BuildContext context) => NotificationsBloc()),
+          BlocProvider<SideMenuBloc>(create: (BuildContext context) => SideMenuBloc()),
+          BlocProvider<AddPointBloc>(create: (BuildContext context) => AddPointBloc()),
+          BlocProvider<ProfileBloc>(create: (BuildContext context) => ProfileBloc()),
+          BlocProvider<SchoolHousesBloc>(create: (BuildContext context) => SchoolHousesBloc()),
+          BlocProvider<AboutBloc>(create: (BuildContext context) => AboutBloc()),
+          BlocProvider<MyChildrenBloc>(create: (BuildContext context) => MyChildrenBloc()),
+          BlocProvider<ChildDetailsBloc>(create: (BuildContext context) => ChildDetailsBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),

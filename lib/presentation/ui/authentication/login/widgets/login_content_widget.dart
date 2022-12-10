@@ -22,6 +22,7 @@ class LoginContentWidget extends StatefulWidget {
 class _LoginContentWidgetState extends State<LoginContentWidget> {
 
 
+
   @override
   void initState() {
     test();
@@ -68,8 +69,8 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
 
 
   test()async{
-    final prefs = await SharedPreferencesManager.getDeviceToken();
-    print(prefs);
+    final prefs = await SharedPreferencesManager.getNotificationToken();
+    print("Testv device token $prefs");
 
   }
 }

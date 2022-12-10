@@ -141,12 +141,4 @@ class NotificationService {
         title: message.notification!.title);
   }
 
-
-
-
-  Future<void> getToken() async {
-    return await FirebaseMessaging.instance.getToken().then((token) {
-      print(token);
-    });
-  }
 }
