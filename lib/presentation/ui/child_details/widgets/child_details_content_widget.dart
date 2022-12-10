@@ -18,19 +18,22 @@ class ChildDetailsContentWidget extends StatefulWidget {
 class _ChildDetailsContentWidgetState extends State<ChildDetailsContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ChildDetailsAppBarWidget(
-          onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
-          onTapNotifications: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const NotificationsScreen()));
-          },
-        ),
-        const SizedBox(height: 2),
-        const ChildDetailsTitleWidget(),
-        const ChildDetailsInformationWidget()
-      ],
+    return  Column(
+        children: [
+          ChildDetailsAppBarWidget(
+            onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
+            onTapNotifications: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const NotificationsScreen()));
+            },
+          ),
+          const SizedBox(height: 2),
+          const ChildDetailsTitleWidget(),
+          const ChildDetailsInformationWidget(),
+
+
+        ],
+
     );
   }
 }
