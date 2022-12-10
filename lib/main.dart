@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/core/device_info.dart';
+import 'package:schools/core/notification_serves.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
@@ -15,14 +18,25 @@ import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  await DeviceInformation().initPackageInformation();
+  await DeviceInformation().initDeviceInformation();
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: ColorsManager.secondaryColor,
     ),
   );
+   NotificationService().initializeNotificationService();
+  await NotificationService().getToken();
+  runApp(const MyApp());
+
 }
 
 class MyApp extends StatefulWidget {
@@ -68,4 +82,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ));
   }
+
+
+
 }
