@@ -36,7 +36,7 @@ class ChildDetailsInformationWidget extends StatelessWidget {
                           child: Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 2),
