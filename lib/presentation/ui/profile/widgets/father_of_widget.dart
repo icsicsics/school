@@ -22,9 +22,9 @@ class FatherOfWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BoldTextWidget(text: "Father Of ", fontSize: 16, color: ColorsManager.secondaryColor),
+              const BoldTextWidget(text: "Father Of ", fontSize: 16, color: ColorsManager.secondaryColor),
               Row(
-                children: [
+                children: const[
                   ChildItemWidget(),
                   ChildItemWidget(),
                 ],

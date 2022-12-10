@@ -27,7 +27,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
           },
         ),
         const SizedBox(height: 2),
-        const TitleWidget(),
+        const HomeTitleWidget(),
         const HomeListWidget()
       ],
     );
