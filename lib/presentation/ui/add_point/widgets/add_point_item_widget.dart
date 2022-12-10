@@ -34,8 +34,8 @@ class AddPointItemWidget extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
-                      height: MediaQuery.of(context).size.height / 20,
-                      width: MediaQuery.of(context).size.width / 11,
+                      height: 40,
+                      width: 40 ,
                       decoration: const BoxDecoration(
                           color: ColorsManager.whiteColor,
                           borderRadius: BorderRadius.all(Radius.circular(50))),

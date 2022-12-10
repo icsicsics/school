@@ -8,6 +8,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
+import 'package:schools/presentation/bloc/child_details/child_details_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
@@ -19,8 +20,6 @@ import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
 
 void main() async {
-
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -33,10 +32,9 @@ void main() async {
       systemNavigationBarColor: ColorsManager.secondaryColor,
     ),
   );
-   NotificationService().initializeNotificationService();
+  NotificationService().initializeNotificationService();
   await NotificationService().getToken();
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatefulWidget {
@@ -70,6 +68,8 @@ class _MyAppState extends State<MyApp> {
               create: (BuildContext context) => AboutBloc()),
           BlocProvider<MyChildrenBloc>(
               create: (BuildContext context) => MyChildrenBloc()),
+          BlocProvider<ChildDetailsBloc>(
+              create: (BuildContext context) => ChildDetailsBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),
@@ -82,7 +82,4 @@ class _MyAppState extends State<MyApp> {
           ),
         ));
   }
-
-
-
 }

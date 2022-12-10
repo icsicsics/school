@@ -15,7 +15,7 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: [
+        children:const  [
           ProfileHeaderWidget(),
           ProfileInfoContentWidget(),
           FatherOfWidget()

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
-class HomeTitleWidget extends StatelessWidget {
-  const HomeTitleWidget({Key? key}) : super(key: key);
+class ChildDetailsTitleWidget extends StatelessWidget {
+  const ChildDetailsTitleWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-          colors: [
-            ColorsManager.primaryColor,
-            ColorsManager.secondaryColor,
-          ],
-          stops: [0.5, 0.8],
-        )),
+              colors: [
+                ColorsManager.primaryColor,
+                ColorsManager.secondaryColor,
+              ],
+              stops: [0.5, 0.8],
+            )),
         height: 100,
         child: Padding(
           padding: const EdgeInsets.all(0),
@@ -56,7 +56,7 @@ class HomeTitleWidget extends StatelessWidget {
                           decoration: const BoxDecoration(
                               color: ColorsManager.whiteColor,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
+                              BorderRadius.all(Radius.circular(15))),
                           child: const Padding(
                             padding: EdgeInsets.all(1),
                             child: Icon(
