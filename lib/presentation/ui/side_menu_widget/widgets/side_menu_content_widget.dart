@@ -39,6 +39,8 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                     padding: const EdgeInsets.only(top: 10),
                     child: SingleChildScrollView(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SideMenuItem(
                               icon: Icons.home_filled,
@@ -74,6 +76,9 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
     );
   }
 
-  Widget _line() => const MediumTextWidget(
-      text: "…………………………………………", fontSize: 20, color: ColorsManager.whiteColor);
+  Widget _line() => const Padding(
+    padding:  EdgeInsets.only(left: 20),
+    child:  MediumTextWidget(
+        text: "…………………………………………", fontSize: 20, color: ColorsManager.whiteColor),
+  );
 }

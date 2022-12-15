@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class SplashContentWidget extends StatelessWidget {
   const SplashContentWidget({Key? key}) : super(key: key);
@@ -29,9 +30,9 @@ class SplashContentWidget extends StatelessWidget {
               fontSize: 40,
               color: ColorsManager.whiteColor,
             ),
-            BoldTextWidget(
+            MediumTextWidget(
               text: 'Interactive school Counselling',
-              fontSize: 20,
+              fontSize: 16,
               color: ColorsManager.whiteColor,
             )
           ],
