@@ -29,7 +29,7 @@ class SideMenuHeader extends StatelessWidget {
                     radius: 50,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 20  ),
+                    padding: const EdgeInsets.only(right: 180),
                     child: IconButton(
                         onPressed: () => Navigator.pop(context),
                         icon: const Icon(
