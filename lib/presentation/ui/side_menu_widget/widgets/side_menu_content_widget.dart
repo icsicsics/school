@@ -7,6 +7,7 @@ import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_header.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_item.dart';
+import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_sochila_madia_widget.dart';
 
 class SideMenuContentWidget extends StatefulWidget {
   const SideMenuContentWidget({Key? key}) : super(key: key);
@@ -18,27 +19,26 @@ class SideMenuContentWidget extends StatefulWidget {
 class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return  SingleChildScrollView(
       child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: [
-            const SideMenuHeader(),
-            Expanded(
-                child: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      ColorsManager.primaryColor,
-                      ColorsManager.secondaryColor,
-                    ],
-                    stops: [0.5, 0.8],
-                  ),
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(100))),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SingleChildScrollView(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
+              const SideMenuHeader(),
+              Expanded(
+                  child: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        ColorsManager.primaryColor,
+                        ColorsManager.secondaryColor,
+                      ],
+                      stops: [0.5, 0.8],
+                    ),
+                    borderRadius:
+                        BorderRadius.only(bottomRight: Radius.circular(100))),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,13 +66,15 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                           title: "About App",
                           onTap: () => BlocProvider.of<SideMenuBloc>(context)
                               .add(SideMenuAboutAppEvent())),
+           _line(),
+                      const SideMenuSocialMediaWidget(),
                     ],
                   ),
                 ),
-              ),
-            )),
-          ],
-        ),
+              )),
+            ],
+          ),
+
       ),
     );
   }
