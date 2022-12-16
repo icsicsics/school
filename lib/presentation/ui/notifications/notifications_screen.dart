@@ -19,7 +19,7 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
-      drawer: const SideMenuScreen(),
+      drawer:  const SideMenuScreen(isComFromHome: false,),
         key: _key,
         body: BlocConsumer<NotificationsBloc, NotificationsState>(
           listener: (context, state) {

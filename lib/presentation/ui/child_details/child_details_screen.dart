@@ -19,7 +19,7 @@ class _ChildDetailsScreenState extends BaseState<ChildDetailsScreen> {
   Widget baseBuild(BuildContext context) {
     return Scaffold(
       key: _key,
-      drawer: const SideMenuScreen(),
+      drawer: const  SideMenuScreen(isComFromHome: false,),
       body: BlocConsumer<ChildDetailsBloc, ChildDetailsState>(
         listener: (context, state) {
           // TODO: implement listener

@@ -11,7 +11,7 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   SideMenuBloc() : super(SideMenuInitialState()) {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);
     on<SideMenuHomeEvent>(_onSideMenuHomeEvent);
-    on<SideMenuSettingsEvent>(_onSideMenuSettingsEvent);
+    on<SideMenuUserProfileEvent>(_onSideMenuUserProfileEvent);
     on<SideMenuContactUsEvent>(_onSideMenuContactUsEvent);
     on<SideMenuAboutAppEvent>(_oSideMenuAboutAppEvent);
   }
@@ -24,9 +24,9 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     emit(SideMenuHomeState());
   }
 
-  FutureOr<void> _onSideMenuSettingsEvent(
-      SideMenuSettingsEvent event, Emitter<SideMenuState> emit) {
-    emit(SideMenuSettingsState());
+  FutureOr<void> _onSideMenuUserProfileEvent(
+      SideMenuUserProfileEvent event, Emitter<SideMenuState> emit) {
+    emit(SideMenuUserProfileState());
   }
 
   FutureOr<void> _onSideMenuContactUsEvent(

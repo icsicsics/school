@@ -3,14 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/ui/about/about_screen.dart';
+import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
-import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
 
 class SideMenuScreen extends StatelessWidget {
-  const SideMenuScreen({Key? key}) : super(key: key);
+  final bool isComFromHome;
+
+  const SideMenuScreen({Key? key, required this.isComFromHome})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,8 @@ class SideMenuScreen extends StatelessWidget {
                 listener: (context, state) {
                   if (state is SideMenuHomeState) {
                     _onSideMenuHomeState(context);
-                  } else if (state is SideMenuSettingsState) {
-                    _onSideMenuSettingsState(context);
+                  } else if (state is SideMenuUserProfileState) {
+                    _onSideMenuProfileState(context);
                   } else if (state is SideMenuContactUsState) {
                     _onSideMenuContactUsState(context);
                   } else if (state is SideMenuAboutAppState) {
@@ -44,10 +47,18 @@ class SideMenuScreen extends StatelessWidget {
     );
   }
 
-  void _onSideMenuHomeState(context) => Navigator.push(
-      context, MaterialPageRoute(builder: (_) => const SchoolHousesScreen()));
+  void _onSideMenuHomeState(context) {
+    if (isComFromHome == true) {
+      Navigator.pop(context);
+    } else {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+          (route) => false);
+    }
+  }
 
-  void _onSideMenuSettingsState(context) {
+  void _onSideMenuProfileState(context) {
     Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (_) => const ProfileScreen()));

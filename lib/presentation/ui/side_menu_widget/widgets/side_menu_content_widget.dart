@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_header.dart';
@@ -25,51 +26,51 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
             const SideMenuHeader(),
             Expanded(
                 child: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          ColorsManager.primaryColor,
-                          ColorsManager.secondaryColor,
-                        ],
-                        stops: [0.5, 0.8],
-                      ),
-                  borderRadius:  BorderRadius.only(
-                          bottomRight:  Radius.circular(100))),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SideMenuItem(
-                              icon: Icons.home_filled,
-                              title: "School Homes",
-                              onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                                  .add(SideMenuHomeEvent())),
-                          _line(),
-                          SideMenuItem(
-                              icon: Icons.settings,
-                              title: "Settings",
-                              onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                                  .add(SideMenuSettingsEvent())),
-                          _line(),
-                          SideMenuItem(
-                              icon: Icons.mail,
-                              title: "Contact Us",
-                              onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                                  .add(SideMenuContactUsEvent())),
-                          _line(),
-                          SideMenuItem(
-                              icon: Icons.info_outline,
-                              title: "About App",
-                              onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                                  .add(SideMenuAboutAppEvent())),
-                        ],
-                      ),
-                    ),
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      ColorsManager.primaryColor,
+                      ColorsManager.secondaryColor,
+                    ],
+                    stops: [0.5, 0.8],
                   ),
-                )),
+                  borderRadius:
+                      BorderRadius.only(bottomRight: Radius.circular(100))),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SideMenuItem(
+                          icon: Icons.home_filled,
+                          title: "School Homes",
+                          onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                              .add(SideMenuHomeEvent())),
+                      _line(),
+                      SideMenuItem(
+                          icon: Icons.person,
+                          title: "User Profile",
+                          onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                              .add(SideMenuUserProfileEvent())),
+                      _line(),
+                      SideMenuItem(
+                          icon: Icons.mail,
+                          title: "Contact Us",
+                          onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                              .add(SideMenuContactUsEvent())),
+                      _line(),
+                      SideMenuItem(
+                          icon: Icons.info_outline,
+                          title: "About App",
+                          onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                              .add(SideMenuAboutAppEvent())),
+                    ],
+                  ),
+                ),
+              ),
+            )),
           ],
         ),
       ),
@@ -77,8 +78,10 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
   }
 
   Widget _line() => const Padding(
-    padding:  EdgeInsets.only(left: 20),
-    child:  MediumTextWidget(
-        text: "…………………………………………", fontSize: 20, color: ColorsManager.whiteColor),
-  );
+        padding: EdgeInsets.only(left: 20),
+        child: MediumTextWidget(
+            text: "…………………………………………",
+            fontSize: 20,
+            color: ColorsManager.whiteColor),
+      );
 }

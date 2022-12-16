@@ -19,7 +19,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   Widget baseBuild(BuildContext context) {
     return Scaffold(
       key: _key,
-      drawer: const SideMenuScreen(),
+      drawer:  const SideMenuScreen(isComFromHome: true,),
       body: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
           // TODO: implement listener
