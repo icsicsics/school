@@ -25,6 +25,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           },
           builder: (context, state) {
             return const ProfileContentWidget();
+
           },
         ));
   }

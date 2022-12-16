@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
-import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 
 class SchoolHousesCardItemWidget extends StatelessWidget {
   final Widget icon;
@@ -29,8 +30,8 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
         child: InkWell(
-          onTap: () => Navigator.push(context,
-              MaterialPageRoute(builder: (_) => const AddPointScreen())),
+          onTap: () => BlocProvider.of<SchoolHousesBloc>(context)
+              .add(NavigateToAddPointScreenEvent()),
           child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),

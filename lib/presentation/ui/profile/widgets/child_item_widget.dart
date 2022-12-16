@@ -9,10 +9,7 @@ class ChildItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (_) => const ChildDetailsScreen()),
-          (route) => false),
+      onTap: () => {},
       child: SizedBox(
         height: MediaQuery.of(context).size.height / 13,
         width: MediaQuery.of(context).size.width / 5,

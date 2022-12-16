@@ -12,3 +12,7 @@ class GetSchoolHousesSuccessState extends SchoolHousesState {}
 class GetSchoolHousesFillState extends SchoolHousesState {}
 
 class GetSchoolHousesErrorState extends SchoolHousesState {}
+
+class NavigateToNotificationScreenState extends SchoolHousesState {}
+
+class NavigateToAddPointScreenState extends SchoolHousesState {}

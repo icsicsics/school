@@ -4,3 +4,7 @@ part of 'school_houses_bloc.dart';
 abstract class SchoolHousesEvent {}
 
 class GetSchoolHousesEvent extends SchoolHousesEvent {}
+
+class NavigateToNotificationScreenEvent extends SchoolHousesEvent {}
+
+class NavigateToAddPointScreenEvent extends SchoolHousesEvent {}
