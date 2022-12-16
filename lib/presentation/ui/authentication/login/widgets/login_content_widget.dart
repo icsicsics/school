@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
+import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/clear_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/confirm_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/header_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/select_country_text_field_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/welcome_text_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginContentWidget extends StatefulWidget {
   final TextEditingController countryController;
+  final LoginBloc loginBloc;
+  final bool isFather;
 
-  const LoginContentWidget({Key? key, required this.countryController})
+  const LoginContentWidget(
+      {Key? key,
+      required this.countryController,
+      required this.loginBloc,
+      required this.isFather})
       : super(key: key);
 
   @override
@@ -20,9 +27,6 @@ class LoginContentWidget extends StatefulWidget {
 }
 
 class _LoginContentWidgetState extends State<LoginContentWidget> {
-
-
-
   @override
   void initState() {
     test();
@@ -42,6 +46,24 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
               children: [
                 SelectCountryTextFieldWidget(
                   controller: widget.countryController,
+                ),
+                const SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Switch(
+                      value: widget.isFather,
+                      activeColor: ColorsManager.primaryColor,
+                      onChanged: (bool value) => widget.loginBloc
+                          .add(LoginIsFatherEvent(isFather: value)),
+                    ),
+                    const SizedBox(width: 5,),
+                    MediumTextWidget(
+                        text: "Is Father",
+                        fontSize: 15,
+                        color: widget.isFather
+                            ? ColorsManager.secondaryColor
+                            : ColorsManager.blackColor)
+                  ],
                 ),
                 const SizedBox(
                   height: 100,
@@ -67,10 +89,8 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
     );
   }
 
-
-  test()async{
+  test() async {
     final prefs = await SharedPreferencesManager.getNotificationToken();
     print("Testv device token $prefs");
-
   }
 }

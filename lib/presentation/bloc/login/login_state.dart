@@ -16,3 +16,8 @@ class GetLoginSuccessState extends LoginState {}
 class GetLoginFillState extends LoginState {}
 
 class GetLoginErrorState extends LoginState {}
+
+class LoginIsFatherState extends LoginState {
+  final bool isFather;
+  LoginIsFatherState({required this.isFather});
+}

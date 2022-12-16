@@ -6,6 +6,7 @@ class SharedPreferencesKeys {
   static const devicePlatform = "device_platform";
   static const osVersion = "os_version";
   static const ipAddress = "ip_address";
+  static const isFather = "isFather";
 
 
 }
