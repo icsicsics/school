@@ -14,6 +14,13 @@ class ProfileScreen extends BaseStatefulWidget {
 }
 
 class _ProfileScreenState extends BaseState<ProfileScreen> {
+  ProfileBloc get _login => BlocProvider.of<ProfileBloc>(context);
+  bool _isFather=false;
+  @override
+  void initState() {
+    _login.add(GetIsFatherEvent());
+    super.initState();
+  }
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
@@ -21,10 +28,13 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         appBar: _appBar(),
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
-            // TODO: implement listener
+            if(state is GetIsFatherState){
+              _isFather=state.isFather;
+            }
+
           },
           builder: (context, state) {
-            return const ProfileContentWidget();
+            return  ProfileContentWidget(isFather: _isFather,);
 
           },
         ));

@@ -23,7 +23,7 @@ class _NotificationsContentWidgetState
       children: [
         NotificationsAppBarWidget(
             onTapMenu: () => widget.globalKey.currentState!.openDrawer()),
-         TitlesRowWidget(isFather: widget.isFather),
+         widget.isFather?TitlesRowWidget(isFather: widget.isFather):Container(),
         const NotificationsListWidget()
       ],
     );

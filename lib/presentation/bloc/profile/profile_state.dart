@@ -12,3 +12,7 @@ class GetProfileSuccessState extends ProfileState {}
 class GetProfileFillState extends ProfileState {}
 
 class GetProfileErrorState extends ProfileState {}
+class GetIsFatherState extends ProfileState {
+  final bool isFather;
+  GetIsFatherState({required this.isFather});
+}

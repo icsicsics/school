@@ -56,25 +56,22 @@ class HomeFatherContentWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 5),
                         child: Align(
                           alignment: Alignment.bottomRight,
-                          child: InkWell(
-                            onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>MyChildrenScreen())),
-                            child: Container(
-                              height: 36,
-                              width: 36,
-                              decoration: const BoxDecoration(
-                                  color: ColorsManager.whiteColor,
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
-                              child: Padding(
-                                padding: const EdgeInsets.all(3),
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                      color: ColorsManager.secondaryColor,
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(50))),
-                                  child: const Icon(Icons.star,
-                                      color: ColorsManager.yellow, size: 25),
-                                ),
+                          child: Container(
+                            height: 36,
+                            width: 36,
+                            decoration: const BoxDecoration(
+                                color: ColorsManager.whiteColor,
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(50))),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    color: ColorsManager.secondaryColor,
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                                child: const Icon(Icons.star,
+                                    color: ColorsManager.yellow, size: 25),
                               ),
                             ),
                           ),
