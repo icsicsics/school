@@ -10,6 +10,7 @@ class MyChildPointsBloc extends Bloc<MyChildPointsEvent, MyChildPointsState> {
   MyChildPointsBloc() : super(MyChildPointsInitialState()) {
     on<OpenPointScreenEvent>(_onOpenPointScreenEvent);
     on<NavigateToHomeScreenEvent>(_onNavigateToHomeScreenEvent);
+    on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
   }
 
   FutureOr<void> _onOpenPointScreenEvent(
@@ -20,5 +21,11 @@ class MyChildPointsBloc extends Bloc<MyChildPointsEvent, MyChildPointsState> {
   FutureOr<void> _onNavigateToHomeScreenEvent(
       NavigateToHomeScreenEvent event, Emitter<MyChildPointsState> emit) {
     emit(NavigateToHomeScreenState());
+  }
+
+  FutureOr<void> _onNavigateToNotificationScreenEvent(
+      NavigateToNotificationScreenEvent event,
+      Emitter<MyChildPointsState> emit) {
+    emit(NavigateToNotificationScreenState());
   }
 }

@@ -13,9 +13,6 @@ class SplashScreen extends BaseStatefulWidget {
 }
 
 class _SplashScreenState extends BaseState<SplashScreen> {
-
-
-
   @override
   void initState() {
     _navigationToLoginScreen();

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_header.dart';

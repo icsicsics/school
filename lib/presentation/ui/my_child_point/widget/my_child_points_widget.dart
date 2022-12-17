@@ -19,13 +19,16 @@ class _MyChildPointsWidgetState extends State<MyChildPointsWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                cardItem(label: "All Points",points: "175"),
-                const SizedBox(width: 20,),
-                cardItem(label: 'This Week',points: "16"),
+                cardItem(label: "All Points", points: "175"),
+                const SizedBox(
+                  width: 20,
+                ),
+                cardItem(label: 'This Week', points: "16"),
               ],
             )));
   }
-  Widget cardItem({required String label,required  String points}){
+
+  Widget cardItem({required String label, required String points}) {
     return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 0,
@@ -37,18 +40,29 @@ class _MyChildPointsWidgetState extends State<MyChildPointsWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children:  [
-                MediumTextWidget(text: label, fontSize: 8, color: ColorsManager.primaryColor),
+              children: [
+                MediumTextWidget(
+                    text: label,
+                    fontSize: 8,
+                    color: ColorsManager.primaryColor),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const  Icon(Icons.star,size: 15,color: ColorsManager.yellow,),
-                    MediumTextWidget(text: points, fontSize: 14, color: ColorsManager.blackColor),
+                    const Icon(
+                      Icons.star,
+                      size: 15,
+                      color: ColorsManager.yellow,
+                    ),
+                    MediumTextWidget(
+                        text: points,
+                        fontSize: 14,
+                        color: ColorsManager.blackColor),
                   ],
                 )
               ],
             ),
-          ),));
+          ),
+        ));
   }
 }

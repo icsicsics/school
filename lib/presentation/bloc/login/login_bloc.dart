@@ -28,7 +28,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _onGetLoginEvent(
       GetLoginEvent event, Emitter<LoginState> emit) {}
 
-  FutureOr<void> _onLoginIsFatherEvent(LoginIsFatherEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> _onLoginIsFatherEvent(
+      LoginIsFatherEvent event, Emitter<LoginState> emit) {
     emit(LoginIsFatherState(isFather: event.isFather));
   }
 }

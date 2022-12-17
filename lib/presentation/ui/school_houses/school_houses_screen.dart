@@ -4,7 +4,6 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_content_widget.dart';
 import 'package:schools/presentation/ui/sections/sections_screen.dart';

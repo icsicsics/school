@@ -6,7 +6,8 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class MyChildBodyWidget extends StatefulWidget {
   final MyChildPointsBloc bloc;
-  const MyChildBodyWidget({Key? key,required this.bloc}) : super(key: key);
+
+  const MyChildBodyWidget({Key? key, required this.bloc}) : super(key: key);
 
   @override
   State<MyChildBodyWidget> createState() => _MyChildBodyWidgetState();
@@ -15,7 +16,7 @@ class MyChildBodyWidget extends StatefulWidget {
 class _MyChildBodyWidgetState extends State<MyChildBodyWidget> {
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [

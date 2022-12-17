@@ -11,12 +11,12 @@ class SectionsHeaderWidget extends StatelessWidget {
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                ColorsManager.primaryColor,
-                ColorsManager.secondaryColor,
-              ],
-              stops: [0.5, 0.8],
-            )),
+          colors: [
+            ColorsManager.primaryColor,
+            ColorsManager.secondaryColor,
+          ],
+          stops: [0.5, 0.8],
+        )),
         height: MediaQuery.of(context).size.height / 2,
         child: Stack(
           children: [
@@ -25,8 +25,8 @@ class SectionsHeaderWidget extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.elliptical(200.0,20.0),
-                      bottomLeft: Radius.elliptical(200.0,20.0))),
+                      bottomRight: Radius.elliptical(200.0, 20.0),
+                      bottomLeft: Radius.elliptical(200.0, 20.0))),
             ),
             Align(
                 alignment: Alignment.bottomCenter,

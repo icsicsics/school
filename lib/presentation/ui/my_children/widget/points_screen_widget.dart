@@ -11,14 +11,12 @@ class PointsScreenWidget extends StatefulWidget {
 }
 
 class _PointsScreenWidgetState extends State<PointsScreenWidget> {
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-
           _item(
               onTap: () {},
               title: "Energetic",

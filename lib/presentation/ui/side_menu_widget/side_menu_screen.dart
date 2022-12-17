@@ -51,7 +51,7 @@ class SideMenuScreen extends StatelessWidget {
     } else {
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (_) =>  const HomeScreen()),
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
           (route) => false);
     }
   }

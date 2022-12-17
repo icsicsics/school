@@ -12,19 +12,18 @@ class SideMenuSocialMediaWidget extends StatefulWidget {
 class _SideMenuSocialMediaWidgetState extends State<SideMenuSocialMediaWidget> {
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-        padding: const EdgeInsets.only(right: 8,left: 8,top: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _item(onTap: () {}, icon: FontAwesomeIcons.facebook),
-            _item(onTap: () {}, icon: FontAwesomeIcons.instagram),
-            _item(onTap: () {}, icon: FontAwesomeIcons.twitter),
-            _item(onTap: () {}, icon: FontAwesomeIcons.youtube),
-          ],
-        ),
-
+    return Padding(
+      padding: const EdgeInsets.only(right: 8, left: 8, top: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _item(onTap: () {}, icon: FontAwesomeIcons.facebook),
+          _item(onTap: () {}, icon: FontAwesomeIcons.instagram),
+          _item(onTap: () {}, icon: FontAwesomeIcons.twitter),
+          _item(onTap: () {}, icon: FontAwesomeIcons.youtube),
+        ],
+      ),
     );
   }
 

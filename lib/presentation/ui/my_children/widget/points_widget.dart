@@ -12,44 +12,57 @@ class PointsScreenWidget extends StatefulWidget {
 class _PointsScreenWidgetState extends State<PointsScreenWidget> {
   @override
   Widget build(BuildContext context) {
-    return  Align(
+    return Align(
         alignment: Alignment.center,
         child: Padding(
-        padding: const EdgeInsets.only(top: 20),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        cardItem(label: "All Points",points: "175"),
-        const SizedBox(width: 20,),
-        cardItem(label: 'This Week',points: "16"),
-      ],
-    )));
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                cardItem(label: "All Points", points: "175"),
+                const SizedBox(
+                  width: 20,
+                ),
+                cardItem(label: 'This Week', points: "16"),
+              ],
+            )));
   }
 
-  Widget cardItem({required String label,required  String points}){
+  Widget cardItem({required String label, required String points}) {
     return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    elevation: 0,
-    child: Padding(
-    padding: const EdgeInsets.all(2),
-    child: SizedBox(
-      height: 40,
-      width: 70,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:  [
-          MediumTextWidget(text: label, fontSize: 8, color: ColorsManager.primaryColor),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-             const  Icon(Icons.star,size: 15,color: ColorsManager.yellow,),
-              MediumTextWidget(text: points, fontSize: 14, color: ColorsManager.blackColor),
-            ],
-          )
-        ],
-      ),
-    ),));
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.all(2),
+          child: SizedBox(
+            height: 40,
+            width: 70,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MediumTextWidget(
+                    text: label,
+                    fontSize: 8,
+                    color: ColorsManager.primaryColor),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.star,
+                      size: 15,
+                      color: ColorsManager.yellow,
+                    ),
+                    MediumTextWidget(
+                        text: points,
+                        fontSize: 14,
+                        color: ColorsManager.blackColor),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }

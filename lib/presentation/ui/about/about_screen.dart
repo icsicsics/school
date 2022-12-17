@@ -11,7 +11,6 @@ class AboutScreen extends BaseStatefulWidget {
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _AboutScreenStatus();
-
 }
 
 class _AboutScreenStatus extends BaseState<AboutScreen> {
@@ -20,18 +19,15 @@ class _AboutScreenStatus extends BaseState<AboutScreen> {
     return Scaffold(
       appBar: _appBar(),
       body: BlocConsumer<AboutBloc, AboutState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
-          return AboutContentWidget();
+          return const AboutContentWidget();
         },
       ),
-
     );
   }
 
-  PreferredSizeWidget _appBar() =>
-      AppBar(
+  PreferredSizeWidget _appBar() => AppBar(
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),

@@ -38,7 +38,6 @@ class ProfileInfoContentWidget extends StatelessWidget {
           icon: Icons.location_on,
           onTap: () {},
         ),
-
       ],
     );
   }

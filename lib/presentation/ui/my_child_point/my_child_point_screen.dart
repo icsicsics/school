@@ -7,6 +7,7 @@ import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/my_child_point/widget/my_child_content_widget.dart';
 import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
+import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class MyChildPointsScreen extends BaseStatefulWidget {
   const MyChildPointsScreen({super.key});
@@ -27,6 +28,8 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
           _openPointScreen();
         } else if (state is NavigateToHomeScreenState) {
           _navigateHomeScreen();
+        } else if (state is NavigateToNotificationScreenState) {
+          _navigateToNotificationScreen();
         }
       },
       child: Scaffold(
@@ -47,7 +50,7 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
             icon: const Icon(Icons.notifications_active,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
@@ -63,4 +66,9 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
 
   void _navigateHomeScreen() => Navigator.pushAndRemoveUntil(context,
       MaterialPageRoute(builder: (_) => const HomeScreen()), (route) => false);
+
+  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+      (route) => false);
 }

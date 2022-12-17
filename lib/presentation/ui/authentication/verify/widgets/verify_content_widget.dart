@@ -34,9 +34,7 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                 sizedBox(height: 30),
                 PinCodeTextFiledWidget(
                   pinController: pinController,
-                  onChanged: (value) {
-                    print(value);
-                  },
+                  onChanged: (value) {},
                 ),
                 sizedBox(height: 10),
                 SendAgainWidget(onTap: () {}),

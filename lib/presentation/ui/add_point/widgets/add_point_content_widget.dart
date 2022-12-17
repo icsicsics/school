@@ -13,10 +13,7 @@ class _AddPointContentWidgetState extends State<AddPointContentWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-         AddPointHeaderWidget(),
-        AddPointListWidget()
-      ],
+      children: const [AddPointHeaderWidget(), AddPointListWidget()],
     );
   }
 }

@@ -5,7 +5,9 @@ import 'package:schools/presentation/ui/profile/widgets/profile_info_content_wid
 
 class ProfileContentWidget extends StatefulWidget {
   final bool isFather;
-  const ProfileContentWidget({Key? key,required this.isFather}) : super(key: key);
+
+  const ProfileContentWidget({Key? key, required this.isFather})
+      : super(key: key);
 
   @override
   State<ProfileContentWidget> createState() => _ProfileContentWidgetState();
@@ -18,9 +20,8 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
       child: Column(
         children: [
           const ProfileHeaderWidget(),
-         const ProfileInfoContentWidget(),
-          widget.isFather?const FatherOfWidget():const SizedBox()
-
+          const ProfileInfoContentWidget(),
+          widget.isFather ? const FatherOfWidget() : const SizedBox()
         ],
       ),
     );

@@ -1,6 +1,5 @@
 part of 'sections_bloc.dart';
 
-@immutable
 abstract class SectionsState {}
 
 class SectionsInitialState extends SectionsState {}

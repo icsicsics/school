@@ -17,12 +17,12 @@ class _MyChildHeaderWidgetState extends State<MyChildHeaderWidget> {
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              ColorsManager.primaryColor,
-              ColorsManager.secondaryColor,
-            ],
-            stops: [0.5, 0.8],
-          )),
+        colors: [
+          ColorsManager.primaryColor,
+          ColorsManager.secondaryColor,
+        ],
+        stops: [0.5, 0.8],
+      )),
       height: 370,
       child: Stack(
         children: [
@@ -46,8 +46,8 @@ class _MyChildHeaderWidgetState extends State<MyChildHeaderWidget> {
                   width: 150,
                   height: 150,
                   decoration: BoxDecoration(
-                      border: Border.all(
-                          color: ColorsManager.whiteColor, width: 3),
+                      border:
+                          Border.all(color: ColorsManager.whiteColor, width: 3),
                       borderRadius: BorderRadius.circular(100),
                       image: const DecorationImage(
                           image: AssetImage(ImagesPath.schoolItem),
@@ -88,7 +88,6 @@ class _MyChildHeaderWidgetState extends State<MyChildHeaderWidget> {
           ),
         ],
       ),
-
     );
   }
 }

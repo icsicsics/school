@@ -25,10 +25,10 @@ class SchoolHousesChartWidget extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.elliptical(200.0,15.0),
-                      bottomLeft: Radius.elliptical(200.0,15.0))),
+                      bottomRight: Radius.elliptical(200.0, 15.0),
+                      bottomLeft: Radius.elliptical(200.0, 15.0))),
             ),
-            const  ChartContentWidget(),
+            const ChartContentWidget(),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -43,9 +43,9 @@ class SchoolHousesChartWidget extends StatelessWidget {
                           color: ColorsManager.whiteColor,
                           borderRadius:
                               const BorderRadius.all(Radius.circular(100))),
-                      child:Padding(
+                      child: Padding(
                         padding: const EdgeInsets.all(35),
-                        child: Image.asset(ImagesPath.cup,color: Colors.amber),
+                        child: Image.asset(ImagesPath.cup, color: Colors.amber),
                       ),
                     )),
               ),
@@ -53,22 +53,26 @@ class SchoolHousesChartWidget extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.only(right: 30,left: 60,bottom: 45),
+                padding: const EdgeInsets.only(right: 30, left: 60, bottom: 45),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children:  [
-                  _iconData(Icons.confirmation_num_sharp),
-                  _iconData(Icons.confirmation_num_sharp),
-                  _iconData(Icons.confirmation_num_sharp),
-                  _iconData(Icons.confirmation_num_sharp),
-                ],),
+                  children: [
+                    _iconData(Icons.confirmation_num_sharp),
+                    _iconData(Icons.confirmation_num_sharp),
+                    _iconData(Icons.confirmation_num_sharp),
+                    _iconData(Icons.confirmation_num_sharp),
+                  ],
+                ),
               ),
             )
           ],
         ));
   }
 
-
-  Widget _iconData(IconData icon)=> Icon(icon,color: Colors.yellow,size: 30,);
+  Widget _iconData(IconData icon) => Icon(
+        icon,
+        color: Colors.yellow,
+        size: 30,
+      );
 }

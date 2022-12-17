@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/semi_bold_text_widget.dart';
 
-
 class CustomButtonWidget extends StatelessWidget {
   final String? buttonText;
   final Color? buttonTextColor;
@@ -44,7 +43,7 @@ class CustomButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: _buttonStyle(),
-        child:   SemiBoldTextWidget(
+        child: SemiBoldTextWidget(
           text: buttonText!,
           color: buttonTextColor!,
           fontSize: buttonTextSize!,

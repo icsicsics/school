@@ -7,3 +7,5 @@ class MyChildPointsInitialState extends MyChildPointsState {}
 class OpenPointScreenState extends MyChildPointsState {}
 
 class NavigateToHomeScreenState extends MyChildPointsState {}
+
+class NavigateToNotificationScreenState extends MyChildPointsState {}

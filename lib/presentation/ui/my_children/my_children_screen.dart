@@ -6,6 +6,7 @@ import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/ui/my_children/widget/my_children_content_widget.dart';
+import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class MyChildrenScreen extends BaseStatefulWidget {
   const MyChildrenScreen({super.key});
@@ -25,6 +26,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       listener: (context, state) {
         if (state is OpenAddPointAlertState) {
           _openAddPointAlert();
+        } else if (state is NavigateToNotificationScreenState) {
+          _navigateToNotificationScreen();
         }
       },
       builder: (context, state) {
@@ -46,7 +49,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
             icon: const Icon(Icons.notifications_active,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
@@ -88,4 +91,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       },
       childName: "",
       commentController: _commentController);
+
+  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+      (route) => false);
 }

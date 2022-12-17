@@ -1,6 +1,5 @@
 part of 'sections_bloc.dart';
 
-@immutable
 abstract class SectionsEvent {}
 
 class NavigateToNotificationScreenEvent extends SectionsEvent {}

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/card_widget.dart';
-import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
 
 class HomeTeacherDetailsWidget extends StatefulWidget {
   const HomeTeacherDetailsWidget({Key? key}) : super(key: key);
 
   @override
-  State<HomeTeacherDetailsWidget> createState() => _HomeTeacherDetailsWidgetState();
+  State<HomeTeacherDetailsWidget> createState() =>
+      _HomeTeacherDetailsWidgetState();
 }
 
 class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
@@ -27,8 +27,10 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
             padding: const EdgeInsets.all(5),
             child: InkWell(
               onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const SchoolHousesScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const SchoolHousesScreen()));
               },
               child: const CardWidget(
                 section: "Section A",

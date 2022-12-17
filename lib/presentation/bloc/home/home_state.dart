@@ -15,6 +15,6 @@ class GetHomeErrorState extends HomeState {}
 
 class GetIsFatherState extends HomeState {
   final bool isFather;
-  GetIsFatherState({required this.isFather});
 
+  GetIsFatherState({required this.isFather});
 }

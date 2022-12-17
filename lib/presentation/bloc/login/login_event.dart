@@ -11,5 +11,6 @@ class GetLoginEvent extends LoginEvent {}
 
 class LoginIsFatherEvent extends LoginEvent {
   final bool isFather;
+
   LoginIsFatherEvent({required this.isFather});
 }
