@@ -14,20 +14,33 @@ class NotificationsScreen extends BaseStatefulWidget {
 }
 
 class _NotificationsScreenState extends BaseState<NotificationsScreen> {
+  NotificationsBloc get _bloc => BlocProvider.of<NotificationsBloc>(context);
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+  bool _isFather = false;
+
+  @override
+  void initState() {
+    _bloc.add(GetIsFatherEvent());
+    super.initState();
+  }
 
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
-      drawer:  const SideMenuScreen(isComFromHome: false,),
+        drawer: const SideMenuScreen(
+          isComFromHome: false,
+        ),
         key: _key,
         body: BlocConsumer<NotificationsBloc, NotificationsState>(
           listener: (context, state) {
-            // TODO: implement listener
+            if (state is GetIsFatherState) {
+              _isFather = state.isFather;
+            }
           },
           builder: (context, state) {
             return NotificationsContentWidget(
               globalKey: _key,
+              isFather: _isFather,
             );
           },
         ));

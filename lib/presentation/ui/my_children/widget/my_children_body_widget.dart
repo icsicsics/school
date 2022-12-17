@@ -20,26 +20,6 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-            // Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //       crossAxisAlignment: CrossAxisAlignment.center,
-            //       children: [
-            //         IconButton(
-            //             onPressed: (){},
-            //             icon: const Icon(
-            //               Icons.star,
-            //               color: ColorsManager.yellow,
-            //               size: 70,
-            //             )),
-            //         IconButton(
-            //             onPressed: () {},
-            //             icon: const Icon(
-            //               Icons.school_sharp,
-            //               color: ColorsManager.yellow,
-            //               size: 70,
-            //             )),
-            //       ],
-            //   ),
               const HousesWidget(),
             ],
           ),

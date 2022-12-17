@@ -7,6 +7,7 @@ import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_content_widget.dart';
+import 'package:schools/presentation/ui/sections/sections_screen.dart';
 
 class SchoolHousesScreen extends BaseStatefulWidget {
   const SchoolHousesScreen({super.key});
@@ -24,8 +25,8 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
         listener: (context, state) {
           if (state is NavigateToNotificationScreenState) {
             _navigateToNotificationScreen();
-          } else if (state is NavigateToAddPointScreenState) {
-            _navigateToAddPointScreen();
+          } else if (state is NavigateToSectionsScreenState) {
+            _navigateToSectionsScreen();
           }
         },
         builder: (context, state) {
@@ -62,6 +63,6 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
 
-  void _navigateToAddPointScreen() => Navigator.push(
-      context, MaterialPageRoute(builder: (_) => const AddPointScreen()));
+  void _navigateToSectionsScreen() => Navigator.push(
+      context, MaterialPageRoute(builder: (_) => const SectionsScreen()));
 }

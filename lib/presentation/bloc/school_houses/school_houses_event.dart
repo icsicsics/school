@@ -7,4 +7,4 @@ class GetSchoolHousesEvent extends SchoolHousesEvent {}
 
 class NavigateToNotificationScreenEvent extends SchoolHousesEvent {}
 
-class NavigateToAddPointScreenEvent extends SchoolHousesEvent {}
+class NavigateToSectionsScreenEvent extends SchoolHousesEvent {}

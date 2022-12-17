@@ -5,8 +5,9 @@ import 'package:schools/presentation/ui/notifications/widgets/titiles_row_widget
 
 class NotificationsContentWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> globalKey;
+  final bool isFather;
 
-  const  NotificationsContentWidget({Key? key, required this.globalKey})
+  const  NotificationsContentWidget({Key? key, required this.globalKey,required this.isFather})
       : super(key: key);
 
   @override
@@ -22,7 +23,7 @@ class _NotificationsContentWidgetState
       children: [
         NotificationsAppBarWidget(
             onTapMenu: () => widget.globalKey.currentState!.openDrawer()),
-        const TitlesRowWidget(),
+         TitlesRowWidget(isFather: widget.isFather),
         const NotificationsListWidget()
       ],
     );
