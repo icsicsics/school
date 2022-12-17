@@ -54,7 +54,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             MediumTextWidget(
                 textAlign: TextAlign.center,
                 text:
-                    "Choose Why Leen Deserve this point to \n ${widget.childName}",
+                    "Choose Why Leen Deserve this point \n ${widget.childName}",
                 fontSize: 12,
                 color: ColorsManager.blackColor),
             Padding(

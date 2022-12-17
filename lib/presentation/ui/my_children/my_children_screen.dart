@@ -4,6 +4,7 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/ui/my_children/widget/my_children_content_widget.dart';
 
 class MyChildrenScreen extends BaseStatefulWidget {
@@ -14,12 +15,15 @@ class MyChildrenScreen extends BaseStatefulWidget {
 }
 
 class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
+  final TextEditingController _commentController = TextEditingController();
+
   MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
+
   @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<MyChildrenBloc, MyChildrenState>(
       listener: (context, state) {
-        if (state is OpenAddPointAlertState){
+        if (state is OpenAddPointAlertState) {
           _openAddPointAlert();
         }
       },
@@ -54,31 +58,34 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       );
 
   Widget _points() {
-    return  InkWell(
-        onTap: ()=>_bloc.add(OpenAddPointAlertEvent()),
-        child: Card(
-            color: ColorsManager.whiteColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-                side:
-                    const BorderSide(width: 2, color: ColorsManager.grayColor)),
-            elevation: 0,
-            child: Padding(
-                padding: const EdgeInsets.all(0),
-                child: SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      color: ColorsManager.secondaryColor,
-                      elevation: 0,
-                      child:
-                          const Icon(Icons.star, color: ColorsManager.yellow)),
-                ))),
-
+    return InkWell(
+      onTap: () => _bloc.add(OpenAddPointAlertEvent()),
+      child: Card(
+          color: ColorsManager.whiteColor,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+              side: const BorderSide(width: 2, color: ColorsManager.grayColor)),
+          elevation: 0,
+          child: Padding(
+              padding: const EdgeInsets.all(0),
+              child: SizedBox(
+                height: 40,
+                width: 40,
+                child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: ColorsManager.secondaryColor,
+                    elevation: 0,
+                    child: const Icon(Icons.star, color: ColorsManager.yellow)),
+              ))),
     );
   }
 
-  void _openAddPointAlert() {}
+  void _openAddPointAlert() => showAddPointFunction(
+      context: context,
+      addAction: () {
+        Navigator.pop(context);
+      },
+      childName: "",
+      commentController: _commentController);
 }
