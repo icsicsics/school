@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
@@ -22,7 +23,7 @@ class _SectionsContentWidgetState extends State<SectionsContentWidget> {
       children: [
         const SectionsHeaderWidget(),
         const SizedBox(
-          height: 100,
+          height: 50,
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,15 +36,15 @@ class _SectionsContentWidgetState extends State<SectionsContentWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
                   Icon(
-                    Icons.star,
-                    color: ColorsManager.yellow,
-                    size: 70,
+                    FontAwesomeIcons.rankingStar,
+                    color: ColorsManager.secondaryColor,
+                    size: 80,
                   ),
                   SizedBox(height: 15),
                   MediumTextWidget(
                       text: "Points",
                       fontSize: 15,
-                      color: ColorsManager.mediumGrayColor),
+                      color: ColorsManager.blackColor),
                 ],
               ),
             ),
@@ -54,15 +55,15 @@ class _SectionsContentWidgetState extends State<SectionsContentWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
                   Icon(
-                    Icons.school_sharp,
-                    color: ColorsManager.yellow,
-                    size: 70,
+                    FontAwesomeIcons.schoolFlag,
+                    color: ColorsManager.secondaryColor,
+                    size: 80,
                   ),
                   SizedBox(height: 15),
                   MediumTextWidget(
                       text: " School Homes",
                       fontSize: 15,
-                      color: ColorsManager.mediumGrayColor),
+                      color: ColorsManager.blackColor),
                 ],
               ),
             ),
