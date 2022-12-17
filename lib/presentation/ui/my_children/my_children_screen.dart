@@ -14,17 +14,13 @@ class MyChildrenScreen extends BaseStatefulWidget {
 }
 
 class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
-  bool isShowPoint = false;
   bool isHomes = false;
-
   @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<MyChildrenBloc, MyChildrenState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state is MyChildrenShowPointsState) {
-          isShowPoint = state.isShowPoints;
-        } else if(state is MyChildrenShowHousesState){
+        if(state is MyChildrenShowHousesState){
           isHomes=state.isShowHouses;
         }
         return Scaffold(
@@ -60,14 +56,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
     return Visibility(
       visible: isHomes,
       child: InkWell(
-        onTap: () {
-            if (isShowPoint == true) {
-              BlocProvider.of<MyChildrenBloc>(context)
-                  .add(MyChildrenShowPointsEvent(isShowPoints: false));
-            } else {
-              BlocProvider.of<MyChildrenBloc>(context)
-                  .add(MyChildrenShowPointsEvent(isShowPoints: true));
-            }},
+        onTap: () {},
         child: Card(
             color: ColorsManager.whiteColor,
             shape: RoundedRectangleBorder(

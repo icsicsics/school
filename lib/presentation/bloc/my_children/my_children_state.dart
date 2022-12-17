@@ -5,12 +5,6 @@ abstract class MyChildrenState {}
 
 class MyChildrenInitialState extends MyChildrenState {}
 
-class MyChildrenShowPointsState extends MyChildrenState {
-  final bool isShowPoints;
-
-  MyChildrenShowPointsState({required this.isShowPoints});
-}
-
 class MyChildrenShowHousesState extends MyChildrenState {
   final bool isShowHouses;
 

@@ -9,14 +9,8 @@ part 'my_children_state.dart';
 
 class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
   MyChildrenBloc() : super(MyChildrenInitialState()) {
-    on<MyChildrenShowPointsEvent>(_onMyChildrenShowPointsEvent);
     on<MyChildrenShowHousesEvent>(_onMyChildrenShowHousesEvent);
     on<GetMyChildrenEvent>(_onGetMyChildrenEvent);
-  }
-
-  FutureOr<void> _onMyChildrenShowPointsEvent(
-      MyChildrenShowPointsEvent event, Emitter<MyChildrenState> emit) {
-    emit(MyChildrenShowPointsState(isShowPoints: event.isShowPoints));
   }
 
   FutureOr<void> _onMyChildrenShowHousesEvent(
