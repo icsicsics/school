@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:schools/presentation/ui/home/widgets/father/home_father_content_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/home_app_bar_widget.dart';
-import 'package:schools/presentation/ui/home/widgets/home_list_widget.dart';
+import 'package:schools/presentation/ui/home/widgets/teacher/home_teacher_details_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/title_widget.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class HomeContentWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> globalKey;
+  final bool isFather;
 
-  const HomeContentWidget({Key? key, required this.globalKey})
+  const HomeContentWidget(
+      {Key? key, required this.globalKey, required this.isFather})
       : super(key: key);
 
   @override
@@ -30,8 +33,15 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
         ),
         const SizedBox(height: 2),
         const HomeTitleWidget(),
-        const HomeListWidget()
+        _buildScreen()
       ],
     );
+  }
+
+  Widget _buildScreen() {
+    if (widget.isFather == true) {
+      return const HomeFatherContentWidget();
+    }
+    return const HomeTeacherDetailsWidget();
   }
 }

@@ -29,6 +29,7 @@ class LoginContentWidget extends StatefulWidget {
 class _LoginContentWidgetState extends State<LoginContentWidget> {
   @override
   void initState() {
+
     test();
     super.initState();
   }
@@ -53,8 +54,7 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                     Switch(
                       value: widget.isFather,
                       activeColor: ColorsManager.primaryColor,
-                      onChanged: (bool value) => widget.loginBloc
-                          .add(LoginIsFatherEvent(isFather: value)),
+                      onChanged: (bool value) => widget.loginBloc.add(LoginIsFatherEvent(isFather: value)),
                     ),
                     const SizedBox(width: 5,),
                     MediumTextWidget(

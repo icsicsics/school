@@ -4,14 +4,14 @@ import 'package:schools/presentation/shere_widgets/card_widget.dart';
 import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
 
-class HomeListWidget extends StatefulWidget {
-  const HomeListWidget({Key? key}) : super(key: key);
+class HomeTeacherDetailsWidget extends StatefulWidget {
+  const HomeTeacherDetailsWidget({Key? key}) : super(key: key);
 
   @override
-  State<HomeListWidget> createState() => _HomeListWidgetState();
+  State<HomeTeacherDetailsWidget> createState() => _HomeTeacherDetailsWidgetState();
 }
 
-class _HomeListWidgetState extends State<HomeListWidget> {
+class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     return Expanded(

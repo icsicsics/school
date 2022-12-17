@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
-import 'package:schools/presentation/ui/child_details/child_details_screen.dart';
 
 class ChildItemWidget extends StatelessWidget {
   const ChildItemWidget({Key? key}) : super(key: key);

@@ -8,7 +8,6 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
-import 'package:schools/presentation/bloc/child_details/child_details_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
@@ -58,7 +57,6 @@ class _MyAppState extends State<MyApp> {
           BlocProvider<SchoolHousesBloc>(create: (BuildContext context) => SchoolHousesBloc()),
           BlocProvider<AboutBloc>(create: (BuildContext context) => AboutBloc()),
           BlocProvider<MyChildrenBloc>(create: (BuildContext context) => MyChildrenBloc()),
-          BlocProvider<ChildDetailsBloc>(create: (BuildContext context) => ChildDetailsBloc()),
         ],
         child: FutureBuilder<ThemeData>(
           initialData: ThemeData(),

@@ -17,6 +17,11 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   LoginBloc get _loginBloc => BlocProvider.of<LoginBloc>(context);
   TextEditingController countryController = TextEditingController();
   bool _isFather = false;
+  @override
+  void initState() {
+    _loginBloc.add(LoginIsFatherEvent(isFather: false));
+    super.initState();
+  }
 
   @override
   Widget baseBuild(BuildContext context) {
