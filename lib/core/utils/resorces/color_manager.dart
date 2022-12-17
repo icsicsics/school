@@ -14,4 +14,5 @@ class ColorsManager {
   static const Color buttonColor = Color.fromRGBO(44	,158	,219, 1);
   static const Color borderColor = Color.fromRGBO(104	,104	,104, 1);
   static const Color yellow = Color.fromRGBO(248	,150	,16, 1);
+  static const Color welcomeGryColor = Color.fromRGBO(152	,152	,152, 1);
 }

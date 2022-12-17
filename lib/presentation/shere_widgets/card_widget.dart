@@ -20,7 +20,7 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Card(
+    return Card(
         color: ColorsManager.whiteColor,
         elevation: 1,
         shape: const RoundedRectangleBorder(

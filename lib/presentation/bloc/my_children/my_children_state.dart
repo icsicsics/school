@@ -5,12 +5,6 @@ abstract class MyChildrenState {}
 
 class MyChildrenInitialState extends MyChildrenState {}
 
-class MyChildrenShowPointsState extends MyChildrenState {
-  final bool isShowPoints;
-
-  MyChildrenShowPointsState({required this.isShowPoints});
-}
-
 class MyChildrenShowHousesState extends MyChildrenState {
   final bool isShowHouses;
 
@@ -24,3 +18,7 @@ class GetMyChildrenSuccessState extends MyChildrenState {}
 class GetMyChildrenFillState extends MyChildrenState {}
 
 class GetMyChildrenErrorState extends MyChildrenState {}
+
+class OpenAddPointAlertState extends MyChildrenState {}
+
+class NavigateToNotificationScreenState extends MyChildrenState {}

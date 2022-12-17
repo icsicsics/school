@@ -15,7 +15,7 @@ class GetSideMenuErrorState extends SideMenuState {}
 
 class SideMenuHomeState extends SideMenuState {}
 
-class SideMenuSettingsState extends SideMenuState {}
+class SideMenuUserProfileState extends SideMenuState {}
 
 class SideMenuContactUsState extends SideMenuState {}
 

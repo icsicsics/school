@@ -12,7 +12,6 @@ class SharedPreferencesManager {
         SharedPreferencesKeys.appLanguage, appLanguage);
   }
 
-
   static Future<String?> getNotificationToken() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.notificationToken);
@@ -22,6 +21,7 @@ class SharedPreferencesManager {
     return await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.notificationToken, notificationToken!);
   }
+
   static Future<String?> getAppVersion() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.appVersion);
@@ -36,7 +36,8 @@ class SharedPreferencesManager {
     await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.deviceToken, deviceToken);
   }
-  static  Future<String?> getDeviceToken() async {
+
+  static Future<String?> getDeviceToken() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.deviceToken);
   }
@@ -71,17 +72,23 @@ class SharedPreferencesManager {
         SharedPreferencesKeys.ipAddress, ipAddress);
   }
 
-
-
-
   static Future<void> setDeviceInfoData(
       {String? ipAddress,
-        String? osVersion,
-        String? deviceToken,
-        String? devicePlatform}) async {
+      String? osVersion,
+      String? deviceToken,
+      String? devicePlatform}) async {
     await setIpAddress(ipAddress!);
     await setOsVersion(osVersion!);
     await setDevicePlatform(devicePlatform!);
     await setDeviceToken(deviceToken!);
+  }
+
+  static Future<bool?> getIsFather() async {
+    return await SharedPreferencesUtils.getBool(SharedPreferencesKeys.isFather);
+  }
+
+  static Future<void> setIsFather(bool isFather) async {
+    await SharedPreferencesUtils.setBool(SharedPreferencesKeys.isFather,
+        data: isFather);
   }
 }

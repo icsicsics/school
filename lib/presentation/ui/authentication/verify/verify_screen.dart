@@ -16,9 +16,7 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
   Widget baseBuild(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<VerifyBloc, VerifyState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return const VerifyContentWidget();
         },

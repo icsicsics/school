@@ -9,14 +9,10 @@ part 'my_children_state.dart';
 
 class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
   MyChildrenBloc() : super(MyChildrenInitialState()) {
-    on<MyChildrenShowPointsEvent>(_onMyChildrenShowPointsEvent);
     on<MyChildrenShowHousesEvent>(_onMyChildrenShowHousesEvent);
     on<GetMyChildrenEvent>(_onGetMyChildrenEvent);
-  }
-
-  FutureOr<void> _onMyChildrenShowPointsEvent(
-      MyChildrenShowPointsEvent event, Emitter<MyChildrenState> emit) {
-    emit(MyChildrenShowPointsState(isShowPoints: event.isShowPoints));
+    on<OpenAddPointAlertEvent>(_onOpenAddPointAlertEvent);
+    on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
   }
 
   FutureOr<void> _onMyChildrenShowHousesEvent(
@@ -26,4 +22,14 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
 
   FutureOr<void> _onGetMyChildrenEvent(
       GetMyChildrenEvent event, Emitter<MyChildrenState> emit) {}
+
+  FutureOr<void> _onOpenAddPointAlertEvent(
+      OpenAddPointAlertEvent event, Emitter<MyChildrenState> emit) {
+    emit(OpenAddPointAlertState());
+  }
+
+  FutureOr<void> _onNavigateToNotificationScreenEvent(
+      NavigateToNotificationScreenEvent event, Emitter<MyChildrenState> emit) {
+    emit(NavigateToNotificationScreenState());
+  }
 }

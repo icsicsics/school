@@ -4,6 +4,7 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/profile/widgets/profile_content_widget.dart';
 
 class ProfileScreen extends BaseStatefulWidget {
@@ -14,17 +15,32 @@ class ProfileScreen extends BaseStatefulWidget {
 }
 
 class _ProfileScreenState extends BaseState<ProfileScreen> {
+  ProfileBloc get _bloc => BlocProvider.of<ProfileBloc>(context);
+  bool _isFather = false;
+
+  @override
+  void initState() {
+    _bloc.add(GetIsFatherEvent());
+    super.initState();
+  }
+
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsManager.backgroundColor,
+        backgroundColor: ColorsManager.backgroundColor,
         appBar: _appBar(),
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
-            // TODO: implement listener
+            if (state is GetIsFatherState) {
+              _isFather = state.isFather;
+            } else if (state is NavigateToNotificationScreenState) {
+              _navigateToNotificationScreen();
+            }
           },
           builder: (context, state) {
-            return const ProfileContentWidget();
+            return ProfileContentWidget(
+              isFather: _isFather,
+            );
           },
         ));
   }
@@ -39,7 +55,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
             icon: const Icon(Icons.notifications_active,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
@@ -49,4 +65,9 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
             fontSize: 20,
             text: "User Profile"),
       );
+
+  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+      (route) => false);
 }

@@ -10,6 +10,7 @@ class AddPointListWidget extends StatefulWidget {
 }
 
 class _AddPointListWidgetState extends State<AddPointListWidget> {
+  final TextEditingController _commentController = TextEditingController();
   List<String> list = [
     'Leen Eiz Deen',
     'Salma Fadi',
@@ -44,5 +45,6 @@ class _AddPointListWidgetState extends State<AddPointListWidget> {
       addAction: () {
         Navigator.pop(context);
       },
-      childName: childName);
+      childName: childName,
+      commentController: _commentController);
 }

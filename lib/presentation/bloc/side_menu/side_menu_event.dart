@@ -7,7 +7,7 @@ class GetSideMenuEvent extends SideMenuEvent {}
 
 class SideMenuHomeEvent extends SideMenuEvent {}
 
-class SideMenuSettingsEvent extends SideMenuEvent {}
+class SideMenuUserProfileEvent extends SideMenuEvent {}
 
 class SideMenuContactUsEvent extends SideMenuEvent {}
 

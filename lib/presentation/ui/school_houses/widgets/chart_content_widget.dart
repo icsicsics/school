@@ -21,7 +21,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
     return Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
-            padding: const  EdgeInsets.only(top: 150),
+            padding: const EdgeInsets.only(top: 150),
             child: SfCartesianChart(
               primaryXAxis: CategoryAxis(
                 borderColor: Colors.white,

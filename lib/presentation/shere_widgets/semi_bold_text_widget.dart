@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/check_language_for_font_semi_bold_weight.dart';
 import 'package:schools/core/utils/themes/font_family.dart';
 
-
 class SemiBoldTextWidget extends StatelessWidget {
   final String? text;
   final Color? color;

@@ -7,9 +7,13 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 class AddPointDialogWidget extends StatefulWidget {
   final Function() addAction;
   final String childName;
+  final TextEditingController commentController;
 
   const AddPointDialogWidget(
-      {Key? key, required this.addAction, required this.childName})
+      {Key? key,
+      required this.addAction,
+      required this.childName,
+      required this.commentController})
       : super(key: key);
 
   @override
@@ -18,19 +22,20 @@ class AddPointDialogWidget extends StatefulWidget {
 
 class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   String dropdownValue = 'Item 1';
+  bool isAddCommit = false;
 
   List<String> items = [
     'Item 1',
     'Item 2',
     'Item 3',
-    'Item 4',
+    'other',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: 250,
+        height: 280,
         decoration: const BoxDecoration(
             color: ColorsManager.whiteColor,
             borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -49,11 +54,11 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             MediumTextWidget(
                 textAlign: TextAlign.center,
                 text:
-                    "Choose Why Leen Deserve this point to \n ${widget.childName}",
+                    "Choose Why Leen Deserve this point \n ${widget.childName}",
                 fontSize: 12,
                 color: ColorsManager.blackColor),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   Expanded(
@@ -74,6 +79,11 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                       onChanged: (newValue) {
                         setState(() {
                           dropdownValue = newValue!;
+                          if (newValue == "other") {
+                            isAddCommit = true;
+                          } else {
+                            isAddCommit = false;
+                          }
                         });
                       },
                     ),
@@ -81,6 +91,18 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                 ],
               ),
             ),
+            Visibility(
+                visible: isAddCommit,
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          isDense: true,
+                          focusColor: ColorsManager.primaryColor,
+                          hintText: "Type Why Leen Deserve this point",
+                          hintStyle: TextStyle(fontSize: 11)),
+                      controller: widget.commentController,
+                    ))),
             const SizedBox(
               height: 15,
             ),

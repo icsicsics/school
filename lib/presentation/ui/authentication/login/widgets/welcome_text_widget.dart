@@ -13,14 +13,14 @@ class WelcomeTextWidget extends StatelessWidget {
           height: 25,
         ),
         MediumTextWidget(
-            text: "Login", fontSize: 25, color: ColorsManager.grayColor),
+            text: "Login", fontSize: 25, color: ColorsManager.welcomeGryColor),
         SizedBox(
           height: 25,
         ),
         MediumTextWidget(
             text: "Enter your Phone Number",
             fontSize: 15,
-            color: ColorsManager.primaryColor),
+            color: ColorsManager.secondaryColor),
       ],
     );
   }

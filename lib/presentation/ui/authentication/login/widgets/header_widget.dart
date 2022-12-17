@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class LoginHeaderWidget extends StatelessWidget {
   const LoginHeaderWidget({Key? key}) : super(key: key);
@@ -26,12 +27,12 @@ class LoginHeaderWidget extends StatelessWidget {
           children: const [
             BoldTextWidget(
               text: 'I C S',
-              fontSize: 40,
+              fontSize: 70,
               color: ColorsManager.whiteColor,
             ),
-            BoldTextWidget(
+            MediumTextWidget(
               text: 'Interactive school Counselling',
-              fontSize: 20,
+              fontSize: 10,
               color: ColorsManager.whiteColor,
             )
           ],

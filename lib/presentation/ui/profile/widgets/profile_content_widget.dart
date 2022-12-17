@@ -4,7 +4,10 @@ import 'package:schools/presentation/ui/profile/widgets/profile_header_widget.da
 import 'package:schools/presentation/ui/profile/widgets/profile_info_content_widget.dart';
 
 class ProfileContentWidget extends StatefulWidget {
-  const ProfileContentWidget({Key? key}) : super(key: key);
+  final bool isFather;
+
+  const ProfileContentWidget({Key? key, required this.isFather})
+      : super(key: key);
 
   @override
   State<ProfileContentWidget> createState() => _ProfileContentWidgetState();
@@ -15,11 +18,10 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children:const  [
-          ProfileHeaderWidget(),
-          ProfileInfoContentWidget(),
-          FatherOfWidget()
-
+        children: [
+          const ProfileHeaderWidget(),
+          const ProfileInfoContentWidget(),
+          widget.isFather ? const FatherOfWidget() : const SizedBox()
         ],
       ),
     );

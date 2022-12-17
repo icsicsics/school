@@ -5,7 +5,9 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class AddPointItemWidget extends StatelessWidget {
   final String childName;
-  const AddPointItemWidget({Key? key,required this.childName}) : super(key: key);
+
+  const AddPointItemWidget({Key? key, required this.childName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class AddPointItemWidget extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: Container(
                       height: 40,
-                      width: 40 ,
+                      width: 40,
                       decoration: const BoxDecoration(
                           color: ColorsManager.whiteColor,
                           borderRadius: BorderRadius.all(Radius.circular(50))),
@@ -56,10 +58,8 @@ class AddPointItemWidget extends StatelessWidget {
               ],
             ),
           ),
-           MediumTextWidget(
-              text: childName,
-              fontSize: 12,
-              color: ColorsManager.blackColor)
+          MediumTextWidget(
+              text: childName, fontSize: 12, color: ColorsManager.blackColor)
         ],
       ),
     );

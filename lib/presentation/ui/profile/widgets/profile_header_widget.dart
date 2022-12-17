@@ -25,8 +25,8 @@ class ProfileHeaderWidget extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
                   borderRadius: BorderRadius.only(
-                      bottomRight: Radius.elliptical(200.0,15.0),
-                      bottomLeft: Radius.elliptical(200.0,15.0))),
+                      bottomRight: Radius.elliptical(200.0, 15.0),
+                      bottomLeft: Radius.elliptical(200.0, 15.0))),
             ),
             Align(
                 alignment: Alignment.bottomCenter,

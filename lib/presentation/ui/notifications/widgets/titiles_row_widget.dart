@@ -3,13 +3,16 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class TitlesRowWidget extends StatefulWidget {
-  const TitlesRowWidget({Key? key}) : super(key: key);
+  final bool isFather;
+  const TitlesRowWidget({Key? key,required this.isFather}) : super(key: key);
 
   @override
   State<TitlesRowWidget> createState() => _TitlesRowWidgetState();
 }
 
 class _TitlesRowWidgetState extends State<TitlesRowWidget> {
+
+
   bool isSelectedNotification = true;
   bool isSelectedIndex = false;
   Color selectedColor = ColorsManager.secondaryColor;

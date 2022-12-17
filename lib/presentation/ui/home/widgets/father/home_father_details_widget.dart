@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
-import '../../../shere_widgets/medium_text_widget.dart';
-
-class ChildDetailsItemsWidget extends StatelessWidget {
-  const ChildDetailsItemsWidget({Key? key}) : super(key: key);
+class HomeFatherDetailsWidget extends StatelessWidget {
+  const HomeFatherDetailsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

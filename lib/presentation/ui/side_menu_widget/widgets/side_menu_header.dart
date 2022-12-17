@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 
 class SideMenuHeader extends StatelessWidget {
   const SideMenuHeader({Key? key}) : super(key: key);
@@ -29,9 +30,13 @@ class SideMenuHeader extends StatelessWidget {
                     radius: 50,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 20  ),
+                    padding: const EdgeInsets.only(right: 180),
                     child: IconButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () => Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const LoginScreen()),
+                            (route) => false),
                         icon: const Icon(
                           Icons.supervised_user_circle,
                           color: ColorsManager.secondaryColor,
