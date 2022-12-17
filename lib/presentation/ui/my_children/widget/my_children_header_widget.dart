@@ -34,7 +34,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                         bottomRight: Radius.elliptical(200.0, 15.0),
                         bottomLeft: Radius.elliptical(200.0, 15.0))),
               ),
-              const PointsWidget(),
+              const PointsScreenWidget(),
               Align(
                 alignment: Alignment.topCenter,
                 child: Padding(

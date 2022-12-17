@@ -7,9 +7,7 @@ class ChildItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => {},
-      child: SizedBox(
+    return SizedBox(
         height: MediaQuery.of(context).size.height / 13,
         width: MediaQuery.of(context).size.width / 5,
         child: Stack(
@@ -42,7 +40,7 @@ class ChildItemWidget extends StatelessWidget {
             )
           ],
         ),
-      ),
+
     );
   }
 }

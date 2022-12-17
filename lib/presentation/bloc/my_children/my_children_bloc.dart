@@ -11,6 +11,7 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
   MyChildrenBloc() : super(MyChildrenInitialState()) {
     on<MyChildrenShowHousesEvent>(_onMyChildrenShowHousesEvent);
     on<GetMyChildrenEvent>(_onGetMyChildrenEvent);
+    on<OpenAddPointAlertEvent>(_onOpenAddPointAlertEvent);
   }
 
   FutureOr<void> _onMyChildrenShowHousesEvent(
@@ -20,4 +21,8 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
 
   FutureOr<void> _onGetMyChildrenEvent(
       GetMyChildrenEvent event, Emitter<MyChildrenState> emit) {}
+
+  FutureOr<void> _onOpenAddPointAlertEvent(OpenAddPointAlertEvent event, Emitter<MyChildrenState> emit) {
+    emit(OpenAddPointAlertState());
+  }
 }

@@ -14,15 +14,16 @@ class MyChildrenScreen extends BaseStatefulWidget {
 }
 
 class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
-  bool isHomes = false;
+  MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
   @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<MyChildrenBloc, MyChildrenState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        if(state is MyChildrenShowHousesState){
-          isHomes=state.isShowHouses;
+      listener: (context, state) {
+        if (state is OpenAddPointAlertState){
+          _openAddPointAlert();
         }
+      },
+      builder: (context, state) {
         return Scaffold(
             floatingActionButton: _points(),
             appBar: _appBar(),
@@ -53,10 +54,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       );
 
   Widget _points() {
-    return Visibility(
-      visible: isHomes,
-      child: InkWell(
-        onTap: () {},
+    return  InkWell(
+        onTap: ()=>_bloc.add(OpenAddPointAlertEvent()),
         child: Card(
             color: ColorsManager.whiteColor,
             shape: RoundedRectangleBorder(
@@ -77,7 +76,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                       child:
                           const Icon(Icons.star, color: ColorsManager.yellow)),
                 ))),
-      ),
+
     );
   }
+
+  void _openAddPointAlert() {}
 }

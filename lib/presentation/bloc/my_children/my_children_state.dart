@@ -18,3 +18,5 @@ class GetMyChildrenSuccessState extends MyChildrenState {}
 class GetMyChildrenFillState extends MyChildrenState {}
 
 class GetMyChildrenErrorState extends MyChildrenState {}
+
+class OpenAddPointAlertState extends MyChildrenState {}

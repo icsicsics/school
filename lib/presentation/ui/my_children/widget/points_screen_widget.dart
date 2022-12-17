@@ -4,14 +4,14 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 import '../../../../core/utils/resorces/color_manager.dart';
 
-class HousesWidget extends StatefulWidget {
-  const HousesWidget({Key? key}) : super(key: key);
+class PointsScreenWidget extends StatefulWidget {
+  const PointsScreenWidget({Key? key}) : super(key: key);
 
   @override
-  State<HousesWidget> createState() => _HousesWidgetState();
+  State<PointsScreenWidget> createState() => _PointsScreenWidgetState();
 }
 
-class _HousesWidgetState extends State<HousesWidget> {
+class _PointsScreenWidgetState extends State<PointsScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

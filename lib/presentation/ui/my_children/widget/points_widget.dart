@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
-class PointsWidget extends StatefulWidget {
-  const PointsWidget({Key? key}) : super(key: key);
+class PointsScreenWidget extends StatefulWidget {
+  const PointsScreenWidget({Key? key}) : super(key: key);
 
   @override
-  State<PointsWidget> createState() => _PointsWidgetState();
+  State<PointsScreenWidget> createState() => _PointsScreenWidgetState();
 }
 
-class _PointsWidgetState extends State<PointsWidget> {
+class _PointsScreenWidgetState extends State<PointsScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return  Align(
