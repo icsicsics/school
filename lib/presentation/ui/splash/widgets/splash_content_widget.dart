@@ -27,7 +27,7 @@ class SplashContentWidget extends StatelessWidget {
           children: const [
             BoldTextWidget(
               text: 'I C S',
-              fontSize: 40,
+              fontSize: 80,
               color: ColorsManager.whiteColor,
             ),
             MediumTextWidget(
