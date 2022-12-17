@@ -17,7 +17,7 @@ class _MyChildrenContentWidgetState extends State<MyChildrenContentWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: const [MyChildrenHeaderWidget(),MyChildrenBodyWidget()],
+        children: const [MyChildrenHeaderWidget(), MyChildrenBodyWidget()],
       ),
     );
   }

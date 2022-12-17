@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 import '../../../../core/utils/resorces/color_manager.dart';
@@ -12,12 +11,14 @@ class PointsScreenWidget extends StatefulWidget {
 }
 
 class _PointsScreenWidgetState extends State<PointsScreenWidget> {
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+
           _item(
               onTap: () {},
               title: "Energetic",

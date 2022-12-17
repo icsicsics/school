@@ -99,7 +99,6 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
   }
 
   void _selectNotification() {
-
     if (isSelectedIndex == true && isSelectedNotification == false) {
       setState(() {
         isSelectedNotification = true;
