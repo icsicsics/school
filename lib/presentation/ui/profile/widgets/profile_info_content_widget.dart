@@ -14,30 +14,30 @@ class ProfileInfoContentWidget extends StatelessWidget {
           icon: Icons.phone_android,
           onTap: () {},
         ),
-        ProfileItemWidget(
-          title: 'Land-line Number',
-          subTitle: '+9626 589 0691',
-          icon: Icons.phonelink,
-          onTap: () {},
-        ),
+        // ProfileItemWidget(
+        //   title: 'Land-line Number',
+        //   subTitle: '+9626 589 0691',
+        //   icon: Icons.phonelink,
+        //   onTap: () {},
+        // ),
         ProfileItemWidget(
           title: 'Email',
           subTitle: 'eiz.m@gmail.com',
           icon: Icons.mark_email_read,
           onTap: () {},
         ),
-        ProfileItemWidget(
-          title: ' Current Address',
-          subTitle: 'Khalda - tlaa al ali',
-          icon: Icons.location_disabled_sharp,
-          onTap: () {},
-        ),
-        ProfileItemWidget(
-          title: ' Permanent Address',
-          subTitle: 'Permanent Address',
-          icon: Icons.location_on,
-          onTap: () {},
-        ),
+        // ProfileItemWidget(
+        //   title: ' Current Address',
+        //   subTitle: 'Khalda - tlaa al ali',
+        //   icon: Icons.location_disabled_sharp,
+        //   onTap: () {},
+        // ),
+        // ProfileItemWidget(
+        //   title: ' Permanent Address',
+        //   subTitle: 'Permanent Address',
+        //   icon: Icons.location_on,
+        //   onTap: () {},
+        // ),
       ],
     );
   }

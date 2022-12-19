@@ -19,13 +19,13 @@ class SendAgainWidget extends StatelessWidget {
         const BoldTextWidget(
             text: "Didn't Receive Verification code ?",
             fontSize: 14,
-            color: ColorsManager.grayColor),
+            color: ColorsManager.welcomeGryColor),
         InkWell(
           onTap: onTap,
           child: const MediumTextWidget(
               text: "Send it again",
               fontSize: 14,
-              color: ColorsManager.primaryColor),
+              color: ColorsManager.buttonColor),
         ),
       ],
     );

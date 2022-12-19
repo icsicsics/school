@@ -16,7 +16,7 @@ class VerifyHeaderWidget extends StatelessWidget {
         ],
         stops: [0.5, 0.8],
       )),
-      height: MediaQuery.of(context).size.height / 5,
+      height: 180,
       child: Align(
         alignment: Alignment.center,
         child: Column(
@@ -26,12 +26,12 @@ class VerifyHeaderWidget extends StatelessWidget {
           children: const [
             BoldTextWidget(
               text: 'I C S',
-              fontSize: 40,
+              fontSize: 50,
               color: ColorsManager.whiteColor,
             ),
             BoldTextWidget(
               text: 'Interactive school Counselling',
-              fontSize: 20,
+              fontSize: 10,
               color: ColorsManager.whiteColor,
             )
           ],

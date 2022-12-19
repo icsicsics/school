@@ -20,25 +20,25 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        color: ColorsManager.whiteColor,
-        elevation: 1,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12))),
+    return Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+          border: Border.all(width: 1, color: ColorsManager.grayColor),
+          color: ColorsManager.whiteColor,
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ClipRRect(
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(8), topLeft: Radius.circular(8)),
                 child: Image.asset(imagePath, fit: BoxFit.cover)),
-            Expanded(
-              child: BoldTextWidget(
-                  text: grade, fontSize: 12, color: ColorsManager.blackColor),
-            ),
-            Expanded(
-              child: BoldTextWidget(
-                  text: section, fontSize: 12, color: ColorsManager.blackColor),
-            ),
+            SizedBox(height: 5,),
+            BoldTextWidget(
+                text: grade, fontSize: 13, color: ColorsManager.welcomeGryColor),
+            BoldTextWidget(
+                text: section, fontSize: 13, color: ColorsManager.welcomeGryColor),
           ],
         ));
   }

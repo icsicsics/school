@@ -42,10 +42,10 @@ class AddPointItemWidget extends StatelessWidget {
                           color: ColorsManager.whiteColor,
                           borderRadius: BorderRadius.all(Radius.circular(50))),
                       child: Padding(
-                        padding: const EdgeInsets.all(3),
+                        padding: const EdgeInsets.all(4),
                         child: Container(
                           decoration: const BoxDecoration(
-                              color: ColorsManager.secondaryColor,
+                              color: ColorsManager.primaryColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50))),
                           child: const Icon(Icons.star,

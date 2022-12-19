@@ -17,17 +17,16 @@ class LoginHeaderWidget extends StatelessWidget {
         ],
         stops: [0.5, 0.8],
       )),
-      height: 200,
+      height: 180,
       child: Align(
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
           children: const [
             BoldTextWidget(
               text: 'I C S',
-              fontSize: 70,
+              fontSize: 50,
               color: ColorsManager.whiteColor,
             ),
             MediumTextWidget(

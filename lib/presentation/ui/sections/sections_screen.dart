@@ -33,6 +33,7 @@ class _SectionsScreenState extends BaseState<SectionsScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: ColorsManager.whiteColor,
           body: SectionsContentWidget(bloc: _bloc),
           appBar: _appBar(),
         );

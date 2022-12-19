@@ -17,7 +17,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
     return Expanded(
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, mainAxisSpacing: 5),
+            crossAxisCount: 3, mainAxisSpacing: 5,mainAxisExtent: 150),
         itemCount: 20,
         padding: const EdgeInsets.all(5),
         shrinkWrap: false,
