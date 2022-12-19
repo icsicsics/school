@@ -18,6 +18,7 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsManager.whiteColor,
       appBar: _appBar(),
       body: BlocListener<AddPointBloc, AddPointState>(
         listener: (context, state) {

@@ -33,6 +33,7 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
         }
       },
       child: Scaffold(
+          backgroundColor: ColorsManager.whiteColor,
           appBar: _appBar(),
           body: MyChildContentWidget(
             bloc: _bloc,

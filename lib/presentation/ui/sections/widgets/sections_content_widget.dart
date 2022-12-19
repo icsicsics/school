@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/ui/sections/widgets/sections_header_widget.dart';
 
 class SectionsContentWidget extends StatefulWidget {
@@ -34,17 +35,16 @@ class _SectionsContentWidgetState extends State<SectionsContentWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Icon(
-                    FontAwesomeIcons.rankingStar,
-                    color: ColorsManager.secondaryColor,
-                    size: 80,
+                children: [
+                  SvgPicture.asset(
+                    ImagesPath.points,
+                    height: 80,
                   ),
-                  SizedBox(height: 15),
-                  MediumTextWidget(
+                  const SizedBox(height: 15),
+                  const BoldTextWidget(
                       text: "Points",
                       fontSize: 15,
-                      color: ColorsManager.blackColor),
+                      color: ColorsManager.borderColor),
                 ],
               ),
             ),
@@ -53,14 +53,13 @@ class _SectionsContentWidgetState extends State<SectionsContentWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Icon(
-                    FontAwesomeIcons.schoolFlag,
-                    color: ColorsManager.secondaryColor,
-                    size: 80,
+                children: [
+                  SvgPicture.asset(
+                    ImagesPath.school,
+                    height: 80,
                   ),
-                  SizedBox(height: 15),
-                  MediumTextWidget(
+                  const SizedBox(height: 15),
+                  const BoldTextWidget(
                       text: " School Homes",
                       fontSize: 15,
                       color: ColorsManager.blackColor),

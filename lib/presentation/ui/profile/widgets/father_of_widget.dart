@@ -10,7 +10,7 @@ class FatherOfWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(15),
       child: Container(
         decoration: BoxDecoration(
             color: ColorsManager.whiteColor,

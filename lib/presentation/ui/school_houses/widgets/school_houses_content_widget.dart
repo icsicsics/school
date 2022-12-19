@@ -40,28 +40,28 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
               )),
             ],
           ),
-          Row(
-            children: const [
-              Expanded(
-                  child: SchoolHousesCardItemWidget(
-                icon: Icon(Icons.account_circle),
-                teachersValue: '6',
-                pointsValue: '172',
-                icon2: Icon(Icons.ac_unit),
-                label: 'Appreciative',
-                studentsValue: '20',
-              )),
-              Expanded(
-                  child: SchoolHousesCardItemWidget(
-                icon: Icon(Icons.account_circle),
-                teachersValue: '1',
-                pointsValue: '172',
-                icon2: Icon(Icons.ac_unit),
-                label: 'Interactive',
-                studentsValue: '20',
-              )),
-            ],
-          ),
+          // Row(
+          //   children: const [
+          //     Expanded(
+          //         child: SchoolHousesCardItemWidget(
+          //       icon: Icon(Icons.account_circle),
+          //       teachersValue: '6',
+          //       pointsValue: '172',
+          //       icon2: Icon(Icons.ac_unit),
+          //       label: 'Appreciative',
+          //       studentsValue: '20',
+          //     )),
+          //     Expanded(
+          //         child: SchoolHousesCardItemWidget(
+          //       icon: Icon(Icons.account_circle),
+          //       teachersValue: '1',
+          //       pointsValue: '172',
+          //       icon2: Icon(Icons.ac_unit),
+          //       label: 'Interactive',
+          //       studentsValue: '20',
+          //     )),
+          //   ],
+          // ),
         ],
       ),
     );
