@@ -10,22 +10,22 @@ class MyChildrenWidget extends StatefulWidget {
 }
 
 class _MyChildrenWidgetState extends State<MyChildrenWidget> {
-  final Color selectedColor = ColorsManager.secondaryColor;
+  final Color _selectedColor = ColorsManager.secondaryColor;
 
-  final Color unselectedColor = ColorsManager.mediumGrayColor;
-  List<ChildIconsModel> list = [
-    ChildIconsModel(id: 1, icon: Icons.add, isSelected: true, title: "All"),
-    ChildIconsModel(id: 2, icon: Icons.add, isSelected: false, title: "Me"),
-    ChildIconsModel(
+  final Color _unselectedColor = ColorsManager.mediumGrayColor;
+  final List<_ChildIconsModel> _list = [
+    _ChildIconsModel(id: 1, icon: Icons.add, isSelected: true, title: "All"),
+    _ChildIconsModel(id: 2, icon: Icons.add, isSelected: false, title: "Me"),
+    _ChildIconsModel(
         id: 3, icon: Icons.energy_savings_leaf, isSelected: false, title: ""),
-    ChildIconsModel(
+    _ChildIconsModel(
         id: 4, icon: Icons.autorenew_rounded, isSelected: false, title: ""),
-    ChildIconsModel(
+    _ChildIconsModel(
         id: 5,
         icon: Icons.lightbulb_outline_rounded,
         isSelected: false,
         title: ""),
-    ChildIconsModel(
+    _ChildIconsModel(
         id: 6, icon: Icons.autorenew_rounded, isSelected: false, title: ""),
   ];
 
@@ -38,18 +38,18 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: list.map((e) => _checkIndexForLabel(e)).toList(),
+              children: _list.map((e) => _checkIndexForLabel(e)).toList(),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: list.map((e) => _checkIndexForIcon(e)).toList(),
+              children: _list.map((e) => _checkIndexForIcon(e)).toList(),
             )
           ],
         ));
   }
 
-  Widget _checkIndexForIcon(ChildIconsModel model) {
+  Widget _checkIndexForIcon(_ChildIconsModel model) {
     if (model.id == 1 || model.id == 2) {
       return const SizedBox();
     } else {
@@ -66,7 +66,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     }
   }
 
-  Widget _checkIndexForLabel(ChildIconsModel model) {
+  Widget _checkIndexForLabel(_ChildIconsModel model) {
     if (model.id == 1 || model.id == 2) {
       return InkWell(
         onTap: () => _selectItem(model.id),
@@ -80,16 +80,16 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     }
   }
 
-  Color _getColor(ChildIconsModel model) {
+  Color _getColor(_ChildIconsModel model) {
     if (model.isSelected) {
-      return selectedColor;
+      return _selectedColor;
     } else {
-      return unselectedColor;
+      return _unselectedColor;
     }
   }
 
   void _selectItem(int id) {
-    for (var element in list) {
+    for (var element in _list) {
       setState(() {
         if (id == element.id) {
           element.isSelected = true;
@@ -101,29 +101,15 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   }
 }
 
-class ChildIconsModel {
+class _ChildIconsModel {
   int id;
   IconData icon;
   String title;
   bool isSelected;
 
-  ChildIconsModel(
+  _ChildIconsModel(
       {required this.id,
       required this.icon,
       required this.isSelected,
       required this.title});
 }
-//ListView.builder(
-//             itemCount: listOfIcons.length,
-//             scrollDirection: Axis.horizontal,
-//             itemBuilder: (BuildContext context, int index) {
-//               return Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: InkWell(
-//                     onTap: () => _selectItem(listOfIcons[index].id),
-//                     child: Icon(
-//                       listOfIcons[index].icon,
-//                       color: _getColor(listOfIcons[index]),
-//                     )),
-//               );
-//             }),
