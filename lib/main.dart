@@ -2,13 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:schools/core/device_info.dart';
 import 'package:schools/core/notification_serves.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
+import 'package:schools/presentation/bloc/localization/language.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/bloc/my_child_points/my_child_points_bloc.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
@@ -19,6 +22,7 @@ import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,15 +77,26 @@ class _MyAppState extends State<MyApp> {
           BlocProvider<MyChildPointsBloc>(
               create: (BuildContext context) => MyChildPointsBloc()),
         ],
-        child: FutureBuilder<ThemeData>(
-          initialData: ThemeData(),
-          future: AppTheme().themeDataLight,
-          builder: (context, snapshot) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'School',
-            theme: snapshot.data,
-            home: const SplashScreen(),
-          ),
-        ));
+        child: ChangeNotifierProvider(
+            create: (BuildContext context) => Languages(),
+            child: FutureBuilder<ThemeData>(
+              initialData: ThemeData(),
+              future: AppTheme().themeDataLight,
+              builder: (context, snapshot) => MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'School',
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                locale:
+                    Provider.of<Languages>(context, listen: true).currentLocal,
+                supportedLocales: S.delegate.supportedLocales,
+                theme: snapshot.data,
+                home: const SplashScreen(),
+              ),
+            )));
   }
 }

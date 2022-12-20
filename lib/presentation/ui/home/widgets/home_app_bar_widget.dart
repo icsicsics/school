@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/presentation/bloc/localization/language.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
   final Function() onTapNotifications;
 
-  const HomeAppBarWidget(
+  const  HomeAppBarWidget(
       {Key? key, required this.onTapMenu, required this.onTapNotifications})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Languages languageChangeProvider = Provider.of<Languages>(context, listen: true);
+
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -41,13 +46,22 @@ class HomeAppBarWidget extends StatelessWidget {
             ),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: IconButton(
-                  onPressed: onTapNotifications,
-                  icon: const Icon(
-                    Icons.mail_lock,
-                    color: ColorsManager.whiteColor,
-                    size: 25,
-                  ),
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: (){
+                      SharedPreferencesManager.setAppLanguage("ar");
+                      languageChangeProvider.changeLanguage('ar');
+                    }, icon: const  Icon(Icons.language,color: ColorsManager.whiteColor,)),
+                    IconButton(
+                      onPressed: onTapNotifications,
+                      icon: const Icon(
+                        Icons.mail_lock,
+                        color: ColorsManager.whiteColor,
+                        size: 25,
+                      ),
+                    ),
+                  ],
                 )),
           ],
         ),
