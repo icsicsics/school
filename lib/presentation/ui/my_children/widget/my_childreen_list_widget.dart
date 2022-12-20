@@ -17,7 +17,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     ChildIconsModel(id: 1, icon: Icons.add, isSelected: true, title: "All"),
     ChildIconsModel(id: 2, icon: Icons.add, isSelected: false, title: "Me"),
     ChildIconsModel(
-        id: 3, icon: Icons.energy_savings_leaf, isSelected: true, title: ""),
+        id: 3, icon: Icons.energy_savings_leaf, isSelected: false, title: ""),
     ChildIconsModel(
         id: 4, icon: Icons.autorenew_rounded, isSelected: false, title: ""),
     ChildIconsModel(
