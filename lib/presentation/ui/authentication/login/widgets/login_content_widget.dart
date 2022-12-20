@@ -43,25 +43,26 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    Switch(
-                      value: widget.isFather,
-                      activeColor: ColorsManager.primaryColor,
-                      onChanged: (bool value) => widget.loginBloc
-                          .add(LoginIsFatherEvent(isFather: value)),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    MediumTextWidget(
-                        text: "Is Father",
-                        fontSize: 15,
-                        color: widget.isFather
-                            ? ColorsManager.secondaryColor
-                            : ColorsManager.blackColor)
-                  ],
-                ),
+                //Todo Hide Is Father For Now
+                // Row(
+                //   children: [
+                //     Switch(
+                //       value: widget.isFather,
+                //       activeColor: ColorsManager.primaryColor,
+                //       onChanged: (bool value) => widget.loginBloc
+                //           .add(LoginIsFatherEvent(isFather: value)),
+                //     ),
+                //     const SizedBox(
+                //       width: 5,
+                //     ),
+                //     MediumTextWidget(
+                //         text: "Is Father",
+                //         fontSize: 15,
+                //         color: widget.isFather
+                //             ? ColorsManager.secondaryColor
+                //             : ColorsManager.blackColor)
+                //   ],
+                // ),
                 const SizedBox(
                   height: 100,
                 ),
