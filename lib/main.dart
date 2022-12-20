@@ -91,8 +91,7 @@ class _MyAppState extends State<MyApp> {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                locale:
-                    Provider.of<Languages>(context, listen: true).currentLocal,
+                locale: Provider.of<Languages>(context, listen: true).currentLocal,
                 supportedLocales: S.delegate.supportedLocales,
                 theme: snapshot.data,
                 home: const SplashScreen(),

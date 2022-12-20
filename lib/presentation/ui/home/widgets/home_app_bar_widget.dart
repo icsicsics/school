@@ -5,17 +5,23 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/presentation/bloc/localization/language.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
-class HomeAppBarWidget extends StatelessWidget {
+class HomeAppBarWidget extends StatefulWidget {
   final Function() onTapMenu;
   final Function() onTapNotifications;
 
-  const  HomeAppBarWidget(
+  const HomeAppBarWidget(
       {Key? key, required this.onTapMenu, required this.onTapNotifications})
       : super(key: key);
 
   @override
+  State<HomeAppBarWidget> createState() => _HomeAppBarWidgetState();
+}
+
+class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
+  @override
   Widget build(BuildContext context) {
-    Languages languageChangeProvider = Provider.of<Languages>(context, listen: true);
+    Languages languageChangeProvider =
+        Provider.of<Languages>(context, listen: true);
 
     return Container(
       decoration: const BoxDecoration(
@@ -32,7 +38,7 @@ class HomeAppBarWidget extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
-                onPressed: onTapMenu,
+                onPressed: widget.onTapMenu,
                 icon: const Icon(
                   Icons.menu,
                   color: ColorsManager.whiteColor,
@@ -49,12 +55,16 @@ class HomeAppBarWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     IconButton(
-                        onPressed: (){
-                      SharedPreferencesManager.setAppLanguage("ar");
-                      languageChangeProvider.changeLanguage('ar');
-                    }, icon: const  Icon(Icons.language,color: ColorsManager.whiteColor,)),
+                        onPressed: () async{
+                           await SharedPreferencesManager.setAppLanguage("ar");
+                            languageChangeProvider.changeLanguage('ar');
+                        },
+                        icon: const Icon(
+                          Icons.language,
+                          color: ColorsManager.whiteColor,
+                        )),
                     IconButton(
-                      onPressed: onTapNotifications,
+                      onPressed: widget.onTapNotifications,
                       icon: const Icon(
                         Icons.mail_lock,
                         color: ColorsManager.whiteColor,
@@ -68,4 +78,5 @@ class HomeAppBarWidget extends StatelessWidget {
       ),
     );
   }
+
 }
