@@ -4,10 +4,11 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class NotificationsAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
+  final bool isFather;
   // final Function() onTapNotifications;
 
   const NotificationsAppBarWidget(
-      {Key? key, required this.onTapMenu})
+      {Key? key, required this.onTapMenu,required this.isFather})
       : super(key: key);
 
   @override
@@ -26,9 +27,9 @@ class NotificationsAppBarWidget extends StatelessWidget {
                   color: ColorsManager.secondaryColor,
                   size: 30,
                 )),
-            const Expanded(
+             Expanded(
               child: MediumTextWidget(
-                  text: "Notifications",
+                  text: isFather?"Notifications":"Inbox",
                   fontSize: 18,
                   color: ColorsManager.secondaryColor),
             ),

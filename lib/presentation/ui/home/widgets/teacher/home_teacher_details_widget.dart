@@ -30,7 +30,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) => const SchoolHousesScreen()));
+                        builder: (_) => SchoolHousesScreen()));
               },
               child: const CardWidget(
                 section: "Section A",

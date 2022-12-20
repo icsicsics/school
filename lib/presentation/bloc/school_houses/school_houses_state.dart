@@ -15,4 +15,4 @@ class GetSchoolHousesErrorState extends SchoolHousesState {}
 
 class NavigateToNotificationScreenState extends SchoolHousesState {}
 
-class NavigateToSectionsScreenState extends SchoolHousesState {}
+class NavigateToAddPointsScreenState extends SchoolHousesState {}

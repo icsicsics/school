@@ -5,6 +5,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/ui/add_point/widgets/add_point_content_widget.dart';
+import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class AddPointScreen extends BaseStatefulWidget {
@@ -15,6 +16,8 @@ class AddPointScreen extends BaseStatefulWidget {
 }
 
 class _AddPointScreen extends BaseState<AddPointScreen> {
+  AddPointBloc get _addPointBloc => BlocProvider.of<AddPointBloc>(context);
+
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
@@ -24,9 +27,13 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
         listener: (context, state) {
           if (state is NavigateToNotificationScreenState) {
             _navigateToNotificationScreen();
+          } else if (state is NavigateToMyChildrenScreenState) {
+            _navigateToMyChildrenScreen();
           }
         },
-        child: const AddPointContentWidget(),
+        child: AddPointContentWidget(
+          addPointBloc: _addPointBloc,
+        ),
       ),
     );
   }
@@ -43,7 +50,7 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
           IconButton(
             onPressed: () => BlocProvider.of<AddPointBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.notifications_active,
+            icon: const Icon(Icons.mail_lock,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],
@@ -57,4 +64,7 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
       context,
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
+
+  void _navigateToMyChildrenScreen() => Navigator.push(
+      context, MaterialPageRoute(builder: (_) => const MyChildrenScreen()));
 }

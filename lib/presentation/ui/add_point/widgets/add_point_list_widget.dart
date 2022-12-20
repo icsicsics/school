@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/ui/add_point/widgets/add_point_item_widget.dart';
 
 class AddPointListWidget extends StatefulWidget {
-  const AddPointListWidget({Key? key}) : super(key: key);
+  final AddPointBloc addPointBloc;
+  const AddPointListWidget({Key? key,required this.addPointBloc}) : super(key: key);
 
   @override
   State<AddPointListWidget> createState() => _AddPointListWidgetState();
@@ -31,11 +33,11 @@ class _AddPointListWidgetState extends State<AddPointListWidget> {
           shrinkWrap: false,
           semanticChildCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-                onTap: () => _onTap(list[index]),
-                child: AddPointItemWidget(
-                  childName: list[index],
-                ));
+            return AddPointItemWidget(
+              childName: list[index],
+              onTapStar: () => _onTap(list[index]),
+              onTapChild: ()=>widget.addPointBloc.add(NavigateToMyChildrenScreenEvent()),
+            );
           }),
     );
   }

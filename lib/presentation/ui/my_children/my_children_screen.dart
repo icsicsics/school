@@ -50,7 +50,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         actions: [
           IconButton(
             onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.notifications_active,
+            icon: const Icon(Icons.mail_lock,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],
