@@ -22,10 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("حول"),
+        "addPoint": MessageLookupByLibrary.simpleMessage("أضف نقطة"),
+        "all": MessageLookupByLibrary.simpleMessage(":الكل"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
+        "classHouses": MessageLookupByLibrary.simpleMessage("منازل الصف"),
         "clear": MessageLookupByLibrary.simpleMessage("مسح"),
         "didntReceiveVerificationCode":
             MessageLookupByLibrary.simpleMessage("لم تتلق رمز التحقق؟"),
@@ -34,15 +38,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage("قرأت وأقبل ب"),
+        "inbox": MessageLookupByLibrary.simpleMessage("صندوق الوارد"),
         "interactiveSchoolCounselling":
             MessageLookupByLibrary.simpleMessage("إرشاد مدرسي تفاعلي"),
+        "interactiveSchoolGuidance":
+            MessageLookupByLibrary.simpleMessage("التوجيه المدرسي التفاعلي"),
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "me": MessageLookupByLibrary.simpleMessage("انا"),
+        "myChildren": MessageLookupByLibrary.simpleMessage("أطفالي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
                 "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),

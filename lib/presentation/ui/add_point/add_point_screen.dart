@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/ui/add_point/widgets/add_point_content_widget.dart';
@@ -54,10 +55,10 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],
-        title: const BoldTextWidget(
+        title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "Add Point"),
+            text: S.of(context).addPoint),
       );
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(

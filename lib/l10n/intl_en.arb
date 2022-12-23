@@ -16,5 +16,15 @@
 "didntReceiveVerificationCode":"Didn't Receive Verification code ?",
 "sendItAgain":"Send it again",
 "verifyYourNumber":"Verify your Number",
-"pleaseTypeVerificationCodeSentToYourPhone":"Please type verification code sent to your\nphone"
+"pleaseTypeVerificationCodeSentToYourPhone":"Please type verification code sent to your\nphone",
+"sections":"Sections",
+"classHouses":"Class houses",
+"about":"About",
+"interactiveSchoolGuidance":"Interactive school guidance",
+"addPoint":"Add Point",
+"myChildren":"My Children",
+"all":"All",
+"me":"Me",
+"notifications":"Notifications",
+"inbox":"Inbox"
 }

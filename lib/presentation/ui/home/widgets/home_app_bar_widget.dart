@@ -46,9 +46,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                   color: ColorsManager.whiteColor,
                   size: 30,
                 )),
-            const Expanded(
+             Expanded(
               child: MediumTextWidget(
-                  text: "Interactive School Counselling",
+                  text: S.of(context).interactiveSchoolCounselling,
                   fontSize: 18,
                   color: ColorsManager.whiteColor),
             ),

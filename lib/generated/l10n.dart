@@ -229,6 +229,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Sections`
+  String get sections {
+    return Intl.message(
+      'Sections',
+      name: 'sections',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Class houses`
+  String get classHouses {
+    return Intl.message(
+      'Class houses',
+      name: 'classHouses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interactive school guidance`
+  String get interactiveSchoolGuidance {
+    return Intl.message(
+      'Interactive school guidance',
+      name: 'interactiveSchoolGuidance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Point`
+  String get addPoint {
+    return Intl.message(
+      'Add Point',
+      name: 'addPoint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Children`
+  String get myChildren {
+    return Intl.message(
+      'My Children',
+      name: 'myChildren',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Me`
+  String get me {
+    return Intl.message(
+      'Me',
+      name: 'me',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inbox`
+  String get inbox {
+    return Intl.message(
+      'Inbox',
+      name: 'inbox',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

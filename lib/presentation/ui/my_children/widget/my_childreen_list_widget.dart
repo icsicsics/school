@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class MyChildrenWidget extends StatefulWidget {
@@ -14,8 +15,8 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
 
   final Color _unselectedColor = ColorsManager.mediumGrayColor;
   final List<_ChildIconsModel> _list = [
-    _ChildIconsModel(id: 1, icon: Icons.add, isSelected: true, title: "All"),
-    _ChildIconsModel(id: 2, icon: Icons.add, isSelected: false, title: "Me"),
+    _ChildIconsModel(id: 1, icon: Icons.add, isSelected: true, title: S.current.all),
+    _ChildIconsModel(id: 2, icon: Icons.add, isSelected: false, title:  S.current.me),
     _ChildIconsModel(
         id: 3, icon: Icons.energy_savings_leaf, isSelected: false, title: ""),
     _ChildIconsModel(

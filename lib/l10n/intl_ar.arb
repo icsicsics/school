@@ -16,5 +16,15 @@
 "didntReceiveVerificationCode":"لم تتلق رمز التحقق؟",
 "sendItAgain":"ارسلها مرة أخرى",
 "verifyYourNumber":"تحقق من رقمك",
-"pleaseTypeVerificationCodeSentToYourPhone":"الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"
+"pleaseTypeVerificationCodeSentToYourPhone":"الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك",
+"sections":"الأقسام",
+"classHouses":"منازل الصف",
+"about":"حول",
+"interactiveSchoolGuidance":"التوجيه المدرسي التفاعلي",
+"addPoint":"أضف نقطة",
+"myChildren":"أطفالي",
+"all":":الكل",
+"me":"انا",
+"notifications":"الإشعارات",
+"inbox":"صندوق الوارد"
 }
