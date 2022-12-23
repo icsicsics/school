@@ -11,3 +11,6 @@ class ChangeLanguageEvent extends HomeEvent {
   final String language;
   ChangeLanguageEvent(this.language);
 }
+class GetLanguageEvent extends HomeEvent {
+  GetLanguageEvent();
+}

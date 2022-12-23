@@ -23,6 +23,7 @@ import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
+import 'package:schools/presentation/shere_widgets/restart_widget.dart';
 void main() async {
   await initializeDependencies();
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,7 @@ void main() async {
     ),
   );
   NotificationService().initializeNotificationService();
-  runApp(const MyApp());
+  runApp(const RestartWidget(MyApp()));
 }
 
 class MyApp extends StatefulWidget {

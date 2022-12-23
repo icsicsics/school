@@ -6,10 +6,15 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 class HomeAppBarWidget extends StatefulWidget {
   final Function() onTapMenu;
   final Function() onTapNotifications;
+  final HomeBloc bloc;
+  final String language;
+
   const HomeAppBarWidget(
       {Key? key,
       required this.onTapMenu,
-      required this.onTapNotifications})
+      required this.onTapNotifications,
+      required this.bloc,
+      required this.language})
       : super(key: key);
 
   @override
@@ -51,7 +56,13 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                 child: Row(
                   children: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (widget.language == "en") {
+                            widget.bloc.add(ChangeLanguageEvent("ar"));
+                          } else {
+                            widget.bloc.add(ChangeLanguageEvent("en"));
+                          }
+                        },
                         icon: const Icon(
                           Icons.language,
                           color: ColorsManager.whiteColor,

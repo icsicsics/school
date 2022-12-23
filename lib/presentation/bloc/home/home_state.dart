@@ -20,3 +20,10 @@ class GetIsFatherState extends HomeState {
 }
 
 class SaveLanguageCodeFailedState extends HomeState {}
+
+class ChangeLanguageSuccessState extends HomeState {}
+
+class GetLanguageSuccessState extends HomeState {
+  final String language;
+  GetLanguageSuccessState({required this.language});
+}

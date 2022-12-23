@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/ui/home/widgets/father/home_father_content_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/home_app_bar_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/teacher/home_teacher_details_widget.dart';
@@ -8,9 +9,15 @@ import 'package:schools/presentation/ui/notifications/notifications_screen.dart'
 class HomeContentWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> globalKey;
   final bool isFather;
+  final HomeBloc bloc;
+  final String language;
 
   const HomeContentWidget(
-      {Key? key, required this.globalKey, required this.isFather})
+      {Key? key,
+      required this.globalKey,
+      required this.isFather,
+      required this.bloc,
+      required this.language})
       : super(key: key);
 
   @override
@@ -23,15 +30,16 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
     return Column(
       children: [
         HomeAppBarWidget(
-
-          onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
-          onTapNotifications: () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-                (route) => false);
-          },
-        ),
+            onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
+            onTapNotifications: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const NotificationsScreen()),
+                  (route) => false);
+            },
+            bloc: widget.bloc,
+            language: widget.language),
         const SizedBox(height: 2),
         const HomeTitleWidget(),
         _buildScreen()
