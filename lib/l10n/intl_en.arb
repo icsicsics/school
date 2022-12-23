@@ -1,5 +1,10 @@
 {
 "isFather":"اب",
-"arabic":"عربي",
-"english":"انجليزي"
+"arabic":"Arabic",
+"english":"English",
+"interactiveSchoolCounselling":"Interactive School Counselling",
+"login":"Login",
+"enterYourPhoneNumber":"Enter your Phone Number",
+"clear":"Clear",
+"sendOTP":"Send OTP"
 }

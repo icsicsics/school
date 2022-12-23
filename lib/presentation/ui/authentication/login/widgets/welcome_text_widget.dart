@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class WelcomeTextWidget extends StatelessWidget {
@@ -8,17 +9,19 @@ class WelcomeTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        SizedBox(
+      children: [
+        const SizedBox(
           height: 25,
         ),
         MediumTextWidget(
-            text: "Login", fontSize: 25, color: ColorsManager.welcomeGryColor),
-        SizedBox(
+            text: S.of(context).login,
+            fontSize: 25,
+            color: ColorsManager.welcomeGryColor),
+        const SizedBox(
           height: 25,
         ),
         MediumTextWidget(
-            text: "Enter your Phone Number",
+            text: S.of(context).enterYourPhoneNumber,
             fontSize: 15,
             color: ColorsManager.secondaryColor),
       ],

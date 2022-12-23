@@ -60,21 +60,71 @@ class S {
     );
   }
 
-  /// `عربي`
+  /// `Arabic`
   String get arabic {
     return Intl.message(
-      'عربي',
+      'Arabic',
       name: 'arabic',
       desc: '',
       args: [],
     );
   }
 
-  /// `انجليزي`
+  /// `English`
   String get english {
     return Intl.message(
-      'انجليزي',
+      'English',
       name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interactive School Counselling`
+  String get interactiveSchoolCounselling {
+    return Intl.message(
+      'Interactive School Counselling',
+      name: 'interactiveSchoolCounselling',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your Phone Number`
+  String get enterYourPhoneNumber {
+    return Intl.message(
+      'Enter your Phone Number',
+      name: 'enterYourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear`
+  String get clear {
+    return Intl.message(
+      'Clear',
+      name: 'clear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send OTP`
+  String get sendOTP {
+    return Intl.message(
+      'Send OTP',
+      name: 'sendOTP',
       desc: '',
       args: [],
     );
