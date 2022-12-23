@@ -14,10 +14,10 @@ class ConfirmButtonWidget extends StatelessWidget {
         child: CustomButtonWidget(
       onPressed: confirmAction,
       borderRadius: 20,
-      buttonColor: ColorsManager.buttonColor,
-      borderColor: ColorsManager.buttonColor,
+      buttonColor: ColorsManager.primaryColor,
+      borderColor: ColorsManager.primaryColor,
       buttonTextSize: 14,
-      buttonText: "Confirm",
+      buttonText: "Send OTP",
       buttonTextColor: ColorsManager.whiteColor,
       buttonHeight: 46,
     ));

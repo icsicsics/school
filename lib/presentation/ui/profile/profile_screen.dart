@@ -56,7 +56,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         actions: [
           IconButton(
             onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.notifications_active,
+            icon:  Icon(_isFather?Icons.notifications_active:Icons.mail_lock,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_content_widget.dart';
 import 'package:schools/presentation/ui/sections/sections_screen.dart';
@@ -24,8 +25,8 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
         listener: (context, state) {
           if (state is NavigateToNotificationScreenState) {
             _navigateToNotificationScreen();
-          } else if (state is NavigateToSectionsScreenState) {
-            _navigateToSectionsScreen();
+          } else if (state is NavigateToAddPointsScreenState) {
+            _navigateToAddPointsScreen();
           }
         },
         builder: (context, state) {
@@ -47,14 +48,14 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           IconButton(
             onPressed: () => BlocProvider.of<SchoolHousesBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.notifications_active,
+            icon:  const Icon(Icons.mail_lock,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],
         title: const BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "School Houses"),
+            text: "Class houses"),
       );
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
@@ -62,6 +63,6 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
 
-  void _navigateToSectionsScreen() => Navigator.push(
-      context, MaterialPageRoute(builder: (_) => const SectionsScreen()));
+  void _navigateToAddPointsScreen() => Navigator.push(
+      context, MaterialPageRoute(builder: (_) => const AddPointScreen()));
 }
