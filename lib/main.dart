@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> {
             return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'School',
+                theme: getApplicationTheme(state.languageCode),
                 localizationsDelegates: const [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,
