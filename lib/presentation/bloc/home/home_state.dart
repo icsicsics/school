@@ -18,3 +18,5 @@ class GetIsFatherState extends HomeState {
 
   GetIsFatherState({required this.isFather});
 }
+
+class SaveLanguageCodeFailedState extends HomeState {}

@@ -55,7 +55,7 @@ dependencies:
   firebase_core_platform_interface: 4.5.1
   font_awesome_flutter: ^10.3.0
   flutter_svg: ^1.1.6
-  provider: ^6.0.5
+  get_it: ^7.2.0
 
 
 

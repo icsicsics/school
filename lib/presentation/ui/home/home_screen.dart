@@ -40,6 +40,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         },
         builder: (context, state) {
           return HomeContentWidget(globalKey: _key, isFather: _isFather);
+
         },
       ),
     );

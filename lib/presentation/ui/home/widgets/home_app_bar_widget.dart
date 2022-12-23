@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
-import 'package:schools/presentation/bloc/localization/language.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeAppBarWidget extends StatefulWidget {
   final Function() onTapMenu;
   final Function() onTapNotifications;
-
   const HomeAppBarWidget(
-      {Key? key, required this.onTapMenu, required this.onTapNotifications})
+      {Key? key,
+      required this.onTapMenu,
+      required this.onTapNotifications})
       : super(key: key);
 
   @override
@@ -20,9 +19,6 @@ class HomeAppBarWidget extends StatefulWidget {
 class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
   @override
   Widget build(BuildContext context) {
-    Languages languageChangeProvider =
-        Provider.of<Languages>(context, listen: true);
-
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -55,10 +51,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                 child: Row(
                   children: [
                     IconButton(
-                        onPressed: () async{
-                           await SharedPreferencesManager.setAppLanguage("ar");
-                            languageChangeProvider.changeLanguage('ar');
-                        },
+                        onPressed: () {},
                         icon: const Icon(
                           Icons.language,
                           color: ColorsManager.whiteColor,
@@ -78,5 +71,4 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       ),
     );
   }
-
 }
