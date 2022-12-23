@@ -22,11 +22,13 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   @override
   void initState() {
     _loginBloc.add(LoginIsFatherEvent(isFather: false));
+    _loginBloc.add(GetLanguageEvent());
     super.initState();
   }
 
   @override
   Widget baseBuild(BuildContext context) {
+    String _language = '';
     return Scaffold(
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<LoginBloc, LoginState>(
@@ -37,14 +39,16 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             _onLoginConfirmButtonState();
           } else if (state is LoginIsFatherState) {
             _setIsFather(state);
+          } else if (state is GetLanguageSuccessState) {
+            _language = state.language;
           }
         },
         builder: (context, state) {
           return LoginContentWidget(
-            countryController: countryController,
-            loginBloc: _loginBloc,
-            isFather: _isFather,
-          );
+              countryController: countryController,
+              loginBloc: _loginBloc,
+              isFather: _isFather,
+              language: _language);
         },
       ),
     );
