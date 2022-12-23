@@ -18,7 +18,7 @@ Future<void> initializeBlocDependencies() async {
       () => LocalizationCubit(injector(), injector()));
   injector.registerFactory<HomeBloc>(() => HomeBloc(injector(),injector()));
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
-  injector.registerFactory<VerifyBloc>(() => VerifyBloc());
+  injector.registerFactory<VerifyBloc>(() => VerifyBloc(injector()));
   injector.registerFactory<NotificationsBloc>(() => NotificationsBloc());
   injector.registerFactory<SideMenuBloc>(() => SideMenuBloc());
   injector.registerFactory<AddPointBloc>(() => AddPointBloc());
