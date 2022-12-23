@@ -50,11 +50,31 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `IS Father`
+  /// `اب`
   String get isFather {
     return Intl.message(
-      'IS Father',
+      'اب',
       name: 'isFather',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عربي`
+  String get arabic {
+    return Intl.message(
+      'عربي',
+      name: 'arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `انجليزي`
+  String get english {
+    return Intl.message(
+      'انجليزي',
+      name: 'english',
       desc: '',
       args: [],
     );

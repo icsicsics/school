@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
@@ -55,18 +56,14 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
-                    IconButton(
-                        onPressed: () {
-                          if (widget.language == "en") {
-                            widget.bloc.add(ChangeLanguageEvent("ar"));
-                          } else {
-                            widget.bloc.add(ChangeLanguageEvent("en"));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.language,
-                          color: ColorsManager.whiteColor,
-                        )),
+                    InkWell(
+                        onTap: () => _changeLanguage(),
+                        child: MediumTextWidget(
+                            text: widget.language == "en"
+                                ? S.of(context).arabic
+                                : S.of(context).english,
+                            fontSize: 14,
+                            color: ColorsManager.whiteColor)),
                     IconButton(
                       onPressed: widget.onTapNotifications,
                       icon: const Icon(
@@ -81,5 +78,13 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
         ),
       ),
     );
+  }
+
+  void _changeLanguage() {
+    if (widget.language == "en") {
+      widget.bloc.add(ChangeLanguageEvent("ar"));
+    } else {
+      widget.bloc.add(ChangeLanguageEvent("en"));
+    }
   }
 }
