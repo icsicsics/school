@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class VerifyTitleWidget extends StatelessWidget {
@@ -9,16 +10,16 @@ class VerifyTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        SizedBox(
+      children: [
+        const SizedBox(
           height: 30,
         ),
         MediumTextWidget(
-            text: "Verify your Number",
+            text: S.of(context).verifyYourNumber,
             fontSize: 27,
             color: ColorsManager.darkGrayColor),
         MediumTextWidget(
-            text: "Please type verification code sent to your\nphone ",
+            text: S.of(context).pleaseTypeVerificationCodeSentToYourPhone,
             fontSize: 17,
             color: ColorsManager.welcomeGryColor),
       ],

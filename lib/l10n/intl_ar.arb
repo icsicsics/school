@@ -6,5 +6,15 @@
 "login":"تسجيل الدخول",
 "enterYourPhoneNumber":"أدخل رقم هاتفك",
 "clear":"مسح",
-"sendOTP":"أرسل OTP"
+"sendOTP":"أرسل OTP",
+"changeMobileNumber":"تغيير رقم الموبايل",
+"next":"التالي",
+"ihaveReadAndAcceptThe":"قرأت وأقبل ب",
+"privacyPolicy":"سياسة الخصوصية",
+"termOfUse":"شروط الاستخدام",
+"and":"و",
+"didntReceiveVerificationCode":"لم تتلق رمز التحقق؟",
+"sendItAgain":"ارسلها مرة أخرى",
+"verifyYourNumber":"تحقق من رقمك",
+"pleaseTypeVerificationCodeSentToYourPhone":"الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"
 }

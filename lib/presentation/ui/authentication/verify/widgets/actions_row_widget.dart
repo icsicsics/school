@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
 
 class ActionsRowWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class ActionsRowWidget extends StatelessWidget {
         Expanded(
             child: CustomButtonWidget(
           onPressed: changeMobileNumberAction,
-          buttonText: "Change Mobile Number",
+          buttonText: S.of(context).changeMobileNumber,
           buttonTextSize: 12,
           buttonTextColor: ColorsManager.primaryColor,
           buttonColor: ColorsManager.whiteColor,
@@ -31,7 +32,7 @@ class ActionsRowWidget extends StatelessWidget {
         Expanded(
             child: CustomButtonWidget(
           onPressed: nextAction,
-          buttonText: "Next",
+          buttonText: S.of(context).next,
           buttonColor: ColorsManager.primaryColor,
           buttonTextColor: ColorsManager.whiteColor,
           borderColor: ColorsManager.primaryColor,

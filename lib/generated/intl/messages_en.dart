@@ -22,15 +22,31 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "and": MessageLookupByLibrary.simpleMessage("and"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "changeMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
+        "didntReceiveVerificationCode": MessageLookupByLibrary.simpleMessage(
+            "Didn\'t Receive Verification code ?"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your Phone Number"),
+        "ihaveReadAndAcceptThe":
+            MessageLookupByLibrary.simpleMessage(" I have read and accept the"),
         "interactiveSchoolCounselling": MessageLookupByLibrary.simpleMessage(
             "Interactive School Counselling"),
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
-        "sendOTP": MessageLookupByLibrary.simpleMessage("Send OTP")
+        "next": MessageLookupByLibrary.simpleMessage(" Next"),
+        "pleaseTypeVerificationCodeSentToYourPhone":
+            MessageLookupByLibrary.simpleMessage(
+                "Please type verification code sent to your\nphone"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),
+        "sendOTP": MessageLookupByLibrary.simpleMessage("Send OTP"),
+        "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
+        "verifyYourNumber":
+            MessageLookupByLibrary.simpleMessage("Verify your Number")
       };
 }

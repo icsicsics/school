@@ -22,15 +22,30 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "and": MessageLookupByLibrary.simpleMessage("و"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "changeMobileNumber":
+            MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
         "clear": MessageLookupByLibrary.simpleMessage("مسح"),
+        "didntReceiveVerificationCode":
+            MessageLookupByLibrary.simpleMessage("لم تتلق رمز التحقق؟"),
         "english": MessageLookupByLibrary.simpleMessage("انجليزي"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
+        "ihaveReadAndAcceptThe":
+            MessageLookupByLibrary.simpleMessage("قرأت وأقبل ب"),
         "interactiveSchoolCounselling":
             MessageLookupByLibrary.simpleMessage("إرشاد مدرسي تفاعلي"),
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-        "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP")
+        "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "pleaseTypeVerificationCodeSentToYourPhone":
+            MessageLookupByLibrary.simpleMessage(
+                "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),
+        "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),
+        "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
+        "verifyYourNumber": MessageLookupByLibrary.simpleMessage("تحقق من رقمك")
       };
 }

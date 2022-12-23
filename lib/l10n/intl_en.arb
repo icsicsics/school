@@ -6,5 +6,15 @@
 "login":"Login",
 "enterYourPhoneNumber":"Enter your Phone Number",
 "clear":"Clear",
-"sendOTP":"Send OTP"
+"sendOTP":"Send OTP",
+"changeMobileNumber":"Change Mobile Number",
+"next":" Next",
+"ihaveReadAndAcceptThe":" I have read and accept the",
+"privacyPolicy":"Privacy Policy",
+"termOfUse":"Term of Use",
+"and":"and",
+"didntReceiveVerificationCode":"Didn't Receive Verification code ?",
+"sendItAgain":"Send it again",
+"verifyYourNumber":"Verify your Number",
+"pleaseTypeVerificationCodeSentToYourPhone":"Please type verification code sent to your\nphone"
 }

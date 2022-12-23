@@ -129,6 +129,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Change Mobile Number`
+  String get changeMobileNumber {
+    return Intl.message(
+      'Change Mobile Number',
+      name: 'changeMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Next`
+  String get next {
+    return Intl.message(
+      ' Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` I have read and accept the`
+  String get ihaveReadAndAcceptThe {
+    return Intl.message(
+      ' I have read and accept the',
+      name: 'ihaveReadAndAcceptThe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Term of Use`
+  String get termOfUse {
+    return Intl.message(
+      'Term of Use',
+      name: 'termOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `and`
+  String get and {
+    return Intl.message(
+      'and',
+      name: 'and',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't Receive Verification code ?`
+  String get didntReceiveVerificationCode {
+    return Intl.message(
+      'Didn\'t Receive Verification code ?',
+      name: 'didntReceiveVerificationCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send it again`
+  String get sendItAgain {
+    return Intl.message(
+      'Send it again',
+      name: 'sendItAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify your Number`
+  String get verifyYourNumber {
+    return Intl.message(
+      'Verify your Number',
+      name: 'verifyYourNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please type verification code sent to your\nphone`
+  String get pleaseTypeVerificationCodeSentToYourPhone {
+    return Intl.message(
+      'Please type verification code sent to your\nphone',
+      name: 'pleaseTypeVerificationCodeSentToYourPhone',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
