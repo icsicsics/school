@@ -6,3 +6,4 @@ abstract class AddPointEvent {}
 class GetAddPointEvent extends AddPointEvent {}
 
 class NavigateToNotificationScreenEvent extends AddPointEvent {}
+class NavigateToMyChildrenScreenEvent extends AddPointEvent {}

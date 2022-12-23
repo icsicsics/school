@@ -22,6 +22,7 @@ class _SideMenuSocialMediaWidgetState extends State<SideMenuSocialMediaWidget> {
           _item(onTap: () {}, icon: FontAwesomeIcons.instagram),
           _item(onTap: () {}, icon: FontAwesomeIcons.twitter),
           _item(onTap: () {}, icon: FontAwesomeIcons.youtube),
+          _item(onTap: () {}, icon: Icons.web),
         ],
       ),
     );

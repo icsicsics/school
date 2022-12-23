@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/clear_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/confirm_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/header_widget.dart';
@@ -44,25 +41,26 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    Switch(
-                      value: widget.isFather,
-                      activeColor: ColorsManager.primaryColor,
-                      onChanged: (bool value) => widget.loginBloc
-                          .add(LoginIsFatherEvent(isFather: value)),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    MediumTextWidget(
-                        text: S.of(context).isFather,
-                        fontSize: 15,
-                        color: widget.isFather
-                            ? ColorsManager.secondaryColor
-                            : ColorsManager.blackColor)
-                  ],
-                ),
+                //Todo Hide Is Father For Now
+                // Row(
+                //   children: [
+                //     Switch(
+                //       value: widget.isFather,
+                //       activeColor: ColorsManager.primaryColor,
+                //       onChanged: (bool value) => widget.loginBloc
+                //           .add(LoginIsFatherEvent(isFather: value)),
+                //     ),
+                //     const SizedBox(
+                //       width: 5,
+                //     ),
+                //     MediumTextWidget(
+                //         text: "Is Father",
+                //         fontSize: 15,
+                //         color: widget.isFather
+                //             ? ColorsManager.secondaryColor
+                //             : ColorsManager.blackColor)
+                //   ],
+                // ),
                 const SizedBox(
                   height: 100,
                 ),

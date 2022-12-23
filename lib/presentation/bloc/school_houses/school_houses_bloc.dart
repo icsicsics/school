@@ -11,7 +11,7 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
   SchoolHousesBloc() : super(SchoolHousesInitialState()) {
     on<GetSchoolHousesEvent>(_onGetSchoolHousesEvent);
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
-    on<NavigateToSectionsScreenEvent>(_onNavigateToSectionsScreenEvent);
+    on<NavigateToAddPointsScreenEvent>(_onNavigateToAddPointsScreenEvent);
   }
 
   FutureOr<void> _onGetSchoolHousesEvent(
@@ -23,8 +23,8 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
     emit(NavigateToNotificationScreenState());
   }
 
-  FutureOr<void> _onNavigateToSectionsScreenEvent(
-      NavigateToSectionsScreenEvent event, Emitter<SchoolHousesState> emit) {
-    emit(NavigateToSectionsScreenState());
+  FutureOr<void> _onNavigateToAddPointsScreenEvent(
+      NavigateToAddPointsScreenEvent event, Emitter<SchoolHousesState> emit) {
+    emit(NavigateToAddPointsScreenState());
   }
 }

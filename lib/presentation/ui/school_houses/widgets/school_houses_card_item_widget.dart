@@ -31,7 +31,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
         child: InkWell(
           onTap: () => BlocProvider.of<SchoolHousesBloc>(context)
-              .add(NavigateToSectionsScreenEvent()),
+              .add(NavigateToAddPointsScreenEvent()),
           child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),

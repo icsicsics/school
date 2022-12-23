@@ -12,6 +12,7 @@ class AddPointBloc extends Bloc<AddPointEvent, AddPointState> {
   AddPointBloc() : super(AddPointInitialState()) {
     on<GetAddPointEvent>(_onGetAddPointEvent);
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
+    on<NavigateToMyChildrenScreenEvent>(_onNavigateToMyChildrenScreenEvent);
   }
 
   FutureOr<void> _onGetAddPointEvent(
@@ -20,5 +21,9 @@ class AddPointBloc extends Bloc<AddPointEvent, AddPointState> {
   FutureOr<void> _onNavigateToNotificationScreenEvent(
       NavigateToNotificationScreenEvent event, Emitter<AddPointState> emit) {
     emit(NavigateToNotificationScreenState());
+  }
+
+  FutureOr<void> _onNavigateToMyChildrenScreenEvent(NavigateToMyChildrenScreenEvent event, Emitter<AddPointState> emit) {
+    emit(NavigateToMyChildrenScreenState());
   }
 }

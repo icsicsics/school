@@ -15,6 +15,8 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           MyChildrenWidget(),
           PointsScreenWidget(),

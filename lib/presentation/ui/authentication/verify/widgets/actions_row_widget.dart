@@ -21,9 +21,9 @@ class ActionsRowWidget extends StatelessWidget {
           onPressed: changeMobileNumberAction,
           buttonText: "Change Mobile Number",
           buttonTextSize: 12,
-          buttonTextColor: ColorsManager.borderColor,
+          buttonTextColor: ColorsManager.primaryColor,
           buttonColor: ColorsManager.whiteColor,
-          borderColor: ColorsManager.borderColor,
+          borderColor: ColorsManager.primaryColor,
         )),
         const SizedBox(
           width: 15,
@@ -32,9 +32,9 @@ class ActionsRowWidget extends StatelessWidget {
             child: CustomButtonWidget(
           onPressed: nextAction,
           buttonText: "Next",
-          buttonColor: ColorsManager.buttonColor,
+          buttonColor: ColorsManager.primaryColor,
           buttonTextColor: ColorsManager.whiteColor,
-          borderColor: ColorsManager.buttonColor,
+          borderColor: ColorsManager.primaryColor,
         )),
       ],
     );

@@ -14,3 +14,5 @@ class GetAddPointFillState extends AddPointState {}
 class GetAddPointErrorState extends AddPointState {}
 
 class NavigateToNotificationScreenState extends AddPointState {}
+
+class NavigateToMyChildrenScreenState extends AddPointState {}

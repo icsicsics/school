@@ -5,8 +5,14 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class AddPointItemWidget extends StatelessWidget {
   final String childName;
+  final Function() onTapStar;
+  final Function() onTapChild;
 
-  const AddPointItemWidget({Key? key, required this.childName})
+  const AddPointItemWidget(
+      {Key? key,
+      required this.childName,
+      required this.onTapStar,
+      required this.onTapChild})
       : super(key: key);
 
   @override
@@ -22,13 +28,16 @@ class AddPointItemWidget extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 9,
             child: Stack(
               children: [
-                const Align(
+                Align(
                   alignment: Alignment.center,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(
-                      ImagesPath.schoolItem,
+                  child: InkWell(
+                    onTap: onTapChild,
+                    child: const CircleAvatar(
+                      backgroundImage: AssetImage(
+                        ImagesPath.schoolItem,
+                      ),
+                      radius: 50,
                     ),
-                    radius: 50,
                   ),
                 ),
                 Padding(
@@ -48,8 +57,11 @@ class AddPointItemWidget extends StatelessWidget {
                               color: ColorsManager.primaryColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50))),
-                          child: const Icon(Icons.star,
-                              color: ColorsManager.yellow, size: 25),
+                          child: InkWell(
+                            onTap: onTapStar,
+                            child: const Icon(Icons.star,
+                                color: ColorsManager.yellow, size: 25),
+                          ),
                         ),
                       ),
                     ),
