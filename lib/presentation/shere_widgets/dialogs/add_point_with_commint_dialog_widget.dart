@@ -109,7 +109,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 4,
                 onPressed: widget.addAction,
-                buttonText: "Add",
+                buttonText: "Gift",
                 borderRadius: 25,
                 buttonColor: ColorsManager.buttonColor,
                 borderColor: ColorsManager.buttonColor,

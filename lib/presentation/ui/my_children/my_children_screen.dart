@@ -57,7 +57,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         title: const BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "My Children"),
+            text: "Students Profile"),
       );
 
   Widget _points() {

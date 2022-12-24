@@ -59,7 +59,7 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
         title: const BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "My Children"),
+            text: "Students Profile"),
       );
 
   void _openPointScreen() => Navigator.push(

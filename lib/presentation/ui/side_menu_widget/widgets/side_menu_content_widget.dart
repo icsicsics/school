@@ -46,25 +46,21 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                         title: "School Homes",
                         onTap: () => BlocProvider.of<SideMenuBloc>(context)
                             .add(SideMenuHomeEvent())),
-                    _line(),
                     SideMenuItem(
                         icon: Icons.person,
                         title: "User Profile",
                         onTap: () => BlocProvider.of<SideMenuBloc>(context)
                             .add(SideMenuUserProfileEvent())),
-                    _line(),
                     SideMenuItem(
                         icon: Icons.mail,
                         title: "Contact Us",
                         onTap: () => BlocProvider.of<SideMenuBloc>(context)
                             .add(SideMenuContactUsEvent())),
-                    _line(),
                     SideMenuItem(
                         icon: Icons.info_outline,
                         title: "About App",
                         onTap: () => BlocProvider.of<SideMenuBloc>(context)
                             .add(SideMenuAboutAppEvent())),
-                    _line(),
                     const SideMenuSocialMediaWidget(),
                   ],
                 ),
@@ -75,12 +71,4 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
       ),
     );
   }
-
-  Widget _line() => const Padding(
-        padding: EdgeInsets.only(left: 20),
-        child: MediumTextWidget(
-            text: "…………………………………………",
-            fontSize: 20,
-            color: ColorsManager.whiteColor),
-      );
 }

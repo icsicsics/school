@@ -57,7 +57,7 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
         title: const BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "Add Point"),
+            text: "Student houses"),
       );
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(

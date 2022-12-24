@@ -42,17 +42,22 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       icon,
-                      Row(
-                        children: [
-                          Expanded(
-                            child: MediumTextWidget(
-                                text: label,
-                                fontSize: 15,
-                                color: ColorsManager.blackColor),
-                          ),
-                          Visibility(visible: hasIcon2, child: icon2)
-                        ],
-                      ),
+                      hasIcon2
+                          ? Row(
+                              children: [
+                                Expanded(
+                                  child: MediumTextWidget(
+                                      text: label,
+                                      fontSize: 15,
+                                      color: ColorsManager.blackColor),
+                                ),
+                                icon2
+                              ],
+                            )
+                          : MediumTextWidget(
+                              text: label,
+                              fontSize: 15,
+                              color: ColorsManager.blackColor),
                       _line(),
                       _rowOfTitleAndValue(
                           title: "Students", value: studentsValue),
@@ -96,6 +101,11 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
         ],
       );
 
-  Widget _line() => const MediumTextWidget(
-      text: "---------", fontSize: 15, color: ColorsManager.darkGrayColor);
+  Widget _line() => const Padding(
+        padding: EdgeInsets.only(top: 2),
+        child: Divider(
+          color: ColorsManager.darkGrayColor,
+          endIndent: 100,
+        ),
+      );
 }
