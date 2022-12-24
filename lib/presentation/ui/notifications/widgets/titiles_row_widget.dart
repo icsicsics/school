@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class TitlesRowWidget extends StatefulWidget {
@@ -29,13 +30,13 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
         children: [
           _indexAndNotificationItem(
             onTap: () => _selectNotification(),
-            title: "Notifications (2)",
+            title: "${S.of(context).notifications} (2)",
             icon: Icons.notifications,
             color: isSelectedNotification ? selectedColor : unselectedColor,
           ),
           _indexAndNotificationItem(
               onTap: () => _selectIndex(),
-              title: "Inbox (1)",
+              title: "${S.of(context).inbox} (1)",
               icon: Icons.mail_outline,
               color: isSelectedIndex ? selectedColor : unselectedColor),
         ],

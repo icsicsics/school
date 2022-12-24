@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/ui/profile/widgets/profile_item_widget.dart';
 
 class ProfileInfoContentWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class ProfileInfoContentWidget extends StatelessWidget {
     return Column(
       children: [
         ProfileItemWidget(
-          title: 'Mobile Number',
+          title: S.of(context).mobileNumber,
           subTitle: '+9627 970 64513',
           icon: Icons.phone_android,
           onTap: () {},
@@ -21,7 +22,7 @@ class ProfileInfoContentWidget extends StatelessWidget {
         //   onTap: () {},
         // ),
         ProfileItemWidget(
-          title: 'Email',
+          title: S.of(context).email,
           subTitle: 'eiz.m@gmail.com',
           icon: Icons.mark_email_read,
           onTap: () {},

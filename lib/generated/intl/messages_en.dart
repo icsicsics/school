@@ -23,22 +23,33 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "aboutApp": MessageLookupByLibrary.simpleMessage("About App"),
         "addPoint": MessageLookupByLibrary.simpleMessage("Add Point"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
+        "allPoints": MessageLookupByLibrary.simpleMessage("All Points"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
+        "appreciative": MessageLookupByLibrary.simpleMessage("Appreciative"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
         "classHouses": MessageLookupByLibrary.simpleMessage("Class houses"),
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
+        "collaboration": MessageLookupByLibrary.simpleMessage("Collaboration"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "didntReceiveVerificationCode": MessageLookupByLibrary.simpleMessage(
             "Didn\'t Receive Verification code ?"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "energetic": MessageLookupByLibrary.simpleMessage("Energetic"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your Phone Number"),
+        "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
+        "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage(" I have read and accept the"),
         "inbox": MessageLookupByLibrary.simpleMessage("Inbox"),
+        "initiative": MessageLookupByLibrary.simpleMessage("Initiative"),
+        "interactive": MessageLookupByLibrary.simpleMessage("Interactive"),
         "interactiveSchoolCounselling": MessageLookupByLibrary.simpleMessage(
             "Interactive School Counselling"),
         "interactiveSchoolGuidance":
@@ -46,18 +57,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "me": MessageLookupByLibrary.simpleMessage("Me"),
+        "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
+        "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "next": MessageLookupByLibrary.simpleMessage(" Next"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
                 "Please type verification code sent to your\nphone"),
+        "points": MessageLookupByLibrary.simpleMessage("Points"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "schoolHomes": MessageLookupByLibrary.simpleMessage("School Homes"),
         "sections": MessageLookupByLibrary.simpleMessage("Sections"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("Send OTP"),
+        "studentHouses": MessageLookupByLibrary.simpleMessage("Student houses"),
+        "students": MessageLookupByLibrary.simpleMessage("Students"),
+        "studentsProfile":
+            MessageLookupByLibrary.simpleMessage("Students Profile"),
+        "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
+        "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
         "verifyYourNumber":
-            MessageLookupByLibrary.simpleMessage("Verify your Number")
+            MessageLookupByLibrary.simpleMessage("Verify your Number"),
+        "weather": MessageLookupByLibrary.simpleMessage("Weather")
       };
 }

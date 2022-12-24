@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeFatherDetailsWidget extends StatelessWidget {
@@ -13,19 +14,19 @@ class HomeFatherDetailsWidget extends StatelessWidget {
         sizedBox(),
         _item(
             onTap: () {},
-            title: "Honesty",
+            title: S.of(context).honesty,
             subTitle:
                 "17/09/2022 at 12:30 PM \n By Mrs. Tima Hamdallah - Math Teacher"),
         sizedBox(),
         _item(
             onTap: () {},
-            title: "Collaboration",
+            title: S.of(context).collaboration,
             subTitle:
                 "17/09/2022 at 12:30 PM \n By Mrs. Tima Hamdallah - Math Teacher"),
         sizedBox(),
         _item(
             onTap: () {},
-            title: "Honesty",
+            title: S.of(context).honesty,
             subTitle:
                 "17/09/2022 at 12:30 PM \n By Mrs. Tima Hamdallah - Math Teacher"),
         sizedBox(),

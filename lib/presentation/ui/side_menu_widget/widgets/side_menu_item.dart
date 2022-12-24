@@ -29,7 +29,7 @@ class SideMenuItem extends StatelessWidget {
                         color: ColorsManager.whiteColor)
                   ],
                 ),
-                Divider(color: ColorsManager.whiteColor, endIndent: 140,thickness: 2),
+                const Divider(color: ColorsManager.whiteColor, endIndent: 140,thickness: 2),
               ],
             )));
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_header.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_item.dart';
@@ -23,49 +24,60 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
-             SideMenuHeader(bloc: widget.bloc, language: widget.language),
+            SideMenuHeader(bloc: widget.bloc, language: widget.language),
             Expanded(
-                child: Container(
-              decoration:  BoxDecoration(
-                  gradient:const  LinearGradient(
-                    colors: [
-                      ColorsManager.primaryColor,
-                      ColorsManager.secondaryColor,
-                    ],
-                    stops: [0.5, 0.8],
-                  ),
-                  borderRadius: widget.language=="en"? const BorderRadius.only(bottomRight: Radius.circular(100)):const BorderRadius.only(bottomRight: Radius.circular(0))),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SideMenuItem(
+              child: Container(
+                decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        ColorsManager.primaryColor,
+                        ColorsManager.secondaryColor,
+                      ],
+                      stops: [0.5, 0.8],
+                    ),
+                    borderRadius: widget.language == "en"
+                        ? const BorderRadius.only(
+                            bottomRight: Radius.circular(100))
+                        : const BorderRadius.only(
+                            bottomRight: Radius.circular(0))),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SideMenuItem(
                         icon: Icons.home_filled,
-                        title: "School Homes",
-                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                            .add(SideMenuHomeEvent())),
-                    SideMenuItem(
+                        title: S.of(context).schoolHomes,
+                        onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                          SideMenuHomeEvent(),
+                        ),
+                      ),
+                      SideMenuItem(
                         icon: Icons.person,
-                        title: "My Profile",
-                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                            .add(SideMenuUserProfileEvent())),
-                    SideMenuItem(
-                        icon: Icons.mail,
-                        title: "Contact Us",
-                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                            .add(SideMenuContactUsEvent())),
-                    SideMenuItem(
+                        title: S.of(context).myProfile,
+                        onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                          SideMenuUserProfileEvent(),
+                        ),
+                      ),
+                      SideMenuItem(
+                          icon: Icons.mail,
+                          title: S.of(context).contactUs,
+                          onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                              .add(SideMenuContactUsEvent())),
+                      SideMenuItem(
                         icon: Icons.info_outline,
-                        title: "About App",
-                        onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                            .add(SideMenuAboutAppEvent())),
-                    const SideMenuSocialMediaWidget(),
-                  ],
+                        title: S.of(context).aboutApp,
+                        onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                          SideMenuAboutAppEvent(),
+                        ),
+                      ),
+                      const SideMenuSocialMediaWidget(),
+                    ],
+                  ),
                 ),
               ),
-            )),
+            ),
           ],
         ),
       ),

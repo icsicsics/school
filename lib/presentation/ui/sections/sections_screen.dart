@@ -44,25 +44,22 @@ class _SectionsScreenState extends BaseState<SectionsScreen> {
 
   PreferredSizeWidget _appBar() => AppBar(
         elevation: 0,
-        leading: IconButton(
+      leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios,
-              color: ColorsManager.secondaryColor, size: 25),
-        ),
-        centerTitle: false,
-        actions: [
-          IconButton(
+              color: ColorsManager.secondaryColor, size: 25)),
+      centerTitle: false,
+      actions: [
+        IconButton(
             onPressed: () => BlocProvider.of<SectionsBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
             icon: const Icon(Icons.notifications_active,
-                color: ColorsManager.secondaryColor, size: 25),
-          ),
-        ],
-        title:  BoldTextWidget(
-            color: ColorsManager.secondaryColor,
-            fontSize: 20,
-            text: S.of(context).sections),
-      );
+                color: ColorsManager.secondaryColor, size: 25)),
+      ],
+      title: BoldTextWidget(
+          color: ColorsManager.secondaryColor,
+          fontSize: 20,
+          text: S.of(context).sections));
 
   void _navigateToNotifications() => Navigator.pushAndRemoveUntil(
       context,

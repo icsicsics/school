@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
@@ -60,14 +61,14 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                               color: ColorsManager.blackColor),
                       _line(),
                       _rowOfTitleAndValue(
-                          title: "Students", value: studentsValue),
+                          title: S.of(context).students, value: studentsValue),
                       _rowOfTitleAndValue(
-                          title: "Teachers", value: teachersValue),
+                          title: S.of(context).teachers, value: teachersValue),
                       const SizedBox(
                         height: 15,
                       ),
                       _rowOfTitleAndValue(
-                          title: "Points",
+                          title: S.of(context).points,
                           value: pointsValue,
                           valueSize: 17,
                           titleColor: ColorsManager.borderColor,

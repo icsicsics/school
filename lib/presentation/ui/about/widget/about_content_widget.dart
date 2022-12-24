@@ -12,9 +12,7 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        AboutHeaderWidget()
-      ],
+      children: const [AboutHeaderWidget()],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeTitleWidget extends StatelessWidget {
@@ -43,8 +44,8 @@ class HomeTitleWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const MediumTextWidget(
-                      text: "Weather",
+                   MediumTextWidget(
+                      text: S.of(context).weather,
                       fontSize: 16,
                       color: ColorsManager.whiteColor),
                   const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class MyChildPointsWidget extends StatefulWidget {
@@ -19,11 +20,11 @@ class _MyChildPointsWidgetState extends State<MyChildPointsWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                cardItem(label: "All Points", points: "175"),
+                cardItem(label: S.of(context).allPoints, points: "175"),
                 const SizedBox(
                   width: 20,
                 ),
-                cardItem(label: 'This Week', points: "16"),
+                cardItem(label: S.of(context).thisWeek, points: "16"),
               ],
             )));
   }

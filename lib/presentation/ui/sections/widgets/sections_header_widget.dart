@@ -14,8 +14,7 @@ class SectionsHeaderWidget extends StatelessWidget {
             gradient: LinearGradient(
           colors: [
             ColorsManager.primaryColor,
-            ColorsManager.secondaryColor,
-          ],
+            ColorsManager.secondaryColor],
           stops: [0.5, 0.8],
         )),
         height: MediaQuery.of(context).size.height / 2,
@@ -25,8 +24,7 @@ class SectionsHeaderWidget extends StatelessWidget {
                 clipper: GeneralCurve(),
                 child: Container(
                   height: 200,
-                  color: ColorsManager.whiteColor,
-                )
+                    color: ColorsManager.whiteColor)
             ),
             Align(
                 alignment: Alignment.bottomCenter,

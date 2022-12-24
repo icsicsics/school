@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_child_points/my_child_points_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 
 class MyChildBodyWidget extends StatefulWidget {
   final MyChildPointsBloc bloc;
@@ -28,12 +28,15 @@ class _MyChildBodyWidgetState extends State<MyChildBodyWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(ImagesPath.points,height: 80,),
+              SvgPicture.asset(
+                ImagesPath.points,
+                height: 80,
+              ),
               const SizedBox(height: 15),
-            const   BoldTextWidget(
-                  text: "Points",
+              BoldTextWidget(
+                  text: S.of(context).points,
                   fontSize: 15,
-                  color: ColorsManager.borderColor ),
+                  color: ColorsManager.borderColor),
             ],
           ),
         ),
@@ -42,11 +45,14 @@ class _MyChildBodyWidgetState extends State<MyChildBodyWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children:  [
-              SvgPicture.asset(ImagesPath.school,height: 80,),
-             const  SizedBox(height: 15),
-             const  BoldTextWidget(
-                  text: " School Homes",
+            children: [
+              SvgPicture.asset(
+                ImagesPath.school,
+                height: 80,
+              ),
+              const SizedBox(height: 15),
+              BoldTextWidget(
+                  text: S.of(context).schoolHomes,
                   fontSize: 15,
                   color: ColorsManager.borderColor),
             ],

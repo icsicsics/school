@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 import '../../../../core/utils/resorces/color_manager.dart';
@@ -19,25 +20,25 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
         children: [
           _item(
               onTap: () {},
-              title: "Energetic",
+              title: S.of(context).energetic,
               subTitle:
                   "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
               icon: Icons.energy_savings_leaf),
           _item(
               onTap: () {},
-              title: "Collaboration",
+              title: S.of(context).collaboration,
               subTitle:
                   "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
               icon: Icons.autorenew_rounded),
           _item(
               onTap: () {},
-              title: "Initiative",
+              title: S.of(context).initiative,
               subTitle:
                   "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
               icon: Icons.lightbulb_outline_rounded),
           _item(
               onTap: () {},
-              title: "Collaboration",
+              title: S.of(context).collaboration,
               subTitle:
                   "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
               icon: Icons.autorenew_rounded),

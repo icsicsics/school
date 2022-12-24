@@ -329,6 +329,216 @@ class S {
       args: [],
     );
   }
+
+  /// `Student houses`
+  String get studentHouses {
+    return Intl.message(
+      'Student houses',
+      name: 'studentHouses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Honesty`
+  String get honesty {
+    return Intl.message(
+      'Honesty',
+      name: 'honesty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Collaboration`
+  String get collaboration {
+    return Intl.message(
+      'Collaboration',
+      name: 'collaboration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weather`
+  String get weather {
+    return Intl.message(
+      'Weather',
+      name: 'weather',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Points`
+  String get points {
+    return Intl.message(
+      'Points',
+      name: 'points',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `School Homes`
+  String get schoolHomes {
+    return Intl.message(
+      'School Homes',
+      name: 'schoolHomes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Points`
+  String get allPoints {
+    return Intl.message(
+      'All Points',
+      name: 'allPoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This Week`
+  String get thisWeek {
+    return Intl.message(
+      'This Week',
+      name: 'thisWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Students Profile`
+  String get studentsProfile {
+    return Intl.message(
+      'Students Profile',
+      name: 'studentsProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Energetic`
+  String get energetic {
+    return Intl.message(
+      'Energetic',
+      name: 'energetic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Initiative`
+  String get initiative {
+    return Intl.message(
+      'Initiative',
+      name: 'initiative',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Father Of`
+  String get fatherOf {
+    return Intl.message(
+      'Father Of',
+      name: 'fatherOf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Number`
+  String get mobileNumber {
+    return Intl.message(
+      'Mobile Number',
+      name: 'mobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Profile`
+  String get myProfile {
+    return Intl.message(
+      'My Profile',
+      name: 'myProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teachers`
+  String get teachers {
+    return Intl.message(
+      'Teachers',
+      name: 'teachers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Students`
+  String get students {
+    return Intl.message(
+      'Students',
+      name: 'students',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interactive`
+  String get interactive {
+    return Intl.message(
+      'Interactive',
+      name: 'interactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appreciative`
+  String get appreciative {
+    return Intl.message(
+      'Appreciative',
+      name: 'appreciative',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Us`
+  String get contactUs {
+    return Intl.message(
+      'Contact Us',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About App`
+  String get aboutApp {
+    return Intl.message(
+      'About App',
+      name: 'aboutApp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

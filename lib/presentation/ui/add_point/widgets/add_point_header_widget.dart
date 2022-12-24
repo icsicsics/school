@@ -40,7 +40,7 @@ class AddPointHeaderWidget extends StatelessWidget {
                           text: "Grade 2 , Section A",
                           fontSize: 18,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 10),
+                      SizedBox(height: 8),
                       MediumTextWidget(
                           text: "Math Class",
                           fontSize: 16,

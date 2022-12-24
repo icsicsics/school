@@ -8,7 +8,6 @@ import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_content_widget.dart';
-import 'package:schools/presentation/ui/sections/sections_screen.dart';
 
 class SchoolHousesScreen extends BaseStatefulWidget {
   const SchoolHousesScreen({super.key});
