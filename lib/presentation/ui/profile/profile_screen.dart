@@ -63,7 +63,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         title: const BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "User Profile"),
+            text: "My Profile"),
       );
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(

@@ -48,7 +48,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                             .add(SideMenuHomeEvent())),
                     SideMenuItem(
                         icon: Icons.person,
-                        title: "User Profile",
+                        title: "My Profile",
                         onTap: () => BlocProvider.of<SideMenuBloc>(context)
                             .add(SideMenuUserProfileEvent())),
                     SideMenuItem(
