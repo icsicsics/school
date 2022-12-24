@@ -6,7 +6,8 @@ import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class SideMenuHeader extends StatelessWidget {
   final SideMenuBloc bloc;
-  const SideMenuHeader({Key? key,required this.bloc}) : super(key: key);
+  final String language;
+  const SideMenuHeader({Key? key,required this.bloc,required this.language}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class SideMenuHeader extends StatelessWidget {
                     radius: 50,
                   ),
                   Padding(
-                    padding:  const EdgeInsets.only(right: 180),
+                    padding: language=="en"? const EdgeInsets.only(right: 180): EdgeInsets.only(left: 180),
                     child: IconButton(
                         onPressed: () =>bloc.add(SwitchAccountEvent()) ,
                         icon: const Icon(

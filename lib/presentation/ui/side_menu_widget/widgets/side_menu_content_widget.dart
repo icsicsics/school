@@ -23,7 +23,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
-             SideMenuHeader(bloc: widget.bloc),
+             SideMenuHeader(bloc: widget.bloc, language: widget.language),
             Expanded(
                 child: Container(
               decoration:  BoxDecoration(
@@ -34,7 +34,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                     ],
                     stops: [0.5, 0.8],
                   ),
-                  borderRadius: widget.language=="en"?BorderRadius.only(bottomRight: Radius.circular(100)):BorderRadius.only(bottomRight: Radius.circular(0))),
+                  borderRadius: widget.language=="en"? const BorderRadius.only(bottomRight: Radius.circular(100)):const BorderRadius.only(bottomRight: Radius.circular(0))),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Column(
