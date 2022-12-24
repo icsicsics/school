@@ -4,3 +4,7 @@ part of 'verify_bloc.dart';
 abstract class VerifyEvent {}
 
 class GetVerifyEvent extends VerifyEvent {}
+
+class GetLanguageEvent extends VerifyEvent {
+  GetLanguageEvent();
+}

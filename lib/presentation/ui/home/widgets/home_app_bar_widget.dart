@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
-class HomeAppBarWidget extends StatelessWidget {
+class HomeAppBarWidget extends StatefulWidget {
   final Function() onTapMenu;
   final Function() onTapNotifications;
   final bool isFather;
+  final HomeBloc bloc;
+  final String language;
 
   const HomeAppBarWidget(
-      {Key? key, required this.onTapMenu, required this.onTapNotifications,required this.isFather})
-      : super(key: key);
+      {super.key,
+      required this.onTapMenu,
+      required this.onTapNotifications,
+      required this.isFather,
+      required this.language,
+      required this.bloc});
 
+  @override
+  State<HomeAppBarWidget> createState() => _HomeAppBarWidgetState();
+}
+
+class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,30 +41,53 @@ class HomeAppBarWidget extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
-                onPressed: onTapMenu,
+                onPressed: widget.onTapMenu,
                 icon: const Icon(
                   Icons.menu,
                   color: ColorsManager.whiteColor,
                   size: 30,
                 )),
-            const Expanded(
+            Expanded(
               child: MediumTextWidget(
-                  text: "Interactive School Counselling",
+                  text: S.of(context).interactiveSchoolCounselling,
                   fontSize: 18,
                   color: ColorsManager.whiteColor),
             ),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: IconButton(
-                  onPressed: onTapNotifications,
-                  icon:  Icon(isFather==false?Icons.mail_lock:Icons.notifications_active,
-                    color: ColorsManager.whiteColor,
-                    size: 25,
-                  ),
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: () => _changeLanguage(),
+                        child: MediumTextWidget(
+                            text: widget.language == "en"
+                                ? S.of(context).arabic
+                                : S.of(context).english,
+                            fontSize: 14,
+                            color: ColorsManager.whiteColor)),
+                    IconButton(
+                      onPressed: widget.onTapNotifications,
+                      icon: Icon(
+                        widget.isFather == false
+                            ? Icons.mail_lock
+                            : Icons.notifications_active,
+                        color: ColorsManager.whiteColor,
+                        size: 25,
+                      ),
+                    ),
+                  ],
                 )),
           ],
         ),
       ),
     );
+  }
+
+  void _changeLanguage() {
+    if (widget.language == "en") {
+      widget.bloc.add(ChangeLanguageEvent("ar"));
+    } else {
+      widget.bloc.add(ChangeLanguageEvent("en"));
+    }
   }
 }

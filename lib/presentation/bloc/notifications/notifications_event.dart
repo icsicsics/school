@@ -6,3 +6,6 @@ abstract class NotificationsEvent {}
 class GetNotificationsEvent extends NotificationsEvent {}
 
 class GetIsFatherEvent extends NotificationsEvent {}
+class GetLanguageEvent extends NotificationsEvent {
+  GetLanguageEvent();
+}

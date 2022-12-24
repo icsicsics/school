@@ -70,8 +70,7 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
         title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: _isFather == false ? "Students Profile" : "My Children"),
-      );
+            text: _isFather == false ? "Students Profile" : "My Children"));
 
   void _openPointScreen() => Navigator.push(
       context, MaterialPageRoute(builder: (_) => const MyChildrenScreen()));

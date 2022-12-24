@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/clear_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/confirm_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/header_widget.dart';
@@ -13,12 +11,13 @@ class LoginContentWidget extends StatefulWidget {
   final TextEditingController countryController;
   final LoginBloc loginBloc;
   final bool isFather;
+  final String language;
 
   const LoginContentWidget(
       {Key? key,
       required this.countryController,
       required this.loginBloc,
-      required this.isFather})
+      required this.isFather,required this.language})
       : super(key: key);
 
   @override
@@ -38,7 +37,7 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
             child: Column(
               children: [
                 SelectCountryTextFieldWidget(
-                  controller: widget.countryController,
+                  controller: widget.countryController, language: widget.language,
                 ),
                 const SizedBox(
                   height: 20,

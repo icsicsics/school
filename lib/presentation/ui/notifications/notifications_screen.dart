@@ -17,32 +17,37 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
   NotificationsBloc get _bloc => BlocProvider.of<NotificationsBloc>(context);
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   bool _isFather = false;
+  String _language = '';
 
   @override
   void initState() {
     _bloc.add(GetIsFatherEvent());
+    _bloc.add(GetLanguageEvent());
     super.initState();
   }
 
   @override
   Widget baseBuild(BuildContext context) {
-    return Scaffold(
-        drawer: const SideMenuScreen(
-          isComFromHome: false,
-        ),
-        key: _key,
-        body: BlocConsumer<NotificationsBloc, NotificationsState>(
-          listener: (context, state) {
-            if (state is GetIsFatherState) {
-              _isFather = state.isFather;
-            }
-          },
-          builder: (context, state) {
-            return NotificationsContentWidget(
+    return BlocConsumer<NotificationsBloc, NotificationsState>(
+      listener: (context, state) {
+        if (state is GetIsFatherState) {
+          _isFather = state.isFather;
+        } else if (state is GetLanguageSuccessState) {
+          _language = state.language;
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+            drawer: SideMenuScreen(
+              isComFromHome: false,
+              language: _language,
+            ),
+            key: _key,
+            body: NotificationsContentWidget(
               globalKey: _key,
               isFather: _isFather,
-            );
-          },
-        ));
+            ));
+      },
+    );
   }
 }

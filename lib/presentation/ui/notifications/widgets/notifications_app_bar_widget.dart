@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class NotificationsAppBarWidget extends StatelessWidget {
@@ -29,7 +30,9 @@ class NotificationsAppBarWidget extends StatelessWidget {
                 )),
              Expanded(
               child: MediumTextWidget(
-                  text: isFather?"Notifications":"Inbox",
+                  text: isFather
+                      ? S.of(context).notifications
+                      : S.of(context).inbox,
                   fontSize: 18,
                   color: ColorsManager.secondaryColor),
             ),

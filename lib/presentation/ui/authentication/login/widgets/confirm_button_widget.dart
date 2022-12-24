@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
 
 class ConfirmButtonWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class ConfirmButtonWidget extends StatelessWidget {
       buttonColor: ColorsManager.primaryColor,
       borderColor: ColorsManager.primaryColor,
       buttonTextSize: 14,
-      buttonText: "Send OTP",
+      buttonText: S.of(context).sendOTP,
       buttonTextColor: ColorsManager.whiteColor,
       buttonHeight: 46,
     ));

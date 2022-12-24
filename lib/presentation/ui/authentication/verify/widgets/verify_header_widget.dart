@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class VerifyHeaderWidget extends StatelessWidget {
@@ -23,14 +24,14 @@ class VerifyHeaderWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          children: const [
-            BoldTextWidget(
+          children:  [
+            const  BoldTextWidget(
               text: 'I C S',
               fontSize: 50,
               color: ColorsManager.whiteColor,
             ),
             BoldTextWidget(
-              text: 'Interactive school Counselling',
+              text: S.of(context).interactiveSchoolCounselling,
               fontSize: 10,
               color: ColorsManager.whiteColor,
             )

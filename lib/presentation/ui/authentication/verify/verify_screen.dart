@@ -13,14 +13,27 @@ class VerifyScreen extends BaseStatefulWidget {
 }
 
 class _VerifyScreenState extends BaseState<VerifyScreen> {
+  VerifyBloc get _bloc => BlocProvider.of<VerifyBloc>(context);
+  String _language = '';
+
+  @override
+  void initState() {
+    _bloc.add(GetLanguageEvent());
+    super.initState();
+  }
+
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<VerifyBloc, VerifyState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is GetLanguageSuccessState) {
+            _language = state.language;
+          }
+        },
         builder: (context, state) {
-          return const VerifyContentWidget();
+          return VerifyContentWidget(language: _language);
         },
       ),
     );

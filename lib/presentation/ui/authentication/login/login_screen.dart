@@ -9,6 +9,7 @@ import 'package:schools/presentation/ui/authentication/verify/verify_screen.dart
 
 class LoginScreen extends BaseStatefulWidget {
   final bool isFather;
+
   const LoginScreen({super.key, required this.isFather});
 
   @override
@@ -24,11 +25,13 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   void initState() {
     _isFather = widget.isFather;
     _loginBloc.add(LoginIsFatherEvent(isFather: widget.isFather));
+    _loginBloc.add(GetLanguageEvent());
     super.initState();
   }
 
   @override
   Widget baseBuild(BuildContext context) {
+    String _language = '';
     return Scaffold(
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<LoginBloc, LoginState>(
@@ -39,14 +42,16 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             _onLoginConfirmButtonState();
           } else if (state is LoginIsFatherState) {
             _setIsFather(state);
+          } else if (state is GetLanguageSuccessState) {
+            _language = state.language;
           }
         },
         builder: (context, state) {
           return LoginContentWidget(
-            countryController: countryController,
-            loginBloc: _loginBloc,
-            isFather: _isFather,
-          );
+              countryController: countryController,
+              loginBloc: _loginBloc,
+              isFather: _isFather,
+              language: _language);
         },
       ),
     );

@@ -28,3 +28,8 @@ class GetIsFatherState extends SideMenuState {
 
   GetIsFatherState({required this.isFather});
 }
+
+class GetLanguageSuccessState extends SideMenuState {
+  final String language;
+  GetLanguageSuccessState({required this.language});
+}

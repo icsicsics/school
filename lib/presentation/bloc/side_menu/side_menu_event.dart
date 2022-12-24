@@ -16,3 +16,7 @@ class SideMenuAboutAppEvent extends SideMenuEvent {}
 class GetIsFatherEvent extends SideMenuEvent {}
 
 class SwitchAccountEvent extends SideMenuEvent {}
+
+class GetLanguageEvent extends SideMenuEvent {
+  GetLanguageEvent();
+}

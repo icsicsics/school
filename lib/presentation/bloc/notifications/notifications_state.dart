@@ -18,3 +18,9 @@ class GetIsFatherState extends NotificationsState {
 
   GetIsFatherState({required this.isFather});
 }
+
+class GetLanguageSuccessState extends NotificationsState {
+  final String language;
+
+  GetLanguageSuccessState({required this.language});
+}

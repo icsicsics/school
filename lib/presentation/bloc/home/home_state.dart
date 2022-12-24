@@ -18,3 +18,12 @@ class GetIsFatherState extends HomeState {
 
   GetIsFatherState({required this.isFather});
 }
+
+class SaveLanguageCodeFailedState extends HomeState {}
+
+class ChangeLanguageSuccessState extends HomeState {}
+
+class GetLanguageSuccessState extends HomeState {
+  final String language;
+  GetLanguageSuccessState({required this.language});
+}

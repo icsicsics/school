@@ -4,8 +4,10 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 
 class SelectCountryTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
+  final String language;
 
-  const SelectCountryTextFieldWidget({Key? key, required this.controller})
+  const SelectCountryTextFieldWidget(
+      {Key? key, required this.controller, required this.language})
       : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class _SelectCountryTextFieldWidgetState
   Widget build(BuildContext context) {
     return Stack(children: [
       Align(
-        alignment: Alignment.topLeft,
+        alignment: widget.language == "en" ? Alignment.topLeft : Alignment.topRight,
         child: Container(
           width: 40,
           height: 40,
@@ -37,7 +39,9 @@ class _SelectCountryTextFieldWidgetState
         ),
       ),
       Padding(
-        padding: const EdgeInsets.only(left: 5),
+        padding: widget.language == "en"
+            ? const EdgeInsets.only(left: 5)
+            : const EdgeInsets.only(left: 5),
         child: InternationalPhoneNumberInput(
           onInputChanged: (PhoneNumber number) {},
           onInputValidated: (bool value) {},
@@ -46,13 +50,13 @@ class _SelectCountryTextFieldWidgetState
             showFlags: true,
             useEmoji: true,
           ),
-          ignoreBlank: true,
           autoValidateMode: AutovalidateMode.disabled,
           selectorTextStyle: const TextStyle(color: Colors.black),
           initialValue: number,
           textFieldController: widget.controller,
           formatInput: true,
-          spaceBetweenSelectorAndTextField: 0,
+          textAlign:  widget.language=="en"?TextAlign.left:TextAlign.right,
+          spaceBetweenSelectorAndTextField: 2,
           inputDecoration: const InputDecoration(
               isDense: true,
               hintText: "- - - - - - - - -",

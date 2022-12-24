@@ -2,13 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:schools/core/device_info.dart';
 import 'package:schools/core/notification_serves.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
+import 'package:schools/data/source/di/injector.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
+import 'package:schools/presentation/bloc/localization/localization/app_localization_cubit.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/bloc/my_child_points/my_child_points_bloc.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
@@ -19,14 +23,13 @@ import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
-
+import 'package:schools/presentation/shere_widgets/restart_widget.dart';
 void main() async {
+  await initializeDependencies();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   await DeviceInformation().initPackageInformation();
   await DeviceInformation().initDeviceInformation();
-
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -34,7 +37,7 @@ void main() async {
     ),
   );
   NotificationService().initializeNotificationService();
-  runApp(const MyApp());
+  runApp(const RestartWidget(MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -49,39 +52,37 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider<LoginBloc>(
-              create: (BuildContext context) => LoginBloc()),
-          BlocProvider<VerifyBloc>(
-              create: (BuildContext context) => VerifyBloc()),
-          BlocProvider<HomeBloc>(create: (BuildContext context) => HomeBloc()),
-          BlocProvider<NotificationsBloc>(
-              create: (BuildContext context) => NotificationsBloc()),
-          BlocProvider<SideMenuBloc>(
-              create: (BuildContext context) => SideMenuBloc()),
-          BlocProvider<AddPointBloc>(
-              create: (BuildContext context) => AddPointBloc()),
-          BlocProvider<ProfileBloc>(
-              create: (BuildContext context) => ProfileBloc()),
-          BlocProvider<SchoolHousesBloc>(
-              create: (BuildContext context) => SchoolHousesBloc()),
-          BlocProvider<AboutBloc>(
-              create: (BuildContext context) => AboutBloc()),
-          BlocProvider<MyChildrenBloc>(
-              create: (BuildContext context) => MyChildrenBloc()),
-          BlocProvider<SectionsBloc>(
-              create: (BuildContext context) => SectionsBloc()),
-          BlocProvider<MyChildPointsBloc>(
-              create: (BuildContext context) => MyChildPointsBloc()),
+          BlocProvider<LocalizationCubit>(create: (context) =>injector()),
+          BlocProvider<LoginBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<VerifyBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<HomeBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<NotificationsBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<SideMenuBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<AddPointBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<ProfileBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<SchoolHousesBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<AboutBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<MyChildrenBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<SectionsBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<MyChildPointsBloc>(create: (BuildContext context) => injector()),
+
         ],
-        child: FutureBuilder<ThemeData>(
-          initialData: ThemeData(),
-          future: AppTheme().themeDataLight,
-          builder: (context, snapshot) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'School',
-            theme: snapshot.data,
-            home: const SplashScreen(),
-          ),
+        child: BlocBuilder<LocalizationCubit, Locale>(
+          builder: (context, state) {
+            return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'School',
+                theme: getApplicationTheme(state.languageCode),
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                locale: Locale(state.languageCode),
+                home: const SplashScreen());
+          },
         ));
   }
 }

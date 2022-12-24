@@ -22,3 +22,8 @@ class LoginIsFatherState extends LoginState {
 
   LoginIsFatherState({required this.isFather});
 }
+class GetLanguageSuccessState extends LoginState {
+  final String language;
+  GetLanguageSuccessState({required this.language});
+}
+

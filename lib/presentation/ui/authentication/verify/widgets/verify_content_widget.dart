@@ -9,7 +9,8 @@ import 'package:schools/presentation/ui/authentication/verify/widgets/verify_tit
 import 'package:schools/presentation/ui/home/home_screen.dart';
 
 class VerifyContentWidget extends StatefulWidget {
-  const VerifyContentWidget({Key? key}) : super(key: key);
+  final String language;
+  const VerifyContentWidget({Key? key,required this.language}) : super(key: key);
 
   @override
   State<VerifyContentWidget> createState() => _VerifyContentWidgetState();
@@ -34,7 +35,7 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                 sizedBox(height: 30),
                 PinCodeTextFiledWidget(
                   pinController: pinController,
-                  onChanged: (value) {},
+                  onChanged: (value) {}, language: widget.language,
                 ),
                 sizedBox(height: 10),
                 SendAgainWidget(onTap: () {}),

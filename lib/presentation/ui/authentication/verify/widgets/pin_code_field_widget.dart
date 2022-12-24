@@ -5,15 +5,21 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 class PinCodeTextFiledWidget extends StatelessWidget {
   final TextEditingController pinController;
   final void Function(String value) onChanged;
+  final String language;
 
   const PinCodeTextFiledWidget(
-      {Key? key, required this.pinController, required this.onChanged})
+      {Key? key,
+      required this.pinController,
+      required this.onChanged,
+      required this.language})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 50),
+      padding: language == "en"
+          ? const EdgeInsets.only(right: 50)
+          : const EdgeInsets.only(left: 50),
       child: PinCodeTextField(
         cursorColor: ColorsManager.primaryColor,
         keyboardType: TextInputType.number,

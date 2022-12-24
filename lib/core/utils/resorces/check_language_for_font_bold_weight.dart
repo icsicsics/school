@@ -5,8 +5,10 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 
 
 Future<FontWeight> languageFontBoldWeight() async {
-  String? _language = await SharedPreferencesManager.getAppLanguage();
-  return _language == 'en'
-      ? FontFamily.fontWeightSemiBoldEnglish
-      : FontFamily.fontWeightSemiBoldArabic;
+  // String? _language = await SharedPreferencesManager.getAppLanguage();
+  return FontFamily.fontWeightSemiBoldEnglish;
+
+    // _language == 'en'
+    //   ?
+    //   : FontFamily.fontWeightSemiBoldArabic;
 }

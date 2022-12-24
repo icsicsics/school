@@ -2,14 +2,23 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_utils.dart';
 
 class SharedPreferencesManager {
-  static Future<String?> getAppLanguage() async {
-    return await SharedPreferencesUtils.getString(
-        SharedPreferencesKeys.appLanguage);
+  static final SharedPreferencesManager _sharedPreference =
+      SharedPreferencesManager._internal();
+
+  factory SharedPreferencesManager() {
+    return _sharedPreference;
   }
 
-  static Future<void> setAppLanguage(String appLanguage) async {
-    await SharedPreferencesUtils.setString(
-        SharedPreferencesKeys.appLanguage, appLanguage);
+  SharedPreferencesManager._internal();
+
+  Future<bool> setLanguageCode(String languageCode) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.appLanguage, languageCode);
+  }
+
+  Future<String?> getLanguageCode() async {
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.appLanguage);
   }
 
   static Future<String?> getNotificationToken() async {

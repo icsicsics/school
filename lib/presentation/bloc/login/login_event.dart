@@ -14,3 +14,6 @@ class LoginIsFatherEvent extends LoginEvent {
 
   LoginIsFatherEvent({required this.isFather});
 }
+class GetLanguageEvent extends LoginEvent {
+  GetLanguageEvent();
+}

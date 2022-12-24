@@ -5,13 +5,15 @@ import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
-import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
+import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class SideMenuScreen extends StatefulWidget {
   final bool isComFromHome;
+  final String language;
 
-  const SideMenuScreen({Key? key, required this.isComFromHome})
+  const SideMenuScreen(
+      {Key? key, required this.isComFromHome, required this.language})
       : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class SideMenuScreen extends StatefulWidget {
 class _SideMenuScreenState extends State<SideMenuScreen> {
   SideMenuBloc get _bloc => BlocProvider.of<SideMenuBloc>(context);
   bool _isFather = false;
+
   @override
   void initState() {
     _bloc.add(GetIsFatherEvent());
@@ -30,39 +33,40 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: RPSCustomPainter1(),
-      child: Container(
-        color: ColorsManager.yellow,
-        child: ClipPath(
-          clipper: RPSCustomPainter2(),
-          child: Container(
-              color: Colors.white,
-              height: MediaQuery.of(context).size.height,
-              child: BlocConsumer<SideMenuBloc, SideMenuState>(
-                listener: (context, state) {
-                  if (state is SideMenuHomeState) {
-                    _onSideMenuHomeState(context);
-                  } else if (state is SideMenuUserProfileState) {
-                    _onSideMenuProfileState(context);
-                  } else if (state is SideMenuContactUsState) {
-                    _onSideMenuContactUsState(context);
-                  } else if (state is SideMenuAboutAppState) {
-                    _onSideMenuAboutAppState(context);
-                  }else if(state is GetIsFatherState) {
-                    _isFather = state.isFather;
-                  }else if (state is SwitchAccountState){
-                    _switchAccount(context);
-
-                  }
-                },
-                builder: (context, state) {
-                  return  SideMenuContentWidget(bloc:_bloc);
-
-                },
-              )),
-        ),
-      ),
-    );
+        clipper: widget.language == "en"
+            ? RPSCustomPainterLeft1()
+            : RPSCustomPainterRight1(),
+        child: Container(
+            color: ColorsManager.yellow,
+            child: ClipPath(
+                clipper: widget.language == "en"
+                    ? RPSCustomPainterLeft2()
+                    : RPSCustomPainterRight2(),
+                child: Container(
+                    color: Colors.white,
+                    child: BlocConsumer<SideMenuBloc, SideMenuState>(
+                      listener: (context, state) {
+                        if (state is SideMenuHomeState) {
+                          _onSideMenuHomeState(context);
+                        } else if (state is SideMenuUserProfileState) {
+                          _onSideMenuProfileState(context);
+                        } else if (state is SideMenuContactUsState) {
+                          _onSideMenuContactUsState(context);
+                        } else if (state is SideMenuAboutAppState) {
+                          _onSideMenuAboutAppState(context);
+                        } else if (state is GetIsFatherState) {
+                          _isFather = state.isFather;
+                        } else if (state is SwitchAccountState) {
+                          _switchAccount(context);
+                        }
+                      },
+                      builder: (context, state) {
+                        return SideMenuContentWidget(
+                          language: widget.language,
+                          bloc: _bloc,
+                        );
+                      },
+                    )))));
   }
 
   void _onSideMenuHomeState(context) {
@@ -86,11 +90,12 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
 
   void _onSideMenuAboutAppState(context) {}
 
-  void _switchAccount(context){
+  void _switchAccount(context) {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (_) =>  LoginScreen(isFather: _isFather==true?false:true)),
-            (route) => false);
+            builder: (_) =>
+                LoginScreen(isFather: _isFather == true ? false : true)),
+        (route) => false);
   }
 }

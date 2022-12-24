@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
 
 class ClearButtonWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class ClearButtonWidget extends StatelessWidget {
       buttonColor: ColorsManager.whiteColor,
       borderColor: ColorsManager.primaryColor,
       buttonTextSize: 14,
-      buttonText: "Clear",
+      buttonText: S.of(context).clear,
       buttonTextColor: ColorsManager.primaryColor,
       buttonHeight: 46,
     ));
