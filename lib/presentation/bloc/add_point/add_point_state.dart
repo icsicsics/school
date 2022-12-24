@@ -16,3 +16,9 @@ class GetAddPointErrorState extends AddPointState {}
 class NavigateToNotificationScreenState extends AddPointState {}
 
 class NavigateToMyChildrenScreenState extends AddPointState {}
+
+class GetIsFatherState extends AddPointState {
+  final bool isFather;
+
+  GetIsFatherState({required this.isFather});
+}

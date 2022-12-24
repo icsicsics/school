@@ -17,9 +17,14 @@ class MyChildrenScreen extends BaseStatefulWidget {
 
 class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
   final TextEditingController _commentController = TextEditingController();
-
   MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
+  bool _isFather = false;
 
+  @override
+  void initState() {
+  _bloc.add(GetIsFatherEvent());
+    super.initState();
+  }
   @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<MyChildrenBloc, MyChildrenState>(
@@ -28,6 +33,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           _openAddPointAlert();
         } else if (state is NavigateToNotificationScreenState) {
           _navigateToNotificationScreen();
+        }   else if (state is GetIsFatherState) {
+          _isFather = state.isFather;
         }
       },
       builder: (context, state) {
@@ -50,14 +57,14 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         actions: [
           IconButton(
             onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.mail_lock,
+            icon:  Icon(_isFather==false?Icons.mail_lock:Icons.notifications_active,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],
-        title: const BoldTextWidget(
+        title:  BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "Students Profile"),
+            text: _isFather==false ?"Students Profile": "My Children"),
       );
 
   Widget _points() {

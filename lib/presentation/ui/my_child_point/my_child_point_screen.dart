@@ -19,26 +19,37 @@ class MyChildPointsScreen extends BaseStatefulWidget {
 
 class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
   MyChildPointsBloc get _bloc => BlocProvider.of<MyChildPointsBloc>(context);
+  bool _isFather = false;
+
+  @override
+  void initState() {
+    _bloc.add(GetIsFatherEvent());
+    super.initState();
+  }
 
   @override
   Widget baseBuild(BuildContext context) {
-    return BlocListener<MyChildPointsBloc, MyChildPointsState>(
-      listener: (context, state) {
-        if (state is OpenPointScreenState) {
-          _openPointScreen();
-        } else if (state is NavigateToHomeScreenState) {
-          _navigateHomeScreen();
-        } else if (state is NavigateToNotificationScreenState) {
-          _navigateToNotificationScreen();
-        }
-      },
-      child: Scaffold(
+    return  BlocConsumer<MyChildPointsBloc, MyChildPointsState>(
+  listener: (context, state) {
+      if (state is OpenPointScreenState) {
+        _openPointScreen();
+      } else if (state is NavigateToHomeScreenState) {
+        _navigateHomeScreen();
+      } else if (state is NavigateToNotificationScreenState) {
+        _navigateToNotificationScreen();
+      }    else if (state is GetIsFatherState) {
+        _isFather = state.isFather;
+      }
+  },
+  builder: (context, state) {
+    return Scaffold(
           backgroundColor: ColorsManager.whiteColor,
           appBar: _appBar(),
           body: MyChildContentWidget(
             bloc: _bloc,
-          )),
-    );
+          ));
+  },
+);
   }
 
   PreferredSizeWidget _appBar() => AppBar(
@@ -52,14 +63,14 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
         actions: [
           IconButton(
             onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.notifications_active,
+            icon:  Icon(_isFather==false?Icons.mail_lock:Icons.notifications_active,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],
-        title: const BoldTextWidget(
+        title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "Students Profile"),
+            text: _isFather == false ? "Students Profile" : "My Children"),
       );
 
   void _openPointScreen() => Navigator.push(

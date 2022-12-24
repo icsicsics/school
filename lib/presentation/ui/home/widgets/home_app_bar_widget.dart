@@ -5,9 +5,10 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 class HomeAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
   final Function() onTapNotifications;
+  final bool isFather;
 
   const HomeAppBarWidget(
-      {Key? key, required this.onTapMenu, required this.onTapNotifications})
+      {Key? key, required this.onTapMenu, required this.onTapNotifications,required this.isFather})
       : super(key: key);
 
   @override
@@ -43,8 +44,7 @@ class HomeAppBarWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: IconButton(
                   onPressed: onTapNotifications,
-                  icon: const Icon(
-                    Icons.mail_lock,
+                  icon:  Icon(isFather==false?Icons.mail_lock:Icons.notifications_active,
                     color: ColorsManager.whiteColor,
                     size: 25,
                   ),

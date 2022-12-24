@@ -23,6 +23,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
     return Column(
       children: [
         HomeAppBarWidget(
+          isFather: widget.isFather,
           onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
           onTapNotifications: () {
             Navigator.pushAndRemoveUntil(

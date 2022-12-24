@@ -67,12 +67,12 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
                         size: 26,
                       ),
                       const SizedBox(
-                        width: 10,
+                        width: 7,
                       ),
                       Expanded(
                         child: BoldTextWidget(
                             text: title,
-                            fontSize: 17,
+                            fontSize: 15,
                             color: ColorsManager.blackColor),
                       )
                     ],

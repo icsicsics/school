@@ -26,23 +26,23 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   @override
   Widget baseBuild(BuildContext context) {
-    return Scaffold(
-        backgroundColor: ColorsManager.backgroundColor,
-        appBar: _appBar(),
-        body: BlocConsumer<ProfileBloc, ProfileState>(
-          listener: (context, state) {
-            if (state is GetIsFatherState) {
-              _isFather = state.isFather;
-            } else if (state is NavigateToNotificationScreenState) {
-              _navigateToNotificationScreen();
-            }
-          },
-          builder: (context, state) {
-            return ProfileContentWidget(
+    return BlocConsumer<ProfileBloc, ProfileState>(
+      listener: (context, state) {
+        if (state is GetIsFatherState) {
+          _isFather = state.isFather;
+        } else if (state is NavigateToNotificationScreenState) {
+          _navigateToNotificationScreen();
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+            backgroundColor: ColorsManager.backgroundColor,
+            appBar: _appBar(),
+            body: ProfileContentWidget(
               isFather: _isFather,
-            );
-          },
-        ));
+            ));
+      },
+    );
   }
 
   PreferredSizeWidget _appBar() => AppBar(
@@ -56,8 +56,12 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         actions: [
           IconButton(
             onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            icon:  Icon(_isFather?Icons.notifications_active:Icons.mail_lock,
-                color: ColorsManager.secondaryColor, size: 25),
+            icon: Icon(
+                _isFather == false
+                    ? Icons.mail_lock
+                    : Icons.notifications_active,
+                color: ColorsManager.secondaryColor,
+                size: 25),
           ),
         ],
         title: const BoldTextWidget(

@@ -17,6 +17,13 @@ class AddPointScreen extends BaseStatefulWidget {
 
 class _AddPointScreen extends BaseState<AddPointScreen> {
   AddPointBloc get _addPointBloc => BlocProvider.of<AddPointBloc>(context);
+  bool _isFather = false;
+
+  @override
+  void initState() {
+    _addPointBloc.add(GetIsFatherEvent());
+    super.initState();
+  }
 
   @override
   Widget baseBuild(BuildContext context) {
@@ -29,6 +36,8 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
             _navigateToNotificationScreen();
           } else if (state is NavigateToMyChildrenScreenState) {
             _navigateToMyChildrenScreen();
+          }else if (state is GetIsFatherState) {
+            _isFather = state.isFather;
           }
         },
         child: AddPointContentWidget(
@@ -50,14 +59,14 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
           IconButton(
             onPressed: () => BlocProvider.of<AddPointBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.mail_lock,
+            icon:  Icon(_isFather==false?Icons.mail_lock:Icons.notifications_active,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],
-        title: const BoldTextWidget(
+        title:  BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: "Student houses"),
+            text: _isFather==false?"Student houses":"My Children"),
       );
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 
 part 'my_children_event.dart';
 
@@ -13,6 +14,7 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     on<GetMyChildrenEvent>(_onGetMyChildrenEvent);
     on<OpenAddPointAlertEvent>(_onOpenAddPointAlertEvent);
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
+    on<GetIsFatherEvent>(_onGetIsFatherEvent);
   }
 
   FutureOr<void> _onMyChildrenShowHousesEvent(
@@ -31,5 +33,11 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
   FutureOr<void> _onNavigateToNotificationScreenEvent(
       NavigateToNotificationScreenEvent event, Emitter<MyChildrenState> emit) {
     emit(NavigateToNotificationScreenState());
+  }
+
+  FutureOr<void> _onGetIsFatherEvent(
+      GetIsFatherEvent event, Emitter<MyChildrenState> emit) async {
+    final isFather = await SharedPreferencesManager.getIsFather();
+    emit(GetIsFatherState(isFather: isFather!));
   }
 }

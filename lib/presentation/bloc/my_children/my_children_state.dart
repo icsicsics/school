@@ -22,3 +22,9 @@ class GetMyChildrenErrorState extends MyChildrenState {}
 class OpenAddPointAlertState extends MyChildrenState {}
 
 class NavigateToNotificationScreenState extends MyChildrenState {}
+
+class GetIsFatherState extends MyChildrenState {
+  final bool isFather;
+
+  GetIsFatherState({required this.isFather});
+}
