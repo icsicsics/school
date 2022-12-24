@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/chart_content_widget.dart';
+import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class SchoolHousesChartWidget extends StatelessWidget {
   const SchoolHousesChartWidget({Key? key}) : super(key: key);
@@ -21,19 +22,18 @@ class SchoolHousesChartWidget extends StatelessWidget {
         height: 500,
         child: Stack(
           children: [
-            Container(
-              height: 150,
-              decoration: const BoxDecoration(
-                  color: ColorsManager.whiteColor,
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.elliptical(200.0, 15.0),
-                      bottomLeft: Radius.elliptical(200.0, 15.0))),
+            ClipPath(
+                clipper: GeneralCurve(),
+              child: Container(
+                height: 200,
+                color: ColorsManager.whiteColor,
+              )
             ),
             const ChartContentWidget(),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.only(top: 60),
+                padding: const EdgeInsets.only(top: 72),
                 child: SizedBox(
                     height: 150,
                     width: 150,
@@ -76,4 +76,8 @@ class SchoolHousesChartWidget extends StatelessWidget {
         color: Colors.yellow,
         size: 30,
       );
+
+
+
+
 }

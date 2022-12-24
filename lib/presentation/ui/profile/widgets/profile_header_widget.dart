@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   const ProfileHeaderWidget({Key? key}) : super(key: key);
@@ -20,13 +21,12 @@ class ProfileHeaderWidget extends StatelessWidget {
         height: 350,
         child: Stack(
           children: [
-            Container(
-              height: 150,
-              decoration: const BoxDecoration(
+            ClipPath(
+                clipper: GeneralCurve(),
+                child: Container(
+                  height: 150,
                   color: ColorsManager.whiteColor,
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.elliptical(200.0, 15.0),
-                      bottomLeft: Radius.elliptical(200.0, 15.0))),
+                )
             ),
             Align(
                 alignment: Alignment.bottomCenter,

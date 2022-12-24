@@ -3,6 +3,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/my_children/widget/points_widget.dart';
+import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class MyChildrenHeaderWidget extends StatefulWidget {
   const MyChildrenHeaderWidget({Key? key}) : super(key: key);
@@ -26,13 +27,12 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
       height: 370,
       child: Stack(
         children: [
-          Container(
-            height: 150,
-            decoration: const BoxDecoration(
+          ClipPath(
+              clipper: GeneralCurve(),
+              child: Container(
+                height: 150,
                 color: ColorsManager.whiteColor,
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.elliptical(200.0, 15.0),
-                    bottomLeft: Radius.elliptical(200.0, 15.0))),
+              )
           ),
           const PointsScreenWidget(),
           Align(

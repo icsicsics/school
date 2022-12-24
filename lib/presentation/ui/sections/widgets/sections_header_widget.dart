@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class SectionsHeaderWidget extends StatelessWidget {
   const SectionsHeaderWidget({Key? key}) : super(key: key);
@@ -20,13 +21,12 @@ class SectionsHeaderWidget extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 2,
         child: Stack(
           children: [
-            Container(
-              height: 200,
-              decoration: const BoxDecoration(
+            ClipPath(
+                clipper: GeneralCurve(),
+                child: Container(
+                  height: 200,
                   color: ColorsManager.whiteColor,
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.elliptical(200.0, 20.0),
-                      bottomLeft: Radius.elliptical(200.0, 20.0))),
+                )
             ),
             Align(
                 alignment: Alignment.bottomCenter,
