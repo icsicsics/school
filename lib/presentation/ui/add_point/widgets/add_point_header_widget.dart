@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class AddPointHeaderWidget extends StatelessWidget {
@@ -37,13 +38,14 @@ class AddPointHeaderWidget extends StatelessWidget {
                     children: const [
                       BoldTextWidget(
                           text: "Grade 2 , Section A",
-                          fontSize: 16,
+                          fontSize: 18,
                           color: ColorsManager.whiteColor),
-                      BoldTextWidget(
+                      SizedBox(height: 10),
+                      MediumTextWidget(
                           text: "Math Class",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
-                      BoldTextWidget(
+                      MediumTextWidget(
                           text: "20 Students",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
