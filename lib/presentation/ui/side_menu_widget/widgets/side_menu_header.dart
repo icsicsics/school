@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 
 class SideMenuHeader extends StatelessWidget {
-  const SideMenuHeader({Key? key}) : super(key: key);
+  final SideMenuBloc bloc;
+  const SideMenuHeader({Key? key,required this.bloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +31,9 @@ class SideMenuHeader extends StatelessWidget {
                     radius: 50,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 180),
+                    padding:  const EdgeInsets.only(right: 180),
                     child: IconButton(
-                        onPressed: () => Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const LoginScreen()),
-                            (route) => false),
+                        onPressed: () =>bloc.add(SwitchAccountEvent()) ,
                         icon: const Icon(
                           Icons.supervised_user_circle,
                           color: ColorsManager.secondaryColor,

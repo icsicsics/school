@@ -8,7 +8,8 @@ import 'package:schools/presentation/ui/authentication/login/widgets/login_conte
 import 'package:schools/presentation/ui/authentication/verify/verify_screen.dart';
 
 class LoginScreen extends BaseStatefulWidget {
-  const LoginScreen({super.key});
+  final bool isFather;
+  const LoginScreen({super.key, required this.isFather});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _LoginScreenState();
@@ -21,7 +22,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
 
   @override
   void initState() {
-    _loginBloc.add(LoginIsFatherEvent(isFather: false));
+    _isFather = widget.isFather;
+    _loginBloc.add(LoginIsFatherEvent(isFather: widget.isFather));
     super.initState();
   }
 

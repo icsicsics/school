@@ -43,7 +43,7 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                   changeMobileNumberAction: () {
                     Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (_) => const LoginScreen()),
+                        MaterialPageRoute(builder: (_) =>  const LoginScreen(isFather: false)),
                         (route) => false);
                   },
                   nextAction: () {

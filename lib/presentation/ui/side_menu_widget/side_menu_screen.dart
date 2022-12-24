@@ -2,16 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
+import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
 
-class SideMenuScreen extends StatelessWidget {
+class SideMenuScreen extends StatefulWidget {
   final bool isComFromHome;
 
   const SideMenuScreen({Key? key, required this.isComFromHome})
       : super(key: key);
+
+  @override
+  State<SideMenuScreen> createState() => _SideMenuScreenState();
+}
+
+class _SideMenuScreenState extends State<SideMenuScreen> {
+  SideMenuBloc get _bloc => BlocProvider.of<SideMenuBloc>(context);
+  bool _isFather = false;
+  @override
+  void initState() {
+    _bloc.add(GetIsFatherEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +48,16 @@ class SideMenuScreen extends StatelessWidget {
                     _onSideMenuContactUsState(context);
                   } else if (state is SideMenuAboutAppState) {
                     _onSideMenuAboutAppState(context);
+                  }else if(state is GetIsFatherState) {
+                    _isFather = state.isFather;
+                  }else if (state is SwitchAccountState){
+                    _switchAccount(context);
+
                   }
                 },
                 builder: (context, state) {
-                  return const SideMenuContentWidget();
+                  return  SideMenuContentWidget(bloc:_bloc);
+
                 },
               )),
         ),
@@ -46,7 +66,7 @@ class SideMenuScreen extends StatelessWidget {
   }
 
   void _onSideMenuHomeState(context) {
-    if (isComFromHome == true) {
+    if (widget.isComFromHome == true) {
       Navigator.pop(context);
     } else {
       Navigator.pushAndRemoveUntil(
@@ -65,4 +85,12 @@ class SideMenuScreen extends StatelessWidget {
   void _onSideMenuContactUsState(context) {}
 
   void _onSideMenuAboutAppState(context) {}
+
+  void _switchAccount(context){
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (_) =>  LoginScreen(isFather: _isFather==true?false:true)),
+            (route) => false);
+  }
 }

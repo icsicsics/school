@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 
 part 'side_menu_event.dart';
 
@@ -14,6 +15,8 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<SideMenuUserProfileEvent>(_onSideMenuUserProfileEvent);
     on<SideMenuContactUsEvent>(_onSideMenuContactUsEvent);
     on<SideMenuAboutAppEvent>(_oSideMenuAboutAppEvent);
+    on<SwitchAccountEvent>(_onSwitchAccountEvent);
+    on<GetIsFatherEvent>(_onGetIsFatherEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -37,5 +40,16 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   FutureOr<void> _oSideMenuAboutAppEvent(
       SideMenuAboutAppEvent event, Emitter<SideMenuState> emit) {
     emit(SideMenuAboutAppState());
+  }
+
+  FutureOr<void> _onSwitchAccountEvent(
+      SwitchAccountEvent event, Emitter<SideMenuState> emit) {
+    emit(SwitchAccountState());
+  }
+
+  FutureOr<void> _onGetIsFatherEvent(
+      GetIsFatherEvent event, Emitter<SideMenuState> emit) async {
+    final isFather = await SharedPreferencesManager.getIsFather();
+    emit(GetIsFatherState(isFather: isFather!));
   }
 }

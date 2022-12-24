@@ -20,3 +20,11 @@ class SideMenuUserProfileState extends SideMenuState {}
 class SideMenuContactUsState extends SideMenuState {}
 
 class SideMenuAboutAppState extends SideMenuState {}
+
+class SwitchAccountState extends SideMenuState {}
+
+class GetIsFatherState extends SideMenuState {
+  final bool isFather;
+
+  GetIsFatherState({required this.isFather});
+}

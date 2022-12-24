@@ -12,3 +12,7 @@ class SideMenuUserProfileEvent extends SideMenuEvent {}
 class SideMenuContactUsEvent extends SideMenuEvent {}
 
 class SideMenuAboutAppEvent extends SideMenuEvent {}
+
+class GetIsFatherEvent extends SideMenuEvent {}
+
+class SwitchAccountEvent extends SideMenuEvent {}
