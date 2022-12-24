@@ -45,26 +45,39 @@ class AddPointItemWidget extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                          color: ColorsManager.whiteColor,
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              color: ColorsManager.primaryColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
-                          child: InkWell(
-                            onTap: onTapStar,
-                            child: const Icon(Icons.star,
-                                color: ColorsManager.yellow, size: 25),
+                        height: 35,
+                        width: 35,
+                        decoration: const BoxDecoration(
+                            color: ColorsManager.whiteColor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(40))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                color: ColorsManager.starBackground,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            child: InkWell(
+                              onTap: onTapStar,
+                              child: Container(
+                                height: 20,
+                                width: 20,
+                                color: Colors.transparent,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: const [
+                                    Icon(Icons.star,
+                                        color: ColorsManager.whiteColor,
+                                        size: 25),
+                                    Icon(Icons.star,
+                                        color: ColorsManager.yellow, size: 19),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
+                        )),
                   ),
                 )
               ],
