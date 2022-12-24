@@ -8,7 +8,8 @@ import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_item.
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_sochila_madia_widget.dart';
 
 class SideMenuContentWidget extends StatefulWidget {
-  const SideMenuContentWidget({Key? key}) : super(key: key);
+  final String language;
+  const SideMenuContentWidget({Key? key,required this.language}) : super(key: key);
 
   @override
   State<SideMenuContentWidget> createState() => _SideMenuContentWidgetState();
@@ -25,16 +26,15 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
             const SideMenuHeader(),
             Expanded(
                 child: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
+              decoration:  BoxDecoration(
+                  gradient:const  LinearGradient(
                     colors: [
                       ColorsManager.primaryColor,
                       ColorsManager.secondaryColor,
                     ],
                     stops: [0.5, 0.8],
                   ),
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(100))),
+                  borderRadius: widget.language=="en"?BorderRadius.only(bottomRight: Radius.circular(100)):BorderRadius.only(bottomRight: Radius.circular(0))),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Column(

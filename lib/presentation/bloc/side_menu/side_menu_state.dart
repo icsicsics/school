@@ -20,3 +20,7 @@ class SideMenuUserProfileState extends SideMenuState {}
 class SideMenuContactUsState extends SideMenuState {}
 
 class SideMenuAboutAppState extends SideMenuState {}
+class GetLanguageSuccessState extends SideMenuState {
+  final String language;
+  GetLanguageSuccessState({required this.language});
+}
