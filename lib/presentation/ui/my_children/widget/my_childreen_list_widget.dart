@@ -33,7 +33,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 85,
+        height: 100,
         child: Column(
           children: [
             Row(
@@ -58,9 +58,16 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
         onTap: () => _selectItem(model.id),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Icon(
-            model.icon,
-            color: _getColor(model),
+          child: Column(
+            children: [
+              Icon(
+                size: 25,
+                model.icon,
+                color: _getColor(model),
+              ),
+              const SizedBox(height: 7),
+              Container(height: 2,color:_getColor(model),width: 20,)
+            ],
           ),
         ),
       );
@@ -73,8 +80,14 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
         onTap: () => _selectItem(model.id),
         child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: MediumTextWidget(
-                text: model.title, fontSize: 15, color: _getColor(model))),
+            child: Column(
+              children: [
+                MediumTextWidget(
+                    text: model.title, fontSize: 15, color: _getColor(model)),
+                const SizedBox(height: 7),
+                Container(height: 2,color:_getColor(model),width: 20,)
+              ],
+            )),
       );
     } else {
       return const SizedBox();
