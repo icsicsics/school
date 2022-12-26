@@ -31,20 +31,20 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
 
   Widget cardItem({required String label, required String points}) {
     return Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(27)),
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(2),
           child: SizedBox(
-            height: 40,
-            width: 70,
+            height: 48,
+            width: 80,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MediumTextWidget(
                     text: label,
-                    fontSize: 8,
+                    fontSize: 13,
                     color: ColorsManager.primaryColor),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
