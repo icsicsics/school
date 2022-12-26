@@ -68,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "reward": MessageLookupByLibrary.simpleMessage("مكافأة"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("منازل المدرسة"),
         "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),

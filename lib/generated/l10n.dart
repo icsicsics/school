@@ -539,6 +539,16 @@ class S {
       args: [],
     );
   }
+
+  /// `reward`
+  String get reward {
+    return Intl.message(
+      'reward',
+      name: 'reward',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

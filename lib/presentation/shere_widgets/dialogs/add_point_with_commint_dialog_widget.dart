@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
@@ -41,22 +42,35 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            const SizedBox(
+              height: 10,
+            ),
             const Icon(Icons.star, size: 40, color: ColorsManager.yellow),
             const BoldTextWidget(
                 text: "Add Point",
                 fontSize: 14,
                 color: ColorsManager.darkGrayColor),
             const SizedBox(
-              height: 5,
+              height: 7,
+            ),
+            const MediumTextWidget(
+                textAlign: TextAlign.center,
+                text: "Choose Why Leen Deserve this point ",
+                fontSize: 12,
+                color: ColorsManager.blackColor),
+            const SizedBox(
+              height: 7,
             ),
             MediumTextWidget(
                 textAlign: TextAlign.center,
-                text:
-                    "Choose Why Leen Deserve this point \n ${widget.childName}",
+                text: widget.childName,
                 fontSize: 12,
                 color: ColorsManager.blackColor),
+            const SizedBox(
+              height: 7,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -100,16 +114,16 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                           isDense: true,
                           focusColor: ColorsManager.primaryColor,
                           hintText: "Type Why Leen Deserve this point",
-                          hintStyle: TextStyle(fontSize: 11)),
+                          hintStyle: TextStyle(fontSize: 13)),
                       controller: widget.commentController,
                     ))),
-            const SizedBox(
-              height: 15,
+             SizedBox(
+              height: isAddCommit? 20:50,
             ),
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 4,
                 onPressed: widget.addAction,
-                buttonText: "Gift",
+                buttonText: S.of(context).reward,
                 borderRadius: 25,
                 buttonColor: ColorsManager.buttonColor,
                 borderColor: ColorsManager.buttonColor,

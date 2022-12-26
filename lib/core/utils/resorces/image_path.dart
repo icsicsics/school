@@ -4,4 +4,5 @@ class ImagesPath {
   static const String cup = "${_basePath}cup.png";
   static const String school = "${_basePath}school.svg";
   static const String points = "${_basePath}points.svg";
+  static const String logo = "${_basePath}logo.png";
 }
