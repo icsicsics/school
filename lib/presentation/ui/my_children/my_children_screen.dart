@@ -112,7 +112,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           width: 35,
           decoration:  BoxDecoration(
               color: ColorsManager.whiteColor,
-              border: Border.all(color: Colors.grey,width: 1),
+              border: Border.all(color: ColorsManager.grayColor,width: 1),
               borderRadius:
               const BorderRadius.all(Radius.circular(40))),
           child: Padding(
