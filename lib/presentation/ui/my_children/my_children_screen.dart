@@ -71,24 +71,38 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
   Widget _points() {
     return InkWell(
       onTap: () => _bloc.add(OpenAddPointAlertEvent()),
-      child: Card(
-          color: ColorsManager.whiteColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-              side: const BorderSide(width: 2, color: ColorsManager.grayColor)),
-          elevation: 0,
+      child: Container(
+          height: 35,
+          width: 35,
+          decoration:  BoxDecoration(
+              color: ColorsManager.whiteColor,
+              border: Border.all(color: Colors.grey,width: 1),
+              borderRadius:
+              const BorderRadius.all(Radius.circular(40))),
           child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: SizedBox(
-                height: 40,
-                width: 40,
-                child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    color: ColorsManager.secondaryColor,
-                    elevation: 0,
-                    child: const Icon(Icons.star, color: ColorsManager.yellow)),
-              ))),
+            padding: const EdgeInsets.all(2),
+            child: Container(
+              decoration: const BoxDecoration(
+                  color: ColorsManager.starBackground,
+                  borderRadius:
+                  BorderRadius.all(Radius.circular(50))),
+              child:  Container(
+                  height: 20,
+                  width: 20,
+                  color: Colors.transparent,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: const [
+                      Icon(Icons.star,
+                          color: ColorsManager.whiteColor,
+                          size: 25),
+                      Icon(Icons.star,
+                          color: ColorsManager.yellow, size: 19),
+                    ],
+                  ),
+              ),
+            ),
+          )),
     );
   }
 
