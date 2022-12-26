@@ -48,21 +48,53 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   PreferredSizeWidget _appBar() => AppBar(
         elevation: 0,
-        leading: IconButton(
+        leading:  IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios,
               color: ColorsManager.secondaryColor, size: 25),
         ),
         centerTitle: false,
         actions: [
-          IconButton(
-            onPressed: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            icon: Icon(
-                _isFather == false
-                    ? Icons.mail_lock
-                    : Icons.notifications_active,
-                color: ColorsManager.secondaryColor,
-                size: 25),
+          InkWell(
+            onTap: ()=>_bloc.add(NavigateToNotificationScreenEvent()),
+            child: SizedBox(
+                width: 50,
+                height: 50,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Visibility(
+                        visible: _isFather == false,
+                        child: const Icon(
+                          Icons.mail,
+                          color: ColorsManager.secondaryColor,
+                          size: 25,
+                        ),
+                      ),
+                    ),
+                    Align(
+                        alignment: Alignment.center,
+                        child: Visibility(
+                          visible: _isFather,
+                          child: const Icon(
+                            Icons.mail,
+                            color: ColorsManager.secondaryColor,
+                            size: 25,
+                          ),
+                        )),
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: Visibility(
+                          visible:_isFather,
+                          child: const Icon(
+                            Icons.notifications,
+                            color: ColorsManager.yellow,
+                            size: 24,
+                          ),
+                        )),
+                  ],
+                )),
           ),
         ],
         title:  BoldTextWidget(

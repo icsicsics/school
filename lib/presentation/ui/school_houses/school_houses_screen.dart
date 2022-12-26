@@ -48,7 +48,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           IconButton(
             onPressed: () => BlocProvider.of<SchoolHousesBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
-            icon:  const Icon(Icons.mail_lock,
+            icon:  const Icon(Icons.mail,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],

@@ -53,7 +53,7 @@ class _SectionsScreenState extends BaseState<SectionsScreen> {
         IconButton(
             onPressed: () => BlocProvider.of<SectionsBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.notifications_active,
+            icon: const Icon(Icons.mail,
                 color: ColorsManager.secondaryColor, size: 25)),
       ],
       title: BoldTextWidget(

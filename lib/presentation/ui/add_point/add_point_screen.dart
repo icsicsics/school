@@ -57,12 +57,48 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
         ),
         centerTitle: false,
         actions: [
-          IconButton(
-            onPressed: () => BlocProvider.of<AddPointBloc>(context)
+          InkWell(
+            onTap: () => BlocProvider.of<AddPointBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
-            icon:  Icon(_isFather==false?Icons.mail_lock:Icons.notifications_active,
-                color: ColorsManager.secondaryColor, size: 25),
-          ),
+            child: SizedBox(
+                width: 50,
+                height: 50,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Visibility(
+                        visible: _isFather == false,
+                        child: const Icon(
+                          Icons.mail,
+                          color: ColorsManager.secondaryColor,
+                          size: 25,
+                        ),
+                      ),
+                    ),
+                    Align(
+                        alignment: Alignment.center,
+                        child: Visibility(
+                          visible: _isFather,
+                          child: const Icon(
+                            Icons.mail,
+                            color: ColorsManager.secondaryColor,
+                            size: 25,
+                          ),
+                        )),
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: Visibility(
+                          visible: _isFather,
+                          child: const Icon(
+                            Icons.notifications,
+                            color: ColorsManager.yellow,
+                            size: 24,
+                          ),
+                        )),
+                  ],
+                )),
+          )
         ],
         title:  BoldTextWidget(
             color: ColorsManager.secondaryColor,

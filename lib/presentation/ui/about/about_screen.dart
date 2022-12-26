@@ -39,7 +39,7 @@ class _AboutScreenStatus extends BaseState<AboutScreen> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications_active,
+            icon: const Icon(Icons.mail,
                 color: ColorsManager.secondaryColor, size: 25),
           ),
         ],

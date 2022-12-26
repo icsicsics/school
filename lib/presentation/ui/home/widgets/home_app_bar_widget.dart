@@ -65,16 +65,47 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                                 : S.of(context).english,
                             fontSize: 15,
                             color: ColorsManager.whiteColor)),
-                    IconButton(
-                      onPressed: widget.onTapNotifications,
-                      icon: Icon(
-                        widget.isFather == false
-                            ? Icons.mail_lock
-                            : Icons.notifications_active,
-                        color: ColorsManager.whiteColor,
-                        size: 25,
-                      ),
-                    ),
+                    InkWell(
+                      onTap: widget.onTapNotifications,
+                      child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Visibility(
+                                  visible: widget.isFather == false,
+                                  child: const Icon(
+                                    Icons.mail,
+                                    color: ColorsManager.whiteColor,
+                                    size: 25,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: Visibility(
+                                    visible: widget.isFather,
+                                    child: const Icon(
+                                      Icons.mail,
+                                      color: ColorsManager.whiteColor,
+                                      size: 25,
+                                    ),
+                                  )),
+                              Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Visibility(
+                                    visible: widget.isFather,
+                                    child: const Icon(
+                                      Icons.notifications,
+                                      color: ColorsManager.yellow,
+                                      size: 24,
+                                    ),
+                                  )),
+                            ],
+                          )),
+                    )
                   ],
                 )),
           ],
