@@ -60,20 +60,20 @@ class S {
     );
   }
 
-  /// `Arabic`
+  /// `AR`
   String get arabic {
     return Intl.message(
-      'Arabic',
+      'AR',
       name: 'arabic',
       desc: '',
       args: [],
     );
   }
 
-  /// `English`
+  /// `EN`
   String get english {
     return Intl.message(
-      'English',
+      'EN',
       name: 'english',
       desc: '',
       args: [],

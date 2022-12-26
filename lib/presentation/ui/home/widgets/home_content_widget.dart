@@ -42,7 +42,8 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
             bloc: widget.bloc,
             language: widget.language),
         const SizedBox(height: 2),
-        const HomeTitleWidget(),
+        Visibility(
+            visible: widget.isFather != true, child: const HomeTitleWidget()),
         _buildScreen()
       ],
     );

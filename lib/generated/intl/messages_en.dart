@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allPoints": MessageLookupByLibrary.simpleMessage("All Points"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appreciative": MessageLookupByLibrary.simpleMessage("Appreciative"),
-        "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "arabic": MessageLookupByLibrary.simpleMessage("AR"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
         "classHouses": MessageLookupByLibrary.simpleMessage("Class houses"),
@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Didn\'t Receive Verification code ?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "energetic": MessageLookupByLibrary.simpleMessage("Energetic"),
-        "english": MessageLookupByLibrary.simpleMessage("English"),
+        "english": MessageLookupByLibrary.simpleMessage("EN"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your Phone Number"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),

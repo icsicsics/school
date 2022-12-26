@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allPoints": MessageLookupByLibrary.simpleMessage("كل النقاط"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
         "appreciative": MessageLookupByLibrary.simpleMessage("تقديري"),
-        "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "arabic": MessageLookupByLibrary.simpleMessage("AR"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
         "classHouses": MessageLookupByLibrary.simpleMessage("منازل الصف"),
@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لم تتلق رمز التحقق؟"),
         "email": MessageLookupByLibrary.simpleMessage("بريد إلكتروني"),
         "energetic": MessageLookupByLibrary.simpleMessage("نشيط"),
-        "english": MessageLookupByLibrary.simpleMessage("انجليزي"),
+        "english": MessageLookupByLibrary.simpleMessage("EN"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),

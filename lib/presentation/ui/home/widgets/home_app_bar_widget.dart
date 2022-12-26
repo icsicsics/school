@@ -63,7 +63,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                             text: widget.language == "en"
                                 ? S.of(context).arabic
                                 : S.of(context).english,
-                            fontSize: 14,
+                            fontSize: 15,
                             color: ColorsManager.whiteColor)),
                     IconButton(
                       onPressed: widget.onTapNotifications,

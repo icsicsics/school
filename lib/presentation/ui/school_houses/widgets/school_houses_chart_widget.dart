@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/chart_content_widget.dart';
@@ -45,8 +44,8 @@ class SchoolHousesChartWidget extends StatelessWidget {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(100))),
                       child: Padding(
-                        padding: const EdgeInsets.all(35),
-                        child: SvgPicture.asset(ImagesPath.cup, color: Colors.amber),
+                        padding: const EdgeInsets.all(25),
+                        child: Image.asset(ImagesPath.cup),
                       ),
                     )),
               ),
