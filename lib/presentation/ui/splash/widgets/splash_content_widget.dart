@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/generated/l10n.dart';
-import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 
 class SplashContentWidget extends StatelessWidget {
   const SplashContentWidget({Key? key}) : super(key: key);
@@ -21,23 +19,7 @@ class SplashContentWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 3,
       child: Align(
         alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children:  [
-            const BoldTextWidget(
-              text: 'I C S',
-              fontSize: 80,
-              color: ColorsManager.whiteColor,
-            ),
-            MediumTextWidget(
-              text: S.of(context).interactiveSchoolCounselling,
-              fontSize: 16,
-              color: ColorsManager.whiteColor,
-            )
-          ],
-        ),
+        child: Image.asset(ImagesPath.logo,color: Colors.white,)
       ),
     );
   }

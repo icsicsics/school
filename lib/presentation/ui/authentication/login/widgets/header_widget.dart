@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/generated/l10n.dart';
-import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 
 class LoginHeaderWidget extends StatelessWidget {
   const LoginHeaderWidget({Key? key}) : super(key: key);
@@ -20,24 +18,12 @@ class LoginHeaderWidget extends StatelessWidget {
       )),
       height: 180,
       child: Align(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children:  [
-            const BoldTextWidget(
-              text: 'I C S',
-              fontSize: 50,
-              color: ColorsManager.whiteColor,
-            ),
-            MediumTextWidget(
-              text: S.of(context).interactiveSchoolCounselling,
-              fontSize: 10,
-              color: ColorsManager.whiteColor,
-            )
-          ],
-        ),
-      ),
+          alignment: Alignment.center,
+          child: Image.asset(
+            ImagesPath.logo,
+            color: Colors.white,
+            height: 150,
+          )),
     );
   }
 }
