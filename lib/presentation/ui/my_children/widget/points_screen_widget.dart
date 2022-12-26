@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
@@ -63,20 +62,20 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
             dense: true,
             style: ListTileStyle.list,
             minLeadingWidth: 2,
-            leading:  Padding(
+            leading: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Container(
                   height: 35,
                   width: 35,
                   decoration: BoxDecoration(
                       color: ColorsManager.whiteColor,
-                      border: Border.all(color: ColorsManager.borderLight, width: 1),
+                      border: Border.all(
+                          color: ColorsManager.borderLight, width: 1),
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(40))),
+                          const BorderRadius.all(Radius.circular(40))),
                   child: const Padding(
-                      padding:  EdgeInsets.all(2),
-                      child: Icon(
-                          Icons.star, color: ColorsManager.yellow))),
+                      padding: EdgeInsets.all(2),
+                      child: Icon(Icons.star, color: ColorsManager.yellow))),
             ),
             title: MediumTextWidget(
                 text: title, fontSize: 15, color: ColorsManager.darkGrayColor),
