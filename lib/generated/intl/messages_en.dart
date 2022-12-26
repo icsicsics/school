@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
+        "chooseWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
+            "Choose Why Leen Deserve this point"),
         "classHouses": MessageLookupByLibrary.simpleMessage("Class houses"),
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
         "collaboration": MessageLookupByLibrary.simpleMessage("Collaboration"),
@@ -79,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
+        "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
+            "Type Why Leen Deserve this point"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("Verify your Number"),
         "weather": MessageLookupByLibrary.simpleMessage("Weather")

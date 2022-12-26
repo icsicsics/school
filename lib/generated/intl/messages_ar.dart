@@ -80,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teachers": MessageLookupByLibrary.simpleMessage("معلمون"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الاسبوع"),
+        "typeWhyLeenDeserveThisPoint":
+            MessageLookupByLibrary.simpleMessage("اكتب لماذا تستحق هذه النقطة"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("تحقق من رقمك"),
         "weather": MessageLookupByLibrary.simpleMessage("طقس")

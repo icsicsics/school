@@ -549,6 +549,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose Why Leen Deserve this point`
+  String get chooseWhyLeenDeserveThisPoint {
+    return Intl.message(
+      'Choose Why Leen Deserve this point',
+      name: 'chooseWhyLeenDeserveThisPoint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type Why Leen Deserve this point`
+  String get typeWhyLeenDeserveThisPoint {
+    return Intl.message(
+      'Type Why Leen Deserve this point',
+      name: 'typeWhyLeenDeserveThisPoint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

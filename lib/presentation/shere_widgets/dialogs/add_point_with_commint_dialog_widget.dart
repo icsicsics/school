@@ -48,16 +48,16 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
               height: 10,
             ),
             const Icon(Icons.star, size: 40, color: ColorsManager.yellow),
-            const BoldTextWidget(
-                text: "Add Point",
+            BoldTextWidget(
+                text: S.of(context).addPoint,
                 fontSize: 14,
                 color: ColorsManager.darkGrayColor),
             const SizedBox(
               height: 7,
             ),
-            const MediumTextWidget(
+            MediumTextWidget(
                 textAlign: TextAlign.center,
-                text: "Choose Why Leen Deserve this point ",
+                text: S.of(context).chooseWhyLeenDeserveThisPoint,
                 fontSize: 12,
                 color: ColorsManager.blackColor),
             const SizedBox(
@@ -110,11 +110,11 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                 child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           isDense: true,
                           focusColor: ColorsManager.primaryColor,
-                          hintText: "Type Why Leen Deserve this point",
-                          hintStyle: TextStyle(fontSize: 13)),
+                          hintText: S.of(context).typeWhyLeenDeserveThisPoint,
+                          hintStyle: const TextStyle(fontSize: 13)),
                       controller: widget.commentController,
                     ))),
              SizedBox(
