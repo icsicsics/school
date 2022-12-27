@@ -30,7 +30,7 @@ class _MyChildHeaderWidgetState extends State<MyChildHeaderWidget> {
           ClipPath(
               clipper: GeneralCurve(),
               child: Container(
-                height: 150,
+                height: 200,
                 color: ColorsManager.whiteColor,
               )
           ),
@@ -38,7 +38,7 @@ class _MyChildHeaderWidgetState extends State<MyChildHeaderWidget> {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.only(top: 60),
+              padding: const EdgeInsets.only(top: 70),
               child: SizedBox(
                 height: 150,
                 width: 150,
@@ -47,7 +47,7 @@ class _MyChildHeaderWidgetState extends State<MyChildHeaderWidget> {
                   height: 150,
                   decoration: BoxDecoration(
                       border:
-                          Border.all(color: ColorsManager.whiteColor, width: 3),
+                      Border.all(color: ColorsManager.whiteColor, width: 3),
                       borderRadius: BorderRadius.circular(100),
                       image: const DecorationImage(
                           image: AssetImage(ImagesPath.schoolItem),

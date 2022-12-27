@@ -24,7 +24,7 @@ class ProfileHeaderWidget extends StatelessWidget {
             ClipPath(
                 clipper: GeneralCurve(),
                 child: Container(
-                  height: 150,
+                  height: 200,
                   color: ColorsManager.whiteColor,
                 )
             ),
@@ -46,40 +46,56 @@ class ProfileHeaderWidget extends StatelessWidget {
                     ],
                   ),
                 )),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 60),
-              child: Stack(
-                children: [
-                  Center(
-                      child: Container(
-                    width: 150,
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 70),
+                child: SizedBox(
                     height: 150,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        image: const DecorationImage(
-                            image: AssetImage(ImagesPath.schoolItem),
-                            fit: BoxFit.fill)),
-                  )),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 80.5, left: 125.0),
-                      child: Center(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              color: ColorsManager.whiteColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                          child: const Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Icon(Icons.camera_alt,
-                                color: ColorsManager.yellow, size: 27),
+                    width: 160,
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: ColorsManager.whiteColor, width: 3),
+                            borderRadius: BorderRadius.circular(100),
                           ),
+                          child: Center(
+                              child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                image: const DecorationImage(
+                                    image: AssetImage(ImagesPath.schoolItem),
+                                    fit: BoxFit.fill)),
+                          )),
                         ),
-                      ),
-                    ),
-                  )
-                ],
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    color: ColorsManager.whiteColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15))),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(4),
+                                  child: Icon(Icons.camera_alt,
+                                      color: ColorsManager.yellow, size: 27),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
               ),
             ),
           ],

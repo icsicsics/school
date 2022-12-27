@@ -17,4 +17,6 @@ class ColorsManager {
   static const Color yellow = Color.fromRGBO(248	,150	,16, 1);
   static const Color welcomeGryColor = Color.fromRGBO(152	,152	,152, 1);
   static const Color borderLight = Color.fromRGBO(246,242,242, 1);
+  static const Color sameBlack = Color.fromRGBO(70,70,70, 1);
+  static const Color subTitle = Color.fromRGBO(116,116,116, 1);
 }

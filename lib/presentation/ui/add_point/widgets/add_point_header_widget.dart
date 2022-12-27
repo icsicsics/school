@@ -19,7 +19,7 @@ class AddPointHeaderWidget extends StatelessWidget {
           ],
           stops: [0.5, 0.8],
         )),
-        height: MediaQuery.of(context).size.height / 2,
+        height: 350,
         child: Stack(
           children: [
             ClipPath(
@@ -32,7 +32,7 @@ class AddPointHeaderWidget extends StatelessWidget {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 30),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
@@ -45,7 +45,7 @@ class AddPointHeaderWidget extends StatelessWidget {
                           text: "Math Class",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 6),
+                      SizedBox(height: 2),
                       MediumTextWidget(
                           text: "20 Students",
                           fontSize: 16,
@@ -54,16 +54,23 @@ class AddPointHeaderWidget extends StatelessWidget {
                   ),
                 )),
             Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: 320,
-                width: 220,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 80),
-                  child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(60)),
-                      child: Image.asset(ImagesPath.schoolItem,
-                          fit: BoxFit.fitHeight)),
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 70),
+                child: SizedBox(
+                    height: 150,
+                    width: 150,
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          border:
+                          Border.all(color: ColorsManager.whiteColor, width: 3),
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                              image: AssetImage(ImagesPath.schoolItem),
+                              fit: BoxFit.fill)),
+                    ),
                 ),
               ),
             ),

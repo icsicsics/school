@@ -43,6 +43,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
             floatingActionButton: _points(),
             appBar: _appBar(),
             body: const MyChildrenContentWidget());
+
       },
     );
   }

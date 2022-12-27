@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/my_children/widget/points_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
@@ -38,7 +39,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.only(top: 40),
+              padding: const EdgeInsets.only(top: 70),
               child: SizedBox(
                 height: 150,
                 width: 150,
@@ -47,7 +48,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                   height: 150,
                   decoration: BoxDecoration(
                       border:
-                          Border.all(color: ColorsManager.whiteColor, width: 3),
+                      Border.all(color: ColorsManager.whiteColor, width: 3),
                       borderRadius: BorderRadius.circular(100),
                       image: const DecorationImage(
                           image: AssetImage(ImagesPath.schoolItem),
@@ -59,17 +60,17 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 15),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
-                    MediumTextWidget(
+                    BoldTextWidget(
                         text: "Leen Eiz Deen",
-                        fontSize: 20,
+                        fontSize: 25,
                         color: ColorsManager.whiteColor),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     MediumTextWidget(
                         text: "Interactive Values School",

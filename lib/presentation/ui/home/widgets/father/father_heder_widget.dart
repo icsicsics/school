@@ -24,13 +24,13 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
               ],
               stops: [0.5, 0.8],
             )),
-        height: 250,
+        height: 350,
         child: Stack(
           children: [
             ClipPath(
                 clipper: GeneralCurve(),
                 child: Container(
-                  height: 150,
+                  height: 200,
                   color: ColorsManager.whiteColor,
                 )
             ),
@@ -59,16 +59,23 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                   ),
                 )),
             Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: 200,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 70),
-                  child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Image.asset(ImagesPath.schoolItem,
-                          fit: BoxFit.fitHeight)),
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 70),
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        border:
+                        Border.all(color: ColorsManager.whiteColor, width: 3),
+                        borderRadius: BorderRadius.circular(100),
+                        image: const DecorationImage(
+                            image: AssetImage(ImagesPath.schoolItem),
+                            fit: BoxFit.fill)),
+                  ),
                 ),
               ),
             ),

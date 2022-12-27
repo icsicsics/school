@@ -16,13 +16,13 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
     return Align(
         alignment: Alignment.center,
         child: Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 30,right: 25,left: 25),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 cardItem(label: S.of(context).allPoints, points: "175"),
-                const SizedBox(
-                  width: 20,
+                const  Expanded(
+                  child:  SizedBox(
+                  ),
                 ),
                 cardItem(label: S.of(context).thisWeek, points: "16"),
               ],
@@ -36,8 +36,8 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
         child: Padding(
           padding: const EdgeInsets.all(2),
           child: SizedBox(
-            height: 48,
-            width: 80,
+            height: 35,
+            width: 90,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

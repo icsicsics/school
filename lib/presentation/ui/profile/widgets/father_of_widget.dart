@@ -3,6 +3,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/ui/my_child_point/my_child_point_screen.dart';
+import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/profile/widgets/child_item_widget.dart';
 
 class FatherOfWidget extends StatelessWidget {
@@ -38,7 +39,7 @@ class FatherOfWidget extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) =>
-                                        const MyChildPointsScreen())),
+                                        const MyChildrenScreen())),
                             child: const ChildItemWidget());
                       }),
                 )
