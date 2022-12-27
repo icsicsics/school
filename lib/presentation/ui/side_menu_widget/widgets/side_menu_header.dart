@@ -12,17 +12,17 @@ class SideMenuHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50),
+      padding: const EdgeInsets.only(top: 30),
       child: SizedBox(
-        height: 230,
+        height: language=="en"?190:200,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:  language == "en"?EdgeInsets.only(left: 25):EdgeInsets.only(right: 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CircleAvatar(
@@ -31,16 +31,14 @@ class SideMenuHeader extends StatelessWidget {
                     ),
                     radius: 50,
                   ),
-                  Padding(
-                    padding: language=="en"? const EdgeInsets.only(right: 180): EdgeInsets.only(left: 180),
-                    child: IconButton(
+                SizedBox(width: 30,),
+                IconButton(
                         onPressed: () =>bloc.add(SwitchAccountEvent()) ,
                         icon: const Icon(
                           Icons.supervised_user_circle,
                           color: ColorsManager.secondaryColor,
                           size: 30,
                         )),
-                  )
                 ],
               ),
               const SizedBox(
@@ -48,22 +46,22 @@ class SideMenuHeader extends StatelessWidget {
               ),
               const BoldTextWidget(
                   text: "Eiz el Deen Mahmoud",
-                  fontSize: 15,
+                  fontSize: 17,
                   color: ColorsManager.blackColor),
               const SizedBox(
-                height: 10,
+                height: 2,
               ),
               const BoldTextWidget(
                   text: "Math Teacher",
                   fontSize: 12,
-                  color: ColorsManager.grayColor),
+                  color: ColorsManager.borderColor),
               const SizedBox(
-                height: 10,
+                height: 2,
               ),
               const BoldTextWidget(
                   text: "Collaboration Home",
                   fontSize: 12,
-                  color: ColorsManager.grayColor)
+                  color: ColorsManager.borderColor)
             ],
           ),
         ),

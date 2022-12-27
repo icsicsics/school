@@ -8,7 +8,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class MyChildBodyWidget extends StatefulWidget {
   final MyChildPointsBloc bloc;
-
   const MyChildBodyWidget({Key? key, required this.bloc}) : super(key: key);
 
   @override

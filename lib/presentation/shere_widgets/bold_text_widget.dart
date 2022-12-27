@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/check_language_for_font_bold_weight.dart';
 import 'package:schools/core/utils/themes/font_family.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 
 class BoldTextWidget extends StatelessWidget {
   final String? text;
