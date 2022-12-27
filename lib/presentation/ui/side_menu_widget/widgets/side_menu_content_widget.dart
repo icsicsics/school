@@ -73,7 +73,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                               SideMenuAboutAppEvent(),
                             ),
                           ),
-                          const SizedBox(height: 100),
+                          const SizedBox(height: 70),
                           const SideMenuSocialMediaWidget(),
                         ],
                       ),

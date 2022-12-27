@@ -50,10 +50,16 @@ class SideMenuHeader extends StatelessWidget {
                   text: "Eiz el Deen Mahmoud",
                   fontSize: 15,
                   color: ColorsManager.blackColor),
+              const SizedBox(
+                height: 10,
+              ),
               const BoldTextWidget(
                   text: "Math Teacher",
                   fontSize: 12,
                   color: ColorsManager.grayColor),
+              const SizedBox(
+                height: 10,
+              ),
               const BoldTextWidget(
                   text: "Collaboration Home",
                   fontSize: 12,

@@ -24,7 +24,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
               ],
               stops: [0.5, 0.8],
             )),
-        height: MediaQuery.of(context).size.height / 3,
+        height: 250,
         child: Stack(
           children: [
             ClipPath(
@@ -37,7 +37,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 5),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
@@ -45,12 +45,12 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                           text: "Grade 2 , Section A",
                           fontSize: 18,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 8),
+                      SizedBox(height: 6),
                       MediumTextWidget(
                           text: "Math Class",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 8),
+                      SizedBox(height: 6),
                       MediumTextWidget(
                           text: "20 Students",
                           fontSize: 16,

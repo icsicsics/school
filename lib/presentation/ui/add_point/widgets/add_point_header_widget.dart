@@ -32,7 +32,7 @@ class AddPointHeaderWidget extends StatelessWidget {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 25),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
@@ -40,11 +40,12 @@ class AddPointHeaderWidget extends StatelessWidget {
                           text: "Grade 2 , Section A",
                           fontSize: 18,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 8),
+                      SizedBox(height: 6),
                       MediumTextWidget(
                           text: "Math Class",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
+                      SizedBox(height: 6),
                       MediumTextWidget(
                           text: "20 Students",
                           fontSize: 16,
