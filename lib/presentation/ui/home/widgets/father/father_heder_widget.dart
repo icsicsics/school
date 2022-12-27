@@ -24,20 +24,20 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
               ],
               stops: [0.5, 0.8],
             )),
-        height: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 3,
         child: Stack(
           children: [
             ClipPath(
                 clipper: GeneralCurve(),
                 child: Container(
-                  height: 230,
+                  height: 150,
                   color: ColorsManager.whiteColor,
                 )
             ),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 25),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
@@ -50,6 +50,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                           text: "Math Class",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
+                      SizedBox(height: 8),
                       MediumTextWidget(
                           text: "20 Students",
                           fontSize: 16,
@@ -60,12 +61,12 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
             Align(
               alignment: Alignment.center,
               child: SizedBox(
-                height: 320,
-                width: 220,
+                height: 200,
+                width: 100,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 80),
+                  padding: const EdgeInsets.only(bottom: 70),
                   child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(60)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       child: Image.asset(ImagesPath.schoolItem,
                           fit: BoxFit.fitHeight)),
                 ),

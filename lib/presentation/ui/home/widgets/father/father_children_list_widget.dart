@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
-import 'package:schools/presentation/ui/add_point/widgets/add_point_item_widget.dart';
+import 'package:schools/presentation/ui/home/widgets/father/father_child_item_widget.dart';
 
 class FatherChildrenListWidget extends StatefulWidget {
   const FatherChildrenListWidget({Key? key}) : super(key: key);
@@ -22,13 +22,13 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
     return Expanded(
       child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, mainAxisSpacing: 5),
+              crossAxisCount: 2, mainAxisSpacing: 5),
           itemCount: list.length,
           padding: const EdgeInsets.all(5),
           shrinkWrap: false,
           semanticChildCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return AddPointItemWidget(
+            return FatherChildItemWidget(
               childName: list[index],
               onTapStar: () => _onTap(list[index]),
               onTapChild: (){

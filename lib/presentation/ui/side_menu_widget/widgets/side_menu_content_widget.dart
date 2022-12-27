@@ -19,69 +19,72 @@ class SideMenuContentWidget extends StatefulWidget {
 class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SizedBox(
+    return  SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(
-          children: [
-            SideMenuHeader(bloc: widget.bloc, language: widget.language),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [
-                        ColorsManager.primaryColor,
-                        ColorsManager.secondaryColor,
-                      ],
-                      stops: [0.5, 0.8],
+            children: [
+              SideMenuHeader(bloc: widget.bloc, language: widget.language),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          ColorsManager.primaryColor,
+                          ColorsManager.secondaryColor,
+                        ],
+                        stops: [0.5, 0.8],
+                      ),
+                      borderRadius: widget.language == "en"
+                          ? const BorderRadius.only(
+                              bottomRight: Radius.circular(100))
+                          : const BorderRadius.only(
+                              bottomRight: Radius.circular(0))),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: SingleChildScrollView(
+
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SideMenuItem(
+                            icon: Icons.home_filled,
+                            title: S.of(context).schoolHomes,
+                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                              SideMenuHomeEvent(),
+                            ),
+                          ),
+                          SideMenuItem(
+                            icon: Icons.person,
+                            title: S.of(context).myProfile,
+                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                              SideMenuUserProfileEvent(),
+                            ),
+                          ),
+                          SideMenuItem(
+                              icon: Icons.mail,
+                              title: S.of(context).contactUs,
+                              onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                                  .add(SideMenuContactUsEvent())),
+                          SideMenuItem(
+                            icon: Icons.info_outline,
+                            title: S.of(context).aboutApp,
+                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                              SideMenuAboutAppEvent(),
+                            ),
+                          ),
+                          const SizedBox(height: 100),
+                          const SideMenuSocialMediaWidget(),
+                        ],
+                      ),
                     ),
-                    borderRadius: widget.language == "en"
-                        ? const BorderRadius.only(
-                            bottomRight: Radius.circular(100))
-                        : const BorderRadius.only(
-                            bottomRight: Radius.circular(0))),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SideMenuItem(
-                        icon: Icons.home_filled,
-                        title: S.of(context).schoolHomes,
-                        onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
-                          SideMenuHomeEvent(),
-                        ),
-                      ),
-                      SideMenuItem(
-                        icon: Icons.person,
-                        title: S.of(context).myProfile,
-                        onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
-                          SideMenuUserProfileEvent(),
-                        ),
-                      ),
-                      SideMenuItem(
-                          icon: Icons.mail,
-                          title: S.of(context).contactUs,
-                          onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                              .add(SideMenuContactUsEvent())),
-                      SideMenuItem(
-                        icon: Icons.info_outline,
-                        title: S.of(context).aboutApp,
-                        onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
-                          SideMenuAboutAppEvent(),
-                        ),
-                      ),
-                      const SizedBox(height: 100),
-                      const SideMenuSocialMediaWidget(),
-                    ],
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          
         ),
-      ),
+
     );
   }
 }
