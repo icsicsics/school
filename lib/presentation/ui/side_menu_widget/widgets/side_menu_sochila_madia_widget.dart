@@ -29,5 +29,10 @@ class _SideMenuSocialMediaWidgetState extends State<SideMenuSocialMediaWidget> {
   }
 
   Widget _item({required Function() onTap, required IconData icon}) =>
-      IconButton(onPressed: onTap, icon: Icon(icon, color: Colors.white));
+       Padding(
+         padding: const EdgeInsets.all(8),
+         child: InkWell(
+          onTap: onTap,
+            child: Icon(icon, color: Colors.white)),
+       );
 }
