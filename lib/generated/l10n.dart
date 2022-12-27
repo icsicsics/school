@@ -540,10 +540,10 @@ class S {
     );
   }
 
-  /// `reward`
+  /// `Reward`
   String get reward {
     return Intl.message(
-      'reward',
+      'Reward',
       name: 'reward',
       desc: '',
       args: [],

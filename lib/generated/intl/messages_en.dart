@@ -69,7 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please type verification code sent to your\nphone"),
         "points": MessageLookupByLibrary.simpleMessage("Points"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
-        "reward": MessageLookupByLibrary.simpleMessage("reward"),
+        "reward": MessageLookupByLibrary.simpleMessage("Reward"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("School Homes"),
         "sections": MessageLookupByLibrary.simpleMessage("Sections"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),
