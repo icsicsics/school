@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
           builder: (context, state) {
             return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                title: 'School',
+                title: 'Ejabi',
                 theme: getApplicationTheme(state.languageCode),
                 localizationsDelegates: const [
                   S.delegate,
