@@ -18,14 +18,14 @@ class FatherChildItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 200,
       width: 150,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 9,
+            height:150,
             child: Stack(
               children: [
                 Align(
@@ -41,7 +41,7 @@ class FatherChildItemWidget extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 40),
+                  padding: const EdgeInsets.only(right: 40,bottom: 30),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
