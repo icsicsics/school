@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
-import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class SchoolHousesCardItemWidget extends StatelessWidget {
@@ -43,32 +42,24 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       icon,
-                      hasIcon2
-                          ? Row(
-                              children: [
-                                Expanded(
-                                  child: MediumTextWidget(
-                                      text: label,
-                                      fontSize: 15,
-                                      color: ColorsManager.blackColor),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: icon2,
-                                )
-                              ],
-                            )
-                          : MediumTextWidget(
+                      const SizedBox(height: 5),
+                      Row(
+                        children: [
+                          MediumTextWidget(
                               text: label,
                               fontSize: 15,
                               color: ColorsManager.blackColor),
+                          const SizedBox(width: 20),
+                          Visibility(visible: hasIcon2, child: icon2),
+                        ],
+                      ),
                       _line(),
                       _rowOfTitleAndValue(
                           title: S.of(context).students, value: studentsValue),
                       _rowOfTitleAndValue(
                           title: S.of(context).teachers, value: teachersValue),
                       const SizedBox(
-                        height: 15,
+                        height: 30,
                       ),
                       _rowOfTitleAndValue(
                           title: S.of(context).points,
@@ -97,7 +88,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
           const SizedBox(
             width: 5,
           ),
-          BoldTextWidget(
+          MediumTextWidget(
             text: title,
             fontSize: titleSize,
             color: titleColor,
@@ -105,11 +96,9 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
         ],
       );
 
-  Widget _line() => const Padding(
-        padding: EdgeInsets.only(top: 2),
-        child: Divider(
-          color: ColorsManager.darkGrayColor,
-          endIndent: 100,
-        ),
+  Widget _line() => const Divider(
+        thickness: 1,
+        color: ColorsManager.darkGrayColor,
+        endIndent: 100,
       );
 }

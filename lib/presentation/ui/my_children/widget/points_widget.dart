@@ -55,6 +55,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                       size: 15,
                       color: ColorsManager.yellow,
                     ),
+                    SizedBox(width: 5),
                     MediumTextWidget(
                         text: points,
                         fontSize: 14,
