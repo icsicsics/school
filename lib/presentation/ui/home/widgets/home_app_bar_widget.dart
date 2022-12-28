@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
@@ -57,14 +58,10 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
+
                     InkWell(
                         onTap: () => _changeLanguage(),
-                        child: MediumTextWidget(
-                            text: widget.language == "en"
-                                ? S.of(context).arabic
-                                : S.of(context).english,
-                            fontSize: 15,
-                            color: ColorsManager.whiteColor)),
+                        child:_languageImage()),
                     InkWell(
                       onTap: widget.onTapNotifications,
                       child: SizedBox(
@@ -113,6 +110,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       ),
     );
   }
+
+  Widget _languageImage()=>
+    widget.language=="en"? Image.asset(ImagesPath.ar,height: 35,width: 35):Image.asset(ImagesPath.en,height: 35,width: 35,);
 
   void _changeLanguage() {
     if (widget.language == "en") {
