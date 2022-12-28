@@ -52,7 +52,10 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                                       fontSize: 15,
                                       color: ColorsManager.blackColor),
                                 ),
-                                icon2
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: icon2,
+                                )
                               ],
                             )
                           : MediumTextWidget(
