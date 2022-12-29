@@ -21,6 +21,7 @@ class _AddPointContentWidgetState extends State<AddPointContentWidget> {
         const AddPointHeaderWidget(),
         AddPointListWidget(
           addPointBloc: widget.addPointBloc,
+
         )
       ],
     );

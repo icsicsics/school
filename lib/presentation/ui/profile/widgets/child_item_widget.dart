@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 
@@ -23,8 +24,8 @@ class ChildItemWidget extends StatelessWidget {
             child:
 
             Container(
-                height: 35,
-                width: 35,
+                height: 30,
+                width: 30,
                 decoration: const BoxDecoration(
                     color: ColorsManager.whiteColor,
                     borderRadius:
@@ -33,24 +34,14 @@ class ChildItemWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(3),
                   child: Container(
                     decoration: const BoxDecoration(
-                        color: ColorsManager.starBackground,
                         borderRadius:
                         BorderRadius.all(Radius.circular(50))),
                     child:Container(
-                        height: 20,
-                        width: 20,
-                        color: Colors.transparent,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: const [
-                            Icon(Icons.star,
-                                color: ColorsManager.whiteColor,
-                                size: 25),
-                            Icon(Icons.star,
-                                color: ColorsManager.yellow, size: 19),
-                          ],
-                        ),
-                      ),
+                      height: 20,
+                      width: 20,
+                      color: Colors.transparent,
+                      child:SvgPicture.asset(ImagesPath.star, height: 18, width: 18),
+                    ),
                     ),
                 )),
 

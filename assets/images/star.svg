@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39.89" height="44.5" viewBox="0 0 39.89 44.5">
+  <g id="svgexport-7" transform="translate(-1.825 -1.986)">
+    <g id="add-favorites">
+      <path id="Path_6" data-name="Path 6" d="M41.41,17.46,36,22.72s-13.71,11-13.76,11l-11.7,6.15a1.12,1.12,0,0,1-.47.11,1.005,1.005,0,0,1-.99-1.19l2.15-12.51-9.1-8.86a1,1,0,0,1,.56-1.71l12.57-1.82L20.88,2.55a1,1,0,0,1,1.8,0l5.61,11.38,12.56,1.82a1,1,0,0,1,.56,1.71Z" fill="#fbb03b"/>
+      <path id="Path_7" data-name="Path 7" d="M30,20A10,10,0,1,0,40,30,10,10,0,0,0,30,20Z" transform="translate(-0.175 5.986)" fill="#29aae1" stroke="#fff" stroke-width="1"/>
+      <path id="Path_8" data-name="Path 8" d="M35.587,30.425H31.9V26.737a.737.737,0,0,0-1.475,0v3.687H26.737a.737.737,0,0,0,0,1.475h3.687v3.687a.737.737,0,0,0,1.475,0V31.9h3.687a.737.737,0,0,0,0-1.475Z" transform="translate(-1.175 4.986)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

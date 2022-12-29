@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
@@ -120,23 +122,13 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
             padding: const EdgeInsets.all(2),
             child: Container(
               decoration: const BoxDecoration(
-                  color: ColorsManager.starBackground,
                   borderRadius:
                   BorderRadius.all(Radius.circular(50))),
               child:  Container(
-                  height: 20,
-                  width: 20,
-                  color: Colors.transparent,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: const [
-                      Icon(Icons.star,
-                          color: ColorsManager.whiteColor,
-                          size: 25),
-                      Icon(Icons.star,
-                          color: ColorsManager.yellow, size: 19),
-                    ],
-                  ),
+                height: 20,
+                width: 20,
+                color: Colors.transparent,
+                child: SvgPicture.asset(ImagesPath.star, height: 25, width: 25),
               ),
             ),
           )),
