@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
-  const ProfileHeaderWidget({Key? key}) : super(key: key);
+  final ProfileBloc bloc;
+  final String profileImage;
+
+  const ProfileHeaderWidget(
+      {Key? key, required this.bloc, required this.profileImage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +26,13 @@ class ProfileHeaderWidget extends StatelessWidget {
         height: 350,
         child: Stack(
           children: [
-            ClipPath(
-                clipper: GeneralCurve(),
-                child: Container(
-                  height: 200,
+            Container(
+              height: 150,
+              decoration: const BoxDecoration(
                   color: ColorsManager.whiteColor,
-                )
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.elliptical(200.0, 15.0),
+                      bottomLeft: Radius.elliptical(200.0, 15.0))),
             ),
             Align(
                 alignment: Alignment.bottomCenter,
@@ -46,59 +52,63 @@ class ProfileHeaderWidget extends StatelessWidget {
                     ],
                   ),
                 )),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 70),
-                child: SizedBox(
+            Padding(
+              padding: const EdgeInsets.only(bottom: 60),
+              child: Stack(
+                children: [
+                  Center(
+                      child: SizedBox(
+                    width: 150,
                     height: 150,
-                    width: 160,
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 150,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: ColorsManager.whiteColor, width: 3),
-                            borderRadius: BorderRadius.circular(100),
+                    child: profileImageWidget(),
+                  )),
+                  GestureDetector(
+                    onTap: () => bloc.add(OpenCameraGalleryBottomSheetEvent()),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 80.5, left: 125.0),
+                      child: Center(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: ColorsManager.whiteColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30))),
+                          child: const Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Icon(Icons.camera_alt,
+                                color: ColorsManager.yellow, size: 27),
                           ),
-                          child: Center(
-                              child: Container(
-                            width: 150,
-                            height: 150,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                image: const DecorationImage(
-                                    image: AssetImage(ImagesPath.schoolItem),
-                                    fit: BoxFit.fill)),
-                          )),
                         ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 20),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    color: ColorsManager.whiteColor,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15))),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(4),
-                                  child: Icon(Icons.camera_alt,
-                                      color: ColorsManager.yellow, size: 27),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    )),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
           ],
         ));
   }
+
+  Widget profileImageWidget() {
+    return profileImage.isNotEmpty
+        ? ClipOval(
+            child: Image.network(
+              profileImage,
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) =>
+                  _buildProfilePlaceHolder(),
+            ),
+          )
+        : Container(
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                image: const DecorationImage(
+                    image: AssetImage(ImagesPath.schoolItem),
+                    fit: BoxFit.fill)),
+          );
+  }
+
+  Image _buildProfilePlaceHolder() =>
+      Image.asset(ImagesPath.schoolItem, fit: BoxFit.fill);
 }

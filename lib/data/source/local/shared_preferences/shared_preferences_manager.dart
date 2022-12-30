@@ -100,4 +100,13 @@ class SharedPreferencesManager {
     await SharedPreferencesUtils.setBool(SharedPreferencesKeys.isFather,
         data: isFather);
   }
+  Future<bool> setProfileImage(String data) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.profileImage, data);
+  }
+
+  Future<String?> getProfileImage() async {
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.profileImage);
+  }
 }

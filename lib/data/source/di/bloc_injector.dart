@@ -14,15 +14,14 @@ import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 
 Future<void> initializeBlocDependencies() async {
-  injector.registerFactory<LocalizationCubit>(
-      () => LocalizationCubit(injector(), injector()));
+  injector.registerFactory<LocalizationCubit>(() => LocalizationCubit(injector(), injector()));
   injector.registerFactory<HomeBloc>(() => HomeBloc(injector(), injector()));
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
   injector.registerFactory<VerifyBloc>(() => VerifyBloc(injector()));
   injector.registerFactory<NotificationsBloc>(() => NotificationsBloc(injector()));
   injector.registerFactory<SideMenuBloc>(() => SideMenuBloc(injector()));
   injector.registerFactory<AddPointBloc>(() => AddPointBloc());
-  injector.registerFactory<ProfileBloc>(() => ProfileBloc());
+  injector.registerFactory<ProfileBloc>(() => ProfileBloc(injector(),injector(),injector()));
   injector.registerFactory<SchoolHousesBloc>(() => SchoolHousesBloc());
   injector.registerFactory<AboutBloc>(() => AboutBloc());
   injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc());
