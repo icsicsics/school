@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "and": MessageLookupByLibrary.simpleMessage("و"),
         "appreciative": MessageLookupByLibrary.simpleMessage("تقديري"),
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
+        "camera": MessageLookupByLibrary.simpleMessage("كاميره"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
         "classHouses": MessageLookupByLibrary.simpleMessage("منازل الصف"),
@@ -44,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),
+        "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
         "honesty": MessageLookupByLibrary.simpleMessage("أمانة"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage("قرأت وأقبل ب"),

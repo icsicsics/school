@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
@@ -27,22 +28,18 @@ class CameraGalleryBottomSheetWidget extends StatelessWidget {
           const SizedBox(height: 5),
           textWithIconWidget(
               icon: Icons.camera_alt_rounded,
-              text: "Camera",
-              onTap: () {
-                BlocProvider.of<ProfileBloc>(context)
-                    .add(SelectProfileImageEvent(source: ImageSource.camera));
-              },
+              text: S.of(context).camera,
+              onTap: () => BlocProvider.of<ProfileBloc>(context)
+                  .add(SelectProfileImageEvent(source: ImageSource.camera)),
               context: context),
           const SizedBox(height: 12),
           const Divider(height: 2, thickness: 1),
           const SizedBox(height: 12),
           textWithIconWidget(
               icon: Icons.camera,
-              text: "Gallery",
-              onTap: () {
-                BlocProvider.of<ProfileBloc>(context).add(
-                     SelectProfileImageEvent(source: ImageSource.gallery));
-              },
+              text: S.of(context).gallery,
+              onTap: () => BlocProvider.of<ProfileBloc>(context)
+                  .add(SelectProfileImageEvent(source: ImageSource.gallery)),
               context: context)
         ],
       ),
@@ -60,7 +57,8 @@ class CameraGalleryBottomSheetWidget extends StatelessWidget {
         children: [
           Icon(icon),
           const SizedBox(width: 8),
-          MediumTextWidget(text: text, fontSize: 14, color: ColorsManager.mediumGrayColor)
+          MediumTextWidget(
+              text: text, fontSize: 14, color: ColorsManager.mediumGrayColor)
         ],
       ),
     );

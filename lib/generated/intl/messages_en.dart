@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appreciative": MessageLookupByLibrary.simpleMessage("Appreciative"),
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
         "chooseWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
@@ -46,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your Phone Number"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage(" I have read and accept the"),
