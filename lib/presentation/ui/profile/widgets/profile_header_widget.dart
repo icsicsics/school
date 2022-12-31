@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
@@ -91,8 +93,8 @@ class ProfileHeaderWidget extends StatelessWidget {
   Widget profileImageWidget() {
     return profileImage.isNotEmpty
         ? ClipOval(
-            child: Image.network(
-              profileImage,
+            child: Image.file(
+              File(profileImage),
               fit: BoxFit.fill,
               errorBuilder: (context, error, stackTrace) =>
                   _buildProfilePlaceHolder(),
@@ -112,3 +114,12 @@ class ProfileHeaderWidget extends StatelessWidget {
   Image _buildProfilePlaceHolder() =>
       Image.asset(ImagesPath.schoolItem, fit: BoxFit.fill);
 }
+
+
+
+// child: Image.file(
+//               File(profileImage),
+//               fit: BoxFit.fill,
+//               errorBuilder: (context, error, stackTrace) =>
+//                   _buildProfilePlaceHolder(),
+//             ),

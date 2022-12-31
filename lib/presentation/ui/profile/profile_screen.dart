@@ -24,6 +24,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   @override
   void initState() {
+    _bloc.add(GetProfileImageEvent());
     _bloc.add(GetIsFatherEvent());
     super.initState();
   }
@@ -46,7 +47,6 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           hideLoading();
           _getProfileImage();
         } else if (state is SuccessGetProfileImageState) {
-          Navigator.pop(context);
           _profileImage = state.image;
         }
       },
@@ -69,6 +69,9 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   void _getProfileImage() {
     _bloc.add(GetProfileImageEvent());
+    Navigator.pop(context);
+
+
   }
 
   PreferredSizeWidget _appBar() => AppBar(
