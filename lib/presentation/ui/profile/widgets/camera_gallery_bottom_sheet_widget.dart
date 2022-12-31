@@ -15,13 +15,22 @@ class CameraGalleryBottomSheetWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.clear))
+            ],
+          ),
+          const SizedBox(height: 5),
           textWithIconWidget(
-              icon:Icons.camera_alt_rounded,
-              text:"Camera",
+              icon: Icons.camera_alt_rounded,
+              text: "Camera",
               onTap: () {
-                BlocProvider.of<ProfileBloc>(context).add(
-                     SelectProfileImageEvent(source: ImageSource.camera));
+                BlocProvider.of<ProfileBloc>(context)
+                    .add(SelectProfileImageEvent(source: ImageSource.camera));
               },
               context: context),
           const SizedBox(height: 12),
