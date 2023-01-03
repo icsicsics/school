@@ -33,3 +33,6 @@ class GetLanguageSuccessState extends SideMenuState {
   final String language;
   GetLanguageSuccessState({required this.language});
 }
+
+class LogoutState extends SideMenuState {}
+

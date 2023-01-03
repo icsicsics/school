@@ -76,7 +76,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                                   child: const Icon(
                                     Icons.mail,
                                     color: ColorsManager.whiteColor,
-                                    size: 25,
+                                    size: 30,
                                   ),
                                 ),
                               ),
@@ -87,7 +87,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                                     child: const Icon(
                                       Icons.mail,
                                       color: ColorsManager.whiteColor,
-                                      size: 25,
+                                      size: 30,
                                     ),
                                   )),
                               Align(

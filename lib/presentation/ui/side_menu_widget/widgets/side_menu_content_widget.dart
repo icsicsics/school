@@ -21,7 +21,8 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
   Widget build(BuildContext context) {
     return  SizedBox(
         height: MediaQuery.of(context).size.height,
-        child: Column(
+        child: Stack(children: [
+          Column(
             children: [
               SideMenuHeader(bloc: widget.bloc, language: widget.language),
               Expanded(
@@ -42,7 +43,6 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: SingleChildScrollView(
-
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,8 +73,13 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                               SideMenuAboutAppEvent(),
                             ),
                           ),
-                          const SizedBox(height: 60),
-                          const SideMenuSocialMediaWidget(),
+                          SideMenuItem(
+                            icon: Icons.logout_sharp,
+                            title:S.of(context).logout,
+                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                              LogoutEvent(),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -82,9 +87,14 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                 ),
               ),
             ],
-          
-        ),
-
-    );
+          ),
+          const Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 80),
+              child: SideMenuSocialMediaWidget(),
+            ),
+          )
+        ]));
   }
 }

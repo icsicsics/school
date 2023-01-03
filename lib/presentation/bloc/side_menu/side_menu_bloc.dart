@@ -21,6 +21,7 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
     on<SideMenuAboutAppEvent>(_onSideMenuAboutAppEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
+    on<LogoutEvent>(_onLogoutEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -61,5 +62,9 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
       GetLanguageEvent event, Emitter<SideMenuState> emit) async {
     emit(GetLanguageSuccessState(
         language: await _getLanguageCodeUseCase() ?? ''));
+  }
+
+  FutureOr<void> _onLogoutEvent(LogoutEvent event, Emitter<SideMenuState> emit) {
+    emit(LogoutState());
   }
 }

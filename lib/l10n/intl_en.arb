@@ -52,5 +52,9 @@
 "chooseWhyLeenDeserveThisPoint":"Choose Why Leen Deserve this point",
 "typeWhyLeenDeserveThisPoint":"Type Why Leen Deserve this point",
 "camera":"Camera",
-"gallery":"Gallery"
+"gallery":"Gallery",
+"logout":"Logout",
+ "areYouSure":"Are you sure ?",
+ "yes":"Yes",
+ "no":"No"
 }

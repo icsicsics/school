@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "and": MessageLookupByLibrary.simpleMessage("و"),
         "appreciative": MessageLookupByLibrary.simpleMessage("تقديري"),
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
         "camera": MessageLookupByLibrary.simpleMessage("كاميره"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
@@ -58,12 +59,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("التوجيه المدرسي التفاعلي"),
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "logout": MessageLookupByLibrary.simpleMessage("خروج"),
         "me": MessageLookupByLibrary.simpleMessage("انا"),
         "mobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
         "myChildren": MessageLookupByLibrary.simpleMessage("أطفالي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "no": MessageLookupByLibrary.simpleMessage("لا"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
@@ -86,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اكتب لماذا تستحق هذه النقطة"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("تحقق من رقمك"),
-        "weather": MessageLookupByLibrary.simpleMessage("طقس")
+        "weather": MessageLookupByLibrary.simpleMessage("طقس"),
+        "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };
 }

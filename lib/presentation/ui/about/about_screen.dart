@@ -40,7 +40,7 @@ class _AboutScreenStatus extends BaseState<AboutScreen> {
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.mail,
-                color: ColorsManager.secondaryColor, size: 25),
+                color: ColorsManager.secondaryColor, size: 30),
           ),
         ],
         title: BoldTextWidget(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_logout_function.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
@@ -58,6 +59,9 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                           _isFather = state.isFather;
                         } else if (state is SwitchAccountState) {
                           _switchAccount(context);
+                        } else if (state is LogoutState) {
+                          showLogoutFunction(
+                              context: context, yesAction: () => _logout());
                         }
                       },
                       builder: (context, state) {
@@ -97,5 +101,14 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
             builder: (_) =>
                 LoginScreen(isFather: _isFather == true ? false : true)),
         (route) => false);
+  }
+
+  void _logout() {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (_) =>
+                LoginScreen(isFather: _isFather == true ? false : true)),
+            (route) => false);
   }
 }

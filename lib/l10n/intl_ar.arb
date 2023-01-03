@@ -52,5 +52,9 @@
 "chooseWhyLeenDeserveThisPoint ":"اختر لماذا تستحق هذه النقطة",
 "typeWhyLeenDeserveThisPoint":"اكتب لماذا تستحق هذه النقطة",
 "camera":"كاميره",
-"gallery":"المعرض"
+"gallery":"المعرض",
+ "logout":"خروج",
+ "areYouSure":"هل أنت متأكد؟",
+  "yes":"نعم",
+  "no":"لا"
 }

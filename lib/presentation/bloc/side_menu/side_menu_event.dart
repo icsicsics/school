@@ -20,3 +20,6 @@ class SwitchAccountEvent extends SideMenuEvent {}
 class GetLanguageEvent extends SideMenuEvent {
   GetLanguageEvent();
 }
+
+class LogoutEvent extends SideMenuEvent {}
+

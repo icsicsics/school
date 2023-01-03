@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appreciative": MessageLookupByLibrary.simpleMessage("Appreciative"),
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure ?"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
@@ -60,11 +61,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Interactive school guidance"),
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "me": MessageLookupByLibrary.simpleMessage("Me"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "next": MessageLookupByLibrary.simpleMessage(" Next"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
@@ -87,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Type Why Leen Deserve this point"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("Verify your Number"),
-        "weather": MessageLookupByLibrary.simpleMessage("Weather")
+        "weather": MessageLookupByLibrary.simpleMessage("Weather"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }
