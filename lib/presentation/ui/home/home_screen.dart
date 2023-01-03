@@ -48,6 +48,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
               language: _language,
             ),
             body: HomeContentWidget(
+
                 globalKey: _key,
                 isFather: _isFather,
                 bloc: _homeBloc,

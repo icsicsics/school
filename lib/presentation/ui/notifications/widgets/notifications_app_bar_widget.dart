@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
@@ -21,13 +22,11 @@ class NotificationsAppBarWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 50),
         child: Row(
           children: [
-            IconButton(
-                onPressed: onTapMenu,
-                icon: const Icon(
-                  Icons.menu,
-                  color: ColorsManager.secondaryColor,
-                  size: 30,
-                )),
+            const  SizedBox(width: 5,),
+            InkWell(
+                onTap: onTapMenu,
+                child: Image.asset(ImagesPath.menu,width: 30,height: 30, color: ColorsManager.primaryColor)),
+            const  SizedBox(width: 5,),
              Expanded(
               child: MediumTextWidget(
                   text: isFather

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
@@ -38,16 +39,13 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       )),
       height: MediaQuery.of(context).size.height / 6,
       child: Padding(
-        padding: const EdgeInsets.only(top: 50),
+        padding: const EdgeInsets.only(top: 50,left: 5),
         child: Row(
           children: [
-            IconButton(
-                onPressed: widget.onTapMenu,
-                icon: const Icon(
-                  Icons.menu,
-                  color: ColorsManager.whiteColor,
-                  size: 30,
-                )),
+            InkWell(
+              onTap: widget.onTapMenu,
+                child: Image.asset(ImagesPath.menu,width: 30,height: 30, color: ColorsManager.whiteColor)),
+           const  SizedBox(width: 5,),
             Expanded(
               child: MediumTextWidget(
                   text: S.of(context).interactiveSchoolCounselling,
@@ -58,7 +56,6 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
-
                     InkWell(
                         onTap: () => _changeLanguage(),
                         child:_languageImage()),
