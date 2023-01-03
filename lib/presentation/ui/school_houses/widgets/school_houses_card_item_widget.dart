@@ -98,7 +98,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
 
   Widget _line() => const Divider(
         thickness: 1,
-        color: ColorsManager.darkGrayColor,
+        color: ColorsManager.grayColor,
         endIndent: 100,
       );
 }
