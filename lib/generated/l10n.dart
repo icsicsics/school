@@ -270,10 +270,10 @@ class S {
     );
   }
 
-  /// `Add Point`
+  /// `Add a Point`
   String get addPoint {
     return Intl.message(
-      'Add Point',
+      'Add a Point',
       name: 'addPoint',
       desc: '',
       args: [],
