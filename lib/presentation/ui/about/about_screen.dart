@@ -35,7 +35,7 @@ class _AboutScreenStatus extends BaseState<AboutScreen> {
           icon: const Icon(Icons.arrow_back_ios,
               color: ColorsManager.secondaryColor, size: 25),
         ),
-        centerTitle: true,
+        centerTitle: false,
         actions: [
           IconButton(
             onPressed: () {},

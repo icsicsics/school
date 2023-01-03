@@ -43,7 +43,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           icon: const Icon(Icons.arrow_back_ios,
               color: ColorsManager.secondaryColor, size: 25),
         ),
-        centerTitle: true,
+    centerTitle: false,
         actions: [
           IconButton(
             onPressed: () => BlocProvider.of<SchoolHousesBloc>(context)
