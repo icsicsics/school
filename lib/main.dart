@@ -21,6 +21,7 @@ import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
+import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';
@@ -53,6 +54,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
         providers: [
           BlocProvider<LocalizationCubit>(create: (context) =>injector()),
+          BlocProvider<SplashBloc>(create: (context) => injector()),
           BlocProvider<LoginBloc>(create: (BuildContext context) => injector()),
           BlocProvider<VerifyBloc>(create: (BuildContext context) => injector()),
           BlocProvider<HomeBloc>(create: (BuildContext context) => injector()),

@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
+import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/splash/widgets/splash_content_widget.dart';
 
@@ -20,10 +22,21 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   }
 
   @override
-  Widget baseBuild(BuildContext context) => const SplashContentWidget();
+  Widget baseBuild(BuildContext context) {
+    return BlocConsumer<SplashBloc, SplashState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return const SplashContentWidget();
+      },
+    );
+  }
 
   void _navigationToLoginScreen() => Timer(
       const Duration(seconds: 3),
       () => Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => const  LoginScreen(isFather: false))));
+          context,
+          MaterialPageRoute(
+              builder: (_) => const LoginScreen(isFather: false))));
 }
