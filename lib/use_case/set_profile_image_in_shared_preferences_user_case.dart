@@ -7,5 +7,6 @@ class SetImageProfileInSharedPreferencesUseCase {
 
   Future<bool> call({required String profileImage}) async {
     return await sharedPreferenceManager.setProfileImage(profileImage);
+
   }
 }

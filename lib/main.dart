@@ -8,6 +8,7 @@ import 'package:schools/core/notification_serves.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/themes/app_them.dart';
 import 'package:schools/data/source/di/injector.dart';
+import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
@@ -26,6 +27,7 @@ import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';
 void main() async {
+  DioHelper.init();
   await initializeDependencies();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

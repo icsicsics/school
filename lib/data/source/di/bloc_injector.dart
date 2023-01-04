@@ -17,7 +17,7 @@ import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 Future<void> initializeBlocDependencies() async {
   injector.registerFactory<LocalizationCubit>(
       () => LocalizationCubit(injector(), injector()));
-  injector.registerFactory<SplashBloc>(() => SplashBloc());
+  injector.registerFactory<SplashBloc>(() => SplashBloc(injector()));
   injector.registerFactory<HomeBloc>(() => HomeBloc(injector(), injector()));
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
   injector.registerFactory<VerifyBloc>(() => VerifyBloc(injector()));

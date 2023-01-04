@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
@@ -15,9 +13,11 @@ class SplashScreen extends BaseStatefulWidget {
 }
 
 class _SplashScreenState extends BaseState<SplashScreen> {
+  SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
+
   @override
   void initState() {
-    _navigationToLoginScreen();
+    _bloc.add(SplashGetTokenEvent());
     super.initState();
   }
 
@@ -25,7 +25,14 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is SplashLoadingState) {
+          showLoading();
+        } else if (state is SplashGetTokenSuccessState) {
+          _bloc.add(SplashSaveTokenEvent(token: state.response.data!.token!));
+        } else if (state is SplashSaveTokenSuccessState) {
+          hideLoading();
+          _navigationToLoginScreen();
+        }
       },
       builder: (context, state) {
         return const SplashContentWidget();
@@ -33,10 +40,8 @@ class _SplashScreenState extends BaseState<SplashScreen> {
     );
   }
 
-  void _navigationToLoginScreen() => Timer(
-      const Duration(seconds: 3),
-      () => Navigator.pushReplacement(
+  void _navigationToLoginScreen() => Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (_) => const LoginScreen(isFather: false))));
+              builder: (_) => const LoginScreen(isFather: false)));
 }

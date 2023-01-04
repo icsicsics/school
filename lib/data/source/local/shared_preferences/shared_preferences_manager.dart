@@ -16,7 +16,7 @@ class SharedPreferencesManager {
         SharedPreferencesKeys.appLanguage, languageCode);
   }
 
-   Future<String?> getLanguageCode() async {
+  Future<String?> getLanguageCode() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.appLanguage);
   }
@@ -100,6 +100,7 @@ class SharedPreferencesManager {
     await SharedPreferencesUtils.setBool(SharedPreferencesKeys.isFather,
         data: isFather);
   }
+
   Future<bool> setProfileImage(String data) async {
     return await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.profileImage, data);
@@ -108,5 +109,14 @@ class SharedPreferencesManager {
   Future<String?> getProfileImage() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.profileImage);
+  }
+
+  Future<bool> setToken(String token) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.token, token);
+  }
+
+  Future<String?> getToken() async {
+    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.token);
   }
 }
