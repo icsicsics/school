@@ -4,6 +4,12 @@ abstract class ProfileEvent {}
 
 class GetProfileEvent extends ProfileEvent {}
 
+class GetTeacherInfoEvent extends ProfileEvent {
+  final String token;
+
+  GetTeacherInfoEvent({required this.token});
+}
+
 class GetIsFatherEvent extends ProfileEvent {}
 
 class NavigateToNotificationScreenEvent extends ProfileEvent {}
@@ -15,11 +21,13 @@ class SelectProfileImageEvent extends ProfileEvent {
 
   SelectProfileImageEvent({this.source});
 }
+
 class UploadProfileImageEvent extends ProfileEvent {
   final XFile image;
 
   UploadProfileImageEvent({required this.image});
-
 }
+
 class GetProfileImageEvent extends ProfileEvent {}
 
+class GetTokenEvent extends ProfileEvent {}

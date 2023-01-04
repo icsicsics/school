@@ -25,6 +25,8 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     SplashState state = (await repository.getToken()) as SplashState;
     if (state is SplashGetTokenSuccessState) {
       emit(SplashGetTokenSuccessState(response: state.response));
+    }else if (state is SplashGetTokenErrorState){
+      emit(SplashGetTokenErrorState(error: state.error));
     }
   }
 

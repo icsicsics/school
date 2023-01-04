@@ -16,7 +16,16 @@ class DioHelper {
     return dio.post(ApiKey.getToken,
         data: GetTokenRequest(
           email: "ndannoun@transition-se.com",
-          password:"Trans@123",
+          password: "Trans@123",
         ));
+  }
+
+  static Future<Response> getTeacherInfo(token) async {
+    return dio.get(ApiKey.teacherInfo,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        }));
   }
 }

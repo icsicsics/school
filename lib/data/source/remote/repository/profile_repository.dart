@@ -1,1 +1,5 @@
-abstract class BaseProfileRepository {}
+import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
+
+abstract class BaseProfileRepository {
+  Future<ProfileState> getTeacherInfo(String token);
+}

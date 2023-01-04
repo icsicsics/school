@@ -3,8 +3,12 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
+import 'package:schools/data/source/remote/repository/profile_repository.dart';
+import 'package:schools/presentation/bloc/profile/profile_repository_imp.dart';
 import 'package:schools/use_case/get_profile_image_from_shared_preferences_user_case.dart';
 import 'package:schools/use_case/get_profile_image_use_case.dart';
+import 'package:schools/use_case/get_token_use_case.dart';
 import 'package:schools/use_case/set_profile_image_in_shared_preferences_user_case.dart';
 
 part 'profile_event.dart';
@@ -12,14 +16,19 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final GetProfileImageUseCase profileImageUseCase;
+  BaseProfileRepository _repository = ProfileRepositoryImp();
+  final GetProfileImageUseCase _profileImageUseCase;
   final SetImageProfileInSharedPreferencesUseCase
-      setImageProfileInSharedPreferencesUseCase;
+      _setImageProfileInSharedPreferencesUseCase;
   final GetImageProfileFromSharedPreferencesUseCase
-  getImageProfileFromSharedPreferencesUseCase;
+      _getImageProfileFromSharedPreferencesUseCase;
+  final GetTokenUseCase _getTokenUseCase;
 
   ProfileBloc(
-      this.profileImageUseCase, this.setImageProfileInSharedPreferencesUseCase,this.getImageProfileFromSharedPreferencesUseCase)
+      this._profileImageUseCase,
+      this._setImageProfileInSharedPreferencesUseCase,
+      this._getImageProfileFromSharedPreferencesUseCase,
+      this._getTokenUseCase)
       : super(ProfileInitialState()) {
     on<GetProfileEvent>(_onGetProfileEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
@@ -28,6 +37,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<SelectProfileImageEvent>(_onSelectProfileImageEvent);
     on<UploadProfileImageEvent>(_onUploadProfileImageEvent);
     on<GetProfileImageEvent>(_onGetProfileImageEvent);
+    on<GetTokenEvent>(_onGetTokenEvent);
+    on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
   }
 
   FutureOr<void> _onGetProfileEvent(
@@ -51,7 +62,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Future<void> _onSelectProfileImageEvent(
       SelectProfileImageEvent event, Emitter<ProfileState> emit) async {
-    XFile? image = await profileImageUseCase.call(source: event.source!);
+    XFile? image = await _profileImageUseCase.call(source: event.source!);
     if (image?.path.isEmpty ?? true) {
       emit(FailedSelectImageState());
     } else {
@@ -62,15 +73,31 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Future<void> _onUploadProfileImageEvent(
       UploadProfileImageEvent event, Emitter<ProfileState> emit) async {
     emit(GetProfileLoadingState());
-    await setImageProfileInSharedPreferencesUseCase(
+    await _setImageProfileInSharedPreferencesUseCase(
         profileImage: event.image.path);
     emit(SuccessUploadProfileImageState());
   }
 
   Future<void> _onGetProfileImageEvent(
       GetProfileImageEvent event, Emitter<ProfileState> emit) async {
-    String? image = await getImageProfileFromSharedPreferencesUseCase();
+    String? image = await _getImageProfileFromSharedPreferencesUseCase();
     emit(SuccessGetProfileImageState(image: image ?? ""));
   }
 
+  FutureOr<void> _onGetTokenEvent(
+      GetTokenEvent event, Emitter<ProfileState> emit) async {
+    emit(GetTokenState(token: await _getTokenUseCase() ?? ""));
+  }
+
+  FutureOr<void> _onGetTeacherInfoEvent(
+      GetTeacherInfoEvent event, Emitter<ProfileState> emit) async {
+    emit(GetProfileLoadingState());
+    ProfileState state =
+        (await _repository.getTeacherInfo(event.token)) as ProfileState;
+    if (state is GetTeacherInfoSuccessState) {
+      emit(GetTeacherInfoSuccessState(response: state.response));
+    } else if (state is GetTeacherInfoFillState) {
+      emit(GetTeacherInfoFillState(error: state.error));
+    }
+  }
 }

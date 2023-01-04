@@ -26,6 +26,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   void initState() {
     _bloc.add(GetProfileImageEvent());
     _bloc.add(GetIsFatherEvent());
+    _bloc.add(GetTokenEvent());
     super.initState();
   }
 
@@ -48,6 +49,11 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           _getProfileImage();
         } else if (state is SuccessGetProfileImageState) {
           _profileImage = state.image;
+        } else if (state is GetTokenState) {
+          _bloc.add(GetTeacherInfoEvent(token: state.token));
+        }else if (state is GetTeacherInfoSuccessState){
+          hideLoading();
+        }else if (state is GetTeacherInfoFillState){
         }
       },
       builder: (context, state) {
@@ -70,8 +76,6 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   void _getProfileImage() {
     _bloc.add(GetProfileImageEvent());
     Navigator.pop(context);
-
-
   }
 
   PreferredSizeWidget _appBar() => AppBar(
@@ -84,7 +88,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         centerTitle: false,
         actions: [
           InkWell(
-            onTap: ()=>_bloc.add(NavigateToNotificationScreenEvent()),
+            onTap: () => _bloc.add(NavigateToNotificationScreenEvent()),
             child: SizedBox(
                 width: 50,
                 height: 50,
@@ -114,7 +118,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
                     Align(
                         alignment: Alignment.centerRight,
                         child: Visibility(
-                          visible:_isFather,
+                          visible: _isFather,
                           child: const Icon(
                             Icons.notifications,
                             color: ColorsManager.yellow,
@@ -125,7 +129,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
                 )),
           ),
         ],
-        title:  BoldTextWidget(
+        title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
             text: S.of(context).myProfile),

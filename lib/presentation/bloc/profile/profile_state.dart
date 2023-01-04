@@ -6,9 +6,17 @@ class ProfileInitialState extends ProfileState {}
 
 class GetProfileLoadingState extends ProfileState {}
 
-class GetProfileSuccessState extends ProfileState {}
+class GetTeacherInfoSuccessState extends ProfileState {
+  final TeacherInfoResponse response;
 
-class GetProfileFillState extends ProfileState {}
+  GetTeacherInfoSuccessState({required this.response});
+}
+
+class GetTeacherInfoFillState extends ProfileState {
+  final String error;
+
+  GetTeacherInfoFillState({required this.error});
+}
 
 class NavigateToNotificationScreenState extends ProfileState {}
 
@@ -42,4 +50,9 @@ class SuccessUploadProfileImageState extends ProfileState {}
 class FailedUploadProfileImageState extends ProfileState {
   final String errorMessage;
    FailedUploadProfileImageState({required this.errorMessage});
+}
+
+class GetTokenState extends ProfileState{
+  final String token;
+  GetTokenState({required this.token});
 }
