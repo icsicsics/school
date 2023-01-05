@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/profile_repository.dart';
 import 'package:schools/presentation/bloc/profile/profile_repository_imp.dart';
@@ -39,6 +40,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<GetProfileImageEvent>(_onGetProfileImageEvent);
     on<GetTokenEvent>(_onGetTokenEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
+    on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
   }
 
   FutureOr<void> _onGetProfileEvent(
@@ -98,6 +100,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(GetTeacherInfoSuccessState(response: state.response));
     } else if (state is GetTeacherInfoFillState) {
       emit(GetTeacherInfoFillState(error: state.error));
+    }
+  }
+
+  FutureOr<void> _onGetFatherInfoEvent(GetFatherInfoEvent event, Emitter<ProfileState> emit) async{
+    emit(GetProfileLoadingState());
+    ProfileState state =
+    (await _repository.getFatherInfo(event.token)) as ProfileState;
+    if (state is GetFatherInfoSuccessState) {
+    emit(GetFatherInfoSuccessState(response: state.response));
+    } else if (state is GetFatherInfoFillState) {
+    emit(GetFatherInfoFillState(error: state.error));
     }
   }
 }

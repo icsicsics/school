@@ -28,4 +28,16 @@ class DioHelper {
           'Authorization': 'Bearer $token',
         }));
   }
+  static Future<Response> getFatherInfo(token) async {
+    return dio.get(ApiKey.fatherInfo,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        }));
+  }
+
+
+
+
 }

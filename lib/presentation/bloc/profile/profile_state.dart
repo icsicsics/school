@@ -27,6 +27,7 @@ class GetIsFatherState extends ProfileState {
 
   GetIsFatherState({required this.isFather});
 }
+
 class OpenCameraGalleryBottomSheetState extends ProfileState {}
 
 class FailedSelectImageState extends ProfileState {}
@@ -34,25 +35,37 @@ class FailedSelectImageState extends ProfileState {}
 class SuccessSelectImageState extends ProfileState {
   final XFile image;
 
-   SuccessSelectImageState({required this.image});
-
+  SuccessSelectImageState({required this.image});
 }
 
 class SuccessGetProfileImageState extends ProfileState {
   final String image;
 
-   SuccessGetProfileImageState({required this.image});
-
+  SuccessGetProfileImageState({required this.image});
 }
 
 class SuccessUploadProfileImageState extends ProfileState {}
 
 class FailedUploadProfileImageState extends ProfileState {
   final String errorMessage;
-   FailedUploadProfileImageState({required this.errorMessage});
+
+  FailedUploadProfileImageState({required this.errorMessage});
 }
 
-class GetTokenState extends ProfileState{
+class GetTokenState extends ProfileState {
   final String token;
+
   GetTokenState({required this.token});
+}
+
+class GetFatherInfoSuccessState extends ProfileState {
+  final FatherInfoResponse response;
+
+  GetFatherInfoSuccessState({required this.response});
+}
+
+class GetFatherInfoFillState extends ProfileState {
+  final String error;
+
+  GetFatherInfoFillState({required this.error});
 }

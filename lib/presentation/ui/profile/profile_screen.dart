@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
@@ -21,12 +23,12 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   ProfileBloc get _bloc => BlocProvider.of<ProfileBloc>(context);
   bool _isFather = false;
   String _profileImage = "";
+   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
+   FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
 
   @override
   void initState() {
-    _bloc.add(GetProfileImageEvent());
-    _bloc.add(GetIsFatherEvent());
-    _bloc.add(GetTokenEvent());
+    _invokeInit();
     super.initState();
   }
 
@@ -50,10 +52,21 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is SuccessGetProfileImageState) {
           _profileImage = state.image;
         } else if (state is GetTokenState) {
-          _bloc.add(GetTeacherInfoEvent(token: state.token));
-        }else if (state is GetTeacherInfoSuccessState){
+          if(_isFather){
+            _bloc.add(GetFatherInfoEvent(token: state.token));
+          }else{
+            _bloc.add(GetTeacherInfoEvent(token: state.token));
+          }
+        } else if (state is GetTeacherInfoSuccessState) {
+          _teacherInfoResponse = state.response;
           hideLoading();
-        }else if (state is GetTeacherInfoFillState){
+        } else if (state is GetTeacherInfoFillState) {
+          _onGetTeacherInfoFallState();
+        }else if(state is GetFatherInfoSuccessState){
+          _fatherInfoResponse=state.response;
+          hideLoading();
+        }else if (state is GetFatherInfoFillState){
+          _onGetFatherInfoFallState();
         }
       },
       builder: (context, state) {
@@ -61,6 +74,8 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
             backgroundColor: ColorsManager.backgroundColor,
             appBar: _appBar(),
             body: ProfileContentWidget(
+              fatherInfoResponse:_fatherInfoResponse,
+              teacherInfoResponse: _teacherInfoResponse,
               bloc: _bloc,
               isFather: _isFather,
               profileImage: _profileImage,
@@ -139,4 +154,16 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
       context,
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
+
+  void _invokeInit() {
+    _bloc.add(GetProfileImageEvent());
+    _bloc.add(GetIsFatherEvent());
+    _bloc.add(GetTokenEvent());
+  }
+ //Todo Handle Fall Response
+  void _onGetTeacherInfoFallState() {}
+
+  void _onGetFatherInfoFallState() {}
+
+
 }

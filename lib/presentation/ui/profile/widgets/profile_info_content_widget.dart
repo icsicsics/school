@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/ui/profile/widgets/profile_item_widget.dart';
 
 class ProfileInfoContentWidget extends StatelessWidget {
-  const ProfileInfoContentWidget({Key? key}) : super(key: key);
+  final TeacherInfoResponse teacherInfoResponse;
+  final FatherInfoResponse fatherInfoResponse;
+  final bool isFather;
+
+  const ProfileInfoContentWidget(
+      {Key? key,
+      required this.teacherInfoResponse,
+      required this.fatherInfoResponse,
+      required this.isFather})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +22,9 @@ class ProfileInfoContentWidget extends StatelessWidget {
       children: [
         ProfileItemWidget(
           title: S.of(context).mobileNumber,
-          subTitle: '+9627 970 64513',
+          subTitle: isFather
+              ? fatherInfoResponse.data!.phoneNumber.toString()
+              : teacherInfoResponse.data!.phoneNumber.toString(),
           icon: Icons.phone_android,
           onTap: () {},
         ),
@@ -23,7 +36,9 @@ class ProfileInfoContentWidget extends StatelessWidget {
         // ),
         ProfileItemWidget(
           title: S.of(context).email,
-          subTitle: 'eiz.m@gmail.com',
+          subTitle: isFather
+              ? fatherInfoResponse.data!.parentName.toString()
+              : teacherInfoResponse.data!.email.toString(),
           icon: Icons.mark_email_read,
           onTap: () {},
         ),
