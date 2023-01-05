@@ -18,18 +18,20 @@ class ProfileInfoContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ProfileItemWidget(
-          title: S.of(context).mobileNumber,
-          subTitle: isFather
-              ? fatherInfoResponse.data!.phoneNumber.toString()
-              : teacherInfoResponse.data!.phoneNumber.toString(),
-          icon: Icons.phone_android,
-          onTap: () {},
-        ),
-        // ProfileItemWidget(
-        //   title: 'Land-line Number',
+    return isFather && fatherInfoResponse != null ||
+            isFather == false && teacherInfoResponse != null
+        ? Column(
+            children: [
+              ProfileItemWidget(
+                title: S.of(context).mobileNumber,
+                subTitle: isFather
+                    ? fatherInfoResponse.data!.phoneNumber.toString()
+                    : teacherInfoResponse.data!.phoneNumber.toString(),
+                icon: Icons.phone_android,
+                onTap: () {},
+              ),
+              // ProfileItemWidget(
+              //   title: 'Land-line Number',
         //   subTitle: '+9626 589 0691',
         //   icon: Icons.phonelink,
         //   onTap: () {},
@@ -45,16 +47,17 @@ class ProfileInfoContentWidget extends StatelessWidget {
         // ProfileItemWidget(
         //   title: ' Current Address',
         //   subTitle: 'Khalda - tlaa al ali',
-        //   icon: Icons.location_disabled_sharp,
-        //   onTap: () {},
-        // ),
-        // ProfileItemWidget(
-        //   title: ' Permanent Address',
-        //   subTitle: 'Permanent Address',
-        //   icon: Icons.location_on,
-        //   onTap: () {},
-        // ),
-      ],
-    );
+              //   icon: Icons.location_disabled_sharp,
+              //   onTap: () {},
+              // ),
+              // ProfileItemWidget(
+              //   title: ' Permanent Address',
+              //   subTitle: 'Permanent Address',
+              //   icon: Icons.location_on,
+              //   onTap: () {},
+              // ),
+            ],
+          )
+        : Center(child: CircularProgressIndicator());
   }
 }
