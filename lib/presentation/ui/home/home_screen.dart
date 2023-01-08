@@ -34,7 +34,9 @@ class _HomeScreenState extends BaseState<HomeScreen> {
     String _language = '';
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {
-        if (state is GetIsFatherState) {
+        if (state is GetHomeLoadingState) {
+          showLoading();
+        } else if (state is GetIsFatherState) {
           _isFather = state.isFather;
         } else if (state is ChangeLanguageSuccessState) {
           _restartApp();
@@ -47,6 +49,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           }
         } else if (state is GetTeacherHomeSuccessState) {
           _teacherHomeResponse = state.response;
+          hideLoading();
         } else if (state is GetTeacherHomeFillState) {
           _onGetTeacherHomeFillState(state.error);
         }
@@ -60,7 +63,6 @@ class _HomeScreenState extends BaseState<HomeScreen> {
               language: _language,
             ),
             body: HomeContentWidget(
-
                 globalKey: _key,
                 isFather: _isFather,
                 bloc: _homeBloc,
