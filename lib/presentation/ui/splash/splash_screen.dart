@@ -28,6 +28,7 @@ class _SplashScreenState extends BaseState<SplashScreen> {
         if (state is SplashLoadingState) {
           showLoading();
         } else if (state is SplashGetTokenSuccessState) {
+          print(state.response.data!.token);
           _bloc.add(SplashSaveTokenEvent(token: state.response.data!.token!));
         } else if (state is SplashSaveTokenSuccessState) {
           hideLoading();

@@ -21,15 +21,16 @@ class DioHelper {
   }
 
   static Future<Response> getTeacherInfo(token) async {
-    return dio.get(ApiKey.teacherInfo,
+    return dio.get(ApiKey.getTeacherInfo,
         options: Options(headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Authorization': 'Bearer $token',
         }));
   }
+
   static Future<Response> getFatherInfo(token) async {
-    return dio.get(ApiKey.fatherInfo,
+    return dio.get(ApiKey.getFatherInfo,
         options: Options(headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -37,7 +38,21 @@ class DioHelper {
         }));
   }
 
+  static Future<Response> getChildrenByParent(token) async {
+    return dio.get(ApiKey.getChildrenByParent,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        }));
+  }
 
-
-
+  static Future<Response> getTeacherHome(token) async {
+    return dio.get(ApiKey.getTeacherHome,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        }));
+  }
 }

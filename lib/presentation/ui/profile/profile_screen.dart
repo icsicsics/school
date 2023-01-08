@@ -73,13 +73,16 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         return Scaffold(
             backgroundColor: ColorsManager.backgroundColor,
             appBar: _appBar(),
-            body: ProfileContentWidget(
-              fatherInfoResponse:_fatherInfoResponse,
-              teacherInfoResponse: _teacherInfoResponse,
-              bloc: _bloc,
-              isFather: _isFather,
-              profileImage: _profileImage,
-            ));
+            body: _fatherInfoResponse.data != null ||
+                    _teacherInfoResponse.data != null
+                ? ProfileContentWidget(
+                    fatherInfoResponse: _fatherInfoResponse,
+                    teacherInfoResponse: _teacherInfoResponse,
+                    bloc: _bloc,
+                    isFather: _isFather,
+                    profileImage: _profileImage,
+                  )
+                : Container());
       },
     );
   }
