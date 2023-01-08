@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:schools/core/utils/network/interceptor.dart';
 import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
 
@@ -6,10 +7,12 @@ class DioHelper {
   static late Dio dio;
 
   static init() {
+
     dio = Dio(BaseOptions(
       baseUrl: ApiKey.baseUrl,
       receiveDataWhenStatusError: true,
     ));
+    dio.interceptors.add(CustomInterceptors());
   }
 
   static Future<Response> getToken() async {
