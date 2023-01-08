@@ -3,7 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/repository/home_repository.dart';
+import 'package:schools/presentation/bloc/home/home_repository_imp.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
+import 'package:schools/use_case/get_token_use_case.dart';
 import 'package:schools/use_case/save_language_use_case.dart';
 
 part 'home_event.dart';
@@ -11,27 +15,30 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  final BaseHomeRepository _repository = HomeRepositoryImp();
   final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
+  final GetTokenUseCase _getTokenUseCase;
 
-  HomeBloc(this._saveLanguageCodeUseCase, this._getLanguageCodeUseCase)
+  HomeBloc(this._saveLanguageCodeUseCase, this._getLanguageCodeUseCase,
+      this._getTokenUseCase)
       : super(HomeInitialState()) {
     on<GetHomeEvent>(_onGetHomeEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
     on<ChangeLanguageEvent>(_onChangeLanguageEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
+    on<GetTokenEvent>(_onGetTokenEvent);
+    on<GetTeacherHomeEvent>(_onGetTeacherHomeEvent);
   }
 
   FutureOr<void> _onGetHomeEvent(GetHomeEvent event, Emitter<HomeState> emit) {}
 
-  FutureOr<void> _onGetIsFatherEvent(
-      GetIsFatherEvent event, Emitter<HomeState> emit) async {
+  FutureOr<void> _onGetIsFatherEvent(GetIsFatherEvent event, Emitter<HomeState> emit) async {
     final isFather = await SharedPreferencesManager.getIsFather();
     emit(GetIsFatherState(isFather: isFather!));
   }
 
-  FutureOr<void> _onChangeLanguageEvent(
-      ChangeLanguageEvent event, Emitter<HomeState> emit) async {
+  FutureOr<void> _onChangeLanguageEvent(ChangeLanguageEvent event, Emitter<HomeState> emit) async {
     bool savedStatus = await _saveLanguageCodeUseCase(event.language);
     if (!savedStatus) {
       emit(SaveLanguageCodeFailedState());
@@ -44,5 +51,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetLanguageEvent event, Emitter<HomeState> emit) async {
     emit(GetLanguageSuccessState(
         language: await _getLanguageCodeUseCase() ?? ''));
+  }
+
+  FutureOr<void> _onGetTokenEvent(
+      GetTokenEvent event, Emitter<HomeState> emit) async {
+    emit(GetTokenSuccessState(token: await _getTokenUseCase() ?? ""));
+  }
+
+  FutureOr<void> _onGetTeacherHomeEvent(
+      GetTeacherHomeEvent event, Emitter<HomeState> emit) async {
+    emit(GetHomeLoadingState());
+    HomeState state =
+        (await _repository.getTeacherHome(event.token)) as HomeState;
+    if (state is GetTeacherHomeSuccessState) {
+      emit(GetTeacherHomeSuccessState(response: state.response));
+    } else if (state is GetTeacherHomeFillState) {
+      emit(GetTeacherHomeFillState(error: state.error));
+    }
   }
 }

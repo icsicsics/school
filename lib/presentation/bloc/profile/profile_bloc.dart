@@ -17,7 +17,7 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  BaseProfileRepository _repository = ProfileRepositoryImp();
+  final BaseProfileRepository _repository = ProfileRepositoryImp();
   final GetProfileImageUseCase _profileImageUseCase;
   final SetImageProfileInSharedPreferencesUseCase
       _setImageProfileInSharedPreferencesUseCase;

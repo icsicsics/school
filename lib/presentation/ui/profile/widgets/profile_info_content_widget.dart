@@ -6,37 +6,39 @@ import 'package:schools/presentation/ui/profile/widgets/profile_item_widget.dart
 
 class ProfileInfoContentWidget extends StatelessWidget {
   final TeacherInfoResponse? teacherInfoResponse;
-  final FatherInfoResponse ?fatherInfoResponse;
+  final FatherInfoResponse? fatherInfoResponse;
   final bool isFather;
 
   const ProfileInfoContentWidget(
       {Key? key,
-       this.teacherInfoResponse,
-       this.fatherInfoResponse,
+      this.teacherInfoResponse,
+      this.fatherInfoResponse,
       required this.isFather})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return teacherInfoResponse!.data != null || fatherInfoResponse!.data != null
+        ? Column(
             children: [
               ProfileItemWidget(
                 title: S.of(context).mobileNumber,
                 subTitle: isFather
-                    ? fatherInfoResponse!.data!.phoneNumber.toString()
-                    : teacherInfoResponse!.data!.phoneNumber.toString(),
+                    ? fatherInfoResponse!.data!.phoneNumber ?? ""
+                    : teacherInfoResponse!.data!.phoneNumber ?? "",
                 icon: Icons.phone_android,
                 onTap: () {},
               ),
-        ProfileItemWidget(
-          title: S.of(context).email,
-          subTitle: isFather
-              ? fatherInfoResponse!.data!.parentName.toString()
-              : teacherInfoResponse!.data!.email.toString(),
-          icon: Icons.mark_email_read,
-          onTap: () {},
-        ),
+              ProfileItemWidget(
+                title: S.of(context).email,
+                subTitle: isFather
+                    ? fatherInfoResponse!.data!.parentName ?? ""
+                    : teacherInfoResponse!.data!.email ?? "",
+                icon: Icons.mark_email_read,
+                onTap: () {},
+              ),
             ],
-          );
+          )
+        : Container();
   }
 }

@@ -7,9 +7,17 @@ class HomeInitialState extends HomeState {}
 
 class GetHomeLoadingState extends HomeState {}
 
-class GetHomeSuccessState extends HomeState {}
+class GetTeacherHomeSuccessState extends HomeState {
+  final GetTeacherHomeResponse response;
 
-class GetHomeFillState extends HomeState {}
+  GetTeacherHomeSuccessState({required this.response});
+}
+
+class GetTeacherHomeFillState extends HomeState {
+  final String error;
+
+  GetTeacherHomeFillState({required this.error});
+}
 
 class GetHomeErrorState extends HomeState {}
 
@@ -26,4 +34,9 @@ class ChangeLanguageSuccessState extends HomeState {}
 class GetLanguageSuccessState extends HomeState {
   final String language;
   GetLanguageSuccessState({required this.language});
+}
+
+class GetTokenSuccessState extends HomeState {
+  final String token;
+  GetTokenSuccessState({required this.token});
 }
