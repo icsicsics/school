@@ -9,7 +9,7 @@ class CustomInterceptors extends InterceptorsWrapper {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     debugPrint(
-        "REQUEST [${' '}${options.method}${' '}] ${' '} URL: ${options.baseUrl + options.path} ${jsonEncode(options.data)}");
+        "REQUEST [${' '}${options.method}${' '}] ${' '} URL: ${options.baseUrl + options.path} ${jsonEncode(options.headers)} ${jsonEncode(options.data)}");
     return super.onRequest(options, handler);
   }
 

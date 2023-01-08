@@ -16,8 +16,7 @@ class HomeRepositoryImp extends BaseHomeRepository {
         return GetTeacherHomeSuccessState(response: getTeacherHomeResponse);
       }
     } catch (error) {
-      state =
-          GetTeacherHomeFillState(error: getTeacherHomeResponse.errorMessage!);
+      state = GetTeacherHomeFillState(error: getTeacherHomeResponse.errorMessage!);
     }
     return state!;
   }

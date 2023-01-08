@@ -20,18 +20,19 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   bool _isFather = false;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
+  String _language = '';
 
   @override
   void initState() {
     _homeBloc.add(GetIsFatherEvent());
     _homeBloc.add(GetLanguageEvent());
-    _homeBloc.add(GetTokenEvent());
+     _homeBloc.add(GetTokenEvent());
+
     super.initState();
   }
 
   @override
   Widget baseBuild(BuildContext context) {
-    String _language = '';
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state is GetHomeLoadingState) {

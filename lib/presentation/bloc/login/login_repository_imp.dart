@@ -1,3 +1,2 @@
-import 'package:schools/data/source/remote/repository/home_repository.dart';
-
-class HomeRepositoryImp extends BaseHomeRepository {}
+import 'package:schools/data/source/remote/repository/login_repository.dart';
+class LoginRepositoryImp extends BaseLoginRepository {}

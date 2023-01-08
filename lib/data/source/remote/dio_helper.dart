@@ -7,7 +7,6 @@ class DioHelper {
   static late Dio dio;
 
   static init() {
-
     dio = Dio(BaseOptions(
       baseUrl: ApiKey.baseUrl,
       receiveDataWhenStatusError: true,
@@ -57,5 +56,16 @@ class DioHelper {
           'Accept': 'application/json',
           'Authorization': 'Bearer $token',
         }));
+  }
+
+  static Future<Response> getClassHouses(token, classroomToSectionId) async {
+    return dio.get("${ApiKey.getTeacherHome}?$classroomToSectionId",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
   }
 }
