@@ -38,7 +38,9 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
             isFather: widget.isFather,
               fatherInfoResponse: widget.fatherInfoResponse,
               teacherInfoResponse: widget.teacherInfoResponse),
-          widget.isFather ? const FatherOfWidget() : const SizedBox()
+          widget.isFather
+              ? FatherOfWidget(fatherInfoResponse: widget.fatherInfoResponse)
+              : const SizedBox()
         ],
       ),
     );

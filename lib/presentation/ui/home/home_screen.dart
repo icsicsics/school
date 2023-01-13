@@ -57,11 +57,13 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           hideLoading();
         } else if (state is GetTeacherHomeFillState) {
           _onFillState(state.error);
+          hideLoading();
         } else if (state is GetParentHomeSuccessState) {
           _parentHomeResponse = state.response;
           hideLoading();
         } else if (state is GetParentHomeFillState) {
           _onFillState(state.error);
+          hideLoading();
         }
       },
       builder: (context, state) {

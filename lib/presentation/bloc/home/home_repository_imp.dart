@@ -18,7 +18,7 @@ class HomeRepositoryImp extends BaseHomeRepository {
       }
     } catch (error) {
       state =
-          GetTeacherHomeFillState(error: getTeacherHomeResponse.errorMessage!);
+          GetTeacherHomeFillState(error: getTeacherHomeResponse.errorMessage??"Error");
     }
     return state!;
   }
@@ -37,7 +37,7 @@ class HomeRepositoryImp extends BaseHomeRepository {
       }
     } catch (error) {
       state = GetParentHomeFillState(
-          error: getChildrenByParentResponse.errorMessage!);
+          error: getChildrenByParentResponse.errorMessage??"Error");
     }
     return state!;
   }

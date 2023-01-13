@@ -17,7 +17,7 @@ class ProfileRepositoryImp extends BaseProfileRepository {
         return GetTeacherInfoSuccessState(response: teacherInfoResponse);
       }
     } catch (error) {
-      state = GetTeacherInfoFillState(error: teacherInfoResponse.errorMessage!);
+      state = GetTeacherInfoFillState(error: teacherInfoResponse.errorMessage??"Error");
     }
     return state!;
   }
@@ -33,7 +33,7 @@ class ProfileRepositoryImp extends BaseProfileRepository {
         return GetFatherInfoSuccessState(response: fatherInfoResponse);
       }
     } catch (error) {
-      state = GetFatherInfoFillState(error: fatherInfoResponse.errorMessage!);
+      state = GetFatherInfoFillState(error: fatherInfoResponse.errorMessage??"Error");
     }
     return state!;
   }

@@ -16,7 +16,7 @@ class SplashRepositoryImp extends SplashRepository {
         return SplashGetTokenSuccessState(response: getTokenResponse);
       }
     } catch (error) {
-      state = SplashGetTokenErrorState(error: getTokenResponse.errorMessage!);
+      state = SplashGetTokenErrorState(error: getTokenResponse.errorMessage??"Error");
     }
     return state!;
   }

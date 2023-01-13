@@ -4,7 +4,8 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 
 class ChildItemWidget extends StatelessWidget {
-  const ChildItemWidget({Key? key}) : super(key: key);
+  final String imageUrl;
+  const ChildItemWidget({Key? key,required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +14,7 @@ class ChildItemWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 5,
       child: Stack(
         children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage(
-              ImagesPath.schoolItem,
-            ),
-            radius: 50,
-          ),
+          itemImageWidget(),
           Align(
             alignment: Alignment.bottomRight,
             child:
@@ -50,4 +46,24 @@ class ChildItemWidget extends StatelessWidget {
       ),
     );
   }
+
+  Widget itemImageWidget() {
+    return imageUrl.isNotEmpty
+        ? ClipOval(
+      child: Image.network(
+        imageUrl,
+        fit: BoxFit.fill,
+        errorBuilder: (context, error, stackTrace) =>
+            _buildProfilePlaceHolder(),
+      ),
+    )
+        : _buildProfilePlaceHolder();
+  }
+
+  CircleAvatar _buildProfilePlaceHolder() => const CircleAvatar(
+    backgroundImage: AssetImage(
+      ImagesPath.logo,
+    ),
+    radius: 50,
+  );
 }
