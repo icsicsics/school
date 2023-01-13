@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
+import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/ui/home/widgets/father/home_father_content_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/home_app_bar_widget.dart';
@@ -11,13 +13,17 @@ class HomeContentWidget extends StatefulWidget {
   final bool isFather;
   final HomeBloc bloc;
   final String language;
+  final GetTeacherHomeResponse teacherHomeResponse;
+  final GetChildrenByParentResponse parentHomeResponse;
 
   const HomeContentWidget(
       {Key? key,
       required this.globalKey,
       required this.isFather,
       required this.bloc,
-      required this.language})
+      required this.language,
+      required this.parentHomeResponse,
+      required this.teacherHomeResponse})
       : super(key: key);
 
   @override
@@ -50,8 +56,10 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
 
   Widget _buildScreen() {
     if (widget.isFather == true) {
-      return const HomeFatherContentWidget();
+      return HomeFatherContentWidget(
+          parentHomeResponse: widget.parentHomeResponse);
     }
-    return const HomeTeacherDetailsWidget();
+    return HomeTeacherDetailsWidget(
+        teacherHomeResponse: widget.teacherHomeResponse);
   }
 }

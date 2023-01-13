@@ -17,10 +17,14 @@ class GetLanguageEvent extends HomeEvent {}
 
 class GetTeacherHomeEvent extends HomeEvent {
   final String token;
-  GetTeacherHomeEvent({required this.token});
 
+  GetTeacherHomeEvent({required this.token});
 }
 
-class GetFatherHomeEvent extends HomeEvent {}
+class GetFatherHomeEvent extends HomeEvent {
+  final String token;
+
+  GetFatherHomeEvent({required this.token});
+}
 
 class GetTokenEvent extends HomeEvent {}

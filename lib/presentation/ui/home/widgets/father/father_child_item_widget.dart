@@ -5,15 +5,17 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class FatherChildItemWidget extends StatelessWidget {
+final String imageUrl;
   final String childName;
   final Function() onTapStar;
   final Function() onTapChild;
 
   const FatherChildItemWidget(
       {Key? key,
-        required this.childName,
-        required this.onTapStar,
-        required this.onTapChild})
+      required this.childName,
+      required this.onTapStar,
+      required this.onTapChild,
+      required this.imageUrl})
       : super(key: key);
 
   @override
@@ -26,23 +28,15 @@ class FatherChildItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height:150,
+            height: 150,
             child: Stack(
               children: [
                 Align(
                   alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: onTapChild,
-                    child: const CircleAvatar(
-                      backgroundImage: AssetImage(
-                        ImagesPath.schoolItem,
-                      ),
-                      radius: 50,
-                    ),
-                  ),
+                  child: InkWell(onTap: onTapChild, child: itemImageWidget()),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 40,bottom: 30),
+                  padding: const EdgeInsets.only(right: 40, bottom: 30),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
@@ -51,20 +45,21 @@ class FatherChildItemWidget extends StatelessWidget {
                         decoration: const BoxDecoration(
                             color: ColorsManager.whiteColor,
                             borderRadius:
-                            BorderRadius.all(Radius.circular(40))),
+                                BorderRadius.all(Radius.circular(40))),
                         child: Padding(
                           padding: const EdgeInsets.all(3),
                           child: Container(
                             decoration: const BoxDecoration(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
+                                    BorderRadius.all(Radius.circular(50))),
                             child: InkWell(
                               onTap: onTapStar,
                               child: Container(
                                 height: 20,
                                 width: 20,
                                 color: Colors.transparent,
-                                child:SvgPicture.asset(ImagesPath.star, height: 25, width: 25),
+                                child: SvgPicture.asset(ImagesPath.star,
+                                    height: 25, width: 25),
                               ),
                             ),
                           ),
@@ -80,4 +75,24 @@ class FatherChildItemWidget extends StatelessWidget {
       ),
     );
   }
+
+  Widget itemImageWidget() {
+    return imageUrl.isNotEmpty
+        ? ClipOval(
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) =>
+                  _buildProfilePlaceHolder(),
+            ),
+          )
+        : _buildProfilePlaceHolder();
+  }
+
+  CircleAvatar _buildProfilePlaceHolder() => const CircleAvatar(
+        backgroundImage: AssetImage(
+          ImagesPath.logo,
+        ),
+        radius: 50,
+      );
 }

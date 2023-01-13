@@ -40,3 +40,17 @@ class GetTokenSuccessState extends HomeState {
   final String token;
   GetTokenSuccessState({required this.token});
 }
+
+class GetParentHomeSuccessState extends HomeState {
+  final GetChildrenByParentResponse response;
+
+  GetParentHomeSuccessState({required this.response});
+}
+
+class GetParentHomeFillState extends HomeState {
+  final String error;
+
+  GetParentHomeFillState({required this.error});
+}
+
+
