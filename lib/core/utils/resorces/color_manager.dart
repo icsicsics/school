@@ -5,6 +5,7 @@ class ColorsManager {
   static const Color blueAccent = Color.fromRGBO(44, 158, 219,1);
   static const Color starBackground = Color.fromRGBO(	52	,167,	189,1);
   static const Color secondaryColor = Color.fromRGBO(  53	,180	,167,1);
+  static const Color thredColor = Color.fromRGBO(  21	,190	,180,1);
   static const Color darkGrayColor = Color(0xFF3B3D4F);
   static const Color grayColor = Color(0xFFB9B9B9);
   static const Color mediumGrayColor = Color(0xFFC9C9C9);

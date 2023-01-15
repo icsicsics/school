@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
-import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
+import 'package:schools/presentation/shere_widgets/custom_gradient_button_widget.dart';
 
 class ConfirmButtonWidget extends StatelessWidget {
   final Function() confirmAction;
@@ -12,12 +12,9 @@ class ConfirmButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: CustomButtonWidget(
+        child: CustomGradientButtonWidget(
       onPressed: confirmAction,
-      borderRadius: 15,
-      buttonColor: ColorsManager.secondaryColor,
-      borderColor: ColorsManager.secondaryColor,
-      buttonTextSize: 14,
+      buttonTextSize: 16,
       buttonText: S.of(context).sendOTP,
       buttonTextColor: ColorsManager.whiteColor,
       buttonHeight: 54,

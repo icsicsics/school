@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/confirm_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/select_country_text_field_widget.dart';
-import 'package:schools/presentation/ui/authentication/login/widgets/welcome_text_widget.dart';
+import 'package:schools/presentation/ui/authentication/login/widgets/welcome_widget.dart';
 
 class LoginContentWidget extends StatefulWidget {
   final TextEditingController countryController;
