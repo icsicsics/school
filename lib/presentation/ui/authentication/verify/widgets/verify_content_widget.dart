@@ -4,7 +4,6 @@ import 'package:schools/presentation/ui/authentication/verify/widgets/actions_ro
 import 'package:schools/presentation/ui/authentication/verify/widgets/pin_code_field_widget.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/privcy_and_pulicy.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/send_agin_widget.dart';
-import 'package:schools/presentation/ui/authentication/verify/widgets/verify_header_widget.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/verify_title_widget.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
 
@@ -24,7 +23,6 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const VerifyHeaderWidget(),
           Padding(
             padding: const EdgeInsets.all(30),
             child: Column(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/regular_text_widget.dart';
 
 class VerifyTitleWidget extends StatelessWidget {
   const VerifyTitleWidget({Key? key}) : super(key: key);
@@ -9,19 +10,17 @@ class VerifyTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 30,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: const [
+        RegularTextWidget(
+            text: "We have send the code verification to Your Mobile",
+            fontSize: 14,
+            color: ColorsManager.sameBlack),
+        SizedBox(
+          height: 5,
         ),
-        MediumTextWidget(
-            text: S.of(context).verifyYourNumber,
-            fontSize: 27,
-            color: ColorsManager.darkGrayColor),
-        MediumTextWidget(
-            text: S.of(context).pleaseTypeVerificationCodeSentToYourPhone,
-            fontSize: 17,
-            color: ColorsManager.welcomeGryColor),
+        RegularTextWidget(
+            text: "Number", fontSize: 14, color: ColorsManager.sameBlack),
       ],
     );
   }
