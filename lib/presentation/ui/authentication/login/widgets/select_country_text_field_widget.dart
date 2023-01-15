@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 
 class SelectCountryTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
@@ -37,7 +38,7 @@ class _SelectCountryTextFieldWidgetState
           spaceBetweenSelectorAndTextField: 0,
           inputDecoration: InputDecoration(
               contentPadding: const EdgeInsets.all(0),
-              hintText: 'Phone Number',
+              hintText: S.of(context).phoneNumber,
               border: InputBorder.none,
               isDense: true,
               suffixIcon: InkWell(
@@ -50,9 +51,9 @@ class _SelectCountryTextFieldWidgetState
                 width: 30,
                 child: Row(
                   children: [
-                    const RotatedBox(
-                        quarterTurns: 3,
-                        child: Icon(
+                     RotatedBox(
+                        quarterTurns: widget.language=="en"?3:1,
+                        child: const Icon(
                           Icons.arrow_back_ios_rounded,
                           color: ColorsManager.sameBlack,
                         )),

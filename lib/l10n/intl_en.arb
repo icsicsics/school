@@ -56,5 +56,12 @@
 "logout":"Logout",
  "areYouSure":"Are you sure ?",
  "yes":"Yes",
- "no":"No"
+ "no":"No",
+ "verificationCode":"Verification Code",
+ "weHaveSendTheCodeVerificationToYourMobile":"We have send the code verification to Your Mobile",
+ "number":"Number",
+ "submit":"Submit",
+ "dontReceiveCode":"Don't Receive Code ? ",
+ "resend":"Resend",
+ "phoneNumber":"Phone Number"
 }

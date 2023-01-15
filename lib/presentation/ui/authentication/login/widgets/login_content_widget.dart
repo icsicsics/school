@@ -15,7 +15,8 @@ class LoginContentWidget extends StatefulWidget {
       {Key? key,
       required this.countryController,
       required this.loginBloc,
-      required this.isFather,required this.language})
+      required this.isFather,
+      required this.language})
       : super(key: key);
 
   @override
@@ -30,11 +31,12 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
         children: [
           const WelcomeWidget(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               children: [
                 SelectCountryTextFieldWidget(
-                  controller: widget.countryController, language: widget.language,
+                  controller: widget.countryController,
+                  language: widget.language,
                 ),
                 const SizedBox(
                   height: 35,

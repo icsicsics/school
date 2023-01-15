@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "didntReceiveVerificationCode":
             MessageLookupByLibrary.simpleMessage("لم تتلق رمز التحقق؟"),
+        "dontReceiveCode":
+            MessageLookupByLibrary.simpleMessage(" لم تتلقى رمز ؟"),
         "email": MessageLookupByLibrary.simpleMessage("بريد إلكتروني"),
         "energetic": MessageLookupByLibrary.simpleMessage("نشيط"),
         "english": MessageLookupByLibrary.simpleMessage("EN"),
@@ -68,11 +70,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+        "number": MessageLookupByLibrary.simpleMessage("المحمول"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
                 "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "resend": MessageLookupByLibrary.simpleMessage("إعادة إرسال"),
         "reward": MessageLookupByLibrary.simpleMessage("مكافأة"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("منازل المدرسة"),
         "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
@@ -82,13 +87,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "students": MessageLookupByLibrary.simpleMessage("طلاب"),
         "studentsProfile":
             MessageLookupByLibrary.simpleMessage("الملف الشخصي للطلاب"),
+        "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
         "teachers": MessageLookupByLibrary.simpleMessage("معلمون"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الاسبوع"),
         "typeWhyLeenDeserveThisPoint":
             MessageLookupByLibrary.simpleMessage("اكتب لماذا تستحق هذه النقطة"),
+        "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("تحقق من رقمك"),
+        "weHaveSendTheCodeVerificationToYourMobile":
+            MessageLookupByLibrary.simpleMessage(
+                "لقد أرسلنا رمز التحقق إلى رقم هاتفك"),
         "weather": MessageLookupByLibrary.simpleMessage("طقس"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };

@@ -53,8 +53,15 @@
 "typeWhyLeenDeserveThisPoint":"اكتب لماذا تستحق هذه النقطة",
 "camera":"كاميره",
 "gallery":"المعرض",
- "logout":"خروج",
- "areYouSure":"هل أنت متأكد؟",
-  "yes":"نعم",
-  "no":"لا"
+"logout":"خروج",
+"areYouSure":"هل أنت متأكد؟",
+"yes":"نعم",
+"no":"لا",
+"verificationCode":"رمز التحقق",
+"weHaveSendTheCodeVerificationToYourMobile":"لقد أرسلنا رمز التحقق إلى رقم هاتفك",
+"number":"المحمول",
+"submit":"إرسال",
+"dontReceiveCode":" لم تتلقى رمز ؟",
+"resend":"إعادة إرسال",
+"phoneNumber":"رقم الهاتف"
 }

@@ -17,7 +17,7 @@ class SubmitButtonWidget extends StatelessWidget {
        Expanded(child: CustomGradientButtonWidget(
           onPressed: submitAction,
           buttonTextSize: 18,
-          buttonText:"Submit",
+          buttonText:S.of(context).submit,
           buttonTextColor: ColorsManager.whiteColor,
           buttonHeight: 54,
         )),

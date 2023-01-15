@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "didntReceiveVerificationCode": MessageLookupByLibrary.simpleMessage(
             "Didn\'t Receive Verification code ?"),
+        "dontReceiveCode":
+            MessageLookupByLibrary.simpleMessage("Don\'t Receive Code ? "),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "energetic": MessageLookupByLibrary.simpleMessage("Energetic"),
         "english": MessageLookupByLibrary.simpleMessage("EN"),
@@ -69,11 +71,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage(" Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "number": MessageLookupByLibrary.simpleMessage("Number"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
                 "Please type verification code sent to your\nphone"),
         "points": MessageLookupByLibrary.simpleMessage("Points"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "reward": MessageLookupByLibrary.simpleMessage("Reward"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("School Homes"),
         "sections": MessageLookupByLibrary.simpleMessage("Sections"),
@@ -83,13 +88,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "students": MessageLookupByLibrary.simpleMessage("Students"),
         "studentsProfile":
             MessageLookupByLibrary.simpleMessage("Students Profile"),
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),
+        "verificationCode":
+            MessageLookupByLibrary.simpleMessage("Verification Code"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("Verify your Number"),
+        "weHaveSendTheCodeVerificationToYourMobile":
+            MessageLookupByLibrary.simpleMessage(
+                "We have send the code verification to Your Mobile"),
         "weather": MessageLookupByLibrary.simpleMessage("Weather"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
