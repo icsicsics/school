@@ -4,8 +4,8 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
-class WelcomeTextWidget extends StatelessWidget {
-  const WelcomeTextWidget({Key? key}) : super(key: key);
+class WelcomeWidget extends StatelessWidget {
+  const WelcomeWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
