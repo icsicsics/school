@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
+import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/splash/widgets/splash_content_widget.dart';
@@ -31,6 +33,12 @@ class _SplashScreenState extends BaseState<SplashScreen> {
           _bloc.add(SplashSaveTokenEvent(token: state.response.data!.token!));
         } else if (state is SplashSaveTokenSuccessState) {
           hideLoading();
+          SystemChrome.setSystemUIOverlayStyle(
+            const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark,
+            ),
+          );
           _navigationToLoginScreen();
         }
       },

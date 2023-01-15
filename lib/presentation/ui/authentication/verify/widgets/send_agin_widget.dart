@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
@@ -11,22 +10,23 @@ class SendAgainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(
           height: 15,
         ),
-        BoldTextWidget(
-            text: S.of(context).didntReceiveVerificationCode,
+       const  BoldTextWidget(
+            text: "Dont Receive Code ? ",
             fontSize: 14,
-            color: ColorsManager.welcomeGryColor),
+            color: ColorsManager.sameBlack),
         InkWell(
           onTap: onTap,
-          child: MediumTextWidget(
-              text: S.of(context).sendItAgain,
+          child:const  MediumTextWidget(
+              text:"Resend",
               fontSize: 14,
-              color: ColorsManager.buttonColor),
+              color: ColorsManager.secondaryColor),
         ),
       ],
     );

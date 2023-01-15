@@ -4,7 +4,6 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/verify_content_widget.dart';
 
 class VerifyScreen extends BaseStatefulWidget {
