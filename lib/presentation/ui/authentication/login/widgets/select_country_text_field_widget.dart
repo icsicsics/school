@@ -22,51 +22,57 @@ class _SelectCountryTextFieldWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Align(
-        alignment: widget.language == "en" ? Alignment.topLeft : Alignment.topRight,
-        child: Container(
-          width: 40,
-          height: 40,
-          margin: const EdgeInsets.only(top: 5),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: ColorsManager.whiteColor),
-              color: ColorsManager.whiteColor,
-              boxShadow: const [
-                BoxShadow(blurRadius: 5, color: ColorsManager.grayColor),
-              ]),
-        ),
-      ),
-      Padding(
-        padding: widget.language == "en"
-            ? const EdgeInsets.only(left: 5)
-            : const EdgeInsets.only(left: 5),
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          border: Border.all(color: ColorsManager.mediumGrayColor, width: 1)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: InternationalPhoneNumberInput(
-          onInputChanged: (PhoneNumber number) {},
-          onInputValidated: (bool value) {},
-          selectorConfig: const SelectorConfig(
-            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-            showFlags: true,
-            useEmoji: true,
-          ),
           autoValidateMode: AutovalidateMode.disabled,
-          selectorTextStyle: const TextStyle(color: Colors.black),
+          keyboardType: TextInputType.number,
           initialValue: number,
           textFieldController: widget.controller,
-          formatInput: true,
-          textAlign:  widget.language=="en"?TextAlign.left:TextAlign.right,
-          spaceBetweenSelectorAndTextField: 2,
-          inputDecoration: const InputDecoration(
-              isDense: true,
-              hintText: "- - - - - - - - -",
-              border: InputBorder.none),
-          keyboardType: const TextInputType.numberWithOptions(
-              signed: true, decimal: true),
           inputBorder: InputBorder.none,
-          onSaved: (PhoneNumber number) {},
+          spaceBetweenSelectorAndTextField: 0,
+          inputDecoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(0),
+              hintText: 'Phone Number',
+              border: InputBorder.none,
+              isDense: true,
+              suffixIcon: InkWell(
+                  onTap: () => widget.controller.clear(),
+                  child: const Icon(
+                    Icons.clear,
+                    color: ColorsManager.mediumGrayColor,
+                  )),
+              icon: SizedBox(
+                width: 30,
+                child: Row(
+                  children: [
+                    const RotatedBox(
+                        quarterTurns: 3,
+                        child: Icon(
+                          Icons.arrow_back_ios_rounded,
+                          color: ColorsManager.sameBlack,
+                        )),
+                    const Expanded(child: SizedBox()),
+                    Container(
+                      height: 30,
+                      color: ColorsManager.mediumGrayColor,
+                      width: 1,
+                    ),
+                  ],
+                ),
+              )),
+          selectorConfig: const SelectorConfig(
+              leadingPadding: 0,
+              trailingSpace: false,
+              selectorType: PhoneInputSelectorType.DIALOG,
+              showFlags: false),
+          onInputChanged: (PhoneNumber number) {},
         ),
       ),
-    ]);
+    );
   }
 }

@@ -30,17 +30,14 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const LoginHeaderWidget(),
+          // const LoginHeaderWidget(),
           const WelcomeTextWidget(),
           Padding(
-            padding: const EdgeInsets.all(40),
+            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
             child: Column(
               children: [
                 SelectCountryTextFieldWidget(
                   controller: widget.countryController, language: widget.language,
-                ),
-                const SizedBox(
-                  height: 20,
                 ),
                 //Todo Hide Is Father For Now
                 // Row(
@@ -63,16 +60,10 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                 //   ],
                 // ),
                 const SizedBox(
-                  height: 100,
+                  height: 35,
                 ),
                 Row(
                   children: [
-                    ClearButtonWidget(
-                        clearAction: () => BlocProvider.of<LoginBloc>(context)
-                            .add(LoginClearButtonEvent())),
-                    const SizedBox(
-                      width: 25,
-                    ),
                     ConfirmButtonWidget(
                         confirmAction: () => BlocProvider.of<LoginBloc>(context)
                             .add(LoginConfirmButtonEvent())),
