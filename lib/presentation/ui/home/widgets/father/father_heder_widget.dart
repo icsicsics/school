@@ -73,7 +73,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                         Border.all(color: ColorsManager.whiteColor, width: 3),
                         borderRadius: BorderRadius.circular(100),
                         image: const DecorationImage(
-                            image: AssetImage(ImagesPath.schoolItem),
+                            image: AssetImage(ImagesPath.logo),
                             fit: BoxFit.fill)),
                   ),
                 ),
