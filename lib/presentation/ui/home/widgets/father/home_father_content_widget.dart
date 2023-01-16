@@ -11,16 +11,14 @@ class HomeFatherContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
+    return Column(
         children: [
           const FatherHeaderWidget(),
           parentHomeResponse.data != null
               ? FatherChildrenListWidget(parentHomeResponse: parentHomeResponse)
               : Container(),
         ],
-      ),
-    );
+      );
   }
 }
 //Container(

@@ -49,7 +49,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
             language: widget.language),
         const SizedBox(height: 2),
      const  HomeTitleWidget(),
-        _buildScreen()
+        Expanded(child: SingleChildScrollView(child: _buildScreen()))
       ],
     );
   }

@@ -19,13 +19,13 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
+    return GridView.builder(
+      physics:const  BouncingScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, mainAxisSpacing: 5),
           itemCount: widget.parentHomeResponse.data!.length,
           padding: const EdgeInsets.all(5),
-          shrinkWrap: false,
+          shrinkWrap: true,
           semanticChildCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return FatherChildItemWidget(
@@ -36,7 +36,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
               imageUrl:
                   '${widget.parentHomeResponse.data![index].getImage!.mediaUrl}',
             );
-          }),
+          }
     );
   }
 
