@@ -57,7 +57,7 @@ mixin LoadingManager {
         height: double.infinity,
         child: Center(
             child: CircularProgressIndicator(
-              color: ColorsManager.primaryColor,
+              color: ColorsManager.sameBlack,
             )),
       ),
     );

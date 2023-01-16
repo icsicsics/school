@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
@@ -44,7 +45,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
           children: [
             InkWell(
               onTap: widget.onTapMenu,
-                child: Image.asset(ImagesPath.menu,width: 30,height: 30, color: ColorsManager.whiteColor)),
+                child: SvgPicture.asset(ImagesPath.menu,width: 25,height: 25, color: ColorsManager.whiteColor)),
            const  SizedBox(width: 5,),
             Expanded(
               child: MediumTextWidget(

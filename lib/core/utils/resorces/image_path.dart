@@ -8,5 +8,5 @@ class ImagesPath {
   static const String star = "${_basePath}star.svg";
   static const String ar = "${_basePath}ar.png";
   static const String en = "${_basePath}en.png";
-  static const String menu = "${_basePath}menu.png";
+  static const String menu = "${_basePath}menu.svg";
 }

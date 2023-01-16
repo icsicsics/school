@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
@@ -25,7 +26,7 @@ class NotificationsAppBarWidget extends StatelessWidget {
             const  SizedBox(width: 5,),
             InkWell(
                 onTap: onTapMenu,
-                child: Image.asset(ImagesPath.menu,width: 30,height: 30, color: ColorsManager.primaryColor)),
+                child: SvgPicture.asset(ImagesPath.menu,width: 25,height: 25, color: ColorsManager.primaryColor)),
             const  SizedBox(width: 5,),
              Expanded(
               child: MediumTextWidget(

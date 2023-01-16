@@ -61,11 +61,13 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           _teacherInfoResponse = state.response;
           hideLoading();
         } else if (state is GetTeacherInfoFillState) {
+          hideLoading();
           _onGetTeacherInfoFallState();
         }else if(state is GetFatherInfoSuccessState){
           _fatherInfoResponse=state.response;
           hideLoading();
         }else if (state is GetFatherInfoFillState){
+          hideLoading();
           _onGetFatherInfoFallState();
         }
       },
