@@ -19,7 +19,7 @@ class SelectCountryTextFieldWidget extends StatefulWidget {
 class _SelectCountryTextFieldWidgetState
     extends State<SelectCountryTextFieldWidget> {
   String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'jo');
+  PhoneNumber number = PhoneNumber(isoCode: 'JO');
 
   @override
   Widget build(BuildContext context) {
