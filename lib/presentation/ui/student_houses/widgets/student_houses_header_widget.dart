@@ -5,8 +5,8 @@ import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
-class AddPointHeaderWidget extends StatelessWidget {
-  const AddPointHeaderWidget({Key? key}) : super(key: key);
+class StudentHousesHeaderWidget extends StatelessWidget {
+  const StudentHousesHeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

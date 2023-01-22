@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
+import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
-import 'package:schools/presentation/ui/add_point/widgets/add_point_item_widget.dart';
+import 'package:schools/presentation/ui/student_houses/widgets/student_houses_item_widget.dart';
 
-class AddPointListWidget extends StatefulWidget {
-  final AddPointBloc addPointBloc;
-  const AddPointListWidget({Key? key,required this.addPointBloc}) : super(key: key);
+class StudentHousesBlocListWidget extends StatefulWidget {
+  final StudentHousesBloc addPointBloc;
+  const StudentHousesBlocListWidget({Key? key,required this.addPointBloc}) : super(key: key);
 
   @override
-  State<AddPointListWidget> createState() => _AddPointListWidgetState();
+  State<StudentHousesBlocListWidget> createState() => _StudentHousesBlocListWidgetState();
 }
 
-class _AddPointListWidgetState extends State<AddPointListWidget> {
+class _StudentHousesBlocListWidgetState extends State<StudentHousesBlocListWidget> {
   final TextEditingController _commentController = TextEditingController();
   List<String> list = [
     'Leen Eiz Deen',

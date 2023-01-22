@@ -5,10 +5,10 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/sections/widgets/sections_content_widget.dart';
+import 'package:schools/presentation/ui/student_houses/student_houses_screen.dart';
 
 class SectionsScreen extends BaseStatefulWidget {
   const SectionsScreen({super.key});
@@ -70,5 +70,5 @@ class _SectionsScreenState extends BaseState<SectionsScreen> {
       MaterialPageRoute(builder: (_) => const HomeScreen()), (route) => false);
 
   void _navigateToAddPointScreen() => Navigator.push(
-      context, MaterialPageRoute(builder: (_) => const AddPointScreen()));
+      context, MaterialPageRoute(builder: (_) => const StudentHousesScreen()));
 }

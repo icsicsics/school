@@ -3,35 +3,34 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
-import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 
-part 'add_point_event.dart';
+part 'student_houses_event.dart';
 
-part 'add_point_state.dart';
+part 'student_houses_state.dart';
 
-class AddPointBloc extends Bloc<AddPointEvent, AddPointState> {
-  AddPointBloc() : super(AddPointInitialState()) {
-    on<GetAddPointEvent>(_onGetAddPointEvent);
+class StudentHousesBloc extends Bloc<StudentHousesEvent, StudentHousesState> {
+  StudentHousesBloc() : super(StudentHousesInitialState()) {
+    on<GetStudentHousesEvent>(_onGetStudentHousesEvent);
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
     on<NavigateToMyChildrenScreenEvent>(_onNavigateToMyChildrenScreenEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
   }
 
-  FutureOr<void> _onGetAddPointEvent(
-      GetAddPointEvent event, Emitter<AddPointState> emit) {}
+  FutureOr<void> _onGetStudentHousesEvent(
+      GetStudentHousesEvent event, Emitter<StudentHousesState> emit) {}
 
   FutureOr<void> _onNavigateToNotificationScreenEvent(
-      NavigateToNotificationScreenEvent event, Emitter<AddPointState> emit) {
+      NavigateToNotificationScreenEvent event, Emitter<StudentHousesState> emit) {
     emit(NavigateToNotificationScreenState());
   }
 
   FutureOr<void> _onNavigateToMyChildrenScreenEvent(
-      NavigateToMyChildrenScreenEvent event, Emitter<AddPointState> emit) {
+      NavigateToMyChildrenScreenEvent event, Emitter<StudentHousesState> emit) {
     emit(NavigateToMyChildrenScreenState());
   }
 
   FutureOr<void> _onGetIsFatherEvent(
-      GetIsFatherEvent event, Emitter<AddPointState> emit) async {
+      GetIsFatherEvent event, Emitter<StudentHousesState> emit) async {
     final isFather = await SharedPreferencesManager.getIsFather();
     emit(GetIsFatherState(isFather: isFather!));
   }

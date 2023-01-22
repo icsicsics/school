@@ -11,7 +11,6 @@ import 'package:schools/data/source/di/injector.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
-import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/localization/localization/app_localization_cubit.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
@@ -23,9 +22,11 @@ import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart'
 import 'package:schools/presentation/bloc/sections/sections_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
+import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/ui/splash/splash_screen.dart';
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';
+
 void main() async {
   DioHelper.init();
   await initializeDependencies();
@@ -55,21 +56,29 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider<LocalizationCubit>(create: (context) =>injector()),
+          BlocProvider<LocalizationCubit>(create: (context) => injector()),
           BlocProvider<SplashBloc>(create: (context) => injector()),
           BlocProvider<LoginBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<VerifyBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<VerifyBloc>(
+              create: (BuildContext context) => injector()),
           BlocProvider<HomeBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<NotificationsBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<SideMenuBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<AddPointBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<ProfileBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<SchoolHousesBloc>(create: (BuildContext context) => injector()),
+          BlocProvider<NotificationsBloc>(
+              create: (BuildContext context) => injector()),
+          BlocProvider<SideMenuBloc>(
+              create: (BuildContext context) => injector()),
+          BlocProvider<StudentHousesBloc>(
+              create: (BuildContext context) => injector()),
+          BlocProvider<ProfileBloc>(
+              create: (BuildContext context) => injector()),
+          BlocProvider<SchoolHousesBloc>(
+              create: (BuildContext context) => injector()),
           BlocProvider<AboutBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<MyChildrenBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<SectionsBloc>(create: (BuildContext context) => injector()),
-          BlocProvider<MyChildPointsBloc>(create: (BuildContext context) => injector()),
-
+          BlocProvider<MyChildrenBloc>(
+              create: (BuildContext context) => injector()),
+          BlocProvider<SectionsBloc>(
+              create: (BuildContext context) => injector()),
+          BlocProvider<MyChildPointsBloc>(
+              create: (BuildContext context) => injector()),
         ],
         child: BlocBuilder<LocalizationCubit, Locale>(
           builder: (context, state) {

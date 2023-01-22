@@ -6,9 +6,9 @@ import 'package:schools/data/source/remote/model/class_houses/get_class_houses_r
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/ui/add_point/add_point_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_content_widget.dart';
+import 'package:schools/presentation/ui/student_houses/student_houses_screen.dart';
 
 class SchoolHousesScreen extends BaseStatefulWidget {
   final String token;
@@ -84,7 +84,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       (route) => false);
 
   void _navigateToAddPointsScreen() => Navigator.push(
-      context, MaterialPageRoute(builder: (_) => const AddPointScreen()));
+      context, MaterialPageRoute(builder: (_) => const StudentHousesScreen()));
 
   void _onGetSchoolHousesFillState() {}
 }

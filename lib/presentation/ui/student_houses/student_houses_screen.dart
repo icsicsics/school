@@ -3,26 +3,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
-import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
+import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/ui/add_point/widgets/add_point_content_widget.dart';
 import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
+import 'package:schools/presentation/ui/student_houses/widgets/student_houses_content_widget.dart';
 
-class AddPointScreen extends BaseStatefulWidget {
-  const AddPointScreen({super.key});
+class StudentHousesScreen extends BaseStatefulWidget {
+  const StudentHousesScreen({super.key});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _AddPointScreen();
 }
 
-class _AddPointScreen extends BaseState<AddPointScreen> {
-  AddPointBloc get _addPointBloc => BlocProvider.of<AddPointBloc>(context);
+class _AddPointScreen extends BaseState<StudentHousesScreen> {
+  StudentHousesBloc get _studentHousesBloc =>
+      BlocProvider.of<StudentHousesBloc>(context);
   bool _isFather = false;
 
   @override
   void initState() {
-    _addPointBloc.add(GetIsFatherEvent());
+    _studentHousesBloc.add(GetIsFatherEvent());
     super.initState();
   }
 
@@ -31,18 +32,18 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
     return Scaffold(
       backgroundColor: ColorsManager.whiteColor,
       appBar: _appBar(),
-      body: BlocListener<AddPointBloc, AddPointState>(
+      body: BlocListener<StudentHousesBloc, StudentHousesState>(
         listener: (context, state) {
           if (state is NavigateToNotificationScreenState) {
             _navigateToNotificationScreen();
           } else if (state is NavigateToMyChildrenScreenState) {
             _navigateToMyChildrenScreen();
-          }else if (state is GetIsFatherState) {
+          } else if (state is GetIsFatherState) {
             _isFather = state.isFather;
           }
         },
-        child: AddPointContentWidget(
-          addPointBloc: _addPointBloc,
+        child: StudentHousesContentWidget(
+          studentHousesBloc: _studentHousesBloc,
         ),
       ),
     );
@@ -58,7 +59,7 @@ class _AddPointScreen extends BaseState<AddPointScreen> {
         centerTitle: false,
         actions: [
           InkWell(
-            onTap: () => BlocProvider.of<AddPointBloc>(context)
+            onTap: () => BlocProvider.of<StudentHousesBloc>(context)
                 .add(NavigateToNotificationScreenEvent()),
             child: SizedBox(
                 width: 50,
