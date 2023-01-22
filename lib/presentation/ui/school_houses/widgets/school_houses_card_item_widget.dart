@@ -56,6 +56,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                       _line(),
                       _rowOfTitleAndValue(
                           title: S.of(context).students, value: studentsValue),
+                      const SizedBox(height: 5),
                       _rowOfTitleAndValue(
                           title: S.of(context).teachers, value: teachersValue),
                       const SizedBox(
