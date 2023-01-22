@@ -49,17 +49,20 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           }
         },
         builder: (context, state) {
-          return SchoolHousesContentWidget(
-              getClassHousesResponse: _getClassHousesResponse);
+          return _getClassHousesResponse.data != null
+              ? SchoolHousesContentWidget(
+              getClassHousesResponse: _getClassHousesResponse)
+              : Container();
         },
       ),
     );
   }
 
-  PreferredSizeWidget _appBar() => AppBar(
-    elevation: 0,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+  PreferredSizeWidget _appBar() =>
+      AppBar(.
+      elevation: 0,
+      leading: IconButton(
+      onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios,
               color: ColorsManager.secondaryColor, size: 25),
         ),
