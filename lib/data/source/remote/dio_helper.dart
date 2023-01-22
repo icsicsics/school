@@ -59,7 +59,21 @@ class DioHelper {
   }
 
   static Future<Response> getClassHouses(token, classroomToSectionId) async {
-    return dio.get("${ApiKey.getClassHouses}?ClassroomToSectionId=$classroomToSectionId",
+    return dio.get(
+        "${ApiKey.getClassHouses}?ClassroomToSectionId=$classroomToSectionId",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
+  static Future<Response> getStudentHouses(
+      token, classroomToSectionId, houseId) async {
+    return dio.get(
+        "${ApiKey.getStudentsHouse}?ClassroomToSectionId=$classroomToSectionId&HouseId=$houseId",
         options: Options(
           headers: {
             'Content-Type': 'application/json',

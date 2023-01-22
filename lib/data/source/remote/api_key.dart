@@ -6,4 +6,5 @@ class ApiKey{
   static const String getChildrenByParent = "Parent/GetChildrenByParent";
   static const String getTeacherHome = "Teacher/GetTeacherHomePage";
   static const String getClassHouses = "Teacher/GetClassHouses";
+  static const String getStudentsHouse = "Teacher/TeacherStudentsHouse";
 }
