@@ -24,6 +24,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   GetChildrenByParentResponse _parentHomeResponse =
       GetChildrenByParentResponse();
   String _language = '';
+  String _token = '';
 
   @override
   void initState() {
@@ -47,6 +48,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         } else if (state is GetLanguageSuccessState) {
           _language = state.language;
         } else if (state is GetTokenSuccessState) {
+          _token=state.token;
           if (_isFather) {
             _homeBloc.add(GetFatherHomeEvent(token: state.token));
           } else {
@@ -80,7 +82,8 @@ class _HomeScreenState extends BaseState<HomeScreen> {
                 bloc: _homeBloc,
                 language: _language,
                 parentHomeResponse: _parentHomeResponse,
-                teacherHomeResponse: _teacherHomeResponse));
+                teacherHomeResponse: _teacherHomeResponse,
+                token :_token));
       },
     );
   }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_card_item_widget.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_chart_widget.dart';
 
 class SchoolHousesContentWidget extends StatefulWidget {
-  const SchoolHousesContentWidget({Key? key}) : super(key: key);
+  final GetClassHousesResponse getClassHousesResponse;
+  const SchoolHousesContentWidget({Key? key,required this.getClassHousesResponse}) : super(key: key);
 
   @override
   State<SchoolHousesContentWidget> createState() =>

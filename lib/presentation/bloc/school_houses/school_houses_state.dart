@@ -7,9 +7,16 @@ class SchoolHousesInitialState extends SchoolHousesState {}
 
 class GetSchoolHousesLoadingState extends SchoolHousesState {}
 
-class GetSchoolHousesSuccessState extends SchoolHousesState {}
+class GetSchoolHousesSuccessState extends SchoolHousesState {
+  final GetClassHousesResponse response;
+  GetSchoolHousesSuccessState({required this.response});
 
-class GetSchoolHousesFillState extends SchoolHousesState {}
+}
+
+class GetSchoolHousesFillState extends SchoolHousesState {
+  final String error;
+  GetSchoolHousesFillState({required this.error});
+}
 
 class GetSchoolHousesErrorState extends SchoolHousesState {}
 

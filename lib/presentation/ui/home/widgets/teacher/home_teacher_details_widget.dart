@@ -5,9 +5,11 @@ import 'package:schools/presentation/shere_widgets/card_widget.dart';
 import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
 
 class HomeTeacherDetailsWidget extends StatefulWidget {
+  final String token;
   final GetTeacherHomeResponse teacherHomeResponse;
 
-  const HomeTeacherDetailsWidget({Key? key, required this.teacherHomeResponse})
+  const HomeTeacherDetailsWidget(
+      {Key? key, required this.teacherHomeResponse, required this.token})
       : super(key: key);
 
   @override
@@ -32,10 +34,14 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
             child: InkWell(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const SchoolHousesScreen()));
-              },
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SchoolHousesScreen(
+                                  token: widget.token,
+                                  classRoomId: widget.teacherHomeResponse
+                                      .data![index].classroomToSectionId!,
+                                )));
+                  },
               child:  CardWidget(
                 section: widget.teacherHomeResponse.data![index].classroomName!,
                 imagePath: ImagesPath.schoolItem,

@@ -59,7 +59,7 @@ class DioHelper {
   }
 
   static Future<Response> getClassHouses(token, classroomToSectionId) async {
-    return dio.get("${ApiKey.getTeacherHome}?$classroomToSectionId",
+    return dio.get("${ApiKey.getClassHouses}?ClassroomToSectionId=$classroomToSectionId",
         options: Options(
           headers: {
             'Content-Type': 'application/json',

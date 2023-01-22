@@ -9,6 +9,7 @@ import 'package:schools/presentation/ui/home/widgets/title_widget.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class HomeContentWidget extends StatefulWidget {
+  final String token;
   final GlobalKey<ScaffoldState> globalKey;
   final bool isFather;
   final HomeBloc bloc;
@@ -23,7 +24,7 @@ class HomeContentWidget extends StatefulWidget {
       required this.bloc,
       required this.language,
       required this.parentHomeResponse,
-      required this.teacherHomeResponse})
+      required this.teacherHomeResponse,required this.token})
       : super(key: key);
 
   @override
@@ -60,6 +61,6 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
           parentHomeResponse: widget.parentHomeResponse);
     }
     return HomeTeacherDetailsWidget(
-        teacherHomeResponse: widget.teacherHomeResponse);
+        teacherHomeResponse: widget.teacherHomeResponse, token: widget.token);
   }
 }
