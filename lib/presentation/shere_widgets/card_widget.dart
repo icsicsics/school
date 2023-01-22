@@ -34,9 +34,10 @@ class CardWidget extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(8), topLeft: Radius.circular(8)),
                 child: Image.asset(imagePath, fit: BoxFit.cover)),
-            SizedBox(height: 5,),
+           const  SizedBox(height: 5,),
             BoldTextWidget(
                 text: grade, fontSize: 13, color: ColorsManager.welcomeGryColor),
+           const  SizedBox(height: 5),
             BoldTextWidget(
                 text: section, fontSize: 13, color: ColorsManager.welcomeGryColor),
           ],

@@ -47,7 +47,7 @@ class FatherOfWidget extends StatelessWidget {
                                               const MyChildrenScreen())),
                                   child: ChildItemWidget(
                                       imageUrl:
-                                          "${fatherInfoResponse.data!.childrens![index].getImage!.mediaUrl}"));
+                                          "${fatherInfoResponse.data!.childrens![index].getImage != null ? fatherInfoResponse.data!.childrens![index].getImage!.mediaUrl : ""}"));
                             }),
                       )
                     ],

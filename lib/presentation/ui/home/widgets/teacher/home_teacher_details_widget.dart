@@ -18,11 +18,11 @@ class HomeTeacherDetailsWidget extends StatefulWidget {
 class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return widget.teacherHomeResponse.data!=null?GridView.builder(
       physics: const BouncingScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, mainAxisSpacing: 5,mainAxisExtent: 200),
-        itemCount: 20,
+        itemCount: widget.teacherHomeResponse.data!.length,
         padding: const EdgeInsets.all(5),
         shrinkWrap: true,
         semanticChildCount: 10,
@@ -36,14 +36,14 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                     MaterialPageRoute(
                         builder: (_) => const SchoolHousesScreen()));
               },
-              child: const CardWidget(
-                section: "Section A",
+              child:  CardWidget(
+                section: widget.teacherHomeResponse.data![index].classroomName!,
                 imagePath: ImagesPath.schoolItem,
-                grade: "Grade 2",
+                grade: widget.teacherHomeResponse.data![index].sectionName!,
               ),
             ),
           );
         },
-    );
+    ):Container();
   }
 }

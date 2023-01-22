@@ -29,13 +29,13 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
           semanticChildCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return FatherChildItemWidget(
-              childName:
-                  "${widget.parentHomeResponse.data![index].studentName}",
-              onTapStar: () => _onTap(widget.parentHomeResponse.data![index]),
-              onTapChild: () {},
-              imageUrl:
-                  '${widget.parentHomeResponse.data![index].getImage!.mediaUrl}',
-            );
+              childName: "${widget.parentHomeResponse.data![index].studentName}",
+            onTapStar: () => _onTap(widget.parentHomeResponse.data![index]),
+            onTapChild: () {},
+            imageUrl: widget.parentHomeResponse.data![index].getImage != null
+                ? widget.parentHomeResponse.data![index].getImage!.mediaUrl!
+                : "",
+          );
           }
     );
   }
