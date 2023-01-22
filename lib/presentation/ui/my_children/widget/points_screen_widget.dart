@@ -104,19 +104,3 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                 ],
               )));
 }
-//ListTile(
-//               contentPadding:
-//                   const EdgeInsets.only(top: 3, bottom: 3, right: 15, left: 15),
-//               dense: true,
-//               style: ListTileStyle.list,
-//               minLeadingWidth: 2,
-
-//               title: MediumTextWidget(
-//                   text: title, fontSize: 15, color: ColorsManager.darkGrayColor),
-//               subtitle: MediumTextWidget(
-//                   text: subTitle,
-//                   fontSize: 11,
-//                   color: ColorsManager.welcomeGryColor),
-//               trailing: Icon(icon, color: ColorsManager.secondaryColor, size: 30),
-//               onTap: onTap,
-//             ),
