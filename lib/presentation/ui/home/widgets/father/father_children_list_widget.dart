@@ -30,7 +30,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
           itemBuilder: (BuildContext context, int index) {
             return FatherChildItemWidget(
               childName: "${widget.parentHomeResponse.data![index].studentName}",
-            onTapStar: () => _onTap(widget.parentHomeResponse.data![index]),
+            onTapStar: () => _onTap(widget.parentHomeResponse.data![index].studentName),
             onTapChild: () {},
             imageUrl: widget.parentHomeResponse.data![index].getImage != null
                 ? widget.parentHomeResponse.data![index].getImage!.mediaUrl!
