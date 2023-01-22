@@ -22,10 +22,11 @@ class _StudentHousesContentWidgetState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const StudentHousesHeaderWidget(),
-        StudentHousesBlocListWidget(
-          addPointBloc: widget.studentHousesBloc,
-        )
+        StudentHousesHeaderWidget(
+            getStudentHousesResponse: widget.getStudentHousesResponse),
+        StudentHousesListWidget(
+            studentHousesBloc: widget.studentHousesBloc,
+            getStudentHousesResponse: widget.getStudentHousesResponse)
       ],
     );
   }

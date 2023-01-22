@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class StudentHousesHeaderWidget extends StatelessWidget {
-  const StudentHousesHeaderWidget({Key? key}) : super(key: key);
+  final GetStudentHousesResponse getStudentHousesResponse;
+
+  const StudentHousesHeaderWidget(
+      {Key? key, required this.getStudentHousesResponse})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +41,21 @@ class StudentHousesHeaderWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 30),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
+                    children: [
                       BoldTextWidget(
-                          text: "Grade 2 , Section A",
+                          text:
+                              "${getStudentHousesResponse.data!.sectionName ?? ""},  ${getStudentHousesResponse.data!.houseName ?? ""}",
                           fontSize: 18,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 6),
-                      MediumTextWidget(
+                      const SizedBox(height: 6),
+                      const MediumTextWidget(
                           text: "Math Class",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 2),
+                      const SizedBox(height: 2),
                       MediumTextWidget(
-                          text: "20 Students",
+                          text:
+                              "${getStudentHousesResponse.data!.numberofStudentsHouse ?? ""} ${S.of(context).students}",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
                     ],
