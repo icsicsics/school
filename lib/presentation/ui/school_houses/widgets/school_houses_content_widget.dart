@@ -41,7 +41,7 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                         studentsValue: widget.getClassHousesResponse.data![0]
                             .numberStudentsHouse!
                             .toString(),
-                        hasIcon2: true)),
+                        hasIcon2: true, index: 0)),
                 Expanded(child: Container())
                 // Expanded(
                 //     child: SchoolHousesCardItemWidget(

@@ -39,6 +39,6 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
 
   FutureOr<void> _onNavigateToAddPointsScreenEvent(
       NavigateToAddPointsScreenEvent event, Emitter<SchoolHousesState> emit) {
-    emit(NavigateToAddPointsScreenState());
+    emit(NavigateToStudentHousesScreenState(index: event.index));
   }
 }

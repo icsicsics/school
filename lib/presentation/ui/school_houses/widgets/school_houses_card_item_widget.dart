@@ -13,6 +13,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
   final String pointsValue;
   final String teachersValue;
   final String studentsValue;
+  final int index;
 
   const SchoolHousesCardItemWidget(
       {Key? key,
@@ -22,7 +23,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
       required this.icon2,
       this.hasIcon2 = false,
       required this.label,
-      required this.studentsValue})
+      required this.studentsValue,required this.index})
       : super(key: key);
 
   @override
@@ -31,7 +32,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
         child: InkWell(
           onTap: () => BlocProvider.of<SchoolHousesBloc>(context)
-              .add(NavigateToAddPointsScreenEvent()),
+              .add(NavigateToAddPointsScreenEvent(index:index)),
           child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),

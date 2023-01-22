@@ -22,4 +22,7 @@ class GetSchoolHousesErrorState extends SchoolHousesState {}
 
 class NavigateToNotificationScreenState extends SchoolHousesState {}
 
-class NavigateToAddPointsScreenState extends SchoolHousesState {}
+class NavigateToStudentHousesScreenState extends SchoolHousesState {
+  final int index;
+  NavigateToStudentHousesScreenState({required this.index});
+}

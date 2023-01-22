@@ -44,8 +44,8 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
             _onGetSchoolHousesFillState();
           } else if (state is NavigateToNotificationScreenState) {
             _navigateToNotificationScreen();
-          } else if (state is NavigateToAddPointsScreenState) {
-            _navigateToAddPointsScreen();
+          } else if (state is NavigateToStudentHousesScreenState) {
+            _navigateToStudentHousesScreen(state.index);
           }
         },
         builder: (context, state) {
@@ -83,8 +83,13 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
 
-  void _navigateToAddPointsScreen() => Navigator.push(
-      context, MaterialPageRoute(builder: (_) => const StudentHousesScreen()));
+  void _navigateToStudentHousesScreen(index) => Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (_) => StudentHousesScreen(
+                token: widget.token,
+                classroomToSectionId: _getClassHousesResponse.data![index].classroomToSectionId!, houseId: _getClassHousesResponse.data![index].houseId!,
+              )));
 
   void _onGetSchoolHousesFillState() {}
 }
