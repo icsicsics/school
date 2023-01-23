@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
@@ -47,7 +48,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       BoldTextWidget(
-                          text: widget.homeBloc.fatherInfoResponse.data != null
+                          text: widget.homeBloc.fatherInfoResponse != FatherInfoResponse()
                               ? widget
                                   .homeBloc.fatherInfoResponse.data!.parentName
                               : "",
@@ -55,7 +56,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                           color: ColorsManager.whiteColor),
                       const   SizedBox(height: 6),
                          MediumTextWidget(
-                          text: widget.homeBloc.fatherInfoResponse.data != null
+                          text: widget.homeBloc.fatherInfoResponse != FatherInfoResponse()
                               ? widget
                               .homeBloc.fatherInfoResponse.data!.parentName
                               : "",

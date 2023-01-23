@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/ui/home/widgets/father/father_child_item_widget.dart';
+import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 
 class FatherChildrenListWidget extends StatefulWidget {
   final GetChildrenByParentResponse parentHomeResponse;
@@ -31,7 +32,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
             return FatherChildItemWidget(
               childName: "${widget.parentHomeResponse.data![index].studentName}",
             onTapStar: () => _onTap(widget.parentHomeResponse.data![index].studentName),
-            onTapChild: () {},
+            onTapChild: ()=>_onTapChild(),
             imageUrl: widget.parentHomeResponse.data![index].getImage != null
                 ? widget.parentHomeResponse.data![index].getImage!.mediaUrl!
                 : "",
@@ -47,4 +48,6 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
       },
       childName: childName,
       commentController: _commentController);
+
+  _onTapChild()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>const MyChildrenScreen()));
 }
