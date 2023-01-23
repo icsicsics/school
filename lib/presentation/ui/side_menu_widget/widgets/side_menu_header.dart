@@ -68,15 +68,27 @@ class SideMenuHeader extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              const BoldTextWidget(
-                  text: "Math Teacher",
+               BoldTextWidget(
+                  text: isFather != true
+                      ? bloc.teacherInfoResponse.data != null
+                      ? bloc.teacherInfoResponse.data!.email
+                      : ""
+                      : bloc.fatherInfoResponse.data != null
+                      ? bloc.fatherInfoResponse.data!.parentName
+                      : "",
                   fontSize: 12,
                   color: ColorsManager.borderColor),
               const SizedBox(
                 height: 2,
               ),
-              const BoldTextWidget(
-                  text: "Collaboration Home",
+               BoldTextWidget(
+                  text:  isFather != true
+                      ? bloc.teacherInfoResponse.data != null
+                      ? bloc.teacherInfoResponse.data!.phoneNumber
+                      : ""
+                      : bloc.fatherInfoResponse.data != null
+                      ? bloc.fatherInfoResponse.data!.phoneNumber
+                      : "",
                   fontSize: 12,
                   color: ColorsManager.borderColor)
             ],
