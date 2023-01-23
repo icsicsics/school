@@ -52,8 +52,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
            const  SizedBox(width: 5,),
             Expanded(
               child: MediumTextWidget(
+                textAlign: TextAlign.center,
                   text: widget.isFather
-                      ? S.of(context).interactiveSchoolCounselling
+                      ? S.of(context).ejabi
                       : widget.teacherHomeResponse.data != null
                           ? widget.teacherHomeResponse.data![0].schoolName
                           : "",

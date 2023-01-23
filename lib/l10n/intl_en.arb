@@ -63,5 +63,6 @@
  "submit":"Submit",
  "dontReceiveCode":"Don't Receive Code ? ",
  "resend":"Resend",
- "phoneNumber":"Phone Number"
+ "phoneNumber":"Phone Number",
+ "ejabi":"Ejabi"
 }

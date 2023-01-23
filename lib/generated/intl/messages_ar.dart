@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لم تتلق رمز التحقق؟"),
         "dontReceiveCode":
             MessageLookupByLibrary.simpleMessage(" لم تتلقى رمز ؟"),
+        "ejabi": MessageLookupByLibrary.simpleMessage("ايجابي"),
         "email": MessageLookupByLibrary.simpleMessage("بريد إلكتروني"),
         "energetic": MessageLookupByLibrary.simpleMessage("نشيط"),
         "english": MessageLookupByLibrary.simpleMessage("EN"),

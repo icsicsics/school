@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Didn\'t Receive Verification code ?"),
         "dontReceiveCode":
             MessageLookupByLibrary.simpleMessage("Don\'t Receive Code ? "),
+        "ejabi": MessageLookupByLibrary.simpleMessage("Ejabi"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "energetic": MessageLookupByLibrary.simpleMessage("Energetic"),
         "english": MessageLookupByLibrary.simpleMessage("EN"),
