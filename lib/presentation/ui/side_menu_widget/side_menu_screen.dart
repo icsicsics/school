@@ -138,11 +138,13 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
             builder: (_) =>
                 LoginScreen(isFather: _isFather == true ? false : true)),
         (route) => false).then((value) {
+          setState(() {
+            _bloc.fatherInfoResponse = FatherInfoResponse();
+            _bloc.teacherInfoResponse = TeacherInfoResponse();
+          });
       if (_isFather) {
-        _bloc.fatherInfoResponse=FatherInfoResponse();
         _bloc.add(GetFatherInfoEvent(token: widget.token));
       } else {
-        _bloc.teacherInfoResponse=TeacherInfoResponse();
         _bloc.add(GetTeacherInfoEvent(token: widget.token));
       }
     });

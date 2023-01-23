@@ -18,7 +18,6 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
    TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
    FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
-
   SideMenuBloc(this._getLanguageCodeUseCase) : super(SideMenuInitialState()) {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);
     on<SideMenuHomeEvent>(_onSideMenuHomeEvent);
