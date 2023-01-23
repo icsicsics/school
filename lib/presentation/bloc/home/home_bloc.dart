@@ -83,4 +83,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(GetParentHomeFillState(error: state.error));
     }
   }
+
 }

@@ -34,5 +34,28 @@ class GetLanguageSuccessState extends SideMenuState {
   GetLanguageSuccessState({required this.language});
 }
 
+
 class LogoutState extends SideMenuState {}
 
+class GetTeacherInfoSuccessState extends SideMenuState {
+  final TeacherInfoResponse response;
+
+  GetTeacherInfoSuccessState({required this.response});
+}
+
+class GetTeacherInfoFillState extends SideMenuState {
+  final String error;
+
+  GetTeacherInfoFillState({required this.error});
+}
+class GetFatherInfoSuccessState extends SideMenuState {
+  final FatherInfoResponse response;
+
+  GetFatherInfoSuccessState({required this.response});
+}
+
+class GetFatherInfoFillState extends SideMenuState {
+  final String error;
+
+  GetFatherInfoFillState({required this.error});
+}

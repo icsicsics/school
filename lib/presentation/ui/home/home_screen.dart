@@ -53,6 +53,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
             _homeBloc.add(GetFatherHomeEvent(token: state.token));
           } else {
             _homeBloc.add(GetTeacherHomeEvent(token: state.token));
+
           }
         } else if (state is GetTeacherHomeSuccessState) {
           _teacherHomeResponse = state.response;
@@ -74,7 +75,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
             key: _key,
             drawer: SideMenuScreen(
               isComFromHome: true,
-              language: _language,
+              language: _language, token: _token,
             ),
             body:HomeContentWidget(
                     globalKey: _key,

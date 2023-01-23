@@ -80,7 +80,6 @@ class SharedPreferencesManager {
     await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.ipAddress, ipAddress);
   }
-
   static Future<void> setDeviceInfoData(
       {String? ipAddress,
       String? osVersion,

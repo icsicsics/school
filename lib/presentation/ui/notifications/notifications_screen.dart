@@ -40,7 +40,7 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
         return Scaffold(
             drawer: SideMenuScreen(
               isComFromHome: false,
-              language: _language,
+              language: _language, token: '',
             ),
             key: _key,
             body: NotificationsContentWidget(

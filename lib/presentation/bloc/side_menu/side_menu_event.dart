@@ -23,3 +23,14 @@ class GetLanguageEvent extends SideMenuEvent {
 
 class LogoutEvent extends SideMenuEvent {}
 
+class GetTeacherInfoEvent extends SideMenuEvent {
+  final String token;
+
+  GetTeacherInfoEvent({required this.token});
+}
+
+class GetFatherInfoEvent extends SideMenuEvent {
+  final String token;
+
+  GetFatherInfoEvent({required this.token});
+}

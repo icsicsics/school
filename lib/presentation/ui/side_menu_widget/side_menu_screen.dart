@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_logout_function.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
@@ -12,9 +14,13 @@ import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 class SideMenuScreen extends StatefulWidget {
   final bool isComFromHome;
   final String language;
+  final String token;
 
   const SideMenuScreen(
-      {Key? key, required this.isComFromHome, required this.language})
+      {Key? key,
+      required this.isComFromHome,
+      required this.language,
+      required this.token})
       : super(key: key);
 
   @override
@@ -24,6 +30,9 @@ class SideMenuScreen extends StatefulWidget {
 class _SideMenuScreenState extends State<SideMenuScreen> {
   SideMenuBloc get _bloc => BlocProvider.of<SideMenuBloc>(context);
   bool _isFather = false;
+  String userName = '';
+  TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
+  FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
 
   @override
   void initState() {
@@ -57,11 +66,38 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                           _onSideMenuAboutAppState(context);
                         } else if (state is GetIsFatherState) {
                           _isFather = state.isFather;
+                          if (_isFather) {
+                            if(_fatherInfoResponse.data==null){
+                              _bloc.add(GetFatherInfoEvent(token: widget.token));
+                            }
+                          } else {
+                            if(_teacherInfoResponse.data==null){
+                              _bloc.add(GetTeacherInfoEvent(token: widget.token));
+                            }
+                          }
                         } else if (state is SwitchAccountState) {
                           _switchAccount(context);
                         } else if (state is LogoutState) {
                           showLogoutFunction(
                               context: context, yesAction: () => _logout());
+                        } else if (state is GetTeacherInfoSuccessState) {
+                          _teacherInfoResponse = state.response;
+                          Navigator.pop(context);
+                        } else if (state is GetTeacherInfoFillState) {
+                          _onGetTeacherInfoFillState(state.error);
+                          Navigator.pop(context);
+                        } else if (state is GetFatherInfoSuccessState) {
+                          _fatherInfoResponse = state.response;
+                          Navigator.pop(context);
+                        } else if (state is GetFatherInfoFillState) {
+                          _onGetFatherInfoFillState(state.error);
+                          Navigator.pop(context);
+                        } else if (state is GetSideMenuLoadingState) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ));
                         }
                       },
                       builder: (context, state) {
@@ -109,6 +145,10 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         MaterialPageRoute(
             builder: (_) =>
                 LoginScreen(isFather: _isFather == true ? false : true)),
-            (route) => false);
+        (route) => false);
   }
+
+  void _onGetTeacherInfoFillState(String error) {}
+
+  void _onGetFatherInfoFillState(String error) {}
 }
