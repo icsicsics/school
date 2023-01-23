@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
-import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class SchoolHousesCardItemWidget extends StatelessWidget {
@@ -13,8 +11,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
   final String pointsValue;
   final String teachersValue;
   final String studentsValue;
-  final int index;
-
+  final Function()? onTap;
   const SchoolHousesCardItemWidget(
       {Key? key,
       required this.icon,
@@ -23,16 +20,15 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
       required this.icon2,
       this.hasIcon2 = false,
       required this.label,
-      required this.studentsValue,required this.index})
+      required this.studentsValue,required this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
-        child: InkWell(
-          onTap: () => BlocProvider.of<SchoolHousesBloc>(context)
-              .add(NavigateToAddPointsScreenEvent(index:index)),
+        child: GestureDetector(
+          onTap: onTap,
           child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),

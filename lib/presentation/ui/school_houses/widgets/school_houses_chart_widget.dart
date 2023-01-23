@@ -1,34 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/chart_content_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class SchoolHousesChartWidget extends StatelessWidget {
-  const SchoolHousesChartWidget({Key? key}) : super(key: key);
+  final SchoolHousesBloc? schoolHousesBloc;
+
+  const SchoolHousesChartWidget(
+      {Key? key, required this.schoolHousesBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          colors: [
-            ColorsManager.primaryColor,
-            ColorsManager.secondaryColor,
-          ],
-          stops: [0.5, 0.8],
-        )),
-        height: 500,
-        child: Stack(
+    return  Stack(
           children: [
             ClipPath(
                 clipper: GeneralCurve(),
-              child: Container(
-                height: 200,
-                color: ColorsManager.whiteColor,
-              )
-            ),
-            const ChartContentWidget(),
+                child: Container(
+                  height: 200,
+                  color: ColorsManager.whiteColor,
+                )),
+           ChartContentWidget(schoolHousesBloc: schoolHousesBloc!),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -42,7 +36,7 @@ class SchoolHousesChartWidget extends StatelessWidget {
                               color: ColorsManager.blackColor, width: 1),
                           color: ColorsManager.whiteColor,
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(100))),
+                          const BorderRadius.all(Radius.circular(100))),
                       child: Padding(
                         padding: const EdgeInsets.all(25),
                         child: Image.asset(ImagesPath.cup),
@@ -67,16 +61,13 @@ class SchoolHousesChartWidget extends StatelessWidget {
               ),
             )
           ],
-        ));
+        );
   }
 
-  Widget _iconData(IconData icon) => Icon(
+  Widget _iconData(IconData icon) =>
+      Icon(
         icon,
         color: Colors.yellow,
         size: 30,
       );
-
-
-
-
 }

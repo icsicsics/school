@@ -13,6 +13,6 @@ class GetSchoolHousesEvent extends SchoolHousesEvent {
 class NavigateToNotificationScreenEvent extends SchoolHousesEvent {}
 
 class NavigateToAddPointsScreenEvent extends SchoolHousesEvent {
-  final int index;
-  NavigateToAddPointsScreenEvent({required this.index});
+  final Data data;
+  NavigateToAddPointsScreenEvent({required this.data});
 }

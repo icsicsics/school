@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartContentWidget extends StatefulWidget {
-  const ChartContentWidget({Key? key}) : super(key: key);
+  final SchoolHousesBloc schoolHousesBloc;
+
+  const ChartContentWidget({Key? key, required this.schoolHousesBloc})
+      : super(key: key);
 
   @override
   State<ChartContentWidget> createState() => _ChartContentWidgetState();
 }
 
+
 class _ChartContentWidgetState extends State<ChartContentWidget> {
-  List<SalesData> columnData = [
-    SalesData(x: "hello 1", y: 170),
-    SalesData(x: "hello 2", y: 170),
-    SalesData(x: "hello 3", y: 170),
-    SalesData(x: "hello 4", y: 170),
-  ];
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<SalesData> columnData = [
+      SalesData(
+          x: "hello 1",
+          y: widget.schoolHousesBloc.getClassHousesResponse.data![0].totalPointsHouse!.toDouble()),
+      SalesData(x: "hello 2", y: 20),
+      SalesData(x: "hello 3", y: 30),
+      SalesData(x: "hello 4", y: 40),
+    ];
+
     return Align(
         alignment: Alignment.bottomCenter,
         child: Padding(

@@ -23,6 +23,6 @@ class GetSchoolHousesErrorState extends SchoolHousesState {}
 class NavigateToNotificationScreenState extends SchoolHousesState {}
 
 class NavigateToStudentHousesScreenState extends SchoolHousesState {
-  final int index;
-  NavigateToStudentHousesScreenState({required this.index});
+  final Data data;
+  NavigateToStudentHousesScreenState({required this.data});
 }
