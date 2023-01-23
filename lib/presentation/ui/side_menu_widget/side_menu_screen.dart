@@ -67,13 +67,9 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                         } else if (state is GetIsFatherState) {
                           _isFather = state.isFather;
                           if (_isFather) {
-                            if(_fatherInfoResponse.data==null){
                               _bloc.add(GetFatherInfoEvent(token: widget.token));
-                            }
                           } else {
-                            if(_teacherInfoResponse.data==null){
                               _bloc.add(GetTeacherInfoEvent(token: widget.token));
-                            }
                           }
                         } else if (state is SwitchAccountState) {
                           _switchAccount(context);
@@ -98,6 +94,10 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                               builder: (_) => const Center(
                                     child: CircularProgressIndicator(),
                                   ));
+                        } else if (state is GetFatherResponseState) {
+                          _fatherInfoResponse = state.response;
+                        } else if (state is GetTeacherResponseState) {
+                          _teacherInfoResponse = state.response;
                         }
                       },
                       builder: (context, state) {

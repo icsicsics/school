@@ -17,6 +17,8 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   final BaseSideMenuRepository _repository = SideMenuRepositoryImp();
 
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
+   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
+   FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
 
   SideMenuBloc(this._getLanguageCodeUseCase) : super(SideMenuInitialState()) {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);
@@ -79,25 +81,35 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
 
   FutureOr<void> _onGetTeacherInfoEvent(
       GetTeacherInfoEvent event, Emitter<SideMenuState> emit) async {
-    emit(GetSideMenuLoadingState());
-    SideMenuState state =
-        (await _repository.getTeacherInfo(event.token)) as SideMenuState;
-    if (state is GetTeacherInfoSuccessState) {
-      emit(GetTeacherInfoSuccessState(response: state.response));
-    } else if (state is GetTeacherInfoFillState) {
-      emit(GetTeacherInfoFillState(error: state.error));
+    if(_teacherInfoResponse.data!=null){
+      emit(GetTeacherResponseState(response: _teacherInfoResponse));
+    } else {
+      emit(GetSideMenuLoadingState());
+      SideMenuState state =
+      (await _repository.getTeacherInfo(event.token)) as SideMenuState;
+      if (state is GetTeacherInfoSuccessState) {
+        _teacherInfoResponse=state.response;
+        emit(GetTeacherInfoSuccessState(response: state.response));
+      } else if (state is GetTeacherInfoFillState) {
+        emit(GetTeacherInfoFillState(error: state.error));
+      }
     }
   }
 
   FutureOr<void> _onGetFatherInfoEvent(
       GetFatherInfoEvent event, Emitter<SideMenuState> emit) async {
-    emit(GetSideMenuLoadingState());
-    SideMenuState state =
-        (await _repository.getFatherInfo(event.token)) as SideMenuState;
-    if (state is GetFatherInfoSuccessState) {
-      emit(GetFatherInfoSuccessState(response: state.response));
-    } else if (state is GetFatherInfoFillState) {
-      emit(GetFatherInfoFillState(error: state.error));
+    if(_fatherInfoResponse.data!=null){
+      emit(GetFatherResponseState(response: _fatherInfoResponse));
+    }else {
+      emit(GetSideMenuLoadingState());
+      SideMenuState state =
+      (await _repository.getFatherInfo(event.token)) as SideMenuState;
+      if (state is GetFatherInfoSuccessState) {
+        _fatherInfoResponse=state.response;
+        emit(GetFatherInfoSuccessState(response: state.response));
+      } else if (state is GetFatherInfoFillState) {
+        emit(GetFatherInfoFillState(error: state.error));
+      }
     }
   }
 }

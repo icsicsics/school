@@ -59,3 +59,13 @@ class GetFatherInfoFillState extends SideMenuState {
 
   GetFatherInfoFillState({required this.error});
 }
+
+class GetTeacherResponseState extends SideMenuState {
+  final TeacherInfoResponse response;
+
+  GetTeacherResponseState({required this.response});
+}
+class GetFatherResponseState extends SideMenuState {
+  final FatherInfoResponse response;
+  GetFatherResponseState({required this.response});
+}
