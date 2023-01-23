@@ -70,7 +70,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                     height: 150,
                     decoration: BoxDecoration(
                         border:
-                        Border.all(color: ColorsManager.whiteColor, width: 3),
+                        Border.all(color: ColorsManager.blackColor, width: 3),
                         borderRadius: BorderRadius.circular(100),
                         image: const DecorationImage(
                             image: AssetImage(ImagesPath.logo),
