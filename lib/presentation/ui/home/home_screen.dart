@@ -75,7 +75,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
               isComFromHome: true,
               language: _language, token: _token,
             ),
-            body:HomeContentWidget(
+            body: HomeContentWidget(
                     globalKey: _key,
                     isFather: _isFather,
                     bloc: _homeBloc,
