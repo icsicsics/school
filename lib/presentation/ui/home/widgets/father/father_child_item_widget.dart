@@ -21,14 +21,14 @@ final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 150,
       width: 150,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 150,
+            height: 126,
             child: Stack(
               children: [
                 Align(
@@ -36,7 +36,7 @@ final String imageUrl;
                   child: InkWell(onTap: onTapChild, child: itemImageWidget()),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 40, bottom: 30),
+                  padding: const EdgeInsets.only(right: 40, bottom: 15),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
@@ -70,7 +70,7 @@ final String imageUrl;
             ),
           ),
           MediumTextWidget(
-              text: childName, fontSize: 12, color: ColorsManager.blackColor)
+              text: childName, fontSize: 12, color: ColorsManager.blackColor),
         ],
       ),
     );

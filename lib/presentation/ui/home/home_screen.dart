@@ -31,7 +31,6 @@ class _HomeScreenState extends BaseState<HomeScreen> {
     _homeBloc.add(GetIsFatherEvent());
     _homeBloc.add(GetLanguageEvent());
     _homeBloc.add(GetTokenEvent());
-
     super.initState();
   }
 
@@ -53,7 +52,6 @@ class _HomeScreenState extends BaseState<HomeScreen> {
             _homeBloc.add(GetFatherHomeEvent(token: state.token));
           } else {
             _homeBloc.add(GetTeacherHomeEvent(token: state.token));
-
           }
         } else if (state is GetTeacherHomeSuccessState) {
           _teacherHomeResponse = state.response;

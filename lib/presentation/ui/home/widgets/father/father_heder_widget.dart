@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class FatherHeaderWidget extends StatefulWidget {
-  const FatherHeaderWidget({Key? key}) : super(key: key);
+  final HomeBloc homeBloc;
+
+  const FatherHeaderWidget({Key? key, required this.homeBloc})
+      : super(key: key);
 
   @override
   State<FatherHeaderWidget> createState() => _FatherHeaderWidgetState();
@@ -37,22 +42,31 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
+                  padding: const EdgeInsets.only(bottom: 25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
+                    children: [
                       BoldTextWidget(
-                          text: "Grade 2 , Section A",
+                          text: widget.homeBloc.fatherInfoResponse.data != null
+                              ? widget
+                                  .homeBloc.fatherInfoResponse.data!.parentName
+                              : "",
                           fontSize: 18,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 6),
-                      MediumTextWidget(
-                          text: "Math Class",
+                      const   SizedBox(height: 6),
+                         MediumTextWidget(
+                          text: widget.homeBloc.fatherInfoResponse.data != null
+                              ? widget
+                              .homeBloc.fatherInfoResponse.data!.parentName
+                              : "",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
-                      SizedBox(height: 6),
-                      MediumTextWidget(
-                          text: "20 Students",
+                     const  SizedBox(height: 6),
+                       MediumTextWidget(
+                          text:  widget.homeBloc.fatherInfoResponse.data != null
+                              ? widget
+                              .homeBloc.fatherInfoResponse.data!.phoneNumber
+                              : "",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
                     ],
@@ -70,7 +84,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                     height: 150,
                     decoration: BoxDecoration(
                         border:
-                        Border.all(color: ColorsManager.blackColor, width: 3),
+                        Border.all(color: ColorsManager.blackColor, width: 1),
                         borderRadius: BorderRadius.circular(100),
                         image: const DecorationImage(
                             image: AssetImage(ImagesPath.logo),

@@ -52,5 +52,16 @@ class GetParentHomeFillState extends HomeState {
 
   GetParentHomeFillState({required this.error});
 }
+class GetFatherInfoSuccessState extends HomeState {
+  final FatherInfoResponse response;
+
+  GetFatherInfoSuccessState({required this.response});
+}
+
+class GetFatherInfoFillState extends HomeState {
+  final String error;
+
+  GetFatherInfoFillState({required this.error});
+}
 
 

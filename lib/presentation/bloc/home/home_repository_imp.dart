@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
@@ -17,8 +18,8 @@ class HomeRepositoryImp extends BaseHomeRepository {
         return GetTeacherHomeSuccessState(response: getTeacherHomeResponse);
       }
     } catch (error) {
-      state =
-          GetTeacherHomeFillState(error: getTeacherHomeResponse.errorMessage??"Error");
+      state = GetTeacherHomeFillState(
+          error: getTeacherHomeResponse.errorMessage ?? "Error");
     }
     return state!;
   }
@@ -37,7 +38,24 @@ class HomeRepositoryImp extends BaseHomeRepository {
       }
     } catch (error) {
       state = GetParentHomeFillState(
-          error: getChildrenByParentResponse.errorMessage??"Error");
+          error: getChildrenByParentResponse.errorMessage ?? "Error");
+    }
+    return state!;
+  }
+
+  @override
+  Future<HomeState> getFatherInfo(String token) async {
+    HomeState? state;
+    FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
+    try {
+      Response response = await DioHelper.getFatherInfo(token);
+      fatherInfoResponse = FatherInfoResponse.fromJson(response.data);
+      if (fatherInfoResponse.data != null) {
+        return GetFatherInfoSuccessState(response: fatherInfoResponse);
+      }
+    } catch (error) {
+      state = GetFatherInfoFillState(
+          error: fatherInfoResponse.errorMessage ?? "Error");
     }
     return state!;
   }
