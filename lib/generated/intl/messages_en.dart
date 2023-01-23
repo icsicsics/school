@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("EN"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your Phone Number"),
+        "errorActivationCode":
+            MessageLookupByLibrary.simpleMessage("Error activation code"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
@@ -73,7 +75,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "number": MessageLookupByLibrary.simpleMessage("Number"),
+        "ok": MessageLookupByLibrary.simpleMessage("تم"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "pleaseEnterThePhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter the phone number"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
                 "Please type verification code sent to your\nphone"),
@@ -92,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
+        "thePhoneNumberIsWrong":
+            MessageLookupByLibrary.simpleMessage("The phone number is wrong"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),

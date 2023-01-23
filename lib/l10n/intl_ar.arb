@@ -64,5 +64,9 @@
 "dontReceiveCode":" لم تتلقى رمز ؟",
 "resend":"إعادة إرسال",
 "phoneNumber":"رقم الهاتف",
-"ejabi":"ايجابي"
+"ejabi":"ايجابي",
+"ok":"ok",
+"errorActivationCode":"رمز تفعيل الخطأ",
+ "pleaseEnterThePhoneNumber":"الرجاء إدخال رقم الهاتف",
+ "thePhoneNumberIsWrong":"رقم الهاتف غير صحيح"
 }

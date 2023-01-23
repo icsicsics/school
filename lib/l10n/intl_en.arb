@@ -64,5 +64,9 @@
  "dontReceiveCode":"Don't Receive Code ? ",
  "resend":"Resend",
  "phoneNumber":"Phone Number",
- "ejabi":"Ejabi"
+ "ejabi":"Ejabi",
+ "ok":"تم",
+ "errorActivationCode":"Error activation code",
+ "pleaseEnterThePhoneNumber":"Please enter the phone number",
+ "thePhoneNumberIsWrong":"The phone number is wrong"
 }

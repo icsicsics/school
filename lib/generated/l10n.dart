@@ -709,6 +709,46 @@ class S {
       args: [],
     );
   }
+
+  /// `تم`
+  String get ok {
+    return Intl.message(
+      'تم',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error activation code`
+  String get errorActivationCode {
+    return Intl.message(
+      'Error activation code',
+      name: 'errorActivationCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the phone number`
+  String get pleaseEnterThePhoneNumber {
+    return Intl.message(
+      'Please enter the phone number',
+      name: 'pleaseEnterThePhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The phone number is wrong`
+  String get thePhoneNumberIsWrong {
+    return Intl.message(
+      'The phone number is wrong',
+      name: 'thePhoneNumberIsWrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

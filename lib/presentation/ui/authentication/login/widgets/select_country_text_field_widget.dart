@@ -71,7 +71,8 @@ class _SelectCountryTextFieldWidgetState
               trailingSpace: false,
               selectorType: PhoneInputSelectorType.DIALOG,
               showFlags: false),
-          onInputChanged: (PhoneNumber number) {},
+          onInputChanged: (PhoneNumber number) {
+          },
         ),
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:schools/generated/l10n.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/submit_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/pin_code_field_widget.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/send_agin_widget.dart';
@@ -37,8 +39,15 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                 sizedBox(height: 30),
                 SubmitButtonWidget(
                   submitAction: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const HomeScreen()));
+                    if (pinController.text == "1234") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const HomeScreen()));
+                    } else {
+                      showErrorDialogFunction(
+                          context: context, textMessage: S.of(context).errorActivationCode);
+                    }
                   },
                 ),
                 sizedBox(height: 20),

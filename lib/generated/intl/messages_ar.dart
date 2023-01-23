@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("EN"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
+        "errorActivationCode":
+            MessageLookupByLibrary.simpleMessage("رمز تفعيل الخطأ"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),
         "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
         "honesty": MessageLookupByLibrary.simpleMessage("أمانة"),
@@ -72,7 +74,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
+        "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "pleaseEnterThePhoneNumber":
+            MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم الهاتف"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
                 "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
@@ -91,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
         "teachers": MessageLookupByLibrary.simpleMessage("معلمون"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
+        "thePhoneNumberIsWrong":
+            MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صحيح"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الاسبوع"),
         "typeWhyLeenDeserveThisPoint":
             MessageLookupByLibrary.simpleMessage("اكتب لماذا تستحق هذه النقطة"),
