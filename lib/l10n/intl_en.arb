@@ -65,7 +65,7 @@
  "resend":"Resend",
  "phoneNumber":"Phone Number",
  "ejabi":"Ejabi",
- "ok":"تم",
+ "ok":"ok",
  "errorActivationCode":"Error activation code",
  "pleaseEnterThePhoneNumber":"Please enter the phone number",
  "thePhoneNumberIsWrong":"The phone number is wrong"

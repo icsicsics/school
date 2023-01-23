@@ -74,7 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
-        "ok": MessageLookupByLibrary.simpleMessage("ok"),
+        "ok": MessageLookupByLibrary.simpleMessage("تم"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "pleaseEnterThePhoneNumber":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم الهاتف"),
