@@ -60,7 +60,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   }
 
   void _onLoginConfirmButtonState() {
-    if (countryController.text == "7595191633") {
+    if (countryController.text == "7 9519 1633") {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const VerifyScreen()));
     } else if (countryController.text == "") {
