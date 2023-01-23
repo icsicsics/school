@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
@@ -13,6 +14,7 @@ class HomeAppBarWidget extends StatefulWidget {
   final bool isFather;
   final HomeBloc bloc;
   final String language;
+  final GetTeacherHomeResponse teacherHomeResponse;
 
   const HomeAppBarWidget(
       {super.key,
@@ -20,7 +22,8 @@ class HomeAppBarWidget extends StatefulWidget {
       required this.onTapNotifications,
       required this.isFather,
       required this.language,
-      required this.bloc});
+      required this.bloc,
+      required this.teacherHomeResponse});
 
   @override
   State<HomeAppBarWidget> createState() => _HomeAppBarWidgetState();
@@ -49,7 +52,11 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
            const  SizedBox(width: 5,),
             Expanded(
               child: MediumTextWidget(
-                  text: S.of(context).interactiveSchoolCounselling,
+                  text: widget.isFather
+                      ? S.of(context).interactiveSchoolCounselling
+                      : widget.teacherHomeResponse.data != null
+                          ? widget.teacherHomeResponse.data![0].schoolName
+                          : "",
                   fontSize: 18,
                   color: ColorsManager.whiteColor),
             ),

@@ -76,14 +76,14 @@ class _HomeScreenState extends BaseState<HomeScreen> {
               isComFromHome: true,
               language: _language,
             ),
-            body: HomeContentWidget(
-                globalKey: _key,
-                isFather: _isFather,
-                bloc: _homeBloc,
-                language: _language,
-                parentHomeResponse: _parentHomeResponse,
-                teacherHomeResponse: _teacherHomeResponse,
-                token :_token));
+            body:HomeContentWidget(
+                    globalKey: _key,
+                    isFather: _isFather,
+                    bloc: _homeBloc,
+                    language: _language,
+                    parentHomeResponse: _parentHomeResponse,
+                    teacherHomeResponse: _teacherHomeResponse,
+                    token: _token));
       },
     );
   }

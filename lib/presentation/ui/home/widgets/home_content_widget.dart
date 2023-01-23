@@ -24,7 +24,8 @@ class HomeContentWidget extends StatefulWidget {
       required this.bloc,
       required this.language,
       required this.parentHomeResponse,
-      required this.teacherHomeResponse,required this.token})
+      required this.teacherHomeResponse,
+      required this.token})
       : super(key: key);
 
   @override
@@ -47,9 +48,10 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
             },
             isFather: widget.isFather,
             bloc: widget.bloc,
-            language: widget.language),
+            language: widget.language,
+            teacherHomeResponse: widget.teacherHomeResponse),
         const SizedBox(height: 2),
-     const  HomeTitleWidget(),
+        const HomeTitleWidget(),
         Expanded(child: SingleChildScrollView(child: _buildScreen()))
       ],
     );
