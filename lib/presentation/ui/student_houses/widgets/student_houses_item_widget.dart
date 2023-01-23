@@ -33,12 +33,12 @@ class AddPointItemWidget extends StatelessWidget {
                   alignment: Alignment.center,
                   child: InkWell(
                     onTap: onTapChild,
-                    child: const CircleAvatar(
-                      backgroundImage: AssetImage(
-                        ImagesPath.schoolItem,
-                      ),
-                      radius: 50,
-                    ),
+                    child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100)),
+                        child: SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill))
                   ),
                 ),
                 Padding(

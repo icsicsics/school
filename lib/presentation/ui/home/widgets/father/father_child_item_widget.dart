@@ -89,10 +89,8 @@ final String imageUrl;
         : _buildProfilePlaceHolder();
   }
 
-  CircleAvatar _buildProfilePlaceHolder() => const CircleAvatar(
-        backgroundImage: AssetImage(
-          ImagesPath.logo,
-        ),
-        radius: 50,
+  CircleAvatar _buildProfilePlaceHolder() =>  CircleAvatar(
+    radius: 50,
+    child:  SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill),
       );
 }

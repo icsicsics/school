@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
@@ -34,11 +35,9 @@ class SideMenuHeader extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage(
-                      ImagesPath.schoolItem,
-                    ),
+                  CircleAvatar(
                     radius: 50,
+                    child:  SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill),
                   ),
                   const SizedBox(
                     width: 30,

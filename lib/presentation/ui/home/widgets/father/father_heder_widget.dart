@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
@@ -85,12 +85,9 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                     decoration: BoxDecoration(
                         border:
                         Border.all(color: ColorsManager.blackColor, width: 1),
-                        borderRadius: BorderRadius.circular(100),
-                        image: const DecorationImage(
-                            image: AssetImage(ImagesPath.logo),
-                            fit: BoxFit.fill)),
+                        borderRadius: BorderRadius.circular(100)),
+                    child: SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill)),
                   ),
-                ),
               ),
             ),
           ],

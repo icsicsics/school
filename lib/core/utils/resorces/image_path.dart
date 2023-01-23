@@ -9,4 +9,5 @@ class ImagesPath {
   static const String ar = "${_basePath}ar.png";
   static const String en = "${_basePath}en.png";
   static const String menu = "${_basePath}menu.svg";
+  static const String avatar = "${_basePath}avatar.svg";
 }

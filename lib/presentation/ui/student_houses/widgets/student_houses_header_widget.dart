@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
@@ -68,17 +69,14 @@ class StudentHousesHeaderWidget extends StatelessWidget {
                 child: SizedBox(
                     height: 150,
                     width: 150,
-                    child: Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                          border:
-                          Border.all(color: ColorsManager.whiteColor, width: 3),
-                          borderRadius: BorderRadius.circular(100),
-                          image: const DecorationImage(
-                              image: AssetImage(ImagesPath.schoolItem),
-                              fit: BoxFit.fill)),
-                    ),
+                    child:Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                            border:
+                            Border.all(color: ColorsManager.blackColor, width: 1),
+                            borderRadius: BorderRadius.circular(100)),
+                        child: SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill))
                 ),
               ),
             ),

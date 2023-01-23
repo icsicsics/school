@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
@@ -100,26 +101,16 @@ class ProfileHeaderWidget extends StatelessWidget {
                   _buildProfilePlaceHolder(),
             ),
           )
-        : Container(
+        : SizedBox(
             width: 150,
             height: 150,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                image: const DecorationImage(
-                    image: AssetImage(ImagesPath.schoolItem),
-                    fit: BoxFit.fill)),
+            child:  CircleAvatar(
+              child:  SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.cover,height: double.infinity),
+            ),
           );
   }
 
-  Image _buildProfilePlaceHolder() =>
-      Image.asset(ImagesPath.schoolItem, fit: BoxFit.fill);
+  CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
+        child:  SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.cover),
+      );
 }
-
-
-
-// child: Image.file(
-//               File(profileImage),
-//               fit: BoxFit.fill,
-//               errorBuilder: (context, error, stackTrace) =>
-//                   _buildProfilePlaceHolder(),
-//             ),

@@ -5,7 +5,8 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 
 class ChildItemWidget extends StatelessWidget {
   final String imageUrl;
-  const ChildItemWidget({Key? key,required this.imageUrl}) : super(key: key);
+
+  const ChildItemWidget({Key? key, required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,33 +15,29 @@ class ChildItemWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 5,
       child: Stack(
         children: [
-          itemImageWidget(),
+          SizedBox(height: 70, width: 70, child: itemImageWidget()),
           Align(
             alignment: Alignment.bottomRight,
-            child:
-
-            Container(
+            child: Container(
                 height: 30,
                 width: 30,
                 decoration: const BoxDecoration(
                     color: ColorsManager.whiteColor,
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(40))),
+                    borderRadius: BorderRadius.all(Radius.circular(40))),
                 child: Padding(
                   padding: const EdgeInsets.all(3),
                   child: Container(
                     decoration: const BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(50))),
-                    child:Container(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Container(
                       height: 20,
                       width: 20,
                       color: Colors.transparent,
-                      child:SvgPicture.asset(ImagesPath.star, height: 18, width: 18),
+                      child: SvgPicture.asset(ImagesPath.star,
+                          height: 18, width: 18),
                     ),
-                    ),
+                  ),
                 )),
-
           )
         ],
       ),
@@ -50,20 +47,17 @@ class ChildItemWidget extends StatelessWidget {
   Widget itemImageWidget() {
     return imageUrl.isNotEmpty
         ? ClipOval(
-      child: Image.network(
-        imageUrl,
-        fit: BoxFit.fill,
-        errorBuilder: (context, error, stackTrace) =>
-            _buildProfilePlaceHolder(),
-      ),
-    )
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) =>
+                  _buildProfilePlaceHolder(),
+            ),
+          )
         : _buildProfilePlaceHolder();
   }
 
-  CircleAvatar _buildProfilePlaceHolder() => const CircleAvatar(
-    backgroundImage: AssetImage(
-      ImagesPath.logo,
-    ),
-    radius: 50,
-  );
+  CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
+        child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill),
+      );
 }
