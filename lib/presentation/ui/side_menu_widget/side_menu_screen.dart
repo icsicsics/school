@@ -67,9 +67,9 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                         } else if (state is GetIsFatherState) {
                           _isFather = state.isFather;
                           if (_isFather) {
-                              _bloc.add(GetFatherInfoEvent(token: widget.token));
+                            _bloc.add(GetFatherInfoEvent(token: widget.token));
                           } else {
-                              _bloc.add(GetTeacherInfoEvent(token: widget.token));
+                            _bloc.add(GetTeacherInfoEvent(token: widget.token));
                           }
                         } else if (state is SwitchAccountState) {
                           _switchAccount(context);
@@ -104,6 +104,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                         return SideMenuContentWidget(
                           language: widget.language,
                           bloc: _bloc,
+                          isFather: _isFather,
                         );
                       },
                     )))));
@@ -136,7 +137,15 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         MaterialPageRoute(
             builder: (_) =>
                 LoginScreen(isFather: _isFather == true ? false : true)),
-        (route) => false);
+        (route) => false).then((value) {
+      if (_isFather) {
+        _bloc.fatherInfoResponse=FatherInfoResponse();
+        _bloc.add(GetFatherInfoEvent(token: widget.token));
+      } else {
+        _bloc.teacherInfoResponse=TeacherInfoResponse();
+        _bloc.add(GetTeacherInfoEvent(token: widget.token));
+      }
+    });
   }
 
   void _logout() {

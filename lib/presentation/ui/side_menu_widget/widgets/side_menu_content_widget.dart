@@ -10,7 +10,8 @@ import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_sochi
 class SideMenuContentWidget extends StatefulWidget {
   final SideMenuBloc bloc;
   final String language;
-  const SideMenuContentWidget({Key? key,required this.language,required this.bloc}) : super(key: key);
+  final bool isFather;
+  const SideMenuContentWidget({Key? key,required this.language,required this.bloc,required this.isFather}) : super(key: key);
 
   @override
   State<SideMenuContentWidget> createState() => _SideMenuContentWidgetState();
@@ -24,7 +25,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
         child: Stack(children: [
           Column(
             children: [
-              SideMenuHeader(bloc: widget.bloc, language: widget.language),
+              SideMenuHeader(bloc: widget.bloc, language: widget.language, isFather: widget.isFather),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
