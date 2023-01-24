@@ -11,6 +11,7 @@ import 'package:schools/data/source/di/injector.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
+import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/localization/localization/app_localization_cubit.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
@@ -79,6 +80,10 @@ class _MyAppState extends State<MyApp> {
               create: (BuildContext context) => injector()),
           BlocProvider<MyChildPointsBloc>(
               create: (BuildContext context) => injector()),
+          BlocProvider<AddPointBloc>(
+              create: (BuildContext context) => injector()),
+
+
         ],
         child: BlocBuilder<LocalizationCubit, Locale>(
           builder: (context, state) {

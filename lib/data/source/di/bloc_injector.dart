@@ -1,5 +1,6 @@
 import 'package:schools/data/source/di/injector.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
+import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/localization/localization/app_localization_cubit.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
@@ -32,4 +33,5 @@ Future<void> initializeBlocDependencies() async {
   injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc());
   injector.registerFactory<SectionsBloc>(() => SectionsBloc());
   injector.registerFactory<MyChildPointsBloc>(() => MyChildPointsBloc());
+  injector.registerFactory<AddPointBloc>(() => AddPointBloc());
 }

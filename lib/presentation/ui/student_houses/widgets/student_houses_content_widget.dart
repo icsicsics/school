@@ -7,8 +7,9 @@ import 'package:schools/presentation/ui/student_houses/widgets/student_houses_li
 class StudentHousesContentWidget extends StatefulWidget {
   final StudentHousesBloc studentHousesBloc;
   final GetStudentHousesResponse getStudentHousesResponse;
+  final String token;
 
-  const StudentHousesContentWidget({Key? key, required this.studentHousesBloc,required this.getStudentHousesResponse})
+  const StudentHousesContentWidget({Key? key, required this.studentHousesBloc,required this.getStudentHousesResponse,required this.token})
       : super(key: key);
 
   @override
@@ -26,7 +27,7 @@ class _StudentHousesContentWidgetState
             getStudentHousesResponse: widget.getStudentHousesResponse),
         StudentHousesListWidget(
             studentHousesBloc: widget.studentHousesBloc,
-            getStudentHousesResponse: widget.getStudentHousesResponse)
+            getStudentHousesResponse: widget.getStudentHousesResponse, token: widget.token)
       ],
     );
   }

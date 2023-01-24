@@ -7,7 +7,8 @@ import 'package:schools/presentation/ui/student_houses/widgets/student_houses_it
 class StudentHousesListWidget extends StatefulWidget {
   final GetStudentHousesResponse getStudentHousesResponse;
   final StudentHousesBloc studentHousesBloc;
-  const StudentHousesListWidget({Key? key,required this.studentHousesBloc,required this.getStudentHousesResponse}) : super(key: key);
+  final String token;
+  const StudentHousesListWidget({Key? key,required this.studentHousesBloc,required this.getStudentHousesResponse,required this.token}) : super(key: key);
 
   @override
   State<StudentHousesListWidget> createState() => _StudentHousesListWidgetState();
@@ -29,18 +30,18 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
           itemBuilder: (BuildContext context, int index) {
             return AddPointItemWidget(
               childName: widget.getStudentHousesResponse.data!.students![index].studentName??"",
-              onTapStar: () => _onTap(widget.getStudentHousesResponse.data!.students![index].studentName),
+              onTapStar: () => _onTap(widget.getStudentHousesResponse.data!.students![index].studentName,widget.getStudentHousesResponse.data!.classroomId!),
               onTapChild: ()=>widget.studentHousesBloc.add(NavigateToMyChildrenScreenEvent()),
             );
           }),
     );
   }
 
-  void _onTap(childName) => showAddPointFunction(
+  void _onTap(childName,classroomId) => showAddPointFunction(
       context: context,
       addAction: () {
         Navigator.pop(context);
       },
       childName: childName,
-      commentController: _commentController);
+      commentController: _commentController, token: widget.token, classroomId:classroomId);
 }

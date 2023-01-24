@@ -5,7 +5,9 @@ Future<void> showAddPointFunction(
         {required BuildContext context,
         required Function() addAction,
         required String childName,
-        required TextEditingController commentController}) =>
+        required TextEditingController commentController,
+        required String token,
+        required String classroomId}) =>
     showDialog(
         barrierDismissible: true,
         context: context,
@@ -16,4 +18,6 @@ Future<void> showAddPointFunction(
               addAction: addAction,
               childName: childName,
               commentController: commentController,
+              classroomId: classroomId,
+              token: token,
             )));

@@ -47,7 +47,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
         Navigator.pop(context);
       },
       childName: childName,
-      commentController: _commentController);
+      commentController: _commentController, token: '', classroomId: '');
 
   _onTapChild()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>const MyChildrenScreen()));
 }

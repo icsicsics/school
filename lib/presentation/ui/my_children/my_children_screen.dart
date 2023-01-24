@@ -141,7 +141,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         Navigator.pop(context);
       },
       childName: "",
-      commentController: _commentController);
+      commentController: _commentController, token: '', classroomId: '');
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,

@@ -66,7 +66,7 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
         child: _getStudentHousesResponse.data != null
             ? StudentHousesContentWidget(
             studentHousesBloc: _studentHousesBloc,
-            getStudentHousesResponse: _getStudentHousesResponse)
+            getStudentHousesResponse: _getStudentHousesResponse, token: widget.token)
             : Container(),
       ),
     );
