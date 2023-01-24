@@ -6,6 +6,8 @@ import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
 
 class AddPointDialogWidget extends StatefulWidget {
   final Function() addAction;
@@ -30,14 +32,20 @@ class AddPointDialogWidget extends StatefulWidget {
 class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   String? dropdownValue;
   bool isAddCommit = false;
+  GetTeacherPrinciplByClassroomIdResponse
+      _getTeacherPrinciplByClassroomIdResponse =
+      GetTeacherPrinciplByClassroomIdResponse();
 
   AddPointBloc get _addPointBloc => BlocProvider.of<AddPointBloc>(context);
-  List<String> items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'other',
-  ];
+
+  List<Data> _listOfItems = [];
+
+  // List<String> items = [
+  //   'Item 1',
+  //   'Item 2',
+  //   'Item 3',
+  //   'other',
+  // ];
 
   @override
   void initState() {
@@ -52,7 +60,16 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<AddPointBloc, AddPointState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is AddPointLoadingState) {
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (_) => const Center(child: CircularProgressIndicator()));
+        } else if (state is GetTeacherPrinciplByClassroomIdSuccessState) {
+          _onGetTeacherPrinciplByClassroomIdSuccessState(state.response);
+        } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
+          _onGetTeacherPrinciplByClassroomIdFillState(state.error);
+        }
       },
       builder: (context, state) {
         return Container(
@@ -94,14 +111,14 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                               "${S.of(context).chooseWhyLeenDeserveThisPoint} to ${widget.childName}",
                           fontSize: 11,
                           color: ColorsManager.sameBlack),
-                      items: items.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items,
-                              style: const TextStyle(
-                                  color: ColorsManager.sameBlack)),
-                        );
-                      }).toList(),
+                      items: _listOfItems
+                          .map((e) => DropdownMenuItem(
+                                value: e.id,
+                                child: Text(e.name.toString(),
+                                    style: const TextStyle(
+                                        color: ColorsManager.sameBlack)),
+                              ))
+                          .toList(),
                       onChanged: (newValue) {
                         setState(() {
                           dropdownValue = newValue ?? "";
@@ -151,5 +168,18 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             ));
       },
     );
+  }
+
+  void _onGetTeacherPrinciplByClassroomIdFillState(String error) {}
+
+  void _onGetTeacherPrinciplByClassroomIdSuccessState(
+      GetTeacherPrinciplByClassroomIdResponse response) {
+    _getTeacherPrinciplByClassroomIdResponse = response;
+    for (var element in _getTeacherPrinciplByClassroomIdResponse.data!) {
+      _listOfItems.add(element);
+    }
+    _listOfItems.add(Data(id: "1", name: "other"));
+
+    Navigator.pop(context);
   }
 }
