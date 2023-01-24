@@ -16,3 +16,5 @@ class OpenAddPointAlertEvent extends MyChildrenEvent {}
 class NavigateToNotificationScreenEvent extends MyChildrenEvent {}
 
 class GetIsFatherEvent extends MyChildrenEvent {}
+
+class GetTokenEvent extends MyChildrenEvent {}

@@ -22,6 +22,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
   final TextEditingController _commentController = TextEditingController();
   MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
   bool _isFather = false;
+  String _token='';
 
   @override
   void initState() {
@@ -38,6 +39,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           _navigateToNotificationScreen();
         }   else if (state is GetIsFatherState) {
           _isFather = state.isFather;
+          _bloc.add(GetTokenEvent());
+        }else if (state is GetTokenSuccessState){
+          _token=state.token;
         }
       },
       builder: (context, state) {
@@ -141,7 +145,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         Navigator.pop(context);
       },
       childName: "",
-      commentController: _commentController, token: '', classroomId: '');
+      commentController: _commentController, token: _token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,

@@ -6,8 +6,9 @@ import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 
 class FatherChildrenListWidget extends StatefulWidget {
   final GetChildrenByParentResponse parentHomeResponse;
+  final String token;
 
-  const FatherChildrenListWidget({Key? key, required this.parentHomeResponse})
+  const FatherChildrenListWidget({Key? key, required this.parentHomeResponse,required this.token})
       : super(key: key);
 
   @override
@@ -47,7 +48,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
         Navigator.pop(context);
       },
       childName: childName,
-      commentController: _commentController, token: '', classroomId: '');
+      commentController: _commentController, token: widget.token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
 
   _onTapChild()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>const MyChildrenScreen()));
 }

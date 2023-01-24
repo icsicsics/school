@@ -60,7 +60,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
   Widget _buildScreen() {
     if (widget.isFather == true) {
       return  widget.parentHomeResponse.data!=null?HomeFatherContentWidget(
-          parentHomeResponse: widget.parentHomeResponse, homeBloc: widget.bloc):Container();
+          parentHomeResponse: widget.parentHomeResponse, homeBloc: widget.bloc, token: widget.token):Container();
     }
     return HomeTeacherDetailsWidget(
         teacherHomeResponse: widget.teacherHomeResponse, token: widget.token);

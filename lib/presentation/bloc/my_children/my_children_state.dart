@@ -28,3 +28,7 @@ class GetIsFatherState extends MyChildrenState {
 
   GetIsFatherState({required this.isFather});
 }
+class GetTokenSuccessState extends MyChildrenState {
+  final String token;
+  GetTokenSuccessState({required this.token});
+}

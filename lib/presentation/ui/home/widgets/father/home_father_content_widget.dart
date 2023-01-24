@@ -7,9 +7,13 @@ import 'package:schools/presentation/ui/home/widgets/father/father_heder_widget.
 class HomeFatherContentWidget extends StatelessWidget {
   final GetChildrenByParentResponse parentHomeResponse;
   final HomeBloc homeBloc;
+  final String token;
 
   const HomeFatherContentWidget(
-      {Key? key, required this.parentHomeResponse, required this.homeBloc})
+      {Key? key,
+      required this.parentHomeResponse,
+      required this.homeBloc,
+      required this.token})
       : super(key: key);
 
   @override
@@ -20,7 +24,8 @@ class HomeFatherContentWidget extends StatelessWidget {
             ? FatherHeaderWidget(homeBloc: homeBloc)
             : Container(height: 350),
         parentHomeResponse.data != null
-            ? FatherChildrenListWidget(parentHomeResponse: parentHomeResponse)
+            ? FatherChildrenListWidget(
+                parentHomeResponse: parentHomeResponse, token: token)
             : Container(),
       ],
     );

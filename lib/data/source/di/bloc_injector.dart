@@ -30,7 +30,7 @@ Future<void> initializeBlocDependencies() async {
       () => ProfileBloc(injector(), injector(), injector(),injector()));
   injector.registerFactory<SchoolHousesBloc>(() => SchoolHousesBloc());
   injector.registerFactory<AboutBloc>(() => AboutBloc());
-  injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc());
+  injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc(injector()));
   injector.registerFactory<SectionsBloc>(() => SectionsBloc());
   injector.registerFactory<MyChildPointsBloc>(() => MyChildPointsBloc());
   injector.registerFactory<AddPointBloc>(() => AddPointBloc());
