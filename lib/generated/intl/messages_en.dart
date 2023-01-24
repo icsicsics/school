@@ -110,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "We have send the code verification to Your Mobile"),
         "weather": MessageLookupByLibrary.simpleMessage("Weather"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

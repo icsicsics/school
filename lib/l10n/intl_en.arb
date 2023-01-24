@@ -68,5 +68,6 @@
  "ok":"ok",
  "errorActivationCode":"Error activation code",
  "pleaseEnterThePhoneNumber":"Please enter the phone number",
- "thePhoneNumberIsWrong":"The phone number is wrong"
+ "thePhoneNumberIsWrong":"The phone number is wrong",
+ "welcome":"Welcome"
 }

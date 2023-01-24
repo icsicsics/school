@@ -68,5 +68,6 @@
 "ok":"تم",
 "errorActivationCode":"رمز تفعيل الخطأ",
  "pleaseEnterThePhoneNumber":"الرجاء إدخال رقم الهاتف",
- "thePhoneNumberIsWrong":"رقم الهاتف غير صحيح"
+ "thePhoneNumberIsWrong":"رقم الهاتف غير صحيح",
+ "welcome":"مرحبا"
 }

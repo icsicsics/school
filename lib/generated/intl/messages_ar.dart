@@ -108,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "لقد أرسلنا رمز التحقق إلى رقم هاتفك"),
         "weather": MessageLookupByLibrary.simpleMessage("طقس"),
+        "welcome": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };
 }
