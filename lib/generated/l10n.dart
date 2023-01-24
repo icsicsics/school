@@ -829,6 +829,136 @@ class S {
       args: [],
     );
   }
+
+  /// `january`
+  String get jan {
+    return Intl.message(
+      'january',
+      name: 'jan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `february`
+  String get feb {
+    return Intl.message(
+      'february',
+      name: 'feb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `march`
+  String get mar {
+    return Intl.message(
+      'march',
+      name: 'mar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `april`
+  String get apr {
+    return Intl.message(
+      'april',
+      name: 'apr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `mayo`
+  String get may {
+    return Intl.message(
+      'mayo',
+      name: 'may',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `june`
+  String get june {
+    return Intl.message(
+      'june',
+      name: 'june',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `july`
+  String get jul {
+    return Intl.message(
+      'july',
+      name: 'jul',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `august`
+  String get aug {
+    return Intl.message(
+      'august',
+      name: 'aug',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `september`
+  String get sep {
+    return Intl.message(
+      'september',
+      name: 'sep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `october`
+  String get oct {
+    return Intl.message(
+      'october',
+      name: 'oct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `november`
+  String get nov {
+    return Intl.message(
+      'november',
+      name: 'nov',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `december`
+  String get dec {
+    return Intl.message(
+      'december',
+      name: 'dec',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `th of `
+  String get thOf {
+    return Intl.message(
+      'th of ',
+      name: 'thOf',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

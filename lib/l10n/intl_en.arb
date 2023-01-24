@@ -76,5 +76,18 @@
  "thursday":"Thursday",
  "wednesday":"Wednesday",
  "tuesday":"Tuesday",
- "monday":"Monday"
+ "monday":"Monday",
+ "jan":"january",
+ "feb":"february",
+ "mar":"march",
+ "apr":"april",
+ "may":"mayo",
+ "june":"june",
+ "jul":"july",
+ "aug":"august",
+ "sep":"september",
+ "oct":"october",
+ "nov":"november",
+ "dec":"december",
+ "thOf":"th of "
 }
