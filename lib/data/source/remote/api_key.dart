@@ -9,4 +9,5 @@ class ApiKey{
   static const String getStudentsHouse = "Teacher/TeacherStudentsHouse";
   static const String getStudentsProfileByTeacher = "Teacher/StudentProfileInSchoolHouse";
   static const String getTeacherPrinciplesByClassroomId = "Teacher/GetPrinciplesByClassroomId";
+  static const String getTeacherStudentProfileInSchoolHouse = "Teacher/StudentProfileInSchoolHouse";
 }

@@ -1,3 +1,31 @@
+import 'package:dio/dio.dart';
+import 'package:schools/data/source/remote/dio_helper.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/repository/my_children_repository.dart';
+import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 
-class MyChildrenRepositoryImp extends BaseMyChildrenRepository {}
+class MyChildrenRepositoryImp extends BaseMyChildrenRepository {
+  @override
+  Future<MyChildrenState> getTeacherStudentProfileInSchoolHouse(
+      String token, String studentId) async {
+    MyChildrenState? state;
+    TeacherStudentProfileInSchoolHouseResponse
+        teacherStudentProfileInSchoolHouseResponse =
+        TeacherStudentProfileInSchoolHouseResponse();
+    try {
+      Response response = await DioHelper.getTeacherStudentProfileInSchoolHouse(
+          token, studentId);
+      teacherStudentProfileInSchoolHouseResponse =
+          TeacherStudentProfileInSchoolHouseResponse.fromJson(response.data);
+      if (teacherStudentProfileInSchoolHouseResponse.data != null) {
+        return GetTeacherStudentProfileInSchoolHouseSuccessState(
+            response: teacherStudentProfileInSchoolHouseResponse);
+      }
+    } catch (error) {
+      state = GetTeacherStudentProfileInSchoolHouseFailState(
+          error: teacherStudentProfileInSchoolHouseResponse.errorMessage ??
+              "Error");
+    }
+    return state!;
+  }
+}

@@ -28,7 +28,22 @@ class GetIsFatherState extends MyChildrenState {
 
   GetIsFatherState({required this.isFather});
 }
+
 class GetTokenSuccessState extends MyChildrenState {
   final String token;
+
   GetTokenSuccessState({required this.token});
+}
+
+class GetTeacherStudentProfileInSchoolHouseSuccessState
+    extends MyChildrenState {
+  final TeacherStudentProfileInSchoolHouseResponse response;
+
+  GetTeacherStudentProfileInSchoolHouseSuccessState({required this.response});
+}
+
+class GetTeacherStudentProfileInSchoolHouseFailState extends MyChildrenState {
+  final String error;
+
+  GetTeacherStudentProfileInSchoolHouseFailState({required this.error});
 }

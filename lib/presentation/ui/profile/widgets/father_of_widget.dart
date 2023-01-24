@@ -35,7 +35,7 @@ class FatherOfWidget extends StatelessWidget {
                 SizedBox(
                   height: 105,
                   child: ListView.builder(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                       itemCount: fatherInfoResponse.data!.childrens!.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
@@ -44,7 +44,7 @@ class FatherOfWidget extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (_) =>
-                                              const MyChildrenScreen())),
+                                               MyChildrenScreen(studentId: "${fatherInfoResponse.data!.childrens![index].studentId}"))),
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: ChildItemWidget(

@@ -18,3 +18,8 @@ class NavigateToNotificationScreenEvent extends MyChildrenEvent {}
 class GetIsFatherEvent extends MyChildrenEvent {}
 
 class GetTokenEvent extends MyChildrenEvent {}
+class GetTeacherStudentProfileInSchoolHouseEvent extends MyChildrenEvent {
+  final String token;
+  final String studentId;
+  GetTeacherStudentProfileInSchoolHouseEvent({required this.token,required this.studentId});
+}

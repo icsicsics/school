@@ -16,6 +16,10 @@ class GetStudentHousesEvent extends StudentHousesEvent {
 
 class NavigateToNotificationScreenEvent extends StudentHousesEvent {}
 
-class NavigateToMyChildrenScreenEvent extends StudentHousesEvent {}
+class NavigateToMyChildrenScreenEvent extends StudentHousesEvent {
+  final String studentId;
+  NavigateToMyChildrenScreenEvent({required this.studentId});
+
+}
 
 class GetIsFatherEvent extends StudentHousesEvent {}

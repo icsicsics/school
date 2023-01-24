@@ -17,7 +17,6 @@ class FatherChildrenListWidget extends StatefulWidget {
 }
 
 class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
-  final TextEditingController _commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
             return FatherChildItemWidget(
               childName: "${widget.parentHomeResponse.data![index].studentName}",
             onTapStar: () => _onTap(widget.parentHomeResponse.data![index].studentName),
-            onTapChild: ()=>_onTapChild(),
+            onTapChild: ()=>_onTapChild(widget.parentHomeResponse.data![index].studentId),
             imageUrl: widget.parentHomeResponse.data![index].getImage != null
                 ? widget.parentHomeResponse.data![index].getImage!.mediaUrl!
                 : "",
@@ -46,5 +45,5 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
       context: context,
       childName: childName,token: widget.token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
 
-  _onTapChild()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>const MyChildrenScreen()));
+  _onTapChild(studentId)=>Navigator.push(context, MaterialPageRoute(builder: (_)=> MyChildrenScreen(studentId: studentId,)));
 }

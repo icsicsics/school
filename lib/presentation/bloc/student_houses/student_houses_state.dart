@@ -21,7 +21,10 @@ class GetStudentHousesErrorState extends StudentHousesState {}
 
 class NavigateToNotificationScreenState extends StudentHousesState {}
 
-class NavigateToMyChildrenScreenState extends StudentHousesState {}
+class NavigateToMyChildrenScreenState extends StudentHousesState {
+  final String studentId;
+  NavigateToMyChildrenScreenState({required this.studentId});
+}
 
 class GetIsFatherState extends StudentHousesState {
   final bool isFather;

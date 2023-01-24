@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
+import 'package:schools/data/source/remote/repository/my_children_repository.dart';
+import 'package:schools/presentation/bloc/my_children/my_children_repository_imp.dart';
 import 'package:schools/use_case/get_token_use_case.dart';
 
 part 'my_children_event.dart';
@@ -10,7 +13,9 @@ part 'my_children_event.dart';
 part 'my_children_state.dart';
 
 class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
+  final BaseMyChildrenRepository _repository = MyChildrenRepositoryImp();
   final GetTokenUseCase _getTokenUseCase;
+
   MyChildrenBloc(this._getTokenUseCase) : super(MyChildrenInitialState()) {
     on<MyChildrenShowHousesEvent>(_onMyChildrenShowHousesEvent);
     on<GetMyChildrenEvent>(_onGetMyChildrenEvent);
@@ -18,6 +23,8 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
     on<GetTokenEvent>(_onGetTokenEvent);
+    on<GetTeacherStudentProfileInSchoolHouseEvent>(
+        _onGetTeacherStudentProfileInSchoolHouseEvent);
   }
 
   FutureOr<void> _onMyChildrenShowHousesEvent(
@@ -44,8 +51,23 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     emit(GetIsFatherState(isFather: isFather!));
   }
 
-  FutureOr<void> _onGetTokenEvent(GetTokenEvent event, Emitter<MyChildrenState> emit) async{
+  FutureOr<void> _onGetTokenEvent(
+      GetTokenEvent event, Emitter<MyChildrenState> emit) async {
     emit(GetTokenSuccessState(token: await _getTokenUseCase() ?? ""));
+  }
 
+  FutureOr<void> _onGetTeacherStudentProfileInSchoolHouseEvent(
+      GetTeacherStudentProfileInSchoolHouseEvent event,
+      Emitter<MyChildrenState> emit) async {
+    emit(GetMyChildrenLoadingState());
+    MyChildrenState state =
+        (await _repository.getTeacherStudentProfileInSchoolHouse(
+            event.token, event.studentId)) as MyChildrenState;
+    if (state is GetTeacherStudentProfileInSchoolHouseSuccessState) {
+      emit(GetTeacherStudentProfileInSchoolHouseSuccessState(
+          response: state.response));
+    } else if (state is GetTeacherStudentProfileInSchoolHouseFailState) {
+      emit(GetTeacherStudentProfileInSchoolHouseFailState(error: state.error));
+    }
   }
 }

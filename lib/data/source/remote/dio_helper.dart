@@ -106,6 +106,20 @@ class DioHelper {
           },
         ));
   }
+  static Future<Response> getTeacherStudentProfileInSchoolHouse(
+      token, studentId) async {
+    return dio.get(
+        "${ApiKey.getTeacherStudentProfileInSchoolHouse}?StudentId=$studentId",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
+
 
 
 }

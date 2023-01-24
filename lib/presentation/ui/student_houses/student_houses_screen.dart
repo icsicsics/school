@@ -58,7 +58,7 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
           } else if (state is NavigateToNotificationScreenState) {
             _navigateToNotificationScreen();
           } else if (state is NavigateToMyChildrenScreenState) {
-            _navigateToMyChildrenScreen();
+            _navigateToMyChildrenScreen(state.studentId);
           } else if (state is GetIsFatherState) {
             _isFather = state.isFather;
           }
@@ -142,9 +142,9 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
           MaterialPageRoute(builder: (_) => const NotificationsScreen()),
               (route) => false);
 
-  void _navigateToMyChildrenScreen() =>
+  void _navigateToMyChildrenScreen(studentId) =>
       Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const MyChildrenScreen()));
+          context, MaterialPageRoute(builder: (_) =>  MyChildrenScreen(studentId: studentId)));
 
   void _onGetStudentHousesFillState(String error) {}
 }

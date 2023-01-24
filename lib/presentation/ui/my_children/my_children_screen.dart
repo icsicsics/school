@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
@@ -12,23 +13,29 @@ import 'package:schools/presentation/ui/my_children/widget/my_children_content_w
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class MyChildrenScreen extends BaseStatefulWidget {
-  const MyChildrenScreen({super.key});
+  final String studentId;
+
+  const MyChildrenScreen({super.key, required this.studentId});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _MyChildrenScreenState();
 }
 
 class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
-  final TextEditingController _commentController = TextEditingController();
+  TeacherStudentProfileInSchoolHouseResponse
+      _teacherStudentProfileInSchoolHouseResponse =
+      TeacherStudentProfileInSchoolHouseResponse();
+
   MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
   bool _isFather = false;
-  String _token='';
+  String _token = '';
 
   @override
   void initState() {
-  _bloc.add(GetIsFatherEvent());
+    _bloc.add(GetIsFatherEvent());
     super.initState();
   }
+
   @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<MyChildrenBloc, MyChildrenState>(
@@ -37,11 +44,20 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           _openAddPointAlert();
         } else if (state is NavigateToNotificationScreenState) {
           _navigateToNotificationScreen();
-        }   else if (state is GetIsFatherState) {
+        } else if (state is GetIsFatherState) {
           _isFather = state.isFather;
           _bloc.add(GetTokenEvent());
-        }else if (state is GetTokenSuccessState){
-          _token=state.token;
+        } else if (state is GetTokenSuccessState) {
+          _token = state.token;
+          _bloc.add(GetTeacherStudentProfileInSchoolHouseEvent(
+              token: state.token, studentId: widget.studentId));
+        } else if (state is GetMyChildrenLoadingState) {
+          showLoading();
+        } else if (state is GetTeacherStudentProfileInSchoolHouseSuccessState) {
+          _teacherStudentProfileInSchoolHouseResponse = state.response;
+          hideLoading();
+        } else if (state is GetTeacherStudentProfileInSchoolHouseFailState) {
+          _onGetTeacherStudentProfileInSchoolHouseFailState(state.error);
         }
       },
       builder: (context, state) {
@@ -49,7 +65,6 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
             floatingActionButton: _points(),
             appBar: _appBar(),
             body: const MyChildrenContentWidget());
-
       },
     );
   }
@@ -64,7 +79,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         centerTitle: false,
         actions: [
           InkWell(
-            onTap: ()=>_bloc.add(NavigateToNotificationScreenEvent()),
+            onTap: () => _bloc.add(NavigateToNotificationScreenEvent()),
             child: SizedBox(
                 width: 50,
                 height: 50,
@@ -94,7 +109,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                     Align(
                         alignment: Alignment.centerRight,
                         child: Visibility(
-                          visible:_isFather,
+                          visible: _isFather,
                           child: const Icon(
                             Icons.notifications,
                             color: ColorsManager.yellow,
@@ -105,10 +120,12 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                 )),
           ),
         ],
-        title:  BoldTextWidget(
+        title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: _isFather==false ?S.of(context).studentsProfile: S.of(context).myChildren),
+            text: _isFather == false
+                ? S.of(context).studentsProfile
+                : S.of(context).myChildren),
       );
 
   Widget _points() {
@@ -117,18 +134,16 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       child: Container(
           height: 35,
           width: 35,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
               color: ColorsManager.whiteColor,
-              border: Border.all(color: ColorsManager.grayColor,width: 1),
-              borderRadius:
-              const BorderRadius.all(Radius.circular(40))),
+              border: Border.all(color: ColorsManager.grayColor, width: 1),
+              borderRadius: const BorderRadius.all(Radius.circular(40))),
           child: Padding(
             padding: const EdgeInsets.all(2),
             child: Container(
               decoration: const BoxDecoration(
-                  borderRadius:
-                  BorderRadius.all(Radius.circular(50))),
-              child:  Container(
+                  borderRadius: BorderRadius.all(Radius.circular(50))),
+              child: Container(
                 height: 20,
                 width: 20,
                 color: Colors.transparent,
@@ -141,10 +156,14 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
 
   void _openAddPointAlert() => showAddPointFunction(
       context: context,
-      childName: "",token: _token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
+      childName: "",
+      token: _token,
+      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
+
+  void _onGetTeacherStudentProfileInSchoolHouseFailState(String error) {}
 }

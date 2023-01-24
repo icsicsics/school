@@ -42,7 +42,7 @@ class StudentHousesBloc extends Bloc<StudentHousesEvent, StudentHousesState> {
 
   FutureOr<void> _onNavigateToMyChildrenScreenEvent(
       NavigateToMyChildrenScreenEvent event, Emitter<StudentHousesState> emit) {
-    emit(NavigateToMyChildrenScreenState());
+    emit(NavigateToMyChildrenScreenState(studentId: event.studentId));
   }
 
   FutureOr<void> _onGetIsFatherEvent(

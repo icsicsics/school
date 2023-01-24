@@ -33,7 +33,7 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
     return  BlocConsumer<MyChildPointsBloc, MyChildPointsState>(
   listener: (context, state) {
       if (state is OpenPointScreenState) {
-        _openPointScreen();
+        _openPointScreen("");
       } else if (state is NavigateToHomeScreenState) {
         _navigateHomeScreen();
       } else if (state is NavigateToNotificationScreenState) {
@@ -109,8 +109,8 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
             fontSize: 20,
             text: _isFather == false ? S.of(context).studentsProfile: S.of(context).myChildren));
 
-  void _openPointScreen() => Navigator.push(
-      context, MaterialPageRoute(builder: (_) => const MyChildrenScreen()));
+  void _openPointScreen(studentId) => Navigator.push(
+      context, MaterialPageRoute(builder: (_) =>  MyChildrenScreen(studentId: studentId)));
 
   void _navigateHomeScreen() => Navigator.pushAndRemoveUntil(context,
       MaterialPageRoute(builder: (_) => const HomeScreen()), (route) => false);
