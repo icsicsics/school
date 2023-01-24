@@ -69,3 +69,7 @@ class GetFatherInfoFillState extends ProfileState {
 
   GetFatherInfoFillState({required this.error});
 }
+class GetLanguageSuccessState extends ProfileState {
+  final String language;
+  GetLanguageSuccessState({required this.language});
+}

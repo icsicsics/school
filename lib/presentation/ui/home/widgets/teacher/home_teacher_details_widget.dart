@@ -7,9 +7,10 @@ import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart'
 class HomeTeacherDetailsWidget extends StatefulWidget {
   final String token;
   final GetTeacherHomeResponse teacherHomeResponse;
+  final String language ;
 
   const HomeTeacherDetailsWidget(
-      {Key? key, required this.teacherHomeResponse, required this.token})
+      {Key? key, required this.teacherHomeResponse, required this.token,required this.language})
       : super(key: key);
 
   @override
@@ -39,7 +40,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                             builder: (_) => SchoolHousesScreen(
                                   token: widget.token,
                                   classRoomId: widget.teacherHomeResponse
-                                      .data![index].classroomToSectionId!,
+                                      .data![index].classroomToSectionId!, language: widget.language,
                                 )));
                   },
               child:  CardWidget(

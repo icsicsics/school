@@ -27,7 +27,7 @@ Future<void> initializeBlocDependencies() async {
   injector.registerFactory<SideMenuBloc>(() => SideMenuBloc(injector()));
   injector.registerFactory<StudentHousesBloc>(() => StudentHousesBloc());
   injector.registerFactory<ProfileBloc>(
-      () => ProfileBloc(injector(), injector(), injector(),injector()));
+      () => ProfileBloc(injector(), injector(), injector(),injector(),injector()));
   injector.registerFactory<SchoolHousesBloc>(() => SchoolHousesBloc());
   injector.registerFactory<AboutBloc>(() => AboutBloc());
   injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc(injector()));

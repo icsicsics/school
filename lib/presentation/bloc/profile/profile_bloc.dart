@@ -7,6 +7,7 @@ import 'package:schools/data/source/remote/model/father_info/response/father_inf
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/profile_repository.dart';
 import 'package:schools/presentation/bloc/profile/profile_repository_imp.dart';
+import 'package:schools/use_case/get_language_use_case.dart';
 import 'package:schools/use_case/get_profile_image_from_shared_preferences_user_case.dart';
 import 'package:schools/use_case/get_profile_image_use_case.dart';
 import 'package:schools/use_case/get_token_use_case.dart';
@@ -24,12 +25,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetImageProfileFromSharedPreferencesUseCase
       _getImageProfileFromSharedPreferencesUseCase;
   final GetTokenUseCase _getTokenUseCase;
+  final GetLanguageCodeUseCase _getLanguageCodeUseCase;
+
 
   ProfileBloc(
       this._profileImageUseCase,
       this._setImageProfileInSharedPreferencesUseCase,
       this._getImageProfileFromSharedPreferencesUseCase,
-      this._getTokenUseCase)
+      this._getTokenUseCase,this._getLanguageCodeUseCase)
       : super(ProfileInitialState()) {
     on<GetProfileEvent>(_onGetProfileEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
@@ -41,6 +44,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<GetTokenEvent>(_onGetTokenEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
+    on<GetLanguageEvent>(_onGetLanguageEvent);
   }
 
   FutureOr<void> _onGetProfileEvent(
@@ -112,5 +116,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     } else if (state is GetFatherInfoFillState) {
     emit(GetFatherInfoFillState(error: state.error));
     }
+  }
+  FutureOr<void> _onGetLanguageEvent(
+      GetLanguageEvent event, Emitter<ProfileState> emit) async {
+    emit(GetLanguageSuccessState(
+        language: await _getLanguageCodeUseCase() ?? ''));
   }
 }

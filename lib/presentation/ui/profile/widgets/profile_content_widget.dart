@@ -12,6 +12,7 @@ class ProfileContentWidget extends StatefulWidget {
   final ProfileBloc bloc;
   final TeacherInfoResponse teacherInfoResponse;
   final FatherInfoResponse fatherInfoResponse;
+  final String language;
 
   const ProfileContentWidget(
       {Key? key,
@@ -19,7 +20,7 @@ class ProfileContentWidget extends StatefulWidget {
       required this.profileImage,
       required this.bloc,
       required this.teacherInfoResponse,
-      required this.fatherInfoResponse})
+      required this.fatherInfoResponse,required this.language})
       : super(key: key);
 
   @override
@@ -43,7 +44,7 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
               teacherInfoResponse: widget.teacherInfoResponse),
           const Spacer(),
           widget.isFather
-              ? FatherOfWidget(fatherInfoResponse: widget.fatherInfoResponse)
+              ? FatherOfWidget(fatherInfoResponse: widget.fatherInfoResponse, language: widget.language)
               : const SizedBox()
         ],
 

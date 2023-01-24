@@ -15,9 +15,13 @@ import 'package:schools/presentation/ui/student_houses/student_houses_screen.dar
 class SchoolHousesScreen extends BaseStatefulWidget {
   final String token;
   final String classRoomId;
+  final String language;
 
   const SchoolHousesScreen(
-      {super.key, required this.token, required this.classRoomId});
+      {super.key,
+      required this.token,
+      required this.classRoomId,
+      required this.language});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _SchoolHousesScreenState();
@@ -75,8 +79,9 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                   builder: (context, state) {
                     return SchoolHousesContentWidget(
                       schoolHousesBloc: _schoolHousesBloc,
-                      getClassHousesResponse: getClassHousesResponse,
-                    );
+                  getClassHousesResponse: getClassHousesResponse,
+                  language: widget.language,
+                );
                   },
                 ),
               ],
@@ -126,10 +131,10 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           MaterialPageRoute(
               builder: (_) =>
                   StudentHousesScreen(
-                    token: widget.token,
-                    classroomToSectionId: data.classroomToSectionId!,
-                    houseId: data.houseId!,
-                  )));
+                      token: widget.token,
+              classroomToSectionId: data.classroomToSectionId!,
+              houseId: data.houseId!,
+              language: widget.language)));
 
   void _onGetSchoolHousesFillState() {}
 }

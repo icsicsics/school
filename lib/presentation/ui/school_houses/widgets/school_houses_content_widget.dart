@@ -9,8 +9,9 @@ import 'package:schools/presentation/ui/school_houses/widgets/school_houses_char
 class SchoolHousesContentWidget extends StatefulWidget {
   final SchoolHousesBloc schoolHousesBloc;
   final GetClassHousesResponse getClassHousesResponse;
+  final String language;
 
-  const SchoolHousesContentWidget({Key? key, required this.schoolHousesBloc,required this.getClassHousesResponse})
+  const SchoolHousesContentWidget({Key? key, required this.schoolHousesBloc,required this.getClassHousesResponse,required this.language})
       : super(key: key);
 
   @override
@@ -26,10 +27,10 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
           widget.getClassHousesResponse.data != null
               ? GridView.builder(
                   physics: const BouncingScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
-                      mainAxisExtent: 220),
+                      mainAxisExtent: widget.language=="en"?220:245),
                   itemCount: widget.getClassHousesResponse.data!.length,
                   padding: const EdgeInsets.only(
                       top: 5, bottom: 80, left: 5, right: 5),

@@ -11,7 +11,8 @@ import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
 class MyChildPointsScreen extends BaseStatefulWidget {
-  const MyChildPointsScreen({super.key});
+  final String language;
+  const MyChildPointsScreen({super.key,required this.language});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() =>
@@ -110,7 +111,7 @@ class _MyChildPointsScreenState extends BaseState<MyChildPointsScreen> {
             text: _isFather == false ? S.of(context).studentsProfile: S.of(context).myChildren));
 
   void _openPointScreen(studentId) => Navigator.push(
-      context, MaterialPageRoute(builder: (_) =>  MyChildrenScreen(studentId: studentId)));
+      context, MaterialPageRoute(builder: (_) =>  MyChildrenScreen(studentId: studentId, language: widget.language)));
 
   void _navigateHomeScreen() => Navigator.pushAndRemoveUntil(context,
       MaterialPageRoute(builder: (_) => const HomeScreen()), (route) => false);

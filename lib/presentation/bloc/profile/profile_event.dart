@@ -37,3 +37,4 @@ class UploadProfileImageEvent extends ProfileEvent {
 class GetProfileImageEvent extends ProfileEvent {}
 
 class GetTokenEvent extends ProfileEvent {}
+class GetLanguageEvent extends ProfileEvent {}

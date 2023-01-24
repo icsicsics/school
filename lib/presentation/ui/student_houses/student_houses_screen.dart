@@ -14,11 +14,12 @@ class StudentHousesScreen extends BaseStatefulWidget {
   final String classroomToSectionId;
   final String houseId;
   final String token;
+  final String language;
 
   const StudentHousesScreen({super.key,
     required this.token,
     required this.classroomToSectionId,
-    required this.houseId});
+    required this.houseId,required this.language});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _AddPointScreen();
@@ -65,6 +66,7 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
         },
         child: _getStudentHousesResponse.data != null
             ? StudentHousesContentWidget(
+
             studentHousesBloc: _studentHousesBloc,
             getStudentHousesResponse: _getStudentHousesResponse, token: widget.token)
             : Container(),
@@ -144,7 +146,7 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
 
   void _navigateToMyChildrenScreen(studentId) =>
       Navigator.push(
-          context, MaterialPageRoute(builder: (_) =>  MyChildrenScreen(studentId: studentId)));
+          context, MaterialPageRoute(builder: (_) =>  MyChildrenScreen(studentId: studentId, language: widget.language)));
 
   void _onGetStudentHousesFillState(String error) {}
 }

@@ -8,12 +8,13 @@ class HomeFatherContentWidget extends StatelessWidget {
   final GetChildrenByParentResponse parentHomeResponse;
   final HomeBloc homeBloc;
   final String token;
+  final String language;
 
   const HomeFatherContentWidget(
       {Key? key,
       required this.parentHomeResponse,
       required this.homeBloc,
-      required this.token})
+      required this.token,required this.language})
       : super(key: key);
 
   @override
@@ -25,7 +26,7 @@ class HomeFatherContentWidget extends StatelessWidget {
             : Container(height: 350),
         parentHomeResponse.data != null
             ? FatherChildrenListWidget(
-                parentHomeResponse: parentHomeResponse, token: token)
+                parentHomeResponse: parentHomeResponse, token: token, language: language)
             : Container(),
       ],
     );

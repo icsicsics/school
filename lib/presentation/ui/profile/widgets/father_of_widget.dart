@@ -8,8 +8,9 @@ import 'package:schools/presentation/ui/profile/widgets/child_item_widget.dart';
 
 class FatherOfWidget extends StatelessWidget {
   final FatherInfoResponse fatherInfoResponse;
+  final String language;
 
-  const FatherOfWidget({Key? key, required this.fatherInfoResponse})
+  const FatherOfWidget({Key? key, required this.fatherInfoResponse,required this.language})
       : super(key: key);
 
   @override
@@ -44,7 +45,7 @@ class FatherOfWidget extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (_) =>
-                                               MyChildrenScreen(studentId: "${fatherInfoResponse.data!.childrens![index].studentId}"))),
+                                               MyChildrenScreen(studentId: "${fatherInfoResponse.data!.childrens![index].studentId}", language: language))),
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: ChildItemWidget(

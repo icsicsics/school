@@ -32,7 +32,7 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, mainAxisSpacing: 5),
           itemCount: widget.getStudentHousesResponse.data!.students!.length,
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(10),
           shrinkWrap: false,
           semanticChildCount: 10,
           itemBuilder: (BuildContext context, int index) {

@@ -14,8 +14,9 @@ import 'package:schools/presentation/ui/notifications/notifications_screen.dart'
 
 class MyChildrenScreen extends BaseStatefulWidget {
   final String studentId;
+  final String language;
 
-  const MyChildrenScreen({super.key, required this.studentId});
+  const MyChildrenScreen({super.key, required this.studentId,required this.language});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _MyChildrenScreenState();

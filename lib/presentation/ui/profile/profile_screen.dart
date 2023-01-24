@@ -25,6 +25,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   String _profileImage = "";
    TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
    FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
+   String language='';
 
   @override
   void initState() {
@@ -40,6 +41,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           showLoading();
         } else if (state is GetIsFatherState) {
           _isFather = state.isFather;
+          _bloc.add(GetLanguageEvent());
         } else if (state is NavigateToNotificationScreenState) {
           _navigateToNotificationScreen();
         } else if (state is OpenCameraGalleryBottomSheetState) {
@@ -69,6 +71,8 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         }else if (state is GetFatherInfoFillState){
           hideLoading();
           _onGetFatherInfoFallState();
+        }else if (state is GetLanguageSuccessState){
+          language=state.language;
         }
       },
       builder: (context, state) {
@@ -80,7 +84,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
                     teacherInfoResponse: _teacherInfoResponse,
                     bloc: _bloc,
                     isFather: _isFather,
-                    profileImage: _profileImage,
+                    profileImage: _profileImage, language: language
                   ));
       },
     );
