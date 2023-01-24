@@ -85,7 +85,7 @@ class DioHelper {
   static Future<Response> getStudentsProfileByTeacher(
       token, studentId) async {
     return dio.get(
-        "${ApiKey.getStudentsProfileByTeacher}?StudentId=studentId",
+        "${ApiKey.getStudentsProfileByTeacher}?StudentId=$studentId",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -94,4 +94,18 @@ class DioHelper {
           },
         ));
   }
+  static Future<Response> getTeacherPrinciplesByClassroomId(
+      token, classRoom) async {
+    return dio.get(
+        "${ApiKey.getTeacherPrinciplesByClassroomId}?ClassroomId=$classRoom",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
+
 }
