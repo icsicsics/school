@@ -29,9 +29,7 @@ class ProfileContentWidget extends StatefulWidget {
 class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
+    return  Column(
         children: [
           ProfileHeaderWidget(
               bloc: widget.bloc,
@@ -43,11 +41,12 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
               isFather: widget.isFather,
               fatherInfoResponse: widget.fatherInfoResponse,
               teacherInfoResponse: widget.teacherInfoResponse),
+          const Spacer(),
           widget.isFather
               ? FatherOfWidget(fatherInfoResponse: widget.fatherInfoResponse)
               : const SizedBox()
         ],
-      ),
+
     );
   }
 }
