@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
@@ -11,15 +9,21 @@ class StudentHousesListWidget extends StatefulWidget {
   final GetStudentHousesResponse getStudentHousesResponse;
   final StudentHousesBloc studentHousesBloc;
   final String token;
-  const StudentHousesListWidget({Key? key,required this.studentHousesBloc,required this.getStudentHousesResponse,required this.token}) : super(key: key);
+
+  const StudentHousesListWidget(
+      {Key? key,
+      required this.studentHousesBloc,
+      required this.getStudentHousesResponse,
+      required this.token})
+      : super(key: key);
 
   @override
-  State<StudentHousesListWidget> createState() => _StudentHousesListWidgetState();
+  State<StudentHousesListWidget> createState() =>
+      _StudentHousesListWidgetState();
 }
 
 class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
-  final TextEditingController _commentController = TextEditingController();
-  Data valueFromAlert= Data();
+  Data valueFromAlert = Data();
 
   @override
   Widget build(BuildContext context) {
@@ -33,24 +37,28 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
           semanticChildCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return AddPointItemWidget(
-              childName: widget.getStudentHousesResponse.data!.students![index].studentName??"",
-              onTapStar: () => _onTap(widget.getStudentHousesResponse.data!.students![index].studentName,widget.getStudentHousesResponse.data!.classroomId!),
-              onTapChild: ()=>widget.studentHousesBloc.add(NavigateToMyChildrenScreenEvent()),
+              childName: widget.getStudentHousesResponse.data!.students![index]
+                      .studentName ??
+                  "",
+              onTapStar: () => _onTap(
+                  widget.getStudentHousesResponse.data!.students![index]
+                      .studentName,
+                  widget.getStudentHousesResponse.data!.classroomId!),
+              onTapChild: () => widget.studentHousesBloc
+                  .add(NavigateToMyChildrenScreenEvent()),
             );
           }),
     );
   }
 
-  void _onTap(childName,classroomId) => showAddPointFunction(
-      context: context,
-      childName: childName,token: widget.token, classroomId:classroomId).then((value) => _returnValue(value));
+  void _onTap(childName, classroomId) => showAddPointFunction(
+          context: context,
+          childName: childName,
+          token: widget.token,
+          classroomId: classroomId)
+      .then((value) => _returnValue(value));
 
   _returnValue(value) {
-    valueFromAlert=value;
-    print("value  ==============> ${valueFromAlert.name}");
+    valueFromAlert = value;
   }
-
-
-
-
 }
