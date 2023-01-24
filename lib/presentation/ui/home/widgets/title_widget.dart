@@ -10,13 +10,15 @@ class HomeTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DateTime dateTime = DateTime.now();
     String dateFormatter(DateTime date) {
       dynamic dayData =
           '{"1": "${S.of(context).monday}", "2": "${S.of(context).tuesday}", "3":"${S.of(context).wednesday}", "4": "${S.of(context).thursday}", "5": "${S.of(context).friday}", "6": "${S.of(context).saturday}", "7": "${S.of(context).sunday}"}';
       return json.decode(dayData)['${date.weekday}'];
     }
 
-    final DateTime dateTime = DateTime.now();
+    var dayNumber=dateTime.day;
+    var year=dateTime.year;
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -43,8 +45,8 @@ class HomeTitleWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                 const  MediumTextWidget(
-                      text: "17th of September 2018",
+                   MediumTextWidget(
+                      text: "$dayNumber th of September $year",
                       fontSize: 15,
                       color: ColorsManager.whiteColor),
                 ],
