@@ -33,7 +33,7 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
       child: Column(
         children: [
           ProfileHeaderWidget(
-              bloc: widget.bloc, profileImage: widget.profileImage),
+              bloc: widget.bloc, profileImage: widget.profileImage, isFather: widget.isFather,fatherInfoResponse: widget.fatherInfoResponse,teacherInfoResponse: widget.teacherInfoResponse),
           ProfileInfoContentWidget(
             isFather: widget.isFather,
               fatherInfoResponse: widget.fatherInfoResponse,
