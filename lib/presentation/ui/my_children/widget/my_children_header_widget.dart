@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/my_children/widget/points_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
 class MyChildrenHeaderWidget extends StatefulWidget {
-  const MyChildrenHeaderWidget({Key? key}) : super(key: key);
+  final TeacherStudentProfileInSchoolHouseResponse
+  teacherStudentProfileInSchoolHouseResponse;
+  const MyChildrenHeaderWidget({Key? key,required this.teacherStudentProfileInSchoolHouseResponse}) : super(key: key);
 
   @override
   State<MyChildrenHeaderWidget> createState() => _MyChildrenHeaderWidgetState();

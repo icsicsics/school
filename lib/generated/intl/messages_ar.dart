@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "apr": MessageLookupByLibrary.simpleMessage("ابريل"),
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
+        "at": MessageLookupByLibrary.simpleMessage("في"),
         "aug": MessageLookupByLibrary.simpleMessage("اغسطس"),
         "camera": MessageLookupByLibrary.simpleMessage("كاميره"),
         "changeMobileNumber":

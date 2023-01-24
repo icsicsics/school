@@ -64,7 +64,11 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         return Scaffold(
             floatingActionButton: _points(),
             appBar: _appBar(),
-            body: const MyChildrenContentWidget());
+            body: _teacherStudentProfileInSchoolHouseResponse.data != null
+                ? MyChildrenContentWidget(
+                    teacherStudentProfileInSchoolHouseResponse:
+                        _teacherStudentProfileInSchoolHouseResponse)
+                : Container());
       },
     );
   }

@@ -1,49 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/regular_text_widget.dart';
-
+import 'package:intl/intl.dart';
 import '../../../../core/utils/resorces/color_manager.dart';
 
 class PointsScreenWidget extends StatefulWidget {
-  const PointsScreenWidget({Key? key}) : super(key: key);
+  final TeacherStudentProfileInSchoolHouseResponse
+      teacherStudentProfileInSchoolHouseResponse;
+
+  const PointsScreenWidget(
+      {Key? key, required this.teacherStudentProfileInSchoolHouseResponse})
+      : super(key: key);
 
   @override
   State<PointsScreenWidget> createState() => _PointsScreenWidgetState();
 }
 
 class _PointsScreenWidgetState extends State<PointsScreenWidget> {
+  String dateFormat(String dateFormat) {
+    return DateFormat('dd/MM/yyyy').format(
+      DateTime.parse(dateFormat),
+    );
+  }
+
+  String timeFormat(String dateFormat) {
+    return DateFormat('HH : mm').format(
+      DateTime.parse(dateFormat),
+    );
+  }
+
+  String formattedTime(String dateTime) {
+    return DateFormat().add_jm().format(DateTime.parse(dateTime));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          _item(
-              onTap: () {},
-              title: S.of(context).energetic,
-              subTitle: "17/09/2022  at 12:30 PM",
-              description: 'By Mrs. Tima Hamdallah - Math Teacher',
-              icon: Icons.energy_savings_leaf),
-          _item(
-              onTap: () {},
-              title: S.of(context).collaboration,
-              subTitle: "17/09/2022  at 12:30 PM",
-              description: 'By Mrs. Tima Hamdallah - Math Teacher',
-              icon: Icons.autorenew_rounded),
-          _item(
-              onTap: () {},
-              title: S.of(context).initiative,
-              subTitle: "17/09/2022  at 12:30 PM",
-              icon: Icons.lightbulb_outline_rounded,
-              description: 'By Mrs. Tima Hamdallah - Math Teacher'),
-          _item(
-              onTap: () {},
-              title: S.of(context).collaboration,
-              subTitle: "17/09/2022  at 12:30 PM",
-              icon: Icons.autorenew_rounded,
-              description: 'By Mrs. Tima Hamdallah - Math Teacher'),
-        ],
+        children: widget
+            .teacherStudentProfileInSchoolHouseResponse.data!.points!
+            .map((e) => _item(
+                onTap: () {},
+                title: e.principleName ?? "",
+                subTitle:
+                    "${dateFormat(e.creationDate.toString())}  ${S.of(context).at} ${timeFormat(e.creationDate.toString())} ${formattedTime(e.creationDate.toString())}",
+                description: 'By Mrs. Tima Hamdallah - Math Teacher',
+                icon: Icons.energy_savings_leaf))
+            .toList(),
       ),
     );
   }

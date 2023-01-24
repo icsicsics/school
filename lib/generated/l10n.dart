@@ -969,6 +969,16 @@ class S {
       args: [],
     );
   }
+
+  /// `at`
+  String get at {
+    return Intl.message(
+      'at',
+      name: 'at',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
