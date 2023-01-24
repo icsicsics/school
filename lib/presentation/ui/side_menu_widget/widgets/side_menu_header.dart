@@ -35,10 +35,9 @@ class SideMenuHeader extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 50,
-                    child:  SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill),
-                  ),
+                  bloc.teacherInfoResponse.data != null
+                      ? image(bloc.teacherInfoResponse.data!.getImage!.mediaUrl)
+                      : const SizedBox(width: double.infinity, height: 80),
                   const SizedBox(
                     width: 30,
                   ),
@@ -67,32 +66,60 @@ class SideMenuHeader extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-               BoldTextWidget(
+              BoldTextWidget(
                   text: isFather != true
                       ? bloc.teacherInfoResponse.data != null
-                      ? bloc.teacherInfoResponse.data!.email
-                      : ""
+                          ? bloc.teacherInfoResponse.data!.email
+                          : ""
                       : bloc.fatherInfoResponse.data != null
-                      ? bloc.fatherInfoResponse.data!.parentName
-                      : "",
+                          ? bloc.fatherInfoResponse.data!.parentName
+                          : "",
                   fontSize: 12,
                   color: ColorsManager.borderColor),
               const SizedBox(
                 height: 2,
               ),
-               BoldTextWidget(
-                  text:  isFather != true
+              BoldTextWidget(
+                  text: isFather != true
                       ? bloc.teacherInfoResponse.data != null
-                      ? bloc.teacherInfoResponse.data!.phoneNumber
-                      : ""
+                          ? bloc.teacherInfoResponse.data!.phoneNumber
+                          : ""
                       : bloc.fatherInfoResponse.data != null
-                      ? bloc.fatherInfoResponse.data!.phoneNumber
-                      : "",
+                          ? bloc.fatherInfoResponse.data!.phoneNumber
+                          : "",
                   fontSize: 12,
                   color: ColorsManager.borderColor)
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget image(images) {
+    return Image.network(
+      images ?? "",
+      fit: BoxFit.fill,
+      loadingBuilder: (BuildContext context, Widget child,
+          ImageChunkEvent? loadingProgress) {
+        if (loadingProgress == null) return child;
+        return SizedBox(
+          width: double.infinity,
+          height: 80,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: ColorsManager.primaryColor,
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                      loadingProgress.expectedTotalBytes!
+                  : null,
+            ),
+          ),
+        );
+      },
+      errorBuilder: (context, error, stackTrace) => CircleAvatar(
+        radius: 50,
+        child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill),
       ),
     );
   }

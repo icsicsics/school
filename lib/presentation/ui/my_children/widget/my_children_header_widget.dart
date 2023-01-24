@@ -61,29 +61,14 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: 50),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children:  [
                     BoldTextWidget(
-                        text: "Leen Eiz Deen",
+                        text: widget.teacherStudentProfileInSchoolHouseResponse.data!.studentName??"",
                         fontSize: 25,
-                        color: ColorsManager.whiteColor),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    MediumTextWidget(
-                        text: "Interactive Values School",
-                        fontSize: 15,
-                        color: ColorsManager.whiteColor),
-                    MediumTextWidget(
-                        text: "5th Grade - Section 4",
-                        fontSize: 15,
-                        color: ColorsManager.whiteColor),
-                    MediumTextWidget(
-                        text: "Collaboration Home",
-                        fontSize: 15,
                         color: ColorsManager.whiteColor),
                   ]),
             ),
@@ -92,4 +77,8 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
       ),
     );
   }
+
+
+
+
 }
