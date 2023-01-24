@@ -17,8 +17,7 @@ class RPSCustomPainterLeft2 extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
+   return true;
   }
 }
 
@@ -39,8 +38,7 @@ class RPSCustomPainterLeft1 extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
+  return true;
   }
 }
 
@@ -62,8 +60,7 @@ class GeneralCurve extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
+   return true;
   }
 }
 
@@ -83,8 +80,7 @@ class RPSCustomPainterRight2 extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
+    return true;
   }
 }
 
@@ -104,7 +100,6 @@ class RPSCustomPainterRight1 extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
+   return true;
   }
 }

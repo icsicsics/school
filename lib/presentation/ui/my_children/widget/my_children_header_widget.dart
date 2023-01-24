@@ -4,7 +4,6 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
-import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/my_children/widget/points_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 
@@ -23,9 +22,10 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
+            begin: Alignment.centerLeft, end: Alignment.centerRight,
         colors: [
-          ColorsManager.primaryColor,
-          ColorsManager.secondaryColor,
+          Color.fromRGBO(76, 193, 210,1),
+          Color.fromRGBO(  53	,180	,167,1)
         ],
         stops: [0.5, 0.8],
       )),

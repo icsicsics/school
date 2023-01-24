@@ -134,7 +134,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       );
 
   Widget _points() {
-    return InkWell(
+    return GestureDetector(
       onTap: () => _bloc.add(OpenAddPointAlertEvent()),
       child: Container(
           height: 35,
