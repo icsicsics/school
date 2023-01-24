@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/add_point_with_commint_dialog_widget.dart';
 
-Future<void> showAddPointFunction(
+Future showAddPointFunction(
         {required BuildContext context,
-        required Function() addAction,
         required String childName,
-        required TextEditingController commentController,
         required String token,
         required String classroomId}) =>
     showDialog(
@@ -15,9 +13,7 @@ Future<void> showAddPointFunction(
             elevation: 0,
             backgroundColor: Colors.transparent,
             child: AddPointDialogWidget(
-              addAction: addAction,
               childName: childName,
-              commentController: commentController,
               classroomId: classroomId,
               token: token,
             )));

@@ -44,11 +44,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
 
   void _onTap(childName) => showAddPointFunction(
       context: context,
-      addAction: () {
-        Navigator.pop(context);
-      },
-      childName: childName,
-      commentController: _commentController, token: widget.token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
+      childName: childName,token: widget.token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
 
   _onTapChild()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>const MyChildrenScreen()));
 }

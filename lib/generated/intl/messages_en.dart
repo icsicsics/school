@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("EN"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your Phone Number"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorActivationCode":
             MessageLookupByLibrary.simpleMessage("Error activation code"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),

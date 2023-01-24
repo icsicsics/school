@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("EN"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
+        "error": MessageLookupByLibrary.simpleMessage("خطا"),
         "errorActivationCode":
             MessageLookupByLibrary.simpleMessage("رمز تفعيل الخطأ"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),

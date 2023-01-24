@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/ui/student_houses/widgets/student_houses_item_widget.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
 
 class StudentHousesListWidget extends StatefulWidget {
   final GetStudentHousesResponse getStudentHousesResponse;
@@ -16,6 +19,7 @@ class StudentHousesListWidget extends StatefulWidget {
 
 class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
   final TextEditingController _commentController = TextEditingController();
+  Data valueFromAlert= Data();
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +43,14 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
 
   void _onTap(childName,classroomId) => showAddPointFunction(
       context: context,
-      addAction: () {
-        Navigator.pop(context);
-      },
-      childName: childName,
-      commentController: _commentController, token: widget.token, classroomId:classroomId);
+      childName: childName,token: widget.token, classroomId:classroomId).then((value) => _returnValue(value));
+
+  _returnValue(value) {
+    valueFromAlert=value;
+    print("value  ==============> ${valueFromAlert.name}");
+  }
+
+
+
+
 }

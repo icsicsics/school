@@ -10,17 +10,13 @@ import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
 
 class AddPointDialogWidget extends StatefulWidget {
-  final Function() addAction;
   final String childName;
-  final TextEditingController commentController;
   final String token;
   final String classroomId;
 
   const AddPointDialogWidget(
       {Key? key,
-      required this.addAction,
       required this.childName,
-      required this.commentController,
       required this.classroomId,
       required this.token})
       : super(key: key);
@@ -30,26 +26,21 @@ class AddPointDialogWidget extends StatefulWidget {
 }
 
 class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
+  TextEditingController commentController = TextEditingController();
   String? dropdownValue;
   bool isAddCommit = false;
   GetTeacherPrinciplByClassroomIdResponse
       _getTeacherPrinciplByClassroomIdResponse =
       GetTeacherPrinciplByClassroomIdResponse();
+  Data value = Data();
 
   AddPointBloc get _addPointBloc => BlocProvider.of<AddPointBloc>(context);
 
-  List<Data> _listOfItems = [];
-
-  // List<String> items = [
-  //   'Item 1',
-  //   'Item 2',
-  //   'Item 3',
-  //   'other',
-  // ];
+  final List<Data> _listOfItems = [];
 
   @override
   void initState() {
-    if (widget.classroomId != null) {
+    if (widget.classroomId.trim().isNotEmpty) {
       _addPointBloc.add(GetAddPointEvent(
           token: widget.token, classroomId: widget.classroomId));
     }
@@ -121,8 +112,9 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                           .toList(),
                       onChanged: (newValue) {
                         setState(() {
+                          _addValue(newValue);
                           dropdownValue = newValue ?? "";
-                          if (newValue == "other") {
+                          if (newValue == "1") {
                             isAddCommit = true;
                           } else {
                             isAddCommit = false;
@@ -150,7 +142,10 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                                 hintStyle: const TextStyle(
                                     fontSize: 13,
                                     color: ColorsManager.sameBlack)),
-                            controller: widget.commentController,
+                            controller: commentController,
+                            onChanged: (value1) {
+                              value = Data(name: value1, id: "1");
+                            },
                           ),
                         ))),
                 SizedBox(
@@ -158,7 +153,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                 ),
                 CustomButtonWidget(
                     buttonWidth: MediaQuery.of(context).size.width / 4,
-                    onPressed: widget.addAction,
+                    onPressed: () => Navigator.pop(context, value),
                     buttonText: S.of(context).reward,
                     borderRadius: 25,
                     buttonColor: ColorsManager.buttonColor,
@@ -179,7 +174,14 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
       _listOfItems.add(element);
     }
     _listOfItems.add(Data(id: "1", name: "other"));
-
     Navigator.pop(context);
+  }
+
+  void _addValue(String? newValue) {
+    for (var element in _listOfItems) {
+      if (element.id == newValue) {
+        value = element;
+      }
+    }
   }
 }

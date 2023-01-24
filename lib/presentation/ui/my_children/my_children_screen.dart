@@ -141,11 +141,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
 
   void _openAddPointAlert() => showAddPointFunction(
       context: context,
-      addAction: () {
-        Navigator.pop(context);
-      },
-      childName: "",
-      commentController: _commentController, token: _token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
+      childName: "",token: _token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,

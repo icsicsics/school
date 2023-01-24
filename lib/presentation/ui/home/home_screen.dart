@@ -5,6 +5,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/home_content_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/side_menu_screen.dart';
@@ -47,7 +48,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         } else if (state is GetLanguageSuccessState) {
           _language = state.language;
         } else if (state is GetTokenSuccessState) {
-          _token=state.token;
+          _token = state.token;
           if (_isFather) {
             _homeBloc.add(GetFatherHomeEvent(token: state.token));
           } else {
@@ -73,16 +74,17 @@ class _HomeScreenState extends BaseState<HomeScreen> {
             key: _key,
             drawer: SideMenuScreen(
               isComFromHome: true,
-              language: _language, token: _token,
+              language: _language,
+              token: _token,
             ),
             body: HomeContentWidget(
-                    globalKey: _key,
-                    isFather: _isFather,
-                    bloc: _homeBloc,
-                    language: _language,
-                    parentHomeResponse: _parentHomeResponse,
-                    teacherHomeResponse: _teacherHomeResponse,
-                    token: _token));
+                globalKey: _key,
+                isFather: _isFather,
+                bloc: _homeBloc,
+                language: _language,
+                parentHomeResponse: _parentHomeResponse,
+                teacherHomeResponse: _teacherHomeResponse,
+                token: _token));
       },
     );
   }
@@ -91,5 +93,6 @@ class _HomeScreenState extends BaseState<HomeScreen> {
     RestartWidget.restartApp(context);
   }
 
-  void _onFillState(String error) {}
+  void _onFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 }
