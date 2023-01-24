@@ -30,12 +30,17 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           ProfileHeaderWidget(
-              bloc: widget.bloc, profileImage: widget.profileImage, isFather: widget.isFather,fatherInfoResponse: widget.fatherInfoResponse,teacherInfoResponse: widget.teacherInfoResponse),
+              bloc: widget.bloc,
+              profileImage: widget.profileImage,
+              isFather: widget.isFather,
+              fatherInfoResponse: widget.fatherInfoResponse,
+              teacherInfoResponse: widget.teacherInfoResponse),
           ProfileInfoContentWidget(
-            isFather: widget.isFather,
+              isFather: widget.isFather,
               fatherInfoResponse: widget.fatherInfoResponse,
               teacherInfoResponse: widget.teacherInfoResponse),
           widget.isFather
