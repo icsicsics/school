@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
@@ -43,18 +43,23 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       )),
       height: MediaQuery.of(context).size.height / 6,
       child: Padding(
-        padding: const EdgeInsets.only(top: 50,left: 5),
+        padding: const EdgeInsets.only(top: 50, left: 5),
         child: Row(
           children: [
             InkWell(
-              onTap: widget.onTapMenu,
-                child: SvgPicture.asset(ImagesPath.menu,width: 25,height: 25, color: ColorsManager.whiteColor)),
-           const  SizedBox(width: 5,),
+                onTap: widget.onTapMenu,
+                child: SvgPicture.asset(ImagesPath.menu,
+                    width: 25, height: 25, color: ColorsManager.whiteColor)),
+            const SizedBox(
+              width: 5,
+            ),
             Expanded(
               child: MediumTextWidget(
-                textAlign: TextAlign.center,
+                  textAlign: TextAlign.center,
                   text: widget.isFather
-                      ? S.of(context).ejabi
+                      ? widget.bloc.fatherInfoResponse.data != null
+                          ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
+                          : S.of(context).welcome
                       : widget.teacherHomeResponse.data != null
                           ? widget.teacherHomeResponse.data![0].schoolName
                           : "",
@@ -67,7 +72,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                   children: [
                     InkWell(
                         onTap: () => _changeLanguage(),
-                        child:_languageImage()),
+                        child: _languageImage()),
                     InkWell(
                       onTap: widget.onTapNotifications,
                       child: SizedBox(
@@ -117,8 +122,13 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
     );
   }
 
-  Widget _languageImage()=>
-    widget.language=="en"? Image.asset(ImagesPath.ar,height: 35,width: 35):Image.asset(ImagesPath.en,height: 35,width: 35,);
+  Widget _languageImage() => widget.language == "en"
+      ? Image.asset(ImagesPath.ar, height: 35, width: 35)
+      : Image.asset(
+          ImagesPath.en,
+          height: 35,
+          width: 35,
+        );
 
   void _changeLanguage() {
     if (widget.language == "en") {

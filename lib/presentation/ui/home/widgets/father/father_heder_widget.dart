@@ -43,7 +43,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 25),
+                  padding: const EdgeInsets.only(bottom: 35),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -53,14 +53,6 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                                   .homeBloc.fatherInfoResponse.data!.parentName
                               : "",
                           fontSize: 18,
-                          color: ColorsManager.whiteColor),
-                      const   SizedBox(height: 6),
-                         MediumTextWidget(
-                          text: widget.homeBloc.fatherInfoResponse != FatherInfoResponse()
-                              ? widget
-                              .homeBloc.fatherInfoResponse.data!.parentName
-                              : "",
-                          fontSize: 16,
                           color: ColorsManager.whiteColor),
                      const  SizedBox(height: 6),
                        MediumTextWidget(

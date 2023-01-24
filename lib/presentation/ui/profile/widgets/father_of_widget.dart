@@ -33,10 +33,10 @@ class FatherOfWidget extends StatelessWidget {
                           fontSize: 16,
                           color: ColorsManager.secondaryColor),
                 SizedBox(
-                  height: 70,
+                  height: 105,
                   child: ListView.builder(
-                      itemCount:
-                                fatherInfoResponse.data!.childrens!.length,
+                    padding: EdgeInsets.all(5),
+                      itemCount: fatherInfoResponse.data!.childrens!.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
                               return InkWell(
@@ -45,11 +45,15 @@ class FatherOfWidget extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (_) =>
                                               const MyChildrenScreen())),
-                                  child: ChildItemWidget(
-                                      imageUrl:
-                                          "${fatherInfoResponse.data!.childrens![index].getImage != null ? fatherInfoResponse.data!.childrens![index].getImage!.mediaUrl : ""}"));
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: ChildItemWidget(
+                                        imageUrl:
+                                            "${fatherInfoResponse.data!.childrens![index].getImage != null ? fatherInfoResponse.data!.childrens![index].getImage!.mediaUrl : ""}", childName: fatherInfoResponse.data!.childrens![index].studentName ?? "",),
+                                  ));
                             }),
-                      )
+                      ),
+
                     ],
                   )),
             )

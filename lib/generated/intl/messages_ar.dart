@@ -29,8 +29,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "allPoints": MessageLookupByLibrary.simpleMessage("كل النقاط"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
         "appreciative": MessageLookupByLibrary.simpleMessage("تقديري"),
+        "apr": MessageLookupByLibrary.simpleMessage("ابريل"),
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
+        "aug": MessageLookupByLibrary.simpleMessage("اغسطس"),
         "camera": MessageLookupByLibrary.simpleMessage("كاميره"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
@@ -38,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "clear": MessageLookupByLibrary.simpleMessage("مسح"),
         "collaboration": MessageLookupByLibrary.simpleMessage("تعاون"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "dec": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "didntReceiveVerificationCode":
             MessageLookupByLibrary.simpleMessage("لم تتلق رمز التحقق؟"),
         "dontReceiveCode":
@@ -51,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorActivationCode":
             MessageLookupByLibrary.simpleMessage("رمز تفعيل الخطأ"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),
+        "feb": MessageLookupByLibrary.simpleMessage("فبراير"),
+        "friday": MessageLookupByLibrary.simpleMessage("الجمعة"),
         "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
         "honesty": MessageLookupByLibrary.simpleMessage("أمانة"),
         "ihaveReadAndAcceptThe":
@@ -63,17 +68,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "interactiveSchoolGuidance":
             MessageLookupByLibrary.simpleMessage("التوجيه المدرسي التفاعلي"),
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
+        "jan": MessageLookupByLibrary.simpleMessage("يناير"),
+        "jul": MessageLookupByLibrary.simpleMessage("يوليو"),
+        "june": MessageLookupByLibrary.simpleMessage("يونيو"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logout": MessageLookupByLibrary.simpleMessage("خروج"),
+        "mar": MessageLookupByLibrary.simpleMessage("مارس"),
+        "may": MessageLookupByLibrary.simpleMessage("مايو"),
         "me": MessageLookupByLibrary.simpleMessage("انا"),
         "mobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
+        "monday": MessageLookupByLibrary.simpleMessage("الاثنين"),
         "myChildren": MessageLookupByLibrary.simpleMessage("أطفالي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+        "nov": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
+        "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "pleaseEnterThePhoneNumber":
@@ -85,20 +98,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "resend": MessageLookupByLibrary.simpleMessage("إعادة إرسال"),
         "reward": MessageLookupByLibrary.simpleMessage("مكافأة"),
+        "saturday": MessageLookupByLibrary.simpleMessage("السبت"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("منازل المدرسة"),
         "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),
+        "sep": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "studentHouses": MessageLookupByLibrary.simpleMessage("منازل الطلاب"),
         "students": MessageLookupByLibrary.simpleMessage("طلاب"),
         "studentsProfile":
             MessageLookupByLibrary.simpleMessage("الملف الشخصي للطلاب"),
         "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
+        "sunday": MessageLookupByLibrary.simpleMessage("الأحد"),
         "teachers": MessageLookupByLibrary.simpleMessage("معلمون"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
+        "thOf": MessageLookupByLibrary.simpleMessage("من"),
         "thePhoneNumberIsWrong":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صحيح"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الاسبوع"),
+        "thursday": MessageLookupByLibrary.simpleMessage("الخميس"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("الثلاثاء"),
         "typeWhyLeenDeserveThisPoint":
             MessageLookupByLibrary.simpleMessage("اكتب لماذا تستحق هذه النقطة"),
         "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
@@ -108,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "لقد أرسلنا رمز التحقق إلى رقم هاتفك"),
         "weather": MessageLookupByLibrary.simpleMessage("طقس"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("الأربعاء"),
+        "welcome": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };
 }

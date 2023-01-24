@@ -29,20 +29,24 @@ class ProfileContentWidget extends StatefulWidget {
 class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return  Column(
         children: [
           ProfileHeaderWidget(
-              bloc: widget.bloc, profileImage: widget.profileImage),
-          ProfileInfoContentWidget(
-            isFather: widget.isFather,
+              bloc: widget.bloc,
+              profileImage: widget.profileImage,
+              isFather: widget.isFather,
               fatherInfoResponse: widget.fatherInfoResponse,
               teacherInfoResponse: widget.teacherInfoResponse),
+          ProfileInfoContentWidget(
+              isFather: widget.isFather,
+              fatherInfoResponse: widget.fatherInfoResponse,
+              teacherInfoResponse: widget.teacherInfoResponse),
+          const Spacer(),
           widget.isFather
               ? FatherOfWidget(fatherInfoResponse: widget.fatherInfoResponse)
               : const SizedBox()
         ],
-      ),
+
     );
   }
 }

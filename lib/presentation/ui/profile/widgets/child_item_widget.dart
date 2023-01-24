@@ -2,45 +2,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class ChildItemWidget extends StatelessWidget {
   final String imageUrl;
+  final String childName;
 
-  const ChildItemWidget({Key? key, required this.imageUrl}) : super(key: key);
+  const ChildItemWidget(
+      {Key? key, required this.imageUrl, required this.childName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 13,
-      width: MediaQuery.of(context).size.width / 5,
-      child: Stack(
-        children: [
-          SizedBox(height: 70, width: 70, child: itemImageWidget()),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                    color: ColorsManager.whiteColor,
-                    borderRadius: BorderRadius.all(Radius.circular(40))),
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: Container(
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 13,
+          width: MediaQuery.of(context).size.width / 5,
+          child: Stack(
+            children: [
+              SizedBox(height: 70, width: 70, child: itemImageWidget()),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Container(
+                    height: 30,
+                    width: 30,
                     decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      color: Colors.transparent,
-                      child: SvgPicture.asset(ImagesPath.star,
-                          height: 18, width: 18),
-                    ),
-                  ),
-                )),
-          )
-        ],
-      ),
+                        color: ColorsManager.whiteColor,
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50))),
+                        child: Container(
+                          height: 20,
+                          width: 20,
+                          color: Colors.transparent,
+                          child: SvgPicture.asset(ImagesPath.star,
+                              height: 18, width: 18),
+                        ),
+                      ),
+                    )),
+              )
+            ],
+          ),
+        ),
+        SizedBox(height: 7),
+        BoldTextWidget(
+            text: childName, fontSize: 10, color: ColorsManager.grayColor),
+      ],
     );
   }
 

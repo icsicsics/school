@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
@@ -8,6 +10,21 @@ class HomeTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DateTime dateTime = DateTime.now();
+    String dateFormatter(DateTime date) {
+      dynamic dayData =
+          '{"1": "${S.of(context).monday}", "2": "${S.of(context).tuesday}", "3":"${S.of(context).wednesday}", "4": "${S.of(context).thursday}", "5": "${S.of(context).friday}", "6": "${S.of(context).saturday}", "7": "${S.of(context).sunday}"}';
+      return json.decode(dayData)['${date.weekday}'];
+    }
+
+    String monthFormatter(DateTime date) {
+      dynamic monthData =
+          '{ "1" : "${S.of(context).jan}", "2" : "${S.of(context).feb} ", "3" : "${S.of(context).mar}", "4" : "${S.of(context).apr}", "5" : "${S.of(context).may}", "6" : "${S.of(context).june}", "7" : "${S.of(context).jul}", "8" : "${S.of(context).aug}", "9" : "${S.of(context).sep}", "10" : "${S.of(context).oct}", "11" : "${S.of(context).nov}", "12" : "${S.of(context).dec}" }';
+      return json.decode(monthData)['${date.weekday}'];
+    }
+
+    var dayNumber = dateTime.day;
+    var year = dateTime.year;
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -26,16 +43,17 @@ class HomeTitleWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   MediumTextWidget(
-                      text: "Sunday",
+                      text: dateFormatter(dateTime),
                       fontSize: 16,
                       color: ColorsManager.whiteColor),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   MediumTextWidget(
-                      text: "17th of September 2018",
+                      text:
+                          "$dayNumber ${S.of(context).thOf} ${monthFormatter(dateTime)} $year",
                       fontSize: 15,
                       color: ColorsManager.whiteColor),
                 ],
@@ -44,7 +62,7 @@ class HomeTitleWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   MediumTextWidget(
+                  MediumTextWidget(
                       text: S.of(context).weather,
                       fontSize: 16,
                       color: ColorsManager.whiteColor),

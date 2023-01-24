@@ -29,8 +29,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "allPoints": MessageLookupByLibrary.simpleMessage("All Points"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appreciative": MessageLookupByLibrary.simpleMessage("Appreciative"),
+        "apr": MessageLookupByLibrary.simpleMessage("april"),
         "arabic": MessageLookupByLibrary.simpleMessage("AR"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure ?"),
+        "aug": MessageLookupByLibrary.simpleMessage("august"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
         "collaboration": MessageLookupByLibrary.simpleMessage("Collaboration"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "dec": MessageLookupByLibrary.simpleMessage("december"),
         "didntReceiveVerificationCode": MessageLookupByLibrary.simpleMessage(
             "Didn\'t Receive Verification code ?"),
         "dontReceiveCode":
@@ -53,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorActivationCode":
             MessageLookupByLibrary.simpleMessage("Error activation code"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
+        "feb": MessageLookupByLibrary.simpleMessage("february"),
+        "friday": MessageLookupByLibrary.simpleMessage("Friday"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
         "ihaveReadAndAcceptThe":
@@ -65,16 +70,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "interactiveSchoolGuidance":
             MessageLookupByLibrary.simpleMessage("Interactive school guidance"),
         "isFather": MessageLookupByLibrary.simpleMessage("اب"),
+        "jan": MessageLookupByLibrary.simpleMessage("january"),
+        "jul": MessageLookupByLibrary.simpleMessage("july"),
+        "june": MessageLookupByLibrary.simpleMessage("june"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "mar": MessageLookupByLibrary.simpleMessage("march"),
+        "may": MessageLookupByLibrary.simpleMessage("mayo"),
         "me": MessageLookupByLibrary.simpleMessage("Me"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
+        "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "next": MessageLookupByLibrary.simpleMessage(" Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "nov": MessageLookupByLibrary.simpleMessage("november"),
         "number": MessageLookupByLibrary.simpleMessage("Number"),
+        "oct": MessageLookupByLibrary.simpleMessage("october"),
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseEnterThePhoneNumber": MessageLookupByLibrary.simpleMessage(
@@ -86,20 +99,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "reward": MessageLookupByLibrary.simpleMessage("Reward"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("School Homes"),
         "sections": MessageLookupByLibrary.simpleMessage("Sections"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("Send OTP"),
+        "sep": MessageLookupByLibrary.simpleMessage("september"),
         "studentHouses": MessageLookupByLibrary.simpleMessage("Student houses"),
         "students": MessageLookupByLibrary.simpleMessage("Students"),
         "studentsProfile":
             MessageLookupByLibrary.simpleMessage("Students Profile"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
+        "thOf": MessageLookupByLibrary.simpleMessage("th of "),
         "thePhoneNumberIsWrong":
             MessageLookupByLibrary.simpleMessage("The phone number is wrong"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),
         "verificationCode":
@@ -110,6 +129,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "We have send the code verification to Your Mobile"),
         "weather": MessageLookupByLibrary.simpleMessage("Weather"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }
