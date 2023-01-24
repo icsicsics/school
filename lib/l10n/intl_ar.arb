@@ -69,5 +69,12 @@
 "errorActivationCode":"رمز تفعيل الخطأ",
  "pleaseEnterThePhoneNumber":"الرجاء إدخال رقم الهاتف",
  "thePhoneNumberIsWrong":"رقم الهاتف غير صحيح",
- "welcome":"مرحبا"
+ "welcome":"مرحبا",
+  "sunday":"الأحد",
+  "saturday":"السبت",
+  "friday":"الجمعة",
+  "thursday":"الخميس",
+  "wednesday":"الأربعاء",
+  "tuesday":"الثلاثاء",
+  "monday":"الاثنين"
 }

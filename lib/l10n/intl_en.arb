@@ -69,5 +69,12 @@
  "errorActivationCode":"Error activation code",
  "pleaseEnterThePhoneNumber":"Please enter the phone number",
  "thePhoneNumberIsWrong":"The phone number is wrong",
- "welcome":"Welcome"
+ "welcome":"Welcome",
+ "sunday":"Sunday",
+ "saturday":"Saturday",
+ "friday":"Friday",
+ "thursday":"Thursday",
+ "wednesday":"Wednesday",
+ "tuesday":"Tuesday",
+ "monday":"Monday"
 }

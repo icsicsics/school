@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorActivationCode":
             MessageLookupByLibrary.simpleMessage("Error activation code"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
+        "friday": MessageLookupByLibrary.simpleMessage("Friday"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
         "ihaveReadAndAcceptThe":
@@ -69,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "me": MessageLookupByLibrary.simpleMessage("Me"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
+        "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "next": MessageLookupByLibrary.simpleMessage(" Next"),
@@ -86,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "reward": MessageLookupByLibrary.simpleMessage("Reward"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("School Homes"),
         "sections": MessageLookupByLibrary.simpleMessage("Sections"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),
@@ -95,11 +98,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "studentsProfile":
             MessageLookupByLibrary.simpleMessage("Students Profile"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
         "thePhoneNumberIsWrong":
             MessageLookupByLibrary.simpleMessage("The phone number is wrong"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),
         "verificationCode":
@@ -110,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "We have send the code verification to Your Mobile"),
         "weather": MessageLookupByLibrary.simpleMessage("Weather"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
@@ -8,6 +10,13 @@ class HomeTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String dateFormatter(DateTime date) {
+      dynamic dayData =
+          '{"1": "${S.of(context).monday}", "2": "${S.of(context).tuesday}", "3":"${S.of(context).wednesday}", "4": "${S.of(context).thursday}", "5": "${S.of(context).friday}", "6": "${S.of(context).saturday}", "7": "${S.of(context).sunday}"}';
+      return json.decode(dayData)['${date.weekday}'];
+    }
+
+    final DateTime dateTime = DateTime.now();
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -26,15 +35,15 @@ class HomeTitleWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   MediumTextWidget(
-                      text: "Sunday",
+                      text: dateFormatter(dateTime),
                       fontSize: 16,
                       color: ColorsManager.whiteColor),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  MediumTextWidget(
+                 const  MediumTextWidget(
                       text: "17th of September 2018",
                       fontSize: 15,
                       color: ColorsManager.whiteColor),
@@ -44,7 +53,7 @@ class HomeTitleWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   MediumTextWidget(
+                  MediumTextWidget(
                       text: S.of(context).weather,
                       fontSize: 16,
                       color: ColorsManager.whiteColor),
