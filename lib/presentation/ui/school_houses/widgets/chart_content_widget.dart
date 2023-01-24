@@ -25,9 +25,9 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
       SalesData(
           x: "hello 1",
           y: widget.schoolHousesBloc.getClassHousesResponse.data![0].totalPointsHouse!.toDouble()),
-      SalesData(x: "hello 2", y: 20),
-      SalesData(x: "hello 3", y: 30),
-      SalesData(x: "hello 4", y: 40),
+      SalesData(x: "hello 2", y: widget.schoolHousesBloc.getClassHousesResponse.data![1].totalPointsHouse!.toDouble()),
+      SalesData(x: "hello 3", y: widget.schoolHousesBloc.getClassHousesResponse.data![2].totalPointsHouse!.toDouble()),
+      SalesData(x: "hello 4", y:widget.schoolHousesBloc.getClassHousesResponse.data![3].totalPointsHouse!.toDouble()),
     ];
 
     return Align(
