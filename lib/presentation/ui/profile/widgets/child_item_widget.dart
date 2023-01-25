@@ -49,7 +49,7 @@ class ChildItemWidget extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 7),
+        const SizedBox(height: 7),
         BoldTextWidget(
             text: childName, fontSize: 10, color: ColorsManager.grayColor),
       ],

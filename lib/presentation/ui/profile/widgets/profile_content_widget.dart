@@ -20,7 +20,8 @@ class ProfileContentWidget extends StatefulWidget {
       required this.profileImage,
       required this.bloc,
       required this.teacherInfoResponse,
-      required this.fatherInfoResponse,required this.language})
+      required this.fatherInfoResponse,
+      required this.language})
       : super(key: key);
 
   @override
@@ -30,24 +31,25 @@ class ProfileContentWidget extends StatefulWidget {
 class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return  Column(
-        children: [
-          ProfileHeaderWidget(
-              bloc: widget.bloc,
-              profileImage: widget.profileImage,
-              isFather: widget.isFather,
-              fatherInfoResponse: widget.fatherInfoResponse,
-              teacherInfoResponse: widget.teacherInfoResponse),
-          ProfileInfoContentWidget(
-              isFather: widget.isFather,
-              fatherInfoResponse: widget.fatherInfoResponse,
-              teacherInfoResponse: widget.teacherInfoResponse),
-          const Spacer(),
-          widget.isFather
-              ? FatherOfWidget(fatherInfoResponse: widget.fatherInfoResponse, language: widget.language)
-              : const SizedBox()
-        ],
-
+    return Column(
+      children: [
+        ProfileHeaderWidget(
+            bloc: widget.bloc,
+            profileImage: widget.profileImage,
+            isFather: widget.isFather,
+            fatherInfoResponse: widget.fatherInfoResponse,
+            teacherInfoResponse: widget.teacherInfoResponse),
+        ProfileInfoContentWidget(
+            isFather: widget.isFather,
+            fatherInfoResponse: widget.fatherInfoResponse,
+            teacherInfoResponse: widget.teacherInfoResponse),
+        const Spacer(),
+        widget.isFather
+            ? FatherOfWidget(
+                fatherInfoResponse: widget.fatherInfoResponse,
+                language: widget.language)
+            : const SizedBox()
+      ],
     );
   }
 }

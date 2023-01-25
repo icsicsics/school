@@ -6,8 +6,11 @@ import 'package:schools/presentation/ui/my_children/widget/points_screen_widget.
 
 class MyChildrenBodyWidget extends StatefulWidget {
   final TeacherStudentProfileInSchoolHouseResponse
-  teacherStudentProfileInSchoolHouseResponse;
-  const MyChildrenBodyWidget({Key? key,required this.teacherStudentProfileInSchoolHouseResponse}) : super(key: key);
+      teacherStudentProfileInSchoolHouseResponse;
+
+  const MyChildrenBodyWidget(
+      {Key? key, required this.teacherStudentProfileInSchoolHouseResponse})
+      : super(key: key);
 
   @override
   State<MyChildrenBodyWidget> createState() => _MyChildrenBodyWidgetState();
@@ -18,12 +21,14 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsManager.backgroundColor,
-      child:  Padding(
-        padding:  const EdgeInsets.all(10),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
         child: Column(
-          children:  [
-            MyChildrenWidget(),
-            PointsScreenWidget(teacherStudentProfileInSchoolHouseResponse:widget.teacherStudentProfileInSchoolHouseResponse),
+          children: [
+            const MyChildrenWidget(),
+            PointsScreenWidget(
+                teacherStudentProfileInSchoolHouseResponse:
+                    widget.teacherStudentProfileInSchoolHouseResponse),
           ],
         ),
       ),

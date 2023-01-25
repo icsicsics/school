@@ -10,7 +10,8 @@ class FatherOfWidget extends StatelessWidget {
   final FatherInfoResponse fatherInfoResponse;
   final String language;
 
-  const FatherOfWidget({Key? key, required this.fatherInfoResponse,required this.language})
+  const FatherOfWidget(
+      {Key? key, required this.fatherInfoResponse, required this.language})
       : super(key: key);
 
   @override
@@ -33,28 +34,34 @@ class FatherOfWidget extends StatelessWidget {
                           text: S.current.fatherOf,
                           fontSize: 16,
                           color: ColorsManager.secondaryColor),
-                SizedBox(
-                  height: 105,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(5),
-                      itemCount: fatherInfoResponse.data!.childrens!.length,
+                      SizedBox(
+                        height: 105,
+                        child: ListView.builder(
+                            padding: const EdgeInsets.all(5),
+                            itemCount:
+                                fatherInfoResponse.data!.childrens!.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
                               return InkWell(
                                   onTap: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (_) =>
-                                               MyChildrenScreen(studentId: "${fatherInfoResponse.data!.childrens![index].studentId}", language: language))),
+                                          builder: (_) => MyChildrenScreen(
+                                              studentId:
+                                                  "${fatherInfoResponse.data!.childrens![index].studentId}",
+                                              language: language))),
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: ChildItemWidget(
-                                        imageUrl:
-                                            "${fatherInfoResponse.data!.childrens![index].getImage != null ? fatherInfoResponse.data!.childrens![index].getImage!.mediaUrl : ""}", childName: fatherInfoResponse.data!.childrens![index].studentName ?? "",),
+                                      imageUrl:
+                                          "${fatherInfoResponse.data!.childrens![index].getImage != null ? fatherInfoResponse.data!.childrens![index].getImage!.mediaUrl : ""}",
+                                      childName: fatherInfoResponse.data!
+                                              .childrens![index].studentName ??
+                                          "",
+                                    ),
                                   ));
                             }),
                       ),
-
                     ],
                   )),
             )

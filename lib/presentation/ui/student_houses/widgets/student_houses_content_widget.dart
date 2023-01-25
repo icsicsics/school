@@ -9,7 +9,11 @@ class StudentHousesContentWidget extends StatefulWidget {
   final GetStudentHousesResponse getStudentHousesResponse;
   final String token;
 
-  const StudentHousesContentWidget({Key? key, required this.studentHousesBloc,required this.getStudentHousesResponse,required this.token})
+  const StudentHousesContentWidget(
+      {Key? key,
+      required this.studentHousesBloc,
+      required this.getStudentHousesResponse,
+      required this.token})
       : super(key: key);
 
   @override
@@ -27,7 +31,8 @@ class _StudentHousesContentWidgetState
             getStudentHousesResponse: widget.getStudentHousesResponse),
         StudentHousesListWidget(
             studentHousesBloc: widget.studentHousesBloc,
-            getStudentHousesResponse: widget.getStudentHousesResponse, token: widget.token)
+            getStudentHousesResponse: widget.getStudentHousesResponse,
+            token: widget.token)
       ],
     );
   }

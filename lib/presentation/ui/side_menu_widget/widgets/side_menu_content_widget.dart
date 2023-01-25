@@ -11,7 +11,13 @@ class SideMenuContentWidget extends StatefulWidget {
   final SideMenuBloc bloc;
   final String language;
   final bool isFather;
-  const SideMenuContentWidget({Key? key,required this.language,required this.bloc,required this.isFather}) : super(key: key);
+
+  const SideMenuContentWidget(
+      {Key? key,
+      required this.language,
+      required this.bloc,
+      required this.isFather})
+      : super(key: key);
 
   @override
   State<SideMenuContentWidget> createState() => _SideMenuContentWidgetState();
@@ -20,12 +26,15 @@ class SideMenuContentWidget extends StatefulWidget {
 class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Stack(children: [
           Column(
             children: [
-              SideMenuHeader(bloc: widget.bloc, language: widget.language, isFather: widget.isFather),
+              SideMenuHeader(
+                  bloc: widget.bloc,
+                  language: widget.language,
+                  isFather: widget.isFather),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -51,33 +60,38 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                           SideMenuItem(
                             icon: Icons.home_filled,
                             title: S.of(context).schoolHomes,
-                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                            onTap: () =>
+                                BlocProvider.of<SideMenuBloc>(context).add(
                               SideMenuHomeEvent(),
                             ),
                           ),
                           SideMenuItem(
                             icon: Icons.person,
                             title: S.of(context).myProfile,
-                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                            onTap: () =>
+                                BlocProvider.of<SideMenuBloc>(context).add(
                               SideMenuUserProfileEvent(),
                             ),
                           ),
                           SideMenuItem(
                               icon: Icons.mail,
                               title: S.of(context).contactUs,
-                              onTap: () => BlocProvider.of<SideMenuBloc>(context)
-                                  .add(SideMenuContactUsEvent())),
+                              onTap: () =>
+                                  BlocProvider.of<SideMenuBloc>(context)
+                                      .add(SideMenuContactUsEvent())),
                           SideMenuItem(
                             icon: Icons.info_outline,
                             title: S.of(context).aboutApp,
-                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                            onTap: () =>
+                                BlocProvider.of<SideMenuBloc>(context).add(
                               SideMenuAboutAppEvent(),
                             ),
                           ),
                           SideMenuItem(
                             icon: Icons.logout_sharp,
-                            title:S.of(context).logout,
-                            onTap: () => BlocProvider.of<SideMenuBloc>(context).add(
+                            title: S.of(context).logout,
+                            onTap: () =>
+                                BlocProvider.of<SideMenuBloc>(context).add(
                               LogoutEvent(),
                             ),
                           ),

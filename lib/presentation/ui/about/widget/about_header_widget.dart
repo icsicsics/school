@@ -11,13 +11,13 @@ class AboutHeaderWidget extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              ColorsManager.primaryColor,
-              ColorsManager.secondaryColor,
-            ],
-            stops: [0.5, 0.8],
-          )),
-      height:250,
+        colors: [
+          ColorsManager.primaryColor,
+          ColorsManager.secondaryColor,
+        ],
+        stops: [0.5, 0.8],
+      )),
+      height: 250,
       child: Align(
         alignment: Alignment.center,
         child: Column(

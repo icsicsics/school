@@ -9,7 +9,9 @@ import 'package:schools/presentation/ui/home/home_screen.dart';
 
 class VerifyContentWidget extends StatefulWidget {
   final String language;
-  const VerifyContentWidget({Key? key,required this.language}) : super(key: key);
+
+  const VerifyContentWidget({Key? key, required this.language})
+      : super(key: key);
 
   @override
   State<VerifyContentWidget> createState() => _VerifyContentWidgetState();
@@ -24,7 +26,7 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +48,8 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                               builder: (_) => const HomeScreen()));
                     } else {
                       showErrorDialogFunction(
-                          context: context, textMessage: S.of(context).errorActivationCode);
+                          context: context,
+                          textMessage: S.of(context).errorActivationCode);
                     }
                   },
                 ),

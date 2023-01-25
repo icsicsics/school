@@ -12,7 +12,6 @@ class ChartContentWidget extends StatefulWidget {
   State<ChartContentWidget> createState() => _ChartContentWidgetState();
 }
 
-
 class _ChartContentWidgetState extends State<ChartContentWidget> {
   @override
   void initState() {
@@ -24,10 +23,24 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
     List<SalesData> columnData = [
       SalesData(
           x: "hello 1",
-          y: widget.schoolHousesBloc.getClassHousesResponse.data![0].totalPointsHouse!.toDouble()),
-      SalesData(x: "hello 2", y: widget.schoolHousesBloc.getClassHousesResponse.data![1].totalPointsHouse!.toDouble()),
-      SalesData(x: "hello 3", y: widget.schoolHousesBloc.getClassHousesResponse.data![2].totalPointsHouse!.toDouble()),
-      SalesData(x: "hello 4", y:widget.schoolHousesBloc.getClassHousesResponse.data![3].totalPointsHouse!.toDouble()),
+          y: widget.schoolHousesBloc.getClassHousesResponse.data![0]
+              .totalPointsHouse!
+              .toDouble()),
+      SalesData(
+          x: "hello 2",
+          y: widget.schoolHousesBloc.getClassHousesResponse.data![1]
+              .totalPointsHouse!
+              .toDouble()),
+      SalesData(
+          x: "hello 3",
+          y: widget.schoolHousesBloc.getClassHousesResponse.data![2]
+              .totalPointsHouse!
+              .toDouble()),
+      SalesData(
+          x: "hello 4",
+          y: widget.schoolHousesBloc.getClassHousesResponse.data![3]
+              .totalPointsHouse!
+              .toDouble()),
     ];
 
     return Align(

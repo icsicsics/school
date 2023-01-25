@@ -8,6 +8,7 @@ import 'package:schools/data/source/remote/model/teacher_info/response/teacher_i
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/profile/widgets/open_camera_or_gallery_bottom_sheet.dart';
 import 'package:schools/presentation/ui/profile/widgets/profile_content_widget.dart';
@@ -23,9 +24,9 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   ProfileBloc get _bloc => BlocProvider.of<ProfileBloc>(context);
   bool _isFather = false;
   String _profileImage = "";
-   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
-   FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
-   String language='';
+  TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
+  FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
+  String language = '';
 
   @override
   void initState() {
@@ -54,9 +55,9 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is SuccessGetProfileImageState) {
           _profileImage = state.image;
         } else if (state is GetTokenState) {
-          if(_isFather){
+          if (_isFather) {
             _bloc.add(GetFatherInfoEvent(token: state.token));
-          }else{
+          } else {
             _bloc.add(GetTeacherInfoEvent(token: state.token));
           }
         } else if (state is GetTeacherInfoSuccessState) {
@@ -64,15 +65,15 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           hideLoading();
         } else if (state is GetTeacherInfoFillState) {
           hideLoading();
-          _onGetTeacherInfoFallState();
-        }else if(state is GetFatherInfoSuccessState){
-          _fatherInfoResponse=state.response;
+          _onGetTeacherInfoFallState(state.error);
+        } else if (state is GetFatherInfoSuccessState) {
+          _fatherInfoResponse = state.response;
           hideLoading();
-        }else if (state is GetFatherInfoFillState){
+        } else if (state is GetFatherInfoFillState) {
           hideLoading();
-          _onGetFatherInfoFallState();
-        }else if (state is GetLanguageSuccessState){
-          language=state.language;
+          _onGetFatherInfoFallState(state.error);
+        } else if (state is GetLanguageSuccessState) {
+          language = state.language;
         }
       },
       builder: (context, state) {
@@ -80,12 +81,12 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
             backgroundColor: ColorsManager.backgroundColor,
             appBar: _appBar(),
             body: ProfileContentWidget(
-                    fatherInfoResponse: _fatherInfoResponse,
-                    teacherInfoResponse: _teacherInfoResponse,
-                    bloc: _bloc,
-                    isFather: _isFather,
-                    profileImage: _profileImage, language: language
-                  ));
+                fatherInfoResponse: _fatherInfoResponse,
+                teacherInfoResponse: _teacherInfoResponse,
+                bloc: _bloc,
+                isFather: _isFather,
+                profileImage: _profileImage,
+                language: language));
       },
     );
   }
@@ -166,10 +167,10 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
     _bloc.add(GetIsFatherEvent());
     _bloc.add(GetTokenEvent());
   }
- //Todo Handle Fall Response
-  void _onGetTeacherInfoFallState() {}
 
-  void _onGetFatherInfoFallState() {}
+  void _onGetTeacherInfoFallState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 
-
+  void _onGetFatherInfoFallState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 }

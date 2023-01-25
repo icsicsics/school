@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+
 class VerifyTitleWidget extends StatelessWidget {
   const VerifyTitleWidget({Key? key}) : super(key: key);
 

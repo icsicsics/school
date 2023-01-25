@@ -34,8 +34,7 @@ class StudentHousesHeaderWidget extends StatelessWidget {
                 child: Container(
                   height: 200,
                   color: ColorsManager.whiteColor,
-                )
-            ),
+                )),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -69,15 +68,15 @@ class StudentHousesHeaderWidget extends StatelessWidget {
                 child: SizedBox(
                     height: 150,
                     width: 150,
-                    child:Container(
+                    child: Container(
                         width: 150,
                         height: 150,
                         decoration: BoxDecoration(
-                            border:
-                            Border.all(color: ColorsManager.blackColor, width: 1),
+                            border: Border.all(
+                                color: ColorsManager.blackColor, width: 1),
                             borderRadius: BorderRadius.circular(100)),
-                        child: SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill))
-                ),
+                        child: SvgPicture.asset(ImagesPath.avatar,
+                            fit: BoxFit.fill))),
               ),
             ),
           ],

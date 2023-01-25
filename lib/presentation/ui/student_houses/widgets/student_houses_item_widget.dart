@@ -32,14 +32,14 @@ class AddPointItemWidget extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: InkWell(
-                    onTap: onTapChild,
-                    child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100)),
-                        child: SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill))
-                  ),
+                      onTap: onTapChild,
+                      child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100)),
+                          child: SvgPicture.asset(ImagesPath.avatar,
+                              fit: BoxFit.fill))),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
@@ -65,9 +65,8 @@ class AddPointItemWidget extends StatelessWidget {
                                 height: 20,
                                 width: 20,
                                 color: Colors.transparent,
-                                child:
-                                    SvgPicture.asset(ImagesPath.star,height: 25,width: 25),
-
+                                child: SvgPicture.asset(ImagesPath.star,
+                                    height: 25, width: 25),
                               ),
                             ),
                           ),

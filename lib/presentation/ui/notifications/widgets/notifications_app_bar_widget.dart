@@ -8,10 +8,11 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 class NotificationsAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
   final bool isFather;
+
   // final Function() onTapNotifications;
 
   const NotificationsAppBarWidget(
-      {Key? key, required this.onTapMenu,required this.isFather})
+      {Key? key, required this.onTapMenu, required this.isFather})
       : super(key: key);
 
   @override
@@ -23,12 +24,17 @@ class NotificationsAppBarWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 50),
         child: Row(
           children: [
-            const  SizedBox(width: 5,),
+            const SizedBox(
+              width: 5,
+            ),
             InkWell(
                 onTap: onTapMenu,
-                child: SvgPicture.asset(ImagesPath.menu,width: 25,height: 25, color: ColorsManager.primaryColor)),
-            const  SizedBox(width: 5,),
-             Expanded(
+                child: SvgPicture.asset(ImagesPath.menu,
+                    width: 25, height: 25, color: ColorsManager.primaryColor)),
+            const SizedBox(
+              width: 5,
+            ),
+            Expanded(
               child: MediumTextWidget(
                   text: isFather
                       ? S.of(context).notifications

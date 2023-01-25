@@ -54,12 +54,15 @@ class ProfileHeaderWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      fatherInfoResponse!.data!=null|| teacherInfoResponse!.data!=null?  BoldTextWidget(
-                          text: isFather
-                              ? fatherInfoResponse!.data!.parentName ?? ""
-                              : teacherInfoResponse!.data!.name!.toString(),
-                          fontSize: 16,
-                          color: ColorsManager.whiteColor):Container(),
+                      fatherInfoResponse!.data != null ||
+                              teacherInfoResponse!.data != null
+                          ? BoldTextWidget(
+                              text: isFather
+                                  ? fatherInfoResponse!.data!.parentName ?? ""
+                                  : teacherInfoResponse!.data!.name!.toString(),
+                              fontSize: 16,
+                              color: ColorsManager.whiteColor)
+                          : Container(),
                     ],
                   ),
                 )),

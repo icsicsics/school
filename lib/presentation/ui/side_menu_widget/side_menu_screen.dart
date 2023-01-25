@@ -4,6 +4,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_logout_function.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/home/home_screen.dart';
@@ -138,10 +139,10 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
             builder: (_) =>
                 LoginScreen(isFather: _isFather == true ? false : true)),
         (route) => false).then((value) {
-          setState(() {
-            _bloc.fatherInfoResponse = FatherInfoResponse();
-            _bloc.teacherInfoResponse = TeacherInfoResponse();
-          });
+      setState(() {
+        _bloc.fatherInfoResponse = FatherInfoResponse();
+        _bloc.teacherInfoResponse = TeacherInfoResponse();
+      });
       if (_isFather) {
         _bloc.add(GetFatherInfoEvent(token: widget.token));
       } else {
@@ -159,7 +160,9 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         (route) => false);
   }
 
-  void _onGetTeacherInfoFillState(String error) {}
+  void _onGetTeacherInfoFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 
-  void _onGetFatherInfoFillState(String error) {}
+  void _onGetFatherInfoFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 }

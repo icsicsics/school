@@ -24,12 +24,12 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                ColorsManager.primaryColor,
-                ColorsManager.secondaryColor,
-              ],
-              stops: [0.5, 0.8],
-            )),
+          colors: [
+            ColorsManager.primaryColor,
+            ColorsManager.secondaryColor,
+          ],
+          stops: [0.5, 0.8],
+        )),
         height: 350,
         child: Stack(
           children: [
@@ -38,8 +38,7 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                 child: Container(
                   height: 200,
                   color: ColorsManager.whiteColor,
-                )
-            ),
+                )),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -48,17 +47,18 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       BoldTextWidget(
-                          text: widget.homeBloc.fatherInfoResponse != FatherInfoResponse()
+                          text: widget.homeBloc.fatherInfoResponse !=
+                                  FatherInfoResponse()
                               ? widget
                                   .homeBloc.fatherInfoResponse.data!.parentName
                               : "",
                           fontSize: 18,
                           color: ColorsManager.whiteColor),
-                     const  SizedBox(height: 6),
-                       MediumTextWidget(
-                          text:  widget.homeBloc.fatherInfoResponse.data != null
+                      const SizedBox(height: 6),
+                      MediumTextWidget(
+                          text: widget.homeBloc.fatherInfoResponse.data != null
                               ? widget
-                              .homeBloc.fatherInfoResponse.data!.phoneNumber
+                                  .homeBloc.fatherInfoResponse.data!.phoneNumber
                               : "",
                           fontSize: 16,
                           color: ColorsManager.whiteColor),
@@ -73,14 +73,15 @@ class _FatherHeaderWidgetState extends State<FatherHeaderWidget> {
                   height: 150,
                   width: 150,
                   child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                        border:
-                        Border.all(color: ColorsManager.blackColor, width: 1),
-                        borderRadius: BorderRadius.circular(100)),
-                    child: SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill)),
-                  ),
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: ColorsManager.blackColor, width: 1),
+                          borderRadius: BorderRadius.circular(100)),
+                      child: SvgPicture.asset(ImagesPath.avatar,
+                          fit: BoxFit.fill)),
+                ),
               ),
             ),
           ],

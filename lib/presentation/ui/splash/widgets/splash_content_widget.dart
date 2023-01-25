@@ -18,9 +18,11 @@ class SplashContentWidget extends StatelessWidget {
       )),
       height: MediaQuery.of(context).size.height / 3,
       child: Align(
-        alignment: Alignment.center,
-        child: Image.asset(ImagesPath.logo,color: Colors.white,)
-      ),
+          alignment: Alignment.center,
+          child: Image.asset(
+            ImagesPath.logo,
+            color: Colors.white,
+          )),
     );
   }
 }

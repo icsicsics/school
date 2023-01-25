@@ -7,18 +7,17 @@ class NotificationsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children:  [
+            children: [
               const Icon(
                 Icons.notifications,
                 color: ColorsManager.yellow,
@@ -32,17 +31,17 @@ class NotificationsItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                  BoldTextWidget(
-                      text: "Leen Got New Point for Honesty by Dr. Yazan",
-                      fontSize: 14,
-                      color: ColorsManager.blackColor),
-                  BoldTextWidget(
-                      text: "17/09/2022 at 12:30 PM",
-                      fontSize: 12,
-                      color: ColorsManager.blackColor)
-                ],),
+                    BoldTextWidget(
+                        text: "Leen Got New Point for Honesty by Dr. Yazan",
+                        fontSize: 14,
+                        color: ColorsManager.blackColor),
+                    BoldTextWidget(
+                        text: "17/09/2022 at 12:30 PM",
+                        fontSize: 12,
+                        color: ColorsManager.blackColor)
+                  ],
+                ),
               ),
-
             ],
           ),
         ),

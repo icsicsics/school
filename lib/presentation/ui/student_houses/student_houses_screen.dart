@@ -6,6 +6,7 @@ import 'package:schools/data/source/remote/model/student_houses/get_student_hous
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/student_houses/widgets/student_houses_content_widget.dart';
@@ -16,10 +17,12 @@ class StudentHousesScreen extends BaseStatefulWidget {
   final String token;
   final String language;
 
-  const StudentHousesScreen({super.key,
-    required this.token,
-    required this.classroomToSectionId,
-    required this.houseId,required this.language});
+  const StudentHousesScreen(
+      {super.key,
+      required this.token,
+      required this.classroomToSectionId,
+      required this.houseId,
+      required this.language});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _AddPointScreen();
@@ -30,12 +33,13 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
       BlocProvider.of<StudentHousesBloc>(context);
   bool _isFather = false;
   GetStudentHousesResponse _getStudentHousesResponse =
-  GetStudentHousesResponse();
+      GetStudentHousesResponse();
 
   @override
   void initState() {
     _studentHousesBloc.add(GetIsFatherEvent());
-    _studentHousesBloc.add(GetStudentHousesEvent(token: widget.token,
+    _studentHousesBloc.add(GetStudentHousesEvent(
+        token: widget.token,
         classroomToSectionId: widget.classroomToSectionId,
         houseId: widget.houseId));
     super.initState();
@@ -66,9 +70,9 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
         },
         child: _getStudentHousesResponse.data != null
             ? StudentHousesContentWidget(
-
-            studentHousesBloc: _studentHousesBloc,
-            getStudentHousesResponse: _getStudentHousesResponse, token: widget.token)
+                studentHousesBloc: _studentHousesBloc,
+                getStudentHousesResponse: _getStudentHousesResponse,
+                token: widget.token)
             : Container(),
       ),
     );
@@ -126,27 +130,25 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
                 )),
           )
         ],
-    title: BoldTextWidget(
-        color: ColorsManager.secondaryColor,
-        fontSize: 20,
-        text: _isFather == false
-            ? S
-            .of(context)
-            .studentHouses
-            : S
-            .of(context)
-            .myChildren),
-  );
+        title: BoldTextWidget(
+            color: ColorsManager.secondaryColor,
+            fontSize: 20,
+            text: _isFather == false
+                ? S.of(context).studentHouses
+                : S.of(context).myChildren),
+      );
 
-  void _navigateToNotificationScreen() =>
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-              (route) => false);
+  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+      (route) => false);
 
-  void _navigateToMyChildrenScreen(studentId) =>
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) =>  MyChildrenScreen(studentId: studentId, language: widget.language)));
+  void _navigateToMyChildrenScreen(studentId) => Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (_) => MyChildrenScreen(
+              studentId: studentId, language: widget.language)));
 
-  void _onGetStudentHousesFillState(String error) {}
+  void _onGetStudentHousesFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 }

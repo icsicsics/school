@@ -17,7 +17,7 @@ class RPSCustomPainterLeft2 extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-   return true;
+    return true;
   }
 }
 
@@ -38,7 +38,7 @@ class RPSCustomPainterLeft1 extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-  return true;
+    return true;
   }
 }
 
@@ -60,7 +60,7 @@ class GeneralCurve extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-   return true;
+    return true;
   }
 }
 
@@ -68,12 +68,14 @@ class RPSCustomPainterRight2 extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path0 = Path();
-    path0.moveTo(size.width,0);
-    path0.lineTo(size.width*0.4604000,0);
-    path0.quadraticBezierTo(size.width*0.3292500,size.height*0.3543429,size.width*0.3376917,size.height*0.4990571);
-    path0.quadraticBezierTo(size.width*0.3272500,size.height*0.7046286,size.width*0.4611917,size.height);
-    path0.lineTo(size.width,size.height);
-    path0.lineTo(size.width,0);
+    path0.moveTo(size.width, 0);
+    path0.lineTo(size.width * 0.4604000, 0);
+    path0.quadraticBezierTo(size.width * 0.3292500, size.height * 0.3543429,
+        size.width * 0.3376917, size.height * 0.4990571);
+    path0.quadraticBezierTo(size.width * 0.3272500, size.height * 0.7046286,
+        size.width * 0.4611917, size.height);
+    path0.lineTo(size.width, size.height);
+    path0.lineTo(size.width, 0);
     path0.close();
     return path0;
   }
@@ -88,18 +90,20 @@ class RPSCustomPainterRight1 extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path0 = Path();
-    path0.moveTo(size.width,0);
-    path0.lineTo(size.width*0.4471333,0);
-    path0.quadraticBezierTo(size.width*0.3159500,size.height*0.3505571,size.width*0.3243917,size.height*0.4952714);
-    path0.quadraticBezierTo(size.width*0.3139500,size.height*0.7008429,size.width*0.4445667,size.height*0.9999857);
-    path0.lineTo(size.width,size.height);
-    path0.lineTo(size.width,0);
+    path0.moveTo(size.width, 0);
+    path0.lineTo(size.width * 0.4471333, 0);
+    path0.quadraticBezierTo(size.width * 0.3159500, size.height * 0.3505571,
+        size.width * 0.3243917, size.height * 0.4952714);
+    path0.quadraticBezierTo(size.width * 0.3139500, size.height * 0.7008429,
+        size.width * 0.4445667, size.height * 0.9999857);
+    path0.lineTo(size.width, size.height);
+    path0.lineTo(size.width, 0);
     path0.close();
     return path0;
   }
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-   return true;
+    return true;
   }
 }

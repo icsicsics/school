@@ -16,13 +16,12 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
     return Align(
         alignment: Alignment.center,
         child: Padding(
-            padding: const EdgeInsets.only(top: 30,right: 25,left: 25),
+            padding: const EdgeInsets.only(top: 30, right: 25, left: 25),
             child: Row(
               children: [
                 cardItem(label: S.of(context).allPoints, points: "175"),
-                const  Expanded(
-                  child:  SizedBox(
-                  ),
+                const Expanded(
+                  child: SizedBox(),
                 ),
                 cardItem(label: S.of(context).thisWeek, points: "16"),
               ],
@@ -55,7 +54,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                       size: 15,
                       color: ColorsManager.yellow,
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     MediumTextWidget(
                         text: points,
                         fontSize: 14,

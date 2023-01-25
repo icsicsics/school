@@ -28,11 +28,8 @@ class _SideMenuSocialMediaWidgetState extends State<SideMenuSocialMediaWidget> {
     );
   }
 
-  Widget _item({required Function() onTap, required IconData icon}) =>
-       Padding(
-         padding: const EdgeInsets.all(8),
-         child: InkWell(
-          onTap: onTap,
-            child: Icon(icon, color: Colors.white)),
-       );
+  Widget _item({required Function() onTap, required IconData icon}) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: InkWell(onTap: onTap, child: Icon(icon, color: Colors.white)),
+      );
 }

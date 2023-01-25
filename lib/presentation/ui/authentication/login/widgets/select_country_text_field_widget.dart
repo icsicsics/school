@@ -51,8 +51,8 @@ class _SelectCountryTextFieldWidgetState
                 width: 30,
                 child: Row(
                   children: [
-                     RotatedBox(
-                        quarterTurns: widget.language=="en"?3:1,
+                    RotatedBox(
+                        quarterTurns: widget.language == "en" ? 3 : 1,
                         child: const Icon(
                           Icons.arrow_back_ios_rounded,
                           color: ColorsManager.sameBlack,
@@ -71,8 +71,7 @@ class _SelectCountryTextFieldWidgetState
               trailingSpace: false,
               selectorType: PhoneInputSelectorType.DIALOG,
               showFlags: false),
-          onInputChanged: (PhoneNumber number) {
-          },
+          onInputChanged: (PhoneNumber number) {},
         ),
       ),
     );

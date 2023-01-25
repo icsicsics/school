@@ -9,7 +9,11 @@ class FatherChildrenListWidget extends StatefulWidget {
   final String token;
   final String language;
 
-  const FatherChildrenListWidget({Key? key, required this.parentHomeResponse,required this.token,required this.language})
+  const FatherChildrenListWidget(
+      {Key? key,
+      required this.parentHomeResponse,
+      required this.token,
+      required this.language})
       : super(key: key);
 
   @override
@@ -18,33 +22,39 @@ class FatherChildrenListWidget extends StatefulWidget {
 }
 
 class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
-
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      physics:const  BouncingScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, mainAxisSpacing: 5),
-          itemCount: widget.parentHomeResponse.data!.length,
-          padding: const EdgeInsets.all(5),
-          shrinkWrap: true,
-          semanticChildCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            return FatherChildItemWidget(
-              childName: "${widget.parentHomeResponse.data![index].studentName}",
-            onTapStar: () => _onTap(widget.parentHomeResponse.data![index].studentName),
-            onTapChild: ()=>_onTapChild(widget.parentHomeResponse.data![index].studentId),
+        physics: const BouncingScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, mainAxisSpacing: 5),
+        itemCount: widget.parentHomeResponse.data!.length,
+        padding: const EdgeInsets.all(5),
+        shrinkWrap: true,
+        semanticChildCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return FatherChildItemWidget(
+            childName: "${widget.parentHomeResponse.data![index].studentName}",
+            onTapStar: () =>
+                _onTap(widget.parentHomeResponse.data![index].studentName),
+            onTapChild: () =>
+                _onTapChild(widget.parentHomeResponse.data![index].studentId),
             imageUrl: widget.parentHomeResponse.data![index].getImage != null
                 ? widget.parentHomeResponse.data![index].getImage!.mediaUrl!
                 : "",
           );
-          }
-    );
+        });
   }
 
   void _onTap(childName) => showAddPointFunction(
       context: context,
-      childName: childName,token: widget.token, classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
+      childName: childName,
+      token: widget.token,
+      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
 
-  _onTapChild(studentId)=>Navigator.push(context, MaterialPageRoute(builder: (_)=> MyChildrenScreen(studentId: studentId, language: widget.language)));
+  _onTapChild(studentId) => Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (_) => MyChildrenScreen(
+              studentId: studentId, language: widget.language)));
 }

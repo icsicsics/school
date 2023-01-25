@@ -5,7 +5,7 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class FatherChildItemWidget extends StatelessWidget {
-final String imageUrl;
+  final String imageUrl;
   final String childName;
   final Function() onTapStar;
   final Function() onTapChild;
@@ -89,8 +89,8 @@ final String imageUrl;
         : _buildProfilePlaceHolder();
   }
 
-  CircleAvatar _buildProfilePlaceHolder() =>  CircleAvatar(
-    radius: 50,
-    child:  SvgPicture.asset(ImagesPath.avatar,fit: BoxFit.fill),
+  CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
+        radius: 50,
+        child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill),
       );
 }

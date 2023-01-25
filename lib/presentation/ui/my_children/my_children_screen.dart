@@ -9,6 +9,7 @@ import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/my_children/widget/my_children_content_widget.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 
@@ -16,7 +17,8 @@ class MyChildrenScreen extends BaseStatefulWidget {
   final String studentId;
   final String language;
 
-  const MyChildrenScreen({super.key, required this.studentId,required this.language});
+  const MyChildrenScreen(
+      {super.key, required this.studentId, required this.language});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _MyChildrenScreenState();
@@ -170,5 +172,6 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
 
-  void _onGetTeacherStudentProfileInSchoolHouseFailState(String error) {}
+  void _onGetTeacherStudentProfileInSchoolHouseFailState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 }

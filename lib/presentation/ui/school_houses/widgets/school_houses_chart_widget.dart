@@ -8,64 +8,62 @@ import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
 class SchoolHousesChartWidget extends StatelessWidget {
   final SchoolHousesBloc? schoolHousesBloc;
 
-  const SchoolHousesChartWidget(
-      {Key? key, required this.schoolHousesBloc})
+  const SchoolHousesChartWidget({Key? key, required this.schoolHousesBloc})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
-          children: [
-            ClipPath(
-                clipper: GeneralCurve(),
+    return Stack(
+      children: [
+        ClipPath(
+            clipper: GeneralCurve(),
+            child: Container(
+              height: 200,
+              color: ColorsManager.whiteColor,
+            )),
+        ChartContentWidget(schoolHousesBloc: schoolHousesBloc!),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 72),
+            child: SizedBox(
+                height: 150,
+                width: 150,
                 child: Container(
-                  height: 200,
-                  color: ColorsManager.whiteColor,
-                )),
-           ChartContentWidget(schoolHousesBloc: schoolHousesBloc!),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 72),
-                child: SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: ColorsManager.blackColor, width: 1),
-                          color: ColorsManager.whiteColor,
-                          borderRadius:
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(color: ColorsManager.blackColor, width: 1),
+                      color: ColorsManager.whiteColor,
+                      borderRadius:
                           const BorderRadius.all(Radius.circular(100))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(25),
-                        child: Image.asset(ImagesPath.cup),
-                      ),
-                    )),
-              ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(25),
+                    child: Image.asset(ImagesPath.cup),
+                  ),
+                )),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 30, left: 60, bottom: 45),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _iconData(Icons.confirmation_num_sharp),
+                _iconData(Icons.confirmation_num_sharp),
+                _iconData(Icons.confirmation_num_sharp),
+                _iconData(Icons.confirmation_num_sharp),
+              ],
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 30, left: 60, bottom: 45),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _iconData(Icons.confirmation_num_sharp),
-                    _iconData(Icons.confirmation_num_sharp),
-                    _iconData(Icons.confirmation_num_sharp),
-                    _iconData(Icons.confirmation_num_sharp),
-                  ],
-                ),
-              ),
-            )
-          ],
-        );
+          ),
+        )
+      ],
+    );
   }
 
-  Widget _iconData(IconData icon) =>
-      Icon(
+  Widget _iconData(IconData icon) => Icon(
         icon,
         color: Colors.yellow,
         size: 30,

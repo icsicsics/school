@@ -12,6 +12,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
   final String teachersValue;
   final String studentsValue;
   final Function()? onTap;
+
   const SchoolHousesCardItemWidget(
       {Key? key,
       required this.icon,
@@ -20,7 +21,8 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
       required this.icon2,
       this.hasIcon2 = false,
       required this.label,
-      required this.studentsValue,required this.onTap})
+      required this.studentsValue,
+      required this.onTap})
       : super(key: key);
 
   @override

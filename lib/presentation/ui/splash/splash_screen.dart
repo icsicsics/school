@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
-import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/splash/widgets/splash_content_widget.dart';
 
@@ -40,6 +40,8 @@ class _SplashScreenState extends BaseState<SplashScreen> {
             ),
           );
           _navigationToLoginScreen();
+        } else if (state is SplashGetTokenErrorState) {
+          _onSplashGetTokenErrorState(state.error);
         }
       },
       builder: (context, state) {
@@ -48,8 +50,9 @@ class _SplashScreenState extends BaseState<SplashScreen> {
     );
   }
 
-  void _navigationToLoginScreen() => Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (_) => const LoginScreen(isFather: false)));
+  void _navigationToLoginScreen() => Navigator.pushReplacement(context,
+      MaterialPageRoute(builder: (_) => const LoginScreen(isFather: false)));
+
+  void _onSplashGetTokenErrorState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 }

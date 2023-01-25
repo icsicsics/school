@@ -22,14 +22,17 @@ class SideMenuItem extends StatelessWidget {
                 Row(
                   children: [
                     Icon(icon, color: ColorsManager.whiteColor, size: 30),
-                   const  SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     MediumTextWidget(
                         text: title,
                         fontSize: 15,
                         color: ColorsManager.whiteColor)
                   ],
                 ),
-                const Divider(color: ColorsManager.whiteColor, endIndent: 140,thickness: 2),
+                const Divider(
+                    color: ColorsManager.whiteColor,
+                    endIndent: 140,
+                    thickness: 2),
               ],
             )));
   }
