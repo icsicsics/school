@@ -17,13 +17,17 @@ class AddPointDialogWidget extends StatefulWidget {
   final String token;
   final String classroomId;
   final bool isParent;
+  final String classroomSectionStudentsId;
+  final String studentId;
 
   const AddPointDialogWidget(
       {Key? key,
       required this.childName,
       required this.classroomId,
       required this.token,
-      this.isParent = false})
+      this.isParent = false,
+      required this.studentId,
+      required this.classroomSectionStudentsId})
       : super(key: key);
 
   @override
@@ -199,17 +203,21 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
 
   void _onAddPoint() {
     Navigator.of(context).pop();
-    if (widget.isParent == false) {
-      _addPointBloc.add(PostTeacherAddPointEvent(
-          token: widget.token,
-          request: TeacherAddPointRequest(
-              classroomSectionStudentsId:
-                  "f2894667-39a5-42b6-c7df-08dafd8025b3",
-              classroomToPrinciplesId: "cdd23147-e594-4cce-06d4-08dafa1996b9",
-              studentId: "075c2332-5e41-441d-29cd-08daf7a5219e",
-              description: "T")));
+    if (value.id != null) {
+      if (widget.isParent == false) {
+        _addPointBloc.add(PostTeacherAddPointEvent(
+            token: widget.token,
+            request: TeacherAddPointRequest(
+                classroomSectionStudentsId: widget.classroomSectionStudentsId,
+                classroomToPrinciplesId:
+                    value.id == '1' ? value.name : value.id,
+                studentId: widget.studentId,
+                description: "T")));
+      } else {}
     } else {
-
+      showErrorDialogFunction(
+          context: context,
+          textMessage: S.of(context).pleaseSelectWhyThisPointFirst);
     }
   }
 

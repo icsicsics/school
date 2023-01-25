@@ -5,7 +5,10 @@ Future showAddPointFunction(
         {required BuildContext context,
         required String childName,
         required String token,
-        required String classroomId}) =>
+        required String classroomId,
+        required String classroomSectionStudentsId,
+        required String studentId,
+        bool isParent=false}) =>
     showDialog(
         barrierDismissible: true,
         context: context,
@@ -13,7 +16,10 @@ Future showAddPointFunction(
             elevation: 0,
             backgroundColor: Colors.transparent,
             child: AddPointDialogWidget(
+              isParent: isParent,
               childName: childName,
               classroomId: classroomId,
               token: token,
+              studentId: studentId,
+              classroomSectionStudentsId: classroomSectionStudentsId,
             )));

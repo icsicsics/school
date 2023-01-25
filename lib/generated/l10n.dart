@@ -979,6 +979,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please Select why this point first`
+  String get pleaseSelectWhyThisPointFirst {
+    return Intl.message(
+      'Please Select why this point first',
+      name: 'pleaseSelectWhyThisPointFirst',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

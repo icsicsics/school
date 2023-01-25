@@ -25,11 +25,6 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
     );
   }
 
-  String timeFormat(String dateFormat) {
-    return DateFormat('HH : mm').format(
-      DateTime.parse(dateFormat),
-    );
-  }
 
   String formattedTime(String dateTime) {
     return DateFormat().add_jm().format(DateTime.parse(dateTime));
@@ -45,7 +40,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                 onTap: () {},
                 title: e.principleName ?? "",
                 subTitle:
-                    "${dateFormat(e.creationDate.toString())}  ${S.of(context).at} ${timeFormat(e.creationDate.toString())} ${formattedTime(e.creationDate.toString())}",
+                    "${dateFormat(e.creationDate.toString())}  ${S.of(context).at}  ${formattedTime(e.creationDate.toString())}",
                 description: 'By Mrs. Tima Hamdallah - Math Teacher',
                 icon: Icons.energy_savings_leaf))
             .toList(),

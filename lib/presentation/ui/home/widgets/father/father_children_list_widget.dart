@@ -50,7 +50,9 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
       context: context,
       childName: childName,
       token: widget.token,
-      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
+      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad',
+      classroomSectionStudentsId: '',
+      studentId: '');
 
   _onTapChild(studentId) => Navigator.push(
       context,

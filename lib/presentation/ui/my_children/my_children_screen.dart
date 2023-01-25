@@ -165,7 +165,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       context: context,
       childName: "",
       token: _token,
-      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad');
+      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad',
+      classroomSectionStudentsId: 'f2894667-39a5-42b6-c7df-08dafd8025b3',
+      studentId: '075c2332-5e41-441d-29cd-08daf7a5219e');
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,

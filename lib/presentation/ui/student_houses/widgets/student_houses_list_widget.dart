@@ -41,9 +41,17 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
                       .studentName ??
                   "",
               onTapStar: () => _onTap(
-                  widget.getStudentHousesResponse.data!.students![index]
-                      .studentName,
-                  widget.getStudentHousesResponse.data!.classroomId!),
+                  studentId: widget
+                      .getStudentHousesResponse.data!.students![index].studentId
+                      .toString(),
+                  childName: widget.getStudentHousesResponse.data!
+                      .students![index].studentName
+                      .toString(),
+                  classroomId:
+                      widget.getStudentHousesResponse.data!.classroomId!,
+                  classroomSectionStudentsId: widget.getStudentHousesResponse
+                      .data!.students![index].classroomToSectionId
+                      .toString()),
               onTapChild: () => widget.studentHousesBloc.add(
                   NavigateToMyChildrenScreenEvent(
                       studentId:
@@ -53,10 +61,16 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
     );
   }
 
-  void _onTap(childName, classroomId) => showAddPointFunction(
+  void _onTap(
+          {required String childName,
+          required String classroomId,
+          required String classroomSectionStudentsId,
+          required String studentId}) =>
+      showAddPointFunction(
           context: context,
           childName: childName,
           token: widget.token,
-          classroomId: classroomId);
-
+          classroomId: classroomId,
+          classroomSectionStudentsId: classroomSectionStudentsId,
+          studentId: studentId);
 }

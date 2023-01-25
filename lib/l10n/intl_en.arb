@@ -91,5 +91,6 @@
  "dec":"december",
  "thOf":"th of ",
  "error":"Error",
- "at":"at"
+ "at":"at",
+ "pleaseSelectWhyThisPointFirst":"Please Select why this point first"
 }

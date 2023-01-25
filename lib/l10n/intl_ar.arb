@@ -91,5 +91,6 @@
  "dec":"ديسمبر",
   "thOf":"من",
   "error":"خطا",
-  "at":"في"
+  "at":"في",
+  "pleaseSelectWhyThisPointFirst":"يرجى تحديد سبب هذه النقطة أولاً"
 }
