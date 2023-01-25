@@ -202,7 +202,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   }
 
   void _onAddPoint() {
-    Navigator.of(context).pop();
+    Navigator.of(context);
     if (value.id != null) {
       if (widget.isParent == false) {
         _addPointBloc.add(PostTeacherAddPointEvent(
@@ -222,11 +222,13 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
 
   void _onPostTeacherCreatePointSuccessState(TeacherAddPointResponse response) {
     Navigator.of(context).pop();
+    Navigator.of(context).pop();
     showErrorDialogFunction(
         context: context, textMessage: response.data.toString());
   }
 
   void _onPostTeacherCreatePointFailState(String error) {
+    Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(context: context, textMessage: error);
   }
