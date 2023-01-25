@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
+import 'package:schools/data/source/remote/model/father_point/response/father_add_point_response.dart';
 import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
 import 'package:schools/data/source/remote/model/teacher_point/response/teacher_add_point_response.dart';
 import 'package:schools/generated/l10n.dart';
@@ -73,6 +75,10 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
           _onPostTeacherCreatePointSuccessState(state.response);
         } else if (state is PostTeacherCreatePointFailState) {
           _onPostTeacherCreatePointFailState(state.error);
+        } else if (state is PostFatherCreatePointSuccessState) {
+          _onPostFatherCreatePointSuccessState(state.response);
+        } else if (state is PostFatherCreatePointFailState) {
+          _onPostFatherCreatePointFailState(state.error);
         }
       },
       builder: (context, state) {
@@ -212,7 +218,15 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                 classroomToPrinciplesId: value.id,
                 studentId: widget.studentId,
                 description: value.name)));
-      } else {}
+      } else {
+        _addPointBloc.add(PostFatherAddPointEvent(
+            token: widget.token,
+            request: FatherAddPointRequest(
+                classroomSectionStudentsId: widget.classroomSectionStudentsId,
+                classroomToPrinciplesId: value.id,
+                studentId: widget.studentId,
+                description: value.name)));
+      }
     } else {
       showErrorDialogFunction(
           context: context,
@@ -228,6 +242,19 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   }
 
   void _onPostTeacherCreatePointFailState(String error) {
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
+    showErrorDialogFunction(context: context, textMessage: error);
+  }
+
+  void _onPostFatherCreatePointSuccessState(FatherAddPointResponse response) {
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
+    showErrorDialogFunction(
+        context: context, textMessage: response.data.toString());
+  }
+
+  void _onPostFatherCreatePointFailState(String error) {
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(context: context, textMessage: error);

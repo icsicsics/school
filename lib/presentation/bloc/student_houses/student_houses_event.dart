@@ -18,7 +18,8 @@ class NavigateToNotificationScreenEvent extends StudentHousesEvent {}
 
 class NavigateToMyChildrenScreenEvent extends StudentHousesEvent {
   final String studentId;
-  NavigateToMyChildrenScreenEvent({required this.studentId});
+  final String classroomToSectionId;
+  NavigateToMyChildrenScreenEvent({required this.studentId,required this.classroomToSectionId});
 
 }
 

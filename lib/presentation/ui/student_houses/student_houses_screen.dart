@@ -63,7 +63,7 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
           } else if (state is NavigateToNotificationScreenState) {
             _navigateToNotificationScreen();
           } else if (state is NavigateToMyChildrenScreenState) {
-            _navigateToMyChildrenScreen(state.studentId);
+            _navigateToMyChildrenScreen(state.studentId,state.classroomToSectionId);
           } else if (state is GetIsFatherState) {
             _isFather = state.isFather;
           }
@@ -143,11 +143,16 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
 
-  void _navigateToMyChildrenScreen(studentId) => Navigator.push(
+  void _navigateToMyChildrenScreen(studentId,classroomToSectionId) => Navigator.push(
       context,
       MaterialPageRoute(
           builder: (_) => MyChildrenScreen(
-              studentId: studentId, language: widget.language)));
+                studentId: studentId,
+                language: widget.language,
+                classroomId: _getStudentHousesResponse.data!.classroomId!,
+                classroomSectionStudentsId:classroomToSectionId.toString(),
+                isParent: false,
+              )));
 
   void _onGetStudentHousesFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);

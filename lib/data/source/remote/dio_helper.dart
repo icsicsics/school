@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:schools/core/utils/network/interceptor.dart';
 import 'package:schools/data/source/remote/api_key.dart';
+import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
 import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
 
@@ -124,6 +125,18 @@ class DioHelper {
   static Future<Response> postTeacherCreatePoint(
       token, TeacherAddPointRequest request) async {
     return dio.post(ApiKey.postTeacherCreatePoint,
+        data: request,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+  static Future<Response> postFatherCreatePoint(
+      token, FatherAddPointRequest request) async {
+    return dio.post(ApiKey.postFatherCreatePoint,
         data: request,
         options: Options(
           headers: {

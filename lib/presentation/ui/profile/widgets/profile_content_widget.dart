@@ -13,6 +13,8 @@ class ProfileContentWidget extends StatefulWidget {
   final TeacherInfoResponse teacherInfoResponse;
   final FatherInfoResponse fatherInfoResponse;
   final String language;
+  final String classroomId;
+  final String classroomSectionStudentsId;
 
   const ProfileContentWidget(
       {Key? key,
@@ -21,7 +23,9 @@ class ProfileContentWidget extends StatefulWidget {
       required this.bloc,
       required this.teacherInfoResponse,
       required this.fatherInfoResponse,
-      required this.language})
+      required this.language,
+      required this.classroomSectionStudentsId,
+      required this.classroomId})
       : super(key: key);
 
   @override
@@ -47,7 +51,10 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
         widget.isFather
             ? FatherOfWidget(
                 fatherInfoResponse: widget.fatherInfoResponse,
-                language: widget.language)
+                language: widget.language,
+                classroomId: widget.classroomId,
+                classroomSectionStudentsId: widget.classroomSectionStudentsId,
+              )
             : const SizedBox()
       ],
     );

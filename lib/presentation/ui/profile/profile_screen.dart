@@ -81,12 +81,16 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
             backgroundColor: ColorsManager.backgroundColor,
             appBar: _appBar(),
             body: ProfileContentWidget(
-                fatherInfoResponse: _fatherInfoResponse,
-                teacherInfoResponse: _teacherInfoResponse,
-                bloc: _bloc,
-                isFather: _isFather,
-                profileImage: _profileImage,
-                language: language));
+              fatherInfoResponse: _fatherInfoResponse,
+              teacherInfoResponse: _teacherInfoResponse,
+              bloc: _bloc,
+              isFather: _isFather,
+              profileImage: _profileImage,
+              language: language,
+              classroomSectionStudentsId:
+                  "f2894667-39a5-42b6-c7df-08dafd8025b3",
+              classroomId: "79a93948-fb97-4de3-9166-08dafa1996ad",
+            ));
       },
     );
   }

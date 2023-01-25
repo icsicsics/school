@@ -16,9 +16,17 @@ import 'package:schools/presentation/ui/notifications/notifications_screen.dart'
 class MyChildrenScreen extends BaseStatefulWidget {
   final String studentId;
   final String language;
+  final String classroomId;
+  final String classroomSectionStudentsId;
+  final bool isParent;
 
   const MyChildrenScreen(
-      {super.key, required this.studentId, required this.language});
+      {super.key,
+      required this.studentId,
+      required this.language,
+      required this.classroomId,
+      required this.classroomSectionStudentsId,
+      required this.isParent});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _MyChildrenScreenState();
@@ -44,7 +52,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
     return BlocConsumer<MyChildrenBloc, MyChildrenState>(
       listener: (context, state) {
         if (state is OpenAddPointAlertState) {
-          _openAddPointAlert();
+          _openAddPointAlert(
+              classroomId: widget.classroomId,
+              classroomSectionStudentsId:widget.classroomSectionStudentsId.toString());
         } else if (state is NavigateToNotificationScreenState) {
           _navigateToNotificationScreen();
         } else if (state is GetIsFatherState) {
@@ -161,13 +171,17 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
     );
   }
 
-  void _openAddPointAlert() => showAddPointFunction(
-      context: context,
-      childName: "",
-      token: _token,
-      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad',
-      classroomSectionStudentsId: 'f2894667-39a5-42b6-c7df-08dafd8025b3',
-      studentId: '075c2332-5e41-441d-29cd-08daf7a5219e');
+  void _openAddPointAlert(
+          {required String classroomId,
+          required String classroomSectionStudentsId}) =>
+      showAddPointFunction(
+          isParent: widget.isParent,
+          context: context,
+          childName: "",
+          token: _token,
+          classroomId: classroomId,
+          classroomSectionStudentsId: classroomSectionStudentsId,
+          studentId: widget.studentId);
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,

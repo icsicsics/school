@@ -8,12 +8,16 @@ class FatherChildrenListWidget extends StatefulWidget {
   final GetChildrenByParentResponse parentHomeResponse;
   final String token;
   final String language;
+  final String classroomSectionStudentsId;
+  final String classroomId;
 
   const FatherChildrenListWidget(
       {Key? key,
       required this.parentHomeResponse,
       required this.token,
-      required this.language})
+      required this.language,
+      required this.classroomSectionStudentsId,
+      required this.classroomId})
       : super(key: key);
 
   @override
@@ -35,8 +39,13 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
         itemBuilder: (BuildContext context, int index) {
           return FatherChildItemWidget(
             childName: "${widget.parentHomeResponse.data![index].studentName}",
-            onTapStar: () =>
-                _onTap(widget.parentHomeResponse.data![index].studentName),
+            onTapStar: () => _onTap(
+                classroomSectionStudentsId: widget.classroomSectionStudentsId,
+                classroomId: widget.classroomId,
+                childName:
+                    widget.parentHomeResponse.data![index].studentName ?? "",
+                studentId:
+                    widget.parentHomeResponse.data![index].studentId ?? ""),
             onTapChild: () =>
                 _onTapChild(widget.parentHomeResponse.data![index].studentId),
             imageUrl: widget.parentHomeResponse.data![index].getImage != null
@@ -46,17 +55,28 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
         });
   }
 
-  void _onTap(childName) => showAddPointFunction(
-      context: context,
-      childName: childName,
-      token: widget.token,
-      classroomId: '79a93948-fb97-4de3-9166-08dafa1996ad',
-      classroomSectionStudentsId: '',
-      studentId: '');
+  void _onTap(
+          {required String childName,
+          required String classroomId,
+          required String classroomSectionStudentsId,
+          required String studentId}) =>
+      showAddPointFunction(
+          isParent: true,
+          context: context,
+          childName: childName,
+          token: widget.token,
+          classroomId: classroomId,
+          classroomSectionStudentsId: classroomSectionStudentsId,
+          studentId: studentId);
 
   _onTapChild(studentId) => Navigator.push(
       context,
       MaterialPageRoute(
           builder: (_) => MyChildrenScreen(
-              studentId: studentId, language: widget.language)));
+                studentId: studentId,
+                language: widget.language,
+                isParent: true,
+                classroomSectionStudentsId: widget.classroomSectionStudentsId,
+                classroomId: widget.classroomId,
+              )));
 }

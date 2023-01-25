@@ -15,3 +15,10 @@ class PostTeacherAddPointEvent extends AddPointEvent {
 
   PostTeacherAddPointEvent({required this.token, required this.request});
 }
+
+class PostFatherAddPointEvent extends AddPointEvent {
+  final String token;
+  final FatherAddPointRequest request;
+
+  PostFatherAddPointEvent({required this.token, required this.request});
+}

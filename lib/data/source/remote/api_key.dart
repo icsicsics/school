@@ -11,4 +11,5 @@ class ApiKey{
   static const String getTeacherPrinciplesByClassroomId = "Teacher/GetPrinciplesByClassroomId";
   static const String getTeacherStudentProfileInSchoolHouse = "Teacher/StudentProfileInSchoolHouse";
   static const String postTeacherCreatePoint = "Teacher/CreatePoint";
+  static const String postFatherCreatePoint = "Parent/CreatePoint";
 }

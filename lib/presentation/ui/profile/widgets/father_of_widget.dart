@@ -9,9 +9,15 @@ import 'package:schools/presentation/ui/profile/widgets/child_item_widget.dart';
 class FatherOfWidget extends StatelessWidget {
   final FatherInfoResponse fatherInfoResponse;
   final String language;
+  final String classroomId;
+  final String classroomSectionStudentsId;
 
   const FatherOfWidget(
-      {Key? key, required this.fatherInfoResponse, required this.language})
+      {Key? key,
+      required this.fatherInfoResponse,
+      required this.language,
+      required this.classroomId,
+      required this.classroomSectionStudentsId})
       : super(key: key);
 
   @override
@@ -47,9 +53,14 @@ class FatherOfWidget extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (_) => MyChildrenScreen(
-                                              studentId:
-                                                  "${fatherInfoResponse.data!.childrens![index].studentId}",
-                                              language: language))),
+                                                studentId:
+                                                    "${fatherInfoResponse.data!.childrens![index].studentId}",
+                                                language: language,
+                                                classroomId: classroomId,
+                                                classroomSectionStudentsId:
+                                                    classroomSectionStudentsId,
+                                                isParent: true,
+                                              ))),
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: ChildItemWidget(

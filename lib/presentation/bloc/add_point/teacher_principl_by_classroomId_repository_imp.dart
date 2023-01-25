@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
+import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
+import 'package:schools/data/source/remote/model/father_point/response/father_add_point_response.dart';
 import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
 import 'package:schools/data/source/remote/model/teacher_point/response/teacher_add_point_response.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
@@ -51,6 +53,28 @@ class TeacherPrincipleByClassroomIdRepositoryImp
     } catch (error) {
       state = PostTeacherCreatePointFailState(
           error: teacherAddPointResponse.errorMessage ?? "Error");
+    }
+    return state;
+  }
+
+  @override
+  Future<AddPointState> postFatherAddPoint(
+      String token, FatherAddPointRequest request) async {
+    AddPointState? state;
+    FatherAddPointResponse fatherAddPointResponse = FatherAddPointResponse();
+    try {
+      Response response = await DioHelper.postFatherCreatePoint(token, request);
+      fatherAddPointResponse = FatherAddPointResponse.fromJson(response.data);
+      if (fatherAddPointResponse.data != null) {
+        return PostFatherCreatePointSuccessState(
+            response: fatherAddPointResponse);
+      } else {
+        return PostFatherCreatePointFailState(
+            error: fatherAddPointResponse.errorMessage ?? "");
+      }
+    } catch (error) {
+      state = PostFatherCreatePointFailState(
+          error: fatherAddPointResponse.errorMessage ?? "Error");
     }
     return state;
   }

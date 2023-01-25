@@ -28,4 +28,15 @@ class PostTeacherCreatePointFailState extends AddPointState {
   PostTeacherCreatePointFailState({required this.error});
 }
 
+class PostFatherCreatePointSuccessState extends AddPointState {
+  FatherAddPointResponse response;
+
+  PostFatherCreatePointSuccessState({required this.response});
+}
+class PostFatherCreatePointFailState extends AddPointState {
+  final String error;
+
+  PostFatherCreatePointFailState({required this.error});
+}
+
 

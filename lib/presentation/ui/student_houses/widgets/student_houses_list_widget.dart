@@ -55,7 +55,9 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
               onTapChild: () => widget.studentHousesBloc.add(
                   NavigateToMyChildrenScreenEvent(
                       studentId:
-                          "${widget.getStudentHousesResponse.data!.students![index].studentId}")),
+                          "${widget.getStudentHousesResponse.data!.students![index].studentId}",
+                      classroomToSectionId:
+                          "${widget.getStudentHousesResponse.data!.students![index].classroomToSectionId}")),
             );
           }),
     );

@@ -23,7 +23,8 @@ class NavigateToNotificationScreenState extends StudentHousesState {}
 
 class NavigateToMyChildrenScreenState extends StudentHousesState {
   final String studentId;
-  NavigateToMyChildrenScreenState({required this.studentId});
+  final String classroomToSectionId;
+  NavigateToMyChildrenScreenState({required this.studentId,required this.classroomToSectionId});
 }
 
 class GetIsFatherState extends StudentHousesState {

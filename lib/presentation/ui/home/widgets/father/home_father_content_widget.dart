@@ -27,6 +27,9 @@ class HomeFatherContentWidget extends StatelessWidget {
             : Container(height: 350),
         parentHomeResponse.data != null
             ? FatherChildrenListWidget(
+                classroomId: "79a93948-fb97-4de3-9166-08dafa1996ad",
+                classroomSectionStudentsId:
+                    "f2894667-39a5-42b6-c7df-08dafd8025b3",
                 parentHomeResponse: parentHomeResponse,
                 token: token,
                 language: language)
