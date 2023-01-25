@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:schools/core/utils/network/interceptor.dart';
 import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
+import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
 
 class DioHelper {
   static late Dio dio;
@@ -82,10 +83,9 @@ class DioHelper {
           },
         ));
   }
-  static Future<Response> getStudentsProfileByTeacher(
-      token, studentId) async {
-    return dio.get(
-        "${ApiKey.getStudentsProfileByTeacher}?StudentId=$studentId",
+
+  static Future<Response> getStudentsProfileByTeacher(token, studentId) async {
+    return dio.get("${ApiKey.getStudentsProfileByTeacher}?StudentId=$studentId",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -94,6 +94,7 @@ class DioHelper {
           },
         ));
   }
+
   static Future<Response> getTeacherPrinciplesByClassroomId(
       token, classRoom) async {
     return dio.get(
@@ -106,6 +107,7 @@ class DioHelper {
           },
         ));
   }
+
   static Future<Response> getTeacherStudentProfileInSchoolHouse(
       token, studentId) async {
     return dio.get(
@@ -119,7 +121,16 @@ class DioHelper {
         ));
   }
 
-
-
-
+  static Future<Response> postTeacherCreatePoint(
+      token, TeacherAddPointRequest request) async {
+    return dio.post(ApiKey.postTeacherCreatePoint,
+        data: request,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
 }

@@ -57,10 +57,6 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
           context: context,
           childName: childName,
           token: widget.token,
-          classroomId: classroomId)
-      .then((value) => _returnValue(value));
+          classroomId: classroomId);
 
-  _returnValue(value) {
-    valueFromAlert = value;
-  }
 }

@@ -8,3 +8,10 @@ class GetAddPointEvent extends AddPointEvent {
 
   GetAddPointEvent({required this.token, required this.classroomId});
 }
+
+class PostTeacherAddPointEvent extends AddPointEvent {
+  final String token;
+  final TeacherAddPointRequest request;
+
+  PostTeacherAddPointEvent({required this.token, required this.request});
+}

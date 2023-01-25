@@ -17,3 +17,15 @@ class GetTeacherPrinciplByClassroomIdFillState extends AddPointState {
 
   GetTeacherPrinciplByClassroomIdFillState({required this.error});
 }
+class PostTeacherCreatePointSuccessState extends AddPointState {
+  TeacherAddPointResponse response;
+
+  PostTeacherCreatePointSuccessState({required this.response});
+}
+class PostTeacherCreatePointFailState extends AddPointState {
+  final String error;
+
+  PostTeacherCreatePointFailState({required this.error});
+}
+
+

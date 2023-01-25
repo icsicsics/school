@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
+import 'package:schools/data/source/remote/model/teacher_point/response/teacher_add_point_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
@@ -13,12 +16,14 @@ class AddPointDialogWidget extends StatefulWidget {
   final String childName;
   final String token;
   final String classroomId;
+  final bool isParent;
 
   const AddPointDialogWidget(
       {Key? key,
       required this.childName,
       required this.classroomId,
-      required this.token})
+      required this.token,
+      this.isParent = false})
       : super(key: key);
 
   @override
@@ -60,6 +65,10 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
           _onGetTeacherPrinciplByClassroomIdSuccessState(state.response);
         } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
           _onGetTeacherPrinciplByClassroomIdFillState(state.error);
+        } else if (state is PostTeacherCreatePointSuccessState) {
+          _onPostTeacherCreatePointSuccessState(state.response);
+        } else if (state is PostTeacherCreatePointFailState) {
+          _onPostTeacherCreatePointFailState(state.error);
         }
       },
       builder: (context, state) {
@@ -153,7 +162,9 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                 ),
                 CustomButtonWidget(
                     buttonWidth: MediaQuery.of(context).size.width / 4,
-                    onPressed: () => Navigator.pop(context, value),
+                    onPressed: () {
+                      _onAddPoint();
+                    },
                     buttonText: S.of(context).reward,
                     borderRadius: 25,
                     buttonColor: ColorsManager.buttonColor,
@@ -165,7 +176,8 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     );
   }
 
-  void _onGetTeacherPrinciplByClassroomIdFillState(String error) {}
+  void _onGetTeacherPrinciplByClassroomIdFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 
   void _onGetTeacherPrinciplByClassroomIdSuccessState(
       GetTeacherPrinciplByClassroomIdResponse response) {
@@ -183,5 +195,32 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
         value = element;
       }
     }
+  }
+
+  void _onAddPoint() {
+    Navigator.of(context).pop();
+    if (widget.isParent == false) {
+      _addPointBloc.add(PostTeacherAddPointEvent(
+          token: widget.token,
+          request: TeacherAddPointRequest(
+              classroomSectionStudentsId:
+                  "f2894667-39a5-42b6-c7df-08dafd8025b3",
+              classroomToPrinciplesId: "cdd23147-e594-4cce-06d4-08dafa1996b9",
+              studentId: "075c2332-5e41-441d-29cd-08daf7a5219e",
+              description: "T")));
+    } else {
+
+    }
+  }
+
+  void _onPostTeacherCreatePointSuccessState(TeacherAddPointResponse response) {
+    Navigator.of(context).pop();
+    showErrorDialogFunction(
+        context: context, textMessage: response.data.toString());
+  }
+
+  void _onPostTeacherCreatePointFailState(String error) {
+    Navigator.of(context).pop();
+    showErrorDialogFunction(context: context, textMessage: error);
   }
 }
