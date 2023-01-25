@@ -47,3 +47,15 @@ class GetTeacherStudentProfileInSchoolHouseFailState extends MyChildrenState {
 
   GetTeacherStudentProfileInSchoolHouseFailState({required this.error});
 }
+
+class GetTeacherPrinciplByClassroomIdSuccessState extends MyChildrenState {
+  final GetTeacherPrinciplByClassroomIdResponse response;
+
+  GetTeacherPrinciplByClassroomIdSuccessState({required this.response});
+}
+
+class GetTeacherPrinciplByClassroomIdFillState extends MyChildrenState {
+  final String error;
+
+  GetTeacherPrinciplByClassroomIdFillState({required this.error});
+}

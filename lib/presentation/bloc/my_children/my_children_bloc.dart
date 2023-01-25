@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/repository/my_children_repository.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_repository_imp.dart';
@@ -25,6 +26,7 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     on<GetTokenEvent>(_onGetTokenEvent);
     on<GetTeacherStudentProfileInSchoolHouseEvent>(
         _onGetTeacherStudentProfileInSchoolHouseEvent);
+    on<GetPrincipleByClassroomEvent>(_onGetPrincipleByClassroomEvent);
   }
 
   FutureOr<void> _onMyChildrenShowHousesEvent(
@@ -68,6 +70,19 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
           response: state.response));
     } else if (state is GetTeacherStudentProfileInSchoolHouseFailState) {
       emit(GetTeacherStudentProfileInSchoolHouseFailState(error: state.error));
+    }
+  }
+
+  FutureOr<void> _onGetPrincipleByClassroomEvent(
+      GetPrincipleByClassroomEvent event, Emitter<MyChildrenState> emit) async {
+    emit(GetMyChildrenLoadingState());
+    MyChildrenState state = (await _repository.getTeacherPrincipleByClassroomId(
+        event.token, event.classroomId)) as MyChildrenState;
+    if (state is GetTeacherPrinciplByClassroomIdSuccessState) {
+      emit(GetTeacherPrinciplByClassroomIdSuccessState(
+          response: state.response));
+    } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
+      emit(GetTeacherPrinciplByClassroomIdFillState(error: state.error));
     }
   }
 }

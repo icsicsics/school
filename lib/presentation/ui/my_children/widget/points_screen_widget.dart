@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/regular_text_widget.dart';
@@ -7,11 +7,11 @@ import 'package:intl/intl.dart';
 import '../../../../core/utils/resorces/color_manager.dart';
 
 class PointsScreenWidget extends StatefulWidget {
-  final TeacherStudentProfileInSchoolHouseResponse
-      teacherStudentProfileInSchoolHouseResponse;
+
+  final List<Points> points;
 
   const PointsScreenWidget(
-      {Key? key, required this.teacherStudentProfileInSchoolHouseResponse})
+      {Key? key, required this.points})
       : super(key: key);
 
   @override
@@ -34,8 +34,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: widget
-            .teacherStudentProfileInSchoolHouseResponse.data!.points!
+        children: widget.points
             .map((e) => _item(
                 onTap: () {},
                 title: e.principleName ?? "",

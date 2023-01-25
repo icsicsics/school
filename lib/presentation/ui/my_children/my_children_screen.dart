@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
@@ -36,6 +37,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
   TeacherStudentProfileInSchoolHouseResponse
       _teacherStudentProfileInSchoolHouseResponse =
       TeacherStudentProfileInSchoolHouseResponse();
+  GetTeacherPrinciplByClassroomIdResponse
+      _getTeacherPrinciplByClassroomIdResponse =
+      GetTeacherPrinciplByClassroomIdResponse();
 
   MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
   bool _isFather = false;
@@ -54,7 +58,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         if (state is OpenAddPointAlertState) {
           _openAddPointAlert(
               classroomId: widget.classroomId,
-              classroomSectionStudentsId:widget.classroomSectionStudentsId.toString());
+              classroomSectionStudentsId:
+                  widget.classroomSectionStudentsId.toString());
         } else if (state is NavigateToNotificationScreenState) {
           _navigateToNotificationScreen();
         } else if (state is GetIsFatherState) {
@@ -68,9 +73,15 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           showLoading();
         } else if (state is GetTeacherStudentProfileInSchoolHouseSuccessState) {
           _teacherStudentProfileInSchoolHouseResponse = state.response;
-          hideLoading();
+          _bloc.add(GetPrincipleByClassroomEvent(
+              token: _token, classroomId: widget.classroomId));
         } else if (state is GetTeacherStudentProfileInSchoolHouseFailState) {
           _onGetTeacherStudentProfileInSchoolHouseFailState(state.error);
+        } else if (state is GetTeacherPrinciplByClassroomIdSuccessState) {
+          _getTeacherPrinciplByClassroomIdResponse = state.response;
+          hideLoading();
+        } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
+          _onGetTeacherPrinciplByClassroomIdFillState(state.error);
         }
       },
       builder: (context, state) {
@@ -80,7 +91,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
             body: _teacherStudentProfileInSchoolHouseResponse.data != null
                 ? MyChildrenContentWidget(
                     teacherStudentProfileInSchoolHouseResponse:
-                        _teacherStudentProfileInSchoolHouseResponse)
+                        _teacherStudentProfileInSchoolHouseResponse,
+                    getTeacherPrinciplByClassroomIdResponse:
+                        _getTeacherPrinciplByClassroomIdResponse)
                 : Container());
       },
     );
@@ -189,5 +202,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       (route) => false);
 
   void _onGetTeacherStudentProfileInSchoolHouseFailState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
+
+  void _onGetTeacherPrinciplByClassroomIdFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
 }

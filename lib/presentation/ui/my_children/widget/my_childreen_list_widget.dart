@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class MyChildrenWidget extends StatefulWidget {
-  const MyChildrenWidget({Key? key}) : super(key: key);
+  final List<Points> points;
+  final GetTeacherPrinciplByClassroomIdResponse
+      getTeacherPrinciplByClassroomIdResponse;
+
+  const MyChildrenWidget(
+      {Key? key,
+      required this.points,
+      required this.getTeacherPrinciplByClassroomIdResponse})
+      : super(key: key);
 
   @override
   State<MyChildrenWidget> createState() => _MyChildrenWidgetState();
@@ -31,6 +41,8 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     _ChildIconsModel(
         id: 6, icon: Icons.autorenew_rounded, isSelected: false, title: ""),
   ];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +116,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       });
     }
   }
+
 }
 
 class _ChildIconsModel {

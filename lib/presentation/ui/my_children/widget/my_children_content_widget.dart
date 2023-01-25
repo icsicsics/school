@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/presentation/ui/my_children/widget/my_children_body_widget.dart';
 import 'package:schools/presentation/ui/my_children/widget/my_children_header_widget.dart';
@@ -6,9 +7,13 @@ import 'package:schools/presentation/ui/my_children/widget/my_children_header_wi
 class MyChildrenContentWidget extends StatefulWidget {
   final TeacherStudentProfileInSchoolHouseResponse
       teacherStudentProfileInSchoolHouseResponse;
+  final GetTeacherPrinciplByClassroomIdResponse
+      getTeacherPrinciplByClassroomIdResponse;
 
   const MyChildrenContentWidget(
-      {Key? key, required this.teacherStudentProfileInSchoolHouseResponse})
+      {Key? key,
+      required this.teacherStudentProfileInSchoolHouseResponse,
+      required this.getTeacherPrinciplByClassroomIdResponse})
       : super(key: key);
 
   @override
@@ -26,8 +31,10 @@ class _MyChildrenContentWidgetState extends State<MyChildrenContentWidget> {
               teacherStudentProfileInSchoolHouseResponse:
                   widget.teacherStudentProfileInSchoolHouseResponse),
           MyChildrenBodyWidget(
-              teacherStudentProfileInSchoolHouseResponse:
-                  widget.teacherStudentProfileInSchoolHouseResponse)
+              points: widget
+                  .teacherStudentProfileInSchoolHouseResponse.data!.points!,
+              getTeacherPrinciplByClassroomIdResponse:
+                  widget.getTeacherPrinciplByClassroomIdResponse)
         ],
       ),
     );

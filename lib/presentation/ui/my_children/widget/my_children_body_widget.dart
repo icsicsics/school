@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/presentation/ui/my_children/widget/my_childreen_list_widget.dart';
 import 'package:schools/presentation/ui/my_children/widget/points_screen_widget.dart';
 
 class MyChildrenBodyWidget extends StatefulWidget {
-  final TeacherStudentProfileInSchoolHouseResponse
-      teacherStudentProfileInSchoolHouseResponse;
+  final List<Points> points;
+  final GetTeacherPrinciplByClassroomIdResponse
+      getTeacherPrinciplByClassroomIdResponse;
 
   const MyChildrenBodyWidget(
-      {Key? key, required this.teacherStudentProfileInSchoolHouseResponse})
+      {Key? key,
+      required this.points,
+      required this.getTeacherPrinciplByClassroomIdResponse})
       : super(key: key);
 
   @override
@@ -25,10 +29,11 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            const MyChildrenWidget(),
-            PointsScreenWidget(
-                teacherStudentProfileInSchoolHouseResponse:
-                    widget.teacherStudentProfileInSchoolHouseResponse),
+            MyChildrenWidget(
+                points: widget.points,
+                getTeacherPrinciplByClassroomIdResponse:
+                    widget.getTeacherPrinciplByClassroomIdResponse),
+            PointsScreenWidget(points: widget.points),
           ],
         ),
       ),
