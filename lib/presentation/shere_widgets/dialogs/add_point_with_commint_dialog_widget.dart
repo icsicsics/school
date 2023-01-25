@@ -133,11 +133,6 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                         setState(() {
                           _addValue(newValue);
                           dropdownValue = newValue ?? "";
-                          if (newValue == "1") {
-                            isAddCommit = true;
-                          } else {
-                            isAddCommit = false;
-                          }
                         });
                       },
                     ),
@@ -162,9 +157,6 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                                     fontSize: 13,
                                     color: ColorsManager.sameBlack)),
                             controller: commentController,
-                            onChanged: (value1) {
-                              value = Data(name: value1, id: "1");
-                            },
                           ),
                         ))),
                 SizedBox(
@@ -195,7 +187,6 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     for (var element in _getTeacherPrinciplByClassroomIdResponse.data!) {
       _listOfItems.add(element);
     }
-    _listOfItems.add(Data(id: "1", name: "other"));
     Navigator.pop(context);
   }
 
