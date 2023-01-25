@@ -209,10 +209,9 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
             token: widget.token,
             request: TeacherAddPointRequest(
                 classroomSectionStudentsId: widget.classroomSectionStudentsId,
-                classroomToPrinciplesId:
-                    value.id == '1' ? value.name : value.id,
+                classroomToPrinciplesId: value.id,
                 studentId: widget.studentId,
-                description: "T")));
+                description: value.name)));
       } else {}
     } else {
       showErrorDialogFunction(
