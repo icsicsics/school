@@ -115,20 +115,20 @@ class ProfileHeaderWidget extends StatelessWidget {
         : SizedBox(
             width: 150,
             height: 150,
-            child:   fatherInfoResponse!.data != null ||
-                teacherInfoResponse!.data != null
-                ?image( isFather
-            //todo return father image
-                ? fatherInfoResponse!.data!.parentName ?? ""
-                : teacherInfoResponse!.data!.getImage!.mediaUrl.toString()):_buildProfilePlaceHolder(),
+            child: fatherInfoResponse!.data != null ||
+                    teacherInfoResponse!.data != null
+                ? image(isFather
+                    //todo return father image
+                    ? fatherInfoResponse!.data!.parentName ?? ""
+                    : teacherInfoResponse!.data!.getImage!.mediaUrl.toString())
+                : _buildProfilePlaceHolder(),
           );
   }
 
   CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
-        child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.cover,height: double.infinity),
+        child: SvgPicture.asset(ImagesPath.avatar,
+            fit: BoxFit.cover, height: double.infinity),
       );
-
-
 
   Widget image(images) {
     return CircleAvatar(
@@ -144,7 +144,7 @@ class ProfileHeaderWidget extends StatelessWidget {
               color: ColorsManager.primaryColor,
               value: loadingProgress.expectedTotalBytes != null
                   ? loadingProgress.cumulativeBytesLoaded /
-                  loadingProgress.expectedTotalBytes!
+                      loadingProgress.expectedTotalBytes!
                   : null,
             ),
           );
@@ -153,12 +153,11 @@ class ProfileHeaderWidget extends StatelessWidget {
           width: 150,
           height: 150,
           child: CircleAvatar(
-            child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill,height:double.infinity),
+            child: SvgPicture.asset(ImagesPath.avatar,
+                fit: BoxFit.fill, height: double.infinity),
           ),
         ),
       ),
     );
   }
-
-
 }
