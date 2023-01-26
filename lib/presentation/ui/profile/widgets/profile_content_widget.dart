@@ -35,28 +35,31 @@ class ProfileContentWidget extends StatefulWidget {
 class _ProfileContentWidgetState extends State<ProfileContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ProfileHeaderWidget(
-            bloc: widget.bloc,
-            profileImage: widget.profileImage,
-            isFather: widget.isFather,
-            fatherInfoResponse: widget.fatherInfoResponse,
-            teacherInfoResponse: widget.teacherInfoResponse),
-        ProfileInfoContentWidget(
-            isFather: widget.isFather,
-            fatherInfoResponse: widget.fatherInfoResponse,
-            teacherInfoResponse: widget.teacherInfoResponse),
-        const Spacer(),
-        widget.isFather
-            ? FatherOfWidget(
-                fatherInfoResponse: widget.fatherInfoResponse,
-                language: widget.language,
-                classroomId: widget.classroomId,
-                classroomSectionStudentsId: widget.classroomSectionStudentsId,
-              )
-            : const SizedBox()
-      ],
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          ProfileHeaderWidget(
+              bloc: widget.bloc,
+              profileImage: widget.profileImage,
+              isFather: widget.isFather,
+              fatherInfoResponse: widget.fatherInfoResponse,
+              teacherInfoResponse: widget.teacherInfoResponse),
+          ProfileInfoContentWidget(
+              isFather: widget.isFather,
+              fatherInfoResponse: widget.fatherInfoResponse,
+              teacherInfoResponse: widget.teacherInfoResponse),
+           SizedBox(height: MediaQuery.of(context).size.height/12),
+          widget.isFather
+              ? FatherOfWidget(
+                  fatherInfoResponse: widget.fatherInfoResponse,
+                  language: widget.language,
+                  classroomId: widget.classroomId,
+                  classroomSectionStudentsId: widget.classroomSectionStudentsId,
+                )
+              : const SizedBox()
+        ],
+      ),
     );
   }
 }
