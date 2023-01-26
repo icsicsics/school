@@ -131,7 +131,13 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                           .toList(),
                       onChanged: (newValue) {
                         setState(() {
-                          _addValue(newValue);
+                          if (newValue ==
+                              "d2172696-d674-44c2-ba8f-f7339e1209c7") {
+                            isAddCommit = true;
+                          } else {
+                            isAddCommit = false;
+                            _addValue(newValue);
+                          }
                           dropdownValue = newValue ?? "";
                         });
                       },
@@ -157,6 +163,11 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                                     fontSize: 13,
                                     color: ColorsManager.sameBlack)),
                             controller: commentController,
+                            onChanged: (value1) {
+                              value = Data(
+                                  name: value1,
+                                  id: "d2172696-d674-44c2-ba8f-f7339e1209c7");
+                            },
                           ),
                         ))),
                 SizedBox(
