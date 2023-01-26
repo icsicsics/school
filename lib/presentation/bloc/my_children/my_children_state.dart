@@ -59,3 +59,7 @@ class GetTeacherPrinciplByClassroomIdFillState extends MyChildrenState {
 
   GetTeacherPrinciplByClassroomIdFillState({required this.error});
 }
+class MyChildrenFilterState extends MyChildrenState {
+  final List<Points> filter;
+  MyChildrenFilterState({required this.filter});
+}

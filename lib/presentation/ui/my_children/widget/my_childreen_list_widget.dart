@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/generated/l10n.dart';
+import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class MyChildrenWidget extends StatefulWidget {
@@ -24,25 +26,24 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   final Color _selectedColor = ColorsManager.secondaryColor;
 
   final Color _unselectedColor = ColorsManager.mediumGrayColor;
-  final List<_ChildIconsModel> _list = [
-    _ChildIconsModel(
-        id: 1, icon: Icons.add, isSelected: true, title: S.current.all),
-    _ChildIconsModel(
-        id: 2, icon: Icons.add, isSelected: false, title: S.current.me),
-    _ChildIconsModel(
-        id: 3, icon: Icons.energy_savings_leaf, isSelected: false, title: ""),
-    _ChildIconsModel(
-        id: 4, icon: Icons.autorenew_rounded, isSelected: false, title: ""),
-    _ChildIconsModel(
-        id: 5,
-        icon: Icons.lightbulb_outline_rounded,
-        isSelected: false,
-        title: ""),
-    _ChildIconsModel(
-        id: 6, icon: Icons.autorenew_rounded, isSelected: false, title: ""),
-  ];
+  List<Points> points = [];
+  List<Points> filter = [];
 
+  final List<_ChildIconsModel> _list = [];
 
+  @override
+  void initState() {
+    points = widget.points;
+    _list
+        .add(_ChildIconsModel(id: "1", isSelected: true, title: S.current.all));
+    _list
+        .add(_ChildIconsModel(id: "2", isSelected: false, title: S.current.me));
+    for (var element in widget.getTeacherPrinciplByClassroomIdResponse.data!) {
+      _list.add(_ChildIconsModel(
+          id: element.id!, title: element.name!, isSelected: false));
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,34 +59,16 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: _list.map((e) => _checkIndexForIcon(e)).toList(),
-            )
+              children: _list.map((e) => _checkIndexForValues(e)).toList(),
+            ),
           ],
         ));
   }
 
-  Widget _checkIndexForIcon(_ChildIconsModel model) {
-    if (model.id == 1 || model.id == 2) {
-      return const SizedBox();
-    } else {
-      return InkWell(
-        onTap: () => _selectItem(model.id),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(
-            size: 25,
-            model.icon,
-            color: _getColor(model),
-          ),
-        ),
-      );
-    }
-  }
-
   Widget _checkIndexForLabel(_ChildIconsModel model) {
-    if (model.id == 1 || model.id == 2) {
+    if (model.id == "1" || model.id == "2") {
       return InkWell(
-        onTap: () => _selectItem(model.id),
+        onTap: () => _selectItem(model.id, model.title),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: MediumTextWidget(
@@ -97,6 +80,21 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     }
   }
 
+  Widget _checkIndexForValues(_ChildIconsModel model) {
+    if (model.id == "1" || model.id == "2") {
+      return const SizedBox();
+    } else {
+      return InkWell(
+        onTap: () => _selectItem(model.id, model.title),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: MediumTextWidget(
+              text: model.title, fontSize: 15, color: _getColor(model)),
+        ),
+      );
+    }
+  }
+
   Color _getColor(_ChildIconsModel model) {
     if (model.isSelected) {
       return _selectedColor;
@@ -105,7 +103,18 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     }
   }
 
-  void _selectItem(int id) {
+  void _selectItem(String id, String name) {
+    filter.clear();
+    for (var element in points) {
+      if (element.principleName.toString() == name) {
+        filter.add(element);
+      } else if (id == "1") {
+        filter.add(element);
+      }
+      BlocProvider.of<MyChildrenBloc>(context)
+          .add(MyChildrenFilterEvent(filter: filter));
+    }
+
     for (var element in _list) {
       setState(() {
         if (id == element.id) {
@@ -116,18 +125,13 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       });
     }
   }
-
 }
 
 class _ChildIconsModel {
-  int id;
-  IconData icon;
+  String id;
   String title;
   bool isSelected;
 
   _ChildIconsModel(
-      {required this.id,
-      required this.icon,
-      required this.isSelected,
-      required this.title});
+      {required this.id, required this.isSelected, required this.title});
 }

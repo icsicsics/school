@@ -23,7 +23,7 @@ class MyChildrenBodyWidget extends StatefulWidget {
 class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return widget.getTeacherPrinciplByClassroomIdResponse.data!=null?Container(
       color: ColorsManager.backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -37,6 +37,6 @@ class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
           ],
         ),
       ),
-    );
+    ): Container();
   }
 }

@@ -82,6 +82,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           hideLoading();
         } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
           _onGetTeacherPrinciplByClassroomIdFillState(state.error);
+        }else if(state is MyChildrenFilterState){
+        _teacherStudentProfileInSchoolHouseResponse.data!.points=state.filter;
         }
       },
       builder: (context, state) {

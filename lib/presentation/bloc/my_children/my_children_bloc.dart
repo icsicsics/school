@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/repository/my_children_repository.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_repository_imp.dart';
@@ -27,6 +28,7 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     on<GetTeacherStudentProfileInSchoolHouseEvent>(
         _onGetTeacherStudentProfileInSchoolHouseEvent);
     on<GetPrincipleByClassroomEvent>(_onGetPrincipleByClassroomEvent);
+    on<MyChildrenFilterEvent>(_onMyChildrenFilterEvent);
   }
 
   FutureOr<void> _onMyChildrenShowHousesEvent(
@@ -84,5 +86,9 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
       emit(GetTeacherPrinciplByClassroomIdFillState(error: state.error));
     }
+  }
+
+  FutureOr<void> _onMyChildrenFilterEvent(MyChildrenFilterEvent event, Emitter<MyChildrenState> emit) {
+    emit(MyChildrenFilterState(filter: event.filter));
   }
 }
