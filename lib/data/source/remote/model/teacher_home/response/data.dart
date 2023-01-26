@@ -1,19 +1,19 @@
-class Data {
-  String? id;
-  String? classroomToSectionId;
-  String? classroomName;
-  String? sectionName;
-  String? schoolName;
-  dynamic getLogo;
+import 'get_logo.dart';
 
+class Data {
+  String ?id;
+  String ?classroomToSectionId;
+  String ?classroomName;
+  String ?sectionName;
+  String ?schoolName;
+  GetLogo? getLogo;
   Data({
-    this.id,
-    this.classroomToSectionId,
-    this.classroomName,
-    this.sectionName,
-    this.schoolName,
-    this.getLogo,
-  });
+      this.id, 
+      this.classroomToSectionId, 
+      this.classroomName, 
+      this.sectionName, 
+      this.schoolName, 
+      this.getLogo,});
 
   Data.fromJson(dynamic json) {
     id = json['id'];
@@ -21,8 +21,9 @@ class Data {
     classroomName = json['classroomName'];
     sectionName = json['sectionName'];
     schoolName = json['schoolName'];
-    getLogo = json['getLogo'];
+    getLogo = json['getLogo'] != null ? GetLogo.fromJson(json['getLogo']) : null;
   }
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -31,7 +32,10 @@ class Data {
     map['classroomName'] = classroomName;
     map['sectionName'] = sectionName;
     map['schoolName'] = schoolName;
-    map['getLogo'] = getLogo;
+    if (getLogo != null) {
+      map['getLogo'] = getLogo!.toJson();
+    }
     return map;
   }
+
 }

@@ -6,6 +6,7 @@ import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class AddPointItemWidget extends StatelessWidget {
   final String childName;
+  final String imagePath;
   final Function() onTapStar;
   final Function() onTapChild;
 
@@ -13,7 +14,7 @@ class AddPointItemWidget extends StatelessWidget {
       {Key? key,
       required this.childName,
       required this.onTapStar,
-      required this.onTapChild})
+      required this.onTapChild,required this.imagePath})
       : super(key: key);
 
   @override
@@ -33,13 +34,7 @@ class AddPointItemWidget extends StatelessWidget {
                   alignment: Alignment.center,
                   child: InkWell(
                       onTap: onTapChild,
-                      child: Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100)),
-                          child: SvgPicture.asset(ImagesPath.avatar,
-                              fit: BoxFit.fill))),
+                      child: image(imagePath)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
@@ -82,4 +77,35 @@ class AddPointItemWidget extends StatelessWidget {
       ),
     );
   }
+  Widget image(images) {
+    return CircleAvatar(
+      radius: 50,
+      child: Image.network(
+        images ?? "",
+        fit: BoxFit.fill,
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent? loadingProgress) {
+          if (loadingProgress == null) return child;
+          return SizedBox(
+            width: double.infinity,
+            height: 80,
+            child: Center(
+              child: CircularProgressIndicator(
+                color: ColorsManager.primaryColor,
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                    loadingProgress.expectedTotalBytes!
+                    : null,
+              ),
+            ),
+          );
+        },
+        errorBuilder: (context, error, stackTrace) => CircleAvatar(
+          radius: 50,
+          child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill),
+        ),
+      ),
+    );
+  }
+
 }

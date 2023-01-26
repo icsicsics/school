@@ -1,8 +1,10 @@
+import 'package:schools/data/source/remote/model/student_houses/get_lmage.dart';
+
 class Students {
   String? studentId;
   String? classroomToSectionId;
   String? studentName;
-  dynamic getImage;
+  GetImage? getImage;
 
   Students({
     this.studentId,
@@ -15,7 +17,8 @@ class Students {
     studentId = json['studentId'];
     classroomToSectionId = json['classroomToSectionId'];
     studentName = json['studentName'];
-    getImage = json['getImage'];
+    getImage =
+        json['data'] != null ? GetImage.fromJson(json['getImage']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -23,7 +26,9 @@ class Students {
     map['studentId'] = studentId;
     map['classroomToSectionId'] = classroomToSectionId;
     map['studentName'] = studentName;
-    map['getImage'] = getImage;
+    if (getImage != null) {
+      map['getImage'] = getImage!.toJson();
+    }
     return map;
   }
 }

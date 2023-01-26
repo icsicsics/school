@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/presentation/shere_widgets/card_widget.dart';
 import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
@@ -51,7 +50,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                   child: CardWidget(
                     section:
                         widget.teacherHomeResponse.data![index].classroomName!,
-                    imagePath: ImagesPath.schoolItem,
+                    imagePath: widget.teacherHomeResponse.data![index].getLogo!.mediaUrl.toString(),
                     grade: widget.teacherHomeResponse.data![index].sectionName!,
                   ),
                 ),
