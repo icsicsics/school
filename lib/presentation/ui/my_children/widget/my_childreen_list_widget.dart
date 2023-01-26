@@ -68,7 +68,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   Widget _checkIndexForLabel(_ChildIconsModel model) {
     if (model.id == "1" || model.id == "2") {
       return InkWell(
-        onTap: () => _selectItem(model.id, model.title),
+        onTap: () => _selectItem(model.id, model.title, model.isSelected),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: MediumTextWidget(
@@ -85,7 +85,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       return const SizedBox();
     } else {
       return InkWell(
-        onTap: () => _selectItem(model.id, model.title),
+        onTap: () => _selectItem(model.id, model.title, model.isSelected),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: MediumTextWidget(
@@ -103,24 +103,26 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     }
   }
 
-  void _selectItem(String id, String name) {
-    filter.clear();
-    for (var element in points) {
-      if (element.principleName.toString() == name) {
-        filter.add(element);
-      } else if (id == "1") {
-        filter.add(element);
-      }
-      BlocProvider.of<MyChildrenBloc>(context)
-          .add(MyChildrenFilterEvent(filter: filter));
-    }
-
+  void _selectItem(String id, String name, bool isSelected) {
     for (var element in _list) {
       setState(() {
-        if (id == element.id) {
+        if (id == element.id && element.isSelected == false) {
           element.isSelected = true;
-        } else {
+          for (var item in points) {
+            if (item.principleName.toString() == name &&
+                element.isSelected == true) {
+              filter.add(item);
+            } else if (element.id == "1" && element.isSelected == true) {
+              filter.add(item);
+            }
+            BlocProvider.of<MyChildrenBloc>(context)
+                .add(MyChildrenFilterEvent(filter: filter));
+          }
+        } else if (id == element.id && element.isSelected == true) {
           element.isSelected = false;
+          filter.removeWhere((element) => element.principleName == name);
+          BlocProvider.of<MyChildrenBloc>(context)
+              .add(MyChildrenFilterEvent(filter: filter));
         }
       });
     }
