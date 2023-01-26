@@ -88,6 +88,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: ColorsManager.backgroundColor,
             floatingActionButton: _points(),
             appBar: _appBar(),
             body: _teacherStudentProfileInSchoolHouseResponse.data != null
