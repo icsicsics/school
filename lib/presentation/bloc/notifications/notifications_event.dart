@@ -9,3 +9,4 @@ class GetIsFatherEvent extends NotificationsEvent {}
 class GetLanguageEvent extends NotificationsEvent {
   GetLanguageEvent();
 }
+class GetTokenEvent extends NotificationsEvent {}

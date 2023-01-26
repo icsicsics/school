@@ -18,6 +18,7 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   bool _isFather = false;
   String _language = '';
+  String _token= '';
 
   @override
   void initState() {
@@ -34,6 +35,9 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
           _isFather = state.isFather;
         } else if (state is GetLanguageSuccessState) {
           _language = state.language;
+          _bloc.add(GetTokenEvent());
+        }else if (state is GetTokenSuccessState){
+          _token=state.token;
         }
       },
       builder: (context, state) {
@@ -41,7 +45,7 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
             drawer: SideMenuScreen(
               isComFromHome: false,
               language: _language,
-              token: '',
+              token: _token,
             ),
             key: _key,
             body: NotificationsContentWidget(

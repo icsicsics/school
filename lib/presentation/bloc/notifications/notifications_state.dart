@@ -24,3 +24,9 @@ class GetLanguageSuccessState extends NotificationsState {
 
   GetLanguageSuccessState({required this.language});
 }
+
+class GetTokenSuccessState extends NotificationsState {
+  final String token;
+
+  GetTokenSuccessState({required this.token});
+}
