@@ -113,6 +113,9 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
                 element.isSelected == true) {
               filter.add(item);
             } else if (element.id == "1" && element.isSelected == true) {
+              for (var element in _list) {
+                element.isSelected = true;
+              }
               filter.add(item);
             }
             BlocProvider.of<MyChildrenBloc>(context)
@@ -120,6 +123,11 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
           }
         } else if (id == element.id && element.isSelected == true) {
           element.isSelected = false;
+          for (var element in _list) {
+            if (element.id == "1" && element.isSelected == true) {
+              element.isSelected = false;
+            }
+          }
           filter.removeWhere((element) => element.principleName == name);
           BlocProvider.of<MyChildrenBloc>(context)
               .add(MyChildrenFilterEvent(filter: filter));
