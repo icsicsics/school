@@ -34,14 +34,17 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   @override
   void initState() {
     points = widget.points;
-    _list
-        .add(_ChildIconsModel(id: "1", isSelected: true, title: S.current.all));
-    _list
-        .add(_ChildIconsModel(id: "2", isSelected: false, title: S.current.me));
+    _list.add(
+        _ChildIconsModel(id: "-1", isSelected: true, title: S.current.all));
+    _list.add(_ChildIconsModel(id: "2", isSelected: true, title: S.current.me));
     for (var element in widget.getTeacherPrinciplByClassroomIdResponse.data!) {
       _list.add(_ChildIconsModel(
-          id: element.id!, title: element.name!, isSelected: false));
+          id: element.id!, title: element.name!, isSelected: true));
     }
+    for (var item in points) {
+      filter.add(item);
+    }
+
     super.initState();
   }
 
@@ -66,7 +69,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   }
 
   Widget _checkIndexForLabel(_ChildIconsModel model) {
-    if (model.id == "1" || model.id == "2") {
+    if (model.id == "-1" || model.id == "2") {
       return InkWell(
         onTap: () => _selectItem(model.id, model.title, model.isSelected),
         child: Padding(
@@ -81,7 +84,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   }
 
   Widget _checkIndexForValues(_ChildIconsModel model) {
-    if (model.id == "1" || model.id == "2") {
+    if (model.id == "-1" || model.id == "2") {
       return const SizedBox();
     } else {
       return InkWell(
@@ -105,34 +108,37 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
 
   void _selectItem(String id, String name, bool isSelected) {
     for (var element in _list) {
-      setState(() {
-        if (id == element.id && element.isSelected == false) {
-          element.isSelected = true;
-          for (var item in points) {
-            if (item.principleName.toString() == name &&
-                element.isSelected == true) {
-              filter.add(item);
-            } else if (element.id == "1" && element.isSelected == true) {
-              for (var element in _list) {
-                element.isSelected = true;
+      if (id == "-1" && isSelected == true) {
+      } else {
+        setState(() {
+          if (id == element.id && element.isSelected == false) {
+            element.isSelected = true;
+            for (var item in points) {
+              if (item.principleName.toString() == name &&
+                  element.isSelected == true) {
+                filter.add(item);
+              } else if (element.id == "-1" && element.isSelected == true) {
+                for (var element in _list) {
+                  element.isSelected = true;
+                }
+                filter.add(item);
               }
-              filter.add(item);
+              BlocProvider.of<MyChildrenBloc>(context)
+                  .add(MyChildrenFilterEvent(filter: filter));
             }
+          } else if (id == element.id && element.isSelected == true) {
+            element.isSelected = false;
+            for (var element in _list) {
+              if (element.id == "-1" && element.isSelected == true) {
+                element.isSelected = false;
+              }
+            }
+            filter.removeWhere((element) => element.principleName == name);
             BlocProvider.of<MyChildrenBloc>(context)
                 .add(MyChildrenFilterEvent(filter: filter));
           }
-        } else if (id == element.id && element.isSelected == true) {
-          element.isSelected = false;
-          for (var element in _list) {
-            if (element.id == "1" && element.isSelected == true) {
-              element.isSelected = false;
-            }
-          }
-          filter.removeWhere((element) => element.principleName == name);
-          BlocProvider.of<MyChildrenBloc>(context)
-              .add(MyChildrenFilterEvent(filter: filter));
-        }
-      });
+        });
+      }
     }
   }
 }
