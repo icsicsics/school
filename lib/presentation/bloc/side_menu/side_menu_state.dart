@@ -69,3 +69,8 @@ class GetFatherResponseState extends SideMenuState {
   final FatherInfoResponse response;
   GetFatherResponseState({required this.response});
 }
+class SuccessGetProfileImageState extends SideMenuState {
+  final String image;
+
+  SuccessGetProfileImageState({required this.image});
+}

@@ -8,6 +8,8 @@ import 'package:schools/data/source/remote/model/teacher_info/response/teacher_i
 import 'package:schools/data/source/remote/repository/side_menu_repository.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_repository_imp.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
+import 'package:schools/use_case/get_profile_image_from_shared_preferences_user_case.dart';
+import 'package:schools/use_case/get_profile_image_use_case.dart';
 
 part 'side_menu_event.dart';
 
@@ -18,7 +20,10 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
    TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
    FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
-  SideMenuBloc(this._getLanguageCodeUseCase) : super(SideMenuInitialState()) {
+   String profileImage ='';
+  final GetImageProfileFromSharedPreferencesUseCase
+  _getImageProfileFromSharedPreferencesUseCase;
+  SideMenuBloc(this._getLanguageCodeUseCase,this._getImageProfileFromSharedPreferencesUseCase) : super(SideMenuInitialState()) {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);
     on<SideMenuHomeEvent>(_onSideMenuHomeEvent);
     on<SideMenuUserProfileEvent>(_onSideMenuUserProfileEvent);
@@ -30,6 +35,7 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<LogoutEvent>(_onLogoutEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
+    on<GetProfileImageEvent>(_onGetProfileImageEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -109,5 +115,12 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
         emit(GetFatherInfoFillState(error: state.error));
       }
     }
+  }
+
+  Future<void> _onGetProfileImageEvent(
+      GetProfileImageEvent event, Emitter<SideMenuState> emit) async {
+    String? image = await _getImageProfileFromSharedPreferencesUseCase();
+    profileImage= image!;
+    emit(SuccessGetProfileImageState(image: image ?? ""));
   }
 }

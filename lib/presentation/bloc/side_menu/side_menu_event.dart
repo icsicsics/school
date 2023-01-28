@@ -34,3 +34,5 @@ class GetFatherInfoEvent extends SideMenuEvent {
 
   GetFatherInfoEvent({required this.token});
 }
+
+class GetProfileImageEvent extends SideMenuEvent {}

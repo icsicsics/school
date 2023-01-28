@@ -32,12 +32,11 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   SideMenuBloc get _bloc => BlocProvider.of<SideMenuBloc>(context);
   bool _isFather = false;
   String userName = '';
-  TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
-  FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
 
   @override
   void initState() {
     _bloc.add(GetIsFatherEvent());
+    _bloc.add(GetProfileImageEvent());
     super.initState();
   }
 
@@ -78,14 +77,14 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                           showLogoutFunction(
                               context: context, yesAction: () => _logout());
                         } else if (state is GetTeacherInfoSuccessState) {
-                          _teacherInfoResponse = state.response;
                           Navigator.pop(context);
+                          _bloc.add(GetProfileImageEvent());
                         } else if (state is GetTeacherInfoFillState) {
                           _onGetTeacherInfoFillState(state.error);
                           Navigator.pop(context);
                         } else if (state is GetFatherInfoSuccessState) {
-                          _fatherInfoResponse = state.response;
                           Navigator.pop(context);
+                          _bloc.add(GetProfileImageEvent());
                         } else if (state is GetFatherInfoFillState) {
                           _onGetFatherInfoFillState(state.error);
                           Navigator.pop(context);
@@ -95,10 +94,8 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                               builder: (_) => const Center(
                                     child: CircularProgressIndicator(),
                                   ));
-                        } else if (state is GetFatherResponseState) {
-                          _fatherInfoResponse = state.response;
-                        } else if (state is GetTeacherResponseState) {
-                          _teacherInfoResponse = state.response;
+                        } else if (state is SuccessGetProfileImageState) {
+
                         }
                       },
                       builder: (context, state) {
