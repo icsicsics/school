@@ -21,3 +21,9 @@ class SplashGetTokenErrorState extends SplashState {
 class SplashSaveTokenSuccessState extends SplashState {}
 
 class SplashSaveTokenFillState extends SplashState {}
+
+class GetIsFatherState extends SplashState {
+  final bool isFather;
+
+  GetIsFatherState({required this.isFather});
+}

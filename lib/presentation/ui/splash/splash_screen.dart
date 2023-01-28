@@ -39,7 +39,9 @@ class _SplashScreenState extends BaseState<SplashScreen> {
               statusBarIconBrightness: Brightness.dark,
             ),
           );
-          _navigationToLoginScreen();
+          _bloc.add(GetIsFatherEvent());
+        } else if (state is GetIsFatherState) {
+          _navigationToLoginScreen(state.isFather);
         } else if (state is SplashGetTokenErrorState) {
           _onSplashGetTokenErrorState(state.error);
         }
@@ -50,9 +52,10 @@ class _SplashScreenState extends BaseState<SplashScreen> {
     );
   }
 
-  void _navigationToLoginScreen() => Navigator.pushReplacement(context,
-      MaterialPageRoute(builder: (_) => const LoginScreen(isFather: false)));
-
   void _onSplashGetTokenErrorState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
+
+  void _navigationToLoginScreen(bool isFather) => Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => LoginScreen(isFather: isFather)));
 }

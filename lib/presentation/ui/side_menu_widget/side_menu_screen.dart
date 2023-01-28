@@ -156,7 +156,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         context,
         MaterialPageRoute(
             builder: (_) =>
-                LoginScreen(isFather: _isFather == true ? false : true)),
+                LoginScreen(isFather: _isFather == true ? true : false)),
         (route) => false);
   }
 

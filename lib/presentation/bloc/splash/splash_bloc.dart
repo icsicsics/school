@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
 import 'package:schools/data/source/remote/repository/splash_repository.dart';
 import 'package:schools/presentation/bloc/splash/splash_repository_imp.dart';
@@ -17,6 +18,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc(this._setTokenUseCase) : super(SplashInitial()) {
     on<SplashGetTokenEvent>(_onSplashGetTokenEvent);
     on<SplashSaveTokenEvent>(_onSplashSaveTokenEvent);
+    on<GetIsFatherEvent>(_onGetIsFatherEvent);
   }
 
   FutureOr<void> _onSplashGetTokenEvent(
@@ -25,7 +27,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     SplashState state = (await repository.getToken()) as SplashState;
     if (state is SplashGetTokenSuccessState) {
       emit(SplashGetTokenSuccessState(response: state.response));
-    }else if (state is SplashGetTokenErrorState){
+    } else if (state is SplashGetTokenErrorState) {
       emit(SplashGetTokenErrorState(error: state.error));
     }
   }
@@ -34,5 +36,11 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       SplashSaveTokenEvent event, Emitter<SplashState> emit) {
     _setTokenUseCase.call(token: event.token);
     emit(SplashSaveTokenSuccessState());
+  }
+
+  FutureOr<void> _onGetIsFatherEvent(
+      GetIsFatherEvent event, Emitter<SplashState> emit) async {
+    final isFather = await SharedPreferencesManager.getIsFather();
+    emit(GetIsFatherState(isFather: isFather!));
   }
 }

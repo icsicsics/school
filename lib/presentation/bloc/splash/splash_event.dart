@@ -8,3 +8,4 @@ abstract class SplashEvent {}
  SplashSaveTokenEvent({required this.token});
 
  }
+class GetIsFatherEvent extends SplashEvent {}
