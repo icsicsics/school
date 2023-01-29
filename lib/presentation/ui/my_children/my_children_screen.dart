@@ -197,7 +197,10 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           token: _token,
           classroomId: classroomId,
           classroomSectionStudentsId: classroomSectionStudentsId,
-          studentId: widget.studentId);
+          studentId: widget.studentId, onCreatePointSuccess: () {
+        _bloc.add(GetTeacherStudentProfileInSchoolHouseEvent(
+            token: _token, studentId: widget.studentId));
+      });
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,

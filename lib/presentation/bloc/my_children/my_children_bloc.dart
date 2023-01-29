@@ -34,6 +34,7 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
   FutureOr<void> _onMyChildrenShowHousesEvent(
       MyChildrenShowHousesEvent event, Emitter<MyChildrenState> emit) {
     emit(MyChildrenShowHousesState(isShowHouses: event.isShowHouses));
+    emit(MyChildrenInitialState());
   }
 
   FutureOr<void> _onGetMyChildrenEvent(
@@ -42,22 +43,26 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
   FutureOr<void> _onOpenAddPointAlertEvent(
       OpenAddPointAlertEvent event, Emitter<MyChildrenState> emit) {
     emit(OpenAddPointAlertState());
+    emit(MyChildrenInitialState());
   }
 
   FutureOr<void> _onNavigateToNotificationScreenEvent(
       NavigateToNotificationScreenEvent event, Emitter<MyChildrenState> emit) {
     emit(NavigateToNotificationScreenState());
+    emit(MyChildrenInitialState());
   }
 
   FutureOr<void> _onGetIsFatherEvent(
       GetIsFatherEvent event, Emitter<MyChildrenState> emit) async {
     final isFather = await SharedPreferencesManager.getIsFather();
     emit(GetIsFatherState(isFather: isFather!));
+    emit(MyChildrenInitialState());
   }
 
   FutureOr<void> _onGetTokenEvent(
       GetTokenEvent event, Emitter<MyChildrenState> emit) async {
     emit(GetTokenSuccessState(token: await _getTokenUseCase() ?? ""));
+    emit(MyChildrenInitialState());
   }
 
   FutureOr<void> _onGetTeacherStudentProfileInSchoolHouseEvent(
@@ -70,8 +75,10 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     if (state is GetTeacherStudentProfileInSchoolHouseSuccessState) {
       emit(GetTeacherStudentProfileInSchoolHouseSuccessState(
           response: state.response));
+      emit(MyChildrenInitialState());
     } else if (state is GetTeacherStudentProfileInSchoolHouseFailState) {
       emit(GetTeacherStudentProfileInSchoolHouseFailState(error: state.error));
+      emit(MyChildrenInitialState());
     }
   }
 
@@ -83,12 +90,15 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
     if (state is GetTeacherPrinciplByClassroomIdSuccessState) {
       emit(GetTeacherPrinciplByClassroomIdSuccessState(
           response: state.response));
+      emit(MyChildrenInitialState());
     } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
       emit(GetTeacherPrinciplByClassroomIdFillState(error: state.error));
+      emit(MyChildrenInitialState());
     }
   }
 
   FutureOr<void> _onMyChildrenFilterEvent(MyChildrenFilterEvent event, Emitter<MyChildrenState> emit) {
     emit(MyChildrenFilterState(filter: event.filter));
+    emit(MyChildrenInitialState());
   }
 }

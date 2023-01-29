@@ -8,6 +8,7 @@ Future showAddPointFunction(
         required String classroomId,
         required String classroomSectionStudentsId,
         required String studentId,
+        required Function() onCreatePointSuccess,
         bool isParent=false}) =>
     showDialog(
         barrierDismissible: true,
@@ -21,5 +22,5 @@ Future showAddPointFunction(
               classroomId: classroomId,
               token: token,
               studentId: studentId,
-              classroomSectionStudentsId: classroomSectionStudentsId,
+              classroomSectionStudentsId: classroomSectionStudentsId, onCreatePointSuccess: onCreatePointSuccess,
             )));

@@ -76,5 +76,5 @@ class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
           token: widget.token,
           classroomId: classroomId,
           classroomSectionStudentsId: classroomSectionStudentsId,
-          studentId: studentId);
+          studentId: studentId, onCreatePointSuccess: () {  });
 }

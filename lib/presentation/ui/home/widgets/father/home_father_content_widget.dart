@@ -32,7 +32,7 @@ class HomeFatherContentWidget extends StatelessWidget {
                     "f2894667-39a5-42b6-c7df-08dafd8025b3",
                 parentHomeResponse: parentHomeResponse,
                 token: token,
-                language: language)
+                language: language, onCreatePointSuccess: () {  },)
             : Container(),
       ],
     );

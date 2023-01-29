@@ -10,6 +10,7 @@ class FatherChildrenListWidget extends StatefulWidget {
   final String language;
   final String classroomSectionStudentsId;
   final String classroomId;
+  final Function() onCreatePointSuccess;
 
   const FatherChildrenListWidget(
       {Key? key,
@@ -17,7 +18,7 @@ class FatherChildrenListWidget extends StatefulWidget {
       required this.token,
       required this.language,
       required this.classroomSectionStudentsId,
-      required this.classroomId})
+      required this.classroomId,required this.onCreatePointSuccess})
       : super(key: key);
 
   @override
@@ -67,7 +68,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
           token: widget.token,
           classroomId: classroomId,
           classroomSectionStudentsId: classroomSectionStudentsId,
-          studentId: studentId);
+          studentId: studentId, onCreatePointSuccess: widget.onCreatePointSuccess);
 
   _onTapChild(studentId) => Navigator.push(
       context,

@@ -21,6 +21,7 @@ class AddPointDialogWidget extends StatefulWidget {
   final bool isParent;
   final String classroomSectionStudentsId;
   final String studentId;
+  final Function() onCreatePointSuccess;
 
   const AddPointDialogWidget(
       {Key? key,
@@ -29,7 +30,7 @@ class AddPointDialogWidget extends StatefulWidget {
       required this.token,
       this.isParent = false,
       required this.studentId,
-      required this.classroomSectionStudentsId})
+      required this.classroomSectionStudentsId,required this.onCreatePointSuccess})
       : super(key: key);
 
   @override
@@ -240,7 +241,9 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(
-        context: context, textMessage: response.data.toString());
+        context: context, textMessage: response.data.toString()).then((value) {
+      widget.onCreatePointSuccess();
+    });
   }
 
   void _onPostTeacherCreatePointFailState(String error) {
@@ -253,7 +256,9 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(
-        context: context, textMessage: response.data.toString());
+        context: context, textMessage: response.data.toString()).then((value) {
+      widget.onCreatePointSuccess();
+    });
   }
 
   void _onPostFatherCreatePointFailState(String error) {
