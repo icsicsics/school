@@ -52,32 +52,34 @@ class CardWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.only(
           topRight: Radius.circular(8), topLeft: Radius.circular(8)),
-      child: Image.network(
-        images,
-        fit: BoxFit.fill,
-        loadingBuilder: (BuildContext context, Widget child,
-            ImageChunkEvent? loadingProgress) {
-          if (loadingProgress == null) return child;
-          return SizedBox(
-            width: double.infinity,
-            height: 80,
-            child: Center(
-              child: CircularProgressIndicator(
-                color: ColorsManager.primaryColor,
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
+      child:  Image.network(
+          images,
+          fit: BoxFit.cover,
+          height: 130,
+          width: double.infinity,
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) return child;
+            return SizedBox(
+              width: double.infinity,
+              height: 80,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: ColorsManager.primaryColor,
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                ),
               ),
-            ),
-          );
-        },
-        errorBuilder: (context, error, stackTrace) => ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(8), topLeft: Radius.circular(8)),
-          child: Image.asset(ImagesPath.schoolItem, fit: BoxFit.fill),
+            );
+          },
+          errorBuilder: (context, error, stackTrace) => ClipRRect(
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+            child: Image.asset(ImagesPath.schoolItem, fit: BoxFit.fill,   height: 130,width: double.infinity,),
+          ),
         ),
-      ),
     );
   }
 }
