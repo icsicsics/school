@@ -83,7 +83,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
           _onGetTeacherPrinciplByClassroomIdFillState(state.error);
         }else if(state is MyChildrenFilterState){
-        _teacherStudentProfileInSchoolHouseResponse.data!.points=state.filter;
+        _teacherStudentProfileInSchoolHouseResponse.data!.points = state.filter;
         }
       },
       builder: (context, state) {

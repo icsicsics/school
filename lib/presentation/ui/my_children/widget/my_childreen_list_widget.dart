@@ -36,10 +36,11 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     points = widget.points;
     _list.add(
         _ChildIconsModel(id: "-1", isSelected: true, title: S.current.all));
-    _list.add(_ChildIconsModel(id: "2", isSelected: true, title: S.current.me));
+    _list
+        .add(_ChildIconsModel(id: "2", isSelected: false, title: S.current.me));
     for (var element in widget.getTeacherPrinciplByClassroomIdResponse.data!) {
       _list.add(_ChildIconsModel(
-          id: element.id!, title: element.name!, isSelected: true));
+          id: element.id!, title: element.name!, isSelected: false));
     }
     for (var item in points) {
       filter.add(item);
@@ -109,18 +110,35 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   void _selectItem(String id, String name, bool isSelected) {
     for (var element in _list) {
       if (id == "-1" && isSelected == true) {
+        if (_list.any((element) => element.isSelected == true) &&
+            _list.any((element) => element.id != "-1")) {
+          for (var element in _list) {
+            if (element.id == "-1" && element.isSelected == true) {
+              setState(() {
+                element.isSelected = false;
+              });
+            }
+          }
+        }
       } else {
         setState(() {
           if (id == element.id && element.isSelected == false) {
+            if (_list.any((element) => element.isSelected == false) &&
+                _list.any((element) => element.id != "-1")) {
+              for (var element in _list) {
+                if (element.id == "-1" && element.isSelected == true) {
+                  setState(() {
+                    element.isSelected = false;
+                  });
+                }
+              }
+            }
             element.isSelected = true;
             for (var item in points) {
               if (item.principleName.toString() == name &&
                   element.isSelected == true) {
                 filter.add(item);
               } else if (element.id == "-1" && element.isSelected == true) {
-                for (var element in _list) {
-                  element.isSelected = true;
-                }
                 filter.add(item);
               }
               BlocProvider.of<MyChildrenBloc>(context)
@@ -128,9 +146,17 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             }
           } else if (id == element.id && element.isSelected == true) {
             element.isSelected = false;
-            for (var element in _list) {
-              if (element.id == "-1" && element.isSelected == true) {
-                element.isSelected = false;
+            if (_list.every((element) => element.isSelected == false) &&
+                _list.any((element) => element.id == "-1")) {
+              for (var element in _list) {
+                if (element.id == "-1" && element.isSelected == false) {
+                  setState(() {
+                    element.isSelected = true;
+                    for (var item in points) {
+                      filter.add(item);
+                    }
+                  });
+                }
               }
             }
             filter.removeWhere((element) => element.principleName == name);
