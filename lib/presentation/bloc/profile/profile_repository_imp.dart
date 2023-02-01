@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
+import 'package:schools/data/source/remote/model/change_photo/response/teacher_change_photo_response.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/profile_repository.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 
 class ProfileRepositoryImp extends BaseProfileRepository {
+
   @override
   Future<ProfileState> getTeacherInfo(String token) async {
     ProfileState? state;
@@ -34,6 +36,22 @@ class ProfileRepositoryImp extends BaseProfileRepository {
       }
     } catch (error) {
       state = GetFatherInfoFillState(error: fatherInfoResponse.errorMessage??"Error");
+    }
+    return state!;
+  }
+
+  @override
+  Future<ProfileState> teacherChangePhoto(String token, FormData formData) async{
+    ProfileState? state;
+    TeacherChangePhotoResponse teacherChangePhotoResponse = TeacherChangePhotoResponse();
+    try {
+      Response response = await DioHelper.teacherChangePhoto(token,formData);
+      teacherChangePhotoResponse = TeacherChangePhotoResponse.fromJson(response.data);
+      if (teacherChangePhotoResponse.data != null) {
+        return TeacherChangePhotoSuccessState(response: teacherChangePhotoResponse);
+      }
+    } catch (error) {
+      state = TeacherChangePhotoFillState(error: teacherChangePhotoResponse.errorMessage??"Error");
     }
     return state!;
   }

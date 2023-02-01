@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/change_photo/response/teacher_change_photo_response.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/profile_repository.dart';

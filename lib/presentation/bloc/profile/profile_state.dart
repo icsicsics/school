@@ -73,3 +73,12 @@ class GetLanguageSuccessState extends ProfileState {
   final String language;
   GetLanguageSuccessState({required this.language});
 }
+class TeacherChangePhotoSuccessState extends ProfileState {
+  final TeacherChangePhotoResponse response;
+  TeacherChangePhotoSuccessState({required this.response});
+}
+class TeacherChangePhotoFillState extends ProfileState {
+  final String error;
+  TeacherChangePhotoFillState({required this.error});
+}
+
