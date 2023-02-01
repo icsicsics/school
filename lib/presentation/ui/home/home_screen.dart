@@ -4,8 +4,6 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
-import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
-import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';

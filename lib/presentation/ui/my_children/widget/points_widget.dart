@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class PointsScreenWidget extends StatefulWidget {
-  const PointsScreenWidget({Key? key}) : super(key: key);
+  final TeacherStudentProfileInSchoolHouseResponse
+      teacherStudentProfileInSchoolHouseResponse;
+
+  const PointsScreenWidget(
+      {Key? key, required this.teacherStudentProfileInSchoolHouseResponse})
+      : super(key: key);
 
   @override
   State<PointsScreenWidget> createState() => _PointsScreenWidgetState();
@@ -19,11 +25,17 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
             padding: const EdgeInsets.only(top: 30, right: 25, left: 25),
             child: Row(
               children: [
-                cardItem(label: S.of(context).allPoints, points: "175"),
+                cardItem(
+                    label: S.of(context).allPoints,
+                    points: "${widget.teacherStudentProfileInSchoolHouseResponse
+                        .data!.allPointsCount!}"),
                 const Expanded(
                   child: SizedBox(),
                 ),
-                cardItem(label: S.of(context).thisWeek, points: "16"),
+                cardItem(
+                    label: S.of(context).thisWeek,
+                    points:"${ widget.teacherStudentProfileInSchoolHouseResponse
+                        .data!.thisWeekPointsCount!}"),
               ],
             )));
   }

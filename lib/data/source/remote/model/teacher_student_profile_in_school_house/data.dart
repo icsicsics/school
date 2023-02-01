@@ -4,6 +4,8 @@ import 'package:schools/data/source/remote/model/teacher_student_profile_in_scho
 class Data {
   String? studentId;
   String? studentName;
+  int? allPointsCount;
+  int? thisWeekPointsCount;
   GetImage? getImage;
   List<Points>? points;
 
@@ -12,11 +14,15 @@ class Data {
     this.studentName,
     this.getImage,
     this.points,
+    this.allPointsCount,
+    this.thisWeekPointsCount,
   });
 
   Data.fromJson(dynamic json) {
     studentId = json['studentId'];
     studentName = json['studentName'];
+    allPointsCount = json['allPointsCount'];
+    thisWeekPointsCount = json['thisWeekPointsCount'];
     getImage =
         json['data'] != null ? GetImage.fromJson(json['getImage']) : null;
 
@@ -32,6 +38,8 @@ class Data {
     final map = <String, dynamic>{};
     map['studentId'] = studentId;
     map['studentName'] = studentName;
+    map['allPointsCount'] = allPointsCount;
+    map['thisWeekPointsCount'] = thisWeekPointsCount;
     if (getImage != null) {
       map['getImage'] = getImage!.toJson();
     }

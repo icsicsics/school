@@ -123,9 +123,8 @@ class NotificationService {
     FirebaseMessaging.onMessage.listen((message) {
       _setNotificationMessage(message, false);
     });
-    FirebaseMessaging.onMessageOpenedApp.listen((message) async {
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       onNotificationClick.add(json.encode(message.data));
-
     });
     FirebaseMessaging.instance.getInitialMessage().then((message) {
       if (message != null) {

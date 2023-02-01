@@ -49,9 +49,7 @@ class _FatherChildrenListWidgetState extends State<FatherChildrenListWidget> {
                     widget.parentHomeResponse.data![index].studentId ?? ""),
             onTapChild: () =>
                 _onTapChild(widget.parentHomeResponse.data![index].studentId),
-            imageUrl: widget.parentHomeResponse.data![index].getImage != null
-                ? widget.parentHomeResponse.data![index].getImage!.mediaUrl!
-                : "",
+            imageUrl: widget.parentHomeResponse.data![index].getImage!.mediaUrl!,
           );
         });
   }

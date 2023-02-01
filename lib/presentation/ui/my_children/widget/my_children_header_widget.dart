@@ -42,7 +42,9 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                 height: 200,
                 color: ColorsManager.whiteColor,
               )),
-          const PointsScreenWidget(),
+          PointsScreenWidget(
+              teacherStudentProfileInSchoolHouseResponse:
+                  widget.teacherStudentProfileInSchoolHouseResponse),
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
