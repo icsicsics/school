@@ -1,8 +1,7 @@
-class GetLogo{
-String? id;
-String? caption;
-String? mediaUrl;
-
+class GetLogo {
+  String? id;
+  String? caption;
+  String? mediaUrl;
   GetLogo({
       this.id, 
       this.caption, 
@@ -13,6 +12,7 @@ String? mediaUrl;
     caption = json['caption'];
     mediaUrl = json['mediaUrl'];
   }
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

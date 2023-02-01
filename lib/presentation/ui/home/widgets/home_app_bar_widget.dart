@@ -60,7 +60,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                           ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
                           : S.of(context).welcome
                       : widget.teacherHomeResponse.data != null
-                          ? widget.teacherHomeResponse.data![0].schoolName
+                          ? widget.teacherHomeResponse.data!.schoolName
                           : "",
                   fontSize: 18,
                   color: ColorsManager.whiteColor),

@@ -28,7 +28,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
             physics: const BouncingScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, mainAxisSpacing: 5, mainAxisExtent: 200),
-            itemCount: widget.teacherHomeResponse.data!.length,
+            itemCount: widget.teacherHomeResponse.data!.teacherHomePage!.length,
             padding: const EdgeInsets.all(5),
             shrinkWrap: true,
             semanticChildCount: 10,
@@ -43,15 +43,15 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                             builder: (_) => SchoolHousesScreen(
                                   token: widget.token,
                                   classRoomId: widget.teacherHomeResponse
-                                      .data![index].classroomToSectionId!,
+                                      .data!.teacherHomePage![index].classroomToSectionId!,
                                   language: widget.language,
                                 )));
                   },
                   child: CardWidget(
                     section:
-                        widget.teacherHomeResponse.data![index].classroomName!,
-                    imagePath: widget.teacherHomeResponse.data![index].getLogo!.mediaUrl.toString(),
-                    grade: widget.teacherHomeResponse.data![index].sectionName!,
+                        widget.teacherHomeResponse.data!.teacherHomePage![index].classroomName!,
+                    imagePath: widget.teacherHomeResponse.data!.teacherHomePage![index].getLogo!.mediaUrl.toString(),
+                    grade: widget.teacherHomeResponse.data!.teacherHomePage![index].sectionName!,
                   ),
                 ),
               );

@@ -1,9 +1,9 @@
 import 'data.dart';
 
 class GetTeacherHomeResponse {
-  int ?errorCode;
+  int? errorCode;
   String? errorMessage;
-  List<Data> ?data;
+  Data ?data;
   GetTeacherHomeResponse({
       this.errorCode, 
       this.errorMessage, 
@@ -12,12 +12,7 @@ class GetTeacherHomeResponse {
   GetTeacherHomeResponse.fromJson(dynamic json) {
     errorCode = json['errorCode'];
     errorMessage = json['errorMessage'];
-    if (json['data'] != null) {
-      data = [];
-      json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
-      });
-    }
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
 
@@ -26,7 +21,7 @@ class GetTeacherHomeResponse {
     map['errorCode'] = errorCode;
     map['errorMessage'] = errorMessage;
     if (data != null) {
-      map['data'] = data!.map((v) => v.toJson()).toList();
+      map['data'] = data!.toJson();
     }
     return map;
   }
