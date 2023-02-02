@@ -130,33 +130,11 @@ class ProfileHeaderWidget extends StatelessWidget {
             fit: BoxFit.cover, height: double.infinity),
       );
 
+
   Widget image(images) {
     return CircleAvatar(
-      child: Image.network(
-        images ?? "",
-        fit: BoxFit.fill,
-        height: double.infinity,
-        loadingBuilder: (BuildContext context, Widget child,
-            ImageChunkEvent? loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Center(
-            child: CircularProgressIndicator(
-              color: ColorsManager.primaryColor,
-              value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
-                  : null,
-            ),
-          );
-        },
-        errorBuilder: (context, error, stackTrace) => SizedBox(
-          width: 150,
-          height: 150,
-          child: CircleAvatar(
-            child: SvgPicture.asset(ImagesPath.avatar,
-                fit: BoxFit.fill, height: double.infinity),
-          ),
-        ),
+      backgroundImage: NetworkImage(
+        images,
       ),
     );
   }

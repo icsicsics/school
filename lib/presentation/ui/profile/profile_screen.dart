@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,6 +28,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
   FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
   String language = '';
+  String _token = '';
 
   @override
   void initState() {
@@ -48,13 +50,16 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is OpenCameraGalleryBottomSheetState) {
           openCameraGalleryBottomSheet(context);
         } else if (state is SuccessSelectImageState) {
-          _uploadProfileImage(image: state.image);
+          _bloc.add(UploadImageEvent(
+              formData: _onSelectImageSuccess(state.image), token: _token));
+          _onSelectImageSuccess(state.image);
         } else if (state is SuccessUploadProfileImageState) {
           hideLoading();
           _getProfileImage();
         } else if (state is SuccessGetProfileImageState) {
           _profileImage = state.image;
         } else if (state is GetTokenState) {
+          _token = state.token;
           if (_isFather) {
             _bloc.add(GetFatherInfoEvent(token: state.token));
           } else {
@@ -63,6 +68,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is GetTeacherInfoSuccessState) {
           _teacherInfoResponse = state.response;
           hideLoading();
+          _bloc.add(UploadProfileImageEvent(image: state.response.data!.getImage!.mediaUrl!));
         } else if (state is GetTeacherInfoFillState) {
           hideLoading();
           _onGetTeacherInfoFallState(state.error);
@@ -74,7 +80,9 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           _onGetFatherInfoFallState(state.error);
         } else if (state is GetLanguageSuccessState) {
           language = state.language;
-        }
+        } else if (state is TeacherChangePhotoSuccessState) {
+          // _uploadProfileImage(image: state.image);
+        } else if (state is TeacherChangePhotoFillState) {}
       },
       builder: (context, state) {
         return Scaffold(
@@ -95,9 +103,6 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
     );
   }
 
-  void _uploadProfileImage({required XFile image}) {
-    _bloc.add(UploadProfileImageEvent(image: image));
-  }
 
   void _getProfileImage() {
     _bloc.add(GetProfileImageEvent());
@@ -177,4 +182,11 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   void _onGetFatherInfoFallState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
+
+  FormData _onSelectImageSuccess(XFile image) {
+    FormData formData = FormData();
+    formData.files.add(MapEntry('file',
+        MultipartFile.fromString("png&${image.path}", filename: image.name)));
+    return formData;
+  }
 }

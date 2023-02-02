@@ -29,7 +29,7 @@ class SelectProfileImageEvent extends ProfileEvent {
 }
 
 class UploadProfileImageEvent extends ProfileEvent {
-  final XFile image;
+  final String image;
 
   UploadProfileImageEvent({required this.image});
 }
@@ -37,4 +37,11 @@ class UploadProfileImageEvent extends ProfileEvent {
 class GetProfileImageEvent extends ProfileEvent {}
 
 class GetTokenEvent extends ProfileEvent {}
+
 class GetLanguageEvent extends ProfileEvent {}
+
+class UploadImageEvent extends ProfileEvent {
+  final FormData formData;
+  final String token;
+  UploadImageEvent({required this.formData,required this.token});
+}

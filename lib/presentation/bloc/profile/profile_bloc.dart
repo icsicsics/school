@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
@@ -28,12 +29,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetTokenUseCase _getTokenUseCase;
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
 
-
   ProfileBloc(
       this._profileImageUseCase,
       this._setImageProfileInSharedPreferencesUseCase,
       this._getImageProfileFromSharedPreferencesUseCase,
-      this._getTokenUseCase,this._getLanguageCodeUseCase)
+      this._getTokenUseCase,
+      this._getLanguageCodeUseCase)
       : super(ProfileInitialState()) {
     on<GetProfileEvent>(_onGetProfileEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
@@ -46,6 +47,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
+    on<UploadImageEvent>(_onUploadImageEvent);
   }
 
   FutureOr<void> _onGetProfileEvent(
@@ -81,7 +83,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       UploadProfileImageEvent event, Emitter<ProfileState> emit) async {
     emit(GetProfileLoadingState());
     await _setImageProfileInSharedPreferencesUseCase(
-        profileImage: event.image.path);
+        profileImage: event.image);
     emit(SuccessUploadProfileImageState());
   }
 
@@ -108,19 +110,33 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  FutureOr<void> _onGetFatherInfoEvent(GetFatherInfoEvent event, Emitter<ProfileState> emit) async{
+  FutureOr<void> _onGetFatherInfoEvent(
+      GetFatherInfoEvent event, Emitter<ProfileState> emit) async {
     emit(GetProfileLoadingState());
     ProfileState state =
-    (await _repository.getFatherInfo(event.token)) as ProfileState;
+        (await _repository.getFatherInfo(event.token)) as ProfileState;
     if (state is GetFatherInfoSuccessState) {
-    emit(GetFatherInfoSuccessState(response: state.response));
+      emit(GetFatherInfoSuccessState(response: state.response));
     } else if (state is GetFatherInfoFillState) {
-    emit(GetFatherInfoFillState(error: state.error));
+      emit(GetFatherInfoFillState(error: state.error));
     }
   }
+
   FutureOr<void> _onGetLanguageEvent(
       GetLanguageEvent event, Emitter<ProfileState> emit) async {
     emit(GetLanguageSuccessState(
         language: await _getLanguageCodeUseCase() ?? ''));
+  }
+
+  FutureOr<void> _onUploadImageEvent(
+      UploadImageEvent event, Emitter<ProfileState> emit) async {
+    emit(GetProfileLoadingState());
+    ProfileState state = (await _repository.teacherChangePhoto(
+        event.token, event.formData)) as ProfileState;
+    if (state is TeacherChangePhotoSuccessState) {
+      emit(TeacherChangePhotoSuccessState(response: state.response));
+    } else if (state is TeacherChangePhotoFillState) {
+      emit(TeacherChangePhotoFillState(error: state.error));
+    }
   }
 }
