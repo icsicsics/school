@@ -10,6 +10,7 @@ import 'package:schools/presentation/bloc/side_menu/side_menu_repository_imp.dar
 import 'package:schools/use_case/get_language_use_case.dart';
 import 'package:schools/use_case/get_profile_image_from_shared_preferences_user_case.dart';
 import 'package:schools/use_case/get_profile_image_use_case.dart';
+import 'package:schools/use_case/set_profile_image_in_shared_preferences_user_case.dart';
 
 part 'side_menu_event.dart';
 
@@ -18,12 +19,14 @@ part 'side_menu_state.dart';
 class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   final BaseSideMenuRepository _repository = SideMenuRepositoryImp();
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
+  final SetImageProfileInSharedPreferencesUseCase
+  _setImageProfileInSharedPreferencesUseCase;
    TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
    FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
    String profileImage ='';
   final GetImageProfileFromSharedPreferencesUseCase
   _getImageProfileFromSharedPreferencesUseCase;
-  SideMenuBloc(this._getLanguageCodeUseCase,this._getImageProfileFromSharedPreferencesUseCase) : super(SideMenuInitialState()) {
+  SideMenuBloc(this._getLanguageCodeUseCase,this._getImageProfileFromSharedPreferencesUseCase,this._setImageProfileInSharedPreferencesUseCase) : super(SideMenuInitialState()) {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);
     on<SideMenuHomeEvent>(_onSideMenuHomeEvent);
     on<SideMenuUserProfileEvent>(_onSideMenuUserProfileEvent);
@@ -35,7 +38,8 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<LogoutEvent>(_onLogoutEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
-    on<GetProfileImageEvent>(_onGetProfileImageEvent);
+    on<GetProfileImageFromShearedPrefranceEvent>(_onGetProfileImageEvent);
+    on<SetProfileImageInShearedPrefranceEvent>(_onSetProfileImageInShearedPrefranceEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -118,9 +122,16 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   }
 
   Future<void> _onGetProfileImageEvent(
-      GetProfileImageEvent event, Emitter<SideMenuState> emit) async {
+      GetProfileImageFromShearedPrefranceEvent event, Emitter<SideMenuState> emit) async {
+    emit(GetSideMenuLoadingState());
     String? image = await _getImageProfileFromSharedPreferencesUseCase();
     profileImage= image!;
-    emit(SuccessGetProfileImageState(image: image ?? ""));
+    emit(GetProfileImageFromShearedPrefranceSuccessState(image: image));
+  }
+  Future<void> _onSetProfileImageInShearedPrefranceEvent(
+      SetProfileImageInShearedPrefranceEvent event, Emitter<SideMenuState> emit) async {
+    await _setImageProfileInSharedPreferencesUseCase(
+        profileImage: event.image);
+    emit(SetProfileImageInShearedPrefranceSuccessState());
   }
 }

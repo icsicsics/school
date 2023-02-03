@@ -36,7 +36,9 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   @override
   void initState() {
     _bloc.add(GetIsFatherEvent());
-    _bloc.add(GetProfileImageEvent());
+    if(_bloc.teacherInfoResponse.data!=null||_bloc.fatherInfoResponse.data!=null){
+      _bloc.add(GetProfileImageFromShearedPrefranceEvent());
+    }
     super.initState();
   }
 
@@ -77,14 +79,17 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                           showLogoutFunction(
                               context: context, yesAction: () => _logout());
                         } else if (state is GetTeacherInfoSuccessState) {
-                          Navigator.pop(context);
-                          _bloc.add(GetProfileImageEvent());
+                          _bloc.add(SetProfileImageInShearedPrefranceEvent(
+                              image: state.response.data!.getImage!.mediaUrl
+                                  .toString()));
                         } else if (state is GetTeacherInfoFillState) {
                           _onGetTeacherInfoFillState(state.error);
                           Navigator.pop(context);
                         } else if (state is GetFatherInfoSuccessState) {
-                          Navigator.pop(context);
-                          _bloc.add(GetProfileImageEvent());
+                          //todo add father image;
+                          _bloc.add(SetProfileImageInShearedPrefranceEvent(
+                              image:
+                                  state.response.data!.phoneNumber.toString()));
                         } else if (state is GetFatherInfoFillState) {
                           _onGetFatherInfoFillState(state.error);
                           Navigator.pop(context);
@@ -94,8 +99,13 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                               builder: (_) => const Center(
                                     child: CircularProgressIndicator(),
                                   ));
-                        } else if (state is SuccessGetProfileImageState) {
-
+                        } else if (state
+                            is GetProfileImageFromShearedPrefranceSuccessState) {
+                          Navigator.pop(context);
+                        } else if (state
+                            is SetProfileImageInShearedPrefranceSuccessState) {
+                          Navigator.pop(context);
+                          _bloc.add(GetProfileImageFromShearedPrefranceEvent());
                         }
                       },
                       builder: (context, state) {

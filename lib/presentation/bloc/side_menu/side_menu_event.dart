@@ -35,4 +35,10 @@ class GetFatherInfoEvent extends SideMenuEvent {
   GetFatherInfoEvent({required this.token});
 }
 
-class GetProfileImageEvent extends SideMenuEvent {}
+class GetProfileImageFromShearedPrefranceEvent extends SideMenuEvent {}
+
+class SetProfileImageInShearedPrefranceEvent extends SideMenuEvent {
+  final String image;
+
+  SetProfileImageInShearedPrefranceEvent({required this.image});
+}

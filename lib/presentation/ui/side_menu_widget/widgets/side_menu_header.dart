@@ -98,10 +98,10 @@ class SideMenuHeader extends StatelessWidget {
   Widget profileImageWidget() {
     return bloc.profileImage.isNotEmpty
         ? ClipOval(
-            child: Image.file(
+            child: Image.network(
+              bloc.profileImage,
               height: 110,
               width: 110,
-              File(bloc.profileImage),
               fit: BoxFit.fill,
               errorBuilder: (context, error, stackTrace) =>
                   _buildProfilePlaceHolder(),
