@@ -105,8 +105,8 @@ class ProfileHeaderWidget extends StatelessWidget {
   Widget profileImageWidget() {
     return profileImage.isNotEmpty
         ? ClipOval(
-            child: Image.file(
-              File(profileImage),
+            child: Image.network(
+              profileImage,
               fit: BoxFit.fill,
               errorBuilder: (context, error, stackTrace) =>
                   _buildProfilePlaceHolder(),

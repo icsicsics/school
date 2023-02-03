@@ -11,6 +11,7 @@ import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SideMenuScreen extends StatefulWidget {
   final bool isComFromHome;
@@ -86,10 +87,11 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                           _onGetTeacherInfoFillState(state.error);
                           Navigator.pop(context);
                         } else if (state is GetFatherInfoSuccessState) {
+                          Navigator.pop(context);
                           //todo add father image;
-                          _bloc.add(SetProfileImageInShearedPrefranceEvent(
-                              image:
-                                  state.response.data!.phoneNumber.toString()));
+                          // _bloc.add(SetProfileImageInShearedPrefranceEvent(
+                          //     image:
+                          //         state.response.data!.phoneNumber.toString()));
                         } else if (state is GetFatherInfoFillState) {
                           _onGetFatherInfoFillState(state.error);
                           Navigator.pop(context);

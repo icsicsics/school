@@ -96,7 +96,8 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   }
 
   void _onSuccessSelectImage({required XFile image}) {
-    _bloc.add(SetProfileImageInShearedPrefranceEvent(image: image.path));
+    Navigator.pop(context);
+    // _bloc.add(SetProfileImageInShearedPrefranceEvent(image: image.path));
   }
 
   void _getProfileImage() {
