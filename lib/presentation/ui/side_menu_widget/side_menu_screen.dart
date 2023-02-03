@@ -11,7 +11,6 @@ import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SideMenuScreen extends StatefulWidget {
   final bool isComFromHome;
@@ -142,16 +141,14 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   void _onSideMenuAboutAppState(context) {}
 
   void _switchAccount(context) {
+    _bloc.fatherInfoResponse = FatherInfoResponse();
+    _bloc.teacherInfoResponse = TeacherInfoResponse();
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
             builder: (_) =>
                 LoginScreen(isFather: _isFather == true ? false : true)),
         (route) => false).then((value) {
-      setState(() {
-        _bloc.fatherInfoResponse = FatherInfoResponse();
-        _bloc.teacherInfoResponse = TeacherInfoResponse();
-      });
       if (_isFather) {
         _bloc.add(GetFatherInfoEvent(token: widget.token));
       } else {
@@ -161,6 +158,8 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   }
 
   void _logout() {
+    _bloc.fatherInfoResponse = FatherInfoResponse();
+    _bloc.teacherInfoResponse = TeacherInfoResponse();
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
