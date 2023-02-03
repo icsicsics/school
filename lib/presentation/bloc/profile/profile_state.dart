@@ -20,8 +20,6 @@ class GetTeacherInfoFillState extends ProfileState {
 
 class NavigateToNotificationScreenState extends ProfileState {}
 
-class GetProfileErrorState extends ProfileState {}
-
 class GetIsFatherState extends ProfileState {
   final bool isFather;
 
@@ -38,13 +36,12 @@ class SuccessSelectImageState extends ProfileState {
   SuccessSelectImageState({required this.image});
 }
 
-class SuccessGetProfileImageState extends ProfileState {
+class GetProfileImageFromShearedPrefranceSuccessState extends ProfileState {
   final String image;
-
-  SuccessGetProfileImageState({required this.image});
+  GetProfileImageFromShearedPrefranceSuccessState({required this.image});
 }
 
-class SuccessUploadProfileImageState extends ProfileState {}
+class SetProfileImageInShearedPrefranceSuccessState extends ProfileState {}
 
 class FailedUploadProfileImageState extends ProfileState {
   final String errorMessage;

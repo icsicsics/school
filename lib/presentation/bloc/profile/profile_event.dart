@@ -28,13 +28,13 @@ class SelectProfileImageEvent extends ProfileEvent {
   SelectProfileImageEvent({this.source});
 }
 
-class UploadProfileImageEvent extends ProfileEvent {
+class SetProfileImageInShearedPrefranceEvent extends ProfileEvent {
   final String image;
 
-  UploadProfileImageEvent({required this.image});
+  SetProfileImageInShearedPrefranceEvent({required this.image});
 }
 
-class GetProfileImageEvent extends ProfileEvent {}
+class GetProfileImageFromShearedPrefranceEvent extends ProfileEvent {}
 
 class GetTokenEvent extends ProfileEvent {}
 

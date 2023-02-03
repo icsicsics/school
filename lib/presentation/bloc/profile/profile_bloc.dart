@@ -41,8 +41,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
     on<OpenCameraGalleryBottomSheetEvent>(_onOpenCameraGalleryBottomSheetEvent);
     on<SelectProfileImageEvent>(_onSelectProfileImageEvent);
-    on<UploadProfileImageEvent>(_onUploadProfileImageEvent);
-    on<GetProfileImageEvent>(_onGetProfileImageEvent);
+    on<SetProfileImageInShearedPrefranceEvent>(_onSetProfileImageInShearedPrefranceEvent);
+    on<GetProfileImageFromShearedPrefranceEvent>(_onGetProfileImageFromShearedPrefranceEvent);
     on<GetTokenEvent>(_onGetTokenEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
@@ -79,18 +79,18 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  Future<void> _onUploadProfileImageEvent(
-      UploadProfileImageEvent event, Emitter<ProfileState> emit) async {
+  Future<void> _onSetProfileImageInShearedPrefranceEvent(
+      SetProfileImageInShearedPrefranceEvent event, Emitter<ProfileState> emit) async {
     emit(GetProfileLoadingState());
     await _setImageProfileInSharedPreferencesUseCase(
         profileImage: event.image);
-    emit(SuccessUploadProfileImageState());
+    emit(SetProfileImageInShearedPrefranceSuccessState());
   }
 
-  Future<void> _onGetProfileImageEvent(
-      GetProfileImageEvent event, Emitter<ProfileState> emit) async {
+  Future<void> _onGetProfileImageFromShearedPrefranceEvent(
+      GetProfileImageFromShearedPrefranceEvent event, Emitter<ProfileState> emit) async {
     String? image = await _getImageProfileFromSharedPreferencesUseCase();
-    emit(SuccessGetProfileImageState(image: image ?? ""));
+    emit(GetProfileImageFromShearedPrefranceSuccessState(image: image ?? ""));
   }
 
   FutureOr<void> _onGetTokenEvent(

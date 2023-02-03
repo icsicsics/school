@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,7 +27,6 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
   FatherInfoResponse _fatherInfoResponse = FatherInfoResponse();
   String language = '';
-  String _token = '';
 
   @override
   void initState() {
@@ -50,16 +48,13 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is OpenCameraGalleryBottomSheetState) {
           openCameraGalleryBottomSheet(context);
         } else if (state is SuccessSelectImageState) {
-          _bloc.add(UploadImageEvent(
-              formData: _onSelectImageSuccess(state.image), token: _token));
-          _onSelectImageSuccess(state.image);
-        } else if (state is SuccessUploadProfileImageState) {
+          _onSuccessSelectImage(image: state.image);
+        } else if (state is SetProfileImageInShearedPrefranceSuccessState) {
           hideLoading();
           _getProfileImage();
-        } else if (state is SuccessGetProfileImageState) {
+        } else if (state is GetProfileImageFromShearedPrefranceSuccessState) {
           _profileImage = state.image;
         } else if (state is GetTokenState) {
-          _token = state.token;
           if (_isFather) {
             _bloc.add(GetFatherInfoEvent(token: state.token));
           } else {
@@ -68,7 +63,6 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is GetTeacherInfoSuccessState) {
           _teacherInfoResponse = state.response;
           hideLoading();
-          _bloc.add(UploadProfileImageEvent(image: state.response.data!.getImage!.mediaUrl!));
         } else if (state is GetTeacherInfoFillState) {
           hideLoading();
           _onGetTeacherInfoFallState(state.error);
@@ -80,9 +74,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           _onGetFatherInfoFallState(state.error);
         } else if (state is GetLanguageSuccessState) {
           language = state.language;
-        } else if (state is TeacherChangePhotoSuccessState) {
-          // _uploadProfileImage(image: state.image);
-        } else if (state is TeacherChangePhotoFillState) {}
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -96,83 +88,86 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
               profileImage: _profileImage,
               language: language,
               classroomSectionStudentsId:
-                  "f2894667-39a5-42b6-c7df-08dafd8025b3",
+              "f2894667-39a5-42b6-c7df-08dafd8025b3",
               classroomId: "79a93948-fb97-4de3-9166-08dafa1996ad",
             ));
       },
     );
   }
 
+  void _onSuccessSelectImage({required XFile image}) {
+    _bloc.add(SetProfileImageInShearedPrefranceEvent(image: image.path));
+  }
 
   void _getProfileImage() {
-    _bloc.add(GetProfileImageEvent());
+    _bloc.add(GetProfileImageFromShearedPrefranceEvent());
     Navigator.pop(context);
   }
 
   PreferredSizeWidget _appBar() => AppBar(
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios,
-              color: ColorsManager.secondaryColor, size: 25),
-        ),
-        centerTitle: false,
-        actions: [
-          InkWell(
-            onTap: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            child: SizedBox(
-                width: 50,
-                height: 50,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Visibility(
-                        visible: _isFather == false,
-                        child: const Icon(
-                          Icons.mail,
-                          color: ColorsManager.secondaryColor,
-                          size: 25,
-                        ),
-                      ),
+    elevation: 0,
+    leading: IconButton(
+      onPressed: () => Navigator.pop(context),
+      icon: const Icon(Icons.arrow_back_ios,
+          color: ColorsManager.secondaryColor, size: 25),
+    ),
+    centerTitle: false,
+    actions: [
+      InkWell(
+        onTap: () => _bloc.add(NavigateToNotificationScreenEvent()),
+        child: SizedBox(
+            width: 50,
+            height: 50,
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Visibility(
+                    visible: _isFather == false,
+                    child: const Icon(
+                      Icons.mail,
+                      color: ColorsManager.secondaryColor,
+                      size: 25,
                     ),
-                    Align(
-                        alignment: Alignment.center,
-                        child: Visibility(
-                          visible: _isFather,
-                          child: const Icon(
-                            Icons.mail,
-                            color: ColorsManager.secondaryColor,
-                            size: 25,
-                          ),
-                        )),
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: Visibility(
-                          visible: _isFather,
-                          child: const Icon(
-                            Icons.notifications,
-                            color: ColorsManager.yellow,
-                            size: 24,
-                          ),
-                        )),
-                  ],
-                )),
-          ),
-        ],
-        title: BoldTextWidget(
-            color: ColorsManager.secondaryColor,
-            fontSize: 20,
-            text: S.of(context).myProfile),
-      );
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.center,
+                    child: Visibility(
+                      visible: _isFather,
+                      child: const Icon(
+                        Icons.mail,
+                        color: ColorsManager.secondaryColor,
+                        size: 25,
+                      ),
+                    )),
+                Align(
+                    alignment: Alignment.centerRight,
+                    child: Visibility(
+                      visible: _isFather,
+                      child: const Icon(
+                        Icons.notifications,
+                        color: ColorsManager.yellow,
+                        size: 24,
+                      ),
+                    )),
+              ],
+            )),
+      ),
+    ],
+    title: BoldTextWidget(
+        color: ColorsManager.secondaryColor,
+        fontSize: 20,
+        text: S.of(context).myProfile),
+  );
 
   void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-      (route) => false);
+          (route) => false);
 
   void _invokeInit() {
-    _bloc.add(GetProfileImageEvent());
+    _bloc.add(GetProfileImageFromShearedPrefranceEvent());
     _bloc.add(GetIsFatherEvent());
     _bloc.add(GetTokenEvent());
   }
@@ -182,11 +177,4 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   void _onGetFatherInfoFallState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
-
-  FormData _onSelectImageSuccess(XFile image) {
-    FormData formData = FormData();
-    formData.files.add(MapEntry('file',
-        MultipartFile.fromString("png&${image.path}", filename: image.name)));
-    return formData;
-  }
 }
