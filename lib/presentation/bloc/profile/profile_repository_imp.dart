@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/change_photo/response/teacher_change_photo_response.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
@@ -7,7 +8,6 @@ import 'package:schools/data/source/remote/repository/profile_repository.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 
 class ProfileRepositoryImp extends BaseProfileRepository {
-
   @override
   Future<ProfileState> getTeacherInfo(String token) async {
     ProfileState? state;
@@ -19,7 +19,8 @@ class ProfileRepositoryImp extends BaseProfileRepository {
         return GetTeacherInfoSuccessState(response: teacherInfoResponse);
       }
     } catch (error) {
-      state = GetTeacherInfoFillState(error: teacherInfoResponse.errorMessage??"Error");
+      state = GetTeacherInfoFillState(
+          error: teacherInfoResponse.errorMessage ?? "Error");
     }
     return state!;
   }
@@ -35,24 +36,37 @@ class ProfileRepositoryImp extends BaseProfileRepository {
         return GetFatherInfoSuccessState(response: fatherInfoResponse);
       }
     } catch (error) {
-      state = GetFatherInfoFillState(error: fatherInfoResponse.errorMessage??"Error");
+      state = GetFatherInfoFillState(
+          error: fatherInfoResponse.errorMessage ?? "Error");
     }
     return state!;
   }
 
   @override
-  Future<ProfileState> teacherChangePhoto(String token, FormData formData) async{
+  Future<ProfileState> teacherChangePhoto(String token, XFile xFile) async {
     ProfileState? state;
-    TeacherChangePhotoResponse teacherChangePhotoResponse = TeacherChangePhotoResponse();
+    TeacherChangePhotoResponse teacherChangePhotoResponse =
+        TeacherChangePhotoResponse();
     try {
-      Response response = await DioHelper.teacherChangePhoto(token,formData);
-      teacherChangePhotoResponse = TeacherChangePhotoResponse.fromJson(response.data);
+      Response response =
+          await DioHelper.teacherChangePhoto(token, _convertFormData(xFile));
+      teacherChangePhotoResponse =
+          TeacherChangePhotoResponse.fromJson(response.data);
       if (teacherChangePhotoResponse.data != null) {
-        return TeacherChangePhotoSuccessState(response: teacherChangePhotoResponse);
+        return TeacherChangePhotoSuccessState(
+            response: teacherChangePhotoResponse);
       }
     } catch (error) {
-      state = TeacherChangePhotoFillState(error: teacherChangePhotoResponse.errorMessage??"Error");
+      state = TeacherChangePhotoFillState(
+          error: teacherChangePhotoResponse.errorMessage ?? "Error");
     }
     return state!;
+  }
+
+  _convertFormData(XFile xFile) {
+    FormData formData = FormData();
+    formData.files.add(MapEntry(
+        'file', MultipartFile.fromString(xFile.path, filename: xFile.name)));
+    return formData;
   }
 }

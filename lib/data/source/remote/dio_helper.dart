@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:schools/core/utils/network/interceptor.dart';
 import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
@@ -134,6 +135,7 @@ class DioHelper {
           },
         ));
   }
+
   static Future<Response> postFatherCreatePoint(
       token, FatherAddPointRequest request) async {
     return dio.post(ApiKey.postFatherCreatePoint,
@@ -146,15 +148,15 @@ class DioHelper {
           },
         ));
   }
-  static Future<Response> teacherChangePhoto(token,FormData formData) async {
-    return dio.post(
-        ApiKey.teacherChangePhoto,
+
+  static Future<Response> teacherChangePhoto(token, FormData formData) async {
+    return dio.post(ApiKey.teacherChangePhoto,
         data: formData,
         options: Options(
           headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer $token',
+            "accept": "text/plain",
+            "Content-Type": "multipart/form-data",
+            "Authorization": "Bearer $token",
           },
         ));
   }

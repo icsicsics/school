@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -131,8 +130,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   FutureOr<void> _onUploadImageEvent(
       UploadImageEvent event, Emitter<ProfileState> emit) async {
     emit(GetProfileLoadingState());
-    ProfileState state = (await _repository.teacherChangePhoto(
-        event.token, event.formData)) as ProfileState;
+    ProfileState state = (await _repository.teacherChangePhoto(event.token, event.xFile)) as ProfileState;
     if (state is TeacherChangePhotoSuccessState) {
       emit(TeacherChangePhotoSuccessState(response: state.response));
     } else if (state is TeacherChangePhotoFillState) {

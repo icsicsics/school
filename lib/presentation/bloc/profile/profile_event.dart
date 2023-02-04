@@ -41,7 +41,7 @@ class GetTokenEvent extends ProfileEvent {}
 class GetLanguageEvent extends ProfileEvent {}
 
 class UploadImageEvent extends ProfileEvent {
-  final FormData formData;
+  final XFile xFile;
   final String token;
-  UploadImageEvent({required this.formData,required this.token});
+  UploadImageEvent({required this.xFile,required this.token});
 }
