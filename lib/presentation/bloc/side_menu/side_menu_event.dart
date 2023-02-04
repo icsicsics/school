@@ -9,10 +9,6 @@ class SideMenuHomeEvent extends SideMenuEvent {}
 
 class SideMenuUserProfileEvent extends SideMenuEvent {}
 
-class SideMenuContactUsEvent extends SideMenuEvent {}
-
-class SideMenuAboutAppEvent extends SideMenuEvent {}
-
 class GetIsFatherEvent extends SideMenuEvent {}
 
 class SwitchAccountEvent extends SideMenuEvent {}
@@ -41,4 +37,15 @@ class SetProfileImageInShearedPrefranceEvent extends SideMenuEvent {
   final String image;
 
   SetProfileImageInShearedPrefranceEvent({required this.image});
+}
+class OpenWebViewEvent extends SideMenuEvent {
+  final String webViewContent;
+  final String screenTitle;
+  final bool isUrlContent;
+
+  OpenWebViewEvent({
+    required this.webViewContent,
+    required this.screenTitle,
+    required this.isUrlContent,
+  });
 }

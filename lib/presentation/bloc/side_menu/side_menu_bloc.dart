@@ -6,6 +6,7 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/side_menu_repository.dart';
+import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_repository_imp.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
 import 'package:schools/use_case/get_profile_image_from_shared_preferences_user_case.dart';
@@ -29,16 +30,15 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);
     on<SideMenuHomeEvent>(_onSideMenuHomeEvent);
     on<SideMenuUserProfileEvent>(_onSideMenuUserProfileEvent);
-    on<SideMenuContactUsEvent>(_onSideMenuContactUsEvent);
     on<SwitchAccountEvent>(_onSwitchAccountEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
-    on<SideMenuAboutAppEvent>(_onSideMenuAboutAppEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
     on<LogoutEvent>(_onLogoutEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
     on<GetProfileImageFromShearedPrefranceEvent>(_onGetProfileImageEvent);
     on<SetProfileImageInShearedPrefranceEvent>(_onSetProfileImageInShearedPrefranceEvent);
+    on<OpenWebViewEvent>(_onOpenWebViewEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -52,16 +52,6 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   FutureOr<void> _onSideMenuUserProfileEvent(
       SideMenuUserProfileEvent event, Emitter<SideMenuState> emit) {
     emit(SideMenuUserProfileState());
-  }
-
-  FutureOr<void> _onSideMenuContactUsEvent(
-      SideMenuContactUsEvent event, Emitter<SideMenuState> emit) {
-    emit(SideMenuContactUsState());
-  }
-
-  FutureOr<void> _onSideMenuAboutAppEvent(
-      SideMenuAboutAppEvent event, Emitter<SideMenuState> emit) {
-    emit(SideMenuAboutAppState());
   }
 
   FutureOr<void> _onSwitchAccountEvent(
@@ -132,5 +122,16 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     await _setImageProfileInSharedPreferencesUseCase(
         profileImage: event.image);
     emit(SetProfileImageInShearedPrefranceSuccessState());
+  }
+
+  FutureOr<void> _onOpenWebViewEvent(
+      OpenWebViewEvent event, Emitter<SideMenuState> emit) {
+    emit(
+      OpenWebViewState(
+        webViewContent: event.webViewContent,
+        isUrlContent: event.isUrlContent,
+        screenTitle: event.screenTitle,
+      ),
+    );
   }
 }

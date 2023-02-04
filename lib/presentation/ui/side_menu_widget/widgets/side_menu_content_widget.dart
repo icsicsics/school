@@ -77,14 +77,20 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                               icon: Icons.mail,
                               title: S.of(context).contactUs,
                               onTap: () =>
-                                  BlocProvider.of<SideMenuBloc>(context)
-                                      .add(SideMenuContactUsEvent())),
+                                  BlocProvider.of<SideMenuBloc>(context).add(
+                                      OpenWebViewEvent(
+                                          webViewContent: "",
+                                          screenTitle: S.of(context).contactUs,
+                                          isUrlContent: false))),
                           SideMenuItem(
                             icon: Icons.info_outline,
                             title: S.of(context).aboutApp,
                             onTap: () =>
                                 BlocProvider.of<SideMenuBloc>(context).add(
-                              SideMenuAboutAppEvent(),
+                              OpenWebViewEvent(
+                                  webViewContent: "",
+                                  screenTitle: S.of(context).aboutApp,
+                                  isUrlContent: false),
                             ),
                           ),
                           SideMenuItem(

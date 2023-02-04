@@ -75,3 +75,14 @@ class GetProfileImageFromShearedPrefranceSuccessState extends SideMenuState {
   GetProfileImageFromShearedPrefranceSuccessState({required this.image});
 }
 class SetProfileImageInShearedPrefranceSuccessState extends SideMenuState {}
+class OpenWebViewState extends SideMenuState {
+  final String webViewContent;
+  final String screenTitle;
+  final bool isUrlContent;
+
+   OpenWebViewState({
+    required this.webViewContent,
+    required this.screenTitle,
+    required this.isUrlContent,
+  });
+}

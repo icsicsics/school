@@ -11,6 +11,7 @@ import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/profile/profile_screen.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/side_menu_content_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/widgets/curve.dart';
+import 'package:schools/presentation/ui/web_view/web_view_screen.dart';
 
 class SideMenuScreen extends StatefulWidget {
   final bool isComFromHome;
@@ -36,7 +37,8 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   @override
   void initState() {
     _bloc.add(GetIsFatherEvent());
-    if(_bloc.teacherInfoResponse.data!=null||_bloc.fatherInfoResponse.data!=null){
+    if (_bloc.teacherInfoResponse.data != null ||
+        _bloc.fatherInfoResponse.data != null) {
       _bloc.add(GetProfileImageFromShearedPrefranceEvent());
     }
     super.initState();
@@ -107,6 +109,11 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                             is SetProfileImageInShearedPrefranceSuccessState) {
                           Navigator.pop(context);
                           _bloc.add(GetProfileImageFromShearedPrefranceEvent());
+                        } else if (state is OpenWebViewState) {
+                          _navigateToWebView(
+                              screenTitle: state.screenTitle,
+                              isUrlContent: state.isUrlContent,
+                              content: state.webViewContent);
                         }
                       },
                       builder: (context, state) {
@@ -173,4 +180,18 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
 
   void _onGetFatherInfoFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
+
+  Future _navigateToWebView({
+    required String screenTitle,
+    required bool isUrlContent,
+    required String content,
+  }) {
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => WebViewScreen(
+                isUrlContent: isUrlContent,
+                content: content,
+                screenTitle: screenTitle)));
+  }
 }
