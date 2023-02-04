@@ -18,7 +18,7 @@ class VerifyContentWidget extends StatefulWidget {
 }
 
 class _VerifyContentWidgetState extends State<VerifyContentWidget> {
-  TextEditingController pinController = TextEditingController(text: "1234");
+  TextEditingController pinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
