@@ -61,9 +61,12 @@ class DioHelper {
         }));
   }
 
-  static Future<Response> getClassHouses(token, classroomToSectionId) async {
+  static Future<Response> getClassHouses(
+      token, classroomToSectionId, isComingFromHome) async {
     return dio.get(
-        "${ApiKey.getClassHouses}?ClassroomToSectionId=$classroomToSectionId",
+        isComingFromHome==false
+            ? "${ApiKey.getClassHouses}?ClassroomToSectionId=$classroomToSectionId"
+            : "${ApiKey.getSchoolHouses}?BranchId=$classroomToSectionId",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -153,7 +156,7 @@ class DioHelper {
     return dio.post(ApiKey.teacherChangePhoto,
         data: formData,
         options: Options(
-         contentType: Headers.formUrlEncodedContentType,
+          contentType: Headers.formUrlEncodedContentType,
           headers: {
             "accept": "text/plain",
             "Content-Type": "multipart/form-data",

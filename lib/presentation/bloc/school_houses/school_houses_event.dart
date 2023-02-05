@@ -6,8 +6,9 @@ abstract class SchoolHousesEvent {}
 class GetSchoolHousesEvent extends SchoolHousesEvent {
   final String classRoomId;
   final String token;
+  final bool isComingFromHome;
 
-  GetSchoolHousesEvent({required this.token, required this.classRoomId});
+  GetSchoolHousesEvent({required this.token, required this.classRoomId,required this.isComingFromHome});
 }
 
 class NavigateToNotificationScreenEvent extends SchoolHousesEvent {}

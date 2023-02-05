@@ -68,6 +68,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
           : Container();
     }
     return HomeTeacherDetailsWidget(
+        homeBloc: widget.bloc,
         teacherHomeResponse: widget.teacherHomeResponse,
         token: widget.token,
         language: widget.language);

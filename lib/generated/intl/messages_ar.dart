@@ -127,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("تحقق من رقمك"),
+        "viewHouses": MessageLookupByLibrary.simpleMessage("مشاهدة المنازل"),
         "weHaveSendTheCodeVerificationToYourMobile":
             MessageLookupByLibrary.simpleMessage(
                 "لقد أرسلنا رمز التحقق إلى رقم هاتفك"),

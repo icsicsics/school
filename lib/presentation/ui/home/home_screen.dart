@@ -22,8 +22,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   bool _isFather = true;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
-  GetChildrenByParentResponse _parentHomeResponse =
-      GetChildrenByParentResponse();
+  GetChildrenByParentResponse _parentHomeResponse = GetChildrenByParentResponse();
   String _language = '';
   String _token = '';
 

@@ -23,7 +23,7 @@ class SideMenuHeader extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: SizedBox(
-        height: language == "en" ? 190 : 200,
+        height: language == "en" ? 190 : 210,
         child: Padding(
           padding: language == "en"
               ? const EdgeInsets.only(left: 25)

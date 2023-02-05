@@ -989,6 +989,16 @@ class S {
       args: [],
     );
   }
+
+  /// `View Houses`
+  String get viewHouses {
+    return Intl.message(
+      'View Houses',
+      name: 'viewHouses',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

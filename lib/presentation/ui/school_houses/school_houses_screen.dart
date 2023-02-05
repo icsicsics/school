@@ -17,12 +17,13 @@ class SchoolHousesScreen extends BaseStatefulWidget {
   final String token;
   final String classRoomId;
   final String language;
+  final bool isComingFromHome;
 
   const SchoolHousesScreen(
       {super.key,
       required this.token,
       required this.classRoomId,
-      required this.language});
+      required this.language,required this.isComingFromHome});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _SchoolHousesScreenState();
@@ -36,7 +37,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   @override
   void initState() {
     _schoolHousesBloc.add(GetSchoolHousesEvent(
-        token: widget.token, classRoomId: widget.classRoomId));
+        token: widget.token, classRoomId: widget.classRoomId,isComingFromHome: widget.isComingFromHome));
     super.initState();
   }
 

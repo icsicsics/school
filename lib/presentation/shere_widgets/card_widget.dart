@@ -55,7 +55,7 @@ class CardWidget extends StatelessWidget {
       child:  Image.network(
           images,
           fit: BoxFit.cover,
-          height: 130,
+          height: 120,
           width: double.infinity,
           loadingBuilder: (BuildContext context, Widget child,
               ImageChunkEvent? loadingProgress) {
