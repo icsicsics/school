@@ -64,4 +64,14 @@ class GetFatherInfoFillState extends HomeState {
   GetFatherInfoFillState({required this.error});
 }
 
+class GetTeacherInfoSuccessState extends HomeState {
+  final TeacherInfoResponse response;
 
+  GetTeacherInfoSuccessState({required this.response});
+}
+
+class GetTeacherInfoFillState extends HomeState {
+  final String error;
+
+  GetTeacherInfoFillState({required this.error});
+}

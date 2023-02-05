@@ -3,6 +3,7 @@ import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 
@@ -56,6 +57,23 @@ class HomeRepositoryImp extends BaseHomeRepository {
     } catch (error) {
       state = GetFatherInfoFillState(
           error: fatherInfoResponse.errorMessage ?? "Error");
+    }
+    return state!;
+  }
+
+  @override
+  Future<HomeState> getTeacherInfo(String token) async {
+    HomeState? state;
+    TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
+    try {
+      Response response = await DioHelper.getTeacherInfo(token);
+      teacherInfoResponse = TeacherInfoResponse.fromJson(response.data);
+      if (teacherInfoResponse.data != null) {
+        return GetTeacherInfoSuccessState(response: teacherInfoResponse);
+      }
+    } catch (error) {
+      state = GetTeacherInfoFillState(
+          error: teacherInfoResponse.errorMessage ?? "Error");
     }
     return state!;
   }

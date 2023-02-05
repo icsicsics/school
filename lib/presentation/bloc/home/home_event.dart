@@ -29,3 +29,14 @@ class GetFatherHomeEvent extends HomeEvent {
 
 class GetTokenEvent extends HomeEvent {}
 
+class GetTeacherInfoEvent extends HomeEvent {
+  final String token;
+
+  GetTeacherInfoEvent({required this.token});
+}
+
+class GetFatherInfoEvent extends HomeEvent {
+  final String token;
+
+  GetFatherInfoEvent({required this.token});
+}

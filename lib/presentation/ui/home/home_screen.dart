@@ -57,16 +57,28 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           }
         } else if (state is GetTeacherHomeSuccessState) {
           _teacherHomeResponse = state.response;
-          hideLoading();
+          _homeBloc.add(GetTeacherInfoEvent(token: _token));
         } else if (state is GetTeacherHomeFillState) {
           _onFillState(state.error);
           hideLoading();
         } else if (state is GetParentHomeSuccessState) {
           _parentHomeResponse = state.response;
-          hideLoading();
+          _homeBloc.add(GetFatherInfoEvent(token: _token));
         } else if (state is GetParentHomeFillState) {
           _onFillState(state.error);
           hideLoading();
+        }else if (state is GetTeacherInfoSuccessState){
+          _homeBloc.teacherInfoResponse=state.response;
+          hideLoading();
+        }else if (state is GetFatherInfoSuccessState){
+          _homeBloc.fatherInfoResponse=state.response;
+          hideLoading();
+        }else if (state is GetFatherInfoFillState){
+          hideLoading();
+          _onGetFatherInfoFillState(state.error);
+        }else if(state is GetTeacherInfoFillState){
+          hideLoading();
+          _onGetTeacherInfoFillState(state.error);
         }
       },
       builder: (context, state) {
@@ -95,5 +107,11 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   }
 
   void _onFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
+
+  void _onGetTeacherInfoFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
+
+  void _onGetFatherInfoFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
 }

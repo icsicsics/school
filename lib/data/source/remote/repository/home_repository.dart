@@ -4,4 +4,5 @@ abstract class BaseHomeRepository {
   Future<HomeState> getTeacherHome(String token);
   Future<HomeState> getParentHome(String token);
   Future<HomeState> getFatherInfo(String token);
+  Future<HomeState> getTeacherInfo(String token);
 }

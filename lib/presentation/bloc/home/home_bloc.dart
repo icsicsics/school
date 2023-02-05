@@ -6,6 +6,7 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_repository_imp.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
@@ -18,7 +19,7 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
-
+  TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
   final BaseHomeRepository _repository = HomeRepositoryImp();
   final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
@@ -34,6 +35,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetTokenEvent>(_onGetTokenEvent);
     on<GetTeacherHomeEvent>(_onGetTeacherHomeEvent);
     on<GetFatherHomeEvent>(_onGetFatherHomeEvent);
+    on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
+    on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
   }
 
   FutureOr<void> _onGetHomeEvent(GetHomeEvent event, Emitter<HomeState> emit) {}
@@ -94,5 +97,30 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } else if (state is GetTeacherHomeFillState) {
       emit(GetParentHomeFillState(error: state.error));
     }
+  }
+
+  FutureOr<void> _onGetTeacherInfoEvent(
+      GetTeacherInfoEvent event, Emitter<HomeState> emit) async {
+      emit(GetHomeLoadingState());
+      HomeState state =
+      (await _repository.getTeacherInfo(event.token)) as HomeState;
+      if (state is GetTeacherInfoSuccessState) {
+        emit(GetTeacherInfoSuccessState(response: state.response));
+      } else if (state is GetTeacherInfoFillState) {
+        emit(GetTeacherInfoFillState(error: state.error));
+
+    }
+  }
+
+  FutureOr<void> _onGetFatherInfoEvent(
+      GetFatherInfoEvent event, Emitter<HomeState> emit) async {
+      emit(GetHomeLoadingState());
+      HomeState state =
+      (await _repository.getFatherInfo(event.token)) as HomeState;
+      if (state is GetFatherInfoSuccessState) {
+        emit(GetFatherInfoSuccessState(response: state.response));
+      } else if (state is GetFatherInfoFillState) {
+        emit(GetFatherInfoFillState(error: state.error));
+      }
   }
 }
