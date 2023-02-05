@@ -48,8 +48,12 @@ class ProfileRepositoryImp extends BaseProfileRepository {
     TeacherChangePhotoResponse teacherChangePhotoResponse =
         TeacherChangePhotoResponse();
     try {
+      FormData formData = FormData.fromMap({
+        "file": await MultipartFile.fromFile(xFile.path,
+            filename: xFile.name),
+      });
       Response response =
-          await DioHelper.teacherChangePhoto(token, _convertFormData(xFile));
+          await DioHelper.teacherChangePhoto(token, formData);
       teacherChangePhotoResponse =
           TeacherChangePhotoResponse.fromJson(response.data);
       if (teacherChangePhotoResponse.data != null) {
@@ -63,10 +67,4 @@ class ProfileRepositoryImp extends BaseProfileRepository {
     return state!;
   }
 
-  _convertFormData(XFile xFile) {
-    FormData formData = FormData();
-    formData.files.add(MapEntry(
-        'file', MultipartFile.fromString(xFile.path, filename: xFile.name)));
-    return formData;
-  }
 }
