@@ -13,7 +13,6 @@ import 'package:schools/presentation/ui/student_houses/widgets/student_houses_co
 
 class StudentHousesScreen extends BaseStatefulWidget {
   final String classroomToSectionId;
-  final String houseId;
   final String token;
   final String language;
 
@@ -21,7 +20,6 @@ class StudentHousesScreen extends BaseStatefulWidget {
       {super.key,
       required this.token,
       required this.classroomToSectionId,
-      required this.houseId,
       required this.language});
 
   @override
@@ -40,8 +38,7 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
     _studentHousesBloc.add(GetIsFatherEvent());
     _studentHousesBloc.add(GetStudentHousesEvent(
         token: widget.token,
-        classroomToSectionId: widget.classroomToSectionId,
-        houseId: widget.houseId));
+        classroomToSectionId: widget.classroomToSectionId));
     super.initState();
   }
 

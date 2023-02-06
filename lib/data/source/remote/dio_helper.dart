@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:schools/core/utils/network/interceptor.dart';
 import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
@@ -77,9 +76,9 @@ class DioHelper {
   }
 
   static Future<Response> getStudentHouses(
-      token, classroomToSectionId, houseId) async {
+      token, classroomToSectionId) async {
     return dio.get(
-        "${ApiKey.getStudentsHouse}?ClassroomToSectionId=$classroomToSectionId&HouseId=$houseId",
+        "${ApiKey.getStudentsHouse}?ClassroomToSectionId=$classroomToSectionId",
         options: Options(
           headers: {
             'Content-Type': 'application/json',

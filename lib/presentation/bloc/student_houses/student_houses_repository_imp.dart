@@ -7,13 +7,13 @@ import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dar
 class StudentHousesRepositoryImp extends BaseStudentHousesRepository {
   @override
   Future<StudentHousesState> getStudentHouses(
-      String token, String classroomToSectionId, String houseId) async {
+      String token, String classroomToSectionId) async {
     StudentHousesState? state;
     GetStudentHousesResponse getStudentHousesResponse =
         GetStudentHousesResponse();
     try {
       Response response = await DioHelper.getStudentHouses(
-          token, classroomToSectionId, houseId);
+          token, classroomToSectionId);
       getStudentHousesResponse =
           GetStudentHousesResponse.fromJson(response.data);
       if (getStudentHousesResponse.data != null) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
+import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_card_item_widget.dart';
 
@@ -8,12 +9,13 @@ class SchoolHousesContentWidget extends StatefulWidget {
   final SchoolHousesBloc schoolHousesBloc;
   final GetClassHousesResponse getClassHousesResponse;
   final String language;
-
+  final bool isComingFromHome;
+  final String token;
   const SchoolHousesContentWidget(
       {Key? key,
       required this.schoolHousesBloc,
       required this.getClassHousesResponse,
-      required this.language})
+      required this.language,required this.isComingFromHome,required this.token})
       : super(key: key);
 
   @override
@@ -24,9 +26,9 @@ class SchoolHousesContentWidget extends StatefulWidget {
 class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return widget.isComingFromHome==true?  Column(
       children: [
-        widget.getClassHousesResponse.data != null
+       widget.getClassHousesResponse.data != null
             ? GridView.builder(
                 physics: const BouncingScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -61,6 +63,6 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                 })
             : Container()
       ],
-    );
+    ):Container();
   }
 }

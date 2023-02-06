@@ -21,7 +21,7 @@ class LoginScreen extends BaseStatefulWidget {
 class _LoginScreenState extends BaseState<LoginScreen> {
   LoginBloc get _loginBloc => BlocProvider.of<LoginBloc>(context);
   TextEditingController countryController =
-      TextEditingController();
+      TextEditingController(text: "7 9519 1633");
   bool _isFather = false;
 
   @override

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/data/source/remote/model/class_houses/data.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
@@ -23,7 +22,8 @@ class SchoolHousesScreen extends BaseStatefulWidget {
       {super.key,
       required this.token,
       required this.classRoomId,
-      required this.language,required this.isComingFromHome});
+      required this.language,
+      required this.isComingFromHome});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _SchoolHousesScreenState();
@@ -37,7 +37,9 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   @override
   void initState() {
     _schoolHousesBloc.add(GetSchoolHousesEvent(
-        token: widget.token, classRoomId: widget.classRoomId,isComingFromHome: widget.isComingFromHome));
+        token: widget.token,
+        classRoomId: widget.classRoomId,
+        isComingFromHome: widget.isComingFromHome));
     super.initState();
   }
 
@@ -74,14 +76,17 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                 } else if (state is NavigateToNotificationScreenState) {
                   _navigateToNotificationScreen();
                 } else if (state is NavigateToStudentHousesScreenState) {
-                  _navigateToStudentHousesScreen(state.data);
+                  _navigateToStudentHousesScreen(
+                      state.data.classroomToSectionId!);
                 }
               },
               builder: (context, state) {
                 return SchoolHousesContentWidget(
+                  isComingFromHome: widget.isComingFromHome,
                   schoolHousesBloc: _schoolHousesBloc,
                   getClassHousesResponse: getClassHousesResponse,
                   language: widget.language,
+                  token: widget.token,
                 );
               },
             ),
@@ -116,15 +121,14 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
       (route) => false);
 
-  void _navigateToStudentHousesScreen(Data data) => Navigator.push(
+  void _onGetSchoolHousesFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
+
+  void _navigateToStudentHousesScreen(String s) => Navigator.push(
       context,
       MaterialPageRoute(
           builder: (_) => StudentHousesScreen(
               token: widget.token,
-              classroomToSectionId: data.classroomToSectionId!,
-              houseId: data.houseId!,
+              classroomToSectionId: s,
               language: widget.language)));
-
-  void _onGetSchoolHousesFillState(String error) =>
-      showErrorDialogFunction(context: context, textMessage: error);
 }

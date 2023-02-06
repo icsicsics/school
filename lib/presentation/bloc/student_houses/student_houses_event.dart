@@ -6,12 +6,10 @@ abstract class StudentHousesEvent {}
 class GetStudentHousesEvent extends StudentHousesEvent {
   final String token;
   final String classroomToSectionId;
-  final String houseId;
 
   GetStudentHousesEvent(
       {required this.token,
-      required this.classroomToSectionId,
-      required this.houseId});
+      required this.classroomToSectionId});
 }
 
 class NavigateToNotificationScreenEvent extends StudentHousesEvent {}
