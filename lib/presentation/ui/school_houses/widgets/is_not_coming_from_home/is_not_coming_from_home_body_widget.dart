@@ -30,7 +30,7 @@ class _IsNotComingFromHomeBodyWidgetState
   Widget build(BuildContext context) {
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, mainAxisSpacing: 5),
+            crossAxisCount: 3, mainAxisSpacing: 5, mainAxisExtent: 170),
         itemCount: widget.getStudentHousesResponse.data!.students!.length,
         padding: const EdgeInsets.all(10),
         semanticChildCount: 10,

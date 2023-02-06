@@ -21,14 +21,14 @@ class ItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 6,
-      width: MediaQuery.of(context).size.width / 3,
+      height: 150,
+      width: 400,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 9,
+            height: 140,
             child: Stack(
               children: [
                 Align(
@@ -36,7 +36,7 @@ class ItemWidget extends StatelessWidget {
                   child: InkWell(onTap: onTapChild, child: image(imagePath)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 5),
+                  padding: const EdgeInsets.only(right: 5, bottom: 13),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
