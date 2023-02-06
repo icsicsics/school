@@ -28,43 +28,40 @@ class _IsNotComingFromHomeBodyWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return  GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, mainAxisSpacing: 5,mainAxisExtent: 240),
-          itemCount: widget.getStudentHousesResponse.data!.students!.length,
-          padding: const EdgeInsets.all(10),
-          semanticChildCount: 10,
+    return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, mainAxisSpacing: 5),
+        itemCount: widget.getStudentHousesResponse.data!.students!.length,
+        padding: const EdgeInsets.all(10),
+        semanticChildCount: 10,
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            return ItemWidget(
-              childName: widget.getStudentHousesResponse.data!.students![index]
-                      .studentName ??
-                  "",
-              onTapStar: () => _onTap(
-                  studentId: widget
-                      .getStudentHousesResponse.data!.students![index].studentId
-                      .toString(),
-                  childName: widget.getStudentHousesResponse.data!
-                      .students![index].studentName
-                      .toString(),
-                  classroomId:
-                      widget.getStudentHousesResponse.data!.classroomId!,
-                  classroomSectionStudentsId: widget.getStudentHousesResponse
-                      .data!.students![index].classroomToSectionId
-                      .toString()),
-              onTapChild: ()=>  widget.schoolHousesBloc.add(
-                  NavigateToMyChildrenScreenEvent(
-                      studentId:
-                      "${widget.getStudentHousesResponse.data!
-                          .students![index].studentId}",
-                      classroomToSectionId:
-                      "${widget.getStudentHousesResponse.data!
-                          .students![index].classroomToSectionId}")),
-              imagePath:
-                  "${widget.getStudentHousesResponse.data!.students![index].getImage != null ? widget.getStudentHousesResponse.data!.students![index].getImage!.mediaUrl : ""}",
-            );
-          });
+        itemBuilder: (BuildContext context, int index) {
+          return ItemWidget(
+            childName: widget.getStudentHousesResponse.data!.students![index]
+                    .studentName ??
+                "",
+            onTapStar: () => _onTap(
+                studentId: widget
+                    .getStudentHousesResponse.data!.students![index].studentId
+                    .toString(),
+                childName: widget
+                    .getStudentHousesResponse.data!.students![index].studentName
+                    .toString(),
+                classroomId: widget.getStudentHousesResponse.data!.classroomId!,
+                classroomSectionStudentsId: widget.getStudentHousesResponse
+                    .data!.students![index].classroomToSectionId
+                    .toString()),
+            onTapChild: () => widget.schoolHousesBloc.add(
+                NavigateToMyChildrenScreenEvent(
+                    studentId:
+                        "${widget.getStudentHousesResponse.data!.students![index].studentId}",
+                    classroomToSectionId:
+                        "${widget.getStudentHousesResponse.data!.students![index].classroomToSectionId}")),
+            imagePath:
+                "${widget.getStudentHousesResponse.data!.students![index].getImage != null ? widget.getStudentHousesResponse.data!.students![index].getImage!.mediaUrl : ""}",
+          );
+        });
   }
 
   void _onTap(
@@ -81,4 +78,3 @@ class _IsNotComingFromHomeBodyWidgetState
           studentId: studentId,
           onCreatePointSuccess: () {});
 }
-

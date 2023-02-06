@@ -12,9 +12,10 @@ class ItemWidget extends StatelessWidget {
 
   const ItemWidget(
       {Key? key,
-        required this.childName,
-        required this.onTapStar,
-        required this.onTapChild,required this.imagePath})
+      required this.childName,
+      required this.onTapStar,
+      required this.onTapChild,
+      required this.imagePath})
       : super(key: key);
 
   @override
@@ -32,9 +33,7 @@ class ItemWidget extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.center,
-                  child: InkWell(
-                      onTap: onTapChild,
-                      child: image(imagePath)),
+                  child: InkWell(onTap: onTapChild, child: image(imagePath)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
@@ -46,14 +45,14 @@ class ItemWidget extends StatelessWidget {
                         decoration: const BoxDecoration(
                             color: ColorsManager.whiteColor,
                             borderRadius:
-                            BorderRadius.all(Radius.circular(40))),
+                                BorderRadius.all(Radius.circular(40))),
                         child: Padding(
                           padding: const EdgeInsets.all(3),
                           child: Container(
                             decoration: const BoxDecoration(
-                              // color: ColorsManager.starBackground,
+                                // color: ColorsManager.starBackground,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
+                                    BorderRadius.all(Radius.circular(50))),
                             child: InkWell(
                               onTap: onTapStar,
                               child: Container(
@@ -77,6 +76,7 @@ class ItemWidget extends StatelessWidget {
       ),
     );
   }
+
   Widget image(images) {
     return CircleAvatar(
       radius: 50,
@@ -94,7 +94,7 @@ class ItemWidget extends StatelessWidget {
                 color: ColorsManager.primaryColor,
                 value: loadingProgress.expectedTotalBytes != null
                     ? loadingProgress.cumulativeBytesLoaded /
-                    loadingProgress.expectedTotalBytes!
+                        loadingProgress.expectedTotalBytes!
                     : null,
               ),
             ),
@@ -107,5 +107,4 @@ class ItemWidget extends StatelessWidget {
       ),
     );
   }
-
 }
