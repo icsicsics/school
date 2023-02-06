@@ -55,66 +55,64 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
-        appBar: _appBar(),
-        body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                    colors: [
-                      ColorsManager.primaryColor,
-                      ColorsManager.secondaryColor,
-                    ],
-                    stops: [0.5, 0.8],
-                  )),
-                  height: 500,
-                  child: getClassHousesResponse.data != null
-                      ? SchoolHousesChartWidget(
-                          schoolHousesBloc: _schoolHousesBloc)
-                      : Container(),
-                ),
-                BlocConsumer<SchoolHousesBloc, SchoolHousesState>(
-                  listener: (context, state) {
-                    if (state is GetSchoolHousesLoadingState) {
-                      showLoading();
-                    } else if (state is GetSchoolHousesSuccessState) {
-                      getClassHousesResponse = state.response;
-                      hideLoading();
-                    } else if (state is GetSchoolHousesFillState) {
-                      _onGetSchoolHousesFillState(state.error);
-                    } else if (state is NavigateToNotificationScreenState) {
-                      _navigateToNotificationScreen();
-                    } else if (state is NavigateToStudentHousesScreenState) {
-                      _navigateToStudentHousesScreen(
-                          state.data.classroomToSectionId!);
-                    } else if (state is NavigateToMyChildrenScreenState) {
-                      _navigateToMyChildrenScreen(
-                          state.studentId, state.classroomToSectionId);
-                    } else if (state is GetStudentHousesSuccessState) {
-                      getStudentHousesResponse = state.response;
-                      hideLoading();
-                    } else if (state is GetStudentHousesFillState) {
-                      _onGetStudentHousesFillState(state.error);
-                    }
-                  },
-                  builder: (context, state) {
-                    return widget.isComingFromHome
-                        ? SchoolHousesContentWidget(
-                            schoolHousesBloc: _schoolHousesBloc,
-                            getClassHousesResponse: getClassHousesResponse,
-                            language: widget.language,
-                            token: widget.token,
-                          )
-                        : IsNotComingFromHomeContentWidget(
-                            schoolHousesBloc: _schoolHousesBloc,
-                            token: widget.token,
-                            getStudentHousesResponse: getStudentHousesResponse);
-                  },
-                ),
-              ],
-            )));
+      appBar: _appBar(),
+      body: BlocConsumer<SchoolHousesBloc, SchoolHousesState>(
+        listener: (context, state) {
+          if (state is GetSchoolHousesLoadingState) {
+            showLoading();
+          } else if (state is GetSchoolHousesSuccessState) {
+            getClassHousesResponse = state.response;
+            hideLoading();
+          } else if (state is GetSchoolHousesFillState) {
+            _onGetSchoolHousesFillState(state.error);
+          } else if (state is NavigateToNotificationScreenState) {
+            _navigateToNotificationScreen();
+          } else if (state is NavigateToStudentHousesScreenState) {
+            _navigateToStudentHousesScreen(state.data.classroomToSectionId!);
+          } else if (state is NavigateToMyChildrenScreenState) {
+            _navigateToMyChildrenScreen(
+                state.studentId, state.classroomToSectionId);
+          } else if (state is GetStudentHousesSuccessState) {
+            getStudentHousesResponse = state.response;
+            hideLoading();
+          } else if (state is GetStudentHousesFillState) {
+            _onGetStudentHousesFillState(state.error);
+          }
+        },
+        builder: (context, state) {
+          return  getClassHousesResponse.data != null
+              ? SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                      colors: [
+                        ColorsManager.primaryColor,
+                        ColorsManager.secondaryColor,
+                      ],
+                      stops: [0.5, 0.8],
+                    )),
+                    height: 500,
+                    child:SchoolHousesChartWidget(
+                            schoolHousesBloc: _schoolHousesBloc)),
+                  widget.isComingFromHome
+                      ? SchoolHousesContentWidget(
+                          schoolHousesBloc: _schoolHousesBloc,
+                          getClassHousesResponse: getClassHousesResponse,
+                          language: widget.language,
+                          token: widget.token,
+                        )
+                      : IsNotComingFromHomeContentWidget(
+                          schoolHousesBloc: _schoolHousesBloc,
+                          token: widget.token,
+                          getStudentHousesResponse: getStudentHousesResponse)
+                ],
+              )):Container();
+        },
+      ),
+    );
   }
 
   PreferredSizeWidget _appBar() => AppBar(
