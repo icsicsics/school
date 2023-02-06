@@ -17,3 +17,18 @@ class NavigateToAddPointsScreenEvent extends SchoolHousesEvent {
   final Data data;
   NavigateToAddPointsScreenEvent({required this.data});
 }
+
+class NavigateToMyChildrenScreenEvent extends SchoolHousesEvent {
+  final String studentId;
+  final String classroomToSectionId;
+  NavigateToMyChildrenScreenEvent({required this.studentId,required this.classroomToSectionId});
+
+}
+class GetStudentHousesEvent extends SchoolHousesEvent {
+  final String token;
+  final String classroomToSectionId;
+
+  GetStudentHousesEvent(
+      {required this.token,
+        required this.classroomToSectionId});
+}

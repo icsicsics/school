@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
+import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
+import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
+import 'package:schools/presentation/ui/school_houses/widgets/is_not_coming_from_home/is_not_coming_from_home_content_widget.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_chart_widget.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/school_houses_content_widget.dart';
 import 'package:schools/presentation/ui/student_houses/student_houses_screen.dart';
@@ -33,9 +36,15 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   SchoolHousesBloc get _schoolHousesBloc =>
       BlocProvider.of<SchoolHousesBloc>(context);
   GetClassHousesResponse getClassHousesResponse = GetClassHousesResponse();
+  GetStudentHousesResponse getStudentHousesResponse =
+      GetStudentHousesResponse();
 
   @override
   void initState() {
+    if (widget.isComingFromHome != true) {
+      _schoolHousesBloc.add(GetStudentHousesEvent(
+          classroomToSectionId: widget.classRoomId, token: widget.token));
+    }
     _schoolHousesBloc.add(GetSchoolHousesEvent(
         token: widget.token,
         classRoomId: widget.classRoomId,
@@ -78,16 +87,28 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                 } else if (state is NavigateToStudentHousesScreenState) {
                   _navigateToStudentHousesScreen(
                       state.data.classroomToSectionId!);
+                } else if (state is NavigateToMyChildrenScreenState) {
+                  _navigateToMyChildrenScreen(
+                      state.studentId, state.classroomToSectionId);
+                } else if (state is GetStudentHousesSuccessState) {
+                  getStudentHousesResponse = state.response;
+                  hideLoading();
+                } else if (state is GetStudentHousesFillState) {
+                  _onGetStudentHousesFillState(state.error);
                 }
               },
               builder: (context, state) {
-                return SchoolHousesContentWidget(
-                  isComingFromHome: widget.isComingFromHome,
-                  schoolHousesBloc: _schoolHousesBloc,
-                  getClassHousesResponse: getClassHousesResponse,
-                  language: widget.language,
-                  token: widget.token,
-                );
+                return widget.isComingFromHome
+                    ? SchoolHousesContentWidget(
+                        schoolHousesBloc: _schoolHousesBloc,
+                        getClassHousesResponse: getClassHousesResponse,
+                        language: widget.language,
+                        token: widget.token,
+                      )
+                    : IsNotComingFromHomeContentWidget(
+                        schoolHousesBloc: _schoolHousesBloc,
+                        token: widget.token,
+                        getStudentHousesResponse: getStudentHousesResponse);
               },
             ),
           ],
@@ -131,4 +152,19 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
               token: widget.token,
               classroomToSectionId: s,
               language: widget.language)));
+
+  void _navigateToMyChildrenScreen(studentId, classroomToSectionId) =>
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => MyChildrenScreen(
+                    studentId: studentId,
+                    language: widget.language,
+                    classroomId: getStudentHousesResponse.data!.classroomId!,
+                    classroomSectionStudentsId: classroomToSectionId.toString(),
+                    isParent: false,
+                  )));
+
+  void _onGetStudentHousesFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 }

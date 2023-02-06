@@ -26,3 +26,17 @@ class NavigateToStudentHousesScreenState extends SchoolHousesState {
   final Data data;
   NavigateToStudentHousesScreenState({required this.data});
 }
+class NavigateToMyChildrenScreenState extends SchoolHousesState {
+  final String studentId;
+  final String classroomToSectionId;
+  NavigateToMyChildrenScreenState({required this.studentId,required this.classroomToSectionId});
+}
+class GetStudentHousesSuccessState extends SchoolHousesState {
+  final  GetStudentHousesResponse response;
+  GetStudentHousesSuccessState({required this.response});
+}
+
+class GetStudentHousesFillState extends SchoolHousesState {
+  final String error;
+  GetStudentHousesFillState({required this.error});
+}

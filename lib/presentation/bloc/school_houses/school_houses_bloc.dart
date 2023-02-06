@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/remote/model/class_houses/data.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
+import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/data/source/remote/repository/school_houses_repository.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_repository_imp.dart';
 
@@ -19,13 +20,16 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
     on<GetSchoolHousesEvent>(_onGetSchoolHousesEvent);
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
     on<NavigateToAddPointsScreenEvent>(_onNavigateToAddPointsScreenEvent);
+    on<NavigateToMyChildrenScreenEvent>(_onNavigateToMyChildrenScreenEvent);
+    on<GetStudentHousesEvent>(_onGetStudentHousesEvent);
   }
 
   FutureOr<void> _onGetSchoolHousesEvent(
       GetSchoolHousesEvent event, Emitter<SchoolHousesState> emit) async {
     emit(GetSchoolHousesLoadingState());
     SchoolHousesState state = await _repository.getClassHouses(
-        event.token, event.classRoomId,event.isComingFromHome) as SchoolHousesState;
+            event.token, event.classRoomId, event.isComingFromHome)
+        as SchoolHousesState;
     if (state is GetSchoolHousesSuccessState) {
       getClassHousesResponse = state.response;
       emit(GetSchoolHousesSuccessState(response: state.response));
@@ -43,5 +47,24 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
   FutureOr<void> _onNavigateToAddPointsScreenEvent(
       NavigateToAddPointsScreenEvent event, Emitter<SchoolHousesState> emit) {
     emit(NavigateToStudentHousesScreenState(data: event.data));
+  }
+
+  FutureOr<void> _onNavigateToMyChildrenScreenEvent(
+      NavigateToMyChildrenScreenEvent event, Emitter<SchoolHousesState> emit) {
+    emit(NavigateToMyChildrenScreenState(
+        studentId: event.studentId,
+        classroomToSectionId: event.classroomToSectionId));
+  }
+
+  FutureOr<void> _onGetStudentHousesEvent(
+      GetStudentHousesEvent event, Emitter<SchoolHousesState> emit) async {
+    emit(GetSchoolHousesLoadingState());
+    SchoolHousesState state = await _repository.getStudentHouses(
+        event.token, event.classroomToSectionId) as SchoolHousesState;
+    if (state is GetStudentHousesSuccessState) {
+      emit(GetStudentHousesSuccessState(response: state.response));
+    } else if (state is GetStudentHousesFillState) {
+      emit(GetStudentHousesFillState(error: state.error));
+    }
   }
 }

@@ -9,13 +9,12 @@ class SchoolHousesContentWidget extends StatefulWidget {
   final SchoolHousesBloc schoolHousesBloc;
   final GetClassHousesResponse getClassHousesResponse;
   final String language;
-  final bool isComingFromHome;
   final String token;
   const SchoolHousesContentWidget(
       {Key? key,
       required this.schoolHousesBloc,
       required this.getClassHousesResponse,
-      required this.language,required this.isComingFromHome,required this.token})
+      required this.language,required this.token})
       : super(key: key);
 
   @override
@@ -26,7 +25,7 @@ class SchoolHousesContentWidget extends StatefulWidget {
 class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
   @override
   Widget build(BuildContext context) {
-    return widget.isComingFromHome==true?  Column(
+    return   Column(
       children: [
        widget.getClassHousesResponse.data != null
             ? GridView.builder(
@@ -63,6 +62,6 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                 })
             : Container()
       ],
-    ):Container();
+    );
   }
 }

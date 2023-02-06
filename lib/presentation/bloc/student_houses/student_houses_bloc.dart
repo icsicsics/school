@@ -25,8 +25,7 @@ class StudentHousesBloc extends Bloc<StudentHousesEvent, StudentHousesState> {
       GetStudentHousesEvent event, Emitter<StudentHousesState> emit) async {
     emit(StudentHousesLoadingState());
     StudentHousesState state = await _repository.getStudentHouses(
-            event.token, event.classroomToSectionId)
-        as StudentHousesState;
+            event.token, event.classroomToSectionId) as StudentHousesState;
     if (state is GetStudentHousesSuccessState) {
       emit(GetStudentHousesSuccessState(response: state.response));
     } else if (state is GetStudentHousesFillState) {
