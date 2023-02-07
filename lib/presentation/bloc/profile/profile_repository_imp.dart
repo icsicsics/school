@@ -6,6 +6,7 @@ import 'package:schools/data/source/remote/model/father_info/response/father_inf
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/profile_repository.dart';
 import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
+import 'package:http_parser/http_parser.dart';
 
 class ProfileRepositoryImp extends BaseProfileRepository {
   @override
@@ -48,9 +49,12 @@ class ProfileRepositoryImp extends BaseProfileRepository {
     TeacherChangePhotoResponse teacherChangePhotoResponse =
         TeacherChangePhotoResponse();
     try {
-      FormData formData = FormData.fromMap({
-        "file": await MultipartFile.fromFile(xFile.path,
-            filename: xFile.name),
+      FormData formData =  FormData.fromMap({
+        'Image': await MultipartFile.fromFile(
+          xFile.path,
+          filename: xFile.name,
+          contentType: MediaType.parse("image/png"),
+        ),
       });
       Response response =
           await DioHelper.teacherChangePhoto(token, formData);

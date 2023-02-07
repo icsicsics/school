@@ -151,15 +151,15 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> teacherChangePhoto(token, FormData formData) async {
+  static Future<Response> teacherChangePhoto(token, formData) async {
     return dio.post(ApiKey.teacherChangePhoto,
         data: formData,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "accept": "text/plain",
-            "Content-Type": "multipart/form-data",
             "Authorization": "Bearer $token",
+            "Content-Type": "multipart/form-data",
           },
         ));
   }

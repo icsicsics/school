@@ -12,6 +12,6 @@ class ApiKey{
   static const String getTeacherStudentProfileInSchoolHouse = "Teacher/StudentProfileInSchoolHouse";
   static const String postTeacherCreatePoint = "Teacher/CreatePoint";
   static const String postFatherCreatePoint = "Parent/CreatePoint";
-  static const String teacherChangePhoto = "Teacher/ChangePhoto";
+  static const String teacherChangePhoto = "Teacher/ChangeTeacherPhoto";
   static const String getSchoolHouses = "Teacher/GetSchoolHouses";
 }

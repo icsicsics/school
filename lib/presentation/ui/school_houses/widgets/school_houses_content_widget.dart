@@ -43,24 +43,25 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                 semanticChildCount: 15,
                 itemBuilder: (BuildContext context, int index) {
                   return SchoolHousesCardItemWidget(
-                    icon: const Icon(Icons.account_circle),
-                    teachersValue: widget.getClassHousesResponse.data![index]
-                        .numberTeachersHouse!
-                        .toString(),
-                    pointsValue: widget
-                        .getClassHousesResponse.data![index].totalPointsHouse
-                        .toString(),
-                    icon2: Image.asset(ImagesPath.cup, height: 30, width: 30),
-                    label:
-                        widget.getClassHousesResponse.data![index].houseName!,
-                    studentsValue: widget.getClassHousesResponse.data![index]
-                        .numberStudentsHouse!
-                        .toString(),
-                    hasIcon2: true,
-                    onTap: () => widget.schoolHousesBloc.add(
-                        NavigateToAddPointsScreenEvent(
-                            data: widget.getClassHousesResponse.data![index])),
-                  );
+                      icon: const Icon(Icons.account_circle),
+                      teachersValue: widget.getClassHousesResponse.data![index]
+                          .numberTeachersHouse!
+                          .toString(),
+                      pointsValue: widget
+                          .getClassHousesResponse.data![index].totalPointsHouse
+                          .toString(),
+                      icon2: Image.asset(ImagesPath.cup, height: 30, width: 30),
+                      label:
+                          widget.getClassHousesResponse.data![index].houseName!,
+                      studentsValue: widget.getClassHousesResponse.data![index]
+                          .numberStudentsHouse!
+                          .toString(),
+                      hasIcon2: true,
+                      onTap: () {
+                        // widget.schoolHousesBloc.add(
+                        //     NavigateToAddPointsScreenEvent(
+                        //         data: widget.getClassHousesResponse.data![index]));
+                      });
                 })
             : Container()
       ],
