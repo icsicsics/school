@@ -40,7 +40,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                 title: e.principleName ?? "",
                 subTitle:
                     "${dateFormat(e.creationDate.toString())}  ${S.of(context).at}  ${formattedTime(e.creationDate.toString())}",
-                description: e.createdBy??"",
+                description: e.createdByName??"",
                 icon: Icons.energy_savings_leaf))
             .toList(),
       ),
