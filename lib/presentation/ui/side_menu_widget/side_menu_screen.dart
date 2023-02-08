@@ -148,8 +148,6 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   void _onSideMenuAboutAppState(context) {}
 
   void _switchAccount(context) {
-    _bloc.fatherInfoResponse = FatherInfoResponse();
-    _bloc.teacherInfoResponse = TeacherInfoResponse();
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(

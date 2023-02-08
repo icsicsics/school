@@ -55,20 +55,23 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
             Expanded(
               child: Row(
                 children: [
-                  MediumTextWidget(
-                      textAlign: TextAlign.center,
-                      text: widget.isFather
-                          ? widget.bloc.fatherInfoResponse.data != null
-                              ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
-                              : S.of(context).welcome
-                          : widget.teacherHomeResponse.data != null
-                              ? widget.teacherHomeResponse.data!.schoolName
-                              : "",
-                      fontSize: 18,
-                      color: ColorsManager.whiteColor),
+                    Expanded(
+                      child: MediumTextWidget(
+                        textAlign: TextAlign.center,
+                        text: widget.isFather
+                            ? widget.bloc.fatherInfoResponse.data != null
+                                ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
+                                : S.of(context).welcome
+                            : widget.teacherHomeResponse.data != null
+                                ? widget.teacherHomeResponse.data!.schoolName
+                                : "",
+                        fontSize: 18,
+                        color: ColorsManager.whiteColor),
+                    ),
                   const SizedBox(width: 10),
-                  profileImageWidget(),
-                  const Spacer()
+                   Visibility(
+                     visible: widget.isFather==true?false:true,
+                       child: profileImageWidget()),
                 ],
               ),
             ),
