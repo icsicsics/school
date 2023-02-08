@@ -92,32 +92,35 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
   }
 
   Widget image(images) {
-    return CircleAvatar(
-      child: Image.network(
-        images ?? "",
-        fit: BoxFit.fill,
-        loadingBuilder: (BuildContext context, Widget child,
-            ImageChunkEvent? loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Center(
-            child: CircularProgressIndicator(
-              color: ColorsManager.primaryColor,
-              value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
-                  : null,
+    return ClipOval(
+      child: SizedBox(
+          height: 100,
+          width: 100,
+          child: Image.network(
+            images,
+            fit: BoxFit.fill,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Center(
+                child: CircularProgressIndicator(
+                  color: ColorsManager.primaryColor,
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                ),
+              );
+            },
+            errorBuilder: (context, error, stackTrace) => SizedBox(
+              height: 150,
+              width: 150,
+              child: CircleAvatar(
+                child: SvgPicture.asset(ImagesPath.avatar,
+                    fit: BoxFit.fitHeight, height: double.infinity),
+              ),
             ),
-          );
-        },
-        errorBuilder: (context, error, stackTrace) => SizedBox(
-          height: 150,
-          width: 150,
-          child: CircleAvatar(
-            child: SvgPicture.asset(ImagesPath.avatar,
-                fit: BoxFit.fitHeight, height: double.infinity),
-          ),
-        ),
-      ),
+          )),
     );
   }
 }

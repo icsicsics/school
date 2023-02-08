@@ -1,5 +1,5 @@
+import 'get_image.dart';
 import 'points.dart';
-import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/get_lmage.dart';
 
 class Data {
   String? studentId;
@@ -12,10 +12,10 @@ class Data {
   Data({
     this.studentId,
     this.studentName,
-    this.getImage,
-    this.points,
     this.allPointsCount,
     this.thisWeekPointsCount,
+    this.getImage,
+    this.points,
   });
 
   Data.fromJson(dynamic json) {
@@ -24,8 +24,7 @@ class Data {
     allPointsCount = json['allPointsCount'];
     thisWeekPointsCount = json['thisWeekPointsCount'];
     getImage =
-        json['data'] != null ? GetImage.fromJson(json['getImage']) : null;
-
+        json['getImage'] != null ? GetImage.fromJson(json['getImage']) : null;
     if (json['points'] != null) {
       points = [];
       json['points'].forEach((v) {
