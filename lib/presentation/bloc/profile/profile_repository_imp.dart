@@ -49,15 +49,16 @@ class ProfileRepositoryImp extends BaseProfileRepository {
     TeacherChangePhotoResponse teacherChangePhotoResponse =
         TeacherChangePhotoResponse();
     try {
-      FormData formData =  FormData.fromMap({
-        'Image': await MultipartFile.fromFile(
-          xFile.path,
-          filename: xFile.name,
-          contentType: MediaType.parse("image/png"),
-        ),
-      });
-      Response response =
-          await DioHelper.teacherChangePhoto(token, formData);
+      MultipartFile multipartFile = await MultipartFile.fromFile(
+        xFile.path,
+        filename: xFile.path.split("/").last,
+        contentType: MediaType('image', 'png'),
+      );
+
+      Map<String, dynamic> formData = {
+        "Image": multipartFile
+      };
+      Response response = await DioHelper.teacherChangePhoto(token, formData);
       teacherChangePhotoResponse =
           TeacherChangePhotoResponse.fromJson(response.data);
       if (teacherChangePhotoResponse.data != null) {
@@ -70,5 +71,4 @@ class ProfileRepositoryImp extends BaseProfileRepository {
     }
     return state!;
   }
-
 }

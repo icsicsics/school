@@ -155,11 +155,10 @@ class DioHelper {
     return dio.post(ApiKey.teacherChangePhoto,
         data: formData,
         options: Options(
-          contentType: Headers.formUrlEncodedContentType,
           headers: {
             "accept": "text/plain",
             "Authorization": "Bearer $token",
-            "Content-Type": "multipart/form-data",
+            "content-Type": 'multipart/form-data',
           },
         ));
   }
