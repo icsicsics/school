@@ -100,14 +100,14 @@ class SharedPreferencesManager {
         data: isFather);
   }
 
-  Future<bool> setProfileImage(String data) async {
+  Future<bool> setTeacherProfileImage(String data) async {
     return await SharedPreferencesUtils.setString(
-        SharedPreferencesKeys.profileImage, data);
+        SharedPreferencesKeys.profileTeacherImage, data);
   }
 
-  Future<String?> getProfileImage() async {
+  Future<String?> getTeacherProfileImage() async {
     return await SharedPreferencesUtils.getString(
-        SharedPreferencesKeys.profileImage);
+        SharedPreferencesKeys.profileTeacherImage);
   }
 
   Future<bool> setToken(String token) async {

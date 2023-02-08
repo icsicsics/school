@@ -1,8 +1,8 @@
 
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 
-class GetImageProfileFromSharedPreferencesUseCase {
+class GetTeacherImageProfileFromSharedPreferencesUseCase {
   Future<String?> call() async {
-    return await SharedPreferencesManager().getProfileImage();
+    return await SharedPreferencesManager().getTeacherProfileImage();
   }
 }

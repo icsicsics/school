@@ -52,10 +52,10 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is SuccessSelectImageState) {
           _onSuccessSelectImage(image: state.image);
           _imagePath=state.image.path;
-        } else if (state is SetProfileImageInShearedPrefranceSuccessState) {
+        } else if (state is SetTeacherProfileImageInShearedPrefranceSuccessState) {
           hideLoading();
           _getProfileImage();
-        } else if (state is GetProfileImageFromShearedPrefranceSuccessState) {
+        } else if (state is GetTeacherProfileImageFromShearedPrefranceSuccessState) {
           _profileImage = state.image;
         } else if (state is GetTokenState) {
           _token = state.token;
@@ -80,7 +80,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           language = state.language;
         } else if (state is TeacherChangePhotoSuccessState) {
           _bloc.add(
-              SetProfileImageInShearedPrefranceEvent(image:_imagePath));
+              SetTeacherProfileImageInShearedPrefranceEvent(image:_imagePath));
         }
       },
       builder: (context, state) {
@@ -110,7 +110,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
 
   void _getProfileImage() {
-    _bloc.add(GetProfileImageFromShearedPrefranceEvent());
+    _bloc.add(GetTeacherProfileImageFromShearedPrefranceEvent());
     Navigator.pop(context);
   }
 
@@ -177,7 +177,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
       (route) => false);
 
   void _invokeInit() {
-    _bloc.add(GetProfileImageFromShearedPrefranceEvent());
+    _bloc.add(GetTeacherProfileImageFromShearedPrefranceEvent());
     _bloc.add(GetIsFatherEvent());
     _bloc.add(GetTokenEvent());
   }

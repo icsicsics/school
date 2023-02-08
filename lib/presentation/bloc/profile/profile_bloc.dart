@@ -21,9 +21,9 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final BaseProfileRepository _repository = ProfileRepositoryImp();
   final GetProfileImageUseCase _profileImageUseCase;
-  final SetImageProfileInSharedPreferencesUseCase
+  final SetTeacherImageProfileInSharedPreferencesUseCase
       _setImageProfileInSharedPreferencesUseCase;
-  final GetImageProfileFromSharedPreferencesUseCase
+  final GetTeacherImageProfileFromSharedPreferencesUseCase
       _getImageProfileFromSharedPreferencesUseCase;
   final GetTokenUseCase _getTokenUseCase;
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
@@ -40,13 +40,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<NavigateToNotificationScreenEvent>(_onNavigateToNotificationScreenEvent);
     on<OpenCameraGalleryBottomSheetEvent>(_onOpenCameraGalleryBottomSheetEvent);
     on<SelectProfileImageEvent>(_onSelectProfileImageEvent);
-    on<SetProfileImageInShearedPrefranceEvent>(_onSetProfileImageInShearedPrefranceEvent);
-    on<GetProfileImageFromShearedPrefranceEvent>(_onGetProfileImageFromShearedPrefranceEvent);
+    on<SetTeacherProfileImageInShearedPrefranceEvent>(_onSetProfileImageInShearedPrefranceEvent);
+    on<GetTeacherProfileImageFromShearedPrefranceEvent>(_onGetProfileImageFromShearedPrefranceEvent);
     on<GetTokenEvent>(_onGetTokenEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
-    on<UploadImageEvent>(_onUploadImageEvent);
+    on<UploadTeacherImageEvent>(_onUploadImageEvent);
   }
 
   FutureOr<void> _onGetProfileEvent(
@@ -79,17 +79,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   Future<void> _onSetProfileImageInShearedPrefranceEvent(
-      SetProfileImageInShearedPrefranceEvent event, Emitter<ProfileState> emit) async {
+      SetTeacherProfileImageInShearedPrefranceEvent event, Emitter<ProfileState> emit) async {
     emit(GetProfileLoadingState());
     await _setImageProfileInSharedPreferencesUseCase(
         profileImage: event.image);
-    emit(SetProfileImageInShearedPrefranceSuccessState());
+    emit(SetTeacherProfileImageInShearedPrefranceSuccessState());
   }
 
   Future<void> _onGetProfileImageFromShearedPrefranceEvent(
-      GetProfileImageFromShearedPrefranceEvent event, Emitter<ProfileState> emit) async {
+      GetTeacherProfileImageFromShearedPrefranceEvent event, Emitter<ProfileState> emit) async {
     String? image = await _getImageProfileFromSharedPreferencesUseCase();
-    emit(GetProfileImageFromShearedPrefranceSuccessState(image: image ?? ""));
+    emit(GetTeacherProfileImageFromShearedPrefranceSuccessState(image: image ?? ""));
   }
 
   FutureOr<void> _onGetTokenEvent(
@@ -128,7 +128,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   FutureOr<void> _onUploadImageEvent(
-      UploadImageEvent event, Emitter<ProfileState> emit) async {
+      UploadTeacherImageEvent event, Emitter<ProfileState> emit) async {
     emit(GetProfileLoadingState());
     ProfileState state = (await _repository.teacherChangePhoto(event.token, event.xFile)) as ProfileState;
     if (state is TeacherChangePhotoSuccessState) {

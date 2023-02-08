@@ -14,10 +14,10 @@ Future<void> initializeUseCaseDependencies() async {
       () => SaveLanguageCodeUseCase(injector()));
   injector
       .registerFactory<GetProfileImageUseCase>(() => GetProfileImageUseCase());
-  injector.registerFactory<GetImageProfileFromSharedPreferencesUseCase>(
-      () => GetImageProfileFromSharedPreferencesUseCase());
-  injector.registerFactory<SetImageProfileInSharedPreferencesUseCase>(
-      () => SetImageProfileInSharedPreferencesUseCase(injector()));
+  injector.registerFactory<GetTeacherImageProfileFromSharedPreferencesUseCase>(
+      () => GetTeacherImageProfileFromSharedPreferencesUseCase());
+  injector.registerFactory<SetTeacherImageProfileInSharedPreferencesUseCase>(
+      () => SetTeacherImageProfileInSharedPreferencesUseCase(injector()));
 
   injector.registerFactory<SetTokenUseCase>(
           () => SetTokenUseCase(injector()));

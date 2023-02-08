@@ -7,6 +7,6 @@ class SharedPreferencesKeys {
   static const osVersion = "os_version";
   static const ipAddress = "ip_address";
   static const isFather = "isFather";
-  static const profileImage = "profile_image";
+  static const profileTeacherImage = "profile_image";
   static const token = "token";
 }

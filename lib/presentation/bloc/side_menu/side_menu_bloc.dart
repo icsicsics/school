@@ -19,12 +19,12 @@ part 'side_menu_state.dart';
 class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   final BaseSideMenuRepository _repository = SideMenuRepositoryImp();
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
-  final SetImageProfileInSharedPreferencesUseCase
+  final SetTeacherImageProfileInSharedPreferencesUseCase
   _setImageProfileInSharedPreferencesUseCase;
    TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
    FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
    String profileImage ='';
-  final GetImageProfileFromSharedPreferencesUseCase
+  final GetTeacherImageProfileFromSharedPreferencesUseCase
   _getImageProfileFromSharedPreferencesUseCase;
   SideMenuBloc(this._getLanguageCodeUseCase,this._getImageProfileFromSharedPreferencesUseCase,this._setImageProfileInSharedPreferencesUseCase) : super(SideMenuInitialState()) {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);

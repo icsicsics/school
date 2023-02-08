@@ -36,17 +36,17 @@ class SuccessSelectImageState extends ProfileState {
   SuccessSelectImageState({required this.image});
 }
 
-class GetProfileImageFromShearedPrefranceSuccessState extends ProfileState {
+class GetTeacherProfileImageFromShearedPrefranceSuccessState extends ProfileState {
   final String image;
-  GetProfileImageFromShearedPrefranceSuccessState({required this.image});
+  GetTeacherProfileImageFromShearedPrefranceSuccessState({required this.image});
 }
 
-class SetProfileImageInShearedPrefranceSuccessState extends ProfileState {}
+class SetTeacherProfileImageInShearedPrefranceSuccessState extends ProfileState {}
 
-class FailedUploadProfileImageState extends ProfileState {
+class FailedUploadTeacherProfileImageState extends ProfileState {
   final String errorMessage;
 
-  FailedUploadProfileImageState({required this.errorMessage});
+  FailedUploadTeacherProfileImageState({required this.errorMessage});
 }
 
 class GetTokenState extends ProfileState {
