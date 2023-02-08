@@ -104,8 +104,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                         section: widget.teacherHomeResponse.data!
                             .teacherHomePage![index].classroomName!,
                         imagePath: widget.teacherHomeResponse.data!
-                            .teacherHomePage![index].getLogo!.mediaUrl
-                            .toString(),
+                            .teacherHomePage![index].getLogo!.mediaUrl!,
                         grade: widget.teacherHomeResponse.data!
                             .teacherHomePage![index].sectionName!,
                       ),

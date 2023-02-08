@@ -78,31 +78,34 @@ class ItemWidget extends StatelessWidget {
   }
 
   Widget image(images) {
-    return CircleAvatar(
-      radius: 50,
-      child: Image.network(
-        images ?? "",
-        fit: BoxFit.fill,
-        loadingBuilder: (BuildContext context, Widget child,
-            ImageChunkEvent? loadingProgress) {
-          if (loadingProgress == null) return child;
-          return SizedBox(
-            width: double.infinity,
-            height: 80,
-            child: Center(
-              child: CircularProgressIndicator(
-                color: ColorsManager.primaryColor,
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
+    return ClipOval(
+      child: SizedBox(
+        height: 100,
+        width: 100,
+        child: Image.network(
+          images,
+          fit: BoxFit.cover,
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) return child;
+            return SizedBox(
+              width: double.infinity,
+              height: 80,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: ColorsManager.primaryColor,
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                ),
               ),
-            ),
-          );
-        },
-        errorBuilder: (context, error, stackTrace) => CircleAvatar(
-          radius: 50,
-          child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill),
+            );
+          },
+          errorBuilder: (context, error, stackTrace) => CircleAvatar(
+            radius: 50,
+            child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill),
+          ),
         ),
       ),
     );

@@ -58,8 +58,7 @@ class _IsNotComingFromHomeBodyWidgetState
                         "${widget.getStudentHousesResponse.data!.students![index].studentId}",
                     classroomToSectionId:
                         "${widget.getStudentHousesResponse.data!.students![index].classroomToSectionId}")),
-            imagePath:
-                "${widget.getStudentHousesResponse.data!.students![index].getImage != null ? widget.getStudentHousesResponse.data!.students![index].getImage!.mediaUrl : ""}",
+            imagePath: widget.getStudentHousesResponse.data!.students![index].getImage==null?"": widget.getStudentHousesResponse.data!.students![index].getImage!.mediaUrl!,
           );
         });
   }

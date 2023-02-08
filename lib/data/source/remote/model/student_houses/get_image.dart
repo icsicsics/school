@@ -1,18 +1,18 @@
-class GetImage{
-String? id;
-String? caption;
-String? mediaUrl;
-
-GetImage({
+class GetImage {
+  String ?id;
+  String ?caption;
+  String ?mediaUrl;
+  GetImage({
       this.id, 
       this.caption, 
       this.mediaUrl,});
 
-GetImage.fromJson(dynamic json) {
+  GetImage.fromJson(dynamic json) {
     id = json['id'];
     caption = json['caption'];
     mediaUrl = json['mediaUrl'];
   }
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

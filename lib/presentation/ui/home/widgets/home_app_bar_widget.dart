@@ -53,17 +53,24 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
               width: 5,
             ),
             Expanded(
-              child: MediumTextWidget(
-                  textAlign: TextAlign.center,
-                  text: widget.isFather
-                      ? widget.bloc.fatherInfoResponse.data != null
-                          ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
-                          : S.of(context).welcome
-                      : widget.teacherHomeResponse.data != null
-                          ? widget.teacherHomeResponse.data!.schoolName
-                          : "",
-                  fontSize: 18,
-                  color: ColorsManager.whiteColor),
+              child: Row(
+                children: [
+                  MediumTextWidget(
+                      textAlign: TextAlign.center,
+                      text: widget.isFather
+                          ? widget.bloc.fatherInfoResponse.data != null
+                              ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
+                              : S.of(context).welcome
+                          : widget.teacherHomeResponse.data != null
+                              ? widget.teacherHomeResponse.data!.schoolName
+                              : "",
+                      fontSize: 18,
+                      color: ColorsManager.whiteColor),
+                  const SizedBox(width: 10),
+                  profileImageWidget(),
+                  const Spacer()
+                ],
+              ),
             ),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -136,4 +143,30 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       widget.bloc.add(ChangeLanguageEvent("en"));
     }
   }
+
+  Widget profileImageWidget() {
+    return widget.teacherHomeResponse.data != null
+        ? ClipOval(
+            child: Image.network(
+              widget.teacherHomeResponse.data!.getLogo!.mediaUrl!,
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) =>
+                  _buildProfilePlaceHolder(),
+            ),
+          )
+        : SizedBox(
+            width: 30,
+            height: 30,
+            child: _buildProfilePlaceHolder(),
+          );
+  }
+
+  SizedBox _buildProfilePlaceHolder() => SizedBox(
+        height: 30,
+        width: 30,
+        child: CircleAvatar(
+          child: SvgPicture.asset(ImagesPath.avatar,
+              fit: BoxFit.cover, height: double.infinity),
+        ),
+      );
 }
