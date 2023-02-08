@@ -15,6 +15,7 @@ import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
 
 class AddPointDialogWidget extends StatefulWidget {
+  final bool isGift;
   final String childName;
   final String token;
   final String classroomId;
@@ -30,7 +31,7 @@ class AddPointDialogWidget extends StatefulWidget {
       required this.token,
       this.isParent = false,
       required this.studentId,
-      required this.classroomSectionStudentsId,required this.onCreatePointSuccess})
+      required this.classroomSectionStudentsId,required this.onCreatePointSuccess,this.isGift=false})
       : super(key: key);
 
   @override

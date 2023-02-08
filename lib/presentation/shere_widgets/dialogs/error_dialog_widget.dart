@@ -30,7 +30,7 @@ class _ErrorDialogWidgetState extends State<ErrorDialogWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             BoldTextWidget(
                 text: widget.textMessage,
