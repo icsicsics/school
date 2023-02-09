@@ -28,7 +28,6 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   final Color _unselectedColor = ColorsManager.mediumGrayColor;
   List<Points> points = [];
   List<Points> filter = [];
-
   final List<_ChildIconsModel> _list = [];
 
   @override
@@ -109,22 +108,51 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
 
   void _selectItem(String id, String name, bool isSelected) {
     for (var element in _list) {
-      if (id == "-1" && isSelected == true) {
-        if (_list.any((element) => element.isSelected == true) &&
-            _list.any((element) => element.id != "-1")) {
-          for (var element in _list) {
-            if (element.id == "-1" && element.isSelected == true) {
-              setState(() {
-                element.isSelected = false;
-              });
-            }
+      if (_list.every((element) => element.isSelected == false)) {
+        for (var element in _list) {
+          if (element.id == "-1" && element.isSelected == false) {
+            setState(() {
+              element.isSelected = true;
+              for (var item in points) {
+                filter.add(item);
+              }
+            });
           }
         }
+      }
+     else  if (id == "-1" && isSelected == true) {
+        element.isSelected = false;
+        for (var item in points) {
+          filter.add(item);
+        }
+        BlocProvider.of<MyChildrenBloc>(context)
+            .add(MyChildrenFilterEvent(filter: filter));
       } else {
         setState(() {
-          if (id == element.id && element.isSelected == false) {
-            if (_list.any((element) => element.isSelected == false) &&
-                _list.any((element) => element.id != "-1")) {
+          if (_list.every((element) => element.isSelected == false) &&
+              _list.any((element) => element.id == "-1")) {
+            for (var element in _list) {
+              if (element.id == "-1" && element.isSelected == false) {
+                setState(() {
+                  element.isSelected = true;
+                  for (var item in points) {
+                    filter.add(item);
+                  }
+                });
+              }
+            }
+          } else if (id == element.id && element.isSelected == false) {
+            if (_list.every((element) => element.isSelected == false) &&
+                _list.any((element) => element.id == "-1")) {
+              for (var element in _list) {
+                if (element.id == "-1" && element.isSelected == false) {
+                  setState(() {
+                    element.isSelected = true;
+                  });
+                }
+              }
+            } else if (_list.any((element) => element.isSelected == true) &&
+                _list.any((element) => element.id == "-1")) {
               for (var element in _list) {
                 if (element.id == "-1" && element.isSelected == true) {
                   setState(() {
@@ -146,17 +174,9 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             }
           } else if (id == element.id && element.isSelected == true) {
             element.isSelected = false;
-            if (_list.every((element) => element.isSelected == false) &&
-                _list.any((element) => element.id == "-1")) {
-              for (var element in _list) {
-                if (element.id == "-1" && element.isSelected == false) {
-                  setState(() {
-                    element.isSelected = true;
-                    for (var item in points) {
-                      filter.add(item);
-                    }
-                  });
-                }
+            for (var element in _list) {
+              if (element.id == "-1" && element.isSelected == true) {
+                element.isSelected = false;
               }
             }
             filter.removeWhere((element) => element.principleName == name);
@@ -167,6 +187,66 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       }
     }
   }
+// void _selectItem(String id, String name, bool isSelected) {
+//   for (var element in _list) {
+//     if (id == "-1" && isSelected == true) {
+//       if (_list.any((element) => element.isSelected == true) &&
+//           _list.any((element) => element.id != "-1")) {
+//         for (var element in _list) {
+//           if (element.id == "-1" && element.isSelected == true) {
+//             setState(() {
+//               element.isSelected = false;
+//             });
+//           }
+//         }
+//       }
+//     } else {
+//       setState(() {
+//         if (id == element.id && element.isSelected == false) {
+//           if (_list.any((element) => element.isSelected == false) &&
+//               _list.any((element) => element.id != "-1")) {
+//             for (var element in _list) {
+//               if (element.id == "-1" && element.isSelected == true) {
+//                 setState(() {
+//                   element.isSelected = false;
+//                 });
+//               }
+//             }
+//           }
+//           element.isSelected = true;
+//           for (var item in points) {
+//             if (item.principleName.toString() == name &&
+//                 element.isSelected == true) {
+//               filter.add(item);
+//             } else if (element.id == "-1" && element.isSelected == true) {
+//               filter.add(item);
+//             }
+//             BlocProvider.of<MyChildrenBloc>(context)
+//                 .add(MyChildrenFilterEvent(filter: filter));
+//           }
+//         } else if (id == element.id && element.isSelected == true) {
+//           element.isSelected = false;
+//           if (_list.every((element) => element.isSelected == false) &&
+//               _list.any((element) => element.id == "-1")) {
+//             for (var element in _list) {
+//               if (element.id == "-1" && element.isSelected == false) {
+//                 setState(() {
+//                   element.isSelected = true;
+//                   for (var item in points) {
+//                     filter.add(item);
+//                   }
+//                 });
+//               }
+//             }
+//           }
+//           filter.removeWhere((element) => element.principleName == name);
+//           BlocProvider.of<MyChildrenBloc>(context)
+//               .add(MyChildrenFilterEvent(filter: filter));
+//         }
+//       });
+//     }
+//   }
+// }
 }
 
 class _ChildIconsModel {
