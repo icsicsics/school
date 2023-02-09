@@ -41,10 +41,15 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       _list.add(_ChildIconsModel(
           id: element.id!, title: element.name!, isSelected: false));
     }
+
     for (var item in points) {
       filter.add(item);
     }
-
+    filter = filter
+      ..sort((A, B) => A.principleName
+          .toString()
+          .toUpperCase()
+          .compareTo(B.principleName.toString().toUpperCase()));
     super.initState();
   }
 
@@ -118,15 +123,18 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
               }
             });
           }
+          BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
+              filter: filter
+                ..sort((A, B) => A.principleName
+                    .toString()
+                    .toUpperCase()
+                    .compareTo(B.principleName.toString().toUpperCase()))));
         }
-      }
-     else  if (id == "-1" && isSelected == true) {
+      } else if (id == "-1" && isSelected == true) {
         element.isSelected = false;
         for (var item in points) {
           filter.add(item);
         }
-        BlocProvider.of<MyChildrenBloc>(context)
-            .add(MyChildrenFilterEvent(filter: filter));
       } else {
         setState(() {
           if (_list.every((element) => element.isSelected == false) &&
@@ -169,8 +177,14 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
               } else if (element.id == "-1" && element.isSelected == true) {
                 filter.add(item);
               }
-              BlocProvider.of<MyChildrenBloc>(context)
-                  .add(MyChildrenFilterEvent(filter: filter));
+              BlocProvider.of<MyChildrenBloc>(context).add(
+                  MyChildrenFilterEvent(
+                      filter: filter
+                        ..sort((A, B) => A.principleName
+                            .toString()
+                            .toUpperCase()
+                            .compareTo(
+                                B.principleName.toString().toUpperCase()))));
             }
           } else if (id == element.id && element.isSelected == true) {
             element.isSelected = false;
@@ -181,7 +195,11 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             }
             filter.removeWhere((element) => element.principleName == name);
             BlocProvider.of<MyChildrenBloc>(context)
-                .add(MyChildrenFilterEvent(filter: filter));
+                .add(MyChildrenFilterEvent(filter: filter
+              ..sort((A, B) => A.principleName
+                  .toString()
+                  .toUpperCase()
+                  .compareTo(B.principleName.toString().toUpperCase()))));
           }
         });
       }
