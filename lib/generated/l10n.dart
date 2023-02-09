@@ -980,10 +980,10 @@ class S {
     );
   }
 
-  /// `Please Select why this point first`
+  /// `Write a comment`
   String get pleaseSelectWhyThisPointFirst {
     return Intl.message(
-      'Please Select why this point first',
+      'Write a comment',
       name: 'pleaseSelectWhyThisPointFirst',
       desc: '',
       args: [],

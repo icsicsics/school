@@ -70,7 +70,7 @@ class _SelectCountryTextFieldWidgetState
               leadingPadding: 0,
               trailingSpace: false,
               selectorType: PhoneInputSelectorType.DIALOG,
-              showFlags: false),
+              showFlags: true),
           onInputChanged: (PhoneNumber number) {},
         ),
       ),

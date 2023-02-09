@@ -6,8 +6,10 @@ import 'package:schools/presentation/shere_widgets/custom_button_widget.dart';
 
 class ErrorDialogWidget extends StatefulWidget {
   final String textMessage;
+  final bool isGift;
+
   const ErrorDialogWidget(
-      {Key? key,required this.textMessage})
+      {Key? key, required this.textMessage, this.isGift = false})
       : super(key: key);
 
   @override
@@ -15,8 +17,6 @@ class ErrorDialogWidget extends StatefulWidget {
 }
 
 class _ErrorDialogWidgetState extends State<ErrorDialogWidget> {
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,8 +29,12 @@ class _ErrorDialogWidgetState extends State<ErrorDialogWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 40,
+            Visibility(
+                visible: widget.isGift,
+                child: const Icon(Icons.card_giftcard,
+                    size: 40, color: ColorsManager.yellow)),
+            SizedBox(
+              height: widget.isGift ? 10 : 35,
             ),
             BoldTextWidget(
                 text: widget.textMessage,
@@ -39,13 +43,12 @@ class _ErrorDialogWidgetState extends State<ErrorDialogWidget> {
             const Spacer(),
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 3,
-                onPressed: ()=>Navigator.pop(context),
+                onPressed: () => Navigator.pop(context),
                 buttonText: S.of(context).ok,
                 borderRadius: 25,
                 buttonColor: ColorsManager.secondaryColor,
                 borderColor: ColorsManager.secondaryColor,
-                buttonTextColor: ColorsManager.whiteColor
-            ),
+                buttonTextColor: ColorsManager.whiteColor),
             const SizedBox(
               height: 10,
             ),

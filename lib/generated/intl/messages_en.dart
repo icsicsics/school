@@ -94,8 +94,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseEnterThePhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone number"),
-        "pleaseSelectWhyThisPointFirst": MessageLookupByLibrary.simpleMessage(
-            "Please Select why this point first"),
+        "pleaseSelectWhyThisPointFirst":
+            MessageLookupByLibrary.simpleMessage("Write a comment"),
         "pleaseTypeVerificationCodeSentToYourPhone":
             MessageLookupByLibrary.simpleMessage(
                 "Please type verification code sent to your\nphone"),
