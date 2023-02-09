@@ -93,5 +93,8 @@
  "error":"Error",
  "at":"at",
  "pleaseSelectWhyThisPointFirst":"Write a comment",
- "viewHouses":"View Houses"
+ "viewHouses":"View Houses",
+ "values":"Values ,",
+ "behavior":"Behavior ,",
+ "skills":"Skills"
 }

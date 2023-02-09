@@ -93,5 +93,8 @@
   "error":"خطا",
   "at":"في",
   "pleaseSelectWhyThisPointFirst":"أكتب تعليقا",
-   "viewHouses":"مشاهدة المنازل"
+   "viewHouses":"مشاهدة المنازل",
+    "values":"قيم",
+    "behavior":", سلوك",
+    "skills":", مهارات"
 }

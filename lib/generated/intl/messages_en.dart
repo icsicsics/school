@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure ?"),
         "at": MessageLookupByLibrary.simpleMessage("at"),
         "aug": MessageLookupByLibrary.simpleMessage("august"),
+        "behavior": MessageLookupByLibrary.simpleMessage("Behavior ,"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
@@ -109,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("Send OTP"),
         "sep": MessageLookupByLibrary.simpleMessage("september"),
+        "skills": MessageLookupByLibrary.simpleMessage("Skills"),
         "studentHouses": MessageLookupByLibrary.simpleMessage("Student houses"),
         "students": MessageLookupByLibrary.simpleMessage("Students"),
         "studentsProfile":
@@ -125,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),
+        "values": MessageLookupByLibrary.simpleMessage("Values ,"),
         "verificationCode":
             MessageLookupByLibrary.simpleMessage("Verification Code"),
         "verifyYourNumber":

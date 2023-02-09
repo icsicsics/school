@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouSure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
         "at": MessageLookupByLibrary.simpleMessage("في"),
         "aug": MessageLookupByLibrary.simpleMessage("اغسطس"),
+        "behavior": MessageLookupByLibrary.simpleMessage(", سلوك"),
         "camera": MessageLookupByLibrary.simpleMessage("كاميره"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
@@ -108,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),
         "sep": MessageLookupByLibrary.simpleMessage("سبتمبر"),
+        "skills": MessageLookupByLibrary.simpleMessage(", مهارات"),
         "studentHouses": MessageLookupByLibrary.simpleMessage("منازل الطلاب"),
         "students": MessageLookupByLibrary.simpleMessage("طلاب"),
         "studentsProfile":
@@ -124,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tuesday": MessageLookupByLibrary.simpleMessage("الثلاثاء"),
         "typeWhyLeenDeserveThisPoint":
             MessageLookupByLibrary.simpleMessage("اكتب لماذا تستحق هذه النقطة"),
+        "values": MessageLookupByLibrary.simpleMessage("قيم"),
         "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("تحقق من رقمك"),

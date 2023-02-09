@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
+import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/confirm_button_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/select_country_text_field_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/welcome_widget.dart';
@@ -47,6 +50,26 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                         confirmAction: () => BlocProvider.of<LoginBloc>(context)
                             .add(LoginConfirmButtonEvent())),
                   ],
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MediumTextWidget(text: S.of(context).values, fontSize: 16, color: ColorsManager.sameBlack),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    MediumTextWidget(text: S.of(context).behavior, fontSize: 16, color: ColorsManager.sameBlack),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    MediumTextWidget(text: S.of(context).skills, fontSize: 16, color: ColorsManager.sameBlack)
+
+
+                  ],
+
                 )
               ],
             ),

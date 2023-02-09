@@ -999,6 +999,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Values ,`
+  String get values {
+    return Intl.message(
+      'Values ,',
+      name: 'values',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Behavior ,`
+  String get behavior {
+    return Intl.message(
+      'Behavior ,',
+      name: 'behavior',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skills`
+  String get skills {
+    return Intl.message(
+      'Skills',
+      name: 'skills',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
