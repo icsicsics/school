@@ -40,3 +40,5 @@ class GetFatherInfoEvent extends HomeEvent {
 
   GetFatherInfoEvent({required this.token});
 }
+
+class GetWeatherEvent extends HomeEvent {}

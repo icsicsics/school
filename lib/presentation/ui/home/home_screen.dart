@@ -31,6 +31,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
     _homeBloc.add(GetIsFatherEvent());
     _homeBloc.add(GetLanguageEvent());
     _homeBloc.add(GetTokenEvent());
+    _homeBloc.add(GetWeatherEvent());
 
     super.initState();
   }

@@ -63,7 +63,7 @@ class DioHelper {
   static Future<Response> getClassHouses(
       token, classroomToSectionId, isComingFromHome) async {
     return dio.get(
-        isComingFromHome==false
+        isComingFromHome == false
             ? "${ApiKey.getClassHouses}?ClassroomToSectionId=$classroomToSectionId"
             : "${ApiKey.getSchoolHouses}?BranchId=$classroomToSectionId",
         options: Options(
@@ -75,8 +75,7 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> getStudentHouses(
-      token, classroomToSectionId) async {
+  static Future<Response> getStudentHouses(token, classroomToSectionId) async {
     return dio.get(
         "${ApiKey.getStudentsHouse}?ClassroomToSectionId=$classroomToSectionId",
         options: Options(
@@ -161,5 +160,11 @@ class DioHelper {
             "content-Type": 'multipart/form-data',
           },
         ));
+  }
+
+  static Future<Response> getWeather(lat,lon) async {
+    return dio.get(
+      'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=9417a6b6e67474512aca9f713dc57937',
+    );
   }
 }

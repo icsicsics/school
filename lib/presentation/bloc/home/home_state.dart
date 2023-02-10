@@ -75,3 +75,13 @@ class GetTeacherInfoFillState extends HomeState {
 
   GetTeacherInfoFillState({required this.error});
 }
+class GetWeatherFillState extends HomeState {
+  final String error;
+
+  GetWeatherFillState({required this.error});
+}
+class GetWeatherSuccessState extends HomeState {
+  final Weather weather;
+
+  GetWeatherSuccessState({required this.weather});
+}
