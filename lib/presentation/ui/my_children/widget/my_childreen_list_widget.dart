@@ -41,6 +41,10 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       _list.add(_ChildIconsModel(
           id: element.id!, title: element.name!, isSelected: false));
     }
+    _list.sort((A, B) => A.title
+        .toString()
+        .toUpperCase()
+        .compareTo(B.title.toString().toUpperCase()));
 
     for (var item in points) {
       filter.add(item);
