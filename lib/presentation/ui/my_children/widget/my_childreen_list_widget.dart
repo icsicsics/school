@@ -45,11 +45,12 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     for (var item in points) {
       filter.add(item);
     }
-    filter = filter
-      ..sort((A, B) => A.principleName
-          .toString()
-          .toUpperCase()
-          .compareTo(B.principleName.toString().toUpperCase()));
+    BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
+        filter: filter
+          ..sort((A, B) => A.principleName
+              .toString()
+              .toUpperCase()
+              .compareTo(B.principleName.toString().toUpperCase()))));
     super.initState();
   }
 
