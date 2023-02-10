@@ -153,6 +153,21 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
           }
         }
       }
+      if (id == element.id && element.isSelected == false) {
+        if (_list.every((element) => element.isSelected == false) &&
+            _list.any((element) => element.id == "-1")) {
+          for (var element in _list) {
+            if (element.id == "-1" && element.isSelected == false) {
+              setState(() {
+                element.isSelected = true;
+              });
+            }
+            for (var elementInList in points) {
+              filter.add(elementInList);
+            }
+          }
+        }
+      }
     }
 
     BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
