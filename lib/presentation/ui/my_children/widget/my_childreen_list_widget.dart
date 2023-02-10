@@ -124,7 +124,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
           }
         }
       } else if (id != "-1") {
-        if (element.id == "-1") {
+        if (element.id == "-1" && element.isSelected == true) {
           setState(() {
             element.isSelected = false;
           });
@@ -154,6 +154,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
         }
       }
     }
+
     BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
         filter: filter
           ..sort((A, B) => A.principleName
