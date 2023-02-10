@@ -81,7 +81,7 @@ class GetWeatherFillState extends HomeState {
   GetWeatherFillState({required this.error});
 }
 class GetWeatherSuccessState extends HomeState {
-  final Weather weather;
+  final WeatherResponse weather;
 
   GetWeatherSuccessState({required this.weather});
 }

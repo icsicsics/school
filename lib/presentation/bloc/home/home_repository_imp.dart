@@ -4,9 +4,9 @@ import 'package:schools/data/source/remote/model/children_by_parent/response/get
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
+import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
-import 'package:schools/presentation/ui/home/weather.dart';
 
 class HomeRepositoryImp extends BaseHomeRepository {
   @override
@@ -82,10 +82,10 @@ class HomeRepositoryImp extends BaseHomeRepository {
   @override
   Future<HomeState> getWeather(late, long) async {
     HomeState? state;
-    Weather weather = Weather();
+    WeatherResponse weather = WeatherResponse();
     try {
       Response response = await DioHelper.getWeather(late, long);
-      weather = Weather.fromJson(response.data);
+      weather = WeatherResponse.fromJson(response.data);
       if (weather.id != null) {
         return GetWeatherSuccessState(weather: weather);
       }

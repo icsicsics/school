@@ -7,9 +7,9 @@ import 'package:schools/data/source/remote/model/children_by_parent/response/get
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
+import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_repository_imp.dart';
-import 'package:schools/presentation/ui/home/weather.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
 import 'package:schools/use_case/get_token_use_case.dart';
 import 'package:schools/use_case/save_language_use_case.dart';
@@ -128,9 +128,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onGetWeatherEvent(
       GetWeatherEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
-    HomeState state = (await _repository.getWeather("30.033333", "31.233334")) as HomeState;
+    HomeState state = (await _repository.getWeather("32.332687", "35.751785")) as HomeState;
     if (state is GetWeatherSuccessState) {
-      print(state.weather);
       emit(GetWeatherSuccessState(weather: state.weather));
     } else if (state is GetWeatherFillState) {
       emit(GetWeatherFillState(error: state.error));

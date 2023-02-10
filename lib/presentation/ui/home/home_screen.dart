@@ -4,6 +4,7 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
   GetChildrenByParentResponse _parentHomeResponse = GetChildrenByParentResponse();
+  WeatherResponse _weatherResponse = WeatherResponse();
   String _language = '';
   String _token = '';
 
@@ -79,6 +81,10 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         }else if(state is GetTeacherInfoFillState){
           hideLoading();
           _onGetTeacherInfoFillState(state.error);
+        }else if (state is GetWeatherSuccessState){
+          _weatherResponse=state.weather;
+        }else if (state is GetWeatherFillState){
+          _onGetWeatherFillState(state.error);
         }
       },
       builder: (context, state) {
@@ -91,6 +97,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
               token: _token,
             ),
             body: HomeContentWidget(
+              weatherResponse: _weatherResponse,
                 globalKey: _key,
                 isFather: _isFather,
                 bloc: _homeBloc,
@@ -114,4 +121,6 @@ class _HomeScreenState extends BaseState<HomeScreen> {
 
   void _onGetFatherInfoFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
+
+  void _onGetWeatherFillState(String error)=>showErrorDialogFunction(context: context, textMessage: error);
 }

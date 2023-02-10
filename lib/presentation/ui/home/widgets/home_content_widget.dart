@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/ui/home/widgets/father/home_father_content_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/home_app_bar_widget.dart';
@@ -16,6 +17,7 @@ class HomeContentWidget extends StatefulWidget {
   final String language;
   final GetTeacherHomeResponse teacherHomeResponse;
   final GetChildrenByParentResponse parentHomeResponse;
+  final WeatherResponse weatherResponse;
 
   const HomeContentWidget(
       {Key? key,
@@ -25,7 +27,8 @@ class HomeContentWidget extends StatefulWidget {
       required this.language,
       required this.parentHomeResponse,
       required this.teacherHomeResponse,
-      required this.token})
+      required this.token,
+      required this.weatherResponse})
       : super(key: key);
 
   @override
@@ -51,7 +54,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
             language: widget.language,
             teacherHomeResponse: widget.teacherHomeResponse),
         const SizedBox(height: 2),
-        const HomeTitleWidget(),
+        HomeTitleWidget(weatherResponse: widget.weatherResponse),
         Expanded(child: SingleChildScrollView(child: _buildScreen()))
       ],
     );

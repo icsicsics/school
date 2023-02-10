@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeTitleWidget extends StatelessWidget {
-  const HomeTitleWidget({Key? key}) : super(key: key);
+  final  WeatherResponse weatherResponse;
+  const HomeTitleWidget({Key? key,required this.weatherResponse}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +89,10 @@ class HomeTitleWidget extends StatelessWidget {
                       const SizedBox(
                         width: 2,
                       ),
-                      const MediumTextWidget(
-                          text: "33 Sunny Day",
+                      weatherResponse.weather!=null? MediumTextWidget(
+                          text: "33 ${weatherResponse.weather![0].description.toString()}",
                           fontSize: 15,
-                          color: ColorsManager.whiteColor),
+                          color: ColorsManager.whiteColor):const SizedBox(),
                     ],
                   ),
                 ],
