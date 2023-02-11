@@ -104,7 +104,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   void _onSuccessSelectImage({required XFile image}) {
     Navigator.pop(context);
-    // _bloc.add(UploadImageEvent(xFile: image, token: _token));
+    // _bloc.add(UploadTeacherImageEvent(xFile: image, token: _token));
   }
 
 
