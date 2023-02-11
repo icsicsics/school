@@ -55,6 +55,12 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
             Expanded(
               child: Row(
                 children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Visibility(
+                      visible: widget.isFather==true?false:true,
+                      child: profileImageWidget()),
                     Expanded(
                       child: MediumTextWidget(
                         textAlign: TextAlign.center,
@@ -68,10 +74,6 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                         fontSize: 18,
                         color: ColorsManager.whiteColor),
                     ),
-                  const SizedBox(width: 10),
-                   Visibility(
-                     visible: widget.isFather==true?false:true,
-                       child: profileImageWidget()),
                 ],
               ),
             ),
