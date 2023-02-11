@@ -7,8 +7,10 @@ import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class HomeTitleWidget extends StatelessWidget {
-  final  WeatherResponse weatherResponse;
-  const HomeTitleWidget({Key? key,required this.weatherResponse}) : super(key: key);
+  final WeatherResponse weatherResponse;
+
+  const HomeTitleWidget({Key? key, required this.weatherResponse})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class HomeTitleWidget extends StatelessWidget {
 
     var dayNumber = dateTime.day;
     var year = dateTime.year;
+
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -89,10 +92,13 @@ class HomeTitleWidget extends StatelessWidget {
                       const SizedBox(
                         width: 2,
                       ),
-                      weatherResponse.weather!=null? MediumTextWidget(
-                          text: "33 ${weatherResponse.weather![0].description.toString()}",
-                          fontSize: 15,
-                          color: ColorsManager.whiteColor):const SizedBox(),
+                      weatherResponse.weather != null
+                          ? MediumTextWidget(
+                              text:
+                                  "${(weatherResponse.main!.temp! - 273.15).round().toString()}\u2103 ${weatherResponse.weather![0].description.toString()}",
+                              fontSize: 15,
+                              color: ColorsManager.whiteColor)
+                          : const SizedBox(),
                     ],
                   ),
                 ],
