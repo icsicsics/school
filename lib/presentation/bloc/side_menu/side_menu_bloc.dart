@@ -6,11 +6,10 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/side_menu_repository.dart';
-import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_repository_imp.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
-import 'package:schools/use_case/get_profile_image_from_shared_preferences_user_case.dart';
-import 'package:schools/use_case/set_profile_image_in_shared_preferences_user_case.dart';
+import 'package:schools/use_case/get_testcher_profile_image_from_shared_preferences_user_case.dart';
+import 'package:schools/use_case/set_teacher_profile_image_in_shared_preferences_user_case.dart';
 
 part 'side_menu_event.dart';
 
