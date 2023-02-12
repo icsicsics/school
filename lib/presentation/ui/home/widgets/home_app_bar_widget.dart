@@ -153,6 +153,8 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
     return widget.teacherHomeResponse.data != null
         ? ClipOval(
             child: Image.network(
+              height: 40,
+              width: 40,
               widget.teacherHomeResponse.data!.getLogo!.mediaUrl!,
               fit: BoxFit.fill,
               errorBuilder: (context, error, stackTrace) =>
