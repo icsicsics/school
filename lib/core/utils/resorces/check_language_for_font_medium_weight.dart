@@ -5,8 +5,10 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 
 
 Future<FontWeight> languageFontMediumWeight() async {
-  String? _language = await SharedPreferencesManager.getAppLanguage();
-  return _language == 'en'
-      ? FontFamily.fontWeightMediumEnglish
-      : FontFamily.fontWeightMediumArabic;
+  // String? _language = await SharedPreferencesManager.getAppLanguage();
+  return FontFamily.fontWeightMediumEnglish;
+
+    // _language == 'en'
+    //   ?
+    //   : FontFamily.fontWeightMediumArabic;
 }

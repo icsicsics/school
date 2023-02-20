@@ -1,10 +1,11 @@
 import 'package:schools/core/utils/themes/font_family.dart';
-import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 
 
 Future<String> languageFontFamily() async {
-  String? _language = await SharedPreferencesManager.getAppLanguage();
-  return _language == 'en'
-      ? FontFamily.fontFamilyEnglish
-      : FontFamily.fontFamilyArabic;
+  // String? _language = await SharedPreferencesManager.getAppLanguage();
+  return FontFamily.fontFamilyEnglish;
+    //
+    // _language == 'en'
+    //   ?
+    //   : FontFamily.fontFamilyArabic;
 }

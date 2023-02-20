@@ -1,10 +1,29 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
+import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
-  const ProfileHeaderWidget({Key? key}) : super(key: key);
+  final ProfileBloc bloc;
+  final String profileImage;
+  final TeacherInfoResponse? teacherInfoResponse;
+  final FatherInfoResponse? fatherInfoResponse;
+  final bool isFather;
+
+  const ProfileHeaderWidget(
+      {Key? key,
+      required this.bloc,
+      required this.profileImage,
+      this.fatherInfoResponse,
+      this.teacherInfoResponse,
+      required this.isFather})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +50,19 @@ class ProfileHeaderWidget extends StatelessWidget {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 50),
+                  padding: const EdgeInsets.only(bottom: 80),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      BoldTextWidget(
-                          text: "Eiz el Deen Mahmoud",
-                          fontSize: 16,
-                          color: ColorsManager.whiteColor),
-                      BoldTextWidget(
-                          text: "Father & Guardian",
-                          fontSize: 16,
-                          color: ColorsManager.whiteColor),
+                    children: [
+                      fatherInfoResponse!.data != null ||
+                              teacherInfoResponse!.data != null
+                          ? BoldTextWidget(
+                              text: isFather
+                                  ? fatherInfoResponse!.data!.parentName ?? ""
+                                  : teacherInfoResponse!.data!.name!.toString(),
+                              fontSize: 16,
+                              color: ColorsManager.whiteColor)
+                          : Container(),
                     ],
                   ),
                 )),
@@ -51,17 +71,13 @@ class ProfileHeaderWidget extends StatelessWidget {
               child: Stack(
                 children: [
                   Center(
-                      child: Container(
+                      child: SizedBox(
                     width: 150,
                     height: 150,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        image: const DecorationImage(
-                            image: AssetImage(ImagesPath.schoolItem),
-                            fit: BoxFit.fill)),
+                    child: profileImageWidget(),
                   )),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () => bloc.add(OpenCameraGalleryBottomSheetEvent()),
                     child: Padding(
                       padding: const EdgeInsets.only(top: 80.5, left: 125.0),
                       child: Center(
@@ -84,5 +100,42 @@ class ProfileHeaderWidget extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  Widget profileImageWidget() {
+    return profileImage.isNotEmpty
+        ? ClipOval(
+            child: Image.network(
+              profileImage,
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) =>
+                  _buildProfilePlaceHolder(),
+            ),
+          )
+        : SizedBox(
+            width: 150,
+            height: 150,
+            child: fatherInfoResponse!.data != null ||
+                    teacherInfoResponse!.data != null
+                ? image(isFather
+                    //todo return father image
+                    ? fatherInfoResponse!.data!.parentName ?? ""
+                    : teacherInfoResponse!.data!.getImage!.mediaUrl.toString())
+                : _buildProfilePlaceHolder(),
+          );
+  }
+
+  CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
+        child: SvgPicture.asset(ImagesPath.avatar,
+            fit: BoxFit.cover, height: double.infinity),
+      );
+
+
+  Widget image(images) {
+    return CircleAvatar(
+      backgroundImage: NetworkImage(
+        images,
+      ),
+    );
   }
 }

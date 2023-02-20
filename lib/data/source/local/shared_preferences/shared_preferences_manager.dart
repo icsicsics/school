@@ -2,14 +2,23 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_utils.dart';
 
 class SharedPreferencesManager {
-  static Future<String?> getAppLanguage() async {
-    return await SharedPreferencesUtils.getString(
-        SharedPreferencesKeys.appLanguage);
+  static final SharedPreferencesManager _sharedPreference =
+      SharedPreferencesManager._internal();
+
+  factory SharedPreferencesManager() {
+    return _sharedPreference;
   }
 
-  static Future<void> setAppLanguage(String appLanguage) async {
-    await SharedPreferencesUtils.setString(
-        SharedPreferencesKeys.appLanguage, appLanguage);
+  SharedPreferencesManager._internal();
+
+  Future<bool> setLanguageCode(String languageCode) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.appLanguage, languageCode);
+  }
+
+  Future<String?> getLanguageCode() async {
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.appLanguage);
   }
 
   static Future<String?> getNotificationToken() async {
@@ -71,7 +80,6 @@ class SharedPreferencesManager {
     await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.ipAddress, ipAddress);
   }
-
   static Future<void> setDeviceInfoData(
       {String? ipAddress,
       String? osVersion,
@@ -90,5 +98,24 @@ class SharedPreferencesManager {
   static Future<void> setIsFather(bool isFather) async {
     await SharedPreferencesUtils.setBool(SharedPreferencesKeys.isFather,
         data: isFather);
+  }
+
+  Future<bool> setTeacherProfileImage(String data) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.profileTeacherImage, data);
+  }
+
+  Future<String?> getTeacherProfileImage() async {
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.profileTeacherImage);
+  }
+
+  Future<bool> setToken(String token) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.token, token);
+  }
+
+  Future<String?> getToken() async {
+    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.token);
   }
 }

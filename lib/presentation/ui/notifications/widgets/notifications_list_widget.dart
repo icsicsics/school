@@ -5,7 +5,8 @@ class NotificationsListWidget extends StatefulWidget {
   const NotificationsListWidget({Key? key}) : super(key: key);
 
   @override
-  State<NotificationsListWidget> createState() => _NotificationsListWidgetState();
+  State<NotificationsListWidget> createState() =>
+      _NotificationsListWidgetState();
 }
 
 class _NotificationsListWidgetState extends State<NotificationsListWidget> {
@@ -13,11 +14,11 @@ class _NotificationsListWidgetState extends State<NotificationsListWidget> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: 10,
+          itemCount: 10,
           padding: const EdgeInsets.only(top: 10),
-          itemBuilder: (BuildContext context,int index){
-        return const NotificationsItemWidget();
-      }),
+          itemBuilder: (BuildContext context, int index) {
+            return const NotificationsItemWidget();
+          }),
     );
   }
 }

@@ -1,18 +1,42 @@
 part of 'add_point_bloc.dart';
 
-@immutable
 abstract class AddPointState {}
 
 class AddPointInitialState extends AddPointState {}
 
-class GetAddPointLoadingState extends AddPointState {}
+class AddPointLoadingState extends AddPointState {}
 
-class GetAddPointSuccessState extends AddPointState {}
+class GetTeacherPrinciplByClassroomIdSuccessState extends AddPointState {
+  final GetTeacherPrinciplByClassroomIdResponse response;
 
-class GetAddPointFillState extends AddPointState {}
+  GetTeacherPrinciplByClassroomIdSuccessState({required this.response});
+}
 
-class GetAddPointErrorState extends AddPointState {}
+class GetTeacherPrinciplByClassroomIdFillState extends AddPointState {
+  final String error;
 
-class NavigateToNotificationScreenState extends AddPointState {}
+  GetTeacherPrinciplByClassroomIdFillState({required this.error});
+}
+class PostTeacherCreatePointSuccessState extends AddPointState {
+  TeacherAddPointResponse response;
 
-class NavigateToMyChildrenScreenState extends AddPointState {}
+  PostTeacherCreatePointSuccessState({required this.response});
+}
+class PostTeacherCreatePointFailState extends AddPointState {
+  final String error;
+
+  PostTeacherCreatePointFailState({required this.error});
+}
+
+class PostFatherCreatePointSuccessState extends AddPointState {
+  FatherAddPointResponse response;
+
+  PostFatherCreatePointSuccessState({required this.response});
+}
+class PostFatherCreatePointFailState extends AddPointState {
+  final String error;
+
+  PostFatherCreatePointFailState({required this.error});
+}
+
+

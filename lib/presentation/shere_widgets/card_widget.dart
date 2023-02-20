@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class CardWidget extends StatelessWidget {
@@ -30,16 +31,55 @@ class CardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(8), topLeft: Radius.circular(8)),
-                child: Image.asset(imagePath, fit: BoxFit.cover)),
-            SizedBox(height: 5,),
+            image(imagePath),
+            const SizedBox(
+              height: 5,
+            ),
             BoldTextWidget(
-                text: grade, fontSize: 13, color: ColorsManager.welcomeGryColor),
+                text: grade,
+                fontSize: 13,
+                color: ColorsManager.welcomeGryColor),
+            const SizedBox(height: 5),
             BoldTextWidget(
-                text: section, fontSize: 13, color: ColorsManager.welcomeGryColor),
+                text: section,
+                fontSize: 13,
+                color: ColorsManager.welcomeGryColor),
           ],
         ));
+  }
+
+  Widget image(images) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+      child:  Image.network(
+          images,
+          fit: BoxFit.cover,
+          height: 120,
+          width: double.infinity,
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) return child;
+            return SizedBox(
+              width: double.infinity,
+              height: 80,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: ColorsManager.primaryColor,
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                ),
+              ),
+            );
+          },
+          errorBuilder: (context, error, stackTrace) => ClipRRect(
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+            child: Image.asset(ImagesPath.schoolItem, fit: BoxFit.fill,   height: 130,width: double.infinity,),
+          ),
+        ),
+    );
   }
 }

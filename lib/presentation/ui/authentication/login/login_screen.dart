@@ -3,12 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/authentication/login/widgets/login_content_widget.dart';
 import 'package:schools/presentation/ui/authentication/verify/verify_screen.dart';
 
 class LoginScreen extends BaseStatefulWidget {
-  const LoginScreen({super.key});
+  final bool isFather;
+
+  const LoginScreen({super.key, required this.isFather});
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _LoginScreenState();
@@ -21,12 +25,15 @@ class _LoginScreenState extends BaseState<LoginScreen> {
 
   @override
   void initState() {
-    _loginBloc.add(LoginIsFatherEvent(isFather: false));
+    _isFather = widget.isFather;
+    _loginBloc.add(LoginIsFatherEvent(isFather: widget.isFather));
+    _loginBloc.add(GetLanguageEvent());
     super.initState();
   }
 
   @override
   Widget baseBuild(BuildContext context) {
+    String _language = '';
     return Scaffold(
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<LoginBloc, LoginState>(
@@ -37,22 +44,33 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             _onLoginConfirmButtonState();
           } else if (state is LoginIsFatherState) {
             _setIsFather(state);
+          } else if (state is GetLanguageSuccessState) {
+            _language = state.language;
           }
         },
         builder: (context, state) {
           return LoginContentWidget(
-            countryController: countryController,
-            loginBloc: _loginBloc,
-            isFather: _isFather,
-          );
+              countryController: countryController,
+              loginBloc: _loginBloc,
+              isFather: _isFather,
+              language: _language);
         },
       ),
     );
   }
 
   void _onLoginConfirmButtonState() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (_) => const VerifyScreen()));
+    if (countryController.text == "7 9519 1633") {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const VerifyScreen()));
+    } else if (countryController.text == "") {
+      showErrorDialogFunction(
+          context: context,
+          textMessage: S.of(context).pleaseEnterThePhoneNumber);
+    } else {
+      showErrorDialogFunction(
+          context: context, textMessage: S.of(context).thePhoneNumberIsWrong);
+    }
   }
 
   void _onLoginClearButtonState() {

@@ -7,7 +7,8 @@ class NotificationsContentWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> globalKey;
   final bool isFather;
 
-  const  NotificationsContentWidget({Key? key, required this.globalKey,required this.isFather})
+  const NotificationsContentWidget(
+      {Key? key, required this.globalKey, required this.isFather})
       : super(key: key);
 
   @override
@@ -22,8 +23,12 @@ class _NotificationsContentWidgetState
     return Column(
       children: [
         NotificationsAppBarWidget(
-            onTapMenu: () => widget.globalKey.currentState!.openDrawer(), isFather: widget.isFather,),
-         widget.isFather?TitlesRowWidget(isFather: widget.isFather):Container(),
+          onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
+          isFather: widget.isFather,
+        ),
+        widget.isFather
+            ? TitlesRowWidget(isFather: widget.isFather)
+            : Container(),
         const NotificationsListWidget()
       ],
     );

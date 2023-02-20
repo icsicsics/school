@@ -7,12 +7,36 @@ class SchoolHousesInitialState extends SchoolHousesState {}
 
 class GetSchoolHousesLoadingState extends SchoolHousesState {}
 
-class GetSchoolHousesSuccessState extends SchoolHousesState {}
+class GetSchoolHousesSuccessState extends SchoolHousesState {
+  final GetClassHousesResponse response;
+  GetSchoolHousesSuccessState({required this.response});
 
-class GetSchoolHousesFillState extends SchoolHousesState {}
+}
+
+class GetSchoolHousesFillState extends SchoolHousesState {
+  final String error;
+  GetSchoolHousesFillState({required this.error});
+}
 
 class GetSchoolHousesErrorState extends SchoolHousesState {}
 
 class NavigateToNotificationScreenState extends SchoolHousesState {}
 
-class NavigateToAddPointsScreenState extends SchoolHousesState {}
+class NavigateToStudentHousesScreenState extends SchoolHousesState {
+  final Data data;
+  NavigateToStudentHousesScreenState({required this.data});
+}
+class NavigateToMyChildrenScreenState extends SchoolHousesState {
+  final String studentId;
+  final String classroomToSectionId;
+  NavigateToMyChildrenScreenState({required this.studentId,required this.classroomToSectionId});
+}
+class GetStudentHousesSuccessState extends SchoolHousesState {
+  final  GetStudentHousesResponse response;
+  GetStudentHousesSuccessState({required this.response});
+}
+
+class GetStudentHousesFillState extends SchoolHousesState {
+  final String error;
+  GetStudentHousesFillState({required this.error});
+}

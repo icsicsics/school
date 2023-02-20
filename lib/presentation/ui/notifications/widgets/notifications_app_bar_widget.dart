@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class NotificationsAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
   final bool isFather;
+
   // final Function() onTapNotifications;
 
   const NotificationsAppBarWidget(
-      {Key? key, required this.onTapMenu,required this.isFather})
+      {Key? key, required this.onTapMenu, required this.isFather})
       : super(key: key);
 
   @override
@@ -20,16 +24,21 @@ class NotificationsAppBarWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 50),
         child: Row(
           children: [
-            IconButton(
-                onPressed: onTapMenu,
-                icon: const Icon(
-                  Icons.menu,
-                  color: ColorsManager.secondaryColor,
-                  size: 30,
-                )),
-             Expanded(
+            const SizedBox(
+              width: 5,
+            ),
+            InkWell(
+                onTap: onTapMenu,
+                child: SvgPicture.asset(ImagesPath.menu,
+                    width: 25, height: 25, color: ColorsManager.primaryColor)),
+            const SizedBox(
+              width: 5,
+            ),
+            Expanded(
               child: MediumTextWidget(
-                  text: isFather?"Notifications":"Inbox",
+                  text: isFather
+                      ? S.of(context).notifications
+                      : S.of(context).inbox,
                   fontSize: 18,
                   color: ColorsManager.secondaryColor),
             ),

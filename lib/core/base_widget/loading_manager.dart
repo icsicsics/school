@@ -50,14 +50,14 @@ mixin LoadingManager {
 
   /// use this method if you want to change the default loading login_widget
   Widget customLoadingWidget() {
-    return const InkWell(
+    return  const InkWell(
       onTap: null,
       child: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Center(
             child: CircularProgressIndicator(
-              color: ColorsManager.primaryColor,
+              color: ColorsManager.sameBlack,
             )),
       ),
     );

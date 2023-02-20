@@ -13,11 +13,27 @@ class SideMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: ColorsManager.whiteColor, size: 30),
-      title: MediumTextWidget(
-          text: title, fontSize: 15, color: ColorsManager.whiteColor),
-      onTap: onTap,
-    );
+    return Container(
+        margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        child: InkWell(
+            onTap: onTap,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(icon, color: ColorsManager.whiteColor, size: 30),
+                    const SizedBox(width: 10),
+                    MediumTextWidget(
+                        text: title,
+                        fontSize: 15,
+                        color: ColorsManager.whiteColor)
+                  ],
+                ),
+                const Divider(
+                    color: ColorsManager.whiteColor,
+                    endIndent: 140,
+                    thickness: 2),
+              ],
+            )));
   }
 }

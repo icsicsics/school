@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class PointsScreenWidget extends StatefulWidget {
-  const PointsScreenWidget({Key? key}) : super(key: key);
+  final TeacherStudentProfileInSchoolHouseResponse
+      teacherStudentProfileInSchoolHouseResponse;
+
+  const PointsScreenWidget(
+      {Key? key, required this.teacherStudentProfileInSchoolHouseResponse})
+      : super(key: key);
 
   @override
   State<PointsScreenWidget> createState() => _PointsScreenWidgetState();
@@ -15,35 +22,40 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
     return Align(
         alignment: Alignment.center,
         child: Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 30, right: 25, left: 25),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                cardItem(label: "All Points", points: "175"),
-                const SizedBox(
-                  width: 20,
+                cardItem(
+                    label: S.of(context).allPoints,
+                    points: "${widget.teacherStudentProfileInSchoolHouseResponse
+                        .data!.allPointsCount!}"),
+                const Expanded(
+                  child: SizedBox(),
                 ),
-                cardItem(label: 'This Week', points: "16"),
+                cardItem(
+                    label: S.of(context).thisWeek,
+                    points:"${ widget.teacherStudentProfileInSchoolHouseResponse
+                        .data!.thisWeekPointsCount!}"),
               ],
             )));
   }
 
   Widget cardItem({required String label, required String points}) {
     return Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(27)),
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(2),
           child: SizedBox(
-            height: 40,
-            width: 70,
+            height: 35,
+            width: 90,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MediumTextWidget(
                     text: label,
-                    fontSize: 8,
+                    fontSize: 13,
                     color: ColorsManager.primaryColor),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -54,6 +66,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                       size: 15,
                       color: ColorsManager.yellow,
                     ),
+                    const SizedBox(width: 5),
                     MediumTextWidget(
                         text: points,
                         fontSize: 14,

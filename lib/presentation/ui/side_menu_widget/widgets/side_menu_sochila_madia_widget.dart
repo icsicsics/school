@@ -22,12 +22,14 @@ class _SideMenuSocialMediaWidgetState extends State<SideMenuSocialMediaWidget> {
           _item(onTap: () {}, icon: FontAwesomeIcons.instagram),
           _item(onTap: () {}, icon: FontAwesomeIcons.twitter),
           _item(onTap: () {}, icon: FontAwesomeIcons.youtube),
-          _item(onTap: () {}, icon: Icons.web),
+          _item(onTap: () {}, icon: Icons.language),
         ],
       ),
     );
   }
 
-  Widget _item({required Function() onTap, required IconData icon}) =>
-      IconButton(onPressed: onTap, icon: Icon(icon, color: Colors.white));
+  Widget _item({required Function() onTap, required IconData icon}) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: InkWell(onTap: onTap, child: Icon(icon, color: Colors.white)),
+      );
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
-import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class SchoolHousesCardItemWidget extends StatelessWidget {
@@ -13,6 +11,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
   final String pointsValue;
   final String teachersValue;
   final String studentsValue;
+  final Function()? onTap;
 
   const SchoolHousesCardItemWidget(
       {Key? key,
@@ -22,16 +21,16 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
       required this.icon2,
       this.hasIcon2 = false,
       required this.label,
-      required this.studentsValue})
+      required this.studentsValue,
+      required this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
-        child: InkWell(
-          onTap: () => BlocProvider.of<SchoolHousesBloc>(context)
-              .add(NavigateToAddPointsScreenEvent()),
+        child: GestureDetector(
+          onTap: onTap,
           child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
@@ -42,27 +41,28 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       icon,
+                      const SizedBox(height: 5),
                       Row(
                         children: [
-                          Expanded(
-                            child: MediumTextWidget(
-                                text: label,
-                                fontSize: 15,
-                                color: ColorsManager.blackColor),
-                          ),
-                          Visibility(visible: hasIcon2, child: icon2)
+                          MediumTextWidget(
+                              text: label,
+                              fontSize: 15,
+                              color: ColorsManager.blackColor),
+                          const SizedBox(width: 20),
+                          Visibility(visible: hasIcon2, child: icon2),
                         ],
                       ),
                       _line(),
                       _rowOfTitleAndValue(
-                          title: "Students", value: studentsValue),
+                          title: S.of(context).students, value: studentsValue),
+                      const SizedBox(height: 5),
                       _rowOfTitleAndValue(
-                          title: "Teachers", value: teachersValue),
+                          title: S.of(context).teachers, value: teachersValue),
                       const SizedBox(
-                        height: 15,
+                        height: 30,
                       ),
                       _rowOfTitleAndValue(
-                          title: "Points",
+                          title: S.of(context).points,
                           value: pointsValue,
                           valueSize: 17,
                           titleColor: ColorsManager.borderColor,
@@ -88,7 +88,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
           const SizedBox(
             width: 5,
           ),
-          BoldTextWidget(
+          MediumTextWidget(
             text: title,
             fontSize: titleSize,
             color: titleColor,
@@ -96,6 +96,9 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
         ],
       );
 
-  Widget _line() => const MediumTextWidget(
-      text: "---------", fontSize: 15, color: ColorsManager.darkGrayColor);
+  Widget _line() => const Divider(
+        thickness: 1,
+        color: ColorsManager.grayColor,
+        endIndent: 100,
+      );
 }

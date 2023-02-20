@@ -1,45 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class ChildItemWidget extends StatelessWidget {
-  const ChildItemWidget({Key? key}) : super(key: key);
+  final String imageUrl;
+  final String childName;
+
+  const ChildItemWidget(
+      {Key? key, required this.imageUrl, required this.childName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 13,
-      width: MediaQuery.of(context).size.width / 5,
-      child: Stack(
-        children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage(
-              ImagesPath.schoolItem,
-            ),
-            radius: 50,
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              height: MediaQuery.of(context).size.height / 22,
-              width: MediaQuery.of(context).size.width / 11,
-              decoration: const BoxDecoration(
-                  color: ColorsManager.whiteColor,
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
-              child: Padding(
-                padding: const EdgeInsets.all(5),
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 13,
+          width: MediaQuery.of(context).size.width / 5,
+          child: Stack(
+            children: [
+              SizedBox(height: 70, width: 70, child: itemImageWidget()),
+              Align(
+                alignment: Alignment.bottomRight,
                 child: Container(
-                  decoration: const BoxDecoration(
-                      color: ColorsManager.secondaryColor,
-                      borderRadius: BorderRadius.all(Radius.circular(50))),
-                  child: const Icon(Icons.star,
-                      color: ColorsManager.yellow, size: 22),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+                    height: 30,
+                    width: 30,
+                    decoration: const BoxDecoration(
+                        color: ColorsManager.whiteColor,
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50))),
+                        child: Container(
+                          height: 20,
+                          width: 20,
+                          color: Colors.transparent,
+                          child: SvgPicture.asset(ImagesPath.star,
+                              height: 18, width: 18),
+                        ),
+                      ),
+                    )),
+              )
+            ],
+          ),
+        ),
+        const SizedBox(height: 7),
+        BoldTextWidget(
+            text: childName, fontSize: 10, color: ColorsManager.grayColor),
+      ],
     );
   }
+
+  Widget itemImageWidget() {
+    return imageUrl.isNotEmpty
+        ? ClipOval(
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) =>
+                  _buildProfilePlaceHolder(),
+            ),
+          )
+        : _buildProfilePlaceHolder();
+  }
+
+  CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
+        child: SvgPicture.asset(ImagesPath.avatar, fit: BoxFit.fill),
+      );
 }

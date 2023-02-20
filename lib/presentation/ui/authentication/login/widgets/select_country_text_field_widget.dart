@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/generated/l10n.dart';
 
 class SelectCountryTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
+  final String language;
 
-  const SelectCountryTextFieldWidget({Key? key, required this.controller})
+  const SelectCountryTextFieldWidget(
+      {Key? key, required this.controller, required this.language})
       : super(key: key);
 
   @override
@@ -16,53 +19,61 @@ class SelectCountryTextFieldWidget extends StatefulWidget {
 class _SelectCountryTextFieldWidgetState
     extends State<SelectCountryTextFieldWidget> {
   String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'EG');
+  PhoneNumber number = PhoneNumber(isoCode: 'JO');
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Align(
-        alignment: Alignment.topLeft,
-        child: Container(
-          width: 40,
-          height: 40,
-          margin: const EdgeInsets.only(top: 5),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: ColorsManager.whiteColor),
-              color: ColorsManager.whiteColor,
-              boxShadow: const [
-                BoxShadow(blurRadius: 5, color: ColorsManager.grayColor),
-              ]),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 5),
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          border: Border.all(color: ColorsManager.mediumGrayColor, width: 1)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: InternationalPhoneNumberInput(
-          onInputChanged: (PhoneNumber number) {},
-          onInputValidated: (bool value) {},
-          selectorConfig: const SelectorConfig(
-            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-            showFlags: true,
-            useEmoji: true,
-          ),
-          ignoreBlank: true,
           autoValidateMode: AutovalidateMode.disabled,
-          selectorTextStyle: const TextStyle(color: Colors.black),
+          keyboardType: TextInputType.number,
           initialValue: number,
           textFieldController: widget.controller,
-          formatInput: true,
-          spaceBetweenSelectorAndTextField: 0,
-          inputDecoration: const InputDecoration(
-              isDense: true,
-              hintText: "- - - - - - - - -",
-              border: InputBorder.none),
-          keyboardType: const TextInputType.numberWithOptions(
-              signed: true, decimal: true),
           inputBorder: InputBorder.none,
-          onSaved: (PhoneNumber number) {},
+          spaceBetweenSelectorAndTextField: 0,
+          inputDecoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(0),
+              hintText: S.of(context).phoneNumber,
+              border: InputBorder.none,
+              isDense: true,
+              suffixIcon: InkWell(
+                  onTap: () => widget.controller.clear(),
+                  child: const Icon(
+                    Icons.clear,
+                    color: ColorsManager.mediumGrayColor,
+                  )),
+              icon: SizedBox(
+                width: 30,
+                child: Row(
+                  children: [
+                    RotatedBox(
+                        quarterTurns: widget.language == "en" ? 3 : 1,
+                        child: const Icon(
+                          Icons.arrow_back_ios_rounded,
+                          color: ColorsManager.sameBlack,
+                        )),
+                    const Expanded(child: SizedBox()),
+                    Container(
+                      height: 30,
+                      color: ColorsManager.mediumGrayColor,
+                      width: 1,
+                    ),
+                  ],
+                ),
+              )),
+          selectorConfig: const SelectorConfig(
+              leadingPadding: 0,
+              trailingSpace: false,
+              selectorType: PhoneInputSelectorType.DIALOG,
+              showFlags: true),
+          onInputChanged: (PhoneNumber number) {},
         ),
       ),
-    ]);
+    );
   }
 }

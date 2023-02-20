@@ -1,47 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
-
+import 'package:schools/presentation/shere_widgets/regular_text_widget.dart';
+import 'package:intl/intl.dart';
 import '../../../../core/utils/resorces/color_manager.dart';
 
 class PointsScreenWidget extends StatefulWidget {
-  const PointsScreenWidget({Key? key}) : super(key: key);
+
+  final List<Points> points;
+
+  const PointsScreenWidget(
+      {Key? key, required this.points})
+      : super(key: key);
 
   @override
   State<PointsScreenWidget> createState() => _PointsScreenWidgetState();
 }
 
 class _PointsScreenWidgetState extends State<PointsScreenWidget> {
+  String dateFormat(String dateFormat) {
+    return DateFormat('dd/MM/yyyy').format(
+      DateTime.parse(dateFormat),
+    );
+  }
+
+
+  String formattedTime(String dateTime) {
+    return DateFormat().add_jm().format(DateTime.parse(dateTime));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          _item(
-              onTap: () {},
-              title: "Energetic",
-              subTitle:
-                  "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
-              icon: Icons.energy_savings_leaf),
-          _item(
-              onTap: () {},
-              title: "Collaboration",
-              subTitle:
-                  "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
-              icon: Icons.autorenew_rounded),
-          _item(
-              onTap: () {},
-              title: "Initiative",
-              subTitle:
-                  "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
-              icon: Icons.lightbulb_outline_rounded),
-          _item(
-              onTap: () {},
-              title: "Collaboration",
-              subTitle:
-                  "17/09/2022  at 12:30 PM\n By Mrs. Tima Hamdallah - Math Teacher",
-              icon: Icons.autorenew_rounded),
-        ],
+        children: widget.points
+            .map((e) => _item(
+                onTap: () {},
+                title: e.principleName ?? "",
+                subTitle:
+                    "${dateFormat(e.creationDate.toString())}  ${S.of(context).at}  ${formattedTime(e.creationDate.toString())}",
+                description: e.createdByName??"",
+                icon: Icons.energy_savings_leaf))
+            .toList(),
       ),
     );
   }
@@ -50,28 +51,55 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
           {required Function() onTap,
           required String title,
           required String subTitle,
+          required String description,
           required IconData icon}) =>
       Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           elevation: 0,
-          child: ListTile(
-            contentPadding:
-                const EdgeInsets.only(top: 3, bottom: 3, right: 15, left: 15),
-            dense: true,
-            style: ListTileStyle.list,
-            minLeadingWidth: 2,
-            leading: const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Icon(Icons.star, color: ColorsManager.yellow, size: 22),
-            ),
-            title: MediumTextWidget(
-                text: title, fontSize: 15, color: ColorsManager.darkGrayColor),
-            subtitle: MediumTextWidget(
-                text: subTitle,
-                fontSize: 11,
-                color: ColorsManager.welcomeGryColor),
-            trailing: Icon(icon, color: ColorsManager.secondaryColor, size: 30),
-            onTap: onTap,
-          ));
+          child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 10),
+                    child: Container(
+                        height: 35,
+                        width: 35,
+                        decoration: BoxDecoration(
+                            color: ColorsManager.whiteColor,
+                            border: Border.all(
+                                color: ColorsManager.borderLight, width: 2),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(40))),
+                        child: const Padding(
+                            padding: EdgeInsets.all(2),
+                            child:
+                                Icon(Icons.star, color: ColorsManager.yellow))),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MediumTextWidget(
+                            text: title,
+                            fontSize: 15,
+                            color: ColorsManager.sameBlack),
+                        const SizedBox(height: 5),
+                        RegularTextWidget(
+                            text: subTitle,
+                            fontSize: 11,
+                            color: ColorsManager.subTitle),
+                        const SizedBox(height: 5),
+                        RegularTextWidget(
+                            text: description,
+                            fontSize: 11,
+                            color: ColorsManager.subTitle),
+                      ],
+                    ),
+                  ),
+                  Icon(icon, color: ColorsManager.secondaryColor, size: 30)
+                ],
+              )));
 }

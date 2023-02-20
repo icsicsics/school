@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/add_point_with_commint_dialog_widget.dart';
 
-Future<void> showAddPointFunction(
+Future showAddPointFunction(
         {required BuildContext context,
-        required Function() addAction,
         required String childName,
-        required TextEditingController commentController}) =>
+        required String token,
+        required String classroomId,
+        required String classroomSectionStudentsId,
+        required String studentId,
+        required Function() onCreatePointSuccess,
+        bool isParent=false}) =>
     showDialog(
         barrierDismissible: true,
         context: context,
@@ -13,7 +17,10 @@ Future<void> showAddPointFunction(
             elevation: 0,
             backgroundColor: Colors.transparent,
             child: AddPointDialogWidget(
-              addAction: addAction,
+              isParent: isParent,
               childName: childName,
-              commentController: commentController,
+              classroomId: classroomId,
+              token: token,
+              studentId: studentId,
+              classroomSectionStudentsId: classroomSectionStudentsId, onCreatePointSuccess: onCreatePointSuccess,
             )));
