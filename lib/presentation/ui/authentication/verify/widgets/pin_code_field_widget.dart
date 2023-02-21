@@ -17,13 +17,13 @@ class PinCodeTextFiledWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: PinCodeTextField(
         cursorColor: ColorsManager.secondaryColor,
         keyboardType: TextInputType.number,
         textStyle: const TextStyle(color: ColorsManager.sameBlack),
         appContext: context,
-        length: 4,
+        length: 6,
         onChanged: onChanged,
         controller: pinController,
         pinTheme: PinTheme(

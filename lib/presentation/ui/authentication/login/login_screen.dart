@@ -38,7 +38,11 @@ class _LoginScreenState extends BaseState<LoginScreen> {
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
-          if (state is LoginClearButtonState) {
+          if (state is ShowLoadingState) {
+            showLoading();
+          } else if (state is HideLoadingState) {
+            hideLoading();
+          } else if (state is LoginClearButtonState) {
             _onLoginClearButtonState();
           } else if (state is LoginConfirmButtonState) {
             _onLoginConfirmButtonState();
@@ -46,6 +50,17 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             _setIsFather(state);
           } else if (state is GetLanguageSuccessState) {
             _language = state.language;
+          } else if (state is VerifyPhoneNumberSuccessState) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => VerifyScreen(
+                          phoneNumber: state.phoneNumber,
+                        )));
+          } else if (state is VerifyPhoneNumberErrorState) {
+            showErrorDialogFunction(
+                context: context,
+                textMessage: S.of(context).thePhoneNumberIsWrong);
           }
         },
         builder: (context, state) {
@@ -60,16 +75,14 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   }
 
   void _onLoginConfirmButtonState() {
-    if (countryController.text == "7 9519 1633") {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const VerifyScreen()));
+    if (countryController.text.isNotEmpty) {
+      _loginBloc.add(VerifyPhoneNumberEvent(
+          phoneNumber:
+              "+962 7 9748 2261"));
     } else if (countryController.text == "") {
       showErrorDialogFunction(
           context: context,
           textMessage: S.of(context).pleaseEnterThePhoneNumber);
-    } else {
-      showErrorDialogFunction(
-          context: context, textMessage: S.of(context).thePhoneNumberIsWrong);
     }
   }
 

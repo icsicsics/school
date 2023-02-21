@@ -7,6 +7,14 @@ class LoginClearButtonEvent extends LoginEvent {}
 
 class LoginConfirmButtonEvent extends LoginEvent {}
 
+class VerifyPhoneNumberEvent extends LoginEvent {
+  final String phoneNumber;
+
+  VerifyPhoneNumberEvent({
+    required this.phoneNumber,
+  });
+}
+
 class GetLoginEvent extends LoginEvent {}
 
 class LoginIsFatherEvent extends LoginEvent {
@@ -14,6 +22,7 @@ class LoginIsFatherEvent extends LoginEvent {
 
   LoginIsFatherEvent({required this.isFather});
 }
+
 class GetLanguageEvent extends LoginEvent {
   GetLanguageEvent();
 }

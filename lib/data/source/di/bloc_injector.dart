@@ -17,15 +17,20 @@ Future<void> initializeBlocDependencies() async {
   injector.registerFactory<LocalizationCubit>(
       () => LocalizationCubit(injector(), injector()));
   injector.registerFactory<SplashBloc>(() => SplashBloc(injector()));
-  injector.registerFactory<HomeBloc>(() => HomeBloc(injector(), injector(),injector()));
+  injector.registerFactory<HomeBloc>(
+      () => HomeBloc(injector(), injector(), injector()));
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
-  injector.registerFactory<VerifyBloc>(() => VerifyBloc(injector()));
-  injector
-      .registerFactory<NotificationsBloc>(() => NotificationsBloc(injector(),injector()));
-  injector.registerFactory<SideMenuBloc>(() => SideMenuBloc(injector(),injector(),injector()));
+  injector.registerFactory<VerifyBloc>(() => VerifyBloc(
+        injector(),
+        injector(),
+      ));
+  injector.registerFactory<NotificationsBloc>(
+      () => NotificationsBloc(injector(), injector()));
+  injector.registerFactory<SideMenuBloc>(
+      () => SideMenuBloc(injector(), injector(), injector()));
   injector.registerFactory<StudentHousesBloc>(() => StudentHousesBloc());
-  injector.registerFactory<ProfileBloc>(
-      () => ProfileBloc(injector(), injector(), injector(),injector(),injector()));
+  injector.registerFactory<ProfileBloc>(() =>
+      ProfileBloc(injector(), injector(), injector(), injector(), injector()));
   injector.registerFactory<SchoolHousesBloc>(() => SchoolHousesBloc());
   injector.registerFactory<AboutBloc>(() => AboutBloc());
   injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc(injector()));

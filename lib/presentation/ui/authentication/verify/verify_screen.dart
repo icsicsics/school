@@ -5,10 +5,17 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/authentication/verify/widgets/verify_content_widget.dart';
+import 'package:schools/presentation/ui/home/home_screen.dart';
 
 class VerifyScreen extends BaseStatefulWidget {
-  const VerifyScreen({super.key});
+  final String phoneNumber;
+
+  const VerifyScreen({
+    super.key,
+    required this.phoneNumber,
+  });
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _VerifyScreenState();
@@ -33,10 +40,21 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
         listener: (context, state) {
           if (state is GetLanguageSuccessState) {
             _language = state.language;
+          } else if (state is VerifyCodeSuccessState){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => const HomeScreen()));
+
+          } else if(state is VerifyCodeErrorState) {
+            showErrorDialogFunction(
+                context: context,
+                textMessage: S.of(context).errorActivationCode);
+
           }
         },
         builder: (context, state) {
-          return VerifyContentWidget(language: _language);
+          return VerifyContentWidget(language: _language,phoneNumber: widget.phoneNumber,);
         },
       ),
     );

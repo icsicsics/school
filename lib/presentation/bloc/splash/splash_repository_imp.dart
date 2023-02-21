@@ -5,19 +5,19 @@ import 'package:schools/data/source/remote/repository/splash_repository.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 
 class SplashRepositoryImp extends SplashRepository {
-  @override
-  Future<SplashState> getToken() async {
-    SplashState? state;
-    GetTokenResponse getTokenResponse = GetTokenResponse();
-    try {
-      Response response = await DioHelper.getToken();
-      getTokenResponse = GetTokenResponse.fromJson(response.data);
-      if (getTokenResponse.data!.token!.isNotEmpty) {
-        return SplashGetTokenSuccessState(response: getTokenResponse);
-      }
-    } catch (error) {
-      state = SplashGetTokenErrorState(error: getTokenResponse.errorMessage??"Error");
-    }
-    return state!;
-  }
+  // @override
+  // Future<SplashState> getToken() async {
+  //   SplashState? state;
+  //   GetTokenResponse getTokenResponse = GetTokenResponse();
+  //   try {
+  //     Response response = await DioHelper.getToken();
+  //     getTokenResponse = GetTokenResponse.fromJson(response.data);
+  //     if (getTokenResponse.data!.token!.isNotEmpty) {
+  //       return SplashGetTokenSuccessState(response: getTokenResponse);
+  //     }
+  //   } catch (error) {
+  //     state = SplashGetTokenErrorState(error: getTokenResponse.errorMessage??"Error");
+  //   }
+  //   return state!;
+  // }
 }

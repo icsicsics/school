@@ -4,6 +4,7 @@ import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
 import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
+import 'package:schools/data/source/remote/model/verfiy_phone/request/verify_phone_request.dart';
 
 class DioHelper {
   static late Dio dio;
@@ -16,11 +17,18 @@ class DioHelper {
     dio.interceptors.add(CustomInterceptors());
   }
 
-  static Future<Response> getToken() async {
+  static Future<Response> verifyPhone(String phoneNumber) async {
+    return dio.post(ApiKey.verifyPhone,
+        data: VerifyPhoneRequest(
+          phoneNumber: phoneNumber
+        ));
+  }
+
+  static Future<Response> getToken(String phoneNumber,String verifyCode) async {
     return dio.post(ApiKey.getToken,
         data: GetTokenRequest(
-          email: "ndannoun@transition-se.com",
-          password: "Trans@123",
+          phoneNumber: phoneNumber,
+          verifyCode: verifyCode,
         ));
   }
 
@@ -51,11 +59,11 @@ class DioHelper {
         }));
   }
 
-  static Future<Response> getTeacherHome(token) async {
+  static Future<Response> getTeacherHome(String token) async {
     return dio.get(ApiKey.getTeacherHome,
         options: Options(headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          'Accept': '*/*',
           'Authorization': 'Bearer $token',
         }));
   }

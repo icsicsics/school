@@ -16,21 +16,21 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final SetTokenUseCase _setTokenUseCase;
 
   SplashBloc(this._setTokenUseCase) : super(SplashInitial()) {
-    on<SplashGetTokenEvent>(_onSplashGetTokenEvent);
+    // on<SplashGetTokenEvent>(_onSplashGetTokenEvent);
     on<SplashSaveTokenEvent>(_onSplashSaveTokenEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
   }
 
-  FutureOr<void> _onSplashGetTokenEvent(
-      SplashGetTokenEvent event, Emitter<SplashState> emit) async {
-    emit(SplashLoadingState());
-    SplashState state = (await repository.getToken()) as SplashState;
-    if (state is SplashGetTokenSuccessState) {
-      emit(SplashGetTokenSuccessState(response: state.response));
-    } else if (state is SplashGetTokenErrorState) {
-      emit(SplashGetTokenErrorState(error: state.error));
-    }
-  }
+  // FutureOr<void> _onSplashGetTokenEvent(
+  //     SplashGetTokenEvent event, Emitter<SplashState> emit) async {
+  //   emit(SplashLoadingState());
+  //   SplashState state = (await repository.getToken()) as SplashState;
+  //   if (state is SplashGetTokenSuccessState) {
+  //     emit(SplashGetTokenSuccessState(response: state.response));
+  //   } else if (state is SplashGetTokenErrorState) {
+  //     emit(SplashGetTokenErrorState(error: state.error));
+  //   }
+  // }
 
   FutureOr<void> _onSplashSaveTokenEvent(
       SplashSaveTokenEvent event, Emitter<SplashState> emit) {

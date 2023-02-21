@@ -19,7 +19,7 @@ class _SplashScreenState extends BaseState<SplashScreen> {
 
   @override
   void initState() {
-    _bloc.add(SplashGetTokenEvent());
+    _bloc.add(GetIsFatherEvent());
     super.initState();
   }
 
@@ -30,7 +30,7 @@ class _SplashScreenState extends BaseState<SplashScreen> {
         if (state is SplashLoadingState) {
           showLoading();
         } else if (state is SplashGetTokenSuccessState) {
-          _bloc.add(SplashSaveTokenEvent(token: state.response.data!.token!));
+          _bloc.add(SplashSaveTokenEvent(token: state.response.data!.token!.accessToken!));
         } else if (state is SplashSaveTokenSuccessState) {
           hideLoading();
           SystemChrome.setSystemUIOverlayStyle(
@@ -41,7 +41,9 @@ class _SplashScreenState extends BaseState<SplashScreen> {
           );
           _bloc.add(GetIsFatherEvent());
         } else if (state is GetIsFatherState) {
-          _navigationToLoginScreen(state.isFather);
+          Future.delayed(Duration(microseconds: 2500)).then((value) {
+            _navigationToLoginScreen(state.isFather);
+          });
         } else if (state is SplashGetTokenErrorState) {
           _onSplashGetTokenErrorState(state.error);
         }
