@@ -23,6 +23,7 @@ class MediumTextWidget extends StatelessWidget {
       future: languageFontMediumWeight(),
       builder: (context, snapshot) => Text(
         text!,
+        maxLines: 3,
         textAlign: textAlign,
         style: TextStyle(
           fontWeight: snapshot.data,

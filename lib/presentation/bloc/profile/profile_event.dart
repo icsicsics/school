@@ -40,6 +40,12 @@ class GetTokenEvent extends ProfileEvent {}
 
 class GetLanguageEvent extends ProfileEvent {}
 
+class ChangeLanguageEvent extends ProfileEvent {
+  final String language;
+
+  ChangeLanguageEvent(this.language);
+}
+
 class UploadTeacherImageEvent extends ProfileEvent {
   final XFile xFile;
   final String token;

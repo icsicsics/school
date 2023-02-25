@@ -5,6 +5,7 @@ import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/ui/profile/widgets/father_of_widget.dart';
 import 'package:schools/presentation/ui/profile/widgets/profile_header_widget.dart';
 import 'package:schools/presentation/ui/profile/widgets/profile_info_content_widget.dart';
+import 'package:schools/presentation/ui/profile/widgets/teacher_of_widget.dart';
 
 class ProfileContentWidget extends StatefulWidget {
   final bool isFather;
@@ -57,7 +58,12 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
                   classroomId: widget.classroomId,
                   classroomSectionStudentsId: widget.classroomSectionStudentsId,
                 )
-              : const SizedBox()
+              :   TeacherOfWidget(
+            teacherInfoResponse: widget.teacherInfoResponse,
+            language: widget.language,
+            classroomId: widget.classroomId,
+            classroomSectionStudentsId: widget.classroomSectionStudentsId,
+          )
         ],
       ),
     );

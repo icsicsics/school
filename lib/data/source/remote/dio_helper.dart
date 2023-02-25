@@ -170,6 +170,17 @@ class DioHelper {
         ));
   }
 
+  static Future<Response> getSearchValues(token) async {
+    return dio.get(ApiKey.getSearchValues,
+        options: Options(
+          headers: {
+            "accept": "text/plain",
+            "Authorization": "Bearer $token",
+            "content-Type": 'multipart/form-data',
+          },
+        ));
+  }
+
   static Future<Response> getWeather(lat,lon) async {
     return dio.get(
       'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=9417a6b6e67474512aca9f713dc57937',

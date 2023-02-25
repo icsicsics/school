@@ -6,6 +6,7 @@ class Data {
   String? branchId;
   String? name;
   String? phoneNumber;
+  String? houseIcon;
   String? email;
   String? houseName;
   GetImage? getImage;
@@ -16,6 +17,7 @@ class Data {
     this.branchId,
     this.name,
     this.phoneNumber,
+    this.houseIcon,
     this.email,
     this.houseName,
     this.getImage,
@@ -24,6 +26,7 @@ class Data {
 
   Data.fromJson(dynamic json) {
     id = json['id'];
+    houseIcon = json['houseIcon'];
     branchId = json['branchId'];
     name = json['name'];
     phoneNumber = json['phoneNumber'];
@@ -45,6 +48,7 @@ class Data {
     map['branchId'] = branchId;
     map['name'] = name;
     map['phoneNumber'] = phoneNumber;
+    map['houseIcon'] = houseIcon;
     map['email'] = email;
     map['houseName'] = houseName;
     if (getImage != null) {

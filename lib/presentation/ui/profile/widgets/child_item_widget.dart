@@ -7,10 +7,14 @@ import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 class ChildItemWidget extends StatelessWidget {
   final String imageUrl;
   final String childName;
+  bool isStartVisible;
 
-  const ChildItemWidget(
-      {Key? key, required this.imageUrl, required this.childName})
-      : super(key: key);
+   ChildItemWidget({
+    Key? key,
+    required this.imageUrl,
+    required this.childName,
+    this.isStartVisible = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class ChildItemWidget extends StatelessWidget {
           child: Stack(
             children: [
               SizedBox(height: 70, width: 70, child: itemImageWidget()),
-              Align(
+              isStartVisible ? Align(
                 alignment: Alignment.bottomRight,
                 child: Container(
                     height: 30,
@@ -35,7 +39,7 @@ class ChildItemWidget extends StatelessWidget {
                       child: Container(
                         decoration: const BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
+                            BorderRadius.all(Radius.circular(50))),
                         child: Container(
                           height: 20,
                           width: 20,
@@ -45,7 +49,7 @@ class ChildItemWidget extends StatelessWidget {
                         ),
                       ),
                     )),
-              )
+              ):const SizedBox.shrink()
             ],
           ),
         ),

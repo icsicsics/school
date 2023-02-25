@@ -42,3 +42,5 @@ class GetFatherInfoEvent extends HomeEvent {
 }
 
 class GetWeatherEvent extends HomeEvent {}
+
+class SwitchAccountEvent extends HomeEvent {}

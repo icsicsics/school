@@ -15,4 +15,5 @@ class ApiKey{
   static const String postFatherCreatePoint = "Parent/CreatePoint";
   static const String teacherChangePhoto = "Teacher/ChangeTeacherPhoto";
   static const String getSchoolHouses = "Teacher/GetSchoolHouses";
+  static const String getSearchValues = "Teacher/GetSearchByDateEnum";
 }

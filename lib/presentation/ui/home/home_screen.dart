@@ -8,6 +8,7 @@ import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';
+import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/home/widgets/home_content_widget.dart';
 import 'package:schools/presentation/ui/side_menu_widget/side_menu_screen.dart';
 
@@ -85,6 +86,8 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           _weatherResponse=state.weather;
         }else if (state is GetWeatherFillState){
           _onGetWeatherFillState(state.error);
+        } else if (state is SwitchAccountState){
+          _switchAccount(context);
         }
       },
       builder: (context, state) {
@@ -123,4 +126,13 @@ class _HomeScreenState extends BaseState<HomeScreen> {
       showErrorDialogFunction(context: context, textMessage: error);
 
   void _onGetWeatherFillState(String error)=>showErrorDialogFunction(context: context, textMessage: error);
+
+  void _switchAccount(context) {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (_) =>
+                LoginScreen(isFather: _isFather == true ? false : true)),
+            (route) => false);
+  }
 }

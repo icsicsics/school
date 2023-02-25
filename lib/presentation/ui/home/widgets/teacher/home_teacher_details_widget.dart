@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
@@ -47,12 +49,22 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                       padding: const EdgeInsets.only(left: 40, right: 40),
                       child: Row(
                         children: [
-                          widget
-                              .homeBloc.teacherInfoResponse.data!=null?MediumTextWidget(
-                              text: widget
-                                  .homeBloc.teacherInfoResponse.data!.houseName,
-                              fontSize: 16,
-                              color: ColorsManager.whiteColor):Container(),
+                          SvgPicture.asset(
+                            //TODO(1) change here house team image widget.homeBloc.teacherInfoResponse.data.houseLogo
+                            ImagesPath.school,
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          widget.homeBloc.teacherInfoResponse.data != null
+                              ? MediumTextWidget(
+                                  text: widget.homeBloc.teacherInfoResponse
+                                      .data!.houseName,
+                                  fontSize: 16,
+                                  color: ColorsManager.whiteColor)
+                              : Container(),
                           const Spacer(),
                           GestureDetector(
                             onTap: () => Navigator.push(
@@ -65,8 +77,9 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                                             .teacherInfoResponse
                                             .data!
                                             .branchId!,
-                                        language: widget.language, isComingFromHome: true))),
-                            child:  MediumTextWidget(
+                                        language: widget.language,
+                                        isComingFromHome: true))),
+                            child: MediumTextWidget(
                                 text: S.of(context).viewHouses,
                                 fontSize: 16,
                                 color: ColorsManager.whiteColor),
@@ -97,14 +110,16 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                                           .data!
                                           .teacherHomePage![index]
                                           .classroomToSectionId!,
-                                      language: widget.language, isComingFromHome: false,
+                                      language: widget.language,
+                                      isComingFromHome: false,
                                     )));
                       },
                       child: CardWidget(
                         section: widget.teacherHomeResponse.data!
                             .teacherHomePage![index].classroomName!,
                         imagePath: widget.teacherHomeResponse.data!
-                            .teacherHomePage![index].getLogo!.mediaUrl!,
+                                .teacherHomePage![index].getLogo?.mediaUrl ??
+                            "",
                         grade: widget.teacherHomeResponse.data!
                             .teacherHomePage![index].sectionName!,
                       ),

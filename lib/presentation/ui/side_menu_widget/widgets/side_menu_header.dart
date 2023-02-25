@@ -40,13 +40,13 @@ class SideMenuHeader extends StatelessWidget {
                   const SizedBox(
                     width: 30,
                   ),
-                  IconButton(
-                      onPressed: () => bloc.add(SwitchAccountEvent()),
-                      icon: const Icon(
-                        Icons.supervised_user_circle,
-                        color: ColorsManager.secondaryColor,
-                        size: 30,
-                      )),
+                  // IconButton(
+                  //     onPressed: () => bloc.add(SwitchAccountEvent()),
+                  //     icon: const Icon(
+                  //       Icons.supervised_user_circle,
+                  //       color: ColorsManager.secondaryColor,
+                  //       size: 30,
+                  //     )),
                 ],
               ),
               const SizedBox(

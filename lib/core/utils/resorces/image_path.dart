@@ -10,4 +10,5 @@ class ImagesPath {
   static const String en = "${_basePath}en.png";
   static const String menu = "${_basePath}menu.svg";
   static const String avatar = "${_basePath}avatar.svg";
+  static const String filter = "${_basePath}ic_filter_icon.svg";
 }

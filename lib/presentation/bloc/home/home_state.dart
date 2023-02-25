@@ -85,3 +85,5 @@ class GetWeatherSuccessState extends HomeState {
 
   GetWeatherSuccessState({required this.weather});
 }
+
+class SwitchAccountState extends HomeState {}

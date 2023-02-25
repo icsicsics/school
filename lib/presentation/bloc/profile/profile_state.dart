@@ -79,3 +79,8 @@ class TeacherChangePhotoFillState extends ProfileState {
   TeacherChangePhotoFillState({required this.error});
 }
 
+class SaveLanguageCodeFailedState extends ProfileState {}
+
+class ChangeLanguageSuccessState extends ProfileState {}
+
+

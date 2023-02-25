@@ -39,6 +39,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetWeatherEvent>(_onGetWeatherEvent);
+    on<SwitchAccountEvent>(_onSwitchAccountEvent);
+
   }
 
   FutureOr<void> _onGetHomeEvent(GetHomeEvent event, Emitter<HomeState> emit) {}
@@ -134,5 +136,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } else if (state is GetWeatherFillState) {
       emit(GetWeatherFillState(error: state.error));
     }
+  }
+
+
+  FutureOr<void> _onSwitchAccountEvent(
+      SwitchAccountEvent event, Emitter<HomeState> emit) {
+    emit(SwitchAccountState());
   }
 }

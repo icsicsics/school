@@ -22,8 +22,8 @@ ThemeData getApplicationTheme(String language) {
       elevation: 0,
       shadowColor: Colors.transparent,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
       ),
     ),
   );

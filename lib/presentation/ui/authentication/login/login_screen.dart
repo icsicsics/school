@@ -78,7 +78,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
     if (countryController.text.isNotEmpty) {
       _loginBloc.add(VerifyPhoneNumberEvent(
           phoneNumber:
-              "+962 7 9748 2261"));
+              "+962797482261"));
     } else if (countryController.text == "") {
       showErrorDialogFunction(
           context: context,
