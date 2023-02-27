@@ -87,3 +87,16 @@ class GetWeatherSuccessState extends HomeState {
 }
 
 class SwitchAccountState extends HomeState {}
+
+class GetTeacherStudentProfileInSchoolHouseSuccessState
+    extends HomeState {
+  final TeacherStudentProfileInSchoolHouseResponse response;
+
+  GetTeacherStudentProfileInSchoolHouseSuccessState({required this.response});
+}
+
+class GetTeacherStudentProfileInSchoolHouseFailState extends HomeState {
+  final String error;
+
+  GetTeacherStudentProfileInSchoolHouseFailState({required this.error});
+}

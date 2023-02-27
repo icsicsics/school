@@ -1,6 +1,7 @@
 class Points {
   String? creationDate;
   String? createdBy;
+  String? valueName;
   bool? isTeacher;
   String? principleName;
 
@@ -15,6 +16,7 @@ class Points {
     creationDate = json['creationDate'];
     createdBy = json['createdBy'];
     isTeacher = json['isTeacher'];
+    valueName = json['valueName'];
     principleName = json['principleName'];
   }
 
@@ -23,6 +25,7 @@ class Points {
     map['creationDate'] = creationDate;
     map['createdBy'] = createdBy;
     map['isTeacher'] = isTeacher;
+    map['valueName'] = valueName;
     map['principleName'] = principleName;
     return map;
   }

@@ -1,12 +1,15 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_repository_imp.dart';
@@ -40,6 +43,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetWeatherEvent>(_onGetWeatherEvent);
     on<SwitchAccountEvent>(_onSwitchAccountEvent);
+    on<GetStudentProfileInSchoolHouseEvent>(_onGetStudentProfileInSchoolHouseEvent);
 
   }
 
@@ -142,5 +146,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onSwitchAccountEvent(
       SwitchAccountEvent event, Emitter<HomeState> emit) {
     emit(SwitchAccountState());
+  }
+
+  FutureOr<void> _onGetStudentProfileInSchoolHouseEvent(
+      GetStudentProfileInSchoolHouseEvent event, Emitter<HomeState> emit) async {
+    emit(GetHomeLoadingState());
+    Response response = await DioHelper.getTeacherStudentProfileInSchoolHouse(
+        await _getTokenUseCase(), "6271d153-15c2-4b47-59f8-08db18be4c2d");
+    TeacherStudentProfileInSchoolHouseResponse teacherStudentProfileInSchoolHouseResponse =
+    TeacherStudentProfileInSchoolHouseResponse.fromJson(response.data);
+
+    if (response.data != null) {
+      emit(GetTeacherStudentProfileInSchoolHouseSuccessState(response: teacherStudentProfileInSchoolHouseResponse));
+    } else {
+      emit(GetTeacherStudentProfileInSchoolHouseFailState(error: "Error"));
+    }
   }
 }

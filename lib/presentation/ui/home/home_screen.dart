@@ -4,6 +4,7 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
@@ -25,6 +26,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
   GetChildrenByParentResponse _parentHomeResponse = GetChildrenByParentResponse();
+  TeacherStudentProfileInSchoolHouseResponse _teacherStudentProfileInSchoolHouseResponse = TeacherStudentProfileInSchoolHouseResponse();
   WeatherResponse _weatherResponse = WeatherResponse();
   String _language = '';
   String _token = '';
@@ -35,6 +37,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
     _homeBloc.add(GetLanguageEvent());
     _homeBloc.add(GetTokenEvent());
     _homeBloc.add(GetWeatherEvent());
+    _homeBloc.add(GetStudentProfileInSchoolHouseEvent());
 
     super.initState();
   }
@@ -88,6 +91,9 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           _onGetWeatherFillState(state.error);
         } else if (state is SwitchAccountState){
           _switchAccount(context);
+        } else if(state is GetTeacherStudentProfileInSchoolHouseSuccessState){
+          print(state.response.data!.points!.length);
+          _teacherStudentProfileInSchoolHouseResponse = state.response;
         }
       },
       builder: (context, state) {
@@ -107,6 +113,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
                 language: _language,
                 parentHomeResponse: _parentHomeResponse,
                 teacherHomeResponse: _teacherHomeResponse,
+                teacherStudentProfileInSchoolHouseResponse:_teacherStudentProfileInSchoolHouseResponse,
                 token: _token));
       },
     );

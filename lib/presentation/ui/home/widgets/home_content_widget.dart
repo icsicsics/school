@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/ui/home/widgets/father/home_father_content_widget.dart';
@@ -18,6 +19,7 @@ class HomeContentWidget extends StatefulWidget {
   final GetTeacherHomeResponse teacherHomeResponse;
   final GetChildrenByParentResponse parentHomeResponse;
   final WeatherResponse weatherResponse;
+  final TeacherStudentProfileInSchoolHouseResponse teacherStudentProfileInSchoolHouseResponse;
 
   const HomeContentWidget(
       {Key? key,
@@ -28,6 +30,7 @@ class HomeContentWidget extends StatefulWidget {
       required this.parentHomeResponse,
       required this.teacherHomeResponse,
       required this.token,
+      required this.teacherStudentProfileInSchoolHouseResponse,
       required this.weatherResponse})
       : super(key: key);
 
@@ -67,6 +70,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
               parentHomeResponse: widget.parentHomeResponse,
               homeBloc: widget.bloc,
               token: widget.token,
+          teacherStudentProfileInSchoolHouseResponse: widget.teacherStudentProfileInSchoolHouseResponse,
               language: widget.language)
           : Container();
     }
