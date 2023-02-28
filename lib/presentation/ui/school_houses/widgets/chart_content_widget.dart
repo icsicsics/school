@@ -20,7 +20,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<SalesData> columnData;
+    List<SalesData> columnData = [];
     if(widget.schoolHousesBloc.getClassHousesResponse.data!.isEmpty){
       columnData = [
         SalesData(
@@ -42,28 +42,13 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
       ];
 
     } else {
-      columnData = [
-        SalesData(
-            x: "hello 1",
-            y: widget.schoolHousesBloc.getClassHousesResponse.data![0]
+      for(var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
+        columnData.add(SalesData(
+            x: item.houseName ?? "",
+            y: item
                 .totalPointsHouse!
-                .toDouble()),
-        SalesData(
-            x: "hello 2",
-            y: widget.schoolHousesBloc.getClassHousesResponse.data![1]
-                .totalPointsHouse!
-                .toDouble()),
-        // SalesData(
-        //     x: "hello 3",
-        //     y: widget.schoolHousesBloc.getClassHousesResponse.data![2]
-        //         .totalPointsHouse!
-        //         .toDouble()),
-        // SalesData(
-        //     x: "hello 4",
-        //     y: widget.schoolHousesBloc.getClassHousesResponse.data![3]
-        //         .totalPointsHouse!
-        //         .toDouble()),
-      ];
+                .toDouble()));
+      }
     }
 
     return Align(

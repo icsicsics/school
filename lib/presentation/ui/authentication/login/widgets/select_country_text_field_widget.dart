@@ -31,8 +31,6 @@ class _SelectCountryTextFieldWidgetState
   }
   @override
   Widget build(BuildContext context) {
-    print(number.phoneNumber);
-    print(number);
     return Container(
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),

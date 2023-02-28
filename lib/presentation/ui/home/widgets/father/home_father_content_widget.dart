@@ -44,13 +44,6 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    setState(() {
-
-    });
-  }
-  @override
   Widget build(BuildContext context) {
     return Container(
       height: 570,
@@ -67,7 +60,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                       classRoomId:
                       item.branchId ?? "",
                       language: widget.language,
-                      isComingFromHome: false,
+                      isComingFromHome: true,
                     )));
           },
           child: Column(
