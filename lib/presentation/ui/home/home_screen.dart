@@ -37,7 +37,6 @@ class _HomeScreenState extends BaseState<HomeScreen> {
     _homeBloc.add(GetLanguageEvent());
     _homeBloc.add(GetTokenEvent());
     _homeBloc.add(GetWeatherEvent());
-    _homeBloc.add(GetStudentProfileInSchoolHouseEvent());
 
     super.initState();
   }
@@ -92,7 +91,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         } else if (state is SwitchAccountState){
           _switchAccount(context);
         } else if(state is GetTeacherStudentProfileInSchoolHouseSuccessState){
-          print(state.response.data!.points!.length);
+          hideLoading();
           _teacherStudentProfileInSchoolHouseResponse = state.response;
         }
       },

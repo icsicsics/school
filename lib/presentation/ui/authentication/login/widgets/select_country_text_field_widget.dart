@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/generated/l10n.dart';
+import 'package:schools/presentation/bloc/login/login_bloc.dart';
 
 class SelectCountryTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
@@ -19,10 +21,18 @@ class SelectCountryTextFieldWidget extends StatefulWidget {
 class _SelectCountryTextFieldWidgetState
     extends State<SelectCountryTextFieldWidget> {
   String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'JO');
+  PhoneNumber number = PhoneNumber(isoCode: 'JO',phoneNumber: "+962",dialCode: "+962");
 
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<LoginBloc>(context).add(SelectCountryCodeEvent(number));
+
+  }
+  @override
   Widget build(BuildContext context) {
+    print(number.phoneNumber);
+    print(number);
     return Container(
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -71,7 +81,9 @@ class _SelectCountryTextFieldWidgetState
               trailingSpace: false,
               selectorType: PhoneInputSelectorType.DIALOG,
               showFlags: true),
-          onInputChanged: (PhoneNumber number) {},
+          onInputChanged: (PhoneNumber number) {
+            BlocProvider.of<LoginBloc>(context).add(SelectCountryCodeEvent(number));
+          },
         ),
       ),
     );

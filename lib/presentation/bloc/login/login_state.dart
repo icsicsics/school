@@ -48,3 +48,12 @@ class VerifyPhoneNumberErrorState extends LoginState {
     required this.errorMessage,
   });
 }
+
+
+class SelectCountryCodeState extends LoginState {
+  final PhoneNumber phoneNumber;
+
+  SelectCountryCodeState(this.phoneNumber);
+
+
+}

@@ -1,4 +1,7 @@
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
@@ -10,14 +13,14 @@ import 'package:schools/presentation/ui/home/widgets/father/father_heder_widget.
 import 'package:intl/intl.dart';
 import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
 
-class HomeFatherContentWidget extends StatelessWidget {
+class HomeFatherContentWidget extends StatefulWidget {
   final GetChildrenByParentResponse parentHomeResponse;
   final HomeBloc homeBloc;
   final String token;
   final String language;
   final TeacherStudentProfileInSchoolHouseResponse teacherStudentProfileInSchoolHouseResponse;
 
-  const HomeFatherContentWidget({Key? key,
+  HomeFatherContentWidget({Key? key,
     required this.parentHomeResponse,
     required this.homeBloc,
     required this.token,
@@ -26,139 +29,175 @@ class HomeFatherContentWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<HomeFatherContentWidget> createState() => _HomeFatherContentWidgetState();
+}
+
+class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
+  int _current = 0 ;
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.parentHomeResponse.data!.isNotEmpty){
+      BlocProvider.of<HomeBloc>(context).add(GetStudentProfileInSchoolHouseEvent(widget.parentHomeResponse.data![0].studentId ?? ""));
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setState(() {
+
+    });
+  }
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 570,
-      margin: EdgeInsets.symmetric(horizontal: 8),
-      child: ListView.builder(
-          itemCount: (parentHomeResponse.data?.length ?? 0) == 0 ? 0 : 1,
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => SchoolHousesScreen(
-                          token: token,
-                          classRoomId:
-                          parentHomeResponse.data![0].branchId ?? "",
-                          language: language,
-                          isComingFromHome: false,
-                        )));
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      child:  CarouselSlider(
+        items: (widget.parentHomeResponse.data)
+            ?.map((item) => InkWell(
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => SchoolHousesScreen(
+                      token: widget.token,
+                      classRoomId:
+                      item.branchId ?? "",
+                      language: widget.language,
+                      isComingFromHome: false,
+                    )));
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 16),
+              Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.bottomCenter,
                 children: [
-                  SizedBox(height: 16),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Image.network(
-                        parentHomeResponse.data![0].getImage?.mediaUrl ?? "",
+                  Image.network(
+                    item.getImage?.mediaUrl ?? "",
+                    width: 400,
+                    height: 200,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        ImagesPath.logo,
                         width: 400,
                         height: 200,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            ImagesPath.logo,
-                            width: 400,
-                            height: 200,
-                          );
-                        },
-                      ),
-                      Positioned(
-                        left: 16,
-                        bottom: -16,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                    offset: Offset(0, 0),
-                                    blurRadius: 0.3,
-                                    spreadRadius: 0,
-                                    color: Color(0x2b040405))
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              border:
-                              Border.all(width: 1, color: Color(0xe2e2e2))),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 6, horizontal: 12),
-                          child: Text(
-                            parentHomeResponse.data![0].studentName ?? "",
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 32,
-                        bottom: -16,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 17,
-                          child: CircleAvatar(
-                            backgroundColor: Color(0xFF35a6bc),
-                            radius: 14,
-                            child: SvgPicture.asset(
-                              ImagesPath.star,
-                              width: 22,
-                              height: 22,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+                      );
+                    },
                   ),
-                  SizedBox(height: 32),
-                  Column(
-                    children: (teacherStudentProfileInSchoolHouseResponse.data?.points ?? []).map((point) => Column(
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 17,
-                              child: SvgPicture.asset(
-                                ImagesPath.star,
-                                width: 22,
-                                height: 22,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${point.valueName ?? ""}",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Text("${DateFormat("dd/MM/yyyy", "en").format(
-                                  DateTime.parse(point.creationDate ?? ""),) }"),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                              ],
-                            )
+                  Positioned(
+                    left: 16,
+                    bottom: -16,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 0),
+                                blurRadius: 0.3,
+                                spreadRadius: 0,
+                                color: Color(0x2b040405))
                           ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border:
+                          Border.all(width: 1, color: Color(0xe2e2e2))),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 6, horizontal: 12),
+                      child: Text(
+                        item.studentName ?? "",
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 32,
+                    bottom: -16,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 17,
+                      child: CircleAvatar(
+                        backgroundColor: Color(0xFF35a6bc),
+                        radius: 14,
+                        child: SvgPicture.asset(
+                          ImagesPath.star,
+                          width: 22,
+                          height: 22,
                         ),
-                        SizedBox(height: 16),
-
-                      ],
-                    )).toList(),
+                      ),
+                    ),
                   )
                 ],
               ),
-            );
-          }),
+              SizedBox(height: 32),
+              Column(
+                children: (widget.teacherStudentProfileInSchoolHouseResponse.data?.points ?? []).map((point) => Column(
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 17,
+                          child: SvgPicture.asset(
+                            ImagesPath.star,
+                            width: 22,
+                            height: 22,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${point.valueName ?? ""}",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text("${DateFormat("dd/MM/yyyy", "en").format(
+                              DateTime.parse(point.creationDate ?? ""),) }"),
+                            SizedBox(
+                              height: 8,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 16),
+
+                  ],
+                )).toList(),
+              )
+            ],
+          ),
+        ))
+            .toList(),
+        carouselController: CarouselController(),
+        options: CarouselOptions(
+          viewportFraction: 1,
+          autoPlay: false,
+          enlargeCenterPage: true,
+          scrollPhysics: const BouncingScrollPhysics(),
+          enableInfiniteScroll: false,
+          disableCenter: true,
+          aspectRatio: 2.0,
+          onPageChanged: (index, reason) {
+            setState(() {
+              _current = index;
+              BlocProvider.of<HomeBloc>(context).add(GetStudentProfileInSchoolHouseEvent(widget.parentHomeResponse.data![_current].studentId ?? ""));
+            });
+          },
+        ),
+      ),
     );
     /*return Column(
       children: [
@@ -177,7 +216,6 @@ class HomeFatherContentWidget extends StatelessWidget {
       ],
     );*/
   }
-
 
   getPoints(List<Points>? points) {
     for (var point in points ?? []) {

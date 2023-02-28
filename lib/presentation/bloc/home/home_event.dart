@@ -45,4 +45,9 @@ class GetWeatherEvent extends HomeEvent {}
 
 class SwitchAccountEvent extends HomeEvent {}
 
-class GetStudentProfileInSchoolHouseEvent extends HomeEvent {}
+class GetStudentProfileInSchoolHouseEvent extends HomeEvent {
+  final String studentId;
+
+  GetStudentProfileInSchoolHouseEvent(this.studentId);
+
+}

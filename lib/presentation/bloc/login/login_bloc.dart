@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
 
@@ -20,6 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginIsFatherEvent>(_onLoginIsFatherEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
     on<VerifyPhoneNumberEvent>(_onVerifyPhoneNumberEvent);
+    on<SelectCountryCodeEvent>(_onSelectCountryCodeEvent);
   }
 
   FutureOr<void> _onLoginClearButtonEvent(
@@ -56,5 +58,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(VerifyPhoneNumberErrorState(errorMessage: "Error"));
     }
     emit(HideLoadingState());
+  }
+
+  FutureOr<void> _onSelectCountryCodeEvent(SelectCountryCodeEvent event, Emitter<LoginState> emit) {
+    emit(SelectCountryCodeState(event.phoneNumber));
   }
 }

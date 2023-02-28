@@ -26,3 +26,9 @@ class LoginIsFatherEvent extends LoginEvent {
 class GetLanguageEvent extends LoginEvent {
   GetLanguageEvent();
 }
+
+class SelectCountryCodeEvent extends LoginEvent {
+  final PhoneNumber phoneNumber;
+
+  SelectCountryCodeEvent(this.phoneNumber);
+}

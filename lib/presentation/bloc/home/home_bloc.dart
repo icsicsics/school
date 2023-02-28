@@ -152,7 +152,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetStudentProfileInSchoolHouseEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
     Response response = await DioHelper.getTeacherStudentProfileInSchoolHouse(
-        await _getTokenUseCase(), "6271d153-15c2-4b47-59f8-08db18be4c2d");
+        await _getTokenUseCase(), event.studentId);
     TeacherStudentProfileInSchoolHouseResponse teacherStudentProfileInSchoolHouseResponse =
     TeacherStudentProfileInSchoolHouseResponse.fromJson(response.data);
 

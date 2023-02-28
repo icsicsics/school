@@ -22,7 +22,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   LoginBloc get _loginBloc => BlocProvider.of<LoginBloc>(context);
   TextEditingController countryController = TextEditingController();
   bool _isFather = false;
-
+  String _countryCode= "";
   @override
   void initState() {
     _isFather = widget.isFather;
@@ -61,6 +61,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             showErrorDialogFunction(
                 context: context,
                 textMessage: S.of(context).thePhoneNumberIsWrong);
+          } else if(state is SelectCountryCodeState){
+            _countryCode = state.phoneNumber.dialCode ?? "";
           }
         },
         builder: (context, state) {
@@ -78,7 +80,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
     if (countryController.text.isNotEmpty) {
       _loginBloc.add(VerifyPhoneNumberEvent(
           phoneNumber:
-              "+${countryController.text.trim().toString()}"));
+              "$_countryCode${countryController.text.trim().replaceAll(" ", "").toString()}"));
     } else if (countryController.text == "") {
       showErrorDialogFunction(
           context: context,
