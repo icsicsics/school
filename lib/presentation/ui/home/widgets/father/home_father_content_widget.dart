@@ -11,6 +11,7 @@ import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/ui/home/widgets/father/father_children_list_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/father/father_heder_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/school_houses/school_houses_screen.dart';
 
 class HomeFatherContentWidget extends StatefulWidget {
@@ -50,129 +51,145 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child:  CarouselSlider(
         items: (widget.parentHomeResponse.data)
-            ?.map((item) => InkWell(
-          onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => SchoolHousesScreen(
-                      token: widget.token,
-                      classRoomId:
-                      item.branchId ?? "",
-                      language: widget.language,
-                      isComingFromHome: true,
-                    )));
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 16),
-              Stack(
-                clipBehavior: Clip.none,
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Image.network(
-                    item.getImage?.mediaUrl ?? "",
-                    width: 400,
-                    height: 200,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.asset(
-                        ImagesPath.logo,
+            ?.map((item) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 16),
+                Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => SchoolHousesScreen(
+                                  token: widget.token,
+                                  classRoomId:
+                                  item.branchId ?? "",
+                                  language: widget.language,
+                                  isComingFromHome: true,
+                                )));
+                      },
+                      child: Image.network(
+                        item.getImage?.mediaUrl ?? "",
                         width: 400,
                         height: 200,
-                      );
-                    },
-                  ),
-                  Positioned(
-                    left: 16,
-                    bottom: -16,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                                offset: Offset(0, 0),
-                                blurRadius: 0.3,
-                                spreadRadius: 0,
-                                color: Color(0x2b040405))
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          border:
-                          Border.all(width: 1, color: Color(0xe2e2e2))),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 6, horizontal: 12),
-                      child: Text(
-                        item.studentName ?? "",
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            ImagesPath.logo,
+                            width: 400,
+                            height: 200,
+                          );
+                        },
                       ),
                     ),
-                  ),
-                  Positioned(
-                    right: 32,
-                    bottom: -16,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 17,
-                      child: CircleAvatar(
-                        backgroundColor: Color(0xFF35a6bc),
-                        radius: 14,
-                        child: SvgPicture.asset(
-                          ImagesPath.star,
-                          width: 22,
-                          height: 22,
+                    Positioned(
+                      left: 16,
+                      bottom: -16,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                  offset: Offset(0, 0),
+                                  blurRadius: 0.3,
+                                  spreadRadius: 0,
+                                  color: Color(0x2b040405))
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            border:
+                            Border.all(width: 1, color: Color(0xe2e2e2))),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 6, horizontal: 12),
+                        child: Text(
+                          item.studentName ?? "",
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
-              SizedBox(height: 32),
-              Column(
-                children: (widget.teacherStudentProfileInSchoolHouseResponse.data?.points ?? []).map((point) => Column(
-                  children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 17,
+/*
+                    Positioned(
+                      right: 32,
+                      bottom: -16,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 17,
+                        child: CircleAvatar(
+                          backgroundColor: Color(0xFF35a6bc),
+                          radius: 14,
                           child: SvgPicture.asset(
                             ImagesPath.star,
                             width: 22,
                             height: 22,
                           ),
                         ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                    )
+*/
+                  ],
+                ),
+                SizedBox(height: 32),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => MyChildrenScreen(
+                              studentId: item.studentId ?? "",
+                              language: widget.language,
+                              isParent: true,
+                              classroomSectionStudentsId: "",
+                              classroomId: "97cd1b95-0e1d-4b37-e814-08db18c1786b",
+                            )));
+                  },
+                  child: Column(
+                    children: (widget.teacherStudentProfileInSchoolHouseResponse.data?.points ?? []).map((point) => Column(
+                      children: [
+                        Row(
                           children: [
-                            Text(
-                              "${point.valueName ?? ""}",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 17,
+                              child: SvgPicture.asset(
+                                ImagesPath.star,
+                                width: 22,
+                                height: 22,
                               ),
                             ),
                             SizedBox(
-                              height: 8,
+                              width: 12,
                             ),
-                            Text("${DateFormat("dd/MM/yyyy", "en").format(
-                              DateTime.parse(point.creationDate ?? ""),) }"),
-                            SizedBox(
-                              height: 8,
-                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${point.valueName ?? ""}",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Text("${DateFormat("dd/MM/yyyy", "en").format(
+                                  DateTime.parse(point.creationDate ?? ""),) }"),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                              ],
+                            )
                           ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 16),
+                        ),
+                        SizedBox(height: 16),
 
-                  ],
-                )).toList(),
-              )
-            ],
-          ),
-        ))
+                      ],
+                    )).toList(),
+                  ),
+                )
+              ],
+            ))
             .toList(),
         carouselController: CarouselController(),
         options: CarouselOptions(
