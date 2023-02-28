@@ -64,14 +64,14 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => SchoolHousesScreen(
-                                  token: widget.token,
-                                  classRoomId:
-                                  item.branchId ?? "",
+                                builder: (_) => MyChildrenScreen(
+                                  studentId: item.studentId ?? "",
                                   language: widget.language,
-                                  isComingFromHome: true,
+                                  isParent: true,
+                                  classroomSectionStudentsId: "",
+                                  classroomId: "97cd1b95-0e1d-4b37-e814-08db18c1786b",
                                 )));
-                      },
+                        },
                       child: Image.network(
                         item.getImage?.mediaUrl ?? "",
                         width: 400,
@@ -135,57 +135,99 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => MyChildrenScreen(
-                              studentId: item.studentId ?? "",
+                            builder: (_) => SchoolHousesScreen(
+                              token: widget.token,
+                              classRoomId:
+                              item.branchId ?? "",
                               language: widget.language,
-                              isParent: true,
-                              classroomSectionStudentsId: "",
-                              classroomId: "97cd1b95-0e1d-4b37-e814-08db18c1786b",
+                              isComingFromHome: true,
                             )));
                   },
                   child: Column(
-                    children: (widget.teacherStudentProfileInSchoolHouseResponse.data?.points ?? []).map((point) => Column(
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 17,
-                              child: SvgPicture.asset(
-                                ImagesPath.star,
-                                width: 22,
-                                height: 22,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center
+                        ,
+                        children: [
+                          SvgPicture.asset(
+                            ImagesPath.startOrange,
+                            width: 22,
+                            height: 22,
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(
+                            "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+
+                          SizedBox(
+                            width: 340,
+                            child: Text(
+                              "Interactive Values School 5th Grade - Section 4 -Collaboration Home",
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16,),
+                      Column(
+                        children: (widget.teacherStudentProfileInSchoolHouseResponse.data?.points ?? []).map((point) => Column(
+                          children: [
+                            Row(
                               children: [
-                                Text(
-                                  "${point.valueName ?? ""}",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: 17,
+                                  child: SvgPicture.asset(
+                                    ImagesPath.star,
+                                    width: 22,
+                                    height: 22,
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 8,
+                                  width: 12,
                                 ),
-                                Text("${DateFormat("dd/MM/yyyy", "en").format(
-                                  DateTime.parse(point.creationDate ?? ""),) }"),
-                                SizedBox(
-                                  height: 8,
-                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "${point.valueName ?? ""}",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text("${DateFormat("dd/MM/yyyy", "en").format(
+                                      DateTime.parse(point.creationDate ?? ""),) }"),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                  ],
+                                )
                               ],
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 16),
+                            ),
+                            SizedBox(height: 16),
 
-                      ],
-                    )).toList(),
+                          ],
+                        )).toList(),
+                      )
+                    ],
                   ),
                 )
               ],
