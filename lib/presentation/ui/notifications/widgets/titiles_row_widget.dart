@@ -8,13 +8,16 @@ class TitlesRowWidget extends StatefulWidget {
   final Function() selectNotificationTab;
   final Function() selectInboxTab;
   final bool isNotificationSelected;
-
+  final int notificationCount;
+  final int inboxNotificationCount;
   const TitlesRowWidget({
     Key? key,
     required this.isFather,
     required this.selectNotificationTab,
     required this.selectInboxTab,
     required this.isNotificationSelected,
+    required this.notificationCount,
+    required this.inboxNotificationCount,
   }) : super(key: key);
 
   @override
@@ -38,13 +41,13 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
         children: [
           _indexAndNotificationItem(
             onTap:widget.selectNotificationTab,
-            title: S.of(context).notifications,
+            title: "${S.of(context).notifications} (${widget.notificationCount})",
             icon: Icons.notifications,
             color: widget.isNotificationSelected ? selectedColor : unselectedColor,
           ),
           _indexAndNotificationItem(
               onTap:widget.selectInboxTab,
-              title: S.of(context).inbox,
+              title: "${S.of(context).inbox} (${widget.inboxNotificationCount})",
               icon: Icons.mail_outline,
               color: !widget.isNotificationSelected ? selectedColor : unselectedColor),
         ],

@@ -39,6 +39,8 @@ class _NotificationsContentWidgetState
             ? TitlesRowWidget(
                 isFather: widget.isFather,
                 isNotificationSelected: isNotificationSelected,
+                notificationCount:widget.notifications.length,
+                inboxNotificationCount:widget.inboxNotifications.length,
                 selectNotificationTab: () {
                   setState(() {
                     isNotificationSelected = true;
