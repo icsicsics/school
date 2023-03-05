@@ -20,3 +20,13 @@ class GetLanguageSuccessState extends VerifyState {
 
   GetLanguageSuccessState({required this.language});
 }
+
+class UpdateDeviceTokenSuccessState extends VerifyState {}
+
+class UpdateDeviceTokenFailState extends VerifyState {
+  final String errorMessage;
+
+  UpdateDeviceTokenFailState({
+    required this.errorMessage,
+  });
+}

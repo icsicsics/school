@@ -18,3 +18,5 @@ class VerifyCodeEvent extends VerifyEvent {
     required this.verifyCode,
   });
 }
+
+class UpdateDeviceTokenEvent extends VerifyEvent {}

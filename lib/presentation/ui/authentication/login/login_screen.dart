@@ -60,7 +60,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           } else if (state is VerifyPhoneNumberErrorState) {
             showErrorDialogFunction(
                 context: context,
-                textMessage: S.of(context).thePhoneNumberIsWrong);
+                textMessage: state.errorMessage);
           } else if(state is SelectCountryCodeState){
             _countryCode = state.phoneNumber.dialCode ?? "";
           }

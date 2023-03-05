@@ -181,6 +181,19 @@ class DioHelper {
         ));
   }
 
+  static Future<Response> updateDeviceToken(
+      token, deviceToken) async {
+    return dio.get(
+        "${ApiKey.updateUserDeviceToken}?DeviceTokenId=$deviceToken",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
   static Future<Response> getWeather(lat,lon) async {
     return dio.get(
       'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=9417a6b6e67474512aca9f713dc57937',

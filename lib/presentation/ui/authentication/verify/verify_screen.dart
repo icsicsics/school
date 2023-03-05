@@ -40,21 +40,22 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
         listener: (context, state) {
           if (state is GetLanguageSuccessState) {
             _language = state.language;
-          } else if (state is VerifyCodeSuccessState){
+          } else if (state is VerifyCodeSuccessState) {
+            BlocProvider.of<VerifyBloc>(context).add(UpdateDeviceTokenEvent());
+          } else if (state is VerifyCodeErrorState) {
+          } else if (state is UpdateDeviceTokenSuccessState) {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const HomeScreen()));
-
-          } else if(state is VerifyCodeErrorState) {
+                context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+          } else if (state is UpdateDeviceTokenFailState) {
             showErrorDialogFunction(
-                context: context,
-                textMessage: S.of(context).errorActivationCode);
-
+                context: context, textMessage: state.errorMessage);
           }
         },
         builder: (context, state) {
-          return VerifyContentWidget(language: _language,phoneNumber: widget.phoneNumber,);
+          return VerifyContentWidget(
+            language: _language,
+            phoneNumber: widget.phoneNumber,
+          );
         },
       ),
     );

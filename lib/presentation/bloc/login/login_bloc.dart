@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
+import 'package:schools/data/source/remote/model/login/login_response.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
 
 part 'login_event.dart';
@@ -52,10 +53,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       VerifyPhoneNumberEvent event, Emitter<LoginState> emit) async {
     emit(ShowLoadingState());
     var response =  await DioHelper.verifyPhone(event.phoneNumber);
-    if (response.statusCode == 200) {
+
+    try {
+      LoginResponse loginResponse = LoginResponse.fromJson(response.data);
       emit(VerifyPhoneNumberSuccessState(phoneNumber: event.phoneNumber));
-    } else {
-      emit(VerifyPhoneNumberErrorState(errorMessage: "Error"));
+    } catch(e) {
+      LoginErrorResponse errorResponse = LoginErrorResponse.fromJson(response.data);
+      emit(VerifyPhoneNumberErrorState(errorMessage: errorResponse.data ?? ""));
     }
     emit(HideLoadingState());
   }

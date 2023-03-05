@@ -21,7 +21,7 @@ class SharedPreferencesManager {
         SharedPreferencesKeys.appLanguage);
   }
 
-  static Future<String?> getNotificationToken() async {
+  Future<String?> getNotificationToken() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.notificationToken);
   }

@@ -1,4 +1,4 @@
-package com.example.schools
+package com.sprint.ejabi
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -39,7 +39,7 @@ void main() async {
       systemNavigationBarColor: ColorsManager.secondaryColor,
     ),
   );
-  NotificationService().initializeNotificationService();
+  await NotificationService().initializeNotificationService();
   runApp(const RestartWidget(MyApp()));
 }
 

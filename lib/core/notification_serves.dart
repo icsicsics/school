@@ -36,8 +36,10 @@ class NotificationService {
   Future initializeNotificationService() async {
     await _setupNotificationPermission();
     _configMessage();
+    String token = await messaging.getToken() ?? "";
+    print(token);
     await SharedPreferencesManager.setNotificationToken(
-        (await messaging.getToken()));
+        (token));
   }
 
   FlutterLocalNotificationsPlugin get _getFlutterLocalNotificationsPlugin =>
