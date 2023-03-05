@@ -5,8 +5,17 @@ import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class TitlesRowWidget extends StatefulWidget {
   final bool isFather;
+  final Function() selectNotificationTab;
+  final Function() selectInboxTab;
+  final bool isNotificationSelected;
 
-  const TitlesRowWidget({Key? key, required this.isFather}) : super(key: key);
+  const TitlesRowWidget({
+    Key? key,
+    required this.isFather,
+    required this.selectNotificationTab,
+    required this.selectInboxTab,
+    required this.isNotificationSelected,
+  }) : super(key: key);
 
   @override
   State<TitlesRowWidget> createState() => _TitlesRowWidgetState();
@@ -28,16 +37,16 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
       child: Row(
         children: [
           _indexAndNotificationItem(
-            onTap: () => _selectNotification(),
-            title: "${S.of(context).notifications} (2)",
+            onTap:widget.selectNotificationTab,
+            title: S.of(context).notifications,
             icon: Icons.notifications,
-            color: isSelectedNotification ? selectedColor : unselectedColor,
+            color: widget.isNotificationSelected ? selectedColor : unselectedColor,
           ),
           _indexAndNotificationItem(
-              onTap: () => _selectIndex(),
-              title: "${S.of(context).inbox} (1)",
+              onTap:widget.selectInboxTab,
+              title: S.of(context).inbox,
               icon: Icons.mail_outline,
-              color: isSelectedIndex ? selectedColor : unselectedColor),
+              color: !widget.isNotificationSelected ? selectedColor : unselectedColor),
         ],
       ),
     );
@@ -89,21 +98,4 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
         ),
       );
 
-  void _selectIndex() {
-    setState(() {
-      if (isSelectedIndex == false && isSelectedNotification == true) {
-        isSelectedNotification = false;
-        isSelectedIndex = true;
-      }
-    });
-  }
-
-  void _selectNotification() {
-    if (isSelectedIndex == true && isSelectedNotification == false) {
-      setState(() {
-        isSelectedNotification = true;
-        isSelectedIndex = false;
-      });
-    }
-  }
 }

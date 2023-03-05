@@ -3,6 +3,7 @@ import 'package:schools/core/utils/network/interceptor.dart';
 import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
+import 'package:schools/data/source/remote/model/notification/request/notification_request.dart';
 import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
 import 'package:schools/data/source/remote/model/verfiy_phone/request/verify_phone_request.dart';
 
@@ -185,6 +186,32 @@ class DioHelper {
       token, deviceToken) async {
     return dio.get(
         "${ApiKey.updateUserDeviceToken}?DeviceTokenId=$deviceToken",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
+  static Future<Response> getNotifications(
+      token, NotificationRequest request) async {
+    return dio.post(ApiKey.getNotification,
+        data: request,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
+  static Future<Response> getInboxNotifications(
+      token, NotificationRequest request) async {
+    return dio.post(ApiKey.getInboxNotification,
+        data: request,
         options: Options(
           headers: {
             'Content-Type': 'application/json',

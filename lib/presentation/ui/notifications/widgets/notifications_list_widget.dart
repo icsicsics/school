@@ -1,8 +1,19 @@
 import 'package:flutter/widgets.dart';
+import 'package:schools/data/source/remote/model/notification/response/notifications_response.dart';
 import 'package:schools/presentation/ui/notifications/widgets/notifications_item_widget.dart';
 
 class NotificationsListWidget extends StatefulWidget {
-  const NotificationsListWidget({Key? key}) : super(key: key);
+  final bool isNotificationSelected;
+
+  final List<NotificationItem> notifications;
+  final List<NotificationItem> inboxNotifications;
+
+  const NotificationsListWidget({
+    Key? key,
+    required this.isNotificationSelected,
+    required this.notifications,
+    required this.inboxNotifications,
+  }) : super(key: key);
 
   @override
   State<NotificationsListWidget> createState() =>
@@ -14,10 +25,16 @@ class _NotificationsListWidgetState extends State<NotificationsListWidget> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-          itemCount: 10,
-          padding: const EdgeInsets.only(top: 10),
+          itemCount: widget.isNotificationSelected
+              ? widget.notifications.length
+              : widget.inboxNotifications.length,
+          padding: const EdgeInsets.symmetric(vertical: 12),
           itemBuilder: (BuildContext context, int index) {
-            return const NotificationsItemWidget();
+            return NotificationsItemWidget(
+              notificationItem: widget.isNotificationSelected
+                  ? widget.notifications[index]
+                  : widget.inboxNotifications[index],
+            );
           }),
     );
   }

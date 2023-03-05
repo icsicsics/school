@@ -17,4 +17,6 @@ class ApiKey{
   static const String getSchoolHouses = "Teacher/GetSchoolHouses";
   static const String getSearchValues = "Teacher/GetSearchByDateEnum";
   static const String updateUserDeviceToken = "Accounts/UpdateUserDeviceToken";
+  static const String getNotification = "Notifications/GetNotifications";
+  static const String getInboxNotification = "Notifications/GetInboxNotifications";
 }

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/notification/response/notifications_response.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
+import 'package:intl/intl.dart';
 
 class NotificationsItemWidget extends StatelessWidget {
-  const NotificationsItemWidget({Key? key}) : super(key: key);
+  final NotificationItem notificationItem;
+
+  const NotificationsItemWidget({
+    Key? key,
+    required this.notificationItem,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +37,16 @@ class NotificationsItemWidget extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children:  [
                     BoldTextWidget(
-                        text: "Leen Got New Point for Honesty by Dr. Yazan",
+                        text: notificationItem.title ,
                         fontSize: 14,
                         color: ColorsManager.blackColor),
+                    const SizedBox(
+                      height: 4,
+                    ),
                     BoldTextWidget(
-                        text: "17/09/2022 at 12:30 PM",
+                        text: DateFormat("dd/MM/yyyy  At  HH:MM","en").format(DateTime.parse(notificationItem.creationDate ?? "")),
                         fontSize: 12,
                         color: ColorsManager.blackColor)
                   ],
