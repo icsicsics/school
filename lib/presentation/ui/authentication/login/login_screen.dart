@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_statful_widget.dart';
+import 'package:schools/core/notification_serves.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/generated/l10n.dart';
@@ -25,6 +26,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   String _countryCode= "";
   @override
   void initState() {
+    _notificationListener();
     _isFather = widget.isFather;
     _loginBloc.add(LoginIsFatherEvent(isFather: widget.isFather));
     _loginBloc.add(GetLanguageEvent());
@@ -96,4 +98,14 @@ class _LoginScreenState extends BaseState<LoginScreen> {
     _isFather = state.isFather;
     await SharedPreferencesManager.setIsFather(state.isFather);
   }
+
+  void _notificationListener() {
+    NotificationService.onNotificationClick.stream.listen(_onNotificationClick);
+  }
+
+  void _onNotificationClick(String? notificationData) {
+    print("object");
+  }
+
+
 }
