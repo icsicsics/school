@@ -41,13 +41,13 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
         children: [
           _indexAndNotificationItem(
             onTap:widget.selectNotificationTab,
-            title: "${S.of(context).notifications} (${widget.notificationCount})",
+            title: getTileTitle(S.of(context).notifications,widget.notificationCount),
             icon: Icons.notifications,
             color: widget.isNotificationSelected ? selectedColor : unselectedColor,
           ),
           _indexAndNotificationItem(
               onTap:widget.selectInboxTab,
-              title: "${S.of(context).inbox} (${widget.inboxNotificationCount})",
+              title:getTileTitle(S.of(context).inbox,widget.inboxNotificationCount),
               icon: Icons.mail_outline,
               color: !widget.isNotificationSelected ? selectedColor : unselectedColor),
         ],
@@ -101,4 +101,11 @@ class _TitlesRowWidgetState extends State<TitlesRowWidget> {
         ),
       );
 
+  String getTileTitle(String title, int value){
+    if(value == 0){
+      return title;
+    } else {
+      return "$title ($value)";
+    }
+  }
 }

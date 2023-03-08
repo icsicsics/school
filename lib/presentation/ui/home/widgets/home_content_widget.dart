@@ -46,11 +46,10 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
         HomeAppBarWidget(
             onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
             onTapNotifications: () {
-              Navigator.pushAndRemoveUntil(
+              Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => const NotificationsScreen()),
-                  (route) => false);
+                      builder: (_) => const NotificationsScreen()));
             },
             isFather: widget.isFather,
             bloc: widget.bloc,

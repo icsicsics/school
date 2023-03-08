@@ -5,6 +5,7 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
 import 'package:schools/data/source/remote/repository/splash_repository.dart';
 import 'package:schools/presentation/bloc/splash/splash_repository_imp.dart';
+import 'package:schools/use_case/get_token_use_case.dart';
 import 'package:schools/use_case/set_token_use_case.dart';
 
 part 'splash_event.dart';
@@ -14,11 +15,16 @@ part 'splash_state.dart';
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashRepository repository = SplashRepositoryImp();
   final SetTokenUseCase _setTokenUseCase;
+  final GetTokenUseCase _getTokenUseCase;
 
-  SplashBloc(this._setTokenUseCase) : super(SplashInitial()) {
+  SplashBloc(
+    this._setTokenUseCase,
+    this._getTokenUseCase,
+  ) : super(SplashInitial()) {
     // on<SplashGetTokenEvent>(_onSplashGetTokenEvent);
     on<SplashSaveTokenEvent>(_onSplashSaveTokenEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
+    on<GetTokenEvent>(_onGetTokenEvent);
   }
 
   // FutureOr<void> _onSplashGetTokenEvent(
@@ -42,5 +48,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       GetIsFatherEvent event, Emitter<SplashState> emit) async {
     final isFather = await SharedPreferencesManager.getIsFather();
     emit(GetIsFatherState(isFather: isFather!));
+  }
+
+  FutureOr<void> _onGetTokenEvent(GetTokenEvent event, Emitter<SplashState> emit) async {
+    emit(GetTokenState(token: (await _getTokenUseCase()) ?? ""));
   }
 }

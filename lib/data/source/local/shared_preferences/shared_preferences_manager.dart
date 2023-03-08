@@ -118,4 +118,8 @@ class SharedPreferencesManager {
   Future<String?> getToken() async {
     return await SharedPreferencesUtils.getString(SharedPreferencesKeys.token);
   }
+
+  Future<bool?> clearToken() async{
+    return await SharedPreferencesUtils.remove(SharedPreferencesKeys.token);
+  }
 }

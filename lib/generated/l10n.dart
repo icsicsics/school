@@ -640,10 +640,10 @@ class S {
     );
   }
 
-  /// `We have send the code verification to Your Mobile`
+  /// `We have send the code verification to Your Mobile Number`
   String get weHaveSendTheCodeVerificationToYourMobile {
     return Intl.message(
-      'We have send the code verification to Your Mobile',
+      'We have send the code verification to Your Mobile Number',
       name: 'weHaveSendTheCodeVerificationToYourMobile',
       desc: '',
       args: [],

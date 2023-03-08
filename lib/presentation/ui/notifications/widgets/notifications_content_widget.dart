@@ -39,8 +39,8 @@ class _NotificationsContentWidgetState
             ? TitlesRowWidget(
                 isFather: widget.isFather,
                 isNotificationSelected: isNotificationSelected,
-                notificationCount:widget.notifications.length,
-                inboxNotificationCount:widget.inboxNotifications.length,
+                notificationCount:totalUnreadMessages(widget.notifications),
+                inboxNotificationCount:totalUnreadMessages(widget.inboxNotifications),
                 selectNotificationTab: () {
                   setState(() {
                     isNotificationSelected = true;
@@ -54,11 +54,23 @@ class _NotificationsContentWidgetState
               )
             : Container(),
         NotificationsListWidget(
+          isFather:widget.isFather,
           isNotificationSelected: isNotificationSelected,
           notifications: widget.notifications,
           inboxNotifications: widget.inboxNotifications,
         )
       ],
     );
+  }
+
+  int totalUnreadMessages(List<NotificationItem> notifications){
+    int total = 0;
+
+    for(var item in notifications){
+      if(item.status == 1){
+        total++;
+      }
+    }
+    return total;
   }
 }

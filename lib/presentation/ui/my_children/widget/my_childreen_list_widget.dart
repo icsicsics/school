@@ -32,6 +32,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
 
   @override
   void initState() {
+    print(widget.points.map((e) => e.toJson()));
     points = widget.points;
     _list.add(
         _ChildIconsModel(id: "-1", isSelected: true, title: S.current.all));

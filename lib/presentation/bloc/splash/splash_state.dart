@@ -27,3 +27,11 @@ class GetIsFatherState extends SplashState {
 
   GetIsFatherState({required this.isFather});
 }
+
+class GetTokenState extends SplashState {
+  final String token;
+
+  GetTokenState({
+    required this.token,
+  });
+}

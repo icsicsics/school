@@ -19,28 +19,33 @@ class HomeFatherContentWidget extends StatefulWidget {
   final HomeBloc homeBloc;
   final String token;
   final String language;
-  final TeacherStudentProfileInSchoolHouseResponse teacherStudentProfileInSchoolHouseResponse;
+  final TeacherStudentProfileInSchoolHouseResponse
+      teacherStudentProfileInSchoolHouseResponse;
 
-  HomeFatherContentWidget({Key? key,
-    required this.parentHomeResponse,
-    required this.homeBloc,
-    required this.token,
-    required this.teacherStudentProfileInSchoolHouseResponse,
-    required this.language})
+  HomeFatherContentWidget(
+      {Key? key,
+      required this.parentHomeResponse,
+      required this.homeBloc,
+      required this.token,
+      required this.teacherStudentProfileInSchoolHouseResponse,
+      required this.language})
       : super(key: key);
 
   @override
-  State<HomeFatherContentWidget> createState() => _HomeFatherContentWidgetState();
+  State<HomeFatherContentWidget> createState() =>
+      _HomeFatherContentWidgetState();
 }
 
 class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
-  int _current = 0 ;
+  int _current = 0;
 
   @override
   void initState() {
     super.initState();
-    if(widget.parentHomeResponse.data!.isNotEmpty){
-      BlocProvider.of<HomeBloc>(context).add(GetStudentProfileInSchoolHouseEvent(widget.parentHomeResponse.data![0].studentId ?? ""));
+    if (widget.parentHomeResponse.data!.isNotEmpty) {
+      BlocProvider.of<HomeBloc>(context).add(
+          GetStudentProfileInSchoolHouseEvent(
+              widget.parentHomeResponse.data![0].studentId ?? ""));
     }
   }
 
@@ -49,65 +54,81 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
     return Container(
       height: 570,
       margin: const EdgeInsets.symmetric(horizontal: 8),
-      child:  CarouselSlider(
+      child: CarouselSlider(
         items: (widget.parentHomeResponse.data)
             ?.map((item) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 16),
-                Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.bottomCenter,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => MyChildrenScreen(
-                                  studentId: item.studentId ?? "",
-                                  language: widget.language,
-                                  isParent: true,
-                                  classroomSectionStudentsId: "",
-                                  classroomId: "97cd1b95-0e1d-4b37-e814-08db18c1786b",
-                                )));
-                        },
-                      child: Image.network(
-                        item.getImage?.mediaUrl ?? "",
-                        width: 400,
-                        height: 200,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            ImagesPath.logo,
-                            width: 400,
-                            height: 200,
-                          );
-                        },
-                      ),
-                    ),
-                    Positioned(
-                      left: 16,
-                      bottom: -16,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(
-                                  offset: Offset(0, 0),
-                                  blurRadius: 0.3,
-                                  spreadRadius: 0,
-                                  color: Color(0x2b040405))
+                    SizedBox(height: 16),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => MyChildrenScreen(
+                                          studentId: item.studentId ?? "",
+                                          language: widget.language,
+                                          isParent: true,
+                                          classroomSectionStudentsId: "",
+                                          classroomId:
+                                              "97cd1b95-0e1d-4b37-e814-08db18c1786b",
+                                        )));
+                          },
+                          child: Row(
+                            children: [
+                              if (_current != 0)
+                                Icon(
+                                  Icons.keyboard_arrow_left,
+                                  size: 24,
+                                ),
+                              Expanded(child: SizedBox()),
+                              Image.network(
+                                item.getImage?.mediaUrl ?? "",
+                                height: 200,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Image.asset(
+                                    ImagesPath.logo,
+                                    width: 400,
+                                  );
+                                },
+                              ),
+                              Expanded(child: SizedBox()),
+                              if (_current !=
+                                  widget.parentHomeResponse.data!.length - 1)
+                                Icon(
+                                  Icons.keyboard_arrow_right,
+                                  size: 24,
+                                ),
                             ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            border:
-                            Border.all(width: 1, color: Color(0xe2e2e2))),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 6, horizontal: 12),
-                        child: Text(
-                          item.studentName ?? "",
+                          ),
                         ),
-                      ),
-                    ),
+                        Positioned(
+                          left: 16,
+                          bottom: -16,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                      offset: Offset(0, 0),
+                                      blurRadius: 0.3,
+                                      spreadRadius: 0,
+                                      color: Color(0x2b040405))
+                                ],
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                    width: 1, color: Color(0xe2e2e2))),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 6, horizontal: 12),
+                            child: Text(
+                              item.studentName ?? "",
+                            ),
+                          ),
+                        ),
 /*
                     Positioned(
                       right: 32,
@@ -127,111 +148,120 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                       ),
                     )
 */
-                  ],
-                ),
-                SizedBox(height: 32),
-                InkWell(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => SchoolHousesScreen(
-                              token: widget.token,
-                              classRoomId:
-                              item.branchId ?? "",
-                              language: widget.language,
-                              isComingFromHome: true,
-                            )));
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center
-                        ,
+                      ],
+                    ),
+                    SizedBox(height: 32),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => SchoolHousesScreen(
+                                      token: widget.token,
+                                      classRoomId: item.branchId ?? "",
+                                      language: widget.language,
+                                      isComingFromHome: true,
+                                    )));
+                      },
+                      child: Column(
                         children: [
-                          SvgPicture.asset(
-                            ImagesPath.startOrange,
-                            width: 22,
-                            height: 22,
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-
-                          SizedBox(
-                            width: 340,
-                            child: Text(
-                              "Interactive Values School 5th Grade - Section 4 -Collaboration Home",
-                              maxLines: 2,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                ImagesPath.startOrange,
+                                width: 22,
+                                height: 22,
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 16,),
-                      Column(
-                        children: (widget.teacherStudentProfileInSchoolHouseResponse.data?.points ?? []).map((point) => Column(
-                          children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  radius: 17,
-                                  child: SvgPicture.asset(
-                                    ImagesPath.star,
-                                    width: 22,
-                                    height: 22,
+                              SizedBox(
+                                width: 12,
+                              ),
+                              Text(
+                                "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
+                                maxLines: 2,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              SizedBox(
+                                width: 340,
+                                child: Text(
+                                  "Interactive Values School 5th Grade - Section 4 -Collaboration Home",
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 12,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "${point.valueName ?? ""}",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text("${DateFormat("dd/MM/yyyy", "en").format(
-                                      DateTime.parse(point.creationDate ?? ""),) }"),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 16),
-
-                          ],
-                        )).toList(),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ))
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Column(
+                            children:
+                                (widget.teacherStudentProfileInSchoolHouseResponse
+                                            .data?.points ??
+                                        [])
+                                    .map((point) => Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                CircleAvatar(
+                                                  backgroundColor: Colors.white,
+                                                  radius: 17,
+                                                  child: SvgPicture.asset(
+                                                    ImagesPath.star,
+                                                    width: 22,
+                                                    height: 22,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 12,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${point.valueName ?? ""}",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                    Text(
+                                                        "${DateFormat("dd/MM/yyyy", "en").format(
+                                                      DateTime.parse(
+                                                          point.creationDate ??
+                                                              ""),
+                                                    )}"),
+                                                    SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(height: 16),
+                                          ],
+                                        ))
+                                    .toList(),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ))
             .toList(),
         carouselController: CarouselController(),
         options: CarouselOptions(
@@ -245,7 +275,10 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
           onPageChanged: (index, reason) {
             setState(() {
               _current = index;
-              BlocProvider.of<HomeBloc>(context).add(GetStudentProfileInSchoolHouseEvent(widget.parentHomeResponse.data![_current].studentId ?? ""));
+              BlocProvider.of<HomeBloc>(context).add(
+                  GetStudentProfileInSchoolHouseEvent(
+                      widget.parentHomeResponse.data![_current].studentId ??
+                          ""));
             });
           },
         ),
@@ -301,7 +334,8 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                     height: 8,
                   ),
                   Text("${DateFormat("dd/MM/yyyy", "en").format(
-                    DateTime.parse(point.creationDate ?? ""),) }"),
+                    DateTime.parse(point.creationDate ?? ""),
+                  )}"),
                   SizedBox(
                     height: 8,
                   ),
@@ -310,7 +344,6 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
             ],
           ),
           SizedBox(height: 16),
-
         ],
       );
     }

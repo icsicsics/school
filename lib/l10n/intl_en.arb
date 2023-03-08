@@ -58,7 +58,7 @@
  "yes":"Yes",
  "no":"No",
  "verificationCode":"Verification Code",
- "weHaveSendTheCodeVerificationToYourMobile":"We have send the code verification to Your Mobile",
+ "weHaveSendTheCodeVerificationToYourMobile":"We have send the code verification to Your Mobile Number",
  "number":"Number",
  "submit":"Submit",
  "dontReceiveCode":"Don't Receive Code ? ",

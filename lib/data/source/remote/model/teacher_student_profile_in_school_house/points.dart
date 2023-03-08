@@ -3,6 +3,7 @@ class Points {
   String? createdBy;
   bool? isTeacher;
   String? principleName;
+  String? valueId;
   String? valueName;
   String? createdByName;
 
@@ -11,6 +12,7 @@ class Points {
     this.createdBy,
     this.isTeacher,
     this.valueName,
+    this.valueId,
     this.principleName,
     this.createdByName,
   });
@@ -19,6 +21,7 @@ class Points {
     creationDate = json['creationDate'];
     createdBy = json['createdBy'];
     isTeacher = json['isTeacher'];
+    valueId = json['valueId'];
     valueName = json['valueName'];
     principleName = json['principleName'];
     createdByName = json['createdByName'];
@@ -29,6 +32,7 @@ class Points {
     map['creationDate'] = creationDate;
     map['createdBy'] = createdBy;
     map['isTeacher'] = isTeacher;
+    map['valueId'] = valueId;
     map['valueName'] = valueName;
     map['principleName'] = principleName;
     map['createdByName'] = createdByName;

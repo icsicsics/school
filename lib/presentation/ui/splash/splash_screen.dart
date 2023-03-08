@@ -5,6 +5,7 @@ import 'package:schools/core/base_widget/base_statful_widget.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
+import 'package:schools/presentation/ui/home/home_screen.dart';
 import 'package:schools/presentation/ui/splash/widgets/splash_content_widget.dart';
 
 class SplashScreen extends BaseStatefulWidget {
@@ -16,6 +17,7 @@ class SplashScreen extends BaseStatefulWidget {
 
 class _SplashScreenState extends BaseState<SplashScreen> {
   SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
+  bool _isFather = false;
 
   @override
   void initState() {
@@ -30,7 +32,8 @@ class _SplashScreenState extends BaseState<SplashScreen> {
         if (state is SplashLoadingState) {
           showLoading();
         } else if (state is SplashGetTokenSuccessState) {
-          _bloc.add(SplashSaveTokenEvent(token: state.response.data!.token!.accessToken!));
+          _bloc.add(SplashSaveTokenEvent(
+              token: state.response.data!.token!.accessToken!));
         } else if (state is SplashSaveTokenSuccessState) {
           hideLoading();
           SystemChrome.setSystemUIOverlayStyle(
@@ -41,11 +44,21 @@ class _SplashScreenState extends BaseState<SplashScreen> {
           );
           _bloc.add(GetIsFatherEvent());
         } else if (state is GetIsFatherState) {
-          Future.delayed(Duration(microseconds: 2500)).then((value) {
-            _navigationToLoginScreen(state.isFather);
-          });
+          _isFather = state.isFather;
+          _bloc.add(GetTokenEvent());
         } else if (state is SplashGetTokenErrorState) {
           _onSplashGetTokenErrorState(state.error);
+        } else if (state is GetTokenState) {
+          if (state.token.isEmpty) {
+            Future.delayed(Duration(microseconds: 2500)).then((value) {
+              _navigationToLoginScreen(_isFather);
+            });
+          } else {
+            Navigator.pushAndRemoveUntil(context,
+                MaterialPageRoute(builder: (context) {
+              return const HomeScreen();
+            }), (route) => false);
+          }
         }
       },
       builder: (context, state) {

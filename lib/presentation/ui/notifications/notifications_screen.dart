@@ -29,8 +29,6 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
   void initState() {
     _bloc.add(GetIsFatherEvent());
     _bloc.add(GetLanguageEvent());
-    _bloc.add(GetNotificationsEvent(
-        notificationRequest: NotificationRequest(pageNo: 1, pageSize: 10)));
     super.initState();
   }
 
@@ -44,9 +42,13 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
           hideLoading();
         } else if (state is GetIsFatherState) {
           _isFather = state.isFather;
-          if(_isFather){
-            _bloc.add(GetInboxNotificationsEvent(
-                notificationRequest: NotificationRequest(pageNo: 1, pageSize: 10)));
+          _bloc.add(GetInboxNotificationsEvent(
+              notificationRequest:
+                  NotificationRequest(pageNo: 1, pageSize: 10)));
+          if (_isFather) {
+            _bloc.add(GetNotificationsEvent(
+                notificationRequest:
+                    NotificationRequest(pageNo: 1, pageSize: 10)));
           }
         } else if (state is GetLanguageSuccessState) {
           _language = state.language;
@@ -55,14 +57,27 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
           _token = state.token;
         } else if (state is GetNotificationsSuccessState) {
           notifications = state.notificationResponse.notificationItem ?? [];
-        } else if (state is GetNotificationsFillState) {}
-        else if (state is GetInboxNotificationsSuccessState) {
-          inboxNotifications = state.notificationResponse.notificationItem ?? [];
-        } else if (state is GetInboxNotificationsFillState) {}
+        } else if (state is GetNotificationsFillState) {
+        } else if (state is GetInboxNotificationsSuccessState) {
+          inboxNotifications =
+              state.notificationResponse.notificationItem ?? [];
+        } else if (state is GetInboxNotificationsFillState) {
+        } else if (state is UpdateNotificationSuccessState) {
+          _bloc.add(GetInboxNotificationsEvent(
+              notificationRequest:
+              NotificationRequest(pageNo: 1, pageSize: 10)));
+          if (_isFather) {
+            _bloc.add(GetNotificationsEvent(
+                notificationRequest:
+                NotificationRequest(pageNo: 1, pageSize: 10)));
+          }
+        } else if(state is UpdateNotificationFailState) {
+
+        }
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Color(0xFFf6f2f2),
+            backgroundColor: Color(0xFFf6f2f2),
             drawer: SideMenuScreen(
               isComFromHome: false,
               language: _language,
@@ -72,8 +87,8 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
             body: NotificationsContentWidget(
               globalKey: _key,
               isFather: _isFather,
-              notifications : notifications,
-              inboxNotifications : inboxNotifications,
+              notifications: notifications,
+              inboxNotifications: inboxNotifications,
             ));
       },
     );

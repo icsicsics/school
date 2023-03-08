@@ -4,15 +4,16 @@ import 'package:schools/presentation/ui/notifications/widgets/notifications_item
 
 class NotificationsListWidget extends StatefulWidget {
   final bool isNotificationSelected;
-
   final List<NotificationItem> notifications;
   final List<NotificationItem> inboxNotifications;
+  final bool isFather;
 
   const NotificationsListWidget({
     Key? key,
     required this.isNotificationSelected,
     required this.notifications,
     required this.inboxNotifications,
+    required this.isFather,
   }) : super(key: key);
 
   @override
@@ -23,19 +24,37 @@ class NotificationsListWidget extends StatefulWidget {
 class _NotificationsListWidgetState extends State<NotificationsListWidget> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: widget.isNotificationSelected
-              ? widget.notifications.length
-              : widget.inboxNotifications.length,
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          itemBuilder: (BuildContext context, int index) {
-            return NotificationsItemWidget(
-              notificationItem: widget.isNotificationSelected
-                  ? widget.notifications[index]
-                  : widget.inboxNotifications[index],
-            );
-          }),
-    );
+    return _buildScreenContent();
+  }
+
+
+  _buildScreenContent() {
+    if(widget.isFather){
+      return Expanded(
+        child: ListView.builder(
+            itemCount: widget.isNotificationSelected
+                ? widget.notifications.length
+                : widget.inboxNotifications.length,
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            itemBuilder: (BuildContext context, int index) {
+              return NotificationsItemWidget(
+                notificationItem: widget.isNotificationSelected
+                    ? widget.notifications[index]
+                    : widget.inboxNotifications[index],
+              );
+            }),
+      );
+    } else {
+      return Expanded(
+        child: ListView.builder(
+            itemCount: widget.inboxNotifications.length,
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            itemBuilder: (BuildContext context, int index) {
+              return NotificationsItemWidget(
+                notificationItem: widget.inboxNotifications[index],
+              );
+            }),
+      );
+    }
   }
 }

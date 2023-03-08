@@ -38,7 +38,7 @@ class TeacherOfWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldTextWidget(
-                          text: S.current.fatherOf,
+                          text: "Educator of",
                           fontSize: 16,
                           color: ColorsManager.secondaryColor),
                       SizedBox(

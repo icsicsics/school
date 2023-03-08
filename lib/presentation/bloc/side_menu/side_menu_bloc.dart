@@ -7,6 +7,7 @@ import 'package:schools/data/source/remote/model/father_info/response/father_inf
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/side_menu_repository.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_repository_imp.dart';
+import 'package:schools/use_case/clear_token_use_case.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
 import 'package:schools/use_case/get_testcher_profile_image_from_shared_preferences_user_case.dart';
 import 'package:schools/use_case/set_teacher_profile_image_in_shared_preferences_user_case.dart';
@@ -19,13 +20,20 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   final BaseSideMenuRepository _repository = SideMenuRepositoryImp();
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
   final SetTeacherImageProfileInSharedPreferencesUseCase
-  _setImageProfileInSharedPreferencesUseCase;
-   TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
-   FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
-   String profileImage ='';
+      _setImageProfileInSharedPreferencesUseCase;
+  final ClearTokenUseCase _clearTokenUseCase;
+  TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
+  FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
+  String profileImage = '';
   final GetTeacherImageProfileFromSharedPreferencesUseCase
-  _getImageProfileFromSharedPreferencesUseCase;
-  SideMenuBloc(this._getLanguageCodeUseCase,this._getImageProfileFromSharedPreferencesUseCase,this._setImageProfileInSharedPreferencesUseCase) : super(SideMenuInitialState()) {
+      _getImageProfileFromSharedPreferencesUseCase;
+
+  SideMenuBloc(
+    this._getLanguageCodeUseCase,
+    this._getImageProfileFromSharedPreferencesUseCase,
+    this._setImageProfileInSharedPreferencesUseCase,
+    this._clearTokenUseCase,
+  ) : super(SideMenuInitialState()) {
     on<GetSideMenuEvent>(_onGetSideMenuEvent);
     on<SideMenuHomeEvent>(_onSideMenuHomeEvent);
     on<SideMenuUserProfileEvent>(_onSideMenuUserProfileEvent);
@@ -36,7 +44,8 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetFatherInfoEvent>(_onGetFatherInfoEvent);
     on<GetProfileImageFromShearedPrefranceEvent>(_onGetProfileImageEvent);
-    on<SetProfileImageInShearedPrefranceEvent>(_onSetProfileImageInShearedPrefranceEvent);
+    on<SetProfileImageInShearedPrefranceEvent>(
+        _onSetProfileImageInShearedPrefranceEvent);
     on<OpenWebViewEvent>(_onOpenWebViewEvent);
   }
 
@@ -71,20 +80,21 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   }
 
   FutureOr<void> _onLogoutEvent(
-      LogoutEvent event, Emitter<SideMenuState> emit) {
+      LogoutEvent event, Emitter<SideMenuState> emit) async {
+    await _clearTokenUseCase();
     emit(LogoutState());
   }
 
   FutureOr<void> _onGetTeacherInfoEvent(
       GetTeacherInfoEvent event, Emitter<SideMenuState> emit) async {
-    if(teacherInfoResponse.data!=null){
+    if (teacherInfoResponse.data != null) {
       emit(GetTeacherResponseState(response: teacherInfoResponse));
     } else {
       emit(GetSideMenuLoadingState());
       SideMenuState state =
-      (await _repository.getTeacherInfo(event.token)) as SideMenuState;
+          (await _repository.getTeacherInfo(event.token)) as SideMenuState;
       if (state is GetTeacherInfoSuccessState) {
-        teacherInfoResponse=state.response;
+        teacherInfoResponse = state.response;
         emit(GetTeacherInfoSuccessState(response: state.response));
       } else if (state is GetTeacherInfoFillState) {
         emit(GetTeacherInfoFillState(error: state.error));
@@ -94,14 +104,14 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
 
   FutureOr<void> _onGetFatherInfoEvent(
       GetFatherInfoEvent event, Emitter<SideMenuState> emit) async {
-    if(fatherInfoResponse.data!=null){
+    if (fatherInfoResponse.data != null) {
       emit(GetFatherResponseState(response: fatherInfoResponse));
-    }else {
+    } else {
       emit(GetSideMenuLoadingState());
       SideMenuState state =
-      (await _repository.getFatherInfo(event.token)) as SideMenuState;
+          (await _repository.getFatherInfo(event.token)) as SideMenuState;
       if (state is GetFatherInfoSuccessState) {
-        fatherInfoResponse=state.response;
+        fatherInfoResponse = state.response;
         emit(GetFatherInfoSuccessState(response: state.response));
       } else if (state is GetFatherInfoFillState) {
         emit(GetFatherInfoFillState(error: state.error));
@@ -110,16 +120,18 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   }
 
   Future<void> _onGetProfileImageEvent(
-      GetProfileImageFromShearedPrefranceEvent event, Emitter<SideMenuState> emit) async {
+      GetProfileImageFromShearedPrefranceEvent event,
+      Emitter<SideMenuState> emit) async {
     emit(GetSideMenuLoadingState());
     String? image = await _getImageProfileFromSharedPreferencesUseCase();
-    profileImage= image!;
+    profileImage = image!;
     emit(GetProfileImageFromShearedPrefranceSuccessState(image: image));
   }
+
   Future<void> _onSetProfileImageInShearedPrefranceEvent(
-      SetProfileImageInShearedPrefranceEvent event, Emitter<SideMenuState> emit) async {
-    await _setImageProfileInSharedPreferencesUseCase(
-        profileImage: event.image);
+      SetProfileImageInShearedPrefranceEvent event,
+      Emitter<SideMenuState> emit) async {
+    await _setImageProfileInSharedPreferencesUseCase(profileImage: event.image);
     emit(SetProfileImageInShearedPrefranceSuccessState());
   }
 

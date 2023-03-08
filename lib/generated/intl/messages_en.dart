@@ -136,7 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewHouses": MessageLookupByLibrary.simpleMessage("View Houses"),
         "weHaveSendTheCodeVerificationToYourMobile":
             MessageLookupByLibrary.simpleMessage(
-                "We have send the code verification to Your Mobile"),
+                "We have send the code verification to Your Mobile Number"),
         "weather": MessageLookupByLibrary.simpleMessage("Weather"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),

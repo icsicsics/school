@@ -1,4 +1,5 @@
 import 'package:schools/data/source/di/injector.dart';
+import 'package:schools/use_case/clear_token_use_case.dart';
 import 'package:schools/use_case/get_firebase_token_use_case.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
 import 'package:schools/use_case/get_profile_image_use_case.dart';
@@ -26,5 +27,9 @@ Future<void> initializeUseCaseDependencies() async {
           () => GetTokenUseCase(injector()));
   injector.registerFactory<GetFirebaseTokenUseCase>(
           () => GetFirebaseTokenUseCase(injector()));
+
+  injector.registerFactory<ClearTokenUseCase>(
+          () => ClearTokenUseCase(injector()));
+
 
 }

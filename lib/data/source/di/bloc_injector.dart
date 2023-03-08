@@ -14,22 +14,38 @@ import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dar
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 
 Future<void> initializeBlocDependencies() async {
-  injector.registerFactory<LocalizationCubit>(
-      () => LocalizationCubit(injector(), injector()));
-  injector.registerFactory<SplashBloc>(() => SplashBloc(injector()));
-  injector.registerFactory<HomeBloc>(
-      () => HomeBloc(injector(), injector(), injector()));
-  injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
+  injector.registerFactory<LocalizationCubit>(() => LocalizationCubit(
+        injector(),
+        injector(),
+      ));
+  injector.registerFactory<SplashBloc>(() => SplashBloc(
+        injector(),
+        injector(),
+      ));
+  injector.registerFactory<HomeBloc>(() => HomeBloc(
+        injector(),
+        injector(),
+        injector(),
+      ));
+  injector.registerFactory<LoginBloc>(() => LoginBloc(
+        injector(),
+      ));
   injector.registerFactory<VerifyBloc>(() => VerifyBloc(
         injector(),
         injector(),
         injector(),
         injector(),
       ));
-  injector.registerFactory<NotificationsBloc>(
-      () => NotificationsBloc(injector(), injector()));
-  injector.registerFactory<SideMenuBloc>(
-      () => SideMenuBloc(injector(), injector(), injector()));
+  injector.registerFactory<NotificationsBloc>(() => NotificationsBloc(
+        injector(),
+        injector(),
+      ));
+  injector.registerFactory<SideMenuBloc>(() => SideMenuBloc(
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+      ));
   injector.registerFactory<StudentHousesBloc>(() => StudentHousesBloc());
   injector.registerFactory<ProfileBloc>(() => ProfileBloc(
         injector(),
@@ -41,7 +57,8 @@ Future<void> initializeBlocDependencies() async {
       ));
   injector.registerFactory<SchoolHousesBloc>(() => SchoolHousesBloc());
   injector.registerFactory<AboutBloc>(() => AboutBloc());
-  injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc(injector()));
-
+  injector.registerFactory<MyChildrenBloc>(() => MyChildrenBloc(
+        injector(),
+      ));
   injector.registerFactory<AddPointBloc>(() => AddPointBloc());
 }

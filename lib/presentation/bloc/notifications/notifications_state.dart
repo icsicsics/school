@@ -58,3 +58,20 @@ class GetInboxNotificationsFillState extends NotificationsState {
     required this.errorMessage,
   });
 }
+
+
+class UpdateNotificationSuccessState extends NotificationsState {
+  final String message;
+
+  UpdateNotificationSuccessState({
+    required this.message,
+  });
+}
+
+class UpdateNotificationFailState extends NotificationsState {
+  final String errorMessage;
+
+  UpdateNotificationFailState({
+    required this.errorMessage,
+  });
+}

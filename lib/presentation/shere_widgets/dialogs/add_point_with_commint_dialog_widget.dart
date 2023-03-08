@@ -201,10 +201,10 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     _getTeacherPrinciplByClassroomIdResponse = response;
     for (var element in _getTeacherPrinciplByClassroomIdResponse.data!) {
       _listOfItems.add(element);
-      _listOfItems.sort((A, B) => A.name
-          .toString()
-          .toUpperCase()
-          .compareTo(B.name.toString().toUpperCase()));
+      // _listOfItems.sort((A, B) => A.name
+      //     .toString()
+      //     .toUpperCase()
+      //     .compareTo(B.name.toString().toUpperCase()));
 
     }
     Navigator.pop(context);
@@ -222,6 +222,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     Navigator.of(context);
     if (value.id != null) {
       if (widget.isParent == false) {
+        print(value.id);
         _addPointBloc.add(PostTeacherAddPointEvent(
             token: widget.token,
             request: TeacherAddPointRequest(

@@ -19,11 +19,18 @@ class GetNotificationsEvent extends NotificationsEvent {
   });
 }
 
-
 class GetInboxNotificationsEvent extends NotificationsEvent {
   final NotificationRequest notificationRequest;
 
   GetInboxNotificationsEvent({
     required this.notificationRequest,
+  });
+}
+
+class UpdateNotificationEvent extends NotificationsEvent {
+  final String id;
+
+  UpdateNotificationEvent({
+    required this.id,
   });
 }

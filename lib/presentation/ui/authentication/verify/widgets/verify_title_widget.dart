@@ -8,21 +8,19 @@ class VerifyTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        BoldTextWidget(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BoldTextWidget(
             text: S.of(context).weHaveSendTheCodeVerificationToYourMobile,
             fontSize: 14,
-            color: ColorsManager.sameBlack),
-        const SizedBox(
-          height: 5,
-        ),
-        BoldTextWidget(
-            text: S.of(context).number,
-            fontSize: 14,
-            color: ColorsManager.sameBlack),
-      ],
+            textAlign: TextAlign.start,
+            color: ColorsManager.sameBlack,
+          ),
+        ],
+      ),
     );
   }
 }
