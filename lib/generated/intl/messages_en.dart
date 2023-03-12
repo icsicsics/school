@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure ?"),
         "at": MessageLookupByLibrary.simpleMessage("at"),
         "aug": MessageLookupByLibrary.simpleMessage("august"),
-        "behavior": MessageLookupByLibrary.simpleMessage("Behavior ,"),
+        "behavior": MessageLookupByLibrary.simpleMessage("Behavior"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change Mobile Number"),
@@ -128,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),
-        "values": MessageLookupByLibrary.simpleMessage("Values ,"),
+        "values": MessageLookupByLibrary.simpleMessage("Values"),
         "verificationCode":
             MessageLookupByLibrary.simpleMessage("Verification Code"),
         "verifyYourNumber":

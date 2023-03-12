@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
@@ -57,11 +59,25 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SvgPicture.asset(ImagesPath.values),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     MediumTextWidget(text: S.of(context).values, fontSize: 16, color: ColorsManager.sameBlack),
+                    const SizedBox(
+                      width: 8,
+                    ),
+
+                    SvgPicture.asset(ImagesPath.behavior),
                     const SizedBox(
                       width: 5,
                     ),
                     MediumTextWidget(text: S.of(context).behavior, fontSize: 16, color: ColorsManager.sameBlack),
+                    const SizedBox(
+                      width: 8,
+                    ),
+
+                    SvgPicture.asset(ImagesPath.skills),
                     const SizedBox(
                       width: 5,
                     ),

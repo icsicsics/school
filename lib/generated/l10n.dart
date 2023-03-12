@@ -1000,20 +1000,20 @@ class S {
     );
   }
 
-  /// `Values ,`
+  /// `Values`
   String get values {
     return Intl.message(
-      'Values ,',
+      'Values',
       name: 'values',
       desc: '',
       args: [],
     );
   }
 
-  /// `Behavior ,`
+  /// `Behavior`
   String get behavior {
     return Intl.message(
-      'Behavior ,',
+      'Behavior',
       name: 'behavior',
       desc: '',
       args: [],
