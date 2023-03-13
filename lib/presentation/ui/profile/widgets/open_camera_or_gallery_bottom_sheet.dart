@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:schools/presentation/ui/profile/widgets/camera_gallery_bottom_sheet_widget.dart';
 
-Future<void> openCameraGalleryBottomSheet(context) async {
+Future<void> openCameraGalleryBottomSheet(
+  context,
+  final Function(ImageSource) onTap,
+) async {
   await showModalBottomSheet(
       isDismissible: false,
       context: context,
@@ -10,5 +14,7 @@ Future<void> openCameraGalleryBottomSheet(context) async {
       builder: (context) => Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: const CameraGalleryBottomSheetWidget()));
+          child: CameraGalleryBottomSheetWidget(
+            onTap: onTap,
+          )));
 }

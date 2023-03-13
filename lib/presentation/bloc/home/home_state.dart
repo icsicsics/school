@@ -33,11 +33,13 @@ class ChangeLanguageSuccessState extends HomeState {}
 
 class GetLanguageSuccessState extends HomeState {
   final String language;
+
   GetLanguageSuccessState({required this.language});
 }
 
 class GetTokenSuccessState extends HomeState {
   final String token;
+
   GetTokenSuccessState({required this.token});
 }
 
@@ -52,6 +54,7 @@ class GetParentHomeFillState extends HomeState {
 
   GetParentHomeFillState({required this.error});
 }
+
 class GetFatherInfoSuccessState extends HomeState {
   final FatherInfoResponse response;
 
@@ -75,11 +78,13 @@ class GetTeacherInfoFillState extends HomeState {
 
   GetTeacherInfoFillState({required this.error});
 }
+
 class GetWeatherFillState extends HomeState {
   final String error;
 
   GetWeatherFillState({required this.error});
 }
+
 class GetWeatherSuccessState extends HomeState {
   final WeatherResponse weather;
 
@@ -88,8 +93,7 @@ class GetWeatherSuccessState extends HomeState {
 
 class SwitchAccountState extends HomeState {}
 
-class GetTeacherStudentProfileInSchoolHouseSuccessState
-    extends HomeState {
+class GetTeacherStudentProfileInSchoolHouseSuccessState extends HomeState {
   final TeacherStudentProfileInSchoolHouseResponse response;
 
   GetTeacherStudentProfileInSchoolHouseSuccessState({required this.response});
@@ -99,4 +103,34 @@ class GetTeacherStudentProfileInSchoolHouseFailState extends HomeState {
   final String error;
 
   GetTeacherStudentProfileInSchoolHouseFailState({required this.error});
+}
+
+class OpenCameraGalleryBottomSheetState extends HomeState {
+  final String id;
+
+  OpenCameraGalleryBottomSheetState({
+    required this.id,
+  });
+}
+
+class FailedSelectImageState extends HomeState {}
+
+class SuccessSelectImageState extends HomeState {
+  final XFile image;
+  final String id;
+
+  SuccessSelectImageState({
+    required this.image,
+    required this.id,
+  });
+}
+
+class ClassSectionChangePhotoSuccessState extends HomeState {}
+
+class ClassSectionChangePhotoFailState extends HomeState {
+  final String errorMessage;
+
+  ClassSectionChangePhotoFailState({
+    required this.errorMessage,
+  });
 }

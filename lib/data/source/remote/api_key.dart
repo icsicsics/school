@@ -20,4 +20,5 @@ class ApiKey{
   static const String getNotification = "Notifications/GetNotifications";
   static const String getInboxNotification = "Notifications/GetInboxNotifications";
   static const String updateNotification = "Notifications/UpdateNotification";
+  static const String changeClassRoomSectionPhoto = "Teacher/ChangeClassroomToSectionPhoto";
 }

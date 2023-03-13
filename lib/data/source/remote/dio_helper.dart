@@ -234,6 +234,18 @@ class DioHelper {
         ));
   }
 
+  static Future<Response> changeClassRoomSectionPhoto(token, formData,sectionId) async {
+    return dio.post("${ApiKey.changeClassRoomSectionPhoto}?ClassroomToSectionId=$sectionId",
+        data: formData,
+        options: Options(
+          headers: {
+            "accept": "text/plain",
+            "Authorization": "Bearer $token",
+            "content-Type": 'multipart/form-data',
+          },
+        ));
+  }
+
   static Future<Response> getWeather(lat,lon) async {
     return dio.get(
       'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=9417a6b6e67474512aca9f713dc57937',

@@ -50,7 +50,10 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is NavigateToNotificationScreenState) {
           _navigateToNotificationScreen();
         } else if (state is OpenCameraGalleryBottomSheetState) {
-          openCameraGalleryBottomSheet(context);
+          openCameraGalleryBottomSheet(context,(image){
+            BlocProvider.of<ProfileBloc>(context)
+                .add(SelectProfileImageEvent(source: image));
+          });
         } else if (state is SuccessSelectImageState) {
           _onSuccessSelectImage(image: state.image);
           _imagePath=state.image.path;

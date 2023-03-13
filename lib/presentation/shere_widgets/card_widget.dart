@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 
 class CardWidget extends StatelessWidget {
   final String imagePath;
+  final String id;
   final String grade;
   final String section;
   final double height;
@@ -13,6 +16,7 @@ class CardWidget extends StatelessWidget {
   const CardWidget(
       {Key? key,
       required this.imagePath,
+      required this.id,
       this.height = 200,
       this.width = 130,
       required this.grade,
@@ -31,7 +35,31 @@ class CardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            image(imagePath),
+            Stack(
+              children: [
+                image(imagePath),
+                Positioned(
+                  bottom: 8,
+                  right: 12,
+                  child: GestureDetector(
+                    onTap: () {
+                      BlocProvider.of<HomeBloc>(context).add(OpenCameraGalleryBottomSheetEvent(classroomToSectionId: id ));
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: ColorsManager.whiteColor,
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(30))),
+                      child: const Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Icon(Icons.camera_alt,
+                            color: ColorsManager.yellow, size: 18),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
             const SizedBox(
               height: 5,
             ),
@@ -52,34 +80,39 @@ class CardWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.only(
           topRight: Radius.circular(8), topLeft: Radius.circular(8)),
-      child:  Image.network(
-          images,
-          fit: BoxFit.cover,
-          height: 120,
-          width: double.infinity,
-          loadingBuilder: (BuildContext context, Widget child,
-              ImageChunkEvent? loadingProgress) {
-            if (loadingProgress == null) return child;
-            return SizedBox(
-              width: double.infinity,
-              height: 80,
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: ColorsManager.primaryColor,
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                      : null,
-                ),
+      child: Image.network(
+        images,
+        fit: BoxFit.cover,
+        height: 120,
+        width: double.infinity,
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent? loadingProgress) {
+          if (loadingProgress == null) return child;
+          return SizedBox(
+            width: double.infinity,
+            height: 80,
+            child: Center(
+              child: CircularProgressIndicator(
+                color: ColorsManager.primaryColor,
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
               ),
-            );
-          },
-          errorBuilder: (context, error, stackTrace) => ClipRRect(
-            borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(8), topLeft: Radius.circular(8)),
-            child: Image.asset(ImagesPath.schoolItem, fit: BoxFit.fill,   height: 130,width: double.infinity,),
+            ),
+          );
+        },
+        errorBuilder: (context, error, stackTrace) => ClipRRect(
+          borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+          child: Image.asset(
+            ImagesPath.schoolItem,
+            fit: BoxFit.fill,
+            height: 130,
+            width: double.infinity,
           ),
         ),
+      ),
     );
   }
 }

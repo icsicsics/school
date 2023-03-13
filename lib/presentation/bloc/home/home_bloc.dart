@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
@@ -14,6 +15,7 @@ import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_repository_imp.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
+import 'package:schools/use_case/get_profile_image_use_case.dart';
 import 'package:schools/use_case/get_token_use_case.dart';
 import 'package:schools/use_case/save_language_use_case.dart';
 
@@ -28,10 +30,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
   final GetTokenUseCase _getTokenUseCase;
+  final GetProfileImageUseCase _profileImageUseCase;
 
-  HomeBloc(this._saveLanguageCodeUseCase, this._getLanguageCodeUseCase,
-      this._getTokenUseCase)
-      : super(HomeInitialState()) {
+  HomeBloc(
+    this._saveLanguageCodeUseCase,
+    this._getLanguageCodeUseCase,
+    this._getTokenUseCase,
+    this._profileImageUseCase,
+  ) : super(HomeInitialState()) {
     on<GetHomeEvent>(_onGetHomeEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
     on<ChangeLanguageEvent>(_onChangeLanguageEvent);
@@ -43,8 +49,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetTeacherInfoEvent>(_onGetTeacherInfoEvent);
     on<GetWeatherEvent>(_onGetWeatherEvent);
     on<SwitchAccountEvent>(_onSwitchAccountEvent);
-    on<GetStudentProfileInSchoolHouseEvent>(_onGetStudentProfileInSchoolHouseEvent);
-
+    on<GetStudentProfileInSchoolHouseEvent>(
+        _onGetStudentProfileInSchoolHouseEvent);
+    on<OpenCameraGalleryBottomSheetEvent>(_onOpenCameraGalleryBottomSheetEvent);
+    on<SelectImageEvent>(_onSelectImageEvent);
+    on<ClassSectionChangePhotoEvent>(_onClassSectionChangePhotoEvent);
   }
 
   FutureOr<void> _onGetHomeEvent(GetHomeEvent event, Emitter<HomeState> emit) {}
@@ -134,7 +143,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onGetWeatherEvent(
       GetWeatherEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
-    HomeState state = (await _repository.getWeather("32.332687", "35.751785")) as HomeState;
+    HomeState state =
+        (await _repository.getWeather("32.332687", "35.751785")) as HomeState;
     if (state is GetWeatherSuccessState) {
       emit(GetWeatherSuccessState(weather: state.weather));
     } else if (state is GetWeatherFillState) {
@@ -142,24 +152,57 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-
   FutureOr<void> _onSwitchAccountEvent(
       SwitchAccountEvent event, Emitter<HomeState> emit) {
     emit(SwitchAccountState());
   }
 
   FutureOr<void> _onGetStudentProfileInSchoolHouseEvent(
-      GetStudentProfileInSchoolHouseEvent event, Emitter<HomeState> emit) async {
+      GetStudentProfileInSchoolHouseEvent event,
+      Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
     Response response = await DioHelper.getTeacherStudentProfileInSchoolHouse(
         await _getTokenUseCase(), event.studentId);
-    TeacherStudentProfileInSchoolHouseResponse teacherStudentProfileInSchoolHouseResponse =
-    TeacherStudentProfileInSchoolHouseResponse.fromJson(response.data);
+    TeacherStudentProfileInSchoolHouseResponse
+        teacherStudentProfileInSchoolHouseResponse =
+        TeacherStudentProfileInSchoolHouseResponse.fromJson(response.data);
 
     if (response.data != null) {
-      emit(GetTeacherStudentProfileInSchoolHouseSuccessState(response: teacherStudentProfileInSchoolHouseResponse));
+      emit(GetTeacherStudentProfileInSchoolHouseSuccessState(
+          response: teacherStudentProfileInSchoolHouseResponse));
     } else {
       emit(GetTeacherStudentProfileInSchoolHouseFailState(error: "Error"));
+    }
+  }
+
+  FutureOr<void> _onOpenCameraGalleryBottomSheetEvent(
+      OpenCameraGalleryBottomSheetEvent event, Emitter<HomeState> emit) {
+    emit(OpenCameraGalleryBottomSheetState(id : event.classroomToSectionId));
+  }
+
+  FutureOr<void> _onSelectImageEvent(
+      SelectImageEvent event, Emitter<HomeState> emit) async {
+    XFile? image = await _profileImageUseCase.call(source: event.source!);
+    if (image?.path.isEmpty ?? true) {
+      emit(FailedSelectImageState());
+    } else {
+      emit(SuccessSelectImageState(image: image!,id:event.id));
+    }
+  }
+
+  FutureOr<void> _onClassSectionChangePhotoEvent(
+      ClassSectionChangePhotoEvent event, Emitter<HomeState> emit) async {
+    emit(GetHomeLoadingState());
+
+    var formData = FormData.fromMap({
+      "Image": await MultipartFile.fromFile(event.xFile.path),
+    });
+    Response response = await DioHelper.changeClassRoomSectionPhoto(
+        await _getTokenUseCase(), formData,event.sectionId);
+    if(response.statusCode == 200){
+      emit(ClassSectionChangePhotoSuccessState());
+    } else {
+      emit(ClassSectionChangePhotoFailState(errorMessage: "Error"));
     }
   }
 }

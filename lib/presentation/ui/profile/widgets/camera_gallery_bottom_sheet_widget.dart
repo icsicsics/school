@@ -7,7 +7,12 @@ import 'package:schools/presentation/bloc/profile/profile_bloc.dart';
 import 'package:schools/presentation/shere_widgets/medium_text_widget.dart';
 
 class CameraGalleryBottomSheetWidget extends StatelessWidget {
-  const CameraGalleryBottomSheetWidget({Key? key}) : super(key: key);
+  final Function(ImageSource) onTap;
+
+  const CameraGalleryBottomSheetWidget({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +34,11 @@ class CameraGalleryBottomSheetWidget extends StatelessWidget {
           textWithIconWidget(
               icon: Icons.camera_alt_rounded,
               text: S.of(context).camera,
-              onTap: () => BlocProvider.of<ProfileBloc>(context)
-                  .add(SelectProfileImageEvent(source: ImageSource.camera)),
+              onTap: (){
+                onTap(ImageSource.camera);
+              },
+              // onTap: () => BlocProvider.of<ProfileBloc>(context)
+              //     .add(SelectProfileImageEvent(source: ImageSource.camera)),
               context: context),
           const SizedBox(height: 12),
           const Divider(height: 2, thickness: 1),
@@ -38,8 +46,11 @@ class CameraGalleryBottomSheetWidget extends StatelessWidget {
           textWithIconWidget(
               icon: Icons.camera,
               text: S.of(context).gallery,
-              onTap: () => BlocProvider.of<ProfileBloc>(context)
-                  .add(SelectProfileImageEvent(source: ImageSource.gallery)),
+              onTap: (){
+                onTap(ImageSource.gallery);
+              },
+              // onTap: () => BlocProvider.of<ProfileBloc>(context)
+              //     .add(SelectProfileImageEvent(source: ImageSource.gallery)),
               context: context)
         ],
       ),

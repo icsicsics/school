@@ -49,5 +49,32 @@ class GetStudentProfileInSchoolHouseEvent extends HomeEvent {
   final String studentId;
 
   GetStudentProfileInSchoolHouseEvent(this.studentId);
+}
 
+class OpenCameraGalleryBottomSheetEvent extends HomeEvent {
+  final String classroomToSectionId;
+
+  OpenCameraGalleryBottomSheetEvent({
+    required this.classroomToSectionId,
+  });
+}
+
+class SelectImageEvent extends HomeEvent {
+  final ImageSource? source;
+  final String id;
+
+  SelectImageEvent({
+    this.source,
+    required this.id,
+  });
+}
+
+class ClassSectionChangePhotoEvent extends HomeEvent {
+  final XFile xFile;
+  final String sectionId;
+
+  ClassSectionChangePhotoEvent({
+    required this.xFile,
+    required this.sectionId,
+  });
 }

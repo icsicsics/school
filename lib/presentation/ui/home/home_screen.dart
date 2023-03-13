@@ -11,6 +11,7 @@ import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_func
 import 'package:schools/presentation/shere_widgets/restart_widget.dart';
 import 'package:schools/presentation/ui/authentication/login/login_screen.dart';
 import 'package:schools/presentation/ui/home/widgets/home_content_widget.dart';
+import 'package:schools/presentation/ui/profile/widgets/open_camera_or_gallery_bottom_sheet.dart';
 import 'package:schools/presentation/ui/side_menu_widget/side_menu_screen.dart';
 
 class HomeScreen extends BaseStatefulWidget {
@@ -25,8 +26,11 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   bool _isFather = true;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
-  GetChildrenByParentResponse _parentHomeResponse = GetChildrenByParentResponse();
-  TeacherStudentProfileInSchoolHouseResponse _teacherStudentProfileInSchoolHouseResponse = TeacherStudentProfileInSchoolHouseResponse();
+  GetChildrenByParentResponse _parentHomeResponse =
+      GetChildrenByParentResponse();
+  TeacherStudentProfileInSchoolHouseResponse
+      _teacherStudentProfileInSchoolHouseResponse =
+      TeacherStudentProfileInSchoolHouseResponse();
   WeatherResponse _weatherResponse = WeatherResponse();
   String _language = '';
   String _token = '';
@@ -72,27 +76,41 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         } else if (state is GetParentHomeFillState) {
           _onFillState(state.error);
           hideLoading();
-        }else if (state is GetTeacherInfoSuccessState){
-          _homeBloc.teacherInfoResponse=state.response;
+        } else if (state is GetTeacherInfoSuccessState) {
+          _homeBloc.teacherInfoResponse = state.response;
           hideLoading();
-        }else if (state is GetFatherInfoSuccessState){
-          _homeBloc.fatherInfoResponse=state.response;
+        } else if (state is GetFatherInfoSuccessState) {
+          _homeBloc.fatherInfoResponse = state.response;
           hideLoading();
-        }else if (state is GetFatherInfoFillState){
+        } else if (state is GetFatherInfoFillState) {
           hideLoading();
           _onGetFatherInfoFillState(state.error);
-        }else if(state is GetTeacherInfoFillState){
+        } else if (state is GetTeacherInfoFillState) {
           hideLoading();
           _onGetTeacherInfoFillState(state.error);
-        }else if (state is GetWeatherSuccessState){
-          _weatherResponse=state.weather;
-        }else if (state is GetWeatherFillState){
+        } else if (state is GetWeatherSuccessState) {
+          _weatherResponse = state.weather;
+        } else if (state is GetWeatherFillState) {
           _onGetWeatherFillState(state.error);
-        } else if (state is SwitchAccountState){
+        } else if (state is SwitchAccountState) {
           _switchAccount(context);
-        } else if(state is GetTeacherStudentProfileInSchoolHouseSuccessState){
+        } else if (state is GetTeacherStudentProfileInSchoolHouseSuccessState) {
           hideLoading();
           _teacherStudentProfileInSchoolHouseResponse = state.response;
+        } else if (state is OpenCameraGalleryBottomSheetState) {
+          openCameraGalleryBottomSheet(context, (image) {
+            _homeBloc.add(SelectImageEvent(source: image,id : state.id));
+          });
+        } else if (state is SuccessSelectImageState) {
+          _homeBloc.add(
+              ClassSectionChangePhotoEvent(xFile: state.image, sectionId: state.id));
+        } else if (state is FailedSelectImageState) {} else if(state is ClassSectionChangePhotoSuccessState){
+          hideLoading();
+          Navigator.pop(context);
+          _homeBloc.add(GetTeacherHomeEvent(token: _token));
+
+        } else if(state is ClassSectionChangePhotoFailState){
+
         }
       },
       builder: (context, state) {
@@ -105,14 +123,15 @@ class _HomeScreenState extends BaseState<HomeScreen> {
               token: _token,
             ),
             body: HomeContentWidget(
-              weatherResponse: _weatherResponse,
+                weatherResponse: _weatherResponse,
                 globalKey: _key,
                 isFather: _isFather,
                 bloc: _homeBloc,
                 language: _language,
                 parentHomeResponse: _parentHomeResponse,
                 teacherHomeResponse: _teacherHomeResponse,
-                teacherStudentProfileInSchoolHouseResponse:_teacherStudentProfileInSchoolHouseResponse,
+                teacherStudentProfileInSchoolHouseResponse:
+                    _teacherStudentProfileInSchoolHouseResponse,
                 token: _token));
       },
     );
@@ -131,7 +150,8 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   void _onGetFatherInfoFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
 
-  void _onGetWeatherFillState(String error)=>showErrorDialogFunction(context: context, textMessage: error);
+  void _onGetWeatherFillState(String error) =>
+      showErrorDialogFunction(context: context, textMessage: error);
 
   void _switchAccount(context) {
     Navigator.pushAndRemoveUntil(
@@ -139,6 +159,6 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         MaterialPageRoute(
             builder: (_) =>
                 LoginScreen(isFather: _isFather == true ? false : true)),
-            (route) => false);
+        (route) => false);
   }
 }
