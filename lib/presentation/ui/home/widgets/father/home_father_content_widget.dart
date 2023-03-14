@@ -8,6 +8,7 @@ import 'package:schools/data/source/remote/model/children_by_parent/response/get
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
+import 'package:schools/presentation/shere_widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/ui/home/widgets/father/father_children_list_widget.dart';
 import 'package:schools/presentation/ui/home/widgets/father/father_heder_widget.dart';
 import 'package:intl/intl.dart';
@@ -92,7 +93,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                 errorBuilder: (context, error, stackTrace) {
                                   return Image.asset(
                                     ImagesPath.logo,
-                                    width: 400,
+                                    width: 200,
                                   );
                                 },
                               ),
@@ -129,25 +130,44 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                             ),
                           ),
                         ),
-/*
-                    Positioned(
-                      right: 32,
-                      bottom: -16,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 17,
-                        child: CircleAvatar(
-                          backgroundColor: Color(0xFF35a6bc),
-                          radius: 14,
-                          child: SvgPicture.asset(
-                            ImagesPath.star,
-                            width: 22,
-                            height: 22,
+                        Positioned(
+                          right: 32,
+                          bottom: -16,
+                          child: InkWell(
+                            onTap: () {
+                              showAddPointFunction(
+                                  isParent: true,
+                                  context: context,
+                                  childName: widget
+                                          .teacherStudentProfileInSchoolHouseResponse
+                                          .data
+                                          ?.studentName ??
+                                      "",
+                                  token: widget.token,
+                                  classroomId: "",
+                                  classroomSectionStudentsId: "",
+                                  studentId: widget
+                                          .teacherStudentProfileInSchoolHouseResponse
+                                          .data
+                                          ?.studentId ??
+                                      "",
+                                  onCreatePointSuccess: () {});
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 17,
+                              child: CircleAvatar(
+                                backgroundColor: Color(0xFF35a6bc),
+                                radius: 14,
+                                child: SvgPicture.asset(
+                                  ImagesPath.star,
+                                  width: 22,
+                                  height: 22,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    )
-*/
+                        )
                       ],
                     ),
                     SizedBox(height: 32),
@@ -190,8 +210,8 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                               SizedBox(
                                 width: 340,
                                 child: Text(
-                                  "Interactive Values School 5th Grade - Section 4 -Collaboration Home",
-                                  maxLines: 2,
+                                  "${widget.teacherStudentProfileInSchoolHouseResponse.data?.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data?.sectionName ?? ""} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.classroomName ?? ""}",
+                                  maxLines: 3,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,

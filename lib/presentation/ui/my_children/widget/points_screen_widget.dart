@@ -37,7 +37,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
         children: widget.points
             .map((e) => _item(
                 onTap: () {},
-                title: e.principleName ?? "",
+                title: e.valueName ?? "",
                 subTitle:
                     "${dateFormat(e.creationDate.toString())}  ${S.of(context).at}  ${formattedTime(e.creationDate.toString())}",
                 description: e.createdByName??"",

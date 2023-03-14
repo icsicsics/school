@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/show_ok_dialog.dart';
+import 'package:schools/core/utils/show_ok_dialog_image.dart';
 import 'package:schools/data/source/remote/model/notification/response/notifications_response.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
@@ -19,7 +20,7 @@ class NotificationsItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        showOkDialog(
+        showOkDialogImage(
           context: context,
           onTap: () {
             Navigator.pop(context);

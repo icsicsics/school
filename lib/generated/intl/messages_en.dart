@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nov": MessageLookupByLibrary.simpleMessage("november"),
         "number": MessageLookupByLibrary.simpleMessage("Number"),
         "oct": MessageLookupByLibrary.simpleMessage("october"),
-        "ok": MessageLookupByLibrary.simpleMessage("ok"),
+        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseEnterThePhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone number"),

@@ -7,10 +7,14 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/search_item.dart';
+import 'package:schools/data/source/remote/model/weather/main.dart';
 import 'package:schools/generated/l10n.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/shere_widgets/bold_text_widget.dart';
 import 'package:schools/presentation/shere_widgets/dialogs/show_error_dialg_function.dart';
+import 'package:schools/presentation/shere_widgets/regular_text_widget.dart';
+import 'package:schools/presentation/shere_widgets/semi_bold_text_widget.dart';
 import 'package:schools/presentation/ui/my_children/my_children_screen.dart';
 import 'package:schools/presentation/ui/notifications/notifications_screen.dart';
 import 'package:schools/presentation/ui/school_houses/widgets/is_not_coming_from_home/is_not_coming_from_home_content_widget.dart';
@@ -37,7 +41,8 @@ class SchoolHousesScreen extends BaseStatefulWidget {
 }
 
 class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
-  SearchItem  _selectedValue = SearchItem(id: -1, name: "");
+  SearchItem _selectedValue = SearchItem(id: -1, name: "");
+
   SchoolHousesBloc get _schoolHousesBloc =>
       BlocProvider.of<SchoolHousesBloc>(context);
   GetClassHousesResponse getClassHousesResponse = GetClassHousesResponse();
@@ -82,25 +87,22 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
             hideLoading();
           } else if (state is GetStudentHousesFillState) {
             _onGetStudentHousesFillState(state.error);
-          } else if(state is GetSearchValuesSuccessState){
+          } else if (state is GetSearchValuesSuccessState) {
             hideLoading();
             openValuesBottomSheet(
-              context: context,
-              values: state.values,
-              height: 250,
-              selectedValue: _selectedValue,
-              selectValueEvent: (value) {
-                setState(() {
-                  _selectedValue = value;
+                context: context,
+                values: state.values,
+                height: 250,
+                selectedValue: _selectedValue,
+                selectValueEvent: (value) {
+                  setState(() {
+                    _selectedValue = value;
+                  });
                 });
-              }
-            );
-          } else if(state is GetSearchValuesFailState){
-
-          }
+          } else if (state is GetSearchValuesFailState) {}
         },
         builder: (context, state) {
-          return getClassHousesResponse.data != null
+          return getClassHousesResponse.data?.isNotEmpty ?? false
               ? SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
@@ -131,7 +133,29 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                                   getStudentHousesResponse)
                     ],
                   ))
-              : Container();
+              : Container(
+                  color: Colors.white,
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(ImagesPath.error),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      BoldTextWidget(
+                          text: "Ooops !", fontSize: 18, color: Colors.black),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      RegularTextWidget(
+                          text: "No data found",
+                          fontSize: 16,
+                          color: Colors.black),
+                    ],
+                  ),
+                );
         },
       ),
     );

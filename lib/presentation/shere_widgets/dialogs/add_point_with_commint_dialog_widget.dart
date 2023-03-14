@@ -136,7 +136,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                       onChanged: (newValue) {
                         setState(() {
                           if (newValue ==
-                              "b64ff3c8-e98e-4e54-93d7-9f11d0256449") {
+                              "fcf984cb-15de-4433-af09-6b3b1b1ff8b7") {
                             isAddCommit = true;
                           } else {
                             isAddCommit = false;

@@ -710,10 +710,10 @@ class S {
     );
   }
 
-  /// `ok`
+  /// `Ok`
   String get ok {
     return Intl.message(
-      'ok',
+      'Ok',
       name: 'ok',
       desc: '',
       args: [],

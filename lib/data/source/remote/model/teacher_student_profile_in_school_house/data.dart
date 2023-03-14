@@ -2,6 +2,9 @@ import 'get_image.dart';
 import 'points.dart';
 
 class Data {
+  String? sectionName;
+  String? classroomName;
+  String? schoolName;
   String? studentId;
   String? studentName;
   int? allPointsCount;
@@ -10,6 +13,9 @@ class Data {
   List<Points>? points;
 
   Data({
+    this.sectionName,
+    this.classroomName,
+    this.schoolName,
     this.studentId,
     this.studentName,
     this.allPointsCount,
@@ -19,12 +25,15 @@ class Data {
   });
 
   Data.fromJson(dynamic json) {
+    sectionName = json['sectionName'];
+    classroomName = json['classroomName'];
+    schoolName = json['schoolName'];
     studentId = json['studentId'];
     studentName = json['studentName'];
     allPointsCount = json['allPointsCount'];
     thisWeekPointsCount = json['thisWeekPointsCount'];
     getImage =
-        json['getImage'] != null ? GetImage.fromJson(json['getImage']) : null;
+    json['getImage'] != null ? GetImage.fromJson(json['getImage']) : null;
     if (json['points'] != null) {
       points = [];
       json['points'].forEach((v) {
@@ -35,6 +44,9 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['sectionName'] = sectionName;
+    map['classroomName'] = classroomName;
+    map['schoolName'] = schoolName;
     map['studentId'] = studentId;
     map['studentName'] = studentName;
     map['allPointsCount'] = allPointsCount;

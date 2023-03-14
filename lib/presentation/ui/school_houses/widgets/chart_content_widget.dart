@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -13,35 +15,12 @@ class ChartContentWidget extends StatefulWidget {
 }
 
 class _ChartContentWidgetState extends State<ChartContentWidget> {
+  List<SalesData> columnData = [];
+
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List<SalesData> columnData = [];
-    if(widget.schoolHousesBloc.getClassHousesResponse.data!.isEmpty){
-      columnData = [
-        SalesData(
-            x: "hello 1",
-            y: 5.0),
-        SalesData(
-            x: "hello 2",
-            y: 4.0),
-        // SalesData(
-        //     x: "hello 3",
-        //     y: widget.schoolHousesBloc.getClassHousesResponse.data![2]
-        //         .totalPointsHouse!
-        //         .toDouble()),
-        // SalesData(
-        //     x: "hello 4",
-        //     y: widget.schoolHousesBloc.getClassHousesResponse.data![3]
-        //         .totalPointsHouse!
-        //         .toDouble()),
-      ];
-
-    } else {
+    if(widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty){
       for(var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
         columnData.add(SalesData(
             x: item.houseName ?? "",
@@ -50,7 +29,14 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
                 .toDouble()));
       }
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
+      return buildScreenContent(columnData);
+  }
+
+  Align buildScreenContent(List<SalesData> columnData) {
     return Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
@@ -68,10 +54,10 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
                   labelStyle: const TextStyle(color: Colors.white),
                   isVisible: true,
                   majorGridLines:
-                      const MajorGridLines(color: Colors.transparent),
+                  const MajorGridLines(color: Colors.transparent),
                   axisLine: const AxisLine(color: Colors.white),
                   minorGridLines:
-                      const MinorGridLines(color: Colors.transparent),
+                  const MinorGridLines(color: Colors.transparent),
                   borderColor: Colors.transparent,
                   borderWidth: 0,
                   placeLabelsNearAxisLine: false),
@@ -88,7 +74,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
                     trackColor: Colors.transparent,
                     isTrackVisible: true,
                     dataLabelSettings:
-                        const DataLabelSettings(color: Colors.white),
+                    const DataLabelSettings(color: Colors.white),
                     isVisibleInLegend: false,
                     spacing: 1.5),
               ],
