@@ -42,20 +42,17 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       _list.add(_ChildIconsModel(
           id: element.id!, title: element.name!, isSelected: false));
     }
-    _list.sort((A, B) => A.title
-        .toString()
-        .toUpperCase()
-        .compareTo(B.title.toString().toUpperCase()));
+    // _list.sort((A, B) => A.title
+    //     .toString()
+    //     .toUpperCase()
+    //     .compareTo(B.title.toString().toUpperCase()));
 
     for (var item in points) {
       filter.add(item);
     }
     BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
         filter: filter
-          ..sort((A, B) => A.principleName
-              .toString()
-              .toUpperCase()
-              .compareTo(B.principleName.toString().toUpperCase()))));
+          ..sort((A, B) => A.valueId.toString().compareTo(B.valueId ?? ""))));
     super.initState();
   }
 
@@ -125,9 +122,8 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             _list.any((element) => element.isSelected = false);
             element.isSelected = true;
           });
-          for (var filterItem in points) {
-            filter.add(filterItem);
-          }
+          filter.clear();
+          filter.addAll(points);
         }
       } else if (id != "-1") {
         if (element.id == "-1" && element.isSelected == true) {
@@ -144,7 +140,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             for (var element3 in _list) {
               if (element3.isSelected == true) {
                 for (var filterItem in points) {
-                  if (element3.title == filterItem.principleName &&
+                  if (element3.id == filterItem.valueId &&
                       element.isSelected == true) {
                     filter.add(filterItem);
                   }
@@ -155,7 +151,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             setState(() {
               element.isSelected = false;
             });
-            filter.removeWhere((element) => element.principleName == name);
+            filter.removeWhere((element) => element.valueId == id);
           }
         }
       }
@@ -176,12 +172,14 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       }
     }
 
-    BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
+    BlocProvider.of<MyChildrenBloc>(context).add(
+      MyChildrenFilterEvent(
         filter: filter
-          ..sort((A, B) => A.principleName
-              .toString()
-              .toUpperCase()
-              .compareTo(B.principleName.toString().toUpperCase()))));
+          ..sort(
+            (A, B) => A.valueId.toString().compareTo(B.valueId ?? ""),
+          ),
+      ),
+    );
   }
 }
 
@@ -190,6 +188,9 @@ class _ChildIconsModel {
   String title;
   bool isSelected;
 
-  _ChildIconsModel(
-      {required this.id, required this.isSelected, required this.title});
+  _ChildIconsModel({
+    required this.id,
+    required this.isSelected,
+    required this.title,
+  });
 }

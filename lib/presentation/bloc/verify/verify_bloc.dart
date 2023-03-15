@@ -9,6 +9,8 @@ import 'package:schools/data/source/remote/model/update_device_token/update_devi
 import 'package:schools/use_case/get_firebase_token_use_case.dart';
 import 'package:schools/use_case/get_language_use_case.dart';
 import 'package:schools/use_case/get_token_use_case.dart';
+import 'package:schools/use_case/set_phone_number_use_case.dart';
+import 'package:schools/use_case/set_refresh_token_use_case.dart';
 import 'package:schools/use_case/set_token_use_case.dart';
 
 part 'verify_event.dart';
@@ -18,14 +20,18 @@ part 'verify_state.dart';
 class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
   final SetTokenUseCase _setTokenUseCase;
+  final SetRefreshTokenUseCase _setRefreshTokenUseCase;
   final GetTokenUseCase _getTokenUseCase;
   final GetFirebaseTokenUseCase _getFirebaseTokenUseCase;
+  final SetPhoneNumberUseCase _setPhoneNumberUseCase;
 
   VerifyBloc(
     this._getLanguageCodeUseCase,
     this._setTokenUseCase,
+    this._setRefreshTokenUseCase,
     this._getTokenUseCase,
     this._getFirebaseTokenUseCase,
+    this._setPhoneNumberUseCase,
   ) : super(VerifyInitialState()) {
     on<GetVerifyEvent>(_onGetVerifyEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
@@ -53,6 +59,10 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
       if (getTokenResponse.data!.token!.accessToken!.isNotEmpty) {
         await _setTokenUseCase(
             token: getTokenResponse.data!.token!.accessToken!);
+        await _setRefreshTokenUseCase(
+          refreshToken: getTokenResponse.data!.token!.refreshToken!
+        );
+        await _setPhoneNumberUseCase(event.phoneNumber);
         emit(VerifyCodeSuccessState());
       } else {
         emit(VerifyCodeErrorState());

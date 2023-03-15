@@ -1,6 +1,7 @@
 class ApiKey{
   static const String baseUrl = "https://ejabi-api.transitiondemo.com/api/";
   static const String getToken = "Accounts/GenerateToken";
+  static const String refreshToken = "Accounts/RefreshToken";
   static const String verifyPhone = "Accounts/VerifyPhone";
   static const String getTeacherInfo = "Teacher/GetTeacherInfo";
   static const String getFatherInfo = "Parent/ParentInfo";

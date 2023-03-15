@@ -119,6 +119,25 @@ class SharedPreferencesManager {
     return await SharedPreferencesUtils.getString(SharedPreferencesKeys.token);
   }
 
+  Future<bool> setRefreshToken(String refreshToken) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.refreshToken, refreshToken);
+  }
+
+  Future<String?> getRefreshToken() async {
+    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.refreshToken);
+  }
+
+  Future<bool> setPhoneNumber(String phoneNumber) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.phoneNumber, phoneNumber);
+  }
+
+  Future<String?> getPhoneNumber() async {
+    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.phoneNumber);
+  }
+
+
   Future<bool?> clearToken() async{
     return await SharedPreferencesUtils.remove(SharedPreferencesKeys.token);
   }

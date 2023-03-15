@@ -9,4 +9,6 @@ class SharedPreferencesKeys {
   static const isFather = "isFather";
   static const profileTeacherImage = "profile_image";
   static const token = "token";
+  static const refreshToken = "refreshToken";
+  static const phoneNumber = "phoneNumber";
 }

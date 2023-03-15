@@ -33,6 +33,13 @@ class DioHelper {
         ));
   }
 
+  static Future<Response> refreshToken(String phoneNumber,String refreshToken) async {
+    return dio.put("${ApiKey.refreshToken}?refreshToken=$refreshToken",
+        data: VerifyPhoneRequest(
+            phoneNumber: phoneNumber
+        ));
+  }
+
   static Future<Response> getTeacherInfo(token) async {
     return dio.get(ApiKey.getTeacherInfo,
         options: Options(headers: {
