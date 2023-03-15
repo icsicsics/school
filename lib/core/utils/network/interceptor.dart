@@ -29,8 +29,10 @@ class CustomInterceptors extends InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
+    // print((await GetPhoneNumberUseCase(injector())()?? ""));
+    // print((await GetRefreshTokenUseCase(injector())()?? ""));
+
     if(err.response?.statusCode == 401){
-      print((await GetPhoneNumberUseCase(injector())()?? ""));
       Response response = await DioHelper.refreshToken((await GetPhoneNumberUseCase(injector())()?? ""), (await GetRefreshTokenUseCase(injector())()?? ""));
       GetTokenResponse getTokenResponse = GetTokenResponse.fromJson(response.data);
       await SetTokenUseCase(injector())(token: getTokenResponse.data!.token!.accessToken ?? "");
