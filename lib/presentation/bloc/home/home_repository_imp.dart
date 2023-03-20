@@ -80,11 +80,11 @@ class HomeRepositoryImp extends BaseHomeRepository {
   }
 
   @override
-  Future<HomeState> getWeather(late, long) async {
+  Future<HomeState> getWeather(late, long,lan) async {
     HomeState? state;
     WeatherResponse weather = WeatherResponse();
     try {
-      Response response = await DioHelper.getWeather(late, long);
+      Response response = await DioHelper.getWeather(late, long,lan);
       weather = WeatherResponse.fromJson(response.data);
       if (weather.id != null) {
         return GetWeatherSuccessState(weather: weather);

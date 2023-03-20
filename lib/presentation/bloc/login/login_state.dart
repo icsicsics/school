@@ -35,9 +35,11 @@ class GetLanguageSuccessState extends LoginState {
 
 class VerifyPhoneNumberSuccessState extends LoginState {
   final String phoneNumber;
+  final List<String> roles;
 
   VerifyPhoneNumberSuccessState({
     required this.phoneNumber,
+    required this.roles,
   });
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schools/presentation/shere_widgets/dialogs/ok_dialog_widget.dart';
+import 'package:schools/presentation/widgets/dialogs/ok_dialog_widget.dart';
 
 Future showOkDialog({
   required BuildContext context,

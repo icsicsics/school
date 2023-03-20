@@ -7,12 +7,12 @@ import 'package:schools/data/source/remote/model/father_info/response/father_inf
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/repository/profile_repository.dart';
 import 'package:schools/presentation/bloc/profile/profile_repository_imp.dart';
-import 'package:schools/use_case/get_language_use_case.dart';
-import 'package:schools/use_case/get_profile_image_use_case.dart';
-import 'package:schools/use_case/get_testcher_profile_image_from_shared_preferences_user_case.dart';
-import 'package:schools/use_case/get_token_use_case.dart';
-import 'package:schools/use_case/save_language_use_case.dart';
-import 'package:schools/use_case/set_teacher_profile_image_in_shared_preferences_user_case.dart';
+import 'package:schools/domain/usecases/get_language_use_case.dart';
+import 'package:schools/domain/usecases/get_profile_image_use_case.dart';
+import 'package:schools/domain/usecases/get_testcher_profile_image_from_shared_preferences_user_case.dart';
+import 'package:schools/domain/usecases/get_token_use_case.dart';
+import 'package:schools/domain/usecases/save_language_use_case.dart';
+import 'package:schools/domain/usecases/set_teacher_profile_image_in_shared_preferences_user_case.dart';
 
 part 'profile_event.dart';
 

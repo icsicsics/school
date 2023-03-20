@@ -14,10 +14,10 @@ import 'package:schools/data/source/remote/model/teacher_student_profile_in_scho
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
 import 'package:schools/presentation/bloc/home/home_repository_imp.dart';
-import 'package:schools/use_case/get_language_use_case.dart';
-import 'package:schools/use_case/get_profile_image_use_case.dart';
-import 'package:schools/use_case/get_token_use_case.dart';
-import 'package:schools/use_case/save_language_use_case.dart';
+import 'package:schools/domain/usecases/get_language_use_case.dart';
+import 'package:schools/domain/usecases/get_profile_image_use_case.dart';
+import 'package:schools/domain/usecases/get_token_use_case.dart';
+import 'package:schools/domain/usecases/save_language_use_case.dart';
 
 part 'home_event.dart';
 
@@ -144,7 +144,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetWeatherEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
     HomeState state =
-        (await _repository.getWeather("32.332687", "35.751785")) as HomeState;
+        (await _repository.getWeather("32.332687", "35.751785", await _getLanguageCodeUseCase() ?? '')) as HomeState;
     if (state is GetWeatherSuccessState) {
       emit(GetWeatherSuccessState(weather: state.weather));
     } else if (state is GetWeatherFillState) {

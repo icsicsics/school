@@ -8,7 +8,7 @@ import 'package:schools/data/source/remote/model/teacher_student_profile_in_scho
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/repository/my_children_repository.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_repository_imp.dart';
-import 'package:schools/use_case/get_token_use_case.dart';
+import 'package:schools/domain/usecases/get_token_use_case.dart';
 
 part 'my_children_event.dart';
 

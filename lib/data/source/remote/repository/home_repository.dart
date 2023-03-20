@@ -5,5 +5,5 @@ abstract class BaseHomeRepository {
   Future<HomeState> getParentHome(String token);
   Future<HomeState> getFatherInfo(String token);
   Future<HomeState> getTeacherInfo(String token);
-  Future<HomeState> getWeather(late,long);
+  Future<HomeState> getWeather(late,long,lan);
 }

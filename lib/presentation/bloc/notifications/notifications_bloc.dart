@@ -9,8 +9,8 @@ import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/notification/request/notification_request.dart';
 import 'package:schools/data/source/remote/model/notification/response/notifications_response.dart';
 import 'package:schools/data/source/remote/model/notification/response/update_notification_response.dart';
-import 'package:schools/use_case/get_language_use_case.dart';
-import 'package:schools/use_case/get_token_use_case.dart';
+import 'package:schools/domain/usecases/get_language_use_case.dart';
+import 'package:schools/domain/usecases/get_token_use_case.dart';
 
 part 'notifications_event.dart';
 

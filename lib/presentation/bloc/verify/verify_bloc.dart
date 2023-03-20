@@ -6,12 +6,12 @@ import 'package:dio/dio.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
 import 'package:schools/data/source/remote/model/update_device_token/update_device_token_response.dart';
-import 'package:schools/use_case/get_firebase_token_use_case.dart';
-import 'package:schools/use_case/get_language_use_case.dart';
-import 'package:schools/use_case/get_token_use_case.dart';
-import 'package:schools/use_case/set_phone_number_use_case.dart';
-import 'package:schools/use_case/set_refresh_token_use_case.dart';
-import 'package:schools/use_case/set_token_use_case.dart';
+import 'package:schools/domain/usecases/get_firebase_token_use_case.dart';
+import 'package:schools/domain/usecases/get_language_use_case.dart';
+import 'package:schools/domain/usecases/get_token_use_case.dart';
+import 'package:schools/domain/usecases/set_phone_number_use_case.dart';
+import 'package:schools/domain/usecases/set_refresh_token_use_case.dart';
+import 'package:schools/domain/usecases/set_token_use_case.dart';
 
 part 'verify_event.dart';
 

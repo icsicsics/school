@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:schools/generated/l10n.dart';
-import 'package:schools/use_case/save_language_use_case.dart';
-import 'package:schools/use_case/get_language_use_case.dart';
+import 'package:schools/domain/usecases/save_language_use_case.dart';
+import 'package:schools/domain/usecases/get_language_use_case.dart';
 
 
 final Locale defaultSupportedLocale = S.delegate.supportedLocales.first;

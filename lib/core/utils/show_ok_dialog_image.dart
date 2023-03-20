@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:schools/presentation/shere_widgets/dialogs/ok_dialog_widget.dart';
-import 'package:schools/presentation/shere_widgets/ok_dialog_image_widget.dart';
+import 'package:schools/presentation/widgets/dialogs/ok_dialog_widget.dart';
+import 'package:schools/presentation/widgets/ok_dialog_image_widget.dart';
 
 Future showOkDialogImage({
   required BuildContext context,

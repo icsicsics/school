@@ -2,46 +2,21 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
-import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
-import 'package:schools/data/source/remote/repository/splash_repository.dart';
-import 'package:schools/presentation/bloc/splash/splash_repository_imp.dart';
-import 'package:schools/use_case/get_token_use_case.dart';
-import 'package:schools/use_case/set_token_use_case.dart';
+import 'package:schools/domain/usecases/get_token_use_case.dart';
+import 'package:schools/domain/usecases/set_token_use_case.dart';
 
 part 'splash_event.dart';
 
 part 'splash_state.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
-  SplashRepository repository = SplashRepositoryImp();
-  final SetTokenUseCase _setTokenUseCase;
   final GetTokenUseCase _getTokenUseCase;
 
   SplashBloc(
-    this._setTokenUseCase,
     this._getTokenUseCase,
   ) : super(SplashInitial()) {
-    // on<SplashGetTokenEvent>(_onSplashGetTokenEvent);
-    on<SplashSaveTokenEvent>(_onSplashSaveTokenEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
     on<GetTokenEvent>(_onGetTokenEvent);
-  }
-
-  // FutureOr<void> _onSplashGetTokenEvent(
-  //     SplashGetTokenEvent event, Emitter<SplashState> emit) async {
-  //   emit(SplashLoadingState());
-  //   SplashState state = (await repository.getToken()) as SplashState;
-  //   if (state is SplashGetTokenSuccessState) {
-  //     emit(SplashGetTokenSuccessState(response: state.response));
-  //   } else if (state is SplashGetTokenErrorState) {
-  //     emit(SplashGetTokenErrorState(error: state.error));
-  //   }
-  // }
-
-  FutureOr<void> _onSplashSaveTokenEvent(
-      SplashSaveTokenEvent event, Emitter<SplashState> emit) {
-    _setTokenUseCase.call(token: event.token);
-    emit(SplashSaveTokenSuccessState());
   }
 
   FutureOr<void> _onGetIsFatherEvent(
@@ -50,7 +25,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     emit(GetIsFatherState(isFather: isFather!));
   }
 
-  FutureOr<void> _onGetTokenEvent(GetTokenEvent event, Emitter<SplashState> emit) async {
-    emit(GetTokenState(token: (await _getTokenUseCase()) ?? ""));
+  FutureOr<void> _onGetTokenEvent(
+      GetTokenEvent event, Emitter<SplashState> emit) async {
+    String token = await _getTokenUseCase() ?? "";
+    emit(GetTokenState(token: token));
   }
 }

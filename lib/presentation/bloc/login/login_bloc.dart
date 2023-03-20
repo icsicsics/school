@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/login/login_response.dart';
-import 'package:schools/use_case/get_language_use_case.dart';
+import 'package:schools/domain/usecases/get_language_use_case.dart';
 
 part 'login_event.dart';
 
@@ -52,19 +52,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _onVerifyPhoneNumberEvent(
       VerifyPhoneNumberEvent event, Emitter<LoginState> emit) async {
     emit(ShowLoadingState());
-    var response =  await DioHelper.verifyPhone(event.phoneNumber);
+    var response = await DioHelper.verifyPhone(event.phoneNumber);
 
     try {
       LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-      emit(VerifyPhoneNumberSuccessState(phoneNumber: event.phoneNumber));
-    } catch(e) {
-      LoginErrorResponse errorResponse = LoginErrorResponse.fromJson(response.data);
+      emit(VerifyPhoneNumberSuccessState(
+        phoneNumber: event.phoneNumber,
+        roles: loginResponse.data?.roles ?? [],
+      ));
+    } catch (e) {
+      LoginErrorResponse errorResponse =
+          LoginErrorResponse.fromJson(response.data);
       emit(VerifyPhoneNumberErrorState(errorMessage: errorResponse.data ?? ""));
     }
     emit(HideLoadingState());
   }
 
-  FutureOr<void> _onSelectCountryCodeEvent(SelectCountryCodeEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> _onSelectCountryCodeEvent(
+      SelectCountryCodeEvent event, Emitter<LoginState> emit) {
     emit(SelectCountryCodeState(event.phoneNumber));
   }
 }
