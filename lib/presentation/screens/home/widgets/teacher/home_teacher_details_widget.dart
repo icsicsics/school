@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:schools/core/utils/awesome/font_awesome_flutter.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
@@ -49,12 +51,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                       padding: const EdgeInsets.only(left: 40, right: 40),
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            //TODO(1) change here house team image widget.homeBloc.teacherInfoResponse.data.houseLogo
-                            ImagesPath.school,
-                            width: 24,
-                            height: 24,
-                          ),
+                          FaIcon(getIconFromCss(widget.homeBloc.teacherInfoResponse.data?.houseIcon ?? ""),size: 24),
                           const SizedBox(
                             width: 8,
                           ),

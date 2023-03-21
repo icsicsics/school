@@ -5,6 +5,7 @@ import 'package:schools/core/utils/show_ok_dialog.dart';
 import 'package:schools/core/utils/show_ok_dialog_image.dart';
 import 'package:schools/data/source/remote/model/notification/response/notifications_response.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
+import 'package:schools/presentation/screens/notifications/details/notification_details_screen.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -20,20 +21,31 @@ class NotificationsItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        showOkDialogImage(
-          context: context,
-          onTap: () {
-            Navigator.pop(context);
-            if (notificationItem.status == 1) {
-              BlocProvider.of<NotificationsBloc>(context).add(
-                UpdateNotificationEvent(
-                  id: notificationItem.id ?? "",
-                ),
-              );
-            }
-          },
-          dialogMessage: notificationItem.body ?? "",
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return NotificationDetailsScreen(notificationItem: notificationItem);
+        })).then((value) {
+          if (notificationItem.status == 1) {
+            BlocProvider.of<NotificationsBloc>(context).add(
+              UpdateNotificationEvent(
+                id: notificationItem.id ?? "",
+              ),
+            );
+          }
+        });
+        // showOkDialogImage(
+        //   context: context,
+        //   onTap: () {
+        //     Navigator.pop(context);
+        //     if (notificationItem.status == 1) {
+        //       BlocProvider.of<NotificationsBloc>(context).add(
+        //         UpdateNotificationEvent(
+        //           id: notificationItem.id ?? "",
+        //         ),
+        //       );
+        //     }
+        //   },
+        //   dialogMessage: notificationItem.body ?? "",
+        // );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),

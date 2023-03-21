@@ -17,4 +17,5 @@ class ImagesPath {
   static const String values = "${_basePath}values.svg";
   static const String skills = "${_basePath}skills.svg";
   static const String error = "${_basePath}ic_error.svg";
+  static const String arrowBack = "${_basePath}ic_arrow_back.svg";
 }
