@@ -158,7 +158,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         context,
         MaterialPageRoute(
             builder: (_) =>
-                LoginScreen(isFather: _isFather == true ? false : true)),
+                LoginScreen()),
         (route) => false);
   }
 }

@@ -16,7 +16,7 @@ class SplashScreen extends BaseStatefulWidget {
 
 class _SplashScreenState extends BaseState<SplashScreen> {
   SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
-  bool _isFather = false;
+
   @override
   void initState() {
     _init();
@@ -27,12 +27,9 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
-        if(state is GetIsFatherState){
-          _isFather = state.isFather;
-          _getTokenEvent();
-        } else if(state is GetTokenState){
-          if(state.token.isEmpty){
-            _navigationToLoginScreen(_isFather);
+        if (state is GetTokenState) {
+          if (state.token.isEmpty) {
+            _navigationToLoginScreen();
           } else {
             _navigateToHomeScreen();
           }
@@ -46,7 +43,7 @@ class _SplashScreenState extends BaseState<SplashScreen> {
 
   void _init() {
     _setStatusBarStyle();
-    _getIsFatherEvent();
+    _getTokenEvent();
   }
 
   void _setStatusBarStyle() {
@@ -58,35 +55,27 @@ class _SplashScreenState extends BaseState<SplashScreen> {
     );
   }
 
-  void _getIsFatherEvent() {
-    _bloc.add(GetIsFatherEvent());
-  }
-
-  void _getTokenEvent(){
+  void _getTokenEvent() {
     _bloc.add(GetTokenEvent());
   }
 
-  void _navigateToHomeScreen() {
-    Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (context) {
-          return const HomeScreen();
-        }), (route) => false);
+  void _navigateToHomeScreen() async {
+    await _delay(3);
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+      return const HomeScreen();
+    }), (route) => false);
   }
 
-  void _navigationToLoginScreen(bool isFather) {
-    Future.delayed(
-      const Duration(
-        microseconds: 2500,
+  void _navigationToLoginScreen() async {
+    await _delay(3);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LoginScreen(),
       ),
-    ).then((value) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => LoginScreen(
-            isFather: isFather,
-          ),
-        ),
-      );
-    });
+    );
   }
+
+  Future<void> _delay(int seconds) async =>
+      await Future.delayed(Duration(seconds: seconds));
 }

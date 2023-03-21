@@ -152,7 +152,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         context,
         MaterialPageRoute(
             builder: (_) =>
-                LoginScreen(isFather: _isFather == true ? false : true)),
+                LoginScreen()),
         (route) => false).then((value) {
       if (_isFather) {
         _bloc.add(GetFatherInfoEvent(token: widget.token));
@@ -169,7 +169,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         context,
         MaterialPageRoute(
             builder: (_) =>
-                LoginScreen(isFather: _isFather == true ? true : false)),
+                LoginScreen()),
         (route) => false);
   }
 

@@ -37,6 +37,7 @@ Future<void> initializeBlocDependencies() async {
         injector(),
         injector(),
         injector(),
+        injector(),
       ));
   injector.registerFactory<NotificationsBloc>(() => NotificationsBloc(
         injector(),

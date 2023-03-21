@@ -2,6 +2,7 @@ import 'package:schools/data/source/remote/model/get_token/response/token.dart';
 
 class Data {
   Token? token;
+  String? userId;
   String? username;
   String? name;
 
@@ -9,6 +10,7 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     token = json['token'] != null ? new Token.fromJson(json['token']) : null;
+    userId = json['userId'];
     username = json['username'];
     name = json['name'];
   }
@@ -18,6 +20,7 @@ class Data {
     if (this.token != null) {
       data['token'] = this.token!.toJson();
     }
+    data['userId'] = this.userId;
     data['username'] = this.username;
     data['name'] = this.name;
     return data;

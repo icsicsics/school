@@ -17,12 +17,6 @@ class VerifyPhoneNumberEvent extends LoginEvent {
 
 class GetLoginEvent extends LoginEvent {}
 
-class LoginIsFatherEvent extends LoginEvent {
-  final bool isFather;
-
-  LoginIsFatherEvent({required this.isFather});
-}
-
 class GetLanguageEvent extends LoginEvent {
   GetLanguageEvent();
 }

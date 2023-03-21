@@ -12,6 +12,7 @@ import 'package:schools/domain/usecases/set_phone_number_use_case.dart';
 import 'package:schools/domain/usecases/set_refresh_token_use_case.dart';
 import 'package:schools/domain/usecases/set_teacher_profile_image_in_shared_preferences_user_case.dart';
 import 'package:schools/domain/usecases/set_token_use_case.dart';
+import 'package:schools/domain/usecases/set_user_id_use_case.dart';
 
 Future<void> initializeUseCaseDependencies() async {
   injector.registerFactory<GetLanguageCodeUseCase>(
@@ -40,5 +41,8 @@ Future<void> initializeUseCaseDependencies() async {
           () => GetPhoneNumberUseCase(injector()));
   injector.registerFactory<SetPhoneNumberUseCase>(
           () => SetPhoneNumberUseCase(injector()));
+  injector.registerFactory<SetUserIdUseCase>(
+          () => SetUserIdUseCase(injector()));
+
 
 }

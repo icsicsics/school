@@ -137,7 +137,15 @@ class SharedPreferencesManager {
     return await SharedPreferencesUtils.getString(SharedPreferencesKeys.phoneNumber);
   }
 
+  Future<String?> getUserId() async {
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.userId);
+  }
 
+  Future<bool> setUserId(String userId) async {
+   return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.userId, userId);
+  }
   Future<bool?> clearToken() async{
     return await SharedPreferencesUtils.remove(SharedPreferencesKeys.token);
   }

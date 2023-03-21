@@ -13,16 +13,14 @@ import 'package:schools/presentation/screens/authentication/login/widgets/welcom
 class LoginContentWidget extends StatefulWidget {
   final TextEditingController countryController;
   final LoginBloc loginBloc;
-  final bool isFather;
   final String language;
 
-  const LoginContentWidget(
-      {Key? key,
-      required this.countryController,
-      required this.loginBloc,
-      required this.isFather,
-      required this.language})
-      : super(key: key);
+  const LoginContentWidget({
+    Key? key,
+    required this.countryController,
+    required this.loginBloc,
+    required this.language,
+  }) : super(key: key);
 
   @override
   State<LoginContentWidget> createState() => _LoginContentWidgetState();
@@ -63,29 +61,33 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
                     const SizedBox(
                       width: 5,
                     ),
-                    MediumTextWidget(text: S.of(context).values, fontSize: 16, color: ColorsManager.sameBlack),
+                    MediumTextWidget(
+                        text: S.of(context).values,
+                        fontSize: 16,
+                        color: ColorsManager.sameBlack),
                     const SizedBox(
                       width: 8,
                     ),
-
                     SvgPicture.asset(ImagesPath.behavior),
                     const SizedBox(
                       width: 5,
                     ),
-                    MediumTextWidget(text: S.of(context).behavior, fontSize: 16, color: ColorsManager.sameBlack),
+                    MediumTextWidget(
+                        text: S.of(context).behavior,
+                        fontSize: 16,
+                        color: ColorsManager.sameBlack),
                     const SizedBox(
                       width: 8,
                     ),
-
                     SvgPicture.asset(ImagesPath.skills),
                     const SizedBox(
                       width: 5,
                     ),
-                    MediumTextWidget(text: S.of(context).skills, fontSize: 16, color: ColorsManager.sameBlack)
-
-
+                    MediumTextWidget(
+                        text: S.of(context).skills,
+                        fontSize: 16,
+                        color: ColorsManager.sameBlack)
                   ],
-
                 )
               ],
             ),

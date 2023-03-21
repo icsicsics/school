@@ -11,9 +11,9 @@ import 'package:schools/presentation/screens/authentication/login/widgets/login_
 import 'package:schools/presentation/screens/authentication/verify/verify_screen.dart';
 
 class LoginScreen extends BaseStatefulWidget {
-  final bool isFather;
-
-  const LoginScreen({super.key, required this.isFather});
+  const LoginScreen({
+    super.key,
+  });
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _LoginScreenState();
@@ -22,13 +22,11 @@ class LoginScreen extends BaseStatefulWidget {
 class _LoginScreenState extends BaseState<LoginScreen> {
   LoginBloc get _loginBloc => BlocProvider.of<LoginBloc>(context);
   TextEditingController countryController = TextEditingController();
-  bool _isFather = false;
-  String _countryCode= "";
+  String _countryCode = "";
+
   @override
   void initState() {
     _notificationListener();
-    _isFather = widget.isFather;
-    _loginBloc.add(LoginIsFatherEvent(isFather: widget.isFather));
     _loginBloc.add(GetLanguageEvent());
     super.initState();
   }
@@ -62,9 +60,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
                         )));
           } else if (state is VerifyPhoneNumberErrorState) {
             showErrorDialogFunction(
-                context: context,
-                textMessage: state.errorMessage);
-          } else if(state is SelectCountryCodeState){
+                context: context, textMessage: state.errorMessage);
+          } else if (state is SelectCountryCodeState) {
             _countryCode = state.phoneNumber.dialCode ?? "";
           }
         },
@@ -72,7 +69,6 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           return LoginContentWidget(
               countryController: countryController,
               loginBloc: _loginBloc,
-              isFather: _isFather,
               language: _language);
         },
       ),
@@ -96,7 +92,6 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   }
 
   void _setIsFather(LoginIsFatherState state) async {
-    _isFather = state.isFather;
     await SharedPreferencesManager.setIsFather(state.isFather);
   }
 
@@ -107,6 +102,4 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   void _onNotificationClick(String? notificationData) {
     print("object");
   }
-
-
 }

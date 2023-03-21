@@ -12,6 +12,7 @@ import 'package:schools/domain/usecases/get_token_use_case.dart';
 import 'package:schools/domain/usecases/set_phone_number_use_case.dart';
 import 'package:schools/domain/usecases/set_refresh_token_use_case.dart';
 import 'package:schools/domain/usecases/set_token_use_case.dart';
+import 'package:schools/domain/usecases/set_user_id_use_case.dart';
 
 part 'verify_event.dart';
 
@@ -24,6 +25,7 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
   final GetTokenUseCase _getTokenUseCase;
   final GetFirebaseTokenUseCase _getFirebaseTokenUseCase;
   final SetPhoneNumberUseCase _setPhoneNumberUseCase;
+  final SetUserIdUseCase _setUserIdUseCase;
 
   VerifyBloc(
     this._getLanguageCodeUseCase,
@@ -32,6 +34,7 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
     this._getTokenUseCase,
     this._getFirebaseTokenUseCase,
     this._setPhoneNumberUseCase,
+    this._setUserIdUseCase,
   ) : super(VerifyInitialState()) {
     on<GetVerifyEvent>(_onGetVerifyEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
@@ -57,6 +60,7 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
         GetTokenResponse.fromJson(response.data);
     if (response.statusCode == 200) {
       if (getTokenResponse.data!.token!.accessToken!.isNotEmpty) {
+        await _setUserIdUseCase(userId: getTokenResponse.data!.userId ?? "");
         await _setTokenUseCase(
             token: getTokenResponse.data!.token!.accessToken!);
         await _setRefreshTokenUseCase(
