@@ -26,3 +26,13 @@ class SelectCountryCodeEvent extends LoginEvent {
 
   SelectCountryCodeEvent(this.phoneNumber);
 }
+
+class VerifyCodeEvent extends LoginEvent {
+  final String phoneNumber;
+  final String verifyCode;
+
+  VerifyCodeEvent({
+    required this.phoneNumber,
+    required this.verifyCode,
+  });
+}

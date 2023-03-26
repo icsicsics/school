@@ -6,6 +6,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
+import 'package:schools/presentation/screens/home/home_screen.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/screens/authentication/login/widgets/login_content_widget.dart';
 import 'package:schools/presentation/screens/authentication/verify/verify_screen.dart';
@@ -51,18 +52,27 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           } else if (state is GetLanguageSuccessState) {
             _language = state.language;
           } else if (state is VerifyPhoneNumberSuccessState) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => VerifyScreen(
-                          phoneNumber: state.phoneNumber,
-                          roles: state.roles,
-                        )));
+            _loginBloc.add(VerifyCodeEvent(
+                phoneNumber: state.phoneNumber,
+                verifyCode: state.code));
+
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (_) => VerifyScreen(
+            //               phoneNumber: state.phoneNumber,
+            //               roles: state.roles,
+            //             )));
           } else if (state is VerifyPhoneNumberErrorState) {
             showErrorDialogFunction(
                 context: context, textMessage: state.errorMessage);
           } else if (state is SelectCountryCodeState) {
             _countryCode = state.phoneNumber.dialCode ?? "";
+          } else if(state is VerifyCodeSuccessState){
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+
+          } else if (state is VerifyCodeErrorState){
           }
         },
         builder: (context, state) {

@@ -24,16 +24,20 @@ class LoginResponse {
 
 class Data {
   List<String>? roles;
+  String? verifyCode;
 
   Data({this.roles});
 
   Data.fromJson(Map<String, dynamic> json) {
     roles = json['roles'].cast<String>();
+    verifyCode = json['verifyCode'];
+
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['roles'] = this.roles;
+    data['verifyCode'] = this.verifyCode;
     return data;
   }
 }

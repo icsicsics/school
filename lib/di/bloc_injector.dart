@@ -29,6 +29,10 @@ Future<void> initializeBlocDependencies() async {
       ));
   injector.registerFactory<LoginBloc>(() => LoginBloc(
         injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
       ));
   injector.registerFactory<VerifyBloc>(() => VerifyBloc(
         injector(),

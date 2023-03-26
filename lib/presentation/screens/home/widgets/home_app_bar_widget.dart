@@ -68,12 +68,11 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(height: 16,),
+                const SizedBox(height: 8,),
                 Visibility(
                   visible: widget.isFather == true ? false : true,
                   child: profileImageWidget(),
                 ),
-                const SizedBox(height: 8,),
                 SizedBox(
                   width: 210,
                   child: MediumTextWidget(
