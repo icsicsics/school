@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:schools/core/utils/awesome/fa_icon.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -46,7 +48,6 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
                 borderColor: Colors.white,
                 borderWidth: 0,
                 isVisible: true,
-                labelStyle: const TextStyle(color: Colors.transparent),
                 majorGridLines: const MajorGridLines(color: Colors.transparent),
                 axisLine: const AxisLine(color: Colors.white),
               ),

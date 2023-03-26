@@ -1,5 +1,6 @@
 class Data {
   String? houseName;
+  String? houseIcon;
   int? numberStudentsHouse;
   int? numberTeachersHouse;
   int? totalPointsHouse;
@@ -8,6 +9,7 @@ class Data {
 
   Data({
     this.houseName,
+    this.houseIcon,
     this.numberStudentsHouse,
     this.numberTeachersHouse,
     this.totalPointsHouse,
@@ -17,6 +19,7 @@ class Data {
 
   Data.fromJson(dynamic json) {
     houseName = json['houseName'];
+    houseIcon = json['houseIcon'];
     numberStudentsHouse = json['numberStudentsHouse'];
     numberTeachersHouse = json['numberTeachersHouse'];
     totalPointsHouse = json['totalPointsHouse'];
@@ -27,6 +30,7 @@ class Data {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['houseName'] = houseName;
+    map['houseIcon'] = houseIcon;
     map['numberStudentsHouse'] = numberStudentsHouse;
     map['numberTeachersHouse'] = numberTeachersHouse;
     map['totalPointsHouse'] = totalPointsHouse;

@@ -47,22 +47,22 @@ class SchoolHousesChartWidget extends StatelessWidget {
               )),
         ),
       ),
-      Align(
-        alignment: Alignment.bottomCenter,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 30, left: 60, bottom: 45),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _iconData(Icons.confirmation_num_sharp),
-              _iconData(Icons.confirmation_num_sharp),
-              _iconData(Icons.confirmation_num_sharp),
-              _iconData(Icons.confirmation_num_sharp),
-            ],
-          ),
-        ),
-      )
+      // Align(
+      //   alignment: Alignment.bottomCenter,
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(right: 30, left: 60, bottom: 45),
+      //     child: Row(
+      //       crossAxisAlignment: CrossAxisAlignment.center,
+      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //       children: [
+      //         _iconData(Icons.confirmation_num_sharp),
+      //         _iconData(Icons.confirmation_num_sharp),
+      //         _iconData(Icons.confirmation_num_sharp),
+      //         _iconData(Icons.confirmation_num_sharp),
+      //       ],
+      //     ),
+      //   ),
+      // )
     ],
   );
   }

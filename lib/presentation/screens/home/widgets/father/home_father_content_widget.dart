@@ -3,6 +3,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
+import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
@@ -235,10 +238,12 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                                 CircleAvatar(
                                                   backgroundColor: Colors.white,
                                                   radius: 17,
-                                                  child: SvgPicture.asset(
-                                                    ImagesPath.star,
-                                                    width: 22,
-                                                    height: 22,
+                                                  child: FaIcon(
+                                                    getIconFromCss(
+                                                      point.principleIcon ?? "",
+                                                    ),
+                                                    color: ColorsManager
+                                                        .secondaryColor,
                                                   ),
                                                 ),
                                                 SizedBox(

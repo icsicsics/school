@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:schools/core/utils/awesome/fa_icon.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
@@ -50,7 +52,7 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                       pointsValue: widget
                           .getClassHousesResponse.data![index].totalPointsHouse
                           .toString(),
-                      icon2: Image.asset(ImagesPath.cup, height: 30, width: 30),
+                      icon2: FaIcon(getIconFromCss(widget.getClassHousesResponse.data![index].houseIcon!),size: 24),
                       label:
                           widget.getClassHousesResponse.data![index].houseName!,
                       studentsValue: widget.getClassHousesResponse.data![index]

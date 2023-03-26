@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/widgets/medium_text_widget.dart';
@@ -35,13 +37,15 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
     return SingleChildScrollView(
       child: Column(
         children: widget.points
-            .map((e) => _item(
+            .map((e) {
+              return _item(
                 onTap: () {},
                 title: e.valueName ?? "",
                 subTitle:
                     "${dateFormat(e.creationDate.toString())}  ${S.of(context).at}  ${formattedTime(e.creationDate.toString())}",
                 description: e.createdByName??"",
-                icon: Icons.energy_savings_leaf))
+                icon: getIconFromCss(e.principleIcon ?? ""));
+            })
             .toList(),
       ),
     );
@@ -99,7 +103,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                       ],
                     ),
                   ),
-                  Icon(icon, color: ColorsManager.secondaryColor, size: 30)
+                  FaIcon(icon, color: ColorsManager.secondaryColor, size: 30)
                 ],
               )));
 }
