@@ -59,7 +59,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 100,
+        height: 110,
         child: Column(
           children: [
             Row(

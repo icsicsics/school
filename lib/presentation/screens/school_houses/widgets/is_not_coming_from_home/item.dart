@@ -21,14 +21,12 @@ class ItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
       width: 400,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(
-            height: 110,
+            height: 120,
             child: Stack(
               children: [
                 Align(
@@ -70,11 +68,11 @@ class ItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            width: 110,
+          Expanded(
             child: MediumTextWidget(
               text: childName,
               fontSize: 12,
+              textAlign: TextAlign.center,
               color: ColorsManager.blackColor,
             ),
           )

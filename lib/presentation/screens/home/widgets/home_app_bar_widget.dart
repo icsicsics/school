@@ -38,7 +38,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       ),
       height: MediaQuery.of(context).size.height / 6,
       child: Padding(
-        padding: const EdgeInsets.only(top: 50, left: 5,right: 5),
+        padding: const EdgeInsets.only(top: 40, left: 5,right: 5),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -68,7 +68,6 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(height: 8,),
                 Visibility(
                   visible: widget.isFather == true ? false : true,
                   child: profileImageWidget(),

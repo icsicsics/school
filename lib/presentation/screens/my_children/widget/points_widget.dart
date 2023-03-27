@@ -47,11 +47,11 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
         child: Padding(
           padding: const EdgeInsets.all(2),
           child: SizedBox(
-            height: 55,
             width: 90,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 MediumTextWidget(
                     text: label,
