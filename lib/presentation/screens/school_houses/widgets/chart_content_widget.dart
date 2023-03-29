@@ -42,7 +42,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
             padding: const EdgeInsets.only(top: 150),
             child: SfCartesianChart(
               primaryXAxis: CategoryAxis(
-
+                labelStyle: TextStyle(color: Colors.transparent),
                 borderColor: Colors.white,
                 borderWidth: 0,
                 isVisible: true,
