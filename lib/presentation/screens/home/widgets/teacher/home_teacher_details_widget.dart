@@ -112,6 +112,7 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                                     )));
                       },
                       child: CardWidget(
+                        teacherInfoResponse: widget.homeBloc.teacherInfoResponse,
                         section: widget.teacherHomeResponse.data!
                             .teacherHomePage![index].classroomName!,
                         imagePath: widget.teacherHomeResponse.data!

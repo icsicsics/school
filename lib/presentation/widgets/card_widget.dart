@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 
 class CardWidget extends StatelessWidget {
+  final TeacherInfoResponse teacherInfoResponse;
   final String imagePath;
   final String id;
   final String grade;
@@ -15,6 +17,7 @@ class CardWidget extends StatelessWidget {
 
   const CardWidget(
       {Key? key,
+      required this.teacherInfoResponse,
       required this.imagePath,
       required this.id,
       this.height = 200,
@@ -38,26 +41,7 @@ class CardWidget extends StatelessWidget {
             Stack(
               children: [
                 image(imagePath),
-                Positioned(
-                  bottom: 8,
-                  right: 12,
-                  child: GestureDetector(
-                    onTap: () {
-                      BlocProvider.of<HomeBloc>(context).add(OpenCameraGalleryBottomSheetEvent(classroomToSectionId: id ));
-                    },
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          color: ColorsManager.whiteColor,
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(30))),
-                      child: const Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Icon(Icons.camera_alt,
-                            color: ColorsManager.yellow, size: 18),
-                      ),
-                    ),
-                  ),
-                )
+                buildCameraIcon(context)
               ],
             ),
             const SizedBox(
@@ -74,6 +58,37 @@ class CardWidget extends StatelessWidget {
                 color: ColorsManager.welcomeGryColor),
           ],
         ));
+  }
+
+  Widget  buildCameraIcon(BuildContext context) {
+    for(var item in teacherInfoResponse.data?.classroomsTeacher  ?? []){
+      if(item.classroomToSectionId == id) {
+        return  Positioned(
+          bottom: 8,
+          right: 12,
+          child: GestureDetector(
+            onTap: () {
+              BlocProvider.of<HomeBloc>(context).add(
+                  OpenCameraGalleryBottomSheetEvent(
+                      classroomToSectionId: id));
+            },
+            child: Container(
+              decoration: const BoxDecoration(
+                  color: ColorsManager.whiteColor,
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              child: const Padding(
+                padding: EdgeInsets.all(5),
+                child: Icon(Icons.camera_alt,
+                    color: ColorsManager.yellow, size: 18),
+              ),
+            ),
+          ),
+        );
+      } else {
+        return const SizedBox.shrink();
+      }
+    }
+    return const SizedBox.shrink();
   }
 
   Widget image(images) {

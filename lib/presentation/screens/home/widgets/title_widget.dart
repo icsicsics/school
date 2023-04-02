@@ -21,10 +21,10 @@ class HomeTitleWidget extends StatelessWidget {
       return json.decode(dayData)['${date.weekday}'];
     }
 
-    String monthFormatter(DateTime date) {
+    String monthFormatter(int month) {
       dynamic monthData =
           '{ "1" : "${S.of(context).jan}", "2" : "${S.of(context).feb} ", "3" : "${S.of(context).mar}", "4" : "${S.of(context).apr}", "5" : "${S.of(context).may}", "6" : "${S.of(context).june}", "7" : "${S.of(context).jul}", "8" : "${S.of(context).aug}", "9" : "${S.of(context).sep}", "10" : "${S.of(context).oct}", "11" : "${S.of(context).nov}", "12" : "${S.of(context).dec}" }';
-      return json.decode(monthData)['${date.weekday}'];
+      return json.decode(monthData)['$month'];
     }
 
     var dayNumber = dateTime.day;
@@ -56,9 +56,10 @@ class HomeTitleWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
+
                   MediumTextWidget(
                       text:
-                          "$dayNumber ${S.of(context).thOf} ${monthFormatter(dateTime)} $year",
+                          "$dayNumber ${S.of(context).thOf} ${monthFormatter(dateTime.month)} $year",
                       fontSize: 15,
                       color: ColorsManager.whiteColor),
                 ],

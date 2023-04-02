@@ -47,6 +47,7 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<SetProfileImageInShearedPrefranceEvent>(
         _onSetProfileImageInShearedPrefranceEvent);
     on<OpenWebViewEvent>(_onOpenWebViewEvent);
+    on<ClearTokenEvent>(_onClearTokenEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -81,7 +82,6 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
 
   FutureOr<void> _onLogoutEvent(
       LogoutEvent event, Emitter<SideMenuState> emit) async {
-    await _clearTokenUseCase();
     emit(LogoutState());
   }
 
@@ -144,5 +144,11 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
         screenTitle: event.screenTitle,
       ),
     );
+  }
+
+  FutureOr<void> _onClearTokenEvent(
+      ClearTokenEvent event, Emitter<SideMenuState> emit) async {
+    await _clearTokenUseCase();
+    emit(ClearTokenState());
   }
 }

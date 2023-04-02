@@ -20,3 +20,11 @@ class VerifyCodeEvent extends VerifyEvent {
 }
 
 class UpdateDeviceTokenEvent extends VerifyEvent {}
+
+class VerifyPhoneNumberEvent extends VerifyEvent {
+  final String phoneNumber;
+
+  VerifyPhoneNumberEvent({
+    required this.phoneNumber,
+  });
+}

@@ -9,12 +9,12 @@ import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart'
 class SchoolHousesRepositoryImp extends BaseSchoolHousesRepository {
   @override
   Future<SchoolHousesState> getClassHouses(
-      String token, String classRoomId, bool isComingFromHome) async {
+      String token, String classRoomId, bool isComingFromHome,int search) async {
     SchoolHousesState? state;
     GetClassHousesResponse getClassHousesResponse = GetClassHousesResponse();
     try {
       Response response =
-          await DioHelper.getClassHouses(token, classRoomId, isComingFromHome);
+          await DioHelper.getClassHouses(token, classRoomId, isComingFromHome,search);
       getClassHousesResponse = GetClassHousesResponse.fromJson(response.data);
       if (getClassHousesResponse.data != null) {
         return GetSchoolHousesSuccessState(response: getClassHousesResponse);

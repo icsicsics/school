@@ -1039,6 +1039,26 @@ class S {
       args: [],
     );
   }
+
+  /// `School Houses`
+  String get schoolHouses {
+    return Intl.message(
+      'School Houses',
+      name: 'schoolHouses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The verification code is incorrect`
+  String get errorVerifyCode {
+    return Intl.message(
+      'The verification code is incorrect',
+      name: 'errorVerifyCode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

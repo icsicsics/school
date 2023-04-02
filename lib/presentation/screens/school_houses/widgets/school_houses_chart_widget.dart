@@ -17,6 +17,7 @@ class SchoolHousesChartWidget extends StatelessWidget {
   }
 
   Stack buildScreenContent() {
+    print(schoolHousesBloc!.getClassHousesResponse.data!.first.totalPointsHouse);
     return Stack(
     children: [
       ClipPath(

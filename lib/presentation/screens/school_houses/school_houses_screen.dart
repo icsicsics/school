@@ -56,9 +56,10 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           classroomToSectionId: widget.classRoomId, token: widget.token));
     }
     _schoolHousesBloc.add(GetSchoolHousesEvent(
-        token: widget.token,
-        classRoomId: widget.classRoomId,
-        isComingFromHome: widget.isComingFromHome));
+      token: widget.token,
+      classRoomId: widget.classRoomId,
+      isComingFromHome: widget.isComingFromHome,
+      search: _selectedValue.id,));
     super.initState();
   }
 
@@ -97,6 +98,11 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                 selectValueEvent: (value) {
                   setState(() {
                     _selectedValue = value;
+                    _schoolHousesBloc.add(GetSchoolHousesEvent(
+                      token: widget.token,
+                      classRoomId: widget.classRoomId,
+                      isComingFromHome: widget.isComingFromHome,
+                      search: _selectedValue.id,));
                   });
                 });
           } else if (state is GetSearchValuesFailState) {}
@@ -191,13 +197,13 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
         title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: S.of(context).classHouses),
+            text: S.of(context).schoolHouses),
       );
 
-  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+  void _navigateToNotificationScreen() => Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-      (route) => false);
+  );
 
   void _onGetSchoolHousesFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);

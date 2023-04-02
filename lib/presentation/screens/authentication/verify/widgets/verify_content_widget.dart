@@ -64,7 +64,9 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                   },
                 ),
                 sizedBox(height: 20),
-                SendAgainWidget(onTap: () {}),
+                SendAgainWidget(onTap: () {
+                  BlocProvider.of<VerifyBloc>(context).add(VerifyPhoneNumberEvent(phoneNumber: widget.phoneNumber));
+                }),
                 sizedBox(),
                 _buildRoles(widget.roles)
               ],

@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorActivationCode":
             MessageLookupByLibrary.simpleMessage("Error activation code"),
+        "errorVerifyCode": MessageLookupByLibrary.simpleMessage(
+            "The verification code is incorrect"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
         "feb": MessageLookupByLibrary.simpleMessage("february"),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
@@ -106,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reward": MessageLookupByLibrary.simpleMessage("Reward"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("School Homes"),
+        "schoolHouses": MessageLookupByLibrary.simpleMessage("School Houses"),
         "sections": MessageLookupByLibrary.simpleMessage("Sections"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("Send OTP"),

@@ -19,6 +19,8 @@ class GetLanguageEvent extends SideMenuEvent {
 
 class LogoutEvent extends SideMenuEvent {}
 
+class ClearTokenEvent extends SideMenuEvent {}
+
 class GetTeacherInfoEvent extends SideMenuEvent {
   final String token;
 

@@ -165,6 +165,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
   void _logout() {
     _bloc.fatherInfoResponse = FatherInfoResponse();
     _bloc.teacherInfoResponse = TeacherInfoResponse();
+    _bloc.add(ClearTokenEvent());
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(

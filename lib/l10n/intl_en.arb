@@ -97,5 +97,7 @@
  "values":"Values",
  "behavior":"Behavior",
  "skills":"Skills",
- "teacherOf":"Teacher Of"
+ "teacherOf":"Teacher Of",
+ "schoolHouses":"School Houses",
+ "errorVerifyCode": "The verification code is incorrect"
 }

@@ -45,14 +45,14 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                 semanticChildCount: 15,
                 itemBuilder: (BuildContext context, int index) {
                   return SchoolHousesCardItemWidget(
-                      icon: const Icon(Icons.account_circle),
+                      icon: FaIcon(getIconFromCss(widget.getClassHousesResponse.data![index].houseIcon!),size: 24),
                       teachersValue: widget.getClassHousesResponse.data![index]
                           .numberTeachersHouse!
                           .toString(),
                       pointsValue: widget
                           .getClassHousesResponse.data![index].totalPointsHouse
                           .toString(),
-                      icon2: FaIcon(getIconFromCss(widget.getClassHousesResponse.data![index].houseIcon!),size: 24),
+                      icon2: Image.asset(ImagesPath.cup, height: 30, width: 30),
                       label:
                           widget.getClassHousesResponse.data![index].houseName!,
                       studentsValue: widget.getClassHousesResponse.data![index]

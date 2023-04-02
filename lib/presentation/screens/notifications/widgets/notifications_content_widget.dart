@@ -34,6 +34,7 @@ class _NotificationsContentWidgetState
         NotificationsAppBarWidget(
           onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
           isFather: widget.isFather,
+          isNotificationSelected: isNotificationSelected,
         ),
         widget.isFather
             ? TitlesRowWidget(

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
+import 'package:schools/data/source/remote/model/login/login_response.dart';
 import 'package:schools/data/source/remote/model/update_device_token/update_device_token_response.dart';
 import 'package:schools/domain/usecases/get_firebase_token_use_case.dart';
 import 'package:schools/domain/usecases/get_language_use_case.dart';
@@ -40,6 +41,8 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
     on<GetLanguageEvent>(_onGetLanguageEvent);
     on<VerifyCodeEvent>(_onVerifyCodeEvent);
     on<UpdateDeviceTokenEvent>(_onUpdateDeviceTokenEvent);
+    on<VerifyPhoneNumberEvent>(_onVerifyPhoneNumberEvent);
+
   }
 
   FutureOr<void> _onGetVerifyEvent(
@@ -59,6 +62,12 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
     GetTokenResponse getTokenResponse =
         GetTokenResponse.fromJson(response.data);
     if (response.statusCode == 200) {
+      if(getTokenResponse.data!.token!.accessToken == null){
+        emit(VerifyCodeErrorState());
+        emit(HideLoadingState());
+
+        return;
+      }
       if (getTokenResponse.data!.token!.accessToken!.isNotEmpty) {
         await _setUserIdUseCase(userId: getTokenResponse.data!.userId ?? "");
         await _setTokenUseCase(
@@ -97,6 +106,27 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
       emit(UpdateDeviceTokenFailState(errorMessage: "Try Again"));
     }
 
+    emit(HideLoadingState());
+  }
+
+  FutureOr<void> _onVerifyPhoneNumberEvent(
+      VerifyPhoneNumberEvent event, Emitter<VerifyState> emit) async {
+    emit(ShowLoadingState());
+    var response = await DioHelper.verifyPhone(event.phoneNumber);
+
+    try {
+      LoginResponse loginResponse = LoginResponse.fromJson(response.data);
+      emit(VerifyPhoneNumberSuccessState(
+        phoneNumber: event.phoneNumber,
+        roles: loginResponse.data?.roles ?? [],
+        code: loginResponse.data?.verifyCode ?? "",
+
+      ));
+    } catch (e) {
+      LoginErrorResponse errorResponse =
+      LoginErrorResponse.fromJson(response.data);
+      emit(VerifyPhoneNumberErrorState(errorMessage: errorResponse.data ?? ""));
+    }
     emit(HideLoadingState());
   }
 }

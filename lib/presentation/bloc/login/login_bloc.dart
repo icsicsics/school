@@ -70,7 +70,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         phoneNumber: event.phoneNumber,
         roles: loginResponse.data?.roles ?? [],
         code: loginResponse.data?.verifyCode ?? "",
-
       ));
     } catch (e) {
       LoginErrorResponse errorResponse =

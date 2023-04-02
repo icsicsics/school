@@ -8,12 +8,16 @@ import 'package:schools/presentation/widgets/medium_text_widget.dart';
 class NotificationsAppBarWidget extends StatelessWidget {
   final Function() onTapMenu;
   final bool isFather;
+  final bool isNotificationSelected;
 
   // final Function() onTapNotifications;
 
-  const NotificationsAppBarWidget(
-      {Key? key, required this.onTapMenu, required this.isFather})
-      : super(key: key);
+  const NotificationsAppBarWidget({
+    Key? key,
+    required this.onTapMenu,
+    required this.isFather,
+    required this.isNotificationSelected,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,9 @@ class NotificationsAppBarWidget extends StatelessWidget {
             Expanded(
               child: MediumTextWidget(
                   text: isFather
-                      ? S.of(context).notifications
+                      ? isNotificationSelected
+                          ? S.of(context).notifications
+                          : S.of(context).inbox
                       : S.of(context).inbox,
                   fontSize: 18,
                   color: ColorsManager.secondaryColor),

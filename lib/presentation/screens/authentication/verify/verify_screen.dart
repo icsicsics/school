@@ -40,11 +40,18 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<VerifyBloc, VerifyState>(
         listener: (context, state) {
-          if (state is GetLanguageSuccessState) {
+          if(state is ShowLoadingState) {
+            showLoading();
+          }
+          else if(state is HideLoadingState) {
+            hideLoading();
+          } else if (state is GetLanguageSuccessState) {
             _language = state.language;
           } else if (state is VerifyCodeSuccessState) {
             BlocProvider.of<VerifyBloc>(context).add(UpdateDeviceTokenEvent());
           } else if (state is VerifyCodeErrorState) {
+            showErrorDialogFunction(
+                context: context, textMessage: S.of(context).errorVerifyCode);
           } else if (state is UpdateDeviceTokenSuccessState) {
             Navigator.push(
                 context, MaterialPageRoute(builder: (_) => const HomeScreen()));

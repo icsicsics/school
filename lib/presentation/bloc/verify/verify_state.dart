@@ -30,3 +30,23 @@ class UpdateDeviceTokenFailState extends VerifyState {
     required this.errorMessage,
   });
 }
+
+class VerifyPhoneNumberSuccessState extends VerifyState {
+  final String phoneNumber;
+  final List<String> roles;
+  final String code;
+
+  VerifyPhoneNumberSuccessState({
+    required this.phoneNumber,
+    required this.roles,
+    required this.code,
+  });
+}
+
+class VerifyPhoneNumberErrorState extends VerifyState {
+  final String errorMessage;
+
+  VerifyPhoneNumberErrorState({
+    required this.errorMessage,
+  });
+}

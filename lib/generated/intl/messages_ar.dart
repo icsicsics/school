@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("خطا"),
         "errorActivationCode":
             MessageLookupByLibrary.simpleMessage("رمز تفعيل الخطأ"),
+        "errorVerifyCode":
+            MessageLookupByLibrary.simpleMessage("رمز التحقق غير صحيح"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),
         "feb": MessageLookupByLibrary.simpleMessage("فبراير"),
         "friday": MessageLookupByLibrary.simpleMessage("الجمعة"),
@@ -105,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reward": MessageLookupByLibrary.simpleMessage("مكافأة"),
         "saturday": MessageLookupByLibrary.simpleMessage("السبت"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("منازل المدرسة"),
+        "schoolHouses": MessageLookupByLibrary.simpleMessage("منازل المدرسة"),
         "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),

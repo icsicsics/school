@@ -31,6 +31,17 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
   }
 
   @override
+  void didUpdateWidget(covariant ChartContentWidget oldWidget) {
+    columnData.clear();
+    if (widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty) {
+      for (var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
+        columnData.add(SalesData(
+            x: item.houseName ?? "", y: item.totalPointsHouse!.toDouble()));
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return buildScreenContent(columnData);
   }
@@ -55,8 +66,6 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
                   majorGridLines:
                       const MajorGridLines(color: Colors.transparent),
                   axisLine: const AxisLine(color: Colors.white),
-                  minorGridLines:
-                      const MinorGridLines(color: Colors.transparent),
                   borderColor: Colors.transparent,
                   borderWidth: 0,
                   placeLabelsNearAxisLine: false),
@@ -65,6 +74,8 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
               legend: Legend(
                   isVisible: true,
                   alignment: ChartAlignment.center,
+                  itemPadding: 0,
+                  padding: 0,
                   overflowMode: LegendItemOverflowMode.wrap,
                   position: LegendPosition.bottom,
                   // Templating the legend item
@@ -75,10 +86,11 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
                       children: widget.schoolHousesBloc.getClassHousesResponse
                               .data!.isNotEmpty
                           ? widget.schoolHousesBloc.getClassHousesResponse.data!
-                              .map((e) => FaIcon(getIconFromCss(
-                                    e.houseIcon ?? "",
-                                  )))
-                              .toList()
+                              .map((e) {
+                              return FaIcon(getIconFromCss(
+                                e.houseIcon ?? "",
+                              ));
+                            }).toList()
                           : [],
                     );
                   }),

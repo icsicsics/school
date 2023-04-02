@@ -12,4 +12,5 @@ class SharedPreferencesKeys {
   static const refreshToken = "refreshToken";
   static const phoneNumber = "phoneNumber";
   static const userId = "userId";
+  static const countryCode = "countryCode";
 }

@@ -44,5 +44,4 @@ Future<void> initializeUseCaseDependencies() async {
   injector.registerFactory<SetUserIdUseCase>(
           () => SetUserIdUseCase(injector()));
 
-
 }

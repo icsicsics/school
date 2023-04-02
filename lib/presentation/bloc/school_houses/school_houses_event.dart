@@ -7,11 +7,14 @@ class GetSchoolHousesEvent extends SchoolHousesEvent {
   final String classRoomId;
   final String token;
   final bool isComingFromHome;
+  final int search;
 
-  GetSchoolHousesEvent(
-      {required this.token,
-      required this.classRoomId,
-      required this.isComingFromHome});
+  GetSchoolHousesEvent({
+    required this.token,
+    required this.classRoomId,
+    required this.isComingFromHome,
+    required this.search,
+  });
 }
 
 class NavigateToNotificationScreenEvent extends SchoolHousesEvent {}

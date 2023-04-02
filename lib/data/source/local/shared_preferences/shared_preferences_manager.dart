@@ -137,6 +137,15 @@ class SharedPreferencesManager {
     return await SharedPreferencesUtils.getString(SharedPreferencesKeys.phoneNumber);
   }
 
+  Future<bool> setCountryCode(String countryCode) async {
+    return await SharedPreferencesUtils.setString(
+        SharedPreferencesKeys.countryCode, countryCode);
+  }
+
+  Future<String?> getCountryCode() async {
+    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.countryCode);
+  }
+
   Future<String?> getUserId() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.userId);

@@ -37,6 +37,8 @@ class GetLanguageSuccessState extends SideMenuState {
 
 class LogoutState extends SideMenuState {}
 
+class ClearTokenState extends SideMenuState {}
+
 class GetTeacherInfoSuccessState extends SideMenuState {
   final TeacherInfoResponse response;
 
