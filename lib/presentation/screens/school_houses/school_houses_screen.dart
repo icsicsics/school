@@ -108,6 +108,9 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           } else if (state is GetSearchValuesFailState) {}
         },
         builder: (context, state) {
+          if(state is GetSchoolHousesLoadingState) {
+            return Container();
+          }
           return getClassHousesResponse.data?.isNotEmpty ?? false
               ? SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),

@@ -52,17 +52,17 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           } else if (state is GetLanguageSuccessState) {
             _language = state.language;
           } else if (state is VerifyPhoneNumberSuccessState) {
-            // _loginBloc.add(VerifyCodeEvent(
-            //     phoneNumber: state.phoneNumber,
-            //     verifyCode: state.code));
+            _loginBloc.add(VerifyCodeEvent(
+                phoneNumber: state.phoneNumber,
+                verifyCode: state.code));
 
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => VerifyScreen(
-                          phoneNumber: state.phoneNumber,
-                          roles: state.roles,
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (_) => VerifyScreen(
+            //               phoneNumber: state.phoneNumber,
+            //               roles: state.roles,
+            //             )));
           } else if (state is VerifyPhoneNumberErrorState) {
             showErrorDialogFunction(
                 context: context, textMessage: state.errorMessage);
