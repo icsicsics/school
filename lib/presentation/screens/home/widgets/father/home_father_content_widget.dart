@@ -60,231 +60,233 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: CarouselSlider(
         items: (widget.parentHomeResponse.data)
-            ?.map((item) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 16),
-                    Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MyChildrenScreen(
-                                          studentId: item.studentId ?? "",
-                                          language: widget.language,
-                                          isParent: true,
-                                          classroomSectionStudentsId: item
-                                              .classroomSectionStudentsId ??
-                                              "",
-                                          classroomId:item.classroomId ?? "",
-                                        )));
-                          },
-                          child: Row(
-                            children: [
-                              if (_current != 0)
-                                Icon(
-                                  Icons.keyboard_arrow_left,
-                                  size: 24,
-                                ),
-                              Expanded(child: SizedBox()),
-                              Image.network(
-                                item.getImage?.mediaUrl ?? "",
-                                height: 200,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Image.asset(
-                                    ImagesPath.logo,
-                                    width: 200,
-                                  );
-                                },
-                              ),
-                              Expanded(child: SizedBox()),
-                              if (_current !=
-                                  widget.parentHomeResponse.data!.length - 1)
-                                Icon(
-                                  Icons.keyboard_arrow_right,
-                                  size: 24,
-                                ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          left: 16,
-                          bottom: -16,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: const [
-                                  BoxShadow(
-                                      offset: Offset(0, 0),
-                                      blurRadius: 0.3,
-                                      spreadRadius: 0,
-                                      color: Color(0x2b040405))
-                                ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                    width: 1, color: Color(0xe2e2e2))),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 12),
-                            child: Text(
-                              item.studentName ?? "",
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 32,
-                          bottom: -16,
-                          child: InkWell(
-                            onTap: () {
-                              showAddPointFunction(
-                                  isParent: true,
-                                  context: context,
-                                  childName: widget
-                                          .teacherStudentProfileInSchoolHouseResponse
-                                          .data
-                                          ?.studentName ??
-                                      "",
-                                  token: widget.token,
-                                  classroomId: item.classroomId ?? "",
-                                  classroomSectionStudentsId: item.classroomSectionStudentsId ?? "",
-                                  studentId: item.studentId ??
-                                      "",
-                                  onCreatePointSuccess: () {});
-                            },
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 17,
-                              child: CircleAvatar(
-                                backgroundColor: Color(0xFF35a6bc),
-                                radius: 14,
-                                child: SvgPicture.asset(
-                                  ImagesPath.star,
-                                  width: 22,
-                                  height: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 32),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => SchoolHousesScreen(
-                                      token: widget.token,
-                                      classRoomId: item.branchId ?? "",
-                                      language: widget.language,
-                                      isComingFromHome: true,
-                                    )));
-                      },
-                      child: Column(
+            ?.map((item) => SingleChildScrollView(
+              child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 16),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.bottomCenter,
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                ImagesPath.startOrange,
-                                width: 22,
-                                height: 22,
-                              ),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              Text(
-                                "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => MyChildrenScreen(
+                                            studentId: item.studentId ?? "",
+                                            language: widget.language,
+                                            isParent: true,
+                                            classroomSectionStudentsId: item
+                                                .classroomSectionStudentsId ??
+                                                "",
+                                            classroomId:item.classroomId ?? "",
+                                          )));
+                            },
+                            child: Row(
+                              children: [
+                                if (_current != 0)
+                                  Icon(
+                                    Icons.keyboard_arrow_left,
+                                    size: 24,
+                                  ),
+                                Expanded(child: SizedBox()),
+                                Image.network(
+                                  item.getImage?.mediaUrl ?? "",
+                                  height: 200,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset(
+                                      ImagesPath.logo,
+                                      width: 200,
+                                    );
+                                  },
                                 ),
+                                Expanded(child: SizedBox()),
+                                if (_current !=
+                                    widget.parentHomeResponse.data!.length - 1)
+                                  Icon(
+                                    Icons.keyboard_arrow_right,
+                                    size: 24,
+                                  ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            left: 16,
+                            bottom: -16,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        offset: Offset(0, 0),
+                                        blurRadius: 0.3,
+                                        spreadRadius: 0,
+                                        color: Color(0x2b040405))
+                                  ],
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      width: 1, color: Color(0xe2e2e2))),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 6, horizontal: 12),
+                              child: Text(
+                                item.studentName ?? "",
                               ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              SizedBox(
-                                width: 340,
-                                child: Text(
-                                  "${widget.teacherStudentProfileInSchoolHouseResponse.data?.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data?.sectionName ?? ""} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.classroomName ?? ""}",
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Positioned(
+                            right: 32,
+                            bottom: -16,
+                            child: InkWell(
+                              onTap: () {
+                                showAddPointFunction(
+                                    isParent: true,
+                                    context: context,
+                                    childName: widget
+                                            .teacherStudentProfileInSchoolHouseResponse
+                                            .data
+                                            ?.studentName ??
+                                        "",
+                                    token: widget.token,
+                                    classroomId: item.classroomId ?? "",
+                                    classroomSectionStudentsId: item.classroomSectionStudentsId ?? "",
+                                    studentId: item.studentId ??
+                                        "",
+                                    onCreatePointSuccess: () {});
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 17,
+                                child: CircleAvatar(
+                                  backgroundColor: Color(0xFF35a6bc),
+                                  radius: 14,
+                                  child: SvgPicture.asset(
+                                    ImagesPath.star,
+                                    width: 22,
+                                    height: 22,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Column(
-                            children:
-                                (widget.teacherStudentProfileInSchoolHouseResponse
-                                            .data?.points ??
-                                        [])
-                                    .map((point) => Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  radius: 17,
-                                                  child: FaIcon(
-                                                    getIconFromCss(
-                                                      point.principleIcon ?? "",
-                                                    ),
-                                                    color: ColorsManager
-                                                        .secondaryColor,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 12,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "${point.valueName ?? ""}",
-                                                      style: TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 8,
-                                                    ),
-                                                    Text(
-                                                        "${DateFormat("dd/MM/yyyy", "en").format(
-                                                      DateTime.parse(
-                                                          point.creationDate ??
-                                                              ""),
-                                                    )}"),
-                                                    SizedBox(
-                                                      height: 8,
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(height: 16),
-                                          ],
-                                        ))
-                                    .toList(),
+                            ),
                           )
                         ],
                       ),
-                    )
-                  ],
-                ))
+                      SizedBox(height: 32),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SchoolHousesScreen(
+                                        token: widget.token,
+                                        classRoomId: item.branchId ?? "",
+                                        language: widget.language,
+                                        isComingFromHome: true,
+                                      )));
+                        },
+                        child: Column(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  ImagesPath.startOrange,
+                                  width: 22,
+                                  height: 22,
+                                ),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                SizedBox(
+                                  width: 320,
+                                  child: Text(
+                                    "${widget.teacherStudentProfileInSchoolHouseResponse.data?.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data?.sectionName ?? ""} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.classroomName ?? ""}",
+                                    maxLines: 3,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Column(
+                              children:
+                                  (widget.teacherStudentProfileInSchoolHouseResponse
+                                              .data?.points ??
+                                          [])
+                                      .map((point) => Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  CircleAvatar(
+                                                    backgroundColor: Colors.white,
+                                                    radius: 17,
+                                                    child: FaIcon(
+                                                      getIconFromCss(
+                                                        point.principleIcon ?? "",
+                                                      ),
+                                                      color: ColorsManager
+                                                          .secondaryColor,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 12,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        "${point.valueName ?? ""}",
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 8,
+                                                      ),
+                                                      Text(
+                                                          "${DateFormat("dd/MM/yyyy", "en").format(
+                                                        DateTime.parse(
+                                                            point.creationDate ??
+                                                                ""),
+                                                      )}"),
+                                                      SizedBox(
+                                                        height: 8,
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(height: 16),
+                                            ],
+                                          ))
+                                      .toList(),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+            ))
             .toList(),
         carouselController: CarouselController(),
         options: CarouselOptions(
