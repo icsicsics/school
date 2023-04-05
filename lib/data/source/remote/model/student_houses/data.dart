@@ -2,6 +2,7 @@ import 'students.dart';
 
 class Data {
   String? houseName;
+  String? houseIcon;
   String? sectionName;
   int? numberofStudentsHouse;
   String? classroomId;
@@ -15,6 +16,7 @@ class Data {
 
   Data.fromJson(dynamic json) {
     houseName = json['houseName'];
+    houseIcon = json['houseIcon'];
     sectionName = json['sectionName'];
     numberofStudentsHouse = json['numberofStudentsHouse'];
     classroomId = json['classroomId'];
@@ -30,6 +32,7 @@ class Data {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['houseName'] = houseName;
+    map['houseIcon'] = houseIcon;
     map['sectionName'] = sectionName;
     map['numberofStudentsHouse'] = numberofStudentsHouse;
     map['classroomId'] = classroomId;

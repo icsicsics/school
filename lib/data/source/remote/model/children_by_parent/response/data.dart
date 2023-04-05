@@ -1,31 +1,43 @@
 import 'getImage.dart';
 
 class Data {
+  String? branchName;
+  String? branchId;
+  String? classroomSectionStudentsId;
   String? studentName;
   String? studentId;
+  String? classroomId;
   GetImage? getImage;
-  String? branchId;
 
   Data({
+    this.branchName,
+    this.branchId,
+    this.classroomSectionStudentsId,
     this.studentName,
     this.studentId,
+    this.classroomId,
     this.getImage,
-    this.branchId,
   });
 
   Data.fromJson(dynamic json) {
+    branchName = json['branchName'];
+    branchId = json['branchId'];
+    classroomSectionStudentsId = json['classroomSectionStudentsId'];
     studentName = json['studentName'];
     studentId = json['studentId'];
-    branchId = json['branchId'];
+    classroomId = json['classroomId'];
     getImage =
         json['getImage'] != null ? GetImage.fromJson(json['getImage']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['branchName'] = branchName;
+    map['branchId'] = branchId;
+    map['classroomSectionStudentsId'] = classroomSectionStudentsId;
     map['studentName'] = studentName;
     map['studentId'] = studentId;
-    map['branchId'] = branchId;
+    map['classroomId'] = classroomId;
     if (getImage != null) {
       map['getImage'] = getImage!.toJson();
     }

@@ -55,6 +55,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
 
   @override
   void initState() {
+    print(widget.classroomSectionStudentsId);
     if (widget.classroomId.trim().isNotEmpty) {
       _addPointBloc.add(GetAddPointEvent(
           token: widget.token, classroomId: widget.classroomId));
@@ -222,7 +223,6 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     Navigator.of(context);
     if (value.id != null) {
       if (widget.isParent == false) {
-        print(value.id);
         _addPointBloc.add(PostTeacherAddPointEvent(
             token: widget.token,
             request: TeacherAddPointRequest(

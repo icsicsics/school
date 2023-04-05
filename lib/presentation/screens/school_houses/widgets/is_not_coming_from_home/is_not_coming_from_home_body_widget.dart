@@ -50,30 +50,38 @@ class _IsNotComingFromHomeBodyWidgetState
                     .toString(),
                 classroomId: widget.getStudentHousesResponse.data!.classroomId!,
                 classroomSectionStudentsId: widget.getStudentHousesResponse
-                    .data!.students![index].classroomToSectionId
+                    .data!.students![index].classroomToSectionStudentId
                     .toString()),
             onTapChild: () => widget.schoolHousesBloc.add(
                 NavigateToMyChildrenScreenEvent(
                     studentId:
                         "${widget.getStudentHousesResponse.data!.students![index].studentId}",
                     classroomToSectionId:
-                        "${widget.getStudentHousesResponse.data!.students![index].classroomToSectionId}")),
-            imagePath: widget.getStudentHousesResponse.data!.students![index].getImage==null?"": widget.getStudentHousesResponse.data!.students![index].getImage!.mediaUrl!,
+                        "${widget.getStudentHousesResponse.data!.students![index].classroomToSectionStudentId}")),
+            imagePath: widget.getStudentHousesResponse.data!.students![index]
+                        .getImage ==
+                    null
+                ? ""
+                : widget.getStudentHousesResponse.data!.students![index]
+                    .getImage!.mediaUrl!,
           );
         });
   }
 
-  void _onTap(
-          {required String childName,
-          required String classroomId,
-          required String classroomSectionStudentsId,
-          required String studentId}) =>
-      showAddPointFunction(
-          context: context,
-          childName: childName,
-          token: widget.token,
-          classroomId: classroomId,
-          classroomSectionStudentsId: classroomSectionStudentsId,
-          studentId: studentId,
-          onCreatePointSuccess: () {});
+  void _onTap({
+    required String childName,
+    required String classroomId,
+    required String classroomSectionStudentsId,
+    required String studentId,
+  }) {
+    print(classroomSectionStudentsId);
+    showAddPointFunction(
+        context: context,
+        childName: childName,
+        token: widget.token,
+        classroomId: classroomId,
+        classroomSectionStudentsId: classroomSectionStudentsId,
+        studentId: studentId,
+        onCreatePointSuccess: () {});
+  }
 }

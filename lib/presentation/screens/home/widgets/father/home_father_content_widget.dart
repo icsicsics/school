@@ -77,9 +77,10 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                           studentId: item.studentId ?? "",
                                           language: widget.language,
                                           isParent: true,
-                                          classroomSectionStudentsId: "",
-                                          classroomId:
-                                              "97cd1b95-0e1d-4b37-e814-08db18c1786b",
+                                          classroomSectionStudentsId: item
+                                              .classroomSectionStudentsId ??
+                                              "",
+                                          classroomId:item.classroomId ?? "",
                                         )));
                           },
                           child: Row(
@@ -133,44 +134,41 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                             ),
                           ),
                         ),
-                        // Positioned(
-                        //   right: 32,
-                        //   bottom: -16,
-                        //   child: InkWell(
-                        //     onTap: () {
-                        //       showAddPointFunction(
-                        //           isParent: true,
-                        //           context: context,
-                        //           childName: widget
-                        //                   .teacherStudentProfileInSchoolHouseResponse
-                        //                   .data
-                        //                   ?.studentName ??
-                        //               "",
-                        //           token: widget.token,
-                        //           classroomId: "",
-                        //           classroomSectionStudentsId: "",
-                        //           studentId: widget
-                        //                   .teacherStudentProfileInSchoolHouseResponse
-                        //                   .data
-                        //                   ?.studentId ??
-                        //               "",
-                        //           onCreatePointSuccess: () {});
-                        //     },
-                        //     child: CircleAvatar(
-                        //       backgroundColor: Colors.white,
-                        //       radius: 17,
-                        //       child: CircleAvatar(
-                        //         backgroundColor: Color(0xFF35a6bc),
-                        //         radius: 14,
-                        //         child: SvgPicture.asset(
-                        //           ImagesPath.star,
-                        //           width: 22,
-                        //           height: 22,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // )
+                        Positioned(
+                          right: 32,
+                          bottom: -16,
+                          child: InkWell(
+                            onTap: () {
+                              showAddPointFunction(
+                                  isParent: true,
+                                  context: context,
+                                  childName: widget
+                                          .teacherStudentProfileInSchoolHouseResponse
+                                          .data
+                                          ?.studentName ??
+                                      "",
+                                  token: widget.token,
+                                  classroomId: item.classroomId ?? "",
+                                  classroomSectionStudentsId: item.classroomSectionStudentsId ?? "",
+                                  studentId: item.studentId ??
+                                      "",
+                                  onCreatePointSuccess: () {});
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 17,
+                              child: CircleAvatar(
+                                backgroundColor: Color(0xFF35a6bc),
+                                radius: 14,
+                                child: SvgPicture.asset(
+                                  ImagesPath.star,
+                                  width: 22,
+                                  height: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                     SizedBox(height: 32),
