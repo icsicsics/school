@@ -16,7 +16,7 @@ class CustomInterceptors extends InterceptorsWrapper {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     debugPrint(
-        "REQUEST [${' '}${options.method}${' '}] ${' '} URL: ${options.baseUrl + options.path} ${jsonEncode(options.data)} \n ${options.headers} \n ${options.queryParameters.toString()}");
+        "REQUEST [${' '}${options.method}${' '}] ${' '} URL: ${options.baseUrl + options.path} ${options.data} \n ${options.headers} \n ${options.queryParameters.toString()}");
     return super.onRequest(options, handler);
   }
 
