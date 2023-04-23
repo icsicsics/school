@@ -97,7 +97,7 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
           children: [
             Expanded(child: SizedBox(), flex: 2),
             Expanded(
-              flex: 5,
+              flex: 6,
               child: ListTile(
                 horizontalTitleGap: 0,
                 title: const Text('Teacher'),

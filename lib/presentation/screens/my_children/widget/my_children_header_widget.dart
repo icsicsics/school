@@ -98,7 +98,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           width: 100,
           child: Image.network(
             images,
-            fit: BoxFit.fill,
+            fit: BoxFit.fitHeight,
             loadingBuilder: (BuildContext context, Widget child,
                 ImageChunkEvent? loadingProgress) {
               if (loadingProgress == null) return child;

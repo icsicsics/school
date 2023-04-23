@@ -40,7 +40,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
         .add(_ChildIconsModel(id: "2", isSelected: false, title: S.current.me));
     for (var element in widget.getTeacherPrinciplByClassroomIdResponse.data!) {
       _list.add(_ChildIconsModel(
-          id: element.id!, title: element.name!, isSelected: false));
+          id: element.principleId!, title: element.name!, isSelected: false));
     }
     // _list.sort((A, B) => A.title
     //     .toString()
