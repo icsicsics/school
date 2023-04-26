@@ -59,7 +59,8 @@ class HomeRepositoryImp extends BaseHomeRepository {
       state = GetFatherInfoFillState(
           error: fatherInfoResponse.errorMessage ?? "Error");
     }
-    return state!;
+    return state  ?? GetFatherInfoFillState(
+        error: "Error");
   }
 
   @override
