@@ -36,7 +36,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       decoration: const BoxDecoration(
         color: ColorsManager.whiteColor,
       ),
-      height: MediaQuery.of(context).size.height / 6,
+      height: MediaQuery.of(context).size.height / 5.5,
       child: Padding(
         padding: const EdgeInsets.only(top: 40, left: 5,right: 5),
         child: Row(
@@ -173,10 +173,10 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
     return widget.teacherHomeResponse.data != null
         ? ClipOval(
             child: Image.network(
-              height: 40,
-              width: 40,
+              height: 60,
+              width: 60,
               widget.teacherHomeResponse.data!.getLogo!.mediaUrl!,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) =>
                   _buildProfilePlaceHolder(),
             ),

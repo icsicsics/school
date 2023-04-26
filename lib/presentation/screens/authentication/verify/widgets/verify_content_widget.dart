@@ -65,7 +65,8 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                 ),
                 sizedBox(height: 20),
                 SendAgainWidget(onTap: () {
-                  BlocProvider.of<VerifyBloc>(context).add(VerifyPhoneNumberEvent(phoneNumber: widget.phoneNumber));
+                  BlocProvider.of<VerifyBloc>(context).add(
+                      VerifyPhoneNumberEvent(phoneNumber: widget.phoneNumber));
                 }),
                 sizedBox(),
                 _buildRoles(widget.roles)
@@ -91,13 +92,11 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
         unselectedWidgetColor: ColorsManager.grayColor,
       ),
       child: SizedBox(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width * 0.8,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: SizedBox(), flex: 2),
             Expanded(
-              flex: 6,
               child: ListTile(
                 horizontalTitleGap: 0,
                 title: const Text('Teacher'),
@@ -113,7 +112,6 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
               ),
             ),
             Expanded(
-              flex: 5,
               child: ListTile(
                 horizontalTitleGap: 0,
                 title: const Text('Parent'),
@@ -127,10 +125,6 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
                   },
                 ),
               ),
-            ),
-            Expanded(
-              child: SizedBox(),
-              flex: 1,
             ),
           ],
         ),

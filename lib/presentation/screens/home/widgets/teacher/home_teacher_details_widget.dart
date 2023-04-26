@@ -51,7 +51,13 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                       padding: const EdgeInsets.only(left: 40, right: 40),
                       child: Row(
                         children: [
-                          FaIcon(getIconFromCss(widget.homeBloc.teacherInfoResponse.data?.houseIcon ?? ""),size: 24),
+                          FaIcon(
+                            getIconFromCss(widget.homeBloc.teacherInfoResponse
+                                    .data?.houseIcon ??
+                                ""),
+                            size: 24,
+                            color: ColorsManager.whiteColor,
+                          ),
                           const SizedBox(
                             width: 8,
                           ),
@@ -112,7 +118,8 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                                     )));
                       },
                       child: CardWidget(
-                        teacherInfoResponse: widget.homeBloc.teacherInfoResponse,
+                        teacherInfoResponse:
+                            widget.homeBloc.teacherInfoResponse,
                         section: widget.teacherHomeResponse.data!
                             .teacherHomePage![index].classroomName!,
                         imagePath: widget.teacherHomeResponse.data!

@@ -21,22 +21,34 @@ class PointsScreenWidget extends StatefulWidget {
 }
 
 class _PointsScreenWidgetState extends State<PointsScreenWidget> {
+  late List<Points> reversedPoints;
   String dateFormat(String dateFormat) {
     return DateFormat('dd/MM/yyyy').format(
-      DateTime.parse(dateFormat),
+      DateTime.parse(dateFormat).toLocal(),
     );
   }
 
 
   String formattedTime(String dateTime) {
-    return DateFormat().add_jm().format(DateTime.parse(dateTime));
+    return DateFormat().add_jm().format(DateTime.parse(dateTime).toLocal());
   }
 
+
+  @override
+  void initState() {
+    super.initState();
+    reversedPoints = widget.points.reversed.toList();
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    reversedPoints = widget.points.reversed.toList();
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: widget.points
+        children: reversedPoints
             .map((e) {
               return _item(
                 onTap: () {},

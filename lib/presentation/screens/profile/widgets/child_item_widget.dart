@@ -19,9 +19,10 @@ class ChildItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height / 13,
+          height: MediaQuery.of(context).size.height / 10,
           width: MediaQuery.of(context).size.width / 5,
           child: Stack(
             children: [
@@ -55,7 +56,7 @@ class ChildItemWidget extends StatelessWidget {
         ),
         const SizedBox(height: 7),
         BoldTextWidget(
-            text: childName, fontSize: 10, color: ColorsManager.grayColor),
+            text: childName, fontSize: 14, color: ColorsManager.grayColor),
       ],
     );
   }
@@ -65,7 +66,7 @@ class ChildItemWidget extends StatelessWidget {
         ? ClipOval(
             child: Image.network(
               imageUrl,
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
               errorBuilder: (context, error, stackTrace) =>
                   _buildProfilePlaceHolder(),
             ),

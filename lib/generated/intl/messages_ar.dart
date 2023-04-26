@@ -38,7 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "camera": MessageLookupByLibrary.simpleMessage("كاميره"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
-        "classHouses": MessageLookupByLibrary.simpleMessage("منازل الصف"),
+        "classHouses": MessageLookupByLibrary.simpleMessage("فرق الصف"),
         "clear": MessageLookupByLibrary.simpleMessage("مسح"),
         "collaboration": MessageLookupByLibrary.simpleMessage("تعاون"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
@@ -106,14 +106,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "resend": MessageLookupByLibrary.simpleMessage("إعادة إرسال"),
         "reward": MessageLookupByLibrary.simpleMessage("مكافأة"),
         "saturday": MessageLookupByLibrary.simpleMessage("السبت"),
-        "schoolHomes": MessageLookupByLibrary.simpleMessage("منازل المدرسة"),
-        "schoolHouses": MessageLookupByLibrary.simpleMessage("منازل المدرسة"),
+        "schoolHomes": MessageLookupByLibrary.simpleMessage("فرق المدرسة"),
+        "schoolHouses": MessageLookupByLibrary.simpleMessage("فرق المدرسة"),
         "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),
         "sep": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "skills": MessageLookupByLibrary.simpleMessage("مهارات"),
-        "studentHouses": MessageLookupByLibrary.simpleMessage("منازل الطلاب"),
+        "studentHouses": MessageLookupByLibrary.simpleMessage("فرق الطلاب"),
         "students": MessageLookupByLibrary.simpleMessage("طلاب"),
         "studentsProfile":
             MessageLookupByLibrary.simpleMessage("الملف الشخصي للطلاب"),
@@ -134,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("تحقق من رقمك"),
-        "viewHouses": MessageLookupByLibrary.simpleMessage("مشاهدة المنازل"),
+        "viewHouses": MessageLookupByLibrary.simpleMessage("مشاهدة الفرق"),
         "weHaveSendTheCodeVerificationToYourMobile":
             MessageLookupByLibrary.simpleMessage(
                 "لقد أرسلنا رمز التحقق إلى رقم هاتفك"),

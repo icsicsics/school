@@ -57,7 +57,9 @@ class TeacherOfWidget extends StatelessWidget {
                                     padding: const EdgeInsets.only(right: 8),
                                     child: ChildItemWidget(
                                       isStartVisible: false,
-                                      imageUrl:"",
+                                      imageUrl:teacherInfoResponse.data!
+                                          .classroomsTeacher![index].getLogo!.mediaUrl ??
+                                          "",
                                       childName: teacherInfoResponse.data!
                                               .classroomsTeacher![index].classroomName ??
                                           "",
