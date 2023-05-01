@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/awesome/fa_icon.dart';
 import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
+import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
@@ -45,7 +46,7 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                 semanticChildCount: 15,
                 itemBuilder: (BuildContext context, int index) {
                   return SchoolHousesCardItemWidget(
-                      icon: FaIcon(getIconFromCss(widget.getClassHousesResponse.data![index].houseIcon!),size: 24),
+                      icon: FaIcon(getIconFromCss(widget.getClassHousesResponse.data![index].houseIcon!),size: 24,color: ColorsManager.primaryColor,),
                       teachersValue: widget.getClassHousesResponse.data![index]
                           .numberTeachersHouse!
                           .toString(),

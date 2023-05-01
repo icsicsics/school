@@ -48,7 +48,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                               text: label,
                               fontSize: 15,
                               color: ColorsManager.blackColor),
-                          const SizedBox(width: 20),
+                          Expanded(child: const SizedBox()),
                           Visibility(visible: hasIcon2, child: icon2),
                         ],
                       ),
@@ -79,7 +79,8 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
           Color titleColor = ColorsManager.titleGrayColor,
           double titleSize = 15}) =>
       Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
         children: [
           MediumTextWidget(
               text: value,

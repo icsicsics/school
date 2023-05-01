@@ -37,12 +37,17 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
   @override
   void initState() {
     super.initState();
+    print("object 1");
     reversedPoints = widget.points.reversed.toList();
   }
+
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void didUpdateWidget(covariant PointsScreenWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("object 2");
+
     reversedPoints = widget.points.reversed.toList();
+
   }
   @override
   Widget build(BuildContext context) {

@@ -14,7 +14,7 @@ class Points {
     this.valueName,
     this.valueId,
     this.principleIcon,
-    this.createdByName,
+    this.createdByName,q
   });
 
   Points.fromJson(dynamic json) {

@@ -32,6 +32,8 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
 
   @override
   void initState() {
+    print("object 3");
+
     print(widget.points.map((e) => e.toJson()));
     points = widget.points;
     _list.add(
@@ -56,6 +58,13 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant MyChildrenWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
+    //     filter: filter
+    //       ..sort((A, B) => A.valueId.toString().compareTo(B.valueId ?? ""))));
+  }
   @override
   Widget build(BuildContext context) {
     return SizedBox(
