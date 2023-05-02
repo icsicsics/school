@@ -11,10 +11,12 @@ import 'package:intl/intl.dart';
 
 class NotificationsItemWidget extends StatelessWidget {
   final NotificationItem notificationItem;
+  final bool isNotificationSelected;
 
   const NotificationsItemWidget({
     Key? key,
     required this.notificationItem,
+    required this.isNotificationSelected,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,8 @@ class NotificationsItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return NotificationDetailsScreen(notificationItem: notificationItem);
+          return NotificationDetailsScreen(notificationItem: notificationItem,
+            isNotificationSelected: isNotificationSelected,);
         })).then((value) {
           if (notificationItem.status == 1) {
             BlocProvider.of<NotificationsBloc>(context).add(
@@ -51,7 +54,7 @@ class NotificationsItemWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Card(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           elevation: 0,
           color: notificationItem.status == 1
               ? Colors.white
@@ -62,8 +65,8 @@ class NotificationsItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.notifications,
+                 Icon(
+                  isNotificationSelected == true ? Icons.notifications : Icons.mail,
                   color: ColorsManager.yellow,
                   size: 26,
                 ),
@@ -85,7 +88,7 @@ class NotificationsItemWidget extends StatelessWidget {
                       BoldTextWidget(
                           text: DateFormat("dd/MM/yyyy  At  HH:MM", "en")
                               .format(DateTime.parse(
-                                  notificationItem.creationDate ?? "")),
+                              notificationItem.creationDate ?? "")),
                           fontSize: 12,
                           color: ColorsManager.blackColor)
                     ],

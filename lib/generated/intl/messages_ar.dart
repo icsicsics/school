@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "camera": MessageLookupByLibrary.simpleMessage("كاميره"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
+        "chooseWhyLeenDeserveThisPoint":
+            MessageLookupByLibrary.simpleMessage("اختر لماذا تستحق هذه النقطة"),
         "classHouses": MessageLookupByLibrary.simpleMessage("فرق الصف"),
         "clear": MessageLookupByLibrary.simpleMessage("مسح"),
         "collaboration": MessageLookupByLibrary.simpleMessage("تعاون"),

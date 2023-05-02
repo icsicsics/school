@@ -38,6 +38,7 @@ class _NotificationsListWidgetState extends State<NotificationsListWidget> {
             padding: const EdgeInsets.symmetric(vertical: 12),
             itemBuilder: (BuildContext context, int index) {
               return NotificationsItemWidget(
+                isNotificationSelected: widget.isNotificationSelected,
                 notificationItem: widget.isNotificationSelected
                     ? widget.notifications[index]
                     : widget.inboxNotifications[index],
@@ -51,6 +52,7 @@ class _NotificationsListWidgetState extends State<NotificationsListWidget> {
             padding: const EdgeInsets.symmetric(vertical: 12),
             itemBuilder: (BuildContext context, int index) {
               return NotificationsItemWidget(
+                isNotificationSelected: false,
                 notificationItem: widget.inboxNotifications[index],
               );
             }),

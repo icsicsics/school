@@ -10,27 +10,30 @@ import 'package:schools/presentation/widgets/regular_text_widget.dart';
 
 class NotificationDetailsScreen extends StatelessWidget {
   final NotificationItem notificationItem;
+  final bool isNotificationSelected;
 
   const NotificationDetailsScreen({
     required this.notificationItem,
+    required this.isNotificationSelected,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        child: Column(
-          children: [
-            _buildAppBar(context),
-            const SizedBox(height: 24),
-            _buildNotificationCard(),
-          ],
+      body: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+          child: Column(
+            children: [
+              _buildAppBar(context),
+              const SizedBox(height: 24),
+              _buildNotificationCard(),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   CustomAppBar _buildAppBar(BuildContext context) {
@@ -72,7 +75,7 @@ class NotificationDetailsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     color: Color(0xffff7f2e)),
                 child: Icon(
-                  Icons.notifications_none_rounded,
+                  isNotificationSelected == true ? Icons.notifications_none_rounded :  Icons.mail,
                   color: Colors.white,
                   size: 24,
                 ),
@@ -80,7 +83,7 @@ class NotificationDetailsScreen extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              Text(notificationItem.title?? ""),
+              Text(notificationItem.title ?? ""),
               Expanded(
                 child: SizedBox(),
               ),
@@ -91,14 +94,15 @@ class NotificationDetailsScreen extends StatelessWidget {
                   color: ColorsManager.blackColor),
             ],
           ),
-          SizedBox(height: 16,),
+          SizedBox(
+            height: 16,
+          ),
           RegularTextWidget(
             textAlign: TextAlign.start,
             color: Colors.black,
             fontSize: 16,
             text: notificationItem.body ?? "",
           ),
-
         ],
       ),
     );
