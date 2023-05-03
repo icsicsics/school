@@ -81,7 +81,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
         } else if (state is PostTeacherCreatePointFailState) {
           _onPostTeacherCreatePointFailState(state.error);
         } else if (state is PostFatherCreatePointSuccessState) {
-          _onPostFatherCreatePointSuccessState(state.response);
+          _onPostFatherCreatePointSuccessState(S.of(context).addedSuccessfully);
         } else if (state is PostFatherCreatePointFailState) {
           _onPostFatherCreatePointFailState(state.error);
         }
@@ -264,13 +264,13 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     showErrorDialogFunction(context: context, textMessage: error);
   }
 
-  void _onPostFatherCreatePointSuccessState(FatherAddPointResponse response) {
+  void _onPostFatherCreatePointSuccessState(String message) {
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(
             isGift: true,
             context: context,
-            textMessage: response.data.toString())
+            textMessage: message)
         .then((value) {
       widget.onCreatePointSuccess();
     });
