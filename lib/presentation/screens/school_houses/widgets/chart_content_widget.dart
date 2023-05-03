@@ -23,10 +23,12 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty) {
-      for (var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
-        columnData.add(SalesData(
-            x: item.houseName ?? "", y: item.totalPointsHouse!.toDouble()));
+    if(widget.schoolHousesBloc.getClassHousesResponse.data != null){
+      if (widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty) {
+        for (var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
+          columnData.add(SalesData(
+              x: item.houseName ?? "", y: item.totalPointsHouse!.toDouble()));
+        }
       }
     }
   }

@@ -99,6 +99,9 @@
   "skills": "مهارات",
   "teacherOf": "معلم ل",
   "schoolHouses": "فرق المدرسة",
-  "errorVerifyCode": "رمز التحقق غير صحيح"
+  "errorVerifyCode": "رمز التحقق غير صحيح",
+  "termsAndConditions": "الأحكام والشروط",
+  "addedSuccessfully": "اضيف بنجاح"
+
 
 }

@@ -36,7 +36,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       decoration: const BoxDecoration(
         color: ColorsManager.whiteColor,
       ),
-      height: MediaQuery.of(context).size.height / 5.5,
+      height: MediaQuery.of(context).size.height / 5.2,
       child: Padding(
         padding: const EdgeInsets.only(top: 40, left: 5,right: 5),
         child: Row(

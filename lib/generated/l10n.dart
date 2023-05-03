@@ -1059,6 +1059,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Terms And Conditions`
+  String get termsAndConditions {
+    return Intl.message(
+      'Terms And Conditions',
+      name: 'termsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added Successfully`
+  String get addedSuccessfully {
+    return Intl.message(
+      'Added Successfully',
+      name: 'addedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

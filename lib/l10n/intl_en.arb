@@ -99,5 +99,7 @@
  "skills":"Skills",
  "teacherOf":"Teacher Of",
  "schoolHouses":"School Houses",
- "errorVerifyCode": "The verification code is incorrect"
+ "errorVerifyCode": "The verification code is incorrect",
+ "termsAndConditions": "Terms And Conditions",
+ "addedSuccessfully": "Added Successfully"
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
@@ -153,12 +154,8 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   void _onGetWeatherFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
 
-  void _switchAccount(context) {
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-            builder: (_) =>
-                LoginScreen()),
-        (route) => false);
+  void _switchAccount(context) async {
+    await SharedPreferencesManager.setIsFather(!((await SharedPreferencesManager.getIsFather()) ?? false));
+    RestartWidget.restartApp(context);
   }
 }

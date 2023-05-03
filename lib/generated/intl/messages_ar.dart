@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("حول"),
         "aboutApp": MessageLookupByLibrary.simpleMessage("حول التطبيق"),
         "addPoint": MessageLookupByLibrary.simpleMessage("أضف نقطة"),
+        "addedSuccessfully": MessageLookupByLibrary.simpleMessage("اضيف بنجاح"),
         "all": MessageLookupByLibrary.simpleMessage(":الكل"),
         "allPoints": MessageLookupByLibrary.simpleMessage("كل النقاط"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
@@ -124,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teacherOf": MessageLookupByLibrary.simpleMessage("معلم ل"),
         "teachers": MessageLookupByLibrary.simpleMessage("معلمون"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
+        "termsAndConditions":
+            MessageLookupByLibrary.simpleMessage("الأحكام والشروط"),
         "thOf": MessageLookupByLibrary.simpleMessage("من"),
         "thePhoneNumberIsWrong":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صحيح"),

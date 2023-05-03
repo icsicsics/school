@@ -111,6 +111,37 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           if(state is GetSchoolHousesLoadingState) {
             return Container();
           }
+
+          return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              ColorsManager.primaryColor,
+                              ColorsManager.secondaryColor,
+                            ],
+                            stops: [0.5, 0.8],
+                          )),
+                      height: 500,
+                      child: SchoolHousesChartWidget(
+                          schoolHousesBloc: _schoolHousesBloc)),
+                  widget.isComingFromHome
+                      ? SchoolHousesContentWidget(
+                    schoolHousesBloc: _schoolHousesBloc,
+                    getClassHousesResponse: getClassHousesResponse,
+                    language: widget.language,
+                    token: widget.token,
+                  )
+                      : IsNotComingFromHomeContentWidget(
+                      schoolHousesBloc: _schoolHousesBloc,
+                      token: widget.token,
+                      getStudentHousesResponse:
+                      getStudentHousesResponse)
+                ],
+              ));
           return getClassHousesResponse.data?.isNotEmpty ?? false
               ? SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),

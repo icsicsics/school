@@ -193,7 +193,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       showAddPointFunction(
           isParent: widget.isParent,
           context: context,
-          childName: "",
+          childName: _teacherStudentProfileInSchoolHouseResponse.data!.studentName ?? "",
           token: _token,
           classroomId: classroomId,
           classroomSectionStudentsId: classroomSectionStudentsId,

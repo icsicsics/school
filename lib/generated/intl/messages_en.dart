@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutApp": MessageLookupByLibrary.simpleMessage("About App"),
         "addPoint": MessageLookupByLibrary.simpleMessage("Add a Point"),
+        "addedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Added Successfully"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "allPoints": MessageLookupByLibrary.simpleMessage("All Points"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
@@ -123,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teacherOf": MessageLookupByLibrary.simpleMessage("Teacher Of"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
+        "termsAndConditions":
+            MessageLookupByLibrary.simpleMessage("Terms And Conditions"),
         "thOf": MessageLookupByLibrary.simpleMessage("th of "),
         "thePhoneNumberIsWrong":
             MessageLookupByLibrary.simpleMessage("The phone number is wrong"),

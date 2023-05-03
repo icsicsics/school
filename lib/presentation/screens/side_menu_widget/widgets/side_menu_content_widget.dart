@@ -94,6 +94,17 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                             ),
                           ),
                           SideMenuItem(
+                            icon: Icons.info_outline,
+                            title: S.of(context).termsAndConditions,
+                            onTap: () =>
+                                BlocProvider.of<SideMenuBloc>(context).add(
+                                  OpenWebViewEvent(
+                                      webViewContent: "",
+                                      screenTitle: S.of(context).termsAndConditions,
+                                      isUrlContent: false),
+                                ),
+                          ),
+                          SideMenuItem(
                             icon: Icons.logout_sharp,
                             title: S.of(context).logout,
                             onTap: () =>
@@ -112,7 +123,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
           const Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.only(bottom: 80),
+              padding: EdgeInsets.only(bottom: 10),
               child: SideMenuSocialMediaWidget(),
             ),
           )
