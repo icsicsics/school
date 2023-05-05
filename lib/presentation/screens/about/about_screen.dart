@@ -36,13 +36,6 @@ class _AboutScreenStatus extends BaseState<AboutScreen> {
               color: ColorsManager.secondaryColor, size: 25),
         ),
         centerTitle: false,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.mail,
-                color: ColorsManager.secondaryColor, size: 30),
-          ),
-        ],
         title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,

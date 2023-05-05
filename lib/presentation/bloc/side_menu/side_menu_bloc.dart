@@ -48,6 +48,7 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
         _onSetProfileImageInShearedPrefranceEvent);
     on<OpenWebViewEvent>(_onOpenWebViewEvent);
     on<ClearTokenEvent>(_onClearTokenEvent);
+    on<NavigateToAboutScreenEvent>(_onNavigateToAboutScreenEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -150,5 +151,9 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
       ClearTokenEvent event, Emitter<SideMenuState> emit) async {
     await _clearTokenUseCase();
     emit(ClearTokenState());
+  }
+
+  FutureOr<void> _onNavigateToAboutScreenEvent(NavigateToAboutScreenEvent event, Emitter<SideMenuState> emit) {
+    emit(NavigateToAboutScreenState());
   }
 }

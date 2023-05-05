@@ -7,6 +7,7 @@ class MediumTextWidget extends StatelessWidget {
   final Color? color;
   final double? fontSize;
   final TextAlign textAlign;
+   final int maxLines;
 
   const MediumTextWidget({
     Key? key,
@@ -14,6 +15,7 @@ class MediumTextWidget extends StatelessWidget {
     required this.fontSize,
     required this.color,
     this.textAlign = TextAlign.start,
+    this.maxLines = 3,
   }) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class MediumTextWidget extends StatelessWidget {
       future: languageFontMediumWeight(),
       builder: (context, snapshot) => Text(
         text!,
-        maxLines: 3,
+        maxLines: maxLines,
         textAlign: textAlign,
         style: TextStyle(
           fontWeight: snapshot.data,

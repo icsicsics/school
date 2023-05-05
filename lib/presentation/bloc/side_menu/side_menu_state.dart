@@ -31,9 +31,9 @@ class GetIsFatherState extends SideMenuState {
 
 class GetLanguageSuccessState extends SideMenuState {
   final String language;
+
   GetLanguageSuccessState({required this.language});
 }
-
 
 class LogoutState extends SideMenuState {}
 
@@ -50,6 +50,7 @@ class GetTeacherInfoFillState extends SideMenuState {
 
   GetTeacherInfoFillState({required this.error});
 }
+
 class GetFatherInfoSuccessState extends SideMenuState {
   final FatherInfoResponse response;
 
@@ -67,24 +68,31 @@ class GetTeacherResponseState extends SideMenuState {
 
   GetTeacherResponseState({required this.response});
 }
+
 class GetFatherResponseState extends SideMenuState {
   final FatherInfoResponse response;
+
   GetFatherResponseState({required this.response});
 }
+
 class GetProfileImageFromShearedPrefranceSuccessState extends SideMenuState {
   final String image;
 
   GetProfileImageFromShearedPrefranceSuccessState({required this.image});
 }
+
 class SetProfileImageInShearedPrefranceSuccessState extends SideMenuState {}
+
 class OpenWebViewState extends SideMenuState {
   final String webViewContent;
   final String screenTitle;
   final bool isUrlContent;
 
-   OpenWebViewState({
+  OpenWebViewState({
     required this.webViewContent,
     required this.screenTitle,
     required this.isUrlContent,
   });
 }
+
+class NavigateToAboutScreenState extends SideMenuState {}

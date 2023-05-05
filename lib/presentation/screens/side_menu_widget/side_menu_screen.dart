@@ -4,6 +4,7 @@ import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
+import 'package:schools/presentation/screens/about/about_screen.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/widgets/dialogs/show_logout_function.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
@@ -114,6 +115,12 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                               screenTitle: state.screenTitle,
                               isUrlContent: state.isUrlContent,
                               content: state.webViewContent);
+                        }
+                        else if (state is NavigateToAboutScreenState) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => AboutScreen()));
                         }
                       },
                       builder: (context, state) {

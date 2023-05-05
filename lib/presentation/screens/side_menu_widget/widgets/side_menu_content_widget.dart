@@ -85,24 +85,19 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                           SideMenuItem(
                             icon: Icons.info_outline,
                             title: S.of(context).aboutApp,
-                            onTap: () =>
-                                BlocProvider.of<SideMenuBloc>(context).add(
-                              OpenWebViewEvent(
-                                  webViewContent: "",
-                                  screenTitle: S.of(context).aboutApp,
-                                  isUrlContent: false),
-                            ),
+                            onTap: () => BlocProvider.of<SideMenuBloc>(context)
+                                .add(NavigateToAboutScreenEvent()),
                           ),
                           SideMenuItem(
                             icon: Icons.info_outline,
                             title: S.of(context).termsAndConditions,
                             onTap: () =>
                                 BlocProvider.of<SideMenuBloc>(context).add(
-                                  OpenWebViewEvent(
-                                      webViewContent: "",
-                                      screenTitle: S.of(context).termsAndConditions,
-                                      isUrlContent: false),
-                                ),
+                              OpenWebViewEvent(
+                                  webViewContent: "",
+                                  screenTitle: S.of(context).termsAndConditions,
+                                  isUrlContent: false),
+                            ),
                           ),
                           SideMenuItem(
                             icon: Icons.logout_sharp,

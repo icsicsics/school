@@ -51,3 +51,5 @@ class OpenWebViewEvent extends SideMenuEvent {
     required this.isUrlContent,
   });
 }
+class NavigateToAboutScreenEvent extends SideMenuEvent {}
+
