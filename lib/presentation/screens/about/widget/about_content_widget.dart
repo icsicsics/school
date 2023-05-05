@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
-import 'package:schools/presentation/screens/about/widget/about_header_widget.dart';
 import 'package:schools/presentation/widgets/medium_text_widget.dart';
 import 'package:video_player/video_player.dart';
 
@@ -20,7 +19,7 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(
-        'https://www.youtube.com/watch?v=qgiW50-0AGQ')
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
@@ -35,7 +34,6 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(_controller.value.isInitialized);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
@@ -70,6 +68,7 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
                     child: VideoPlayer(_controller),
                   )
                 : Container(),
+            SizedBox(height: 32,),
           ],
         ),
       ),
