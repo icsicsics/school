@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/core/utils/awesome/fa_icon.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/generated/l10n.dart';
@@ -29,20 +32,26 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   List<Points> points = [];
   List<Points> filter = [];
   final List<_ChildIconsModel> _list = [];
+  String userId = "";
 
   @override
   void initState() {
-    print("object 3");
+    super.initState();
+  }
 
-    print(widget.points.map((e) => e.toJson()));
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    userId = await SharedPreferencesManager().getUserId() ?? "";
+
     points = widget.points;
     _list.add(
-        _ChildIconsModel(id: "-1", isSelected: true, title: S.current.all));
-    _list
-        .add(_ChildIconsModel(id: "2", isSelected: false, title: S.current.me));
+        _ChildIconsModel(id: "-1", isSelected: true, title: S.current.all,icon: ""));
+    _list.add(
+        _ChildIconsModel(id: userId, isSelected: false, title: S.current.me,icon: ""));
     for (var element in widget.getTeacherPrinciplByClassroomIdResponse.data!) {
       _list.add(_ChildIconsModel(
-          id: element.principleId!, title: element.name!, isSelected: false));
+          id: element.principleId!, title: element.name!, isSelected: false,icon: element.icon!));
     }
     // _list.sort((A, B) => A.title
     //     .toString()
@@ -55,7 +64,6 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     BlocProvider.of<MyChildrenBloc>(context).add(MyChildrenFilterEvent(
         filter: filter
           ..sort((A, B) => A.valueId.toString().compareTo(B.valueId ?? ""))));
-    super.initState();
   }
 
   @override
@@ -65,6 +73,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     //     filter: filter
     //       ..sort((A, B) => A.valueId.toString().compareTo(B.valueId ?? ""))));
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -86,9 +95,11 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   }
 
   Widget _checkIndexForLabel(_ChildIconsModel model) {
-    if (model.id == "-1" || model.id == "2") {
+    if (model.id == "-1" || model.id == userId) {
       return InkWell(
-        onTap: () => _selectItem(model.id, model.title, model.isSelected),
+        onTap: () {
+          _selectItem(model.id, model.title, model.isSelected);
+        },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: MediumTextWidget(
@@ -101,15 +112,17 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   }
 
   Widget _checkIndexForValues(_ChildIconsModel model) {
-    if (model.id == "-1" || model.id == "2") {
+    if (model.id == "-1" || model.id == userId) {
       return const SizedBox();
     } else {
       return InkWell(
         onTap: () => _selectItem(model.id, model.title, model.isSelected),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: MediumTextWidget(
-              text: model.title, fontSize: 15, color: _getColor(model)),
+          padding: const EdgeInsets.all(10.0),
+          child: FaIcon(getIconFromCss(model.icon ?? ""), color: _getColor(model), size: 24)
+          // child: MediumTextWidget(
+          //     text: model.title, fontSize: 15, color: _getColor(model))
+    ,
         ),
       );
     }
@@ -134,8 +147,26 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
           filter.clear();
           filter.addAll(points);
         }
+      } else if (id == userId) {
+        if (element.id == userId && element.isSelected == false) {
+          setState(() {
+            _list.any((element) => element.isSelected = false);
+            element.isSelected = true;
+          });
+          filter.clear();
+          for(var item in points){
+            if(item.createdBy == userId){
+              filter.add(item);
+            }
+          }
+        }
       } else if (id != "-1") {
         if (element.id == "-1" && element.isSelected == true) {
+          setState(() {
+            element.isSelected = false;
+          });
+        }
+        if (element.id == userId && element.isSelected == true) {
           setState(() {
             element.isSelected = false;
           });
@@ -196,10 +227,12 @@ class _ChildIconsModel {
   String id;
   String title;
   bool isSelected;
+  String icon;
 
   _ChildIconsModel({
     required this.id,
     required this.isSelected,
     required this.title,
+    required this.icon,
   });
 }

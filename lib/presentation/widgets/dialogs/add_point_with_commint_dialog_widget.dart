@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/core/utils/awesome/fa_icon.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/father_point/response/father_add_point_response.dart';
@@ -77,7 +79,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
         } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
           _onGetTeacherPrinciplByClassroomIdFillState(state.error);
         } else if (state is PostTeacherCreatePointSuccessState) {
-          _onPostTeacherCreatePointSuccessState(state.response);
+          _onPostTeacherCreatePointSuccessState(S.of(context).addedSuccessfully);
         } else if (state is PostTeacherCreatePointFailState) {
           _onPostTeacherCreatePointFailState(state.error);
         } else if (state is PostFatherCreatePointSuccessState) {
@@ -129,9 +131,12 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                       items: _listOfItems
                           .map((e) => DropdownMenuItem(
                                 value: e.id,
-                                child: Text(e.name.toString(),
-                                    style: const TextStyle(
-                                        color: ColorsManager.sameBlack)),
+                                child: ListTile(
+                                  title: Text(e.name.toString(),
+                                      style: const TextStyle(
+                                          color: ColorsManager.sameBlack)),
+                                  leading: FaIcon(getIconFromCss(e.icon ?? ""), color: ColorsManager.secondaryColor, size: 22),
+                                ),
                               ))
                           .toList(),
                       onChanged: (newValue) {
@@ -246,13 +251,13 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     }
   }
 
-  void _onPostTeacherCreatePointSuccessState(TeacherAddPointResponse response) {
+  void _onPostTeacherCreatePointSuccessState(String message) {
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(
             isGift: true,
             context: context,
-            textMessage: response.data.toString())
+            textMessage: message)
         .then((value) {
       widget.onCreatePointSuccess();
     });
