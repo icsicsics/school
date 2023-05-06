@@ -19,7 +19,7 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
+        'https://udboxes.com/server/file/video/udb_645506546a39d_ejabi.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
@@ -62,16 +62,46 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
             SizedBox(
               height: 16,
             ),
-            _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  )
-                : Container(),
-            SizedBox(height: 32,),
+            InkWell(
+              onTap: () {
+                if (_controller.value.isPlaying) {
+                  _controller.pause();
+                } else {
+                  _controller.play();
+                }
+                setState(() {});
+              },
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  _controller.value.isInitialized
+                      ? AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: VideoPlayer(_controller),
+                        )
+                      : Container(),
+                  _controller.value.isPlaying ? Container() : _buildVideoIcon(),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 32,
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildVideoIcon() {
+    return _controller.value.isPlaying
+        ? Icon(
+            Icons.pause,
+            size: 50,
+          )
+        : Icon(
+            Icons.play_arrow,
+            size: 50,
+          );
   }
 }
