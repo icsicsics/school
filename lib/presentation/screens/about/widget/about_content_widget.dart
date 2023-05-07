@@ -19,7 +19,7 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(
-        'https://udboxes.com/server/file/video/udb_645506546a39d_ejabi.mp4')
+        'https://l.top4top.io/m_2683gqn711.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
@@ -48,6 +48,7 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
               width: 150,
               height: 150,
             ),
+
 
             SizedBox(
               height: 16,
