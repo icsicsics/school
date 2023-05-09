@@ -85,7 +85,7 @@ class _PhoneErrorDialogWidgetState extends State<PhoneErrorDialogWidget> {
                       },
                       icon: ImagesPath.youtube),
                   _item(onTap: () {
-                    launchWhatsapp("");
+                    launchWhatsapp("+962795191633");
                   }, icon: ImagesPath.whats),
                 ],
               ),
@@ -125,7 +125,7 @@ class _PhoneErrorDialogWidgetState extends State<PhoneErrorDialogWidget> {
               shape: BoxShape.circle,
             ),
             child: SvgPicture.asset(
-              matchTextDirection: true,
+              matchTextDirection: false,
               icon,
               width: 24,
               height: 24,
@@ -135,16 +135,8 @@ class _PhoneErrorDialogWidgetState extends State<PhoneErrorDialogWidget> {
       );
 
   void  launchWhatsapp(String whatsappNumber) async {
-    var whatsappUrl = "https://www.whatsapp.com/download";
-    await canLaunchUrl(Uri.parse(whatsappUrl))
-        ? launchUrl(Uri.parse(whatsappUrl))
+    await canLaunchUrl(Uri.parse(whatsappNumber))
+        ? launchUrl(Uri.parse(whatsappNumber))
         : launch("https://wa.me/$whatsappNumber");
-
-    const url = "https://www.whatsapp.com";
-    if (await canLaunchUrl((Uri.parse(url)))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
