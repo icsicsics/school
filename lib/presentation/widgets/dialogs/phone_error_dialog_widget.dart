@@ -5,10 +5,12 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/widgets/custom_button_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PhoneErrorDialogWidget extends StatefulWidget {
   final String textMessage;
-  final String language ;
+  final String language;
+
   const PhoneErrorDialogWidget({
     Key? key,
     required this.textMessage,
@@ -24,20 +26,23 @@ class _PhoneErrorDialogWidgetState extends State<PhoneErrorDialogWidget> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: widget.language == "ar" ? 310 : 370,
-        decoration: const BoxDecoration(
-            color: ColorsManager.whiteColor,
+        height: widget.language == "ar" ? 382 : 442,
+        decoration:  BoxDecoration(
+            color: Colors.white.withOpacity(0.95),
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 12,
+            ),
             SvgPicture.asset(
               ImagesPath.phoneError,
               fit: BoxFit.scaleDown,
             ),
             SizedBox(
-              height: 28,
+              height: 16,
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16),
@@ -49,7 +54,44 @@ class _PhoneErrorDialogWidgetState extends State<PhoneErrorDialogWidget> {
                   color: ColorsManager.darkGrayColor),
             ),
             SizedBox(
-              height: 16,
+              height: 8,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              child: BoldTextWidget(
+                  text: S.of(context).toLearnMoreAboutEjabi,
+                  fontSize: 16,
+                  height: 2,
+                  textAlign: TextAlign.center,
+                  color: ColorsManager.grayColor),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 8, left: 8, top: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _item(
+                      onTap: () {
+                        _launchUrl("https://ejabiapp.com/");
+                      },
+                      icon: ImagesPath.web),
+                  _item(
+                      onTap: () {
+                        _launchUrl("https://youtu.be/qgiW50-0AGQ");
+                      },
+                      icon: ImagesPath.youtube),
+                  _item(onTap: () {
+                    launchWhatsapp("");
+                  }, icon: ImagesPath.whats),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 8,
             ),
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 3,
@@ -64,5 +106,45 @@ class _PhoneErrorDialogWidgetState extends State<PhoneErrorDialogWidget> {
             ),
           ],
         ));
+  }
+
+  Future<void> _launchUrl(String url) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Widget _item({required Function() onTap, required String icon}) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            padding: EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+            child: SvgPicture.asset(
+              matchTextDirection: true,
+              icon,
+              width: 24,
+              height: 24,
+            ),
+          ),
+        ),
+      );
+
+  void  launchWhatsapp(String whatsappNumber) async {
+    var whatsappUrl = "https://www.whatsapp.com/download";
+    await canLaunchUrl(Uri.parse(whatsappUrl))
+        ? launchUrl(Uri.parse(whatsappUrl))
+        : launch("https://wa.me/$whatsappNumber");
+
+    const url = "https://www.whatsapp.com";
+    if (await canLaunchUrl((Uri.parse(url)))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

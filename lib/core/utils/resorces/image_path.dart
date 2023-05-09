@@ -20,4 +20,7 @@ class ImagesPath {
   static const String arrowBack = "${_basePath}ic_arrow_back.svg";
   static const String phoneError = "${_basePath}ic_phone_error.svg";
   static const String phoneErrorCircle = "${_basePath}ic_error_with_circle.svg";
+  static const String web = "${_basePath}web.svg";
+  static const String whats = "${_basePath}whats.svg";
+  static const String youtube = "${_basePath}youtube.svg";
 }

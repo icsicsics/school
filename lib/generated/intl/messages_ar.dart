@@ -100,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
         "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(
             "هذا الرقم غير مسجل في تطبيق إيجابي, يرجى التواصل مع مدير قسم المعلومات في مدرستك لإكمال عملية التسجيل."),
-        "phoneErrorOk": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
+        "phoneErrorOk": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "pleaseEnterThePhoneNumber":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم الهاتف"),
@@ -137,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صحيح"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الاسبوع"),
         "thursday": MessageLookupByLibrary.simpleMessage("الخميس"),
+        "toLearnMoreAboutEjabi":
+            MessageLookupByLibrary.simpleMessage("لمعرفة المزيد عن ايجابي"),
         "tuesday": MessageLookupByLibrary.simpleMessage("الثلاثاء"),
         "typeWhyLeenDeserveThisPoint":
             MessageLookupByLibrary.simpleMessage("اكتب لماذا تستحق هذه النقطة"),

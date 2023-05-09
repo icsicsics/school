@@ -1100,11 +1100,21 @@ class S {
     );
   }
 
-  /// `Try again`
+  /// `Close`
   String get phoneErrorOk {
     return Intl.message(
-      'Try again',
+      'Close',
       name: 'phoneErrorOk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To learn more about Ejabi`
+  String get toLearnMoreAboutEjabi {
+    return Intl.message(
+      'To learn more about Ejabi',
+      name: 'toLearnMoreAboutEjabi',
       desc: '',
       args: [],
     );

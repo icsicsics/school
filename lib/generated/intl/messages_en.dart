@@ -100,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(
             "This phone number is not registered in the system, please contact the Ejabi system administrator from your school to complete your registration."),
-        "phoneErrorOk": MessageLookupByLibrary.simpleMessage("Try again"),
+        "phoneErrorOk": MessageLookupByLibrary.simpleMessage("Close"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseEnterThePhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone number"),
@@ -137,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The phone number is wrong"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "toLearnMoreAboutEjabi":
+            MessageLookupByLibrary.simpleMessage("To learn more about Ejabi"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),
