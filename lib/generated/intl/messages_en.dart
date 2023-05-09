@@ -98,6 +98,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("Number"),
         "oct": MessageLookupByLibrary.simpleMessage("october"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "This phone number is not registered in the system, please contact the Ejabi system administrator from your school to complete your registration."),
+        "phoneErrorOk": MessageLookupByLibrary.simpleMessage("Try again"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseEnterThePhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone number"),

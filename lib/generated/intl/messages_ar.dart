@@ -98,6 +98,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
         "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
+        "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "هذا الرقم غير مسجل في تطبيق إيجابي, يرجى التواصل مع مدير قسم المعلومات في مدرستك لإكمال عملية التسجيل."),
+        "phoneErrorOk": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "pleaseEnterThePhoneNumber":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم الهاتف"),

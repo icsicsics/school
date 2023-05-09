@@ -7,6 +7,7 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
+import 'package:schools/presentation/widgets/dialogs/phone_error_dialog_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/screens/authentication/login/widgets/login_content_widget.dart';
 import 'package:schools/presentation/screens/authentication/verify/verify_screen.dart';
@@ -24,6 +25,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   LoginBloc get _loginBloc => BlocProvider.of<LoginBloc>(context);
   TextEditingController countryController = TextEditingController();
   String _countryCode = "";
+  String _language = '';
 
   @override
   void initState() {
@@ -34,7 +36,6 @@ class _LoginScreenState extends BaseState<LoginScreen> {
 
   @override
   Widget baseBuild(BuildContext context) {
-    String _language = '';
     return Scaffold(
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<LoginBloc, LoginState>(
@@ -64,8 +65,18 @@ class _LoginScreenState extends BaseState<LoginScreen> {
                           roles: state.roles,
                         )));
           } else if (state is VerifyPhoneNumberErrorState) {
-            showErrorDialogFunction(
-                context: context, textMessage: state.errorMessage);
+
+            showDialog(
+                barrierDismissible: true,
+                context: context,
+                builder: (BuildContext context) => Dialog(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    child: PhoneErrorDialogWidget(
+                      textMessage: S.of(context).phoneErrorMessage,
+                      language: _language,
+                    )));
+
           } else if (state is SelectCountryCodeState) {
             _countryCode = state.phoneNumber.dialCode ?? "";
           } else if(state is VerifyCodeSuccessState){

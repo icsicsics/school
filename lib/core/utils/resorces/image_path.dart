@@ -18,4 +18,6 @@ class ImagesPath {
   static const String skills = "${_basePath}skills.svg";
   static const String error = "${_basePath}ic_error.svg";
   static const String arrowBack = "${_basePath}ic_arrow_back.svg";
+  static const String phoneError = "${_basePath}ic_phone_error.svg";
+  static const String phoneErrorCircle = "${_basePath}ic_error_with_circle.svg";
 }

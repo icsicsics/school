@@ -1089,6 +1089,26 @@ class S {
       args: [],
     );
   }
+
+  /// `This phone number is not registered in the system, please contact the Ejabi system administrator from your school to complete your registration.`
+  String get phoneErrorMessage {
+    return Intl.message(
+      'This phone number is not registered in the system, please contact the Ejabi system administrator from your school to complete your registration.',
+      name: 'phoneErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try again`
+  String get phoneErrorOk {
+    return Intl.message(
+      'Try again',
+      name: 'phoneErrorOk',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

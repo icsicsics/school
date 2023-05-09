@@ -10,6 +10,7 @@ class BoldTextWidget extends StatelessWidget {
   final TextAlign textAlign;
   final TextDecoration? textDecoration;
   final TextOverflow? textOverflow;
+  final double? height;
 
   const BoldTextWidget(
       {Key? key,
@@ -18,6 +19,7 @@ class BoldTextWidget extends StatelessWidget {
       required this.color,
       this.textAlign = TextAlign.start,
       this.textDecoration,
+      this.height,
       this.textOverflow})
       : super(key: key);
 
@@ -34,6 +36,7 @@ class BoldTextWidget extends StatelessWidget {
                 fontWeight: snapshot.data,
                 color: color,
                 fontSize: fontSize,
+                height:height
               ),
               textAlign: textAlign,
             ));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SideMenuSocialMediaWidget extends StatefulWidget {
   const SideMenuSocialMediaWidget({Key? key}) : super(key: key);
@@ -18,14 +19,26 @@ class _SideMenuSocialMediaWidgetState extends State<SideMenuSocialMediaWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _item(onTap: () {}, icon: FontAwesomeIcons.facebook),
+          _item(onTap: () {
+
+          }, icon: FontAwesomeIcons.facebook),
           _item(onTap: () {}, icon: FontAwesomeIcons.instagram),
           _item(onTap: () {}, icon: FontAwesomeIcons.twitter),
-          _item(onTap: () {}, icon: FontAwesomeIcons.youtube),
-          _item(onTap: () {}, icon: Icons.language),
+          _item(onTap: () {
+            _launchUrl("https://youtu.be/qgiW50-0AGQ");
+          }, icon: FontAwesomeIcons.youtube),
+          _item(onTap: () {
+            _launchUrl("https://ejabiapp.com/");
+          }, icon: Icons.language),
         ],
       ),
     );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw Exception('Could not launch $url');
+    }
   }
 
   Widget _item({required Function() onTap, required IconData icon}) => Padding(
