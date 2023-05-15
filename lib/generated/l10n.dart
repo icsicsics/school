@@ -530,10 +530,10 @@ class S {
     );
   }
 
-  /// `About App`
+  /// `About Ejabi`
   String get aboutApp {
     return Intl.message(
-      'About App',
+      'About Ejabi',
       name: 'aboutApp',
       desc: '',
       args: [],

@@ -64,3 +64,7 @@ class SelectCountryCodeState extends LoginState {
 class VerifyCodeSuccessState extends LoginState {}
 
 class VerifyCodeErrorState extends LoginState {}
+
+class SaveLanguageCodeFailedState extends LoginState {}
+
+class ChangeLanguageSuccessState extends LoginState {}

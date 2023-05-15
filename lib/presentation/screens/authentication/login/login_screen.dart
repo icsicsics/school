@@ -11,6 +11,7 @@ import 'package:schools/presentation/widgets/dialogs/phone_error_dialog_widget.d
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/screens/authentication/login/widgets/login_content_widget.dart';
 import 'package:schools/presentation/screens/authentication/verify/verify_screen.dart';
+import 'package:schools/presentation/widgets/restart_widget.dart';
 
 class LoginScreen extends BaseStatefulWidget {
   const LoginScreen({
@@ -53,17 +54,17 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           } else if (state is GetLanguageSuccessState) {
             _language = state.language;
           } else if (state is VerifyPhoneNumberSuccessState) {
-            _loginBloc.add(VerifyCodeEvent(
-                phoneNumber: state.phoneNumber,
-                verifyCode: state.code));
+            // _loginBloc.add(VerifyCodeEvent(
+            //     phoneNumber: state.phoneNumber,
+            //     verifyCode: state.code));
             //
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (_) => VerifyScreen(
-            //               phoneNumber: state.phoneNumber,
-            //               roles: state.roles,
-            //             )));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => VerifyScreen(
+                          phoneNumber: state.phoneNumber,
+                          roles: state.roles,
+                        )));
           } else if (state is VerifyPhoneNumberErrorState) {
 
             showDialog(
@@ -84,6 +85,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
                 context, MaterialPageRoute(builder: (_) => const HomeScreen()));
 
           } else if (state is VerifyCodeErrorState){
+          } else if (state is ChangeLanguageSuccessState) {
+            _restartApp();
           }
         },
         builder: (context, state) {
@@ -94,6 +97,10 @@ class _LoginScreenState extends BaseState<LoginScreen> {
         },
       ),
     );
+  }
+
+  void _restartApp() {
+    RestartWidget.restartApp(context);
   }
 
   void _onLoginConfirmButtonState() {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
@@ -11,11 +10,11 @@ class SideMenuHeader extends StatelessWidget {
   final String language;
   final bool isFather;
 
-
-  const SideMenuHeader({Key? key,
-    required this.bloc,
-    required this.language,
-    required this.isFather})
+  const SideMenuHeader(
+      {Key? key,
+      required this.bloc,
+      required this.language,
+      required this.isFather})
       : super(key: key);
 
   @override
@@ -65,16 +64,13 @@ class SideMenuHeader extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              BoldTextWidget(
-                  text: isFather != true
-                      ? bloc.teacherInfoResponse.data != null
-                          ? bloc.teacherInfoResponse.data!.email
-                          : ""
-                      : bloc.fatherInfoResponse.data != null
-                          ? bloc.fatherInfoResponse.data!.parentName
-                          : "",
-                  fontSize: 12,
-                  color: ColorsManager.borderColor),
+              if (!isFather)
+                BoldTextWidget(
+                    text: bloc.teacherInfoResponse.data != null
+                        ? bloc.teacherInfoResponse.data!.email
+                        : "",
+                    fontSize: 12,
+                    color: ColorsManager.borderColor),
               const SizedBox(
                 height: 2,
               ),
@@ -84,7 +80,7 @@ class SideMenuHeader extends StatelessWidget {
                           ? bloc.teacherInfoResponse.data!.phoneNumber
                           : ""
                       : bloc.fatherInfoResponse.data != null
-                      ? bloc.fatherInfoResponse.data!.phoneNumber
+                          ? bloc.fatherInfoResponse.data!.phoneNumber
                           : "",
                   fontSize: 12,
                   color: ColorsManager.borderColor)
@@ -96,22 +92,37 @@ class SideMenuHeader extends StatelessWidget {
   }
 
   Widget profileImageWidget() {
-    return bloc.profileImage.isNotEmpty
-        ? ClipOval(
-            child: Image.network(
-              bloc.profileImage,
-              height: 110,
-              width: 110,
-              fit: BoxFit.fill,
-              errorBuilder: (context, error, stackTrace) =>
-                  _buildProfilePlaceHolder(),
-            ),
-          )
-        : _buildProfilePlaceHolder();
+    if (isFather) {
+      return bloc.fatherInfoResponse.data == null
+          ? _buildProfilePlaceHolder()
+          : ClipOval(
+              child: Image.network(
+                bloc.fatherInfoResponse.data?.getImage?.mediaUrl ?? "",
+                height: 110,
+                width: 110,
+                fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) =>
+                    _buildProfilePlaceHolder(),
+              ),
+            );
+    } else {
+      return bloc.teacherInfoResponse.data == null
+          ? _buildProfilePlaceHolder()
+          : ClipOval(
+              child: Image.network(
+                bloc.teacherInfoResponse.data!.getImage!.mediaUrl ?? "",
+                height: 110,
+                width: 110,
+                fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) =>
+                    _buildProfilePlaceHolder(),
+              ),
+            );
+    }
   }
 
   CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
-    radius: 50,
+        radius: 50,
         child: SvgPicture.asset(ImagesPath.avatar,
             fit: BoxFit.cover, height: double.infinity, width: 150),
       );

@@ -32,7 +32,9 @@ class _LoginContentWidgetState extends State<LoginContentWidget> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const WelcomeWidget(),
+          WelcomeWidget(
+              language: widget.language,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(

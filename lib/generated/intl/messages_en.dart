@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
-        "aboutApp": MessageLookupByLibrary.simpleMessage("About App"),
+        "aboutApp": MessageLookupByLibrary.simpleMessage("About Ejabi"),
         "aboutUsDescription": MessageLookupByLibrary.simpleMessage(
             "The first interactive phone application between school and home supported by an integrated electronic platform to promote positive behavior and modify unwanted behavior, through easy and fun tools for students, counselors, teachers, and parents, and enables the school administration to follow up on the extent of the application of the program, and follow up the behavioral aspect within the school environment, and contains many services that enable the school to implement its vision and plans regarding the behavioral aspect."),
         "addPoint": MessageLookupByLibrary.simpleMessage("Add a Point"),

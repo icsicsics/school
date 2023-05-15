@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("حول"),
-        "aboutApp": MessageLookupByLibrary.simpleMessage("حول التطبيق"),
+        "aboutApp": MessageLookupByLibrary.simpleMessage("عن إيجابي"),
         "aboutUsDescription": MessageLookupByLibrary.simpleMessage(
             "أول تطبيق هاتفي تفاعلي بين المدرسة والبيت مدعوم بمنصة الكترونية متكاملة لتعزيز السلوك الإيجابي وتعديل السلوك غير المرغوب؛ من خلال أدوات سهلة وممتعة للطلبة والمرشدين والمعلمين وأولياء الأمور، ويمكّن الإدارة المدرسية من متابعة مدى تطبيق البرنامج؛ ومتابعة الجانب السلوكي داخل بيئة المدرسة، ويحتوي على العديد من الخدمات التي تمكن المدرسة من تطبيق رؤيتها وخططها فيما يتعلق بالجانب السلوكي."),
         "addPoint": MessageLookupByLibrary.simpleMessage("أضف نقطة"),

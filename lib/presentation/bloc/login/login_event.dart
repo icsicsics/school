@@ -36,3 +36,9 @@ class VerifyCodeEvent extends LoginEvent {
     required this.verifyCode,
   });
 }
+
+class ChangeLanguageEvent extends LoginEvent {
+  final String language;
+
+  ChangeLanguageEvent(this.language);
+}

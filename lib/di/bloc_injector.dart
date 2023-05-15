@@ -33,6 +33,7 @@ Future<void> initializeBlocDependencies() async {
         injector(),
         injector(),
         injector(),
+        injector(),
       ));
   injector.registerFactory<VerifyBloc>(() => VerifyBloc(
         injector(),

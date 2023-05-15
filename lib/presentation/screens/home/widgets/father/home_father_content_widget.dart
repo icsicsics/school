@@ -54,6 +54,12 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
   }
 
   @override
+  void didUpdateWidget(covariant HomeFatherContentWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 570,
@@ -153,7 +159,12 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                     classroomSectionStudentsId: item.classroomSectionStudentsId ?? "",
                                     studentId: item.studentId ??
                                         "",
-                                    onCreatePointSuccess: () {});
+                                    onCreatePointSuccess: () {
+                                      BlocProvider.of<HomeBloc>(context).add(
+                                          GetStudentProfileInSchoolHouseEvent(
+                                              widget.parentHomeResponse.data![_current].studentId ??
+                                                  ""));
+                                    });
                               },
                               child: CircleAvatar(
                                 backgroundColor: Colors.white,
@@ -280,7 +291,10 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                             ],
                                           ))
                                       .toList(),
-                            )
+                            ),
+                            SizedBox(
+                              height: 100,
+                            ),
                           ],
                         ),
                       )

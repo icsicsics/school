@@ -84,8 +84,13 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         } else if (state is GetLanguageSuccessState) {
           language = state.language;
         } else if (state is TeacherChangePhotoSuccessState) {
-          _bloc.add(
-              SetTeacherProfileImageInShearedPrefranceEvent(image:_imagePath));
+          if (_isFather) {
+            _bloc.add(GetFatherInfoEvent(token: _token));
+          } else {
+            _bloc.add(GetTeacherInfoEvent(token: _token));
+          }
+          // _bloc.add(
+          //     SetTeacherProfileImageInShearedPrefranceEvent(image:_imagePath));
         } else if(state is ChangeLanguageSuccessState){
           _restartApp();
         } else if (state is SaveLanguageCodeFailedState){

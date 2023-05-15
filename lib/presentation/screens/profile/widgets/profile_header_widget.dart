@@ -71,11 +71,12 @@ class ProfileHeaderWidget extends StatelessWidget {
               child: Stack(
                 children: [
                   Center(
-                      child: SizedBox(
-                    width: 150,
-                    height: 150,
-                    child: profileImageWidget(),
-                  )),
+                    child: SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: profileImageWidget(),
+                    ),
+                  ),
                   GestureDetector(
                     onTap: () => bloc.add(OpenCameraGalleryBottomSheetEvent()),
                     child: Padding(
@@ -103,6 +104,24 @@ class ProfileHeaderWidget extends StatelessWidget {
   }
 
   Widget profileImageWidget() {
+    if (isFather) {
+      return fatherInfoResponse!.data == null
+          ? _buildProfilePlaceHolder()
+          : SizedBox(
+              width: 150,
+              height: 150,
+              child: image(fatherInfoResponse!.data!.getImage!.mediaUrl ?? ""),
+            );
+    } else {
+      return teacherInfoResponse!.data == null
+          ? _buildProfilePlaceHolder()
+          : SizedBox(
+              width: 150,
+              height: 150,
+              child: image(teacherInfoResponse!.data!.getImage!.mediaUrl ?? ""),
+            );
+    }
+
     return profileImage.isNotEmpty
         ? ClipOval(
             child: Image.network(
@@ -129,7 +148,6 @@ class ProfileHeaderWidget extends StatelessWidget {
         child: SvgPicture.asset(ImagesPath.avatar,
             fit: BoxFit.cover, height: double.infinity),
       );
-
 
   Widget image(images) {
     return CircleAvatar(

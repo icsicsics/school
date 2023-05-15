@@ -41,7 +41,7 @@ class FatherOfWidget extends StatelessWidget {
                           fontSize: 16,
                           color: ColorsManager.secondaryColor),
                       SizedBox(
-                        height: 105,
+                        height: 120,
                         child: ListView.builder(
                             padding: const EdgeInsets.all(5),
                             itemCount:

@@ -140,15 +140,31 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                               ))
                           .toList(),
                       onChanged: (newValue) {
-                        setState(() {
-                          if (newValue ==
-                              "1c70fb02-e34c-43fe-7215-08db46379640") {
+                        bool flag = false ;
+                        for(var item in _listOfItems){
+                          if(newValue == (item.id ?? "") && (item.name!.toLowerCase() == "others" || item.name!.toLowerCase() == "اخرى")) {
                             isAddCommit = true;
-                          } else {
-                            isAddCommit = false;
-                            _addValue(newValue);
+                            flag = true;
+                            break;
                           }
-                          dropdownValue = newValue ?? "";
+                        }
+
+                        if(flag ==false) {
+                          isAddCommit = false;
+                          _addValue(newValue);
+                        }
+
+                        dropdownValue = newValue ?? "";
+
+                        setState(() {
+                          // if (newValue ==
+                          //     "1c70fb02-e34c-43fe-7215-08db46379640") {
+                          //   isAddCommit = true;
+                          // } else {
+                          //   isAddCommit = false;
+                          //   _addValue(newValue);
+                          // }
+                          // dropdownValue = newValue ?? "";
                         });
                       },
                     ),

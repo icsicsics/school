@@ -8,6 +8,7 @@ import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
 import 'package:schools/data/source/remote/model/login/login_response.dart';
 import 'package:schools/domain/usecases/get_language_use_case.dart';
+import 'package:schools/domain/usecases/save_language_use_case.dart';
 import 'package:schools/domain/usecases/set_phone_number_use_case.dart';
 import 'package:schools/domain/usecases/set_refresh_token_use_case.dart';
 import 'package:schools/domain/usecases/set_token_use_case.dart';
@@ -23,6 +24,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final SetUserIdUseCase _setUserIdUseCase;
   final SetTokenUseCase _setTokenUseCase;
   final SetRefreshTokenUseCase _setRefreshTokenUseCase;
+  final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
+
 
   LoginBloc(
     this._getLanguageCodeUseCase,
@@ -30,6 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     this._setPhoneNumberUseCase,
     this._setRefreshTokenUseCase,
     this._setTokenUseCase,
+    this._saveLanguageCodeUseCase,
   ) : super(LoginInitialState()) {
     on<LoginClearButtonEvent>(_onLoginClearButtonEvent);
     on<LoginConfirmButtonEvent>(_onLoginConfirmButtonEvent);
@@ -38,6 +42,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<VerifyPhoneNumberEvent>(_onVerifyPhoneNumberEvent);
     on<SelectCountryCodeEvent>(_onSelectCountryCodeEvent);
     on<VerifyCodeEvent>(_onVerifyCodeEvent);
+    on<ChangeLanguageEvent>(_onChangeLanguageEvent);
   }
 
   FutureOr<void> _onLoginClearButtonEvent(
@@ -108,5 +113,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
 
     emit(HideLoadingState());
+  }
+
+  FutureOr<void> _onChangeLanguageEvent(
+      ChangeLanguageEvent event, Emitter<LoginState> emit) async {
+    bool savedStatus = await _saveLanguageCodeUseCase(event.language);
+    if (!savedStatus) {
+      emit(SaveLanguageCodeFailedState());
+    } else {
+      emit(ChangeLanguageSuccessState());
+    }
   }
 }
