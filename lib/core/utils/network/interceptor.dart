@@ -29,13 +29,13 @@ class CustomInterceptors extends InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
-    // if(err.response?.statusCode == 401){
-    //   Response response = await DioHelper.refreshToken((await GetPhoneNumberUseCase(injector())()?? ""), (await GetRefreshTokenUseCase(injector())()?? ""));
-    //   GetTokenResponse getTokenResponse = GetTokenResponse.fromJson(response.data);
-    //   await SetTokenUseCase(injector())(token: getTokenResponse.data!.token!.accessToken ?? "");
-    //   await SetRefreshTokenUseCase(injector())(refreshToken: getTokenResponse.data!.token!.refreshToken ?? "");
-    //   await _retry(err.requestOptions);
-    // }
+    if(err.response?.statusCode == 401){
+      Response response = await DioHelper.refreshToken((await GetPhoneNumberUseCase(injector())()?? ""), (await GetRefreshTokenUseCase(injector())()?? ""));
+      GetTokenResponse getTokenResponse = GetTokenResponse.fromJson(response.data);
+      await SetTokenUseCase(injector())(token: getTokenResponse.data!.token!.accessToken ?? "");
+      await SetRefreshTokenUseCase(injector())(refreshToken: getTokenResponse.data!.token!.refreshToken ?? "");
+      await _retry(err.requestOptions);
+    }
     debugPrint(
         "ERROR [${' '}${err.response?.statusCode}${' '}]${'\n'} error meesage =>"
         " ${err.response.toString()} ${'\n'} error header => ");
@@ -48,7 +48,7 @@ class CustomInterceptors extends InterceptorsWrapper {
       method: requestOptions.method,
       headers: requestOptions.headers,
     );
-    return Dio().request<dynamic>(requestOptions.path,
+    return DioHelper.dio.request<dynamic>(requestOptions.path,
         data: requestOptions.data,
         queryParameters: requestOptions.queryParameters,
         options: options);

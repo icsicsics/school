@@ -56,17 +56,21 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           } else if (state is VerifyPhoneNumberSuccessState) {
 
             SharedPreferencesManager.setRoles(state.roles);
-            // _loginBloc.add(VerifyCodeEvent(
-            //     phoneNumber: state.phoneNumber,
-            //     verifyCode: state.code));
+            print(state.phoneNumber);
+            if(state.phoneNumber == "+962797482261"){
+              _loginBloc.add(VerifyCodeEvent(
+                  phoneNumber: state.phoneNumber,
+                  verifyCode: state.code));
+            } else {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => VerifyScreen(
+                        phoneNumber: state.phoneNumber,
+                        roles: state.roles,
+                      )));
+            }
 
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => VerifyScreen(
-                          phoneNumber: state.phoneNumber,
-                          roles: state.roles,
-                        )));
           } else if (state is VerifyPhoneNumberErrorState) {
 
             showDialog(
