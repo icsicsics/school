@@ -17,6 +17,14 @@ class SharedPreferencesUtils {
     return (await getSharePref()).setBool(key, data!);
   }
 
+  static Future<bool> setStringList(String key,List<String> data) async {
+    return (await getSharePref()).setStringList(key,data);
+  }
+
+  static Future<List<String>?> getStringList(String key) async {
+    return (await getSharePref()).getStringList(key);
+  }
+
   static Future<String?> getString(String key) async {
     return (await getSharePref()).getString(key);
   }

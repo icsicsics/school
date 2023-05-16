@@ -35,7 +35,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   WeatherResponse _weatherResponse = WeatherResponse();
   String _language = '';
   String _token = '';
-
+  List<String> roles = [];
   @override
   void initState() {
     _homeBloc.add(GetIsFatherEvent());
@@ -46,6 +46,10 @@ class _HomeScreenState extends BaseState<HomeScreen> {
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+  }
   @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(

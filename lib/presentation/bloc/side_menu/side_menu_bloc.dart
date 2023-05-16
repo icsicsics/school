@@ -123,10 +123,10 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   Future<void> _onGetProfileImageEvent(
       GetProfileImageFromShearedPrefranceEvent event,
       Emitter<SideMenuState> emit) async {
-    emit(GetSideMenuLoadingState());
-    String? image = await _getImageProfileFromSharedPreferencesUseCase();
-    profileImage = image!;
-    emit(GetProfileImageFromShearedPrefranceSuccessState(image: image));
+    // emit(GetSideMenuLoadingState());
+    // String? image = await _getImageProfileFromSharedPreferencesUseCase();
+    // profileImage = image ?? "";
+    // emit(GetProfileImageFromShearedPrefranceSuccessState(image: image));
   }
 
   Future<void> _onSetProfileImageInShearedPrefranceEvent(

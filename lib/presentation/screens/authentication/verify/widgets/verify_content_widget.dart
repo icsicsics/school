@@ -33,7 +33,6 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(_selectedRole);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -84,6 +83,9 @@ class _VerifyContentWidgetState extends State<VerifyContentWidget> {
 
   _buildRoles(List<String> roles) {
     if (roles.length <= 1) {
+      if (roles.length != 0) {
+        _selectedRole = roles.first;
+      }
       return Container();
     }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/weather/main.dart';
 import 'package:schools/generated/l10n.dart';
@@ -30,15 +31,23 @@ class HomeAppBarWidget extends StatefulWidget {
 }
 
 class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
+  List<String> roles = [];
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    roles = await SharedPreferencesManager.getRoles() ?? [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         color: ColorsManager.whiteColor,
       ),
-      height: MediaQuery.of(context).size.height / 5.2,
+      height: widget.isFather ?  MediaQuery.of(context).size.height / 7:MediaQuery.of(context).size.height / 5.2,
       child: Padding(
-        padding: const EdgeInsets.only(top: 40, left: 5,right: 5),
+        padding: const EdgeInsets.only(top: 30, left: 5, right: 5),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -55,18 +64,19 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
             const SizedBox(
               width: 5,
             ),
-            IconButton(
-                onPressed: (){
-                  widget.bloc.add(SwitchAccountEvent());
-                },
-                icon: const Icon(
-                  Icons.supervised_user_circle,
-                  color: ColorsManager.secondaryColor,
-                  size: 30,
-                )),
+            if (roles.length > 1)
+              IconButton(
+                  onPressed: () {
+                    widget.bloc.add(SwitchAccountEvent());
+                  },
+                  icon: const Icon(
+                    Icons.supervised_user_circle,
+                    color: ColorsManager.secondaryColor,
+                    size: 30,
+                  )),
             const Expanded(child: SizedBox()),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: widget.isFather ? MainAxisAlignment.center: MainAxisAlignment.start,
               children: [
                 Visibility(
                   visible: widget.isFather == true ? false : true,
@@ -78,11 +88,11 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                     textAlign: TextAlign.center,
                     text: widget.isFather
                         ? widget.bloc.fatherInfoResponse.data != null
-                        ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
-                        : S.of(context).welcome
+                            ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
+                            : S.of(context).welcome
                         : widget.teacherHomeResponse.data != null
-                        ? widget.teacherHomeResponse.data!.schoolName
-                        : "",
+                            ? widget.teacherHomeResponse.data!.schoolName
+                            : "",
                     fontSize: 16,
                     color: Color(0xff3bbbac),
                   ),
@@ -151,15 +161,14 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
           ImagesPath.ar,
           height: 35,
           width: 35,
-    color: Color(0xff3bbbac),
-  )
+          color: Color(0xff3bbbac),
+        )
       : Image.asset(
           ImagesPath.en,
           height: 35,
           width: 35,
-    color: Color(0xff3bbbac),
-
-  );
+          color: Color(0xff3bbbac),
+        );
 
   void _changeLanguage() {
     if (widget.language == "en") {

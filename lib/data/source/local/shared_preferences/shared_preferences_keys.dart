@@ -13,4 +13,5 @@ class SharedPreferencesKeys {
   static const phoneNumber = "phoneNumber";
   static const userId = "userId";
   static const countryCode = "countryCode";
+  static const roles = "roles";
 }

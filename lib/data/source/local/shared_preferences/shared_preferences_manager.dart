@@ -80,6 +80,7 @@ class SharedPreferencesManager {
     await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.ipAddress, ipAddress);
   }
+
   static Future<void> setDeviceInfoData(
       {String? ipAddress,
       String? osVersion,
@@ -125,7 +126,8 @@ class SharedPreferencesManager {
   }
 
   Future<String?> getRefreshToken() async {
-    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.refreshToken);
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.refreshToken);
   }
 
   Future<bool> setPhoneNumber(String phoneNumber) async {
@@ -134,7 +136,8 @@ class SharedPreferencesManager {
   }
 
   Future<String?> getPhoneNumber() async {
-    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.phoneNumber);
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.phoneNumber);
   }
 
   Future<bool> setCountryCode(String countryCode) async {
@@ -143,19 +146,30 @@ class SharedPreferencesManager {
   }
 
   Future<String?> getCountryCode() async {
-    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.countryCode);
+    return await SharedPreferencesUtils.getString(
+        SharedPreferencesKeys.countryCode);
   }
 
   Future<String?> getUserId() async {
-    return await SharedPreferencesUtils.getString(
-        SharedPreferencesKeys.userId);
+    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.userId);
   }
 
   Future<bool> setUserId(String userId) async {
-   return await SharedPreferencesUtils.setString(
+    return await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.userId, userId);
   }
-  Future<bool?> clearToken() async{
+
+  static Future<List<String>?> getRoles() async {
+    return await SharedPreferencesUtils.getStringList(
+        SharedPreferencesKeys.roles);
+  }
+
+  static Future<bool> setRoles(List<String> roles) async {
+    return await SharedPreferencesUtils.setStringList(
+        SharedPreferencesKeys.roles, roles);
+  }
+
+  Future<bool?> clearToken() async {
     return await SharedPreferencesUtils.remove(SharedPreferencesKeys.token);
   }
 }
