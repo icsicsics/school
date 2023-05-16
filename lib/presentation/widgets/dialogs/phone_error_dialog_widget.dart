@@ -76,17 +76,17 @@ class _PhoneErrorDialogWidgetState extends State<PhoneErrorDialogWidget> {
                 children: [
                   _item(
                       onTap: () {
-                        _launchUrl("https://ejabiapp.com/");
+                        _launchUrl("http://ejabiapp.com/");
                       },
-                      icon: ImagesPath.web),
+                      icon: ImagesPath.webIcon),
                   _item(
                       onTap: () {
                         _launchUrl("https://youtu.be/qgiW50-0AGQ");
                       },
-                      icon: ImagesPath.youtube),
+                      icon: ImagesPath.youtubeIcon),
                   _item(onTap: () {
                     launchWhatsapp("+962795191633");
-                  }, icon: ImagesPath.whats),
+                  }, icon: ImagesPath.whatsIcon),
                 ],
               ),
             ),

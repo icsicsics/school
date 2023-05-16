@@ -17,7 +17,13 @@ class GetSchoolHousesEvent extends SchoolHousesEvent {
   });
 }
 
-class NavigateToNotificationScreenEvent extends SchoolHousesEvent {}
+class NavigateToNotificationScreenEvent extends SchoolHousesEvent {
+  final bool isNotificationSelected;
+
+  NavigateToNotificationScreenEvent({
+    required this.isNotificationSelected,
+  });
+}
 
 class NavigateToAddPointsScreenEvent extends SchoolHousesEvent {
   final Data data;

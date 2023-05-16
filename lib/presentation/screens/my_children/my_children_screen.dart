@@ -61,7 +61,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
               classroomSectionStudentsId:
                   widget.classroomSectionStudentsId.toString());
         } else if (state is NavigateToNotificationScreenState) {
-          _navigateToNotificationScreen();
+          _navigateToNotificationScreen(state.isNotificationSelected);
         } else if (state is GetIsFatherState) {
           _isFather = state.isFather;
           _bloc.add(GetTokenEvent());
@@ -111,46 +111,32 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         ),
         centerTitle: false,
         actions: [
-          InkWell(
-            onTap: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            child: SizedBox(
-                width: 50,
-                height: 50,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Visibility(
-                        visible: _isFather == false,
-                        child: const Icon(
-                          Icons.mail,
-                          color: ColorsManager.secondaryColor,
-                          size: 25,
-                        ),
-                      ),
-                    ),
-                    Align(
-                        alignment: Alignment.center,
-                        child: Visibility(
-                          visible: _isFather,
-                          child: const Icon(
-                            Icons.mail,
-                            color: ColorsManager.secondaryColor,
-                            size: 25,
-                          ),
-                        )),
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: Visibility(
-                          visible: _isFather,
-                          child: const Icon(
-                            Icons.notifications,
-                            color: ColorsManager.yellow,
-                            size: 24,
-                          ),
-                        )),
-                  ],
-                )),
+          Row(
+            children: [
+              InkWell(
+                onTap: (){
+                  _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: false));
+                },
+                child: Icon(
+                  Icons.mail,
+                  color: Color(0xff3bbbac),
+                  size: 30,
+                ),
+              ),
+              Visibility(
+                visible: widget.isParent,
+                child: InkWell(
+                  onTap: (){
+                    _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: true));
+                  },
+                  child: const Icon(
+                    Icons.notifications,
+                    color: ColorsManager.yellow,
+                    size: 30,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
         title: BoldTextWidget(
@@ -202,10 +188,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
             token: _token, studentId: widget.studentId));
       });
 
-  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+  void _navigateToNotificationScreen(bool isNotificationSelected) => Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-      (route) => false);
+      MaterialPageRoute(builder: (_) => NotificationsScreen(isNotificationSelected: isNotificationSelected,)),);
 
   void _onGetTeacherStudentProfileInSchoolHouseFailState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);

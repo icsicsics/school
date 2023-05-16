@@ -18,7 +18,11 @@ class GetTeacherInfoFillState extends ProfileState {
   GetTeacherInfoFillState({required this.error});
 }
 
-class NavigateToNotificationScreenState extends ProfileState {}
+class NavigateToNotificationScreenState extends ProfileState {
+  final bool isNotificationSelected;
+
+  NavigateToNotificationScreenState({required this.isNotificationSelected});
+}
 
 class GetIsFatherState extends ProfileState {
   final bool isFather;

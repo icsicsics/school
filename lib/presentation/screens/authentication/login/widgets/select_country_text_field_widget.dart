@@ -41,6 +41,7 @@ class _SelectCountryTextFieldWidgetState
           autoValidateMode: AutovalidateMode.disabled,
           keyboardType: TextInputType.number,
           initialValue: number,
+          locale: widget.language,
           textFieldController: widget.controller,
           inputBorder: InputBorder.none,
           spaceBetweenSelectorAndTextField: 0,

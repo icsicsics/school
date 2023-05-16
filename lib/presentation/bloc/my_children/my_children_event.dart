@@ -13,7 +13,13 @@ class GetMyChildrenEvent extends MyChildrenEvent {}
 
 class OpenAddPointAlertEvent extends MyChildrenEvent {}
 
-class NavigateToNotificationScreenEvent extends MyChildrenEvent {}
+class NavigateToNotificationScreenEvent extends MyChildrenEvent {
+  final bool isNotificationSelected;
+
+   NavigateToNotificationScreenEvent({
+    required this.isNotificationSelected,
+  });
+}
 
 class GetIsFatherEvent extends MyChildrenEvent {}
 
@@ -34,8 +40,10 @@ class GetPrincipleByClassroomEvent extends MyChildrenEvent {
   GetPrincipleByClassroomEvent(
       {required this.token, required this.classroomId});
 }
+
 class MyChildrenFilterEvent extends MyChildrenEvent {
   final List<Points> filter;
+
   MyChildrenFilterEvent({required this.filter});
 }
 

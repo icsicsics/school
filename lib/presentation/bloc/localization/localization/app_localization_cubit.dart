@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/domain/usecases/save_language_use_case.dart';
 import 'package:schools/domain/usecases/get_language_use_case.dart';
+import 'dart:ui' as ui;
 
 
-final Locale defaultSupportedLocale = S.delegate.supportedLocales.first;
+final Locale defaultSupportedLocale = ui.window.locale;
 
 class LocalizationCubit extends Cubit<Locale> {
   final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
@@ -17,7 +18,7 @@ class LocalizationCubit extends Cubit<Locale> {
   }
 
   void _setDefaultLanguage() async {
-    String language = await _getLanguageCodeUseCase() ?? "en";
+    String language = await _getLanguageCodeUseCase() ?? defaultSupportedLocale.languageCode;
     await _saveLanguageCodeUseCase(language);
     emit(Locale(language));
 

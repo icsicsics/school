@@ -9,7 +9,11 @@ import 'package:schools/presentation/screens/notifications/widgets/notifications
 import 'package:schools/presentation/screens/side_menu_widget/side_menu_screen.dart';
 
 class NotificationsScreen extends BaseStatefulWidget {
-  const NotificationsScreen({super.key});
+  final bool isNotificationSelected;
+
+  NotificationsScreen({super.key,
+    this.isNotificationSelected = true,
+  });
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() =>
@@ -44,11 +48,11 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
           _isFather = state.isFather;
           _bloc.add(GetInboxNotificationsEvent(
               notificationRequest:
-                  NotificationRequest(pageNo: 1, pageSize: 10)));
+              NotificationRequest(pageNo: 1, pageSize: 10)));
           if (_isFather) {
             _bloc.add(GetNotificationsEvent(
                 notificationRequest:
-                    NotificationRequest(pageNo: 1, pageSize: 10)));
+                NotificationRequest(pageNo: 1, pageSize: 10)));
           }
         } else if (state is GetLanguageSuccessState) {
           _language = state.language;
@@ -57,12 +61,12 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
           _token = state.token;
         } else if (state is GetNotificationsSuccessState) {
           notifications = state.notificationResponse.notificationItem ?? [];
-        } else if (state is GetNotificationsFillState) {
-        } else if (state is GetInboxNotificationsSuccessState) {
+        } else if (state is GetNotificationsFillState) {} else
+        if (state is GetInboxNotificationsSuccessState) {
           inboxNotifications =
               state.notificationResponse.notificationItem ?? [];
-        } else if (state is GetInboxNotificationsFillState) {
-        } else if (state is UpdateNotificationSuccessState) {
+        } else if (state is GetInboxNotificationsFillState) {} else
+        if (state is UpdateNotificationSuccessState) {
           _bloc.add(GetInboxNotificationsEvent(
               notificationRequest:
               NotificationRequest(pageNo: 1, pageSize: 10)));
@@ -71,7 +75,7 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
                 notificationRequest:
                 NotificationRequest(pageNo: 1, pageSize: 10)));
           }
-        } else if(state is UpdateNotificationFailState) {
+        } else if (state is UpdateNotificationFailState) {
 
         }
       },
@@ -89,6 +93,7 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
               isFather: _isFather,
               notifications: notifications,
               inboxNotifications: inboxNotifications,
+              isNotificationSelected: widget.isNotificationSelected,
             ));
       },
     );

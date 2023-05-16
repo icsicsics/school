@@ -9,6 +9,7 @@ class NotificationsContentWidget extends StatefulWidget {
   final bool isFather;
   final List<NotificationItem> notifications;
   final List<NotificationItem> inboxNotifications;
+  final bool isNotificationSelected ;
 
   const NotificationsContentWidget({
     Key? key,
@@ -16,6 +17,7 @@ class NotificationsContentWidget extends StatefulWidget {
     required this.isFather,
     required this.notifications,
     required this.inboxNotifications,
+    required this.isNotificationSelected,
   }) : super(key: key);
 
   @override
@@ -25,8 +27,14 @@ class NotificationsContentWidget extends StatefulWidget {
 
 class _NotificationsContentWidgetState
     extends State<NotificationsContentWidget> {
-  bool isNotificationSelected = true;
+  bool _isNotificationSelected = false;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _isNotificationSelected = widget.isNotificationSelected;
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,29 +42,29 @@ class _NotificationsContentWidgetState
         NotificationsAppBarWidget(
           onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
           isFather: widget.isFather,
-          isNotificationSelected: isNotificationSelected,
+          isNotificationSelected: _isNotificationSelected,
         ),
         widget.isFather
             ? TitlesRowWidget(
                 isFather: widget.isFather,
-                isNotificationSelected: isNotificationSelected,
+                isNotificationSelected: _isNotificationSelected,
                 notificationCount:totalUnreadMessages(widget.notifications),
                 inboxNotificationCount:totalUnreadMessages(widget.inboxNotifications),
                 selectNotificationTab: () {
                   setState(() {
-                    isNotificationSelected = true;
+                    _isNotificationSelected = true;
                   });
                 },
                 selectInboxTab: () {
                   setState(() {
-                    isNotificationSelected = false;
+                    _isNotificationSelected = false;
                   });
                 },
               )
             : Container(),
         NotificationsListWidget(
           isFather:widget.isFather,
-          isNotificationSelected: isNotificationSelected,
+          isNotificationSelected: _isNotificationSelected,
           notifications: widget.notifications,
           inboxNotifications: widget.inboxNotifications,
         )

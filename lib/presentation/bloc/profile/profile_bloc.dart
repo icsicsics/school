@@ -65,7 +65,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _onNavigateToNotificationScreenEvent(
       NavigateToNotificationScreenEvent event, Emitter<ProfileState> emit) {
-    emit(NavigateToNotificationScreenState());
+    emit(NavigateToNotificationScreenState(isNotificationSelected: event.isNotificationSelected));
   }
 
   void _onOpenCameraGalleryBottomSheetEvent(

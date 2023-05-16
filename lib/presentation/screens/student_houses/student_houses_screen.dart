@@ -135,10 +135,9 @@ class _AddPointScreen extends BaseState<StudentHousesScreen> {
                 : S.of(context).myChildren),
       );
 
-  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+  void _navigateToNotificationScreen() => Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-      (route) => false);
+      MaterialPageRoute(builder: (_) =>  NotificationsScreen()),);
 
   void _navigateToMyChildrenScreen(studentId,classroomToSectionId) => Navigator.push(
       context,

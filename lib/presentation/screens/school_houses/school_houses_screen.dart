@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/base_widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/search_item.dart';
@@ -48,7 +49,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   GetClassHousesResponse getClassHousesResponse = GetClassHousesResponse();
   GetStudentHousesResponse getStudentHousesResponse =
       GetStudentHousesResponse();
-
+  bool isFather = false;
   @override
   void initState() {
     if (widget.isComingFromHome != true) {
@@ -61,6 +62,12 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       isComingFromHome: widget.isComingFromHome,
       search: _selectedValue.id,));
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    isFather = await SharedPreferencesManager.getIsFather() ?? false;
   }
 
   @override
@@ -77,7 +84,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           } else if (state is GetSchoolHousesFillState) {
             _onGetSchoolHousesFillState(state.error);
           } else if (state is NavigateToNotificationScreenState) {
-            _navigateToNotificationScreen();
+            _navigateToNotificationScreen(state.isNotificationSelected);
           } else if (state is NavigateToStudentHousesScreenState) {
             _navigateToStudentHousesScreen(state.data.classroomToSectionId!);
           } else if (state is NavigateToMyChildrenScreenState) {
@@ -221,11 +228,27 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
               color: ColorsManager.secondaryColor,
             ),
           ),
-          IconButton(
-            onPressed: () => BlocProvider.of<SchoolHousesBloc>(context)
-                .add(NavigateToNotificationScreenEvent()),
-            icon: const Icon(Icons.mail,
+          SizedBox(width: 6,),
+          InkWell(
+            onTap: (){
+              BlocProvider.of<SchoolHousesBloc>(context)
+                  .add(NavigateToNotificationScreenEvent(isNotificationSelected : false));
+            },
+            child: Icon(Icons.mail,
                 color: ColorsManager.secondaryColor, size: 25),
+          ),
+          Visibility(
+            visible: isFather,
+            child: InkWell(
+              onTap: (){
+                BlocProvider.of<SchoolHousesBloc>(context)
+                    .add(NavigateToNotificationScreenEvent(isNotificationSelected : true));              },
+              child: const Icon(
+                Icons.notifications,
+                color: ColorsManager.yellow,
+                size: 30,
+              ),
+            ),
           ),
         ],
         title: BoldTextWidget(
@@ -234,9 +257,9 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
             text: S.of(context).schoolHouses),
       );
 
-  void _navigateToNotificationScreen() => Navigator.push(
+  void _navigateToNotificationScreen(bool isNotificationSelected) => Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+      MaterialPageRoute(builder: (_) => NotificationsScreen(isNotificationSelected: isNotificationSelected,)),
   );
 
   void _onGetSchoolHousesFillState(String error) =>

@@ -48,7 +48,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           _isFather = state.isFather;
           _bloc.add(GetLanguageEvent());
         } else if (state is NavigateToNotificationScreenState) {
-          _navigateToNotificationScreen();
+          _navigateToNotificationScreen(state.isNotificationSelected);
         } else if (state is OpenCameraGalleryBottomSheetState) {
           openCameraGalleryBottomSheet(context,(image){
             BlocProvider.of<ProfileBloc>(context)
@@ -138,49 +138,31 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
         centerTitle: false,
         actions: [
           InkWell(
-            onTap: () => _changeLanguage(),
-            child: _languageImage(),
-          ),
+              onTap: () => _changeLanguage(),
+              child: _languageImage()),
+          SizedBox(width: 6,),
           InkWell(
-            onTap: () => _bloc.add(NavigateToNotificationScreenEvent()),
-            child: SizedBox(
-                width: 50,
-                height: 50,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Visibility(
-                        visible: _isFather == false,
-                        child: const Icon(
-                          Icons.mail,
-                          color: ColorsManager.secondaryColor,
-                          size: 25,
-                        ),
-                      ),
-                    ),
-                    Align(
-                        alignment: Alignment.center,
-                        child: Visibility(
-                          visible: _isFather,
-                          child: const Icon(
-                            Icons.mail,
-                            color: ColorsManager.secondaryColor,
-                            size: 25,
-                          ),
-                        )),
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: Visibility(
-                          visible: _isFather,
-                          child: const Icon(
-                            Icons.notifications,
-                            color: ColorsManager.yellow,
-                            size: 24,
-                          ),
-                        )),
-                  ],
-                )),
+            onTap: (){
+              _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: false));
+            },
+            child: Icon(
+              Icons.mail,
+              color: Color(0xff3bbbac),
+              size: 30,
+            ),
+          ),
+          Visibility(
+            visible: _isFather,
+            child: InkWell(
+              onTap: (){
+                _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: true));
+              },
+              child: const Icon(
+                Icons.notifications,
+                color: ColorsManager.yellow,
+                size: 30,
+              ),
+            ),
           ),
         ],
         title: BoldTextWidget(
@@ -189,11 +171,11 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
             text: S.of(context).myProfile),
       );
 
-  void _navigateToNotificationScreen() => Navigator.pushAndRemoveUntil(
+  void _navigateToNotificationScreen(bool isNotificationSelected) => Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-      (route) => false);
-
+      MaterialPageRoute(builder: (_) => NotificationsScreen(
+        isNotificationSelected: isNotificationSelected,
+      )),);
   void _invokeInit() {
     _bloc.add(GetTeacherProfileImageFromShearedPrefranceEvent());
     _bloc.add(GetIsFatherEvent());

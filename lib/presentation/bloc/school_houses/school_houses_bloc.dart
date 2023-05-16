@@ -30,8 +30,10 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
       GetSchoolHousesEvent event, Emitter<SchoolHousesState> emit) async {
     emit(GetSchoolHousesLoadingState());
     SchoolHousesState state = await _repository.getClassHouses(
-            event.token, event.classRoomId, event.isComingFromHome,event.search)
-        as SchoolHousesState;
+        event.token,
+        event.classRoomId,
+        event.isComingFromHome,
+        event.search) as SchoolHousesState;
     if (state is GetSchoolHousesSuccessState) {
       getClassHousesResponse = state.response;
       emit(GetSchoolHousesSuccessState(response: state.response));
@@ -43,7 +45,9 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
   FutureOr<void> _onNavigateToNotificationScreenEvent(
       NavigateToNotificationScreenEvent event,
       Emitter<SchoolHousesState> emit) {
-    emit(NavigateToNotificationScreenState());
+    emit(NavigateToNotificationScreenState(
+      isNotificationSelected: event.isNotificationSelected,
+    ));
   }
 
   FutureOr<void> _onNavigateToAddPointsScreenEvent(
@@ -70,10 +74,10 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
     }
   }
 
-  FutureOr<void> _onGetSearchValuesEvent(GetSearchValuesEvent event, Emitter<SchoolHousesState> emit) async {
+  FutureOr<void> _onGetSearchValuesEvent(
+      GetSearchValuesEvent event, Emitter<SchoolHousesState> emit) async {
     emit(GetSchoolHousesLoadingState());
-    SchoolHousesState state = await _repository.getSearchValues(
-        event.token);
+    SchoolHousesState state = await _repository.getSearchValues(event.token);
     print(state);
     if (state is GetSearchValuesSuccessState) {
       emit(GetSearchValuesSuccessState(values: state.values));

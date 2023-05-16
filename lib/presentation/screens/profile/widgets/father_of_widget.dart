@@ -31,7 +31,7 @@ class FatherOfWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 3, bottom: 3, right: 8, left: 8),
+                      top: 16, bottom: 16, right: 8, left: 8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

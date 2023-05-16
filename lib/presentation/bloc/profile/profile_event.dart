@@ -18,7 +18,11 @@ class GetFatherInfoEvent extends ProfileEvent {
 
 class GetIsFatherEvent extends ProfileEvent {}
 
-class NavigateToNotificationScreenEvent extends ProfileEvent {}
+class NavigateToNotificationScreenEvent extends ProfileEvent {
+  final bool isNotificationSelected;
+
+  NavigateToNotificationScreenEvent({required this.isNotificationSelected});
+}
 
 class OpenCameraGalleryBottomSheetEvent extends ProfileEvent {}
 

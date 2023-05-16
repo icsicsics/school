@@ -21,7 +21,13 @@ class GetSchoolHousesFillState extends SchoolHousesState {
 
 class GetSchoolHousesErrorState extends SchoolHousesState {}
 
-class NavigateToNotificationScreenState extends SchoolHousesState {}
+class NavigateToNotificationScreenState extends SchoolHousesState {
+  final bool isNotificationSelected;
+
+  NavigateToNotificationScreenState({
+    required this.isNotificationSelected,
+});
+}
 
 class NavigateToStudentHousesScreenState extends SchoolHousesState {
   final Data data;

@@ -48,7 +48,7 @@ class MyChildrenBloc extends Bloc<MyChildrenEvent, MyChildrenState> {
 
   FutureOr<void> _onNavigateToNotificationScreenEvent(
       NavigateToNotificationScreenEvent event, Emitter<MyChildrenState> emit) {
-    emit(NavigateToNotificationScreenState());
+    emit(NavigateToNotificationScreenState(isNotificationSelected: event.isNotificationSelected));
     emit(MyChildrenInitialState());
   }
 

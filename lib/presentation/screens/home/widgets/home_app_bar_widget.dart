@@ -11,7 +11,7 @@ import 'package:schools/presentation/widgets/medium_text_widget.dart';
 
 class HomeAppBarWidget extends StatefulWidget {
   final Function() onTapMenu;
-  final Function() onTapNotifications;
+  final Function(bool) onTapNotifications;
   final bool isFather;
   final HomeBloc bloc;
   final String language;
@@ -107,47 +107,31 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                     InkWell(
                         onTap: () => _changeLanguage(),
                         child: _languageImage()),
+                    SizedBox(width: 6,),
                     InkWell(
-                      onTap: widget.onTapNotifications,
-                      child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: Stack(
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Visibility(
-                                  visible: widget.isFather == false,
-                                  child: const Icon(
-                                    Icons.mail,
-                                    color: Color(0xff3bbbac),
-                                    size: 30,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                  alignment: Alignment.center,
-                                  child: Visibility(
-                                    visible: widget.isFather,
-                                    child: const Icon(
-                                      Icons.mail,
-                                      color: Color(0xff3bbbac),
-                                      size: 30,
-                                    ),
-                                  )),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Visibility(
-                                    visible: widget.isFather,
-                                    child: const Icon(
-                                      Icons.notifications,
-                                      color: ColorsManager.yellow,
-                                      size: 24,
-                                    ),
-                                  )),
-                            ],
-                          )),
-                    )
+                      onTap: (){
+                        widget.onTapNotifications(false);
+                      },
+                      child: Icon(
+                        Icons.mail,
+                        color: Color(0xff3bbbac),
+                        size: 30,
+                      ),
+                    ),
+                    Visibility(
+                      visible: widget.isFather,
+                      child: InkWell(
+                        onTap: (){
+                          widget.onTapNotifications(true);
+                        },
+                        child: const Icon(
+                          Icons.notifications,
+                          color: ColorsManager.yellow,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+
                   ],
                 )),
           ],
@@ -159,14 +143,14 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
   Widget _languageImage() => widget.language == "en"
       ? Image.asset(
           ImagesPath.ar,
-          height: 35,
-          width: 35,
+          height: 30,
+          width: 30,
           color: Color(0xff3bbbac),
         )
       : Image.asset(
           ImagesPath.en,
-          height: 35,
-          width: 35,
+          height: 30,
+          width: 30,
           color: Color(0xff3bbbac),
         );
 

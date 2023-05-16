@@ -50,7 +50,7 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
               isFather: widget.isFather,
               fatherInfoResponse: widget.fatherInfoResponse,
               teacherInfoResponse: widget.teacherInfoResponse),
-           SizedBox(height: MediaQuery.of(context).size.height/12),
+          SizedBox(height: 40,),
           widget.isFather
               ? FatherOfWidget(
                   fatherInfoResponse: widget.fatherInfoResponse,
