@@ -28,7 +28,7 @@ class _SideMenuSocialMediaWidgetState extends State<SideMenuSocialMediaWidget> {
             _launchUrl("https://youtu.be/qgiW50-0AGQ");
           }, icon: FontAwesomeIcons.youtube),
           _item(onTap: () {
-            _launchUrl("https://ejabiapp.com/");
+            _launchUrl("http://ejabiapp.com/");
           }, icon: Icons.language),
         ],
       ),
