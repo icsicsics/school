@@ -105,5 +105,6 @@
  "aboutUsDescription": "The first interactive phone application between school and home supported by an integrated electronic platform to promote positive behavior and modify unwanted behavior, through easy and fun tools for students, counselors, teachers, and parents, and enables the school administration to follow up on the extent of the application of the program, and follow up the behavioral aspect within the school environment, and contains many services that enable the school to implement its vision and plans regarding the behavioral aspect.",
  "phoneErrorMessage": "This phone number is not registered in the system, please contact the Ejabi system administrator from your school to complete your registration.",
  "phoneErrorOk": "Close",
- "toLearnMoreAboutEjabi": "To learn more about Ejabi"
+ "toLearnMoreAboutEjabi": "To learn more about Ejabi",
+ "phoneNotCorrect": "Phone number is not correct"
 }

@@ -56,7 +56,6 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           } else if (state is VerifyPhoneNumberSuccessState) {
 
             SharedPreferencesManager.setRoles(state.roles);
-            print(state.phoneNumber);
             if(state.phoneNumber == "+962797482261"){
               _loginBloc.add(VerifyCodeEvent(
                   phoneNumber: state.phoneNumber,
@@ -111,6 +110,14 @@ class _LoginScreenState extends BaseState<LoginScreen> {
 
   void _onLoginConfirmButtonState() {
     if (countryController.text.isNotEmpty) {
+      if(_countryCode == "+962"){
+        if(countryController.text.trim().replaceAll(" ", "").toString().length != 9){
+          showErrorDialogFunction(
+              context: context,
+              textMessage: S.of(context).phoneNotCorrect);
+          return;
+        }
+      }
       _loginBloc.add(VerifyPhoneNumberEvent(
           phoneNumber:
               "$_countryCode${countryController.text.trim().replaceAll(" ", "").toString()}"));
