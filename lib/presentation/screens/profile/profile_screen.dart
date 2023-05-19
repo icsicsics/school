@@ -141,28 +141,37 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
               onTap: () => _changeLanguage(),
               child: _languageImage()),
           SizedBox(width: 6,),
-          InkWell(
-            onTap: (){
-              _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: false));
-            },
-            child: Icon(
-              Icons.mail,
-              color: Color(0xff3bbbac),
-              size: 30,
-            ),
-          ),
-          Visibility(
-            visible: _isFather,
-            child: InkWell(
-              onTap: (){
-                _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: true));
-              },
-              child: const Icon(
-                Icons.notifications,
-                color: ColorsManager.yellow,
-                size: 30,
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              InkWell(
+                onTap: (){
+                  _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: false));
+                },
+                child: Icon(
+                  Icons.mail,
+                  color: Color(0xff3bbbac),
+                  size: 30,
+                ),
               ),
-            ),
+              Visibility(
+                visible: _isFather,
+                child: Positioned(
+                  top: 8,
+                  right: -5,
+                  child: InkWell(
+                    onTap: (){
+                      _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: true));
+                    },
+                    child: const Icon(
+                      Icons.notifications,
+                      color: ColorsManager.yellow,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
         title: BoldTextWidget(

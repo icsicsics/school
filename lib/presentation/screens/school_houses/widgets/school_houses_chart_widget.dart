@@ -18,53 +18,58 @@ class SchoolHousesChartWidget extends StatelessWidget {
 
   Stack buildScreenContent() {
     return Stack(
-    children: [
-      ClipPath(
-          clipper: GeneralCurve(),
-          child: Container(
-            height: 200,
-            color: ColorsManager.whiteColor,
-          )),
-      ChartContentWidget(schoolHousesBloc: schoolHousesBloc!),
-      Align(
-        alignment: Alignment.topCenter,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 72),
-          child: SizedBox(
-              height: 150,
-              width: 150,
-              child: Container(
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(color: ColorsManager.blackColor, width: 1),
-                    color: ColorsManager.whiteColor,
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(100))),
-                child: Padding(
-                  padding: const EdgeInsets.all(25),
-                  child: Image.asset(ImagesPath.cup),
-                ),
-              )),
+      children: [
+        ClipPath(
+            clipper: GeneralCurve(),
+            child: Container(
+              height: 200,
+              color: ColorsManager.whiteColor,
+            )),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          height: 500,
+          width: double.infinity,
+          child: ChartContentWidget(schoolHousesBloc: schoolHousesBloc!),
         ),
-      ),
-      // Align(
-      //   alignment: Alignment.bottomCenter,
-      //   child: Padding(
-      //     padding: const EdgeInsets.only(right: 30, left: 60, bottom: 45),
-      //     child: Row(
-      //       crossAxisAlignment: CrossAxisAlignment.center,
-      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //       children: [
-      //         _iconData(Icons.confirmation_num_sharp),
-      //         _iconData(Icons.confirmation_num_sharp),
-      //         _iconData(Icons.confirmation_num_sharp),
-      //         _iconData(Icons.confirmation_num_sharp),
-      //       ],
-      //     ),
-      //   ),
-      // )
-    ],
-  );
+        Align(
+          alignment: Alignment.topCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 72),
+            child: SizedBox(
+                height: 150,
+                width: 150,
+                child: Container(
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(color: ColorsManager.blackColor, width: 1),
+                      color: ColorsManager.whiteColor,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(100))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(25),
+                    child: Image.asset(ImagesPath.cup),
+                  ),
+                )),
+          ),
+        ),
+        // Align(
+        //   alignment: Alignment.bottomCenter,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 30, left: 60, bottom: 45),
+        //     child: Row(
+        //       crossAxisAlignment: CrossAxisAlignment.center,
+        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //       children: [
+        //         _iconData(Icons.confirmation_num_sharp),
+        //         _iconData(Icons.confirmation_num_sharp),
+        //         _iconData(Icons.confirmation_num_sharp),
+        //         _iconData(Icons.confirmation_num_sharp),
+        //       ],
+        //     ),
+        //   ),
+        // )
+      ],
+    );
   }
 
   Widget _iconData(IconData icon) => Icon(

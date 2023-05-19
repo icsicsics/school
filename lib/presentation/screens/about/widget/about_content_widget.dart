@@ -24,6 +24,7 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
       });
+    _controller.play();
   }
 
   @override
@@ -72,17 +73,20 @@ class _AboutContentWidgetState extends State<AboutContentWidget> {
                 }
                 setState(() {});
               },
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  _controller.value.isInitialized
-                      ? AspectRatio(
-                          aspectRatio: _controller.value.aspectRatio,
-                          child: VideoPlayer(_controller),
-                        )
-                      : Container(),
-                  _controller.value.isPlaying ? Container() : _buildVideoIcon(),
-                ],
+              child: SizedBox(
+                height: 220,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    _controller.value.isInitialized
+                        ? AspectRatio(
+                            aspectRatio: _controller.value.aspectRatio,
+                            child: VideoPlayer(_controller),
+                          )
+                        : Container(),
+                    _controller.value.isPlaying ? Container() : _buildVideoIcon(),
+                  ],
+                ),
               ),
             ),
             SizedBox(

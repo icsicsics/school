@@ -239,7 +239,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                             Column(
                               children:
                                   (widget.teacherStudentProfileInSchoolHouseResponse
-                                              .data?.points ??
+                                              .data?.points?.reversed.toList() ??
                                           [])
                                       .map((point) => Column(
                                             children: [

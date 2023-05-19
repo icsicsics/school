@@ -111,7 +111,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         ),
         centerTitle: false,
         actions: [
-          Row(
+          Stack(
+            alignment: Alignment.center,
             children: [
               InkWell(
                 onTap: (){
@@ -124,15 +125,19 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                 ),
               ),
               Visibility(
-                visible: widget.isParent,
-                child: InkWell(
-                  onTap: (){
-                    _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: true));
-                  },
-                  child: const Icon(
-                    Icons.notifications,
-                    color: ColorsManager.yellow,
-                    size: 30,
+                visible: _isFather,
+                child: Positioned(
+                  top: 8,
+                  right: -5,
+                  child: InkWell(
+                    onTap: (){
+                      _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: true));
+                    },
+                    child: const Icon(
+                      Icons.notifications,
+                      color: ColorsManager.yellow,
+                      size: 24,
+                    ),
                   ),
                 ),
               ),

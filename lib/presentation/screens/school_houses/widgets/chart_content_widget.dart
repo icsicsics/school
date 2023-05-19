@@ -23,11 +23,11 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
   @override
   void initState() {
     super.initState();
-    if(widget.schoolHousesBloc.getClassHousesResponse.data != null){
+    if (widget.schoolHousesBloc.getClassHousesResponse.data != null) {
       if (widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty) {
         for (var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
           columnData.add(SalesData(
-              x: item.houseName ?? "", y: item.totalPointsHouse!.toDouble()));
+              x: item.houseName ?? "", y: widget.schoolHousesBloc.getClassHousesResponse.data![0].totalPointsHouse!.toDouble()));
         }
       }
     }
@@ -39,7 +39,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
     if (widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty) {
       for (var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
         columnData.add(SalesData(
-            x: item.houseName ?? "", y: item.totalPointsHouse!.toDouble()));
+            x: item.houseName ?? "", y: widget.schoolHousesBloc.getClassHousesResponse.data![0].totalPointsHouse!.toDouble()));
       }
     }
   }
@@ -49,12 +49,33 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
     return buildScreenContent(columnData);
   }
 
-  Align buildScreenContent(List<SalesData> columnData) {
-    return Align(
-        alignment: Alignment.bottomCenter,
-        child: Padding(
-            padding: const EdgeInsets.only(top: 150),
-            child: SfCartesianChart(
+  Padding buildScreenContent(List<SalesData> columnData) {
+    return Padding(
+        padding: const EdgeInsets.only(top: 150),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Positioned(
+              bottom: 50,
+              right: 22,
+              left: 45,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: widget
+                        .schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty
+                    ? widget.schoolHousesBloc.getClassHousesResponse.data!
+                        .map((e) {
+                        return FaIcon(
+                          getIconFromCss(
+                            e.houseIcon ?? "",
+                          ),
+                          color: ColorsManager.whiteColor,
+                        );
+                      }).toList()
+                    : [],
+              ),
+            ),
+            SfCartesianChart(
               primaryXAxis: CategoryAxis(
                 labelStyle: TextStyle(color: Colors.transparent),
                 borderColor: Colors.white,
@@ -75,7 +96,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
               borderColor: Colors.transparent,
               borderWidth: 0,
               legend: Legend(
-                  isVisible: true,
+                  isVisible: false,
                   alignment: ChartAlignment.center,
                   itemPadding: 0,
                   padding: 0,
@@ -119,7 +140,9 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
               ],
               margin: const EdgeInsets.only(
                   top: 60, left: 50, right: 50, bottom: 60),
-            )));
+            ),
+          ],
+        ));
   }
 }
 

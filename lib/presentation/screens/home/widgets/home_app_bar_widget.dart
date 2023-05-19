@@ -108,30 +108,37 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                         onTap: () => _changeLanguage(),
                         child: _languageImage()),
                     SizedBox(width: 6,),
-                    InkWell(
-                      onTap: (){
-                        widget.onTapNotifications(false);
-                      },
-                      child: Icon(
-                        Icons.mail,
-                        color: Color(0xff3bbbac),
-                        size: 30,
-                      ),
-                    ),
-                    Visibility(
-                      visible: widget.isFather,
-                      child: InkWell(
-                        onTap: (){
-                          widget.onTapNotifications(true);
-                        },
-                        child: const Icon(
-                          Icons.notifications,
-                          color: ColorsManager.yellow,
-                          size: 30,
+                    Stack(
+                      children: [
+                        InkWell(
+                          onTap: (){
+                            widget.onTapNotifications(false);
+                          },
+                          child: Icon(
+                            Icons.mail,
+                            color: Color(0xff3bbbac),
+                            size: 30,
+                          ),
                         ),
-                      ),
+                        Visibility(
+                          visible: widget.isFather,
+                          child: Positioned(
+                            top: -5,
+                            right: -5,
+                            child: InkWell(
+                              onTap: (){
+                                widget.onTapNotifications(true);
+                              },
+                              child: const Icon(
+                                Icons.notifications,
+                                color: ColorsManager.yellow,
+                                size: 24,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-
                   ],
                 )),
           ],
