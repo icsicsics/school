@@ -283,6 +283,9 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                                       SizedBox(
                                                         height: 8,
                                                       ),
+                                                      Text(
+                                                        "By ${point.createdByName ?? ""}",
+                                                      ),
                                                     ],
                                                   )
                                                 ],
