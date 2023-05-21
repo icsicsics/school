@@ -27,7 +27,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
       if (widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty) {
         for (var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
           columnData.add(SalesData(
-              x: item.houseName ?? "", y: widget.schoolHousesBloc.getClassHousesResponse.data![0].totalPointsHouse!.toDouble()));
+              x: item.houseName ?? "", y: item.totalPointsHouse!.toDouble()));
         }
       }
     }
@@ -39,7 +39,7 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
     if (widget.schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty) {
       for (var item in widget.schoolHousesBloc.getClassHousesResponse.data!) {
         columnData.add(SalesData(
-            x: item.houseName ?? "", y: widget.schoolHousesBloc.getClassHousesResponse.data![0].totalPointsHouse!.toDouble()));
+            x: item.houseName ?? "", y: item.totalPointsHouse!.toDouble()));
       }
     }
   }
