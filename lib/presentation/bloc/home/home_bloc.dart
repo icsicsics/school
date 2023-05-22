@@ -32,6 +32,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetTokenUseCase _getTokenUseCase;
   final GetProfileImageUseCase _profileImageUseCase;
 
+  String childName ="";
   HomeBloc(
     this._saveLanguageCodeUseCase,
     this._getLanguageCodeUseCase,

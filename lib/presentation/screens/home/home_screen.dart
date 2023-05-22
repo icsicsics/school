@@ -101,6 +101,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           _switchAccount(context);
         } else if (state is GetTeacherStudentProfileInSchoolHouseSuccessState) {
           hideLoading();
+          _homeBloc.childName = state.response.data?.studentName ?? "";
           _teacherStudentProfileInSchoolHouseResponse = state.response;
         } else if (state is OpenCameraGalleryBottomSheetState) {
           openCameraGalleryBottomSheet(context, (image) {

@@ -45,7 +45,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       decoration: const BoxDecoration(
         color: ColorsManager.whiteColor,
       ),
-      height: widget.isFather ?  MediaQuery.of(context).size.height / 7:MediaQuery.of(context).size.height / 5.2,
+      height: widget.isFather
+          ? MediaQuery.of(context).size.height / 7
+          : MediaQuery.of(context).size.height / 5.2,
       child: Padding(
         padding: const EdgeInsets.only(top: 30, left: 5, right: 5),
         child: Row(
@@ -76,7 +78,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                   )),
             const Expanded(child: SizedBox()),
             Column(
-              mainAxisAlignment: widget.isFather ? MainAxisAlignment.center: MainAxisAlignment.start,
+              mainAxisAlignment: widget.isFather
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.start,
               children: [
                 Visibility(
                   visible: widget.isFather == true ? false : true,
@@ -88,7 +92,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                     textAlign: TextAlign.center,
                     text: widget.isFather
                         ? widget.bloc.fatherInfoResponse.data != null
-                            ? "${S.of(context).welcome} ${widget.bloc.fatherInfoResponse.data!.parentName}"
+                            ? "${S.of(context).welcome} ${widget.bloc.childName}"
                             : S.of(context).welcome
                         : widget.teacherHomeResponse.data != null
                             ? widget.teacherHomeResponse.data!.schoolName
@@ -107,11 +111,13 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                     InkWell(
                         onTap: () => _changeLanguage(),
                         child: _languageImage()),
-                    SizedBox(width: 6,),
+                    SizedBox(
+                      width: 6,
+                    ),
                     Stack(
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             widget.onTapNotifications(false);
                           },
                           child: Icon(
@@ -126,7 +132,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                             top: -5,
                             right: -5,
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 widget.onTapNotifications(true);
                               },
                               child: const Icon(
