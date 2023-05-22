@@ -22,7 +22,7 @@ class ChildItemWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height / 10,
+          height: 70,
           width: MediaQuery.of(context).size.width / 5,
           child: Stack(
             children: [

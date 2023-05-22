@@ -91,6 +91,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                           )));
                             },
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 if (_current != 0)
                                   Icon(
@@ -199,7 +200,8 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                         child: Column(
                           children: [
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SvgPicture.asset(
                                   ImagesPath.startOrange,
@@ -209,21 +211,20 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                 SizedBox(
                                   width: 12,
                                 ),
-                                Text(
-                                  "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700,
+                                SizedBox(
+                                  width: 35,
+                                  child: Text(
+                                    "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                SizedBox(
-                                  width: 320,
+                                Expanded(
                                   child: Text(
-                                    "${widget.teacherStudentProfileInSchoolHouseResponse.data?.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data?.sectionName ?? ""} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.classroomName ?? ""}",
+                                    "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data?.sectionName ?? ""} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.classroomName ?? ""}",
                                     maxLines: 3,
                                     style: TextStyle(
                                       fontSize: 14,
