@@ -1139,6 +1139,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Value name cannot exceed 20 characters.`
+  String get valueNameCannotExceedCharacters {
+    return Intl.message(
+      'Value name cannot exceed 20 characters.',
+      name: 'valueNameCannotExceedCharacters',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

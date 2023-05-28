@@ -107,6 +107,7 @@
   "phoneErrorOk": "إغلاق",
   "toLearnMoreAboutEjabi": "لمعرفة المزيد عن ايجابي",
   "phoneNotCorrect": "الرقم غير صحيح",
-  "By": "بواسطة"
+  "By": "بواسطة",
+  "valueNameCannotExceedCharacters": "لا يمكن أن يتجاوز اسم القيمة 20 حرفًا."
 
 }

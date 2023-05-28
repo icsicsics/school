@@ -50,6 +50,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
       _getTeacherPrinciplByClassroomIdResponse =
       GetTeacherPrinciplByClassroomIdResponse();
   Data value = Data();
+  String? errorMessage;
 
   AddPointBloc get _addPointBloc => BlocProvider.of<AddPointBloc>(context);
 
@@ -79,7 +80,8 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
         } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
           _onGetTeacherPrinciplByClassroomIdFillState(state.error);
         } else if (state is PostTeacherCreatePointSuccessState) {
-          _onPostTeacherCreatePointSuccessState(S.of(context).addedSuccessfully);
+          _onPostTeacherCreatePointSuccessState(
+              S.of(context).addedSuccessfully);
         } else if (state is PostTeacherCreatePointFailState) {
           _onPostTeacherCreatePointFailState(state.error);
         } else if (state is PostFatherCreatePointSuccessState) {
@@ -91,7 +93,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
       builder: (context, state) {
         return Container(
             width: double.infinity,
-            height: isAddCommit == true ? 265 : 200,
+            height: isAddCommit == true ? 300 : 200,
             decoration: const BoxDecoration(
                 color: ColorsManager.whiteColor,
                 borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -135,21 +137,25 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                                   title: Text(e.name.toString(),
                                       style: const TextStyle(
                                           color: ColorsManager.sameBlack)),
-                                  leading: FaIcon(getIconFromCss(e.icon ?? ""), color: ColorsManager.secondaryColor, size: 22),
+                                  leading: FaIcon(getIconFromCss(e.icon ?? ""),
+                                      color: ColorsManager.secondaryColor,
+                                      size: 22),
                                 ),
                               ))
                           .toList(),
                       onChanged: (newValue) {
-                        bool flag = false ;
-                        for(var item in _listOfItems){
-                          if(newValue == (item.id ?? "") && (item.name!.toLowerCase() == "others" || item.name!.toLowerCase() == "اخرى")) {
+                        bool flag = false;
+                        for (var item in _listOfItems) {
+                          if (newValue == (item.id ?? "") &&
+                              (item.name!.toLowerCase() == "others" ||
+                                  item.name!.toLowerCase() == "اخرى")) {
                             isAddCommit = true;
                             flag = true;
                             break;
                           }
                         }
 
-                        if(flag ==false) {
+                        if (flag == false) {
                           isAddCommit = false;
                           _addValue(newValue);
                         }
@@ -181,6 +187,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                           height: 50,
                           child: TextFormField(
                             decoration: InputDecoration(
+                                errorText: errorMessage,
                                 isDense: true,
                                 focusColor: ColorsManager.primaryColor,
                                 hintText:
@@ -190,12 +197,39 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                                     color: ColorsManager.sameBlack)),
                             controller: commentController,
                             onChanged: (value1) {
-                              value = Data(
-                                  name: value1,
-                                  id: "1c70fb02-e34c-43fe-7215-08db46379640");
+                              if (value1.length > 20) {
+                                errorMessage = S
+                                    .of(context)
+                                    .valueNameCannotExceedCharacters;
+                              } else {
+                                errorMessage = null;
+                                value = Data(
+                                    name: value1,
+                                    id: "1c70fb02-e34c-43fe-7215-08db46379640");
+                              }
+                              setState(() {});
                             },
                           ),
                         ))),
+                Visibility(
+                  visible: isAddCommit,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "${value.name?.length ?? 0} / 20",
+                          style: TextStyle(
+                              color: errorMessage != null
+                                  ? Colors.red
+                                  : ColorsManager.sameBlack,
+                              fontSize: 13),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: isAddCommit ? 15 : 5,
                 ),
@@ -227,7 +261,6 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
       //     .toString()
       //     .toUpperCase()
       //     .compareTo(B.name.toString().toUpperCase()));
-
     }
     Navigator.pop(context);
   }
@@ -244,21 +277,30 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     Navigator.of(context);
     if (value.id != null) {
       if (widget.isParent == false) {
-        _addPointBloc.add(PostTeacherAddPointEvent(
-            token: widget.token,
-            request: TeacherAddPointRequest(
-                classroomSectionStudentsId: widget.classroomSectionStudentsId,
-                classroomToPrinciplesId: value.id,
-                studentId: widget.studentId,
-                description: value.name)));
+        if(errorMessage == null) {
+          _addPointBloc.add(PostTeacherAddPointEvent(
+              token: widget.token,
+              request: TeacherAddPointRequest(
+                  classroomSectionStudentsId: widget.classroomSectionStudentsId,
+                  classroomToPrinciplesId: value.id,
+                  studentId: widget.studentId,
+                  description: value.name)));
+
+        } else {
+
+        }
       } else {
-        _addPointBloc.add(PostFatherAddPointEvent(
-            token: widget.token,
-            request: FatherAddPointRequest(
-                classroomSectionStudentsId: widget.classroomSectionStudentsId,
-                classroomToPrinciplesId: value.id,
-                studentId: widget.studentId,
-                description: value.name)));
+        if(errorMessage == null){
+          _addPointBloc.add(PostFatherAddPointEvent(
+              token: widget.token,
+              request: FatherAddPointRequest(
+                  classroomSectionStudentsId: widget.classroomSectionStudentsId,
+                  classroomToPrinciplesId: value.id,
+                  studentId: widget.studentId,
+                  description: value.name)));
+        } else {
+
+        }
       }
     } else {
       showErrorDialogFunction(
@@ -271,9 +313,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(
-            isGift: true,
-            context: context,
-            textMessage: message)
+            isGift: true, context: context, textMessage: message)
         .then((value) {
       widget.onCreatePointSuccess();
     });
@@ -289,9 +329,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     showErrorDialogFunction(
-            isGift: true,
-            context: context,
-            textMessage: message)
+            isGift: true, context: context, textMessage: message)
         .then((value) {
       widget.onCreatePointSuccess();
     });

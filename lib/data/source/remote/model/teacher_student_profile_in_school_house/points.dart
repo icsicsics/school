@@ -6,6 +6,7 @@ class Points {
   String? valueId;
   String? valueName;
   String? createdByName;
+  String? description;
 
   Points({
     this.creationDate,
@@ -14,7 +15,8 @@ class Points {
     this.valueName,
     this.valueId,
     this.principleIcon,
-    this.createdByName,q
+    this.createdByName,
+    this.description,
   });
 
   Points.fromJson(dynamic json) {
@@ -23,6 +25,7 @@ class Points {
     isTeacher = json['isTeacher'];
     valueId = json['valueId'];
     valueName = json['valueName'];
+    description = json['description'];
     principleIcon = json['principleIcon'];
     createdByName = json['createdByName'];
   }
@@ -34,6 +37,7 @@ class Points {
     map['isTeacher'] = isTeacher;
     map['valueId'] = valueId;
     map['valueName'] = valueName;
+    map['description'] = description;
     map['principleIcon'] = principleIcon;
     map['createdByName'] = createdByName;
     return map;

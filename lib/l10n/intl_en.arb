@@ -107,5 +107,6 @@
  "phoneErrorOk": "Close",
  "toLearnMoreAboutEjabi": "To learn more about Ejabi",
  "phoneNotCorrect": "Phone number is not correct",
- "By": "By"
+ "By": "By",
+ "valueNameCannotExceedCharacters": "Value name cannot exceed 20 characters."
 }

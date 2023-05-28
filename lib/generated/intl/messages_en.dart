@@ -145,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "typeWhyLeenDeserveThisPoint": MessageLookupByLibrary.simpleMessage(
             "Type Why Leen Deserve this point"),
+        "valueNameCannotExceedCharacters": MessageLookupByLibrary.simpleMessage(
+            "Value name cannot exceed 20 characters."),
         "values": MessageLookupByLibrary.simpleMessage("Values"),
         "verificationCode":
             MessageLookupByLibrary.simpleMessage("Verification Code"),
