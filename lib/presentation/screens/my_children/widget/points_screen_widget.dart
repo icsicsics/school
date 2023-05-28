@@ -111,7 +111,7 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
                             color: ColorsManager.subTitle),
                         const SizedBox(height: 5),
                         RegularTextWidget(
-                            text: description,
+                            text: "${S.of(context).By} $description",
                             fontSize: 11,
                             color: ColorsManager.subTitle),
                       ],

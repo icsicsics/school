@@ -106,5 +106,6 @@
  "phoneErrorMessage": "This phone number is not registered in the system, please contact the Ejabi system administrator from your school to complete your registration.",
  "phoneErrorOk": "Close",
  "toLearnMoreAboutEjabi": "To learn more about Ejabi",
- "phoneNotCorrect": "Phone number is not correct"
+ "phoneNotCorrect": "Phone number is not correct",
+ "By": "By"
 }

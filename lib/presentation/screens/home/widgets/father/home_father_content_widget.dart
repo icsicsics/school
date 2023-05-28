@@ -10,6 +10,7 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/screens/home/widgets/father/father_children_list_widget.dart';
@@ -217,14 +218,14 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                     "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0}",
                                     maxLines: 2,
                                     style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700,
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Text(
-                                    "${widget.teacherStudentProfileInSchoolHouseResponse.data?.allPointsCount ?? 0} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data?.sectionName ?? ""} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.classroomName ?? ""}",
+                                    "${widget.teacherStudentProfileInSchoolHouseResponse.data?.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data?.sectionName ?? ""} ${widget.teacherStudentProfileInSchoolHouseResponse.data?.classroomName ?? ""}",
                                     maxLines: 3,
                                     style: TextStyle(
                                       fontSize: 14,
@@ -269,7 +270,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                                         style: TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
-                                                              FontWeight.bold,
+                                                              FontWeight.w600,
                                                         ),
                                                       ),
                                                       SizedBox(
@@ -285,7 +286,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                                                         height: 8,
                                                       ),
                                                       Text(
-                                                        "By ${point.createdByName ?? ""}",
+                                                        "${S.of(context).By} ${point.createdByName ?? ""}",
                                                       ),
                                                     ],
                                                   )

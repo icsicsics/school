@@ -56,7 +56,7 @@ class FatherOfWidget extends StatelessWidget {
                                                 studentId:
                                                     "${fatherInfoResponse.data!.childrens![index].studentId}",
                                                 language: language,
-                                                classroomId: classroomId,
+                                                classroomId: fatherInfoResponse.data!.childrens![index].classroomId ?? "",
                                                 classroomSectionStudentsId:
                                                     classroomSectionStudentsId,
                                                 isParent: true,
