@@ -19,7 +19,8 @@ class HomeContentWidget extends StatefulWidget {
   final GetTeacherHomeResponse teacherHomeResponse;
   final GetChildrenByParentResponse parentHomeResponse;
   final WeatherResponse weatherResponse;
-  final TeacherStudentProfileInSchoolHouseResponse teacherStudentProfileInSchoolHouseResponse;
+  final TeacherStudentProfileInSchoolHouseResponse
+      teacherStudentProfileInSchoolHouseResponse;
 
   const HomeContentWidget(
       {Key? key,
@@ -49,14 +50,22 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => NotificationsScreen(isNotificationSelected: isNotificationSelected,)));
+                      builder: (_) => NotificationsScreen(
+                            isNotificationSelected: isNotificationSelected,
+                          )));
             },
             isFather: widget.isFather,
             bloc: widget.bloc,
             language: widget.language,
             teacherHomeResponse: widget.teacherHomeResponse),
         const SizedBox(height: 2),
-        HomeTitleWidget(weatherResponse: widget.weatherResponse),
+        HomeTitleWidget(
+          weatherResponse: widget.weatherResponse,
+          token: widget.token,
+          language: widget.language,
+          bloc : widget.bloc,
+
+        ),
         Expanded(child: SingleChildScrollView(child: _buildScreen()))
       ],
     );
@@ -69,7 +78,8 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
               parentHomeResponse: widget.parentHomeResponse,
               homeBloc: widget.bloc,
               token: widget.token,
-          teacherStudentProfileInSchoolHouseResponse: widget.teacherStudentProfileInSchoolHouseResponse,
+              teacherStudentProfileInSchoolHouseResponse:
+                  widget.teacherStudentProfileInSchoolHouseResponse,
               language: widget.language)
           : Container();
     }

@@ -33,6 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetProfileImageUseCase _profileImageUseCase;
 
   String childName ="";
+  String branchId ="";
   HomeBloc(
     this._saveLanguageCodeUseCase,
     this._getLanguageCodeUseCase,

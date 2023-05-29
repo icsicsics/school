@@ -6,6 +6,7 @@ import 'package:schools/data/source/remote/model/teacher_student_profile_in_scho
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/screens/my_children/widget/points_widget.dart';
 import 'package:schools/presentation/screens/side_menu_widget/widgets/curve.dart';
+import 'package:schools/presentation/widgets/medium_text_widget.dart';
 
 class MyChildrenHeaderWidget extends StatefulWidget {
   final TeacherStudentProfileInSchoolHouseResponse
@@ -72,7 +73,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 50),
+              padding: const EdgeInsets.only(bottom: 30),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -83,6 +84,14 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                             "",
                         fontSize: 25,
                         color: ColorsManager.whiteColor),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: MediumTextWidget(
+                          text:
+                              "${widget.teacherStudentProfileInSchoolHouseResponse.data!.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data!.classroomName ?? ""} - Section ${widget.teacherStudentProfileInSchoolHouseResponse.data!.sectionName ?? ""}",
+                          fontSize: 16,
+                          color: ColorsManager.whiteColor),
+                    )
                   ]),
             ),
           ),

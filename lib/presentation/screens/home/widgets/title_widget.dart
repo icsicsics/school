@@ -4,13 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/generated/l10n.dart';
+import 'package:schools/presentation/bloc/home/home_bloc.dart';
+import 'package:schools/presentation/screens/school_houses/school_houses_screen.dart';
 import 'package:schools/presentation/widgets/medium_text_widget.dart';
 
 class HomeTitleWidget extends StatelessWidget {
   final WeatherResponse weatherResponse;
+  final String token;
+  final String language;
+  final HomeBloc bloc;
 
-  const HomeTitleWidget({Key? key, required this.weatherResponse})
-      : super(key: key);
+  const HomeTitleWidget({
+    Key? key,
+    required this.weatherResponse,
+    required this.token,
+    required this.language,
+    required this.bloc,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,67 +52,95 @@ class HomeTitleWidget extends StatelessWidget {
         height: 100,
         child: Padding(
           padding: const EdgeInsets.all(0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  MediumTextWidget(
-                      text: dateFormatter(dateTime),
-                      fontSize: 16,
-                      color: ColorsManager.whiteColor),
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  MediumTextWidget(
-                      text:
-                          "$dayNumber ${S.of(context).thOf} ${monthFormatter(dateTime.month)} $year",
-                      fontSize: 15,
-                      color: ColorsManager.whiteColor),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MediumTextWidget(
-                      text: S.of(context).weather,
-                      fontSize: 16,
-                      color: ColorsManager.whiteColor),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                          decoration: const BoxDecoration(
-                              color: ColorsManager.whiteColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: const Padding(
-                            padding: EdgeInsets.all(1),
-                            child: Icon(
-                              Icons.sunny,
-                              color: ColorsManager.yellow,
-                              size: 15,
-                            ),
-                          )),
+                      MediumTextWidget(
+                          text: dateFormatter(dateTime),
+                          fontSize: 16,
+                          color: ColorsManager.whiteColor),
                       const SizedBox(
-                        width: 2,
+                        height: 10,
                       ),
-                      weatherResponse.weather != null
-                          ? MediumTextWidget(
-                              text:
-                                  "${(weatherResponse.main!.temp! - 273.15).round().toString()}\u2103 ${weatherResponse.weather![0].description.toString()}",
-                              fontSize: 15,
-                              color: ColorsManager.whiteColor)
-                          : const SizedBox(),
+                      MediumTextWidget(
+                          text:
+                              "$dayNumber ${S.of(context).thOf} ${monthFormatter(dateTime.month)} $year",
+                          fontSize: 15,
+                          color: ColorsManager.whiteColor),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MediumTextWidget(
+                          text: S.of(context).weather,
+                          fontSize: 16,
+                          color: ColorsManager.whiteColor),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                              decoration: const BoxDecoration(
+                                  color: ColorsManager.whiteColor,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              child: const Padding(
+                                padding: EdgeInsets.all(1),
+                                child: Icon(
+                                  Icons.sunny,
+                                  color: ColorsManager.yellow,
+                                  size: 15,
+                                ),
+                              )),
+                          const SizedBox(
+                            width: 2,
+                          ),
+                          weatherResponse.weather != null
+                              ? MediumTextWidget(
+                                  text:
+                                      "${(weatherResponse.main!.temp! - 273.15).round().toString()}\u2103 ${weatherResponse.weather![0].description.toString()}",
+                                  fontSize: 15,
+                                  color: ColorsManager.whiteColor)
+                              : const SizedBox(),
+                        ],
+                      ),
                     ],
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SchoolHousesScreen(
+                                token: token,
+                                classRoomId:bloc.branchId,
+                                language: language,
+                                isComingFromHome: true)));
+                  },
+                  child: MediumTextWidget(
+                      text: S.of(context).viewHouses,
+                      fontSize: 16,
+                      color: ColorsManager.whiteColor),
+                ),
               ),
             ],
           ),

@@ -21,7 +21,7 @@ class PointsScreenWidget extends StatefulWidget {
 }
 
 class _PointsScreenWidgetState extends State<PointsScreenWidget> {
-  late List<Points> reversedPoints;
+  List<Points> reversedPoints = [];
   String dateFormat(String dateFormat) {
     return DateFormat('dd/MM/yyyy').format(
       DateTime.parse(dateFormat).toLocal(),
@@ -37,24 +37,23 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
   @override
   void initState() {
     super.initState();
-    reversedPoints = widget.points.reversed.toList();
+    widget.points.sort((a, b) => b.creationDate!.compareTo(a.creationDate!));
   }
 
   @override
   void didUpdateWidget(covariant PointsScreenWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    reversedPoints = widget.points.reversed.toList();
-
+    widget.points.sort((a, b) => b.creationDate!.compareTo(a.creationDate!));
   }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: reversedPoints
+        children: widget.points
             .map((e) {
               return _item(
                 onTap: () {},
-                title: e.valueName ?? "",
+                  title: getValueName(e),
                 subTitle:
                     "${dateFormat(e.creationDate.toString())}  ${S.of(context).at}  ${formattedTime(e.creationDate.toString())}",
                 description: e.createdByName??"",
@@ -63,6 +62,16 @@ class _PointsScreenWidgetState extends State<PointsScreenWidget> {
             .toList(),
       ),
     );
+  }
+
+  String getValueName(Points point) {
+    if (point.valueName?.toLowerCase() == "others" ||
+        point.valueName?.toLowerCase() == "اخرى" ||
+        point.valueName?.toLowerCase() == "أخرى") {
+      return point.description ?? "";
+    }
+
+    return point.valueName ?? "";
   }
 
   Widget _item(

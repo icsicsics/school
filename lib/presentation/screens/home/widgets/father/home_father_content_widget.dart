@@ -51,12 +51,15 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
       BlocProvider.of<HomeBloc>(context).add(
           GetStudentProfileInSchoolHouseEvent(
               widget.parentHomeResponse.data![0].studentId ?? ""));
+      widget.homeBloc.branchId = widget.parentHomeResponse.data![_current].branchId ?? "";
     }
   }
 
   @override
   void didUpdateWidget(covariant HomeFatherContentWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
+    widget.homeBloc.branchId = widget.parentHomeResponse.data![_current].branchId ?? "";
+
   }
 
   @override
@@ -310,6 +313,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                   GetStudentProfileInSchoolHouseEvent(
                       widget.parentHomeResponse.data![_current].studentId ??
                           ""));
+              widget.homeBloc.branchId = widget.parentHomeResponse.data![_current].branchId ?? "";
             });
           },
         ),

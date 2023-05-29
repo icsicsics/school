@@ -47,9 +47,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
       ),
       height: widget.isFather
           ? MediaQuery.of(context).size.height / 7
-          : MediaQuery.of(context).size.height / 5.2,
+          : MediaQuery.of(context).size.height / 4.5,
       child: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 5, right: 5),
+        padding: const EdgeInsets.only(top: 20, left: 5, right: 5),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -97,7 +97,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                         : widget.teacherHomeResponse.data != null
                             ? widget.teacherHomeResponse.data!.schoolName
                             : "",
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Color(0xff3bbbac),
                   ),
                 ),

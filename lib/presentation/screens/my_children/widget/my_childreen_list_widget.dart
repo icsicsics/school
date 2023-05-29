@@ -45,13 +45,16 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
     userId = await SharedPreferencesManager().getUserId() ?? "";
 
     points = widget.points;
-    _list.add(
-        _ChildIconsModel(id: "-1", isSelected: true, title: S.current.all,icon: ""));
-    _list.add(
-        _ChildIconsModel(id: userId, isSelected: false, title: S.current.me,icon: ""));
+    _list.add(_ChildIconsModel(
+        id: "-1", isSelected: true, title: S.current.all, icon: ""));
+    _list.add(_ChildIconsModel(
+        id: userId, isSelected: false, title: S.current.me, icon: ""));
     for (var element in widget.getTeacherPrinciplByClassroomIdResponse.data!) {
       _list.add(_ChildIconsModel(
-          id: element.principleId!, title: element.name!, isSelected: false,icon: element.icon!));
+          id: element.principleId ?? "",
+          title: element.name ?? "",
+          isSelected: false,
+          icon: element.icon ?? ""));
     }
     // _list.sort((A, B) => A.title
     //     .toString()
@@ -102,8 +105,22 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: MediumTextWidget(
-              text: model.title, fontSize: 15, color: _getColor(model)),
+          child: Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              MediumTextWidget(
+                  text: model.title, fontSize: 15, color: _getColor(model)),
+              if (model.isSelected)
+                Positioned(
+                  bottom: -16,
+                  child: MediumTextWidget(
+                      text: "${filter.length}",
+                      fontSize: 14,
+                      color: _getColor(model)),
+                )
+            ],
+          ),
         ),
       );
     } else {
@@ -119,10 +136,25 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
         onTap: () => _selectItem(model.id, model.title, model.isSelected),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: FaIcon(getIconFromCss(model.icon ?? ""), color: _getColor(model), size: 24)
+          child: Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              FaIcon(getIconFromCss(model.icon ?? ""),
+                  color: _getColor(model), size: 24),
+              if (model.isSelected)
+                Positioned(
+                  bottom: -16,
+                  child: MediumTextWidget(
+                      text: "${model.count}",
+                      fontSize: 14,
+                      color: _getColor(model)),
+                )
+            ],
+          )
           // child: MediumTextWidget(
           //     text: model.title, fontSize: 15, color: _getColor(model))
-    ,
+          ,
         ),
       );
     }
@@ -154,8 +186,8 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             element.isSelected = true;
           });
           filter.clear();
-          for(var item in points){
-            if(item.createdBy == userId){
+          for (var item in points) {
+            if (item.createdBy == userId) {
               filter.add(item);
             }
           }
@@ -212,6 +244,14 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
       }
     }
 
+    for (var point in _list) {
+      point.count = 0;
+      for (var item in filter) {
+        if (point.id == item.valueId) {
+          point.count++;
+        }
+      }
+    }
     BlocProvider.of<MyChildrenBloc>(context).add(
       MyChildrenFilterEvent(
         filter: filter
@@ -228,6 +268,7 @@ class _ChildIconsModel {
   String title;
   bool isSelected;
   String icon;
+  int count = 0;
 
   _ChildIconsModel({
     required this.id,

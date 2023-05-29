@@ -229,27 +229,62 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
             ),
           ),
           SizedBox(width: 6,),
-          InkWell(
-            onTap: (){
-              BlocProvider.of<SchoolHousesBloc>(context)
-                  .add(NavigateToNotificationScreenEvent(isNotificationSelected : false));
-            },
-            child: Icon(Icons.mail,
-                color: ColorsManager.secondaryColor, size: 25),
-          ),
-          Visibility(
-            visible: isFather,
-            child: InkWell(
-              onTap: (){
-                BlocProvider.of<SchoolHousesBloc>(context)
-                    .add(NavigateToNotificationScreenEvent(isNotificationSelected : true));              },
-              child: const Icon(
-                Icons.notifications,
-                color: ColorsManager.yellow,
-                size: 30,
+          Stack(
+            alignment: Alignment.center,
+
+            children: [
+              InkWell(
+                onTap: () {
+                  BlocProvider.of<SchoolHousesBloc>(context)
+                      .add(NavigateToNotificationScreenEvent(isNotificationSelected : false));
+                },
+                child: Icon(
+                  Icons.mail,
+                  color: Color(0xff3bbbac),
+                  size: 30,
+                ),
               ),
-            ),
+              Visibility(
+                visible: isFather,
+                child: Positioned(
+                  top: 8,
+                  right: -5,
+                  child: InkWell(
+                    onTap: () {
+                      BlocProvider.of<SchoolHousesBloc>(context)
+                          .add(NavigateToNotificationScreenEvent(isNotificationSelected : true));                    },
+                    child: const Icon(
+                      Icons.notifications,
+                      color: ColorsManager.yellow,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
+
+          // InkWell(
+          //   onTap: (){
+          //     BlocProvider.of<SchoolHousesBloc>(context)
+          //         .add(NavigateToNotificationScreenEvent(isNotificationSelected : false));
+          //   },
+          //   child: Icon(Icons.mail,
+          //       color: ColorsManager.secondaryColor, size: 25),
+          // ),
+          // Visibility(
+          //   visible: isFather,
+          //   child: InkWell(
+          //     onTap: (){
+          //       BlocProvider.of<SchoolHousesBloc>(context)
+          //           .add(NavigateToNotificationScreenEvent(isNotificationSelected : true));              },
+          //     child: const Icon(
+          //       Icons.notifications,
+          //       color: ColorsManager.yellow,
+          //       size: 30,
+          //     ),
+          //   ),
+          // ),
         ],
         title: BoldTextWidget(
             color: ColorsManager.secondaryColor,

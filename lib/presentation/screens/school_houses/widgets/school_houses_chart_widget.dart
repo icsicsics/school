@@ -6,10 +6,12 @@ import 'package:schools/presentation/screens/school_houses/widgets/chart_content
 import 'package:schools/presentation/screens/side_menu_widget/widgets/curve.dart';
 
 class SchoolHousesChartWidget extends StatelessWidget {
-  final SchoolHousesBloc? schoolHousesBloc;
+  final SchoolHousesBloc schoolHousesBloc;
 
-  const SchoolHousesChartWidget({Key? key, required this.schoolHousesBloc})
-      : super(key: key);
+  const SchoolHousesChartWidget({
+    Key? key,
+    required this.schoolHousesBloc,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class SchoolHousesChartWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16),
           height: 500,
           width: double.infinity,
-          child: ChartContentWidget(schoolHousesBloc: schoolHousesBloc!),
+          child: ChartContentWidget(schoolHousesBloc: schoolHousesBloc),
         ),
         Align(
           alignment: Alignment.topCenter,

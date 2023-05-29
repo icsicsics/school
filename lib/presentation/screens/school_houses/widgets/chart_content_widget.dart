@@ -61,8 +61,8 @@ class _ChartContentWidgetState extends State<ChartContentWidget> {
               left: 45,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: widget
-                        .schoolHousesBloc.getClassHousesResponse.data!.isNotEmpty
+                children: (widget
+                    .schoolHousesBloc.getClassHousesResponse.data ?? []).isNotEmpty
                     ? widget.schoolHousesBloc.getClassHousesResponse.data!
                         .map((e) {
                         return FaIcon(
