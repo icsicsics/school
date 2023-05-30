@@ -1,3 +1,5 @@
+import 'package:schools/data/source/remote/model/teacher_home/response/get_logo.dart';
+
 import 'get_image.dart';
 import 'points.dart';
 
@@ -10,6 +12,7 @@ class Data {
   int? allPointsCount;
   int? thisWeekPointsCount;
   GetImage? getImage;
+  GetLogo? getLogo;
   List<Points>? points;
 
   Data({
@@ -21,6 +24,7 @@ class Data {
     this.allPointsCount,
     this.thisWeekPointsCount,
     this.getImage,
+    this.getLogo,
     this.points,
   });
 
@@ -28,6 +32,7 @@ class Data {
     sectionName = json['sectionName'];
     classroomName = json['classroomName'];
     schoolName = json['schoolName'];
+    getLogo = json['getLogo'] != null ? GetLogo.fromJson(json['getLogo']) : null;
     studentId = json['studentId'];
     studentName = json['studentName'];
     allPointsCount = json['allPointsCount'];
@@ -47,6 +52,9 @@ class Data {
     map['sectionName'] = sectionName;
     map['classroomName'] = classroomName;
     map['schoolName'] = schoolName;
+    if (getLogo != null) {
+      map['getLogo'] = getLogo!.toJson();
+    }
     map['studentId'] = studentId;
     map['studentName'] = studentName;
     map['allPointsCount'] = allPointsCount;

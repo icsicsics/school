@@ -46,7 +46,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
         color: ColorsManager.whiteColor,
       ),
       height: widget.isFather
-          ? MediaQuery.of(context).size.height / 7
+          ? MediaQuery.of(context).size.height / 4.5
           : MediaQuery.of(context).size.height / 4.5,
       child: Padding(
         padding: const EdgeInsets.only(top: 20, left: 5, right: 5),
@@ -82,18 +82,15 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                   ? MainAxisAlignment.center
                   : MainAxisAlignment.start,
               children: [
-                Visibility(
-                  visible: widget.isFather == true ? false : true,
-                  child: profileImageWidget(),
-                ),
+                profileImageWidget(),
                 SizedBox(
                   width: 210,
                   child: MediumTextWidget(
                     textAlign: TextAlign.center,
                     text: widget.isFather
                         ? widget.bloc.fatherInfoResponse.data != null
-                            ? "${S.of(context).welcome} ${widget.bloc.childName}"
-                            : S.of(context).welcome
+                            ? widget.bloc.childName
+                            : ""
                         : widget.teacherHomeResponse.data != null
                             ? widget.teacherHomeResponse.data!.schoolName
                             : "",
@@ -176,22 +173,36 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
   }
 
   Widget profileImageWidget() {
-    return widget.teacherHomeResponse.data != null
-        ? ClipOval(
-            child: Image.network(
-              height: 60,
-              width: 60,
-              widget.teacherHomeResponse.data!.getLogo!.mediaUrl!,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) =>
-                  _buildProfilePlaceHolder(),
-            ),
-          )
-        : SizedBox(
-            width: 30,
-            height: 30,
-            child: _buildProfilePlaceHolder(),
-          );
+    return widget.isFather == false
+        ? widget.teacherHomeResponse.data != null
+            ? ClipOval(
+                child: Image.network(
+                  height: 60,
+                  width: 60,
+                  widget.teacherHomeResponse.data!.getLogo!.mediaUrl!,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      _buildProfilePlaceHolder(),
+                ),
+              )
+            : SizedBox(
+                width: 30,
+                height: 30,
+                child: _buildProfilePlaceHolder(),
+              )
+        : widget.bloc.fatherInfoResponse.data != null
+            ? ClipOval(
+                child: Image.network(
+                  height: 60,
+                  width: 60,
+                  widget.bloc.schoolLogo,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      _buildProfilePlaceHolder(),
+                ),
+              )
+            : SizedBox(
+                width: 30, height: 30, child: _buildProfilePlaceHolder());
   }
 
   SizedBox _buildProfilePlaceHolder() => SizedBox(

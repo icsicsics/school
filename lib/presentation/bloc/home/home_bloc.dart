@@ -34,6 +34,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   String childName ="";
   String branchId ="";
+  String schoolLogo ="";
   HomeBloc(
     this._saveLanguageCodeUseCase,
     this._getLanguageCodeUseCase,

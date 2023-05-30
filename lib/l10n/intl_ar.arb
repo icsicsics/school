@@ -108,6 +108,10 @@
   "toLearnMoreAboutEjabi": "لمعرفة المزيد عن ايجابي",
   "phoneNotCorrect": "الرقم غير صحيح",
   "By": "بواسطة",
-  "valueNameCannotExceedCharacters": "لا يمكن أن يتجاوز اسم القيمة 20 حرفًا."
-
+  "valueNameCannotExceedCharacters": "لا يمكن أن يتجاوز اسم القيمة 20 حرفًا.",
+  "connectLikeMindedPeople": "تواصل مثل العقول",
+  "participateAndWinRewards": "شارك واربح مكافآت",
+  "findNearbyEvents": "البحث عن الأحداث القريبة",
+  "getStart": "ابدأ",
+  "skip": "تخطى"
 }

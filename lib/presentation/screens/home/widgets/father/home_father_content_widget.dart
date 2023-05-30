@@ -27,7 +27,7 @@ class HomeFatherContentWidget extends StatefulWidget {
   final TeacherStudentProfileInSchoolHouseResponse
   teacherStudentProfileInSchoolHouseResponse;
 
-  HomeFatherContentWidget(
+  const HomeFatherContentWidget(
       {Key? key,
         required this.parentHomeResponse,
         required this.homeBloc,
@@ -195,8 +195,8 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                       children: [
                         SvgPicture.asset(
                           ImagesPath.startOrange,
-                          width: 22,
-                          height: 22,
+                          width: 26,
+                          height: 26,
                         ),
                         SizedBox(
                           width: 12,

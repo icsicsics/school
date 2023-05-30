@@ -27,5 +27,7 @@ class ImagesPath {
   static const String webIcon = "${_basePath}ic_site.svg";
   static const String whatsIcon = "${_basePath}ic_whatsapp.svg";
   static const String youtubeIcon = "${_basePath}ic_youtube.svg";
-
+  static const String pageOne = "${_basePath}ic_page_one.svg";
+  static const String pageTwo = "${_basePath}ic_page_two.svg";
+  static const String pageThree = "${_basePath}ic_page_three.svg";
 }

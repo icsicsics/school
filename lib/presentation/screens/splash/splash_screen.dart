@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
+import 'package:schools/presentation/screens/on_boarding/on_boarding_screen.dart';
 import 'package:schools/presentation/screens/splash/widgets/splash_content_widget.dart';
 
 class SplashScreen extends BaseStatefulWidget {
@@ -16,6 +18,7 @@ class SplashScreen extends BaseStatefulWidget {
 
 class _SplashScreenState extends BaseState<SplashScreen> {
   SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
+  bool _showOnBoarding = false;
 
   @override
   void initState() {
@@ -24,12 +27,22 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   }
 
   @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    _showOnBoarding = await SharedPreferencesManager.getIsOnBoarding() ?? false;
+  }
+
+  @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is GetTokenState) {
           if (state.token.isEmpty) {
-            _navigationToLoginScreen();
+            if (_showOnBoarding == false) {
+              _navigateToOnBoardingScreen();
+            } else {
+              _navigationToLoginScreen();
+            }
           } else {
             _navigateToHomeScreen();
           }
@@ -78,4 +91,15 @@ class _SplashScreenState extends BaseState<SplashScreen> {
 
   Future<void> _delay(int seconds) async =>
       await Future.delayed(Duration(seconds: seconds));
+
+  void _navigateToOnBoardingScreen() async {
+    await _delay(3);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const OnBoardingScreen(),
+      ),
+    );
+  }
 }

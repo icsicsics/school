@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "classHouses": MessageLookupByLibrary.simpleMessage("فرق الصف"),
         "clear": MessageLookupByLibrary.simpleMessage("مسح"),
         "collaboration": MessageLookupByLibrary.simpleMessage("تعاون"),
+        "connectLikeMindedPeople":
+            MessageLookupByLibrary.simpleMessage("تواصل مثل العقول"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "dec": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "didntReceiveVerificationCode":
@@ -66,8 +68,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رمز التحقق غير صحيح"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),
         "feb": MessageLookupByLibrary.simpleMessage("فبراير"),
+        "findNearbyEvents":
+            MessageLookupByLibrary.simpleMessage("البحث عن الأحداث القريبة"),
         "friday": MessageLookupByLibrary.simpleMessage("الجمعة"),
         "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
+        "getStart": MessageLookupByLibrary.simpleMessage("ابدأ"),
         "honesty": MessageLookupByLibrary.simpleMessage("أمانة"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage("قرأت وأقبل ب"),
@@ -99,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
         "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
+        "participateAndWinRewards":
+            MessageLookupByLibrary.simpleMessage("شارك واربح مكافآت"),
         "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(
             "هذا الرقم غير مسجل في تطبيق إيجابي, يرجى التواصل مع مدير قسم المعلومات في مدرستك لإكمال عملية التسجيل."),
         "phoneErrorOk": MessageLookupByLibrary.simpleMessage("إغلاق"),
@@ -124,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),
         "sep": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "skills": MessageLookupByLibrary.simpleMessage("مهارات"),
+        "skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "studentHouses": MessageLookupByLibrary.simpleMessage("فرق الطلاب"),
         "students": MessageLookupByLibrary.simpleMessage("طلاب"),
         "studentsProfile":

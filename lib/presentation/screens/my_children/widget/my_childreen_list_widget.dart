@@ -105,20 +105,18 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Stack(
-            alignment: Alignment.center,
-            clipBehavior: Clip.none,
+          child: Row(
             children: [
               MediumTextWidget(
                   text: model.title, fontSize: 15, color: _getColor(model)),
+              if(model.isSelected) SizedBox(width: 4,),
               if (model.isSelected)
-                Positioned(
-                  bottom: -16,
-                  child: MediumTextWidget(
-                      text: "${filter.length}",
-                      fontSize: 14,
-                      color: _getColor(model)),
-                )
+                MediumTextWidget(
+                    text: "${filter.length}",
+                    fontSize: 14,
+                    color: _getColor(model))
+
+
             ],
           ),
         ),

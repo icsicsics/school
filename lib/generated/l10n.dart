@@ -140,10 +140,10 @@ class S {
     );
   }
 
-  /// ` Next`
+  /// `Next`
   String get next {
     return Intl.message(
-      ' Next',
+      'Next',
       name: 'next',
       desc: '',
       args: [],
@@ -1145,6 +1145,56 @@ class S {
     return Intl.message(
       'Value name cannot exceed 20 characters.',
       name: 'valueNameCannotExceedCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect Like Minded People`
+  String get connectLikeMindedPeople {
+    return Intl.message(
+      'Connect Like Minded People',
+      name: 'connectLikeMindedPeople',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Participate and Win Rewards`
+  String get participateAndWinRewards {
+    return Intl.message(
+      'Participate and Win Rewards',
+      name: 'participateAndWinRewards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find Nearby Events`
+  String get findNearbyEvents {
+    return Intl.message(
+      'Find Nearby Events',
+      name: 'findNearbyEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Start`
+  String get getStart {
+    return Intl.message(
+      'Get Start',
+      name: 'getStart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message(
+      'Skip',
+      name: 'skip',
       desc: '',
       args: [],
     );

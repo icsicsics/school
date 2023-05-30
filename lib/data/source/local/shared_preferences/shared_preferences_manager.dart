@@ -169,6 +169,17 @@ class SharedPreferencesManager {
         SharedPreferencesKeys.roles, roles);
   }
 
+  static Future<bool?> getIsOnBoarding() async {
+    return await SharedPreferencesUtils.getBool(
+        SharedPreferencesKeys.isOnBoarding);
+  }
+
+  static Future<bool> setIsOnBoarding(bool isOnBoarding) async {
+    return await SharedPreferencesUtils.setBool(
+        SharedPreferencesKeys.isOnBoarding,
+        data: isOnBoarding);
+  }
+
   Future<bool?> clearToken() async {
     return await SharedPreferencesUtils.remove(SharedPreferencesKeys.token);
   }

@@ -13,7 +13,7 @@ class SharedPreferencesUtils {
     return (await getSharePref()).setString(key, data);
   }
 
-  static Future<bool?> setBool(String key, {required bool? data}) async {
+  static Future<bool> setBool(String key, {required bool? data}) async {
     return (await getSharePref()).setBool(key, data!);
   }
 

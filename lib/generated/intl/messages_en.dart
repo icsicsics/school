@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "classHouses": MessageLookupByLibrary.simpleMessage("Class houses"),
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
         "collaboration": MessageLookupByLibrary.simpleMessage("Collaboration"),
+        "connectLikeMindedPeople":
+            MessageLookupByLibrary.simpleMessage("Connect Like Minded People"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "dec": MessageLookupByLibrary.simpleMessage("december"),
         "didntReceiveVerificationCode": MessageLookupByLibrary.simpleMessage(
@@ -67,8 +69,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "The verification code is incorrect"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
         "feb": MessageLookupByLibrary.simpleMessage("february"),
+        "findNearbyEvents":
+            MessageLookupByLibrary.simpleMessage("Find Nearby Events"),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+        "getStart": MessageLookupByLibrary.simpleMessage("Get Start"),
         "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage(" I have read and accept the"),
@@ -92,13 +97,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
-        "next": MessageLookupByLibrary.simpleMessage(" Next"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "nov": MessageLookupByLibrary.simpleMessage("november"),
         "number": MessageLookupByLibrary.simpleMessage("Number"),
         "oct": MessageLookupByLibrary.simpleMessage("october"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "participateAndWinRewards":
+            MessageLookupByLibrary.simpleMessage("Participate and Win Rewards"),
         "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(
             "This phone number is not registered in the system, please contact the Ejabi system administrator from your school to complete your registration."),
         "phoneErrorOk": MessageLookupByLibrary.simpleMessage("Close"),
@@ -124,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendOTP": MessageLookupByLibrary.simpleMessage("Send OTP"),
         "sep": MessageLookupByLibrary.simpleMessage("september"),
         "skills": MessageLookupByLibrary.simpleMessage("Skills"),
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "studentHouses": MessageLookupByLibrary.simpleMessage("Student houses"),
         "students": MessageLookupByLibrary.simpleMessage("Students"),
         "studentsProfile":

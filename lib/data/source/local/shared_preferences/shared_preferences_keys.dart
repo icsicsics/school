@@ -14,4 +14,5 @@ class SharedPreferencesKeys {
   static const userId = "userId";
   static const countryCode = "countryCode";
   static const roles = "roles";
+  static const isOnBoarding = "isOnBoarding";
 }
