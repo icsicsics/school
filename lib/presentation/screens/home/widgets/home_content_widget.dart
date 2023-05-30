@@ -5,6 +5,7 @@ import 'package:schools/data/source/remote/model/teacher_student_profile_in_scho
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/screens/home/widgets/father/home_father_content_widget.dart';
+import 'package:schools/presentation/screens/home/widgets/father/test.dart';
 import 'package:schools/presentation/screens/home/widgets/home_app_bar_widget.dart';
 import 'package:schools/presentation/screens/home/widgets/teacher/home_teacher_details_widget.dart';
 import 'package:schools/presentation/screens/home/widgets/title_widget.dart';
@@ -66,7 +67,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
           bloc : widget.bloc,
 
         ),
-        Expanded(child: SingleChildScrollView(child: _buildScreen()))
+        Expanded(child: _buildScreen())
       ],
     );
   }
@@ -74,19 +75,30 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
   Widget _buildScreen() {
     if (widget.isFather == true) {
       return widget.parentHomeResponse.data != null
-          ? HomeFatherContentWidget(
-              parentHomeResponse: widget.parentHomeResponse,
-              homeBloc: widget.bloc,
-              token: widget.token,
-              teacherStudentProfileInSchoolHouseResponse:
-                  widget.teacherStudentProfileInSchoolHouseResponse,
-              language: widget.language)
+          ?
+      // HomeFatherContentWidget(
+      //         parentHomeResponse: widget.parentHomeResponse,
+      //         homeBloc: widget.bloc,
+      //         token: widget.token,
+      //         teacherStudentProfileInSchoolHouseResponse:
+      //             widget.teacherStudentProfileInSchoolHouseResponse,
+      //         language: widget.language)
+      Test(
+          parentHomeResponse: widget.parentHomeResponse,
+          homeBloc: widget.bloc,
+          token: widget.token,
+          teacherStudentProfileInSchoolHouseResponse:
+          widget.teacherStudentProfileInSchoolHouseResponse,
+          language: widget.language)
+
           : Container();
     }
-    return HomeTeacherDetailsWidget(
-        homeBloc: widget.bloc,
-        teacherHomeResponse: widget.teacherHomeResponse,
-        token: widget.token,
-        language: widget.language);
+    return SingleChildScrollView(
+      child: HomeTeacherDetailsWidget(
+          homeBloc: widget.bloc,
+          teacherHomeResponse: widget.teacherHomeResponse,
+          token: widget.token,
+          language: widget.language),
+    );
   }
 }
