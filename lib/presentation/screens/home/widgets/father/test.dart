@@ -52,7 +52,7 @@ class _TestState extends State<Test> {
           GetStudentProfileInSchoolHouseEvent(
               widget.parentHomeResponse.data![0].studentId ?? ""));
       widget.homeBloc.branchId =
-          widget.parentHomeResponse.data![_current].branchId ?? "";
+          widget.parentHomeResponse.data![_current].classroomToSectionId ?? "";
     }
 
 
@@ -62,7 +62,7 @@ class _TestState extends State<Test> {
   void didUpdateWidget(covariant Test oldWidget) {
     super.didUpdateWidget(oldWidget);
     widget.homeBloc.branchId =
-        widget.parentHomeResponse.data![_current].branchId ?? "";
+        widget.parentHomeResponse.data![_current].classroomToSectionId ?? "";
   }
 
   @override
@@ -220,7 +220,7 @@ class _TestState extends State<Test> {
                       widget.parentHomeResponse.data![_current].studentId ??
                           ""));
               widget.homeBloc.branchId =
-                  widget.parentHomeResponse.data![_current].branchId ?? "";
+                  widget.parentHomeResponse.data![_current].classroomId ?? "";
             });
           },
         ));

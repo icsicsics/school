@@ -88,7 +88,7 @@ class HomeTitleWidget extends StatelessWidget {
                                       token: token,
                                       classRoomId:bloc.branchId,
                                       language: language,
-                                      isComingFromHome: true)));
+                                      isComingFromHome: false)));
                         },
                         child: MediumTextWidget(
                             text: S.of(context).viewHouses,

@@ -73,7 +73,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.only(bottom: 15),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -84,6 +84,14 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                             "",
                         fontSize: 25,
                         color: ColorsManager.whiteColor),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: MediumTextWidget(
+                          text: "${widget.teacherStudentProfileInSchoolHouseResponse.data!.houseName ?? ""}",
+                          fontSize: 18,
+                          textAlign: TextAlign.center,
+                          color: ColorsManager.whiteColor),
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: MediumTextWidget(

@@ -7,6 +7,7 @@ class Data {
   String? sectionName;
   String? classroomName;
   String? schoolName;
+  String? houseName;
   String? studentId;
   String? studentName;
   int? allPointsCount;
@@ -19,6 +20,7 @@ class Data {
     this.sectionName,
     this.classroomName,
     this.schoolName,
+    this.houseName,
     this.studentId,
     this.studentName,
     this.allPointsCount,
@@ -32,6 +34,7 @@ class Data {
     sectionName = json['sectionName'];
     classroomName = json['classroomName'];
     schoolName = json['schoolName'];
+    houseName = json['houseName'];
     getLogo = json['getLogo'] != null ? GetLogo.fromJson(json['getLogo']) : null;
     studentId = json['studentId'];
     studentName = json['studentName'];
@@ -52,6 +55,7 @@ class Data {
     map['sectionName'] = sectionName;
     map['classroomName'] = classroomName;
     map['schoolName'] = schoolName;
+    map['houseName'] = houseName;
     if (getLogo != null) {
       map['getLogo'] = getLogo!.toJson();
     }

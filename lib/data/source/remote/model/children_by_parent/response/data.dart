@@ -4,6 +4,7 @@ class Data {
   String? branchName;
   String? branchId;
   String? classroomSectionStudentsId;
+  String? classroomToSectionId;
   String? studentName;
   String? studentId;
   String? classroomId;
@@ -13,6 +14,7 @@ class Data {
     this.branchName,
     this.branchId,
     this.classroomSectionStudentsId,
+    this.classroomToSectionId,
     this.studentName,
     this.studentId,
     this.classroomId,
@@ -23,6 +25,7 @@ class Data {
     branchName = json['branchName'];
     branchId = json['branchId'];
     classroomSectionStudentsId = json['classroomSectionStudentsId'];
+    classroomToSectionId = json['classroomToSectionId'];
     studentName = json['studentName'];
     studentId = json['studentId'];
     classroomId = json['classroomId'];
@@ -35,6 +38,7 @@ class Data {
     map['branchName'] = branchName;
     map['branchId'] = branchId;
     map['classroomSectionStudentsId'] = classroomSectionStudentsId;
+    map['classroomToSectionId'] = classroomToSectionId;
     map['studentName'] = studentName;
     map['studentId'] = studentId;
     map['classroomId'] = classroomId;
