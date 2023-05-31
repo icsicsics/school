@@ -58,6 +58,7 @@ class HomeTitleWidget extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -75,10 +76,30 @@ class HomeTitleWidget extends StatelessWidget {
                               "$dayNumber ${S.of(context).thOf} ${monthFormatter(dateTime.month)} $year",
                           fontSize: 15,
                           color: ColorsManager.whiteColor),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SchoolHousesScreen(
+                                      token: token,
+                                      classRoomId:bloc.branchId,
+                                      language: language,
+                                      isComingFromHome: true)));
+                        },
+                        child: MediumTextWidget(
+                            text: S.of(context).viewHouses,
+                            fontSize: 16,
+                            color: ColorsManager.whiteColor),
+                      ),
+
                     ],
                   ),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MediumTextWidget(
@@ -118,29 +139,6 @@ class HomeTitleWidget extends StatelessWidget {
                     ],
                   ),
                 ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => SchoolHousesScreen(
-                                token: token,
-                                classRoomId:bloc.branchId,
-                                language: language,
-                                isComingFromHome: true)));
-                  },
-                  child: MediumTextWidget(
-                      text: S.of(context).viewHouses,
-                      fontSize: 16,
-                      color: ColorsManager.whiteColor),
-                ),
               ),
             ],
           ),
