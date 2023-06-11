@@ -53,3 +53,5 @@ class OpenWebViewEvent extends SideMenuEvent {
 }
 class NavigateToAboutScreenEvent extends SideMenuEvent {}
 
+class NavigateToChannelsScreenEvent extends SideMenuEvent {}
+

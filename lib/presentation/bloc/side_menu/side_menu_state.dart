@@ -96,3 +96,5 @@ class OpenWebViewState extends SideMenuState {
 }
 
 class NavigateToAboutScreenState extends SideMenuState {}
+
+class NavigateToChannelsScreenState extends SideMenuState {}

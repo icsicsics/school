@@ -30,4 +30,6 @@ class ImagesPath {
   static const String pageOne = "${_basePath}ic_page_one.svg";
   static const String pageTwo = "${_basePath}ic_page_two.svg";
   static const String pageThree = "${_basePath}ic_page_three.svg";
+  static const String arrowBackIcon = "${_basePath}arrow_back.svg";
+  static const String shareIcon = "${_basePath}ic_share.svg";
 }

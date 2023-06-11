@@ -14,7 +14,7 @@ class SideMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
+        margin: const EdgeInsets.only(top: 6, left: 20, right: 20),
         child: InkWell(
             onTap: onTap,
             child: Column(

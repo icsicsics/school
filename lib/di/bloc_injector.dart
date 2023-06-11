@@ -1,6 +1,7 @@
 import 'package:schools/di/injector.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
+import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/localization/localization/app_localization_cubit.dart';
 import 'package:schools/presentation/bloc/login/login_bloc.dart';
@@ -69,4 +70,7 @@ Future<void> initializeBlocDependencies() async {
         injector(),
       ));
   injector.registerFactory<AddPointBloc>(() => AddPointBloc());
+
+  injector.registerFactory<ChannelsBloc>(() => ChannelsBloc());
+
 }

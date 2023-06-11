@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:schools/core/utils/network/interceptor.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
@@ -20,12 +21,11 @@ class DioHelper {
 
   static Future<Response> verifyPhone(String phoneNumber) async {
     return dio.post(ApiKey.verifyPhone,
-        data: VerifyPhoneRequest(
-          phoneNumber: phoneNumber
-        ));
+        data: VerifyPhoneRequest(phoneNumber: phoneNumber));
   }
 
-  static Future<Response> getToken(String phoneNumber,String verifyCode) async {
+  static Future<Response> getToken(
+      String phoneNumber, String verifyCode) async {
     return dio.post(ApiKey.getToken,
         data: GetTokenRequest(
           phoneNumber: phoneNumber,
@@ -33,11 +33,10 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> refreshToken(String phoneNumber,String refreshToken) async {
+  static Future<Response> refreshToken(
+      String phoneNumber, String refreshToken) async {
     return dio.put("${ApiKey.refreshToken}?refreshToken=$refreshToken",
-        data: VerifyPhoneRequest(
-            phoneNumber: phoneNumber
-        ));
+        data: VerifyPhoneRequest(phoneNumber: phoneNumber));
   }
 
   static Future<Response> getTeacherInfo(token) async {
@@ -77,7 +76,7 @@ class DioHelper {
   }
 
   static Future<Response> getClassHouses(
-      token, classroomToSectionId, isComingFromHome,search) async {
+      token, classroomToSectionId, isComingFromHome, search) async {
     return dio.get(
         isComingFromHome == false
             ? "${ApiKey.getClassHouses}?ClassroomToSectionId=$classroomToSectionId&Search=$search"
@@ -189,10 +188,8 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> updateDeviceToken(
-      token, deviceToken) async {
-    return dio.get(
-        "${ApiKey.updateUserDeviceToken}?DeviceTokenId=$deviceToken",
+  static Future<Response> updateDeviceToken(token, deviceToken) async {
+    return dio.get("${ApiKey.updateUserDeviceToken}?DeviceTokenId=$deviceToken",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -228,10 +225,8 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> updateNotification(
-      token, id) async {
-    return dio.get(
-        "${ApiKey.updateNotification}?Id=$id",
+  static Future<Response> updateNotification(token, id) async {
+    return dio.get("${ApiKey.updateNotification}?Id=$id",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -241,8 +236,10 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> changeClassRoomSectionPhoto(token, formData,sectionId) async {
-    return dio.post("${ApiKey.changeClassRoomSectionPhoto}?ClassroomToSectionId=$sectionId",
+  static Future<Response> changeClassRoomSectionPhoto(
+      token, formData, sectionId) async {
+    return dio.post(
+        "${ApiKey.changeClassRoomSectionPhoto}?ClassroomToSectionId=$sectionId",
         data: formData,
         options: Options(
           headers: {
@@ -253,9 +250,21 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> getWeather(lat,lon,lan) async {
+  static Future<Response> getWeather(lat, lon, lan) async {
     return dio.get(
       'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=9417a6b6e67474512aca9f713dc57937&lang=$lan',
     );
+  }
+
+  static Future<Response> getChannels(bool language) async {
+    String token = await SharedPreferencesManager.getTokenDio() ?? "";
+    return dio.get("${ApiKey.getEjabiChannels}?isEnglishLagnuage=$language",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
   }
 }

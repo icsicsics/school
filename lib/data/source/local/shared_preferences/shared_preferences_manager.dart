@@ -120,6 +120,10 @@ class SharedPreferencesManager {
     return await SharedPreferencesUtils.getString(SharedPreferencesKeys.token);
   }
 
+  static Future<String?> getTokenDio() async {
+    return await SharedPreferencesUtils.getString(SharedPreferencesKeys.token);
+  }
+
   Future<bool> setRefreshToken(String refreshToken) async {
     return await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.refreshToken, refreshToken);

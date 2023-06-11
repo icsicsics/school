@@ -49,6 +49,7 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<OpenWebViewEvent>(_onOpenWebViewEvent);
     on<ClearTokenEvent>(_onClearTokenEvent);
     on<NavigateToAboutScreenEvent>(_onNavigateToAboutScreenEvent);
+    on<NavigateToChannelsScreenEvent>(_onNavigateToChannelsScreenEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -153,7 +154,13 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     emit(ClearTokenState());
   }
 
-  FutureOr<void> _onNavigateToAboutScreenEvent(NavigateToAboutScreenEvent event, Emitter<SideMenuState> emit) {
+  FutureOr<void> _onNavigateToAboutScreenEvent(
+      NavigateToAboutScreenEvent event, Emitter<SideMenuState> emit) {
     emit(NavigateToAboutScreenState());
+  }
+
+  FutureOr<void> _onNavigateToChannelsScreenEvent(
+      NavigateToChannelsScreenEvent event, Emitter<SideMenuState> emit) {
+    emit(NavigateToChannelsScreenState());
   }
 }
