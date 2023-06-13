@@ -20,7 +20,6 @@ class SplashScreen extends BaseStatefulWidget {
 class _SplashScreenState extends BaseState<SplashScreen> {
   SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
   bool _showOnBoarding = false;
-  bool _shoChannels = false;
 
   @override
   void initState() {
@@ -32,7 +31,6 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     _showOnBoarding = await SharedPreferencesManager.getIsOnBoarding() ?? false;
-    _shoChannels = await SharedPreferencesManager.getIsShowChannel() ?? false;
   }
 
   @override
@@ -40,15 +38,11 @@ class _SplashScreenState extends BaseState<SplashScreen> {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is GetTokenState) {
-          if (state.token.isEmpty) {
+          if (state.token.isEmpty)  {
             if (_showOnBoarding == false) {
               _navigateToOnBoardingScreen();
             } else {
-              if(_shoChannels == false){
-                _navigationToChannelsScreen();
-              } else {
-                _navigationToLoginScreen();
-              }
+              _navigationToChannelsScreen();
             }
           } else {
             _navigateToHomeScreen();

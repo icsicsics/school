@@ -33,7 +33,6 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     token = await SharedPreferencesManager.getTokenDio() ?? "";
-    isShowChannel = await SharedPreferencesManager.getIsShowChannel() ?? false;
   }
 
   void _getChannels() {
@@ -124,8 +123,6 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                                         borderRadius:
                                             BorderRadius.circular(6))),
                                 onPressed: () async {
-                                  await SharedPreferencesManager
-                                      .setIsShowChannel(true);
                                   _navigateToLoginScreen(context);
                                 },
                                 child: Text(
@@ -164,8 +161,11 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   }
 
   void _navigateToLoginScreen(BuildContext context) {
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-      return const LoginScreen();
-    }), (route) => false);
+    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+    //   return const LoginScreen();
+    // }), (route) => false);
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LoginScreen();
+    }));
   }
 }

@@ -59,14 +59,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: InkWell(
                 onTap: () async {
                   await SharedPreferencesManager.setIsOnBoarding(true);
-                  bool isShowChannel =
-                      await SharedPreferencesManager.getIsShowChannel() ??
-                          false;
-                  if (!isShowChannel) {
-                    _navigateToChannelsScreen(context);
-                  } else {
-                    _navigateToLoginScreen(context);
-                  }
+                  _navigateToChannelsScreen(context);
                 },
                 child: BoldTextWidget(
                   text: S.of(context).skip,
@@ -110,14 +103,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () async {
                     if (_currentPage == 2) {
                       await SharedPreferencesManager.setIsOnBoarding(true);
-                      bool isShowChannel =
-                          await SharedPreferencesManager.getIsShowChannel() ??
-                              false;
-                      if (!isShowChannel) {
-                        _navigateToChannelsScreen(context);
-                      } else {
-                        _navigateToLoginScreen(context);
-                      }
+                      _navigateToChannelsScreen(context);
                     } else {
                       _pageController.nextPage(
                         duration: const Duration(milliseconds: 500),

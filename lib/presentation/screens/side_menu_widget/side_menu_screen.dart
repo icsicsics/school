@@ -182,7 +182,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         context,
         MaterialPageRoute(
             builder: (_) =>
-                LoginScreen()),
+                ChannelsScreen()),
         (route) => false);
   }
 

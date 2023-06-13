@@ -29,13 +29,18 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                if (widget.language == "en") Expanded(child: SizedBox()),
-                  InkWell(
+                InkWell(
+                    child: Icon(Icons.close),
                     onTap: () {
-                      _changeLanguage();
-                    },
-                    child: _languageImage(),
-                  ),
+                      Navigator.pop(context);
+                    }),
+                if (widget.language == "en") Expanded(child: SizedBox()),
+                InkWell(
+                  onTap: () {
+                    _changeLanguage();
+                  },
+                  child: _languageImage(),
+                ),
                 if (widget.language == "ar") Expanded(child: SizedBox()),
               ],
             ),

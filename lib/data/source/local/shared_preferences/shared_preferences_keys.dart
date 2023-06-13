@@ -15,5 +15,4 @@ class SharedPreferencesKeys {
   static const countryCode = "countryCode";
   static const roles = "roles";
   static const isOnBoarding = "isOnBoarding";
-  static const isShowChannel = "isShowChannel";
 }

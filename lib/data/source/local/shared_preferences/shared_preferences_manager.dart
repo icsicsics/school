@@ -184,17 +184,6 @@ class SharedPreferencesManager {
         data: isOnBoarding);
   }
 
-  static Future<bool?> getIsShowChannel() async {
-    return await SharedPreferencesUtils.getBool(
-        SharedPreferencesKeys.isShowChannel);
-  }
-
-  static Future<bool> setIsShowChannel(bool isOnBoarding) async {
-    return await SharedPreferencesUtils.setBool(
-        SharedPreferencesKeys.isShowChannel,
-        data: isOnBoarding);
-  }
-
   Future<bool?> clearToken() async {
     return await SharedPreferencesUtils.remove(SharedPreferencesKeys.token);
   }
