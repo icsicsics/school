@@ -32,4 +32,5 @@ class ImagesPath {
   static const String pageThree = "${_basePath}ic_page_three.svg";
   static const String arrowBackIcon = "${_basePath}arrow_back.svg";
   static const String shareIcon = "${_basePath}ic_share.svg";
+  static const String channelsLogo = "${_basePath}ic_channel_logo.png";
 }

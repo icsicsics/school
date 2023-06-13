@@ -257,13 +257,11 @@ class DioHelper {
   }
 
   static Future<Response> getChannels(bool language) async {
-    String token = await SharedPreferencesManager.getTokenDio() ?? "";
     return dio.get("${ApiKey.getEjabiChannels}?isEnglishLagnuage=$language",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer $token',
           },
         ));
   }

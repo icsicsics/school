@@ -36,6 +36,7 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

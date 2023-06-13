@@ -5,6 +5,7 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
+import 'package:schools/presentation/screens/channels/channels_screen.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/widgets/medium_text_widget.dart';
 import 'package:schools/presentation/widgets/regular_text_widget.dart';
@@ -102,7 +103,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () async {
                     if (_currentPage == 2) {
                       await SharedPreferencesManager.setIsOnBoarding(true);
-                      _navigateToLoginScreen(context);
+                      bool isShowChannel =
+                          await SharedPreferencesManager.getIsShowChannel() ??
+                              false;
+                      if (!isShowChannel) {
+                        _navigateToChannelsScreen(context);
+                      } else {
+                        _navigateToLoginScreen(context);
+                      }
                     } else {
                       _pageController.nextPage(
                         duration: const Duration(milliseconds: 500),
@@ -169,5 +177,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ],
       ),
     );
+  }
+
+  void _navigateToChannelsScreen(BuildContext context) {
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+      return const ChannelsScreen();
+    }), (route) => false);
   }
 }

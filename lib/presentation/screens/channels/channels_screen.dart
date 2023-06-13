@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
+import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/channels/widgets/channel_video_widget.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -17,11 +20,18 @@ class ChannelsScreen extends BaseStatefulWidget {
 
 class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   List<ChannelsData> _channels = [];
+  String token = "";
 
   @override
   void initState() {
     super.initState();
     _getChannels();
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    token = await SharedPreferencesManager.getTokenDio() ?? "";
   }
 
   void _getChannels() {
@@ -40,16 +50,16 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
           _channels = state.channelsData;
         } else if (state is GetChannelsErrorState) {
           //Todo show error
-        } else if(state is NavigateBackState){
+        } else if (state is NavigateBackState) {
           Navigator.pop(context);
-        } else if (state is UpdateVideoState){
-          for(var item in _channels){
-            if(item.id == state.channelsData.id){
+        } else if (state is UpdateVideoState) {
+          for (var item in _channels) {
+            if (item.id == state.channelsData.id) {
               item = state.channelsData;
               break;
             }
           }
-        } else if (state is ShareVideoState){
+        } else if (state is ShareVideoState) {
           Share.share(state.url);
         }
       },
@@ -58,9 +68,9 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
             appBar: AppBar(
               backgroundColor: Color.fromRGBO(59, 187, 172, 0.12),
               leading: InkWell(
-                onTap: (){
-                  BlocProvider.of<ChannelsBloc>(context).add(NavigateBackEvent());
-
+                onTap: () {
+                  BlocProvider.of<ChannelsBloc>(context)
+                      .add(NavigateBackEvent());
                 },
                 child: Icon(
                   Icons.arrow_back,
@@ -75,21 +85,83 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
               ),
             ),
             body: Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 16,
-              ),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _channels.length,
-                itemBuilder: (context, index) {
-                  return ChannelsVideoWidget(
-                    channelsData: _channels[index],
-                  );
-                },
+              margin: EdgeInsets.symmetric(),
+              child: Column(
+                children: [
+                  if (token.isEmpty)
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                      color: Color.fromRGBO(59, 187, 172, 0.12),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Hey There !",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                              SizedBox(
+                                height: 12,
+                              ),
+                              Text("Log in or create a new account",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Color.fromRGBO(59, 187, 172, 1),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(6))),
+                                onPressed: () async {
+                                  await SharedPreferencesManager
+                                      .setIsShowChannel(true);
+                                  _navigateToLoginScreen(context);
+                                },
+                                child: Text(
+                                  "Sign in",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Expanded(child: SizedBox()),
+                          Image.asset(
+                            ImagesPath.channelsLogo,
+                            width: 130,
+                            height: 130,
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ],
+                      ),
+                    ),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: _channels.length,
+                      itemBuilder: (context, index) {
+                        return ChannelsVideoWidget(
+                          channelsData: _channels[index],
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ));
       },
     );
+  }
+
+  void _navigateToLoginScreen(BuildContext context) {
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+      return const LoginScreen();
+    }), (route) => false);
   }
 }
