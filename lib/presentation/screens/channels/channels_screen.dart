@@ -4,6 +4,7 @@ import 'package:schools/core/base_widget/base_stateful_widget.dart';
 import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/screens/channels/widgets/channel_video_widget.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ChannelsScreen extends BaseStatefulWidget {
   const ChannelsScreen({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
             }
           }
         } else if (state is ShareVideoState){
-          //Todo Share Video
+          Share.share(state.url);
         }
       },
       builder: (context, state) {
