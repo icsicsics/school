@@ -5,6 +5,7 @@ import 'package:schools/core/base_widget/base_stateful_widget.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
+import 'package:schools/presentation/screens/channels/channels_screen.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
 import 'package:schools/presentation/screens/on_boarding/on_boarding_screen.dart';
 import 'package:schools/presentation/screens/splash/widgets/splash_content_widget.dart';
@@ -19,6 +20,7 @@ class SplashScreen extends BaseStatefulWidget {
 class _SplashScreenState extends BaseState<SplashScreen> {
   SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
   bool _showOnBoarding = false;
+  bool _shoChannels = false;
 
   @override
   void initState() {
@@ -30,6 +32,7 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     _showOnBoarding = await SharedPreferencesManager.getIsOnBoarding() ?? false;
+    _shoChannels = await SharedPreferencesManager.getIsShowChannel() ?? false;
   }
 
   @override
@@ -41,7 +44,11 @@ class _SplashScreenState extends BaseState<SplashScreen> {
             if (_showOnBoarding == false) {
               _navigateToOnBoardingScreen();
             } else {
-              _navigationToLoginScreen();
+              if(_shoChannels == false){
+                _navigationToChannelsScreen();
+              } else {
+                _navigationToLoginScreen();
+              }
             }
           } else {
             _navigateToHomeScreen();
@@ -99,6 +106,16 @@ class _SplashScreenState extends BaseState<SplashScreen> {
       context,
       MaterialPageRoute(
         builder: (_) => const OnBoardingScreen(),
+      ),
+    );
+  }
+
+  void _navigationToChannelsScreen() async {
+    await _delay(3);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ChannelsScreen(),
       ),
     );
   }

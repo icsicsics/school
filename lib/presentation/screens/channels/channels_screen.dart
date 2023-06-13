@@ -21,6 +21,7 @@ class ChannelsScreen extends BaseStatefulWidget {
 class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   List<ChannelsData> _channels = [];
   String token = "";
+  bool isShowChannel = false;
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     token = await SharedPreferencesManager.getTokenDio() ?? "";
+    isShowChannel = await SharedPreferencesManager.getIsShowChannel() ?? false;
   }
 
   void _getChannels() {
@@ -67,16 +69,18 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
         return Scaffold(
             appBar: AppBar(
               backgroundColor: Color.fromRGBO(59, 187, 172, 0.12),
-              leading: InkWell(
-                onTap: () {
-                  BlocProvider.of<ChannelsBloc>(context)
-                      .add(NavigateBackEvent());
-                },
-                child: Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                ),
-              ),
+              leading: isShowChannel == false
+                  ? SizedBox.shrink()
+                  : InkWell(
+                      onTap: () {
+                        BlocProvider.of<ChannelsBloc>(context)
+                            .add(NavigateBackEvent());
+                      },
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
+                    ),
               title: Text(
                 'Ejabi',
                 style: TextStyle(
