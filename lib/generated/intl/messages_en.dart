@@ -148,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The phone number is wrong"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "toEnterApp": MessageLookupByLibrary.simpleMessage("To Enter the App"),
         "toLearnMoreAboutEjabi":
             MessageLookupByLibrary.simpleMessage("To learn more about Ejabi"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),

@@ -1199,6 +1199,16 @@ class S {
       args: [],
     );
   }
+
+  /// `To Enter the App`
+  String get toEnterApp {
+    return Intl.message(
+      'To Enter the App',
+      name: 'toEnterApp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

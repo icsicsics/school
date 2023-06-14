@@ -29,11 +29,11 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                InkWell(
-                    child: Icon(Icons.close),
-                    onTap: () {
-                      Navigator.pop(context);
-                    }),
+                // InkWell(
+                //     child: Icon(Icons.close),
+                //     onTap: () {
+                //       Navigator.pop(context);
+                //     }),
                 if (widget.language == "en") Expanded(child: SizedBox()),
                 InkWell(
                   onTap: () {
@@ -46,22 +46,36 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
             ),
           ),
           const SizedBox(
-            height: 25,
+            height: 16,
           ),
           BoldTextWidget(
               text: S.of(context).login,
               fontSize: 25,
               color: ColorsManager.blackColor),
           const SizedBox(
-            height: 25,
+            height: 8,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40),
+            padding: const EdgeInsets.only(top: 16),
             child: Image.asset(
               ImagesPath.logo,
-              height: 200,
+              height: 175,
             ),
-          )
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Text("More about Ejabi – المزيد عن إيجابي",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: ColorsManager.secondaryColor,
+                    letterSpacing: 0)),
+          ),
         ],
       ),
     );
