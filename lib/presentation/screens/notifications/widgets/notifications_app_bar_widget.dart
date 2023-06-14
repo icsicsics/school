@@ -29,14 +29,18 @@ class NotificationsAppBarWidget extends StatelessWidget {
         child: Row(
           children: [
             const SizedBox(
-              width: 5,
+              width: 32,
             ),
             InkWell(
                 onTap: onTapMenu,
-                child: SvgPicture.asset(ImagesPath.menu,
-                    width: 25, height: 25, color: ColorsManager.primaryColor)),
+                child: SvgPicture.asset(
+                  ImagesPath.arrowBack,
+                  width: 24,
+                  height: 24,
+                  color: ColorsManager.primaryColor,
+                )),
             const SizedBox(
-              width: 5,
+              width: 16,
             ),
             Expanded(
               child: MediumTextWidget(

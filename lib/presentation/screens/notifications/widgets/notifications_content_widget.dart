@@ -39,11 +39,13 @@ class _NotificationsContentWidgetState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        NotificationsAppBarWidget(
-          onTapMenu: () => widget.globalKey.currentState!.openDrawer(),
-          isFather: widget.isFather,
-          isNotificationSelected: _isNotificationSelected,
-        ),
+        // NotificationsAppBarWidget(
+        //   onTapMenu: (){
+        //     Navigator.pop(context);
+        //   },
+        //   isFather: widget.isFather,
+        //   isNotificationSelected: _isNotificationSelected,
+        // ),
         widget.isFather
             ? TitlesRowWidget(
                 isFather: widget.isFather,

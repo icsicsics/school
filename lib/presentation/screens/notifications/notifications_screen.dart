@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/notification/request/notification_request.dart';
 import 'package:schools/data/source/remote/model/notification/response/notifications_response.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
 import 'package:schools/presentation/screens/notifications/widgets/notifications_content_widget.dart';
 import 'package:schools/presentation/screens/side_menu_widget/side_menu_screen.dart';
+import 'package:schools/presentation/widgets/bold_text_widget.dart';
 
 class NotificationsScreen extends BaseStatefulWidget {
   final bool isNotificationSelected;
 
-  NotificationsScreen({super.key,
+  NotificationsScreen({
+    super.key,
     this.isNotificationSelected = true,
   });
 
@@ -48,11 +52,11 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
           _isFather = state.isFather;
           _bloc.add(GetInboxNotificationsEvent(
               notificationRequest:
-              NotificationRequest(pageNo: 1, pageSize: 10)));
+                  NotificationRequest(pageNo: 1, pageSize: 10)));
           if (_isFather) {
             _bloc.add(GetNotificationsEvent(
                 notificationRequest:
-                NotificationRequest(pageNo: 1, pageSize: 10)));
+                    NotificationRequest(pageNo: 1, pageSize: 10)));
           }
         } else if (state is GetLanguageSuccessState) {
           _language = state.language;
@@ -61,32 +65,26 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
           _token = state.token;
         } else if (state is GetNotificationsSuccessState) {
           notifications = state.notificationResponse.notificationItem ?? [];
-        } else if (state is GetNotificationsFillState) {} else
-        if (state is GetInboxNotificationsSuccessState) {
+        } else if (state is GetNotificationsFillState) {
+        } else if (state is GetInboxNotificationsSuccessState) {
           inboxNotifications =
               state.notificationResponse.notificationItem ?? [];
-        } else if (state is GetInboxNotificationsFillState) {} else
-        if (state is UpdateNotificationSuccessState) {
+        } else if (state is GetInboxNotificationsFillState) {
+        } else if (state is UpdateNotificationSuccessState) {
           _bloc.add(GetInboxNotificationsEvent(
               notificationRequest:
-              NotificationRequest(pageNo: 1, pageSize: 10)));
+                  NotificationRequest(pageNo: 1, pageSize: 10)));
           if (_isFather) {
             _bloc.add(GetNotificationsEvent(
                 notificationRequest:
-                NotificationRequest(pageNo: 1, pageSize: 10)));
+                    NotificationRequest(pageNo: 1, pageSize: 10)));
           }
-        } else if (state is UpdateNotificationFailState) {
-
-        }
+        } else if (state is UpdateNotificationFailState) {}
       },
       builder: (context, state) {
         return Scaffold(
             backgroundColor: Color(0xFFf6f2f2),
-            drawer: SideMenuScreen(
-              isComFromHome: false,
-              language: _language,
-              token: _token,
-            ),
+            appBar: _appBar(),
             key: _key,
             body: NotificationsContentWidget(
               globalKey: _key,
@@ -98,4 +96,23 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
       },
     );
   }
+
+  PreferredSizeWidget _appBar() => AppBar(
+    backgroundColor:Color(0xFFf6f2f2) ,
+      elevation: 0,
+      leading: IconButton(
+        onPressed: () => Navigator.pop(context),
+        icon: const Icon(Icons.arrow_back_ios,
+            color: ColorsManager.secondaryColor, size: 25),
+      ),
+      centerTitle: false,
+      title: BoldTextWidget(
+        color: ColorsManager.secondaryColor,
+        fontSize: 20,
+        text: _isFather
+            ? widget.isNotificationSelected
+                ? S.of(context).notifications
+                : S.of(context).inbox
+            : S.of(context).inbox,
+      ));
 }
