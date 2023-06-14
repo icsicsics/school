@@ -9,6 +9,7 @@ import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/channels/widgets/channel_video_widget.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:video_player/video_player.dart';
 
 class ChannelsScreen extends BaseStatefulWidget {
   const ChannelsScreen({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class ChannelsScreen extends BaseStatefulWidget {
 
 class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   List<ChannelsData> _channels = [];
+  List<VideoPlayerController> _controllers = [];
   String token = "";
   bool isShowChannel = false;
 
@@ -50,6 +52,9 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
           hideLoading();
         } else if (state is GetChannelsSuccessState) {
           _channels = state.channelsData;
+          for(var item in _channels){
+            _controllers.add(VideoPlayerController.network(item.video?.mediaUrl ?? ""));
+          }
         } else if (state is GetChannelsErrorState) {
           //Todo show error
         } else if (state is NavigateBackState) {
@@ -167,6 +172,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                   itemBuilder: (context, index) {
                     return ChannelsVideoWidget(
                       channelsData: _channels[index],
+                      controller: _controllers[index],
                     );
                   },
                 ),
@@ -182,6 +188,9 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
     // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
     //   return const LoginScreen();
     // }), (route) => false);
+    for(var controller in _controllers){
+      controller.pause();
+    }
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LoginScreen();
     }));

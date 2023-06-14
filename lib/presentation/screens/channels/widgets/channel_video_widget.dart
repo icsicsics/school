@@ -10,10 +10,11 @@ import 'package:rxdart/rxdart.dart';
 
 class ChannelsVideoWidget extends StatefulWidget {
   final ChannelsData channelsData;
-
+  final VideoPlayerController controller;
   const ChannelsVideoWidget({
     Key? key,
     required this.channelsData,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -21,21 +22,20 @@ class ChannelsVideoWidget extends StatefulWidget {
 }
 
 class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
-  late VideoPlayerController _controller;
-  GlobalKey globalKey = GlobalKey();
+   GlobalKey globalKey = GlobalKey();
   final time = BehaviorSubject<String>();
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        VideoPlayerController.network(widget.channelsData.video?.mediaUrl ?? "")
-          ..initialize().then((_) {
+    widget.controller
+          .initialize().then((_) {
             setState(() {});
           });
     time.add("00:00");
-    _controller.addListener(() {
-      time.add('${_controller.value.position.inMinutes}:${(_controller.value.position.inSeconds % 60).toString().padLeft(2, '0')}');
+    widget.controller.addListener(() {
+      time.add(
+          '${widget.controller.value.position.inMinutes}:${(widget.controller.value.position.inSeconds % 60).toString().padLeft(2, '0')}');
     });
   }
 
@@ -97,16 +97,16 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
   }
 
   Widget _buildVideo() {
-    return _controller.value.isInitialized
+    return widget.controller.value.isInitialized
         ? InkWell(
             onTap: () {
-              if (_controller.value.isPlaying) {
-                _controller.pause();
+              if (widget.controller.value.isPlaying) {
+                widget.controller.pause();
                 widget.channelsData.isPlay = false;
                 BlocProvider.of<ChannelsBloc>(context)
                     .add(UpdateVideoEvent(channelsData: widget.channelsData));
               } else {
-                _controller.play();
+                widget.controller.play();
                 widget.channelsData.isPlay = true;
                 BlocProvider.of<ChannelsBloc>(context)
                     .add(UpdateVideoEvent(channelsData: widget.channelsData));
@@ -124,7 +124,7 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
                 alignment: Alignment.center,
                 children: [
                   VideoPlayer(
-                    _controller,
+                    widget.controller,
                     key: globalKey,
                   ),
                   widget.channelsData.isPlay! ? Container() : _buildVideoIcon(),
@@ -138,16 +138,15 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
                         borderRadius: BorderRadius.circular(7),
                       ),
                       child: StreamBuilder<String>(
-                        stream: time,
-                        builder: (context, snapshot) {
-                          return Text(
-                            snapshot.data ?? "00:00",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          );
-                        }
-                      ),
+                          stream: time,
+                          builder: (context, snapshot) {
+                            return Text(
+                              snapshot.data ?? "00:00",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            );
+                          }),
                     ),
                   )
                 ],
@@ -182,7 +181,8 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
   @override
   void dispose() {
     super.dispose();
-    _controller.pause();
-    _controller.dispose();
+    widget.controller.pause();
+    time.close();
+    widget.controller.dispose();
   }
 }
