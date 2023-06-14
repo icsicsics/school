@@ -7,7 +7,6 @@ class ChannelsData {
   int? status;
   Video? video;
   bool? isPlay;
-  String? thumbnail;
 
   ChannelsData({
     this.id,
@@ -16,7 +15,6 @@ class ChannelsData {
     this.status,
     this.video,
     this.isPlay = false,
-    this.thumbnail = "",
   });
 
   ChannelsData.fromJson(dynamic json) {
@@ -26,7 +24,6 @@ class ChannelsData {
     status = json['status'];
     video = json['getVideo'] != null ? Video.fromJson(json['getVideo']) : null;
     isPlay = false;
-    thumbnail = "";
   }
 
   Map<String, dynamic> toJson() {
