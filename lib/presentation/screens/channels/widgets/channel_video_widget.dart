@@ -6,6 +6,7 @@ import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/data/source/remote/model/channels/video.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:video_player/video_player.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ChannelsVideoWidget extends StatefulWidget {
   final ChannelsData channelsData;
@@ -22,6 +23,7 @@ class ChannelsVideoWidget extends StatefulWidget {
 class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
   late VideoPlayerController _controller;
   GlobalKey globalKey = GlobalKey();
+  final time = BehaviorSubject<String>();
 
   @override
   void initState() {
@@ -31,6 +33,10 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
           ..initialize().then((_) {
             setState(() {});
           });
+    time.add("00:00");
+    _controller.addListener(() {
+      time.add('${_controller.value.position.inMinutes}:${(_controller.value.position.inSeconds % 60).toString().padLeft(2, '0')}');
+    });
   }
 
   @override
@@ -122,6 +128,28 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
                     key: globalKey,
                   ),
                   widget.channelsData.isPlay! ? Container() : _buildVideoIcon(),
+                  Positioned(
+                    bottom: 8,
+                    left: 8,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(9, 8, 23, 0.49),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      child: StreamBuilder<String>(
+                        stream: time,
+                        builder: (context, snapshot) {
+                          return Text(
+                            snapshot.data ?? "00:00",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          );
+                        }
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
