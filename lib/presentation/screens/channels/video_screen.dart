@@ -132,15 +132,16 @@ class _VideoScreenState extends State<VideoScreen> {
                               const SizedBox(height: 8),
                               Row(
                                 children: [
-                                  Text(
-                                    e.description ?? "",
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black,
+                                  Expanded(
+                                    child: Text(
+                                      e.description ?? "",
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black,
+                                      ),
                                     ),
                                   ),
-                                  Expanded(child: SizedBox()),
                                   InkWell(
                                     onTap: () {
                                       BlocProvider.of<ChannelsBloc>(context)
@@ -179,34 +180,40 @@ class _VideoScreenState extends State<VideoScreen> {
           ),
         ),
         const SizedBox(height: 12),
-        Text(
-          widget.channelsData.title ?? "",
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            widget.channelsData.title ?? "",
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
         ),
         const SizedBox(height: 8),
-        Row(
-          children: [
-            Text(
-              widget.channelsData.description ?? "",
-              style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.normal,
-                color: Colors.black,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Text(
+                widget.channelsData.description ?? "",
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            const Expanded(child: SizedBox()),
-            InkWell(
-              onTap: () {
-                BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
-                    url: widget.channelsData.video?.mediaUrl ?? ""));
-              },
-              child: SvgPicture.asset(ImagesPath.shareIcon),
-            ),
-          ],
+              const Expanded(child: SizedBox()),
+              InkWell(
+                onTap: () {
+                  BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
+                      url: widget.channelsData.video?.mediaUrl ?? ""));
+                },
+                child: SvgPicture.asset(ImagesPath.shareIcon),
+              ),
+            ],
+          ),
         ),
       ],
     );

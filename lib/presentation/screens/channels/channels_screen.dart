@@ -50,17 +50,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
         } else if (state is HideLoadingState) {
           hideLoading();
         } else if (state is GetChannelsSuccessState) {
-          _channels.add(state.channelsData.first);
-          _channels.add(ChannelsData(
-            id: "1",
-            title: "Video one Title",
-            description: "Video one description",
-            video: Video(
-              id: "1",
-              mediaUrl:
-                  "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
-            ),
-          ));
+          _channels = state.channelsData;
         } else if (state is GetChannelsErrorState) {
           //Todo show error
         } else if (state is NavigateBackState) {
@@ -145,7 +135,6 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
       ),
     );
   }
-
 
   void _navigateToLoginScreen(BuildContext context) {
     Navigator.push(
