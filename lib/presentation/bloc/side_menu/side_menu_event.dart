@@ -55,3 +55,4 @@ class NavigateToAboutScreenEvent extends SideMenuEvent {}
 
 class NavigateToChannelsScreenEvent extends SideMenuEvent {}
 
+class NavigateToAdvisorsScreenEvent extends SideMenuEvent {}
