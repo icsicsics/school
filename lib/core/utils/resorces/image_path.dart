@@ -33,4 +33,7 @@ class ImagesPath {
   static const String arrowBackIcon = "${_basePath}arrow_back.svg";
   static const String shareIcon = "${_basePath}ic_share.svg";
   static const String channelsLogo = "${_basePath}ic_channel_logo.png";
+  static const String advisorPlaceHolder = "${_basePath}ic_advisor_placeholder.png";
+  static const String calendar = "${_basePath}ic_calendar.svg";
+  static const String closeIcon = "${_basePath}ic_close.svg";
 }
