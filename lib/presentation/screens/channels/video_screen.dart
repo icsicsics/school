@@ -81,7 +81,24 @@ class _VideoScreenState extends State<VideoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Video",style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),),
+        centerTitle: true,
+        leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: SvgPicture.asset(
+              ImagesPath.arrowBackIcon,
+              height: 20,
+              width: 20,
+              fit: BoxFit.scaleDown,
+            )),
+      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
@@ -101,20 +118,22 @@ class _VideoScreenState extends State<VideoScreen> {
                     _initializeVideos();
                     _initializeChewieControllers();
                     setState(() {});
-
                   },
                   child: Row(
                     children: [
-                      SizedBox(
-                        height: 180,
-                        width: 260,
-                        child: Chewie(
-                          controller:
-                              chewieControllers[widget.channels.indexOf(e)],
+                      Expanded(
+                        flex: 3,
+                        child: SizedBox(
+                          height: 180,
+                          child: Chewie(
+                            controller:
+                                chewieControllers[widget.channels.indexOf(e)],
+                          ),
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
+                        flex: 2,
                         child: Container(
                           height: 200,
                           child: Column(
@@ -224,7 +243,6 @@ class _VideoScreenState extends State<VideoScreen> {
     super.dispose();
     _clearVideosController();
   }
-
 
   void _clearVideosController() {
     for (var controller in controllers) {
