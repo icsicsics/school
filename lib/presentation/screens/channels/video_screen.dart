@@ -107,7 +107,7 @@ class _VideoScreenState extends State<VideoScreen> {
             const SizedBox(height: 16),
             Column(
               children: widget.channels.map((e) {
-                if (e.video?.id == selectedVideo.video?.id) {
+                if (e == selectedVideo) {
                   return const SizedBox.shrink();
                 }
                 return InkWell(
@@ -202,7 +202,7 @@ class _VideoScreenState extends State<VideoScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            widget.channelsData.title ?? "",
+            selectedVideo.title ?? "",
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
@@ -216,7 +216,7 @@ class _VideoScreenState extends State<VideoScreen> {
           child: Row(
             children: [
               Text(
-                widget.channelsData.description ?? "",
+                selectedVideo.description ?? "",
                 style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.normal,
@@ -227,7 +227,7 @@ class _VideoScreenState extends State<VideoScreen> {
               InkWell(
                 onTap: () {
                   BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
-                      url: widget.channelsData.video?.mediaUrl ?? ""));
+                      url: selectedVideo.video?.mediaUrl ?? ""));
                 },
                 child: SvgPicture.asset(ImagesPath.shareIcon),
               ),
