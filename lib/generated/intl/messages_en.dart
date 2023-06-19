@@ -104,6 +104,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("Number"),
         "oct": MessageLookupByLibrary.simpleMessage("october"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "pageOne": MessageLookupByLibrary.simpleMessage(
+            "The first interactive mobile application between school and home.\nCreates an interactive atmosphere between parents and school with positive behavior."),
+        "pageThree": MessageLookupByLibrary.simpleMessage(
+            "Granting moral rewards to groups and not to individuals.\nCollect behavioral points within each group in the school."),
+        "pageTwo": MessageLookupByLibrary.simpleMessage(
+            "Promote positive behavior and modify unwanted behavior through easy and fun tools for students, counselors, teachers, and parents"),
         "participateAndWinRewards":
             MessageLookupByLibrary.simpleMessage("Participate and Win Rewards"),
         "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(

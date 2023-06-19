@@ -104,6 +104,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
         "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
+        "pageOne": MessageLookupByLibrary.simpleMessage(
+            "اول تطبيق هاتفي تفاعلي بين المدرسة والبيت.\nيخلق جوا تفاعليا بين الاهل والمدرسة مع سلوك الايجابي."),
+        "pageThree": MessageLookupByLibrary.simpleMessage(
+            "منح مكافآت معنوية للمجموعات وليس للافراد .\nجمع النقاط السلوكية داخل كل مجموعة في المدرسة."),
+        "pageTwo": MessageLookupByLibrary.simpleMessage(
+            "تعزيز السلوك الإيجابي وتعديل السلوك غير المرغوب؛ من خلال أدوات سهلة وممتعة للطلبة والمرشدين والمعلمين وأولياء الأمور"),
         "participateAndWinRewards":
             MessageLookupByLibrary.simpleMessage("شارك واربح مكافآت"),
         "phoneErrorMessage": MessageLookupByLibrary.simpleMessage(

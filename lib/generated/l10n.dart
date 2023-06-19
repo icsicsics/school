@@ -1209,6 +1209,36 @@ class S {
       args: [],
     );
   }
+
+  /// `The first interactive mobile application between school and home.\nCreates an interactive atmosphere between parents and school with positive behavior.`
+  String get pageOne {
+    return Intl.message(
+      'The first interactive mobile application between school and home.\nCreates an interactive atmosphere between parents and school with positive behavior.',
+      name: 'pageOne',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promote positive behavior and modify unwanted behavior through easy and fun tools for students, counselors, teachers, and parents`
+  String get pageTwo {
+    return Intl.message(
+      'Promote positive behavior and modify unwanted behavior through easy and fun tools for students, counselors, teachers, and parents',
+      name: 'pageTwo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Granting moral rewards to groups and not to individuals.\nCollect behavioral points within each group in the school.`
+  String get pageThree {
+    return Intl.message(
+      'Granting moral rewards to groups and not to individuals.\nCollect behavioral points within each group in the school.',
+      name: 'pageThree',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

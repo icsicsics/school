@@ -39,17 +39,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 _buildPage(
                   ImagesPath.pageOne,
                   S.of(context).connectLikeMindedPeople,
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget augue nec massa volutpat aliquam.",
+                  S.of(context).pageOne,
                 ),
                 _buildPage(
                   ImagesPath.pageTwo,
                   S.of(context).participateAndWinRewards,
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget augue nec massa volutpat aliquam.",
+                  S.of(context).pageTwo,
                 ),
                 _buildPage(
                   ImagesPath.pageThree,
                   S.of(context).findNearbyEvents,
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget augue nec massa volutpat aliquam.",
+                  S.of(context).pageThree,
                 ),
               ],
             ),
@@ -165,6 +165,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               textAlign: TextAlign.center,
               fontSize: 16,
               color: ColorsManager.grayColor,
+              maxLines: 8,
             ),
           ),
         ],
