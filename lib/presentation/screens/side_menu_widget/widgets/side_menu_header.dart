@@ -22,7 +22,7 @@ class SideMenuHeader extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: SizedBox(
-        height: language == "en" ? 190 : 210,
+        height: language == "en" ? 170 : 190,
         child: Padding(
           padding: language == "en"
               ? const EdgeInsets.only(left: 25)
@@ -39,13 +39,6 @@ class SideMenuHeader extends StatelessWidget {
                   const SizedBox(
                     width: 30,
                   ),
-                  // IconButton(
-                  //     onPressed: () => bloc.add(SwitchAccountEvent()),
-                  //     icon: const Icon(
-                  //       Icons.supervised_user_circle,
-                  //       color: ColorsManager.secondaryColor,
-                  //       size: 30,
-                  //     )),
                 ],
               ),
               const SizedBox(
@@ -98,8 +91,8 @@ class SideMenuHeader extends StatelessWidget {
           : ClipOval(
               child: Image.network(
                 bloc.fatherInfoResponse.data?.getImage?.mediaUrl ?? "",
-                height: 110,
-                width: 110,
+                height: 70,
+                width: 70,
                 fit: BoxFit.fill,
                 errorBuilder: (context, error, stackTrace) =>
                     _buildProfilePlaceHolder(),
@@ -111,8 +104,8 @@ class SideMenuHeader extends StatelessWidget {
           : ClipOval(
               child: Image.network(
                 bloc.teacherInfoResponse.data!.getImage!.mediaUrl ?? "",
-                height: 110,
-                width: 110,
+                height: 70,
+                width: 70,
                 fit: BoxFit.fill,
                 errorBuilder: (context, error, stackTrace) =>
                     _buildProfilePlaceHolder(),
@@ -123,7 +116,11 @@ class SideMenuHeader extends StatelessWidget {
 
   CircleAvatar _buildProfilePlaceHolder() => CircleAvatar(
         radius: 50,
-        child: SvgPicture.asset(ImagesPath.avatar,
-            fit: BoxFit.cover, height: double.infinity, width: 150),
+        child: SvgPicture.asset(
+          ImagesPath.avatar,
+          fit: BoxFit.cover,
+          height: double.infinity,
+          width: 150,
+        ),
       );
 }

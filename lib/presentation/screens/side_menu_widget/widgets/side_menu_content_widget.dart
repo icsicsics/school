@@ -5,7 +5,7 @@ import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/screens/side_menu_widget/widgets/side_menu_header.dart';
 import 'package:schools/presentation/screens/side_menu_widget/widgets/side_menu_item.dart';
-import 'package:schools/presentation/screens/side_menu_widget/widgets/side_menu_sochila_madia_widget.dart';
+import 'package:schools/presentation/screens/side_menu_widget/widgets/social_madia_widget.dart';
 
 class SideMenuContentWidget extends StatefulWidget {
   final SideMenuBloc bloc;
@@ -135,7 +135,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: EdgeInsets.only(bottom: 10),
-              child: SideMenuSocialMediaWidget(),
+              child: SocialMediaWidget(),
             ),
           )
         ]));

@@ -124,11 +124,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         return Scaffold(
             backgroundColor: ColorsManager.whiteColor,
             key: _key,
-            drawer: SideMenuScreen(
-              isComFromHome: true,
-              language: _language,
-              token: _token,
-            ),
+            drawer: const SideMenuScreen(),
             body: HomeContentWidget(
                 weatherResponse: _weatherResponse,
                 globalKey: _key,

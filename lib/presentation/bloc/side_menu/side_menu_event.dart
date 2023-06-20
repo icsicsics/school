@@ -22,15 +22,11 @@ class LogoutEvent extends SideMenuEvent {}
 class ClearTokenEvent extends SideMenuEvent {}
 
 class GetTeacherInfoEvent extends SideMenuEvent {
-  final String token;
-
-  GetTeacherInfoEvent({required this.token});
+  GetTeacherInfoEvent();
 }
 
 class GetFatherInfoEvent extends SideMenuEvent {
-  final String token;
-
-  GetFatherInfoEvent({required this.token});
+  GetFatherInfoEvent();
 }
 
 class GetProfileImageFromShearedPrefranceEvent extends SideMenuEvent {}
@@ -40,6 +36,7 @@ class SetProfileImageInShearedPrefranceEvent extends SideMenuEvent {
 
   SetProfileImageInShearedPrefranceEvent({required this.image});
 }
+
 class OpenWebViewEvent extends SideMenuEvent {
   final String webViewContent;
   final String screenTitle;
@@ -51,6 +48,7 @@ class OpenWebViewEvent extends SideMenuEvent {
     required this.isUrlContent,
   });
 }
+
 class NavigateToAboutScreenEvent extends SideMenuEvent {}
 
 class NavigateToChannelsScreenEvent extends SideMenuEvent {}

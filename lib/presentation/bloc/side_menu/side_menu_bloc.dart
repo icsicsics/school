@@ -94,8 +94,10 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
       emit(GetTeacherResponseState(response: teacherInfoResponse));
     } else {
       emit(GetSideMenuLoadingState());
+      String token = await SharedPreferencesManager.getTokenDio() ?? "";
+
       SideMenuState state =
-          (await _repository.getTeacherInfo(event.token)) as SideMenuState;
+          (await _repository.getTeacherInfo(token)) as SideMenuState;
       if (state is GetTeacherInfoSuccessState) {
         teacherInfoResponse = state.response;
         emit(GetTeacherInfoSuccessState(response: state.response));
@@ -111,8 +113,9 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
       emit(GetFatherResponseState(response: fatherInfoResponse));
     } else {
       emit(GetSideMenuLoadingState());
+      String token = await SharedPreferencesManager.getTokenDio() ?? "";
       SideMenuState state =
-          (await _repository.getFatherInfo(event.token)) as SideMenuState;
+          (await _repository.getFatherInfo(token)) as SideMenuState;
       if (state is GetFatherInfoSuccessState) {
         fatherInfoResponse = state.response;
         emit(GetFatherInfoSuccessState(response: state.response));
