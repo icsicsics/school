@@ -27,8 +27,8 @@ class VideoScreen extends StatefulWidget {
 class _VideoScreenState extends State<VideoScreen> {
   late VideoPlayerController selectedVideoController;
   late ChewieController selectedChewieVideoController;
-  List<VideoPlayerController> controllers = [];
-  List<ChewieController> chewieControllers = [];
+  // List<VideoPlayerController> controllers = [];
+  // List<ChewieController> chewieControllers = [];
   ChannelsData selectedVideo = ChannelsData();
 
   @override
@@ -36,8 +36,8 @@ class _VideoScreenState extends State<VideoScreen> {
     super.initState();
     selectedVideo = widget.channelsData;
     _initializeSelectedVideo();
-    _initializeVideos();
-    _initializeChewieControllers();
+    // _initializeVideos();
+    // _initializeChewieControllers();
   }
 
   void _initializeSelectedVideo() {
@@ -49,40 +49,41 @@ class _VideoScreenState extends State<VideoScreen> {
     selectedChewieVideoController = ChewieController(
       videoPlayerController: selectedVideoController,
       autoPlay: false,
+      autoInitialize: true,
       looping: false,
     );
   }
 
-  void _initializeVideos() {
-    controllers.clear();
-    for (var controller in widget.channels) {
-      controllers
-          .add(VideoPlayerController.network(controller.video?.mediaUrl ?? "")
-            ..initialize().then(
-              (_) {
-                setState(() {});
-              },
-            ));
-    }
-  }
-
-  void _initializeChewieControllers() {
-    chewieControllers.clear();
-    for (var chewieController in controllers) {
-      chewieControllers.add(ChewieController(
-        videoPlayerController: chewieController,
-        autoPlay: false,
-        looping: false,
-      ));
-      setState(() {});
-    }
-  }
+  // void _initializeVideos() {
+  //   controllers.clear();
+  //   for (var controller in widget.channels) {
+  //     controllers
+  //         .add(VideoPlayerController.network(controller.video?.mediaUrl ?? "")
+  //           ..initialize().then(
+  //             (_) {
+  //               setState(() {});
+  //             },
+  //           ));
+  //   }
+  // }
+  //
+  // void _initializeChewieControllers() {
+  //   chewieControllers.clear();
+  //   for (var chewieController in controllers) {
+  //     chewieControllers.add(ChewieController(
+  //       videoPlayerController: chewieController,
+  //       autoPlay: false,
+  //       looping: false,
+  //     ));
+  //     setState(() {});
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Video",style: TextStyle(
+        title: const Text("Videos",style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.black,
@@ -106,6 +107,140 @@ class _VideoScreenState extends State<VideoScreen> {
             _buildSelectedVideo(context),
             const SizedBox(height: 16),
             Column(
+              children: widget.channels.map((e) {
+                if (e == selectedVideo) {
+                  return const SizedBox.shrink();
+                }
+                return InkWell(
+                  onTap: () {
+                    _clearVideosController();
+                    selectedVideo = e;
+                    _initializeSelectedVideo();
+                    // _initializeVideos();
+                    // _initializeChewieControllers();
+                    setState(() {});
+                  },
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: SizedBox(
+                          height: 200,
+                          child: Image.asset(
+                            widget.channelsData.thumbnail ?? "",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          height: 200,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      e.title ?? "",
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 16),
+                                    child: InkWell(
+                                      onTap: () {
+                                        BlocProvider.of<ChannelsBloc>(context)
+                                            .add(ShareVideEvent(
+                                                url: e.video?.mediaUrl ?? ""));
+                                      },
+                                      child:
+                                          SvgPicture.asset(ImagesPath.shareIcon),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }).toList(),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSelectedVideo(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 250,
+          width: double.infinity,
+          child: Chewie(
+
+            controller: selectedChewieVideoController,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Text(
+                selectedVideo.description ?? "",
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const Expanded(child: SizedBox()),
+              InkWell(
+                onTap: () {
+                  BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
+                      url: selectedVideo.video?.mediaUrl ?? ""));
+                },
+                child: SvgPicture.asset(ImagesPath.shareIcon),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _clearVideosController();
+  }
+
+  void _clearVideosController() {
+    // for (var controller in controllers) {
+    //   chewieControllers[controllers.indexOf(controller)].pause();
+    //   chewieControllers[controllers.indexOf(controller)].dispose();
+    // }
+    selectedChewieVideoController.pause();
+    selectedChewieVideoController.dispose();
+  }
+}
+
+
+/*
+Column(
               children: widget.channels.map((e) {
                 if (e == selectedVideo) {
                   return const SizedBox.shrink();
@@ -181,75 +316,4 @@ class _VideoScreenState extends State<VideoScreen> {
                 );
               }).toList(),
             )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSelectedVideo(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          height: 250,
-          width: double.infinity,
-          child: Chewie(
-            controller: selectedChewieVideoController,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            selectedVideo.title ?? "",
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              Text(
-                selectedVideo.description ?? "",
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black,
-                ),
-              ),
-              const Expanded(child: SizedBox()),
-              InkWell(
-                onTap: () {
-                  BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
-                      url: selectedVideo.video?.mediaUrl ?? ""));
-                },
-                child: SvgPicture.asset(ImagesPath.shareIcon),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _clearVideosController();
-  }
-
-  void _clearVideosController() {
-    for (var controller in controllers) {
-      chewieControllers[controllers.indexOf(controller)].pause();
-      chewieControllers[controllers.indexOf(controller)].dispose();
-    }
-    selectedChewieVideoController.pause();
-    selectedChewieVideoController.dispose();
-  }
-}
+ */

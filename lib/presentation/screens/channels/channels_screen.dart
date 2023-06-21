@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/base_widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
@@ -68,6 +69,24 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            title: const Text("Ejabi Channel",style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),),
+            centerTitle: true,
+            leading: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: SvgPicture.asset(
+                  ImagesPath.arrowBackIcon,
+                  height: 20,
+                  width: 20,
+                  fit: BoxFit.scaleDown,
+                )),
+          ),
           body: SizedBox(
             child: Column(
               children: [

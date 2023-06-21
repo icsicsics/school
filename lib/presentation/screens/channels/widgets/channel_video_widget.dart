@@ -49,28 +49,28 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
               width: double.infinity,
               height: 200,
               child: Image.asset(
-                "assets/images/ic_video_placeholder.png",
+                widget.channelsData.thumbnail ?? "",
                 fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 12),
-          Text(
-            widget.channelsData.title ?? "",
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 8),
+          // Text(
+          //   widget.channelsData.title ?? "",
+          //   style: const TextStyle(
+          //     fontSize: 14,
+          //     fontWeight: FontWeight.bold,
+          //     color: Colors.black,
+          //   ),
+          // ),
+          // const SizedBox(height: 8),
           Row(
             children: [
               Text(
                 widget.channelsData.description ?? "",
                 style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
