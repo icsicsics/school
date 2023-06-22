@@ -142,7 +142,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                     language: widget.language,
                     token: widget.token,
                   )
-                      : IsNotComingFromHomeContentWidget(
+                      : isFather ? SizedBox.shrink() : IsNotComingFromHomeContentWidget(
                       schoolHousesBloc: _schoolHousesBloc,
                       token: widget.token,
                       getStudentHousesResponse:

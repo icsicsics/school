@@ -69,14 +69,14 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
+          appBar:  AppBar(
             title: const Text("Ejabi Channel",style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),),
             centerTitle: true,
-            leading: InkWell(
+            leading: token.isNotEmpty ?InkWell(
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -85,7 +85,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                   height: 20,
                   width: 20,
                   fit: BoxFit.scaleDown,
-                )),
+                )) : null,
           ),
           body: SizedBox(
             child: Column(
