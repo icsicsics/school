@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
 import 'package:schools/data/source/remote/model/login/login_response.dart';
@@ -11,9 +12,7 @@ import 'package:schools/domain/usecases/get_firebase_token_use_case.dart';
 import 'package:schools/domain/usecases/get_language_use_case.dart';
 import 'package:schools/domain/usecases/get_token_use_case.dart';
 import 'package:schools/domain/usecases/set_phone_number_use_case.dart';
-import 'package:schools/domain/usecases/set_refresh_token_use_case.dart';
 import 'package:schools/domain/usecases/set_token_use_case.dart';
-import 'package:schools/domain/usecases/set_user_id_use_case.dart';
 
 part 'verify_event.dart';
 
@@ -22,27 +21,22 @@ part 'verify_state.dart';
 class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
   final SetTokenUseCase _setTokenUseCase;
-  final SetRefreshTokenUseCase _setRefreshTokenUseCase;
   final GetTokenUseCase _getTokenUseCase;
   final GetFirebaseTokenUseCase _getFirebaseTokenUseCase;
   final SetPhoneNumberUseCase _setPhoneNumberUseCase;
-  final SetUserIdUseCase _setUserIdUseCase;
 
   VerifyBloc(
     this._getLanguageCodeUseCase,
     this._setTokenUseCase,
-    this._setRefreshTokenUseCase,
     this._getTokenUseCase,
     this._getFirebaseTokenUseCase,
     this._setPhoneNumberUseCase,
-    this._setUserIdUseCase,
   ) : super(VerifyInitialState()) {
     on<GetVerifyEvent>(_onGetVerifyEvent);
     on<GetLanguageEvent>(_onGetLanguageEvent);
     on<VerifyCodeEvent>(_onVerifyCodeEvent);
     on<UpdateDeviceTokenEvent>(_onUpdateDeviceTokenEvent);
     on<VerifyPhoneNumberEvent>(_onVerifyPhoneNumberEvent);
-
   }
 
   FutureOr<void> _onGetVerifyEvent(
@@ -62,19 +56,19 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
     GetTokenResponse getTokenResponse =
         GetTokenResponse.fromJson(response.data);
     if (response.statusCode == 200) {
-      if(getTokenResponse.data!.token!.accessToken == null){
+      if (getTokenResponse.data!.token!.accessToken == null) {
         emit(VerifyCodeErrorState());
         emit(HideLoadingState());
 
         return;
       }
       if (getTokenResponse.data!.token!.accessToken!.isNotEmpty) {
-        await _setUserIdUseCase(userId: getTokenResponse.data!.userId ?? "");
+        await SharedPreferencesManager.setUserId(getTokenResponse.data?.userId ?? "");
         await _setTokenUseCase(
             token: getTokenResponse.data!.token!.accessToken!);
-        await _setRefreshTokenUseCase(
-          refreshToken: getTokenResponse.data!.token!.refreshToken!
-        );
+        await SharedPreferencesManager.setRefreshToken(
+            getTokenResponse.data?.token?.refreshToken ?? "");
+
         await _setPhoneNumberUseCase(event.phoneNumber);
         emit(VerifyCodeSuccessState());
       } else {
@@ -120,11 +114,10 @@ class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
         phoneNumber: event.phoneNumber,
         roles: loginResponse.data?.roles ?? [],
         code: loginResponse.data?.verifyCode ?? "",
-
       ));
     } catch (e) {
       LoginErrorResponse errorResponse =
-      LoginErrorResponse.fromJson(response.data);
+          LoginErrorResponse.fromJson(response.data);
       emit(VerifyPhoneNumberErrorState(errorMessage: errorResponse.data ?? ""));
     }
     emit(HideLoadingState());

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/notification/request/notification_request.dart';
 import 'package:schools/data/source/remote/model/notification/response/notifications_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/notifications/notifications_bloc.dart';
 import 'package:schools/presentation/screens/notifications/widgets/notifications_content_widget.dart';
-import 'package:schools/presentation/screens/side_menu_widget/side_menu_screen.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 
 class NotificationsScreen extends BaseStatefulWidget {

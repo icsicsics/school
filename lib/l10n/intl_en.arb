@@ -117,5 +117,10 @@
   "toEnterApp": "To Enter the App",
   "pageOne": "The first interactive mobile application between school and home.\nCreates an interactive atmosphere between parents and school with positive behavior.",
   "pageTwo": "Promote positive behavior and modify unwanted behavior through easy and fun tools for students, counselors, teachers, and parents",
-  "pageThree": "Granting moral rewards to groups and not to individuals.\nCollect behavioral points within each group in the school."
+  "pageThree": "Granting moral rewards to groups and not to individuals.\nCollect behavioral points within each group in the school.",
+  "ejabiChannel" : "Ejabi Channel",
+  "welcomeToEjabiChannelArabic": "مرحبا بك في قناة إيجابي",
+  "welcomeToEjabiChannelEnglish": "Welcome to Ejabi Channel",
+  "videos": "Videos"
+
 }

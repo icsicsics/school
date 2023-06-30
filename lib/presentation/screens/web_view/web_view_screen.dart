@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/screens/web_view/widgets/web_view_html_content_widget.dart';

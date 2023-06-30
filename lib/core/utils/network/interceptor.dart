@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
 import 'package:schools/di/injector.dart';
 import 'package:schools/domain/usecases/get_phone_number_use_case.dart';
-import 'package:schools/domain/usecases/get_refresh_token_use_case.dart';
-import 'package:schools/domain/usecases/set_refresh_token_use_case.dart';
 import 'package:schools/domain/usecases/set_token_use_case.dart';
 
 class CustomInterceptors extends InterceptorsWrapper {
@@ -30,10 +29,10 @@ class CustomInterceptors extends InterceptorsWrapper {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
     if(err.response?.statusCode == 401){
-      Response response = await DioHelper.refreshToken((await GetPhoneNumberUseCase(injector())()?? ""), (await GetRefreshTokenUseCase(injector())()?? ""));
+      Response response = await DioHelper.refreshToken((await GetPhoneNumberUseCase(injector())()?? ""), (await SharedPreferencesManager.getRefreshToken() ?? ""));
       GetTokenResponse getTokenResponse = GetTokenResponse.fromJson(response.data);
       await SetTokenUseCase(injector())(token: getTokenResponse.data!.token!.accessToken ?? "");
-      await SetRefreshTokenUseCase(injector())(refreshToken: getTokenResponse.data!.token!.refreshToken ?? "");
+      await SharedPreferencesManager.setRefreshToken(getTokenResponse.data!.token!.refreshToken ?? "");
       await _retry(err.requestOptions);
     }
     debugPrint(

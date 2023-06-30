@@ -42,7 +42,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    userId = await SharedPreferencesManager().getUserId() ?? "";
+    userId = await SharedPreferencesManager.getUserId() ?? "";
 
     points = widget.points;
     _list.add(_ChildIconsModel(

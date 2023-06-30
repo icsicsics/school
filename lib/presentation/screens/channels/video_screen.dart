@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/data/source/remote/model/weather/main.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:video_player/video_player.dart';
 
@@ -27,6 +28,7 @@ class VideoScreen extends StatefulWidget {
 class _VideoScreenState extends State<VideoScreen> {
   late VideoPlayerController selectedVideoController;
   late ChewieController selectedChewieVideoController;
+
   // List<VideoPlayerController> controllers = [];
   // List<ChewieController> chewieControllers = [];
   ChannelsData selectedVideo = ChannelsData();
@@ -83,11 +85,14 @@ class _VideoScreenState extends State<VideoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Videos",style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ),),
+        title: Text(
+          S.of(context).videos,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
         leading: InkWell(
             onTap: () {
@@ -161,8 +166,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                             .add(ShareVideEvent(
                                                 url: e.video?.mediaUrl ?? ""));
                                       },
-                                      child:
-                                          SvgPicture.asset(ImagesPath.shareIcon),
+                                      child: SvgPicture.asset(
+                                          ImagesPath.shareIcon),
                                     ),
                                   ),
                                 ],
@@ -190,7 +195,6 @@ class _VideoScreenState extends State<VideoScreen> {
           height: 250,
           width: double.infinity,
           child: Chewie(
-
             controller: selectedChewieVideoController,
           ),
         ),
@@ -210,8 +214,8 @@ class _VideoScreenState extends State<VideoScreen> {
               const Expanded(child: SizedBox()),
               InkWell(
                 onTap: () {
-                  BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
-                      url: selectedVideo.video?.mediaUrl ?? ""));
+                  BlocProvider.of<ChannelsBloc>(context).add(
+                      ShareVideEvent(url: selectedVideo.video?.mediaUrl ?? ""));
                 },
                 child: SvgPicture.asset(ImagesPath.shareIcon),
               ),
@@ -237,7 +241,6 @@ class _VideoScreenState extends State<VideoScreen> {
     selectedChewieVideoController.dispose();
   }
 }
-
 
 /*
 Column(

@@ -47,3 +47,5 @@ class ShareVideoState extends ChannelsState {
     required this.url,
   });
 }
+
+class NavigateToLoginScreenState extends ChannelsState{}

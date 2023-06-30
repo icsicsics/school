@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewWidget extends BaseStatefulWidget {

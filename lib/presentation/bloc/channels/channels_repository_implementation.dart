@@ -5,7 +5,6 @@ import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/channels/channels.dart';
 import 'package:schools/data/source/remote/repository/channels_repository.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 
 class ChannelsRepositoryImplementation extends ChannelsRepository {
   @override

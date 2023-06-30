@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'loading_manager.dart';
+import '../manager/loading/loading_manager.dart';
 
 abstract class BaseStatefulWidget extends StatefulWidget {
   final Color materialColor;

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:schools/core/device_info.dart';
-import 'package:schools/core/notification_serves.dart';
+import 'package:schools/config/routes/app_routes.dart';
+import 'package:schools/config/themes/app_theme.dart';
+import 'package:schools/config/utils/constants.dart';
+import 'package:schools/config/utils/notification_service.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
-import 'package:schools/core/utils/themes/app_them.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/di/injector.dart';
 import 'package:schools/generated/l10n.dart';
@@ -24,7 +25,6 @@ import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
-import 'package:schools/presentation/screens/splash/splash_screen.dart';
 import 'package:schools/presentation/widgets/restart_widget.dart';
 
 void main() async {
@@ -33,8 +33,6 @@ void main() async {
   DioHelper.init();
   await initializeDependencies();
   await Firebase.initializeApp();
-  await DeviceInformation().initPackageInformation();
-  await DeviceInformation().initDeviceInformation();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -82,23 +80,24 @@ class _MyAppState extends State<MyApp> {
             create: (BuildContext context) => injector()),
         BlocProvider<ChannelsBloc>(
             create: (BuildContext context) => injector()),
-
       ],
       child: BlocBuilder<LocalizationCubit, Locale>(
         builder: (context, state) {
           return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Ejabi',
-              theme: getApplicationTheme(state.languageCode),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              locale: Locale(state.languageCode),
-              home: const SplashScreen());
+            debugShowCheckedModeBanner: false,
+            title: Constants.appName,
+            theme: AppTheme(state.languageCode).light,
+            initialRoute: AppRoutes.splash,
+            onGenerateRoute: AppRoutes.onGenerateRoutes,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: Locale(state.languageCode),
+          );
         },
       ),
     );

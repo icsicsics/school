@@ -20,6 +20,7 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
     on<NavigateBackEvent>(_onNavigateBackEvent);
     on<UpdateVideoEvent>(_onUpdateVideoEvent);
     on<ShareVideEvent>(_onShareVideEvent);
+    on<NavigateToLoginScreenEvent>(_onNavigateToLoginScreenEvent);
   }
 
   FutureOr<void> _onGetChannelsEvent(
@@ -39,7 +40,13 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
     emit(UpdateVideoState(channelsData: event.channelsData));
   }
 
-  FutureOr<void> _onShareVideEvent(ShareVideEvent event, Emitter<ChannelsState> emit) async {
+  FutureOr<void> _onShareVideEvent(
+      ShareVideEvent event, Emitter<ChannelsState> emit) async {
     emit(ShareVideoState(url: event.url));
+  }
+
+  FutureOr<void> _onNavigateToLoginScreenEvent(
+      NavigateToLoginScreenEvent event, Emitter<ChannelsState> emit) {
+    emit(NavigateToLoginScreenState());
   }
 }

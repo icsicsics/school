@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:schools/config/routes/app_routes.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/channels/channels_screen.dart';
+import 'package:schools/presentation/screens/on_boarding/widgets/on_boarding_page_widget.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/widgets/medium_text_widget.dart';
 import 'package:schools/presentation/widgets/regular_text_widget.dart';
@@ -36,136 +38,102 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               },
               controller: _pageController,
               children: [
-                _buildPage(
-                  ImagesPath.pageOne,
-                  S.of(context).connectLikeMindedPeople,
-                  S.of(context).pageOne,
+                OnBoardingPageWidget(
+                  title: S.of(context).connectLikeMindedPeople,
+                  description: S.of(context).pageOne,
+                  imagePath: ImagesPath.pageOne,
                 ),
-                _buildPage(
-                  ImagesPath.pageTwo,
-                  S.of(context).participateAndWinRewards,
-                  S.of(context).pageTwo,
+                OnBoardingPageWidget(
+                  title: S.of(context).participateAndWinRewards,
+                  description: S.of(context).pageTwo,
+                  imagePath: ImagesPath.pageTwo,
                 ),
-                _buildPage(
-                  ImagesPath.pageThree,
-                  S.of(context).findNearbyEvents,
-                  S.of(context).pageThree,
+                OnBoardingPageWidget(
+                  title: S.of(context).findNearbyEvents,
+                  description: S.of(context).pageThree,
+                  imagePath: ImagesPath.pageThree,
                 ),
               ],
             ),
-            Positioned(
-              top: 16,
-              right: 16,
-              child: InkWell(
-                onTap: () async {
-                  await SharedPreferencesManager.setIsOnBoarding(true);
-                  _navigateToChannelsScreen(context);
-                },
-                child: BoldTextWidget(
-                  text: S.of(context).skip,
-                  fontSize: 16,
-                  color: ColorsManager.grayColor,
-                ),
-              ),
-            ),
+            _buildSkipButton(),
           ],
         ),
-        bottomSheet: Container(
-          color: Colors.white,
-          child: Container(
-            height: 80,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            color: Colors.white,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SmoothPageIndicator(
-                  controller: _pageController,
-                  count: 3,
-                  onDotClicked: (index) {
-                    _pageController.animateToPage(
-                      index,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  effect: const WormEffect(
-                      activeDotColor: ColorsManager.primaryColor,
-                      dotColor: Colors.black26,
-                      spacing: 12,
-                      dotHeight: 12,
-                      dotWidth: 12),
-                ),
-                const Expanded(child: SizedBox()),
-                TextButton(
-                  onPressed: () async {
-                    if (_currentPage == 2) {
-                      await SharedPreferencesManager.setIsOnBoarding(true);
-                      _navigateToChannelsScreen(context);
-                    } else {
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    }
-                    _pageController.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: BoldTextWidget(
-                    text: _currentPage == 2
-                        ? S.of(context).getStart
-                        : S.of(context).next,
-                    fontSize: 16,
-                    color: ColorsManager.primaryColor,
-                  ),
-                ),
-              ],
-            ),
+        bottomSheet: _buildOnBoardingFooter(),
+      ),
+    );
+  }
+
+  Positioned _buildSkipButton() {
+    return Positioned(
+      top: 16,
+      right: 16,
+      child: InkWell(
+        onTap: () {
+          _setIsOnBoardingValue();
+          _navigateToChannelsScreen();
+        },
+        child: Text(
+          S.of(context).skip,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontSize: 16,
+            color: ColorsManager.grayColor,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
     );
   }
 
-  void _navigateToLoginScreen(BuildContext context) {
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-      return const LoginScreen();
-    }), (route) => false);
-  }
-
-  Container _buildPage(
-    String imagePath,
-    String title,
-    String description,
-  ) {
+  Container _buildOnBoardingFooter() {
     return Container(
+      height: 80,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
       color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(imagePath),
-          BoldTextWidget(
-            text: title,
-            fontSize: 16,
-            color: Colors.black,
-            textAlign: TextAlign.center,
+          SmoothPageIndicator(
+            controller: _pageController,
+            count: 3,
+            onDotClicked: (index) {
+              _pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+              );
+            },
+            effect: const WormEffect(
+                activeDotColor: ColorsManager.primaryColor,
+                dotColor: Colors.black26,
+                spacing: 12,
+                dotHeight: 12,
+                dotWidth: 12),
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 48),
-            child: MediumTextWidget(
-              text: description,
-              textAlign: TextAlign.center,
-              fontSize: 16,
-              color: ColorsManager.grayColor,
-              maxLines: 8,
+          const Expanded(child: SizedBox()),
+          TextButton(
+            onPressed: () async {
+              if (_currentPage == 2) {
+                _setIsOnBoardingValue();
+                _navigateToChannelsScreen();
+              } else {
+                _pageController.nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              }
+              _pageController.nextPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+              );
+            },
+            child: Text(
+              _currentPage == 2 ? S.of(context).getStart : S.of(context).next,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
           ),
         ],
@@ -173,9 +141,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  void _navigateToChannelsScreen(BuildContext context) {
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-      return const ChannelsScreen();
-    }), (route) => false);
+  void _setIsOnBoardingValue() async {
+    await SharedPreferencesManager.setIsOnBoarding(true);
+  }
+
+  void _navigateToChannelsScreen() {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      AppRoutes.channels,
+      (route) => false,
+    );
   }
 }

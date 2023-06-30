@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dontReceiveCode":
             MessageLookupByLibrary.simpleMessage("Don\'t Receive Code ? "),
         "ejabi": MessageLookupByLibrary.simpleMessage("Ejabi"),
+        "ejabiChannel": MessageLookupByLibrary.simpleMessage("Ejabi Channel"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "energetic": MessageLookupByLibrary.simpleMessage("Energetic"),
         "english": MessageLookupByLibrary.simpleMessage("EN"),
@@ -167,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verification Code"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("Verify your Number"),
+        "videos": MessageLookupByLibrary.simpleMessage("Videos"),
         "viewHouses": MessageLookupByLibrary.simpleMessage("View Houses"),
         "weHaveSendTheCodeVerificationToYourMobile":
             MessageLookupByLibrary.simpleMessage(
@@ -174,6 +176,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "weather": MessageLookupByLibrary.simpleMessage("Weather"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+        "welcomeToEjabiChannelArabic":
+            MessageLookupByLibrary.simpleMessage("مرحبا بك في قناة إيجابي"),
+        "welcomeToEjabiChannelEnglish":
+            MessageLookupByLibrary.simpleMessage("Welcome to Ejabi Channel"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

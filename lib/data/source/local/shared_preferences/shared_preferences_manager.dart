@@ -124,12 +124,12 @@ class SharedPreferencesManager {
     return await SharedPreferencesUtils.getString(SharedPreferencesKeys.token);
   }
 
-  Future<bool> setRefreshToken(String refreshToken) async {
+  static Future<bool> setRefreshToken(String refreshToken) async {
     return await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.refreshToken, refreshToken);
   }
 
-  Future<String?> getRefreshToken() async {
+  static Future<String?> getRefreshToken() async {
     return await SharedPreferencesUtils.getString(
         SharedPreferencesKeys.refreshToken);
   }
@@ -154,11 +154,11 @@ class SharedPreferencesManager {
         SharedPreferencesKeys.countryCode);
   }
 
-  Future<String?> getUserId() async {
+  static Future<String?> getUserId() async {
     return await SharedPreferencesUtils.getString(SharedPreferencesKeys.userId);
   }
 
-  Future<bool> setUserId(String userId) async {
+  static Future<bool> setUserId(String userId) async {
     return await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.userId, userId);
   }
@@ -184,7 +184,11 @@ class SharedPreferencesManager {
         data: isOnBoarding);
   }
 
-  Future<bool?> clearToken() async {
+  static Future<bool?> clearToken() async {
     return await SharedPreferencesUtils.remove(SharedPreferencesKeys.token);
+  }
+
+  static Future<bool?> clearRefreshToken() async {
+    return await SharedPreferencesUtils.remove(SharedPreferencesKeys.refreshToken);
   }
 }

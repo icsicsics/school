@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:wheel_chooser/wheel_chooser.dart';
 
 class RequestMeetingBottomSheetWidget extends StatefulWidget {
   final double height;
@@ -20,7 +22,7 @@ class _RequestMeetingBottomSheetWidgetState
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.height,
+      height: 500,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -113,32 +115,58 @@ class _RequestMeetingBottomSheetWidgetState
               ],
             ),
             SizedBox(
-              height: 32,
+              height: 16,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SizedBox(
-                width: double.infinity,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(59, 187, 172, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12), // <-- Radius
+            Container(
+              height: 100,
+              child: Row(
+                children: [
+                  Expanded(
+                      child: WheelChooser.integer(
+                    onValueChanged: (i) => print(i),
+                    maxValue: 12,
+                    minValue: 1,
+                    listHeight: 100,
+                    step: 1,
+                    squeeze: 1.2,
+                    unSelectTextStyle: TextStyle(
+                      color: Color.fromRGBO(34, 34, 34, 1),
                     ),
-                  ),
-                  child: Text(
-                    "Send",
-                    style: TextStyle(
-                      color: Colors.white,
-                      letterSpacing: -0.14,
-                      fontWeight: FontWeight.w700,
+                    initValue: DateTime.now().hour,
+                    selectTextStyle: TextStyle(
+                      color: ColorsManager.primaryColor,
                     ),
-                  ),
-                ),
+                  )),
+                ],
               ),
-            )
+            ),
+            // SizedBox(
+            //   height: 32,
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   child: SizedBox(
+            //     width: double.infinity,
+            //     height: 40,
+            //     child: ElevatedButton(
+            //       onPressed: () {},
+            //       style: ElevatedButton.styleFrom(
+            //         backgroundColor: Color.fromRGBO(59, 187, 172, 1),
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(12), // <-- Radius
+            //         ),
+            //       ),
+            //       child: Text(
+            //         "Send",
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //           letterSpacing: -0.14,
+            //           fontWeight: FontWeight.w700,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),

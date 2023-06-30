@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:schools/core/utils/network/interceptor.dart';
-import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';

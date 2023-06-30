@@ -3,11 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/channels/channels_data.dart';
-import 'package:schools/data/source/remote/model/channels/video.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/screens/channels/video_screen.dart';
-import 'package:video_player/video_player.dart';
-import 'package:rxdart/rxdart.dart';
 
 class ChannelsVideoWidget extends StatefulWidget {
   final List<ChannelsData> channels;
@@ -32,7 +29,7 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,7 +42,7 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
                 );
               },),);
             },
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               height: 200,
               child: Image.asset(

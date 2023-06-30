@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/config/routes/app_routes.dart';
+import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
@@ -19,7 +20,6 @@ class SplashScreen extends BaseStatefulWidget {
 
 class _SplashScreenState extends BaseState<SplashScreen> {
   SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
-  bool _showOnBoarding = false;
 
   @override
   void initState() {
@@ -28,25 +28,27 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   }
 
   @override
-  void didChangeDependencies() async {
-    super.didChangeDependencies();
-    _showOnBoarding = await SharedPreferencesManager.getIsOnBoarding() ?? false;
-  }
-
-  @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is GetTokenState) {
-          if (state.token.isEmpty)  {
-            if (_showOnBoarding == false) {
-              _navigateToOnBoardingScreen();
-            } else {
-              _navigationToChannelsScreen();
-            }
+          if (state.token.isEmpty) {
+            _bloc.add(GetShowOnBoardingEvent());
           } else {
-            _navigateToHomeScreen();
+            _bloc.add(NavigateToHomeScreenEvent());
           }
+        } else if (state is GetShowOnBoardingState) {
+          if (state.isShowOnBoarding == false) {
+            _bloc.add(NavigateToOnBoardingScreenEvent());
+          } else {
+            _bloc.add(NavigateToChannelsScreenEvent());
+          }
+        } else if (state is NavigateToOnBoardingScreenState) {
+          _navigateToOnBoardingScreen();
+        } else if (state is NavigateToChannelsScreenState) {
+          _navigationToChannelsScreen();
+        } else if (state is NavigateToHomeScreenState) {
+          _navigateToHomeScreen();
         }
       },
       builder: (context, state) {
@@ -73,44 +75,25 @@ class _SplashScreenState extends BaseState<SplashScreen> {
     _bloc.add(GetTokenEvent());
   }
 
-  void _navigateToHomeScreen() async {
-    await _delay(3);
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-      return const HomeScreen();
-    }), (route) => false);
-  }
-
-  void _navigationToLoginScreen() async {
-    await _delay(3);
-    Navigator.pushReplacement(
+  void _navigateToHomeScreen() {
+    Navigator.pushNamedAndRemoveUntil(
       context,
-      MaterialPageRoute(
-        builder: (_) => LoginScreen(),
-      ),
+      AppRoutes.home,
+      (route) => false,
     );
   }
 
-  Future<void> _delay(int seconds) async =>
-      await Future.delayed(Duration(seconds: seconds));
-
-  void _navigateToOnBoardingScreen() async {
-    await _delay(3);
-
-    Navigator.pushReplacement(
+  void _navigateToOnBoardingScreen() {
+    Navigator.pushReplacementNamed(
       context,
-      MaterialPageRoute(
-        builder: (_) => const OnBoardingScreen(),
-      ),
+      AppRoutes.onBoarding,
     );
   }
 
-  void _navigationToChannelsScreen() async {
-    await _delay(3);
-    Navigator.pushReplacement(
+  void _navigationToChannelsScreen() {
+    Navigator.pushReplacementNamed(
       context,
-      MaterialPageRoute(
-        builder: (_) => ChannelsScreen(),
-      ),
+      AppRoutes.channels,
     );
   }
 }

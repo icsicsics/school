@@ -18,18 +18,18 @@ class _AdvisorsScreenState extends State<AdvisorsScreen> {
       appBar: _buildAppBar(),
       floatingActionButton: InkWell(
         onTap: () {
-          // openRequestMeetingBottomSheet(
-          //   context: context,
-          //   height: 350,
-          // );
+          openRequestMeetingBottomSheet(
+            context: context,
+            height: 350,
+          );
         },
         child: Container(
             height: 40,
             width: 145,
             decoration: BoxDecoration(
-                color: Color.fromRGBO(59, 187, 172, 1),
+                color: const Color.fromRGBO(59, 187, 172, 1),
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     offset: Offset(0, 4),
                     blurRadius: 24,
@@ -47,7 +47,7 @@ class _AdvisorsScreenState extends State<AdvisorsScreen> {
                   height: 20,
                   color: Colors.white,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(

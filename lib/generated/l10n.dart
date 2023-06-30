@@ -1239,6 +1239,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Ejabi Channel`
+  String get ejabiChannel {
+    return Intl.message(
+      'Ejabi Channel',
+      name: 'ejabiChannel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مرحبا بك في قناة إيجابي`
+  String get welcomeToEjabiChannelArabic {
+    return Intl.message(
+      'مرحبا بك في قناة إيجابي',
+      name: 'welcomeToEjabiChannelArabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Ejabi Channel`
+  String get welcomeToEjabiChannelEnglish {
+    return Intl.message(
+      'Welcome to Ejabi Channel',
+      name: 'welcomeToEjabiChannelEnglish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Videos`
+  String get videos {
+    return Intl.message(
+      'Videos',
+      name: 'videos',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

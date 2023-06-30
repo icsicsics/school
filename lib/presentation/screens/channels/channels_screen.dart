@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:schools/core/base_widget/base_stateful_widget.dart';
+import 'package:schools/config/routes/app_routes.dart';
+import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/channels/channels_data.dart';
-import 'package:schools/data/source/remote/model/channels/video.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
-import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/channels/widgets/channel_video_widget.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -22,9 +21,10 @@ class ChannelsScreen extends BaseStatefulWidget {
 }
 
 class _ChannelsScreenState extends BaseState<ChannelsScreen> {
+  ChannelsBloc get _bloc => BlocProvider.of<ChannelsBloc>(context);
+
   List<ChannelsData> _channels = [];
-  String token = "";
-  bool isShowChannel = false;
+  String _token = "";
 
   @override
   void initState() {
@@ -33,13 +33,9 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   }
 
   @override
-  void didChangeDependencies() async {
+  void didChangeDependencies() {
     super.didChangeDependencies();
-    token = await SharedPreferencesManager.getTokenDio() ?? "";
-  }
-
-  void _getChannels() {
-    BlocProvider.of<ChannelsBloc>(context).add(GetChannelsEvent());
+    _getToken();
   }
 
   @override
@@ -65,32 +61,39 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
           }
         } else if (state is ShareVideoState) {
           Share.share(state.url);
+        } else if (state is NavigateToLoginScreenState) {
+          _navigateToLoginScreen();
         }
       },
       builder: (context, state) {
         return Scaffold(
-          appBar:  AppBar(
-            title: const Text("Ejabi Channel",style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),),
+          appBar: AppBar(
+            title: Text(
+              S.of(context).ejabiChannel,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
             centerTitle: true,
-            leading: token.isNotEmpty ?InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: SvgPicture.asset(
-                  ImagesPath.arrowBackIcon,
-                  height: 20,
-                  width: 20,
-                  fit: BoxFit.scaleDown,
-                )) : null,
+            leading: _token.isNotEmpty
+                ? InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: SvgPicture.asset(
+                      ImagesPath.arrowBackIcon,
+                      height: 20,
+                      width: 20,
+                      fit: BoxFit.scaleDown,
+                    ))
+                : null,
           ),
           body: SizedBox(
             child: Column(
               children: [
-                if (token.isEmpty) _buildHeaderSection(context),
+                if (_token.isEmpty) _buildHeaderSection(context),
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
@@ -128,12 +131,22 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
           const SizedBox(
             height: 4,
           ),
-          const Text("مرحبا بك في قناة إيجابي",
-              style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0)),
-          const Text("Welcome to Ejabi Channel",
-              style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0)),
+          Text(
+            S.of(context).welcomeToEjabiChannelArabic,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0,
+            ),
+          ),
+          Text(
+            S.of(context).welcomeToEjabiChannelEnglish,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0,
+            ),
+          ),
           const SizedBox(
             height: 16,
           ),
@@ -143,7 +156,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6))),
             onPressed: () async {
-              _navigateToLoginScreen(context);
+              _bloc.add(NavigateToLoginScreenEvent());
             },
             child: Text(
               S.of(context).toEnterApp,
@@ -155,14 +168,18 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
     );
   }
 
-  void _navigateToLoginScreen(BuildContext context) {
-    Navigator.push(
+  void _getChannels() {
+    _bloc.add(GetChannelsEvent());
+  }
+
+  void _getToken() async {
+    _token = await SharedPreferencesManager.getTokenDio() ?? "";
+  }
+
+  void _navigateToLoginScreen() {
+    Navigator.pushNamed(
       context,
-      MaterialPageRoute(
-        builder: (context) {
-          return const LoginScreen();
-        },
-      ),
+      AppRoutes.login,
     );
   }
 }

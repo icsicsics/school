@@ -27,4 +27,6 @@ class ShareVideEvent extends ChannelsEvent {
   });
 }
 
+class NavigateToLoginScreenEvent extends ChannelsEvent{}
+
 

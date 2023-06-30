@@ -11,3 +11,17 @@ class GetTokenState extends SplashState {
     required this.token,
   });
 }
+
+class GetShowOnBoardingState extends SplashState {
+  final bool isShowOnBoarding;
+
+  GetShowOnBoardingState({
+    required this.isShowOnBoarding,
+  });
+}
+
+class NavigateToChannelsScreenState extends SplashState {}
+
+class NavigateToOnBoardingScreenState extends SplashState {}
+
+class NavigateToHomeScreenState extends SplashState {}
