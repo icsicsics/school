@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:wheel_chooser/wheel_chooser.dart';
@@ -22,7 +23,7 @@ class _RequestMeetingBottomSheetWidgetState
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: 415,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -111,62 +112,139 @@ class _RequestMeetingBottomSheetWidgetState
                   ),
                 ),
                 Expanded(child: SizedBox()),
-                SvgPicture.asset(ImagesPath.calendar),
+                InkWell(
+                  onTap: () {
+                    //Show Date Time
+                  },
+                  child: SvgPicture.asset(
+                    ImagesPath.calendar,
+                  ),
+                ),
               ],
             ),
             SizedBox(
               height: 16,
             ),
             Container(
-              height: 100,
+              height: 115,
               child: Row(
                 children: [
+                  Expanded(
+                      child: WheelChooser(
+                    onValueChanged: (i) => print(i),
+                    datas: ["PM", "AM"],
+                    perspective: 0.002,
+                    squeeze: 1.3,
+                    unSelectTextStyle: TextStyle(
+                        color: Color.fromRGBO(34, 34, 34, 0.4), fontSize: 11),
+                    startPosition: 0,
+                    selectTextStyle: TextStyle(
+                        color: ColorsManager.primaryColor, fontSize: 11),
+                  )),
                   Expanded(
                       child: WheelChooser.integer(
                     onValueChanged: (i) => print(i),
                     maxValue: 12,
                     minValue: 1,
-                    listHeight: 100,
+                    listHeight: 115,
+                    perspective: 0.002,
                     step: 1,
-                    squeeze: 1.2,
+                    squeeze: 1.3,
                     unSelectTextStyle: TextStyle(
-                      color: Color.fromRGBO(34, 34, 34, 1),
-                    ),
-                    initValue: DateTime.now().hour,
+                        color: Color.fromRGBO(34, 34, 34, 0.4), fontSize: 11),
+                    initValue: (DateTime.now().hour % 12) + 1,
                     selectTextStyle: TextStyle(
-                      color: ColorsManager.primaryColor,
-                    ),
+                        color: ColorsManager.primaryColor, fontSize: 11),
+                  )),
+                  Expanded(
+                      child: WheelChooser.integer(
+                    onValueChanged: (i) => print(i),
+                    maxValue: 60,
+                    minValue: 1,
+                    listHeight: 115,
+                    perspective: 0.002,
+                    step: 1,
+                    squeeze: 1.3,
+                    unSelectTextStyle: TextStyle(
+                        color: Color.fromRGBO(34, 34, 34, 0.4), fontSize: 11),
+                    initValue: DateTime.now().minute,
+                    selectTextStyle: TextStyle(
+                        color: ColorsManager.primaryColor, fontSize: 11),
+                  )),
+                  const Expanded(
+                    flex: 2,
+                    child: SizedBox(),
+                  ),
+                  Expanded(
+                      child: WheelChooser(
+                    onValueChanged: (i) => print(i),
+                    datas: ["PM", "AM"],
+                    perspective: 0.002,
+                    squeeze: 1.3,
+                    unSelectTextStyle: TextStyle(
+                        color: Color.fromRGBO(34, 34, 34, 0.4), fontSize: 11),
+                    startPosition: 0,
+                    selectTextStyle: TextStyle(
+                        color: ColorsManager.primaryColor, fontSize: 11),
+                  )),
+                  Expanded(
+                      child: WheelChooser.integer(
+                    onValueChanged: (i) => print(i),
+                    maxValue: 12,
+                    minValue: 1,
+                    listHeight: 115,
+                    perspective: 0.002,
+                    step: 1,
+                    squeeze: 1.3,
+                    unSelectTextStyle: TextStyle(
+                        color: Color.fromRGBO(34, 34, 34, 0.4), fontSize: 11),
+                    initValue: (DateTime.now().hour % 12) + 1,
+                    selectTextStyle: TextStyle(
+                        color: ColorsManager.primaryColor, fontSize: 11),
+                  )),
+                  Expanded(
+                      child: WheelChooser.integer(
+                    onValueChanged: (i) => print(i),
+                    maxValue: 60,
+                    minValue: 1,
+                    listHeight: 115,
+                    perspective: 0.002,
+                    step: 1,
+                    squeeze: 1.3,
+                    unSelectTextStyle: TextStyle(
+                        color: Color.fromRGBO(34, 34, 34, 0.4), fontSize: 11),
+                    initValue: DateTime.now().minute,
+                    selectTextStyle: TextStyle(
+                        color: ColorsManager.primaryColor, fontSize: 11),
                   )),
                 ],
               ),
             ),
-            // SizedBox(
-            //   height: 32,
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 16),
-            //   child: SizedBox(
-            //     width: double.infinity,
-            //     height: 40,
-            //     child: ElevatedButton(
-            //       onPressed: () {},
-            //       style: ElevatedButton.styleFrom(
-            //         backgroundColor: Color.fromRGBO(59, 187, 172, 1),
-            //         shape: RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.circular(12), // <-- Radius
-            //         ),
-            //       ),
-            //       child: Text(
-            //         "Send",
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //           letterSpacing: -0.14,
-            //           fontWeight: FontWeight.w700,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // )
+            SizedBox(height: 32),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SizedBox(
+                width: double.infinity,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(59, 187, 172, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12), // <-- Radius
+                    ),
+                  ),
+                  child: Text(
+                    "Send",
+                    style: TextStyle(
+                      color: Colors.white,
+                      letterSpacing: -0.14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

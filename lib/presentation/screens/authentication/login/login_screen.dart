@@ -66,8 +66,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
                   phoneNumber: state.phoneNumber, verifyCode: state.code));
             } else {
               Navigator.pushNamed(context, AppRoutes.verify, arguments: {
-                "id": state.phoneNumber,
-                "phaseId": state.roles,
+                "phoneNumber": state.phoneNumber,
+                "roles": state.roles,
               });
             }
           } else if (state is VerifyPhoneNumberErrorState) {
