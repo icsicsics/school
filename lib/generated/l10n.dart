@@ -1279,6 +1279,16 @@ class S {
       args: [],
     );
   }
+
+  /// `More about Ejabi – المزيد عن إيجابي`
+  String get moreAboutEjabi {
+    return Intl.message(
+      'More about Ejabi – المزيد عن إيجابي',
+      name: 'moreAboutEjabi',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

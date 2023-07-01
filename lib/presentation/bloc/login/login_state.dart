@@ -1,7 +1,12 @@
 part of 'login_bloc.dart';
 
 @immutable
-abstract class LoginState {}
+abstract class LoginState {
+  const LoginState();
+
+  @override
+  List<Object?> get props => [identityHashCode(this)];
+}
 
 class LoginInitialState extends LoginState {}
 
@@ -20,12 +25,6 @@ class GetLoginSuccessState extends LoginState {}
 class GetLoginFillState extends LoginState {}
 
 class GetLoginErrorState extends LoginState {}
-
-class LoginIsFatherState extends LoginState {
-  final bool isFather;
-
-  LoginIsFatherState({required this.isFather});
-}
 
 class GetLanguageSuccessState extends LoginState {
   final String language;
@@ -68,3 +67,5 @@ class VerifyCodeErrorState extends LoginState {}
 class SaveLanguageCodeFailedState extends LoginState {}
 
 class ChangeLanguageSuccessState extends LoginState {}
+
+class NavigateBackState extends LoginState {}

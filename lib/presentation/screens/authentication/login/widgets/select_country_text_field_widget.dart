@@ -21,14 +21,15 @@ class SelectCountryTextFieldWidget extends StatefulWidget {
 class _SelectCountryTextFieldWidgetState
     extends State<SelectCountryTextFieldWidget> {
   String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'JO',phoneNumber: "+962",dialCode: "+962");
+  PhoneNumber number =
+      PhoneNumber(isoCode: 'JO', phoneNumber: "+962", dialCode: "+962");
 
   @override
   void initState() {
     super.initState();
     BlocProvider.of<LoginBloc>(context).add(SelectCountryCodeEvent(number));
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,6 +49,10 @@ class _SelectCountryTextFieldWidgetState
           inputDecoration: InputDecoration(
               contentPadding: const EdgeInsets.all(0),
               hintText: S.of(context).phoneNumber,
+              hintStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: ColorsManager.grayColor,
+                    fontWeight: FontWeight.bold,
+                  ),
               border: InputBorder.none,
               isDense: true,
               suffixIcon: InkWell(
@@ -81,7 +86,8 @@ class _SelectCountryTextFieldWidgetState
               selectorType: PhoneInputSelectorType.DIALOG,
               showFlags: true),
           onInputChanged: (PhoneNumber number) {
-            BlocProvider.of<LoginBloc>(context).add(SelectCountryCodeEvent(number));
+            BlocProvider.of<LoginBloc>(context)
+                .add(SelectCountryCodeEvent(number));
           },
         ),
       ),

@@ -11,7 +11,6 @@ import 'package:schools/domain/usecases/get_language_use_case.dart';
 import 'package:schools/domain/usecases/get_profile_image_use_case.dart';
 import 'package:schools/domain/usecases/get_testcher_profile_image_from_shared_preferences_user_case.dart';
 import 'package:schools/domain/usecases/get_token_use_case.dart';
-import 'package:schools/domain/usecases/save_language_use_case.dart';
 import 'package:schools/domain/usecases/set_teacher_profile_image_in_shared_preferences_user_case.dart';
 
 part 'profile_event.dart';
@@ -27,7 +26,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       _getImageProfileFromSharedPreferencesUseCase;
   final GetTokenUseCase _getTokenUseCase;
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
-  final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
 
   ProfileBloc(
     this._profileImageUseCase,
@@ -35,7 +33,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     this._getImageProfileFromSharedPreferencesUseCase,
     this._getTokenUseCase,
     this._getLanguageCodeUseCase,
-    this._saveLanguageCodeUseCase,
   ) : super(ProfileInitialState()) {
     on<GetProfileEvent>(_onGetProfileEvent);
     on<GetIsFatherEvent>(_onGetIsFatherEvent);
@@ -147,11 +144,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   FutureOr<void> _onChangeLanguageEvent(ChangeLanguageEvent event, Emitter<ProfileState> emit) async {
-    bool savedStatus = await _saveLanguageCodeUseCase(event.language);
-    if (!savedStatus) {
-      emit(SaveLanguageCodeFailedState());
-    } else {
-      emit(ChangeLanguageSuccessState());
-    }
+    await SharedPreferencesManager.setLanguageCode(event.language);
+    emit(ChangeLanguageSuccessState());
+
   }
 }

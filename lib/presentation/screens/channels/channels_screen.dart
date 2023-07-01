@@ -80,7 +80,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
             leading: _token.isNotEmpty
                 ? InkWell(
                     onTap: () {
-                      Navigator.pop(context);
+                      _bloc.add(NavigateBackEvent());
                     },
                     child: SvgPicture.asset(
                       ImagesPath.arrowBackIcon,
@@ -155,8 +155,8 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                 backgroundColor: const Color.fromRGBO(59, 187, 172, 1),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6))),
-            onPressed: () async {
-              _bloc.add(NavigateToLoginScreenEvent());
+            onPressed: ()  {
+              _bloc.add(const NavigateToLoginScreenEvent());
             },
             child: Text(
               S.of(context).toEnterApp,

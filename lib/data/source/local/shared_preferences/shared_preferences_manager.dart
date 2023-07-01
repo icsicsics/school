@@ -11,7 +11,7 @@ class SharedPreferencesManager {
 
   SharedPreferencesManager._internal();
 
-  Future<bool> setLanguageCode(String languageCode) async {
+  static Future<bool> setLanguageCode(String languageCode) async {
     return await SharedPreferencesUtils.setString(
         SharedPreferencesKeys.appLanguage, languageCode);
   }

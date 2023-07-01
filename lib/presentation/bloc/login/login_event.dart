@@ -1,7 +1,12 @@
 part of 'login_bloc.dart';
 
 @immutable
-abstract class LoginEvent {}
+abstract class LoginEvent {
+  const LoginEvent();
+
+  @override
+  List<Object?> get props => [identityHashCode(this)];
+}
 
 class LoginClearButtonEvent extends LoginEvent {}
 
@@ -40,5 +45,9 @@ class VerifyCodeEvent extends LoginEvent {
 class ChangeLanguageEvent extends LoginEvent {
   final String language;
 
-  ChangeLanguageEvent(this.language);
+  const ChangeLanguageEvent({
+    required this.language,
+  });
 }
+
+class NavigateBackEvent extends LoginEvent {}

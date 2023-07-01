@@ -30,14 +30,14 @@ class AppTheme {
         ),
       ),
       textTheme: TextTheme(
-        titleMedium: getTextStyle(fontFamily: getFontFamily()),
-        headlineSmall: getTextStyle(fontSize: 18,fontFamily: getFontFamily()),
-        headlineMedium: getTextStyle(fontSize: 16,fontFamily: getFontFamily()),
-        displaySmall: getTextStyle(fontSize: 14,fontFamily: getFontFamily()),
-        displayMedium: getTextStyle(fontSize: 13,fontFamily: getFontFamily()),
-        titleSmall: getTextStyle(fontSize: 13,fontFamily: getFontFamily(), fontWeight: Constants.medium),
-        bodyLarge: getTextStyle(fontSize: 13, fontFamily: getFontFamily(),fontWeight: Constants.regular),
-        labelLarge: getTextStyle(fontSize: 12, fontFamily: getFontFamily(),fontWeight: Constants.regular),
+        // titleMedium: getTextStyle(fontFamily: getFontFamily()),
+        // headlineSmall: getTextStyle(fontSize: 18,fontFamily: getFontFamily()),
+        // headlineMedium: getTextStyle(fontSize: 16,fontFamily: getFontFamily()),
+        // displaySmall: getTextStyle(fontSize: 14,fontFamily: getFontFamily()),
+        // displayMedium: getTextStyle(fontSize: 13,fontFamily: getFontFamily()),
+        // titleSmall: getTextStyle(fontSize: 13,fontFamily: getFontFamily(), fontWeight: Constants.medium),
+        // bodyLarge: getTextStyle(fontSize: 13, fontFamily: getFontFamily(),fontWeight: Constants.regular),
+        // labelLarge: getTextStyle(fontSize: 12, fontFamily: getFontFamily(),fontWeight: Constants.regular),
       ),
     );
   }

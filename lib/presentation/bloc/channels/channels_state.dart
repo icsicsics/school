@@ -4,7 +4,7 @@ abstract class ChannelsState extends Equatable {
   const ChannelsState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [identityHashCode(this)];
 }
 
 class ChannelsInitial extends ChannelsState {}
@@ -21,7 +21,6 @@ class GetChannelsSuccessState extends ChannelsState {
   });
 }
 
-
 class GetChannelsErrorState extends ChannelsState {
   final String errorMessage;
 
@@ -32,7 +31,7 @@ class GetChannelsErrorState extends ChannelsState {
 
 class NavigateBackState extends ChannelsState {}
 
-class UpdateVideoState extends  ChannelsState{
+class UpdateVideoState extends ChannelsState {
   final ChannelsData channelsData;
 
   const UpdateVideoState({
@@ -48,4 +47,4 @@ class ShareVideoState extends ChannelsState {
   });
 }
 
-class NavigateToLoginScreenState extends ChannelsState{}
+class NavigateToLoginScreenState extends ChannelsState {}

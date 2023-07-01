@@ -96,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "me": MessageLookupByLibrary.simpleMessage("Me"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
+        "moreAboutEjabi": MessageLookupByLibrary.simpleMessage(
+            "More about Ejabi – المزيد عن إيجابي"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),

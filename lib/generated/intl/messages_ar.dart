@@ -96,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
         "monday": MessageLookupByLibrary.simpleMessage("الاثنين"),
+        "moreAboutEjabi": MessageLookupByLibrary.simpleMessage(
+            "More about Ejabi – المزيد عن إيجابي"),
         "myChildren": MessageLookupByLibrary.simpleMessage("أطفالي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),

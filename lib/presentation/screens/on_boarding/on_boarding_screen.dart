@@ -75,10 +75,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         child: Text(
           S.of(context).skip,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontSize: 16,
-            color: ColorsManager.grayColor,
-            fontWeight: FontWeight.w600,
-          ),
+                fontSize: 16,
+                color: ColorsManager.grayColor,
+                fontWeight: FontWeight.w600,
+              ),
         ),
       ),
     );
@@ -131,6 +131,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: Text(
               _currentPage == 2 ? S.of(context).getStart : S.of(context).next,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: ColorsManager.primaryColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),

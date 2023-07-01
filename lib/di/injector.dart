@@ -6,7 +6,6 @@ import 'package:schools/domain/usecases/get_phone_number_use_case.dart';
 import 'package:schools/domain/usecases/get_profile_image_use_case.dart';
 import 'package:schools/domain/usecases/get_testcher_profile_image_from_shared_preferences_user_case.dart';
 import 'package:schools/domain/usecases/get_token_use_case.dart';
-import 'package:schools/domain/usecases/save_language_use_case.dart';
 import 'package:schools/domain/usecases/set_phone_number_use_case.dart';
 import 'package:schools/domain/usecases/set_teacher_profile_image_in_shared_preferences_user_case.dart';
 import 'package:schools/domain/usecases/set_token_use_case.dart';
@@ -37,8 +36,6 @@ Future<void> initializeDependencies() async {
   //Use cases
   injector.registerFactory<GetLanguageCodeUseCase>(
       () => GetLanguageCodeUseCase(injector()));
-  injector.registerFactory<SaveLanguageCodeUseCase>(
-      () => SaveLanguageCodeUseCase(injector()));
   injector
       .registerFactory<GetProfileImageUseCase>(() => GetProfileImageUseCase());
   injector.registerFactory<GetTeacherImageProfileFromSharedPreferencesUseCase>(
@@ -57,17 +54,14 @@ Future<void> initializeDependencies() async {
   //Bloc
   injector.registerFactory<LocalizationCubit>(() => LocalizationCubit(
         injector(),
-        injector(),
       ));
   injector.registerFactory<SplashBloc>(() => SplashBloc());
   injector.registerFactory<HomeBloc>(() => HomeBloc(
         injector(),
         injector(),
         injector(),
-        injector(),
       ));
   injector.registerFactory<LoginBloc>(() => LoginBloc(
-        injector(),
         injector(),
         injector(),
         injector(),
@@ -90,7 +84,6 @@ Future<void> initializeDependencies() async {
       ));
   injector.registerFactory<StudentHousesBloc>(() => StudentHousesBloc());
   injector.registerFactory<ProfileBloc>(() => ProfileBloc(
-        injector(),
         injector(),
         injector(),
         injector(),

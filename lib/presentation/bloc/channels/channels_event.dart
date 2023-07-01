@@ -4,7 +4,7 @@ abstract class ChannelsEvent extends Equatable {
   const ChannelsEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [identityHashCode(this)];
 }
 
 class GetChannelsEvent extends ChannelsEvent {}
@@ -27,6 +27,8 @@ class ShareVideEvent extends ChannelsEvent {
   });
 }
 
-class NavigateToLoginScreenEvent extends ChannelsEvent{}
+class NavigateToLoginScreenEvent extends ChannelsEvent{
+  const NavigateToLoginScreenEvent();
+}
 
 

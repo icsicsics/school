@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
+import 'package:schools/presentation/screens/authentication/verify/verify_screen.dart';
 import 'package:schools/presentation/screens/channels/channels_screen.dart';
 import 'package:schools/presentation/screens/on_boarding/on_boarding_screen.dart';
 import 'package:schools/presentation/screens/splash/splash_screen.dart';
@@ -10,6 +11,7 @@ class AppRoutes {
   static const String channels = "/channels";
   static const String login = "/login";
   static const String home = "/home";
+  static const String verify = "/verify";
 
   static Route? onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
@@ -23,6 +25,13 @@ class AppRoutes {
         return _materialRoute(const LoginScreen());
       case home:
         return _materialRoute(const LoginScreen());
+      case verify:
+        Map<String, dynamic> arg = settings.arguments as Map<String, dynamic>;
+
+        return _materialRoute(VerifyScreen(
+          phoneNumber: (arg['phoneNumber'] as String),
+          roles: (arg['roles'] as List<String>),
+        ));
 
       default:
         //TODO(1) Replace With default Screen

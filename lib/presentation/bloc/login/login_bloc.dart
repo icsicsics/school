@@ -9,7 +9,6 @@ import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/get_token/response/get_token_response.dart';
 import 'package:schools/data/source/remote/model/login/login_response.dart';
 import 'package:schools/domain/usecases/get_language_use_case.dart';
-import 'package:schools/domain/usecases/save_language_use_case.dart';
 import 'package:schools/domain/usecases/set_phone_number_use_case.dart';
 import 'package:schools/domain/usecases/set_token_use_case.dart';
 
@@ -21,13 +20,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
   final SetPhoneNumberUseCase _setPhoneNumberUseCase;
   final SetTokenUseCase _setTokenUseCase;
-  final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
 
   LoginBloc(
     this._getLanguageCodeUseCase,
     this._setPhoneNumberUseCase,
     this._setTokenUseCase,
-    this._saveLanguageCodeUseCase,
   ) : super(LoginInitialState()) {
     on<LoginClearButtonEvent>(_onLoginClearButtonEvent);
     on<LoginConfirmButtonEvent>(_onLoginConfirmButtonEvent);
@@ -37,6 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<SelectCountryCodeEvent>(_onSelectCountryCodeEvent);
     on<VerifyCodeEvent>(_onVerifyCodeEvent);
     on<ChangeLanguageEvent>(_onChangeLanguageEvent);
+    on<NavigateBackEvent>(_onNavigateBackEvent);
   }
 
   FutureOr<void> _onLoginClearButtonEvent(
@@ -112,11 +110,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   FutureOr<void> _onChangeLanguageEvent(
       ChangeLanguageEvent event, Emitter<LoginState> emit) async {
-    bool savedStatus = await _saveLanguageCodeUseCase(event.language);
-    if (!savedStatus) {
-      emit(SaveLanguageCodeFailedState());
+    if (event.language == "en") {
+      await SharedPreferencesManager.setLanguageCode("ar");
     } else {
-      emit(ChangeLanguageSuccessState());
+      await SharedPreferencesManager.setLanguageCode("en");
     }
+    ChangeLanguageSuccessState();
+  }
+
+  FutureOr<void> _onNavigateBackEvent(
+      NavigateBackEvent event, Emitter<LoginState> emit) {
+    emit(NavigateBackState());
   }
 }

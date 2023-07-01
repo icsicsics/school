@@ -17,8 +17,7 @@ import 'package:schools/presentation/bloc/home/home_repository_imp.dart';
 import 'package:schools/domain/usecases/get_language_use_case.dart';
 import 'package:schools/domain/usecases/get_profile_image_use_case.dart';
 import 'package:schools/domain/usecases/get_token_use_case.dart';
-import 'package:schools/domain/usecases/save_language_use_case.dart';
-
+import 'package:share_plus/share_plus.dart';
 part 'home_event.dart';
 
 part 'home_state.dart';
@@ -27,7 +26,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
   TeacherInfoResponse teacherInfoResponse = TeacherInfoResponse();
   final BaseHomeRepository _repository = HomeRepositoryImp();
-  final SaveLanguageCodeUseCase _saveLanguageCodeUseCase;
   final GetLanguageCodeUseCase _getLanguageCodeUseCase;
   final GetTokenUseCase _getTokenUseCase;
   final GetProfileImageUseCase _profileImageUseCase;
@@ -36,7 +34,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   String branchId ="";
   String schoolLogo ="";
   HomeBloc(
-    this._saveLanguageCodeUseCase,
     this._getLanguageCodeUseCase,
     this._getTokenUseCase,
     this._profileImageUseCase,
@@ -69,12 +66,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onChangeLanguageEvent(
       ChangeLanguageEvent event, Emitter<HomeState> emit) async {
-    bool savedStatus = await _saveLanguageCodeUseCase(event.language);
-    if (!savedStatus) {
-      emit(SaveLanguageCodeFailedState());
-    } else {
-      emit(ChangeLanguageSuccessState());
-    }
+    await SharedPreferencesManager.setLanguageCode(event.language);
+    emit(ChangeLanguageSuccessState());
   }
 
   FutureOr<void> _onGetLanguageEvent(
