@@ -44,5 +44,6 @@ class ImagesPath {
   static const String housesIcon = "${_basePath}ic_houses.svg";
   static const String mediaIcon = "${_basePath}ic_media.svg";
   static const String ejabiChannelIcon = "${_basePath}ic_ejabi_channel.svg";
+  static const String ratingStarIcon = "${_basePath}ic_rating_star.svg";
 
 }

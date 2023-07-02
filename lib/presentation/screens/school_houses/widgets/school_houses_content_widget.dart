@@ -38,7 +38,7 @@ class _SchoolHousesContentWidgetState extends State<SchoolHousesContentWidget> {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 10,
-                    mainAxisExtent: widget.language == "en" ? 220 : 245),
+                    mainAxisExtent: widget.language == "en" ? 245 : 270),
                 itemCount: widget.getClassHousesResponse.data!.length,
                 padding: const EdgeInsets.only(
                     top: 5, bottom: 80, left: 5, right: 5),

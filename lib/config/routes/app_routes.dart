@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/authentication/verify/verify_screen.dart';
 import 'package:schools/presentation/screens/channels/channels_screen.dart';
+import 'package:schools/presentation/screens/home/home_screen.dart';
 import 'package:schools/presentation/screens/home/new_home_screen.dart';
 import 'package:schools/presentation/screens/on_boarding/on_boarding_screen.dart';
 import 'package:schools/presentation/screens/splash/splash_screen.dart';

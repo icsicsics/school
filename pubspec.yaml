@@ -71,6 +71,7 @@ dependencies:
   chewie: ^1.5.0
   wheel_chooser: ^1.1.2
   syncfusion_flutter_gauges: ^20.3.59
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

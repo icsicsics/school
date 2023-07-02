@@ -86,7 +86,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             _countryCode = state.phoneNumber.dialCode ?? "";
           } else if (state is VerifyCodeSuccessState) {
             Navigator.push(
-                context, MaterialPageRoute(builder: (_) => const NewHomeScreen()));
+                context, MaterialPageRoute(builder: (_) => const HomeScreen()));
           } else if (state is VerifyCodeErrorState) {
           } else if (state is ChangeLanguageSuccessState) {
             _restartApp();

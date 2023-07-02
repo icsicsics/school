@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/presentation/screens/home/home_screen.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class NewHomeScreen extends StatefulWidget {
@@ -29,10 +30,17 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                     Positioned(
                       top: 48,
                       left: 16,
-                      child: SvgPicture.asset(
-                        ImagesPath.menuIcon,
-                        width: 24,
-                        height: 24,
+                      child: InkWell(
+                        onTap: () {
+                         Navigator.push(context, MaterialPageRoute(builder: (context) {
+                           return HomeScreen();
+                         }));
+                        },
+                        child: SvgPicture.asset(
+                          ImagesPath.menuIcon,
+                          width: 24,
+                          height: 24,
+                        ),
                       ),
                     ),
                     Padding(
