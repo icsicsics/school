@@ -36,4 +36,13 @@ class ImagesPath {
   static const String advisorPlaceHolder = "${_basePath}ic_advisor_placeholder.png";
   static const String calendar = "${_basePath}ic_calendar.svg";
   static const String closeIcon = "${_basePath}ic_close.svg";
+
+
+  static const String menuIcon = "${_basePath}ic_menu.svg";
+  static const String weatherIcon = "${_basePath}ic_weather.svg";
+  static const String classesIcon = "${_basePath}ic_classes.svg";
+  static const String housesIcon = "${_basePath}ic_houses.svg";
+  static const String mediaIcon = "${_basePath}ic_media.svg";
+  static const String ejabiChannelIcon = "${_basePath}ic_ejabi_channel.svg";
+
 }

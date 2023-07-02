@@ -12,6 +12,7 @@ import 'package:schools/presentation/screens/authentication/login/widgets/login_
 import 'package:schools/presentation/screens/authentication/login/widgets/login_header_wdiget.dart';
 import 'package:schools/presentation/screens/authentication/login/widgets/select_country_text_field_widget.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
+import 'package:schools/presentation/screens/home/new_home_screen.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/widgets/custom_gradient_button_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/phone_error_dialog_widget.dart';
@@ -85,7 +86,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             _countryCode = state.phoneNumber.dialCode ?? "";
           } else if (state is VerifyCodeSuccessState) {
             Navigator.push(
-                context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+                context, MaterialPageRoute(builder: (_) => const NewHomeScreen()));
           } else if (state is VerifyCodeErrorState) {
           } else if (state is ChangeLanguageSuccessState) {
             _restartApp();
