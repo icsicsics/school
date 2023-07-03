@@ -72,6 +72,7 @@ class _HomeContentWidgetState extends State<HomeContentWidget> {
           token: widget.token,
           language: widget.language,
           bloc: widget.bloc,
+          isFather: widget.isFather,
         ),
         Expanded(child: _buildScreen())
       ],

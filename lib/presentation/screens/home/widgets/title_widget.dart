@@ -13,6 +13,7 @@ class HomeTitleWidget extends StatelessWidget {
   final String token;
   final String language;
   final HomeBloc bloc;
+  final bool isFather;
 
   const HomeTitleWidget({
     Key? key,
@@ -20,6 +21,7 @@ class HomeTitleWidget extends StatelessWidget {
     required this.token,
     required this.language,
     required this.bloc,
+    required this.isFather,
   }) : super(key: key);
 
   @override
@@ -76,26 +78,27 @@ class HomeTitleWidget extends StatelessWidget {
                               "$dayNumber ${S.of(context).thOf} ${monthFormatter(dateTime.month)} $year",
                           fontSize: 15,
                           color: ColorsManager.whiteColor),
-                      const SizedBox(
+                      if (isFather)
+                        const SizedBox(
                         height: 10,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => SchoolHousesScreen(
-                                      token: token,
-                                      classRoomId:bloc.branchId,
-                                      language: language,
-                                      isComingFromHome: false)));
-                        },
-                        child: MediumTextWidget(
-                            text: S.of(context).viewHouses,
-                            fontSize: 16,
-                            color: ColorsManager.whiteColor),
-                      ),
-
+                      if (isFather)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => SchoolHousesScreen(
+                                        token: token,
+                                        classRoomId: bloc.branchId,
+                                        language: language,
+                                        isComingFromHome: false)));
+                          },
+                          child: MediumTextWidget(
+                              text: S.of(context).viewHouses,
+                              fontSize: 16,
+                              color: ColorsManager.whiteColor),
+                        ),
                     ],
                   ),
                   Column(

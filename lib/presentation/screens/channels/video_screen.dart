@@ -44,16 +44,18 @@ class _VideoScreenState extends State<VideoScreen> {
 
   void _initializeSelectedVideo() {
     selectedVideoController =
-        VideoPlayerController.network(selectedVideo.video?.mediaUrl ?? "")
+        VideoPlayerController.network(selectedVideo.video?.mediaUrl ?? "",)
           ..initialize().then((_) {
             setState(() {});
           });
+
     selectedChewieVideoController = ChewieController(
       videoPlayerController: selectedVideoController,
       autoPlay: true,
       autoInitialize: true,
       looping: false,
     );
+    selectedChewieVideoController.play();
   }
 
   // void _initializeVideos() {

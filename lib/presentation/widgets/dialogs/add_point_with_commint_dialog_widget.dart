@@ -130,7 +130,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                               "${S.of(context).chooseWhyLeenDeserveThisPoint} to ${widget.childName}",
                           fontSize: 11,
                           color: ColorsManager.sameBlack),
-                      items: _listOfItems
+                      items: _listOfItems.reversed.toList()
                           .map((e) => DropdownMenuItem(
                                 value: e.id,
                                 child: ListTile(
