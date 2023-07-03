@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-class NewHomeScreen extends StatefulWidget {
-  const NewHomeScreen({super.key});
+class TeacherHomeScreen extends StatefulWidget {
+  const TeacherHomeScreen({super.key});
 
   @override
-  State<NewHomeScreen> createState() => _NewHomeScreenState();
+  State<TeacherHomeScreen> createState() => _TeacherHomeScreenState();
 }
 
-class _NewHomeScreenState extends State<NewHomeScreen> {
+class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,7 +23,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: Stack(
                   alignment: Alignment.center,
@@ -32,9 +33,10 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                       left: 16,
                       child: InkWell(
                         onTap: () {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) {
-                           return HomeScreen();
-                         }));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return HomeScreen();
+                          }));
                         },
                         child: SvgPicture.asset(
                           ImagesPath.menuIcon,
@@ -177,7 +179,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                 margin: EdgeInsets.symmetric(horizontal: 16),
                 width: double.infinity,
                 child: Text(
-                  "Teachers Performance",
+                  S.of(context).teachersPerformance,
                   style: TextStyle(
                       fontSize: 17,
                       color: ColorsManager.blackColor,
@@ -247,12 +249,16 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
               Row(
                 children: [
                   _buildHomeCard(
-                      image: ImagesPath.classesIcon, title: "My Classes"),
+                    image: ImagesPath.classesIcon,
+                    title: S.of(context).myClasses,
+                  ),
                   SizedBox(
                     width: 16,
                   ),
                   _buildHomeCard(
-                      image: ImagesPath.housesIcon, title: "My Houses"),
+                    image: ImagesPath.housesIcon,
+                    title: S.of(context).myHouses,
+                  ),
                 ],
               ),
               SizedBox(
@@ -261,13 +267,16 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
               Row(
                 children: [
                   _buildHomeCard(
-                      image: ImagesPath.mediaIcon, title: "My Media"),
+                    image: ImagesPath.mediaIcon,
+                    title: S.of(context).myMedia,
+                  ),
                   SizedBox(
                     width: 16,
                   ),
                   _buildHomeCard(
-                      image: ImagesPath.ejabiChannelIcon,
-                      title: "Ejabi Channel"),
+                    image: ImagesPath.ejabiChannelIcon,
+                    title: S.of(context).ejabiChannel,
+                  ),
                 ],
               ),
             ],

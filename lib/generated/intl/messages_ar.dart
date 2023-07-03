@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "أول تطبيق هاتفي تفاعلي بين المدرسة والبيت مدعوم بمنصة الكترونية متكاملة لتعزيز السلوك الإيجابي وتعديل السلوك غير المرغوب؛ من خلال أدوات سهلة وممتعة للطلبة والمرشدين والمعلمين وأولياء الأمور، ويمكّن الإدارة المدرسية من متابعة مدى تطبيق البرنامج؛ ومتابعة الجانب السلوكي داخل بيئة المدرسة، ويحتوي على العديد من الخدمات التي تمكن المدرسة من تطبيق رؤيتها وخططها فيما يتعلق بالجانب السلوكي."),
         "addPoint": MessageLookupByLibrary.simpleMessage("أضف نقطة"),
         "addedSuccessfully": MessageLookupByLibrary.simpleMessage("اضيف بنجاح"),
+        "advisors": MessageLookupByLibrary.simpleMessage("المرشدين"),
         "all": MessageLookupByLibrary.simpleMessage(":الكل"),
         "allPoints": MessageLookupByLibrary.simpleMessage("كل النقاط"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
@@ -56,7 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dontReceiveCode":
             MessageLookupByLibrary.simpleMessage(" لم تتلقى رمز ؟"),
         "ejabi": MessageLookupByLibrary.simpleMessage("ايجابي"),
-        "ejabiChannel": MessageLookupByLibrary.simpleMessage("Ejabi Channel"),
+        "ejabiChannel": MessageLookupByLibrary.simpleMessage("قناة إيجابي"),
         "email": MessageLookupByLibrary.simpleMessage("بريد إلكتروني"),
         "energetic": MessageLookupByLibrary.simpleMessage("نشيط"),
         "english": MessageLookupByLibrary.simpleMessage("EN"),
@@ -99,6 +100,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "moreAboutEjabi": MessageLookupByLibrary.simpleMessage(
             "More about Ejabi – المزيد عن إيجابي"),
         "myChildren": MessageLookupByLibrary.simpleMessage("أطفالي"),
+        "myClasses": MessageLookupByLibrary.simpleMessage("الفصول"),
+        "myHouses": MessageLookupByLibrary.simpleMessage("الفرق"),
+        "myMedia": MessageLookupByLibrary.simpleMessage("الميديا"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
@@ -149,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sunday": MessageLookupByLibrary.simpleMessage("الأحد"),
         "teacherOf": MessageLookupByLibrary.simpleMessage("معلم ل"),
         "teachers": MessageLookupByLibrary.simpleMessage("معلمون"),
+        "teachersPerformance":
+            MessageLookupByLibrary.simpleMessage("اداء المدرسين"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("الأحكام والشروط"),
@@ -170,7 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("تحقق من رقمك"),
-        "videos": MessageLookupByLibrary.simpleMessage("Videos"),
+        "videos": MessageLookupByLibrary.simpleMessage("فيديوهات إيجابي"),
         "viewHouses": MessageLookupByLibrary.simpleMessage("مشاهدة الفرق"),
         "weHaveSendTheCodeVerificationToYourMobile":
             MessageLookupByLibrary.simpleMessage(

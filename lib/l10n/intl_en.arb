@@ -121,7 +121,12 @@
   "ejabiChannel" : "Ejabi Channel",
   "welcomeToEjabiChannelArabic": "مرحبا بك في قناة إيجابي",
   "welcomeToEjabiChannelEnglish": "Welcome to Ejabi Channel",
-  "videos": "Videos",
-  "moreAboutEjabi": "More about Ejabi – المزيد عن إيجابي"
+  "videos": "Ejabi Videos",
+  "moreAboutEjabi": "More about Ejabi – المزيد عن إيجابي",
+  "teachersPerformance": "Teachers Performance",
+  "myClasses": "My Classes",
+  "myHouses": "My Houses",
+  "myMedia": "My Media",
+  "advisors": "ِAdvisors"
 
 }

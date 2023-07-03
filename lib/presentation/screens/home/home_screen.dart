@@ -121,21 +121,23 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-            backgroundColor: ColorsManager.whiteColor,
-            key: _key,
-            drawer: const SideMenuScreen(),
-            body: HomeContentWidget(
-                weatherResponse: _weatherResponse,
-                globalKey: _key,
-                isFather: _isFather,
-                bloc: _homeBloc,
-                language: _language,
-                parentHomeResponse: _parentHomeResponse,
-                teacherHomeResponse: _teacherHomeResponse,
-                teacherStudentProfileInSchoolHouseResponse:
-                    _teacherStudentProfileInSchoolHouseResponse,
-                token: _token));
+        return SafeArea(
+          child: Scaffold(
+              backgroundColor: ColorsManager.whiteColor,
+              key: _key,
+              drawer: const SideMenuScreen(),
+              body: HomeContentWidget(
+                  weatherResponse: _weatherResponse,
+                  globalKey: _key,
+                  isFather: _isFather,
+                  bloc: _homeBloc,
+                  language: _language,
+                  parentHomeResponse: _parentHomeResponse,
+                  teacherHomeResponse: _teacherHomeResponse,
+                  teacherStudentProfileInSchoolHouseResponse:
+                      _teacherStudentProfileInSchoolHouseResponse,
+                  token: _token)),
+        );
       },
     );
   }

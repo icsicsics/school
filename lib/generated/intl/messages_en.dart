@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPoint": MessageLookupByLibrary.simpleMessage("Add a Point"),
         "addedSuccessfully":
             MessageLookupByLibrary.simpleMessage("Added Successfully"),
+        "advisors": MessageLookupByLibrary.simpleMessage("ِAdvisors"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "allPoints": MessageLookupByLibrary.simpleMessage("All Points"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
@@ -99,6 +100,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "moreAboutEjabi": MessageLookupByLibrary.simpleMessage(
             "More about Ejabi – المزيد عن إيجابي"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
+        "myClasses": MessageLookupByLibrary.simpleMessage("My Classes"),
+        "myHouses": MessageLookupByLibrary.simpleMessage("My Houses"),
+        "myMedia": MessageLookupByLibrary.simpleMessage("My Media"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
@@ -149,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "teacherOf": MessageLookupByLibrary.simpleMessage("Teacher Of"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
+        "teachersPerformance":
+            MessageLookupByLibrary.simpleMessage("Teachers Performance"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("Terms And Conditions"),
@@ -170,7 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verification Code"),
         "verifyYourNumber":
             MessageLookupByLibrary.simpleMessage("Verify your Number"),
-        "videos": MessageLookupByLibrary.simpleMessage("Videos"),
+        "videos": MessageLookupByLibrary.simpleMessage("Ejabi Videos"),
         "viewHouses": MessageLookupByLibrary.simpleMessage("View Houses"),
         "weHaveSendTheCodeVerificationToYourMobile":
             MessageLookupByLibrary.simpleMessage(

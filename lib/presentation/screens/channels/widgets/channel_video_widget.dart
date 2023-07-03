@@ -35,12 +35,17 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
         children: [
           InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return VideoScreen(
-                  channels: widget.channels,
-                  channelsData:widget.channelsData,
-                );
-              },),);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return VideoScreen(
+                      channels: widget.channels,
+                      channelsData: widget.channelsData,
+                    );
+                  },
+                ),
+              );
             },
             child: SizedBox(
               width: double.infinity,
@@ -77,7 +82,10 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
                   BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
                       url: widget.channelsData.video?.mediaUrl ?? ""));
                 },
-                child: SvgPicture.asset(ImagesPath.shareIcon),
+                child: SvgPicture.asset(
+                  ImagesPath.shareIcon,
+                  matchTextDirection: true,
+                ),
               ),
             ],
           ),

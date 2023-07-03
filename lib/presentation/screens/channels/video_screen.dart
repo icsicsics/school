@@ -50,7 +50,7 @@ class _VideoScreenState extends State<VideoScreen> {
           });
     selectedChewieVideoController = ChewieController(
       videoPlayerController: selectedVideoController,
-      autoPlay: false,
+      autoPlay: true,
       autoInitialize: true,
       looping: false,
     );
@@ -102,6 +102,7 @@ class _VideoScreenState extends State<VideoScreen> {
               ImagesPath.arrowBackIcon,
               height: 20,
               width: 20,
+              matchTextDirection: true,
               fit: BoxFit.scaleDown,
             )),
       ),
@@ -167,7 +168,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                                 url: e.video?.mediaUrl ?? ""));
                                       },
                                       child: SvgPicture.asset(
-                                          ImagesPath.shareIcon),
+                                          ImagesPath.shareIcon,matchTextDirection: true),
                                     ),
                                   ),
                                 ],
@@ -217,7 +218,7 @@ class _VideoScreenState extends State<VideoScreen> {
                   BlocProvider.of<ChannelsBloc>(context).add(
                       ShareVideEvent(url: selectedVideo.video?.mediaUrl ?? ""));
                 },
-                child: SvgPicture.asset(ImagesPath.shareIcon),
+                child: SvgPicture.asset(ImagesPath.shareIcon,matchTextDirection: true,),
               ),
             ],
           ),

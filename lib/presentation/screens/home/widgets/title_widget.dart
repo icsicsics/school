@@ -49,7 +49,7 @@ class HomeTitleWidget extends StatelessWidget {
           ],
           stops: [0.5, 0.8],
         )),
-        height: 100,
+        height: 120,
         child: Padding(
           padding: const EdgeInsets.all(0),
           child: Column(

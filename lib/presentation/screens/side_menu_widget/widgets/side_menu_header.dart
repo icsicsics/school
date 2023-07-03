@@ -22,7 +22,7 @@ class SideMenuHeader extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: SizedBox(
-        height: language == "en" ? 170 : 190,
+        height: 170,
         child: Padding(
           padding: language == "en"
               ? const EdgeInsets.only(left: 25)
@@ -64,19 +64,19 @@ class SideMenuHeader extends StatelessWidget {
                         : "",
                     fontSize: 12,
                     color: ColorsManager.borderColor),
-              const SizedBox(
-                height: 2,
-              ),
-              BoldTextWidget(
-                  text: isFather != true
-                      ? bloc.teacherInfoResponse.data != null
-                          ? bloc.teacherInfoResponse.data!.phoneNumber
-                          : ""
-                      : bloc.fatherInfoResponse.data != null
-                          ? bloc.fatherInfoResponse.data!.phoneNumber
-                          : "",
-                  fontSize: 12,
-                  color: ColorsManager.borderColor)
+              // const SizedBox(
+              //   height: 2,
+              // ),
+              // BoldTextWidget(
+              //     text: isFather != true
+              //         ? bloc.teacherInfoResponse.data != null
+              //             ? bloc.teacherInfoResponse.data!.phoneNumber
+              //             : ""
+              //         : bloc.fatherInfoResponse.data != null
+              //             ? bloc.fatherInfoResponse.data!.phoneNumber
+              //             : "",
+              //     fontSize: 12,
+              //     color: ColorsManager.borderColor)
             ],
           ),
         ),

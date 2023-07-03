@@ -1270,10 +1270,10 @@ class S {
     );
   }
 
-  /// `Videos`
+  /// `Ejabi Videos`
   String get videos {
     return Intl.message(
-      'Videos',
+      'Ejabi Videos',
       name: 'videos',
       desc: '',
       args: [],
@@ -1285,6 +1285,56 @@ class S {
     return Intl.message(
       'More about Ejabi – المزيد عن إيجابي',
       name: 'moreAboutEjabi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teachers Performance`
+  String get teachersPerformance {
+    return Intl.message(
+      'Teachers Performance',
+      name: 'teachersPerformance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Classes`
+  String get myClasses {
+    return Intl.message(
+      'My Classes',
+      name: 'myClasses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Houses`
+  String get myHouses {
+    return Intl.message(
+      'My Houses',
+      name: 'myHouses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Media`
+  String get myMedia {
+    return Intl.message(
+      'My Media',
+      name: 'myMedia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ِAdvisors`
+  String get advisors {
+    return Intl.message(
+      'ِAdvisors',
+      name: 'advisors',
       desc: '',
       args: [],
     );

@@ -67,7 +67,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                           ),
                           SideMenuItem(
                             icon: Icons.home_filled,
-                            title: "Ejabj Channel",
+                            title: S.of(context).ejabiChannel,
                             onTap: () =>
                                 BlocProvider.of<SideMenuBloc>(context).add(
                                   NavigateToChannelsScreenEvent(),
@@ -75,7 +75,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                           ),
                           SideMenuItem(
                             icon: Icons.home_filled,
-                            title: "Advisors",
+                            title: S.of(context).advisors,
                             onTap: () =>
                                 BlocProvider.of<SideMenuBloc>(context).add(
                                   NavigateToAdvisorsScreenEvent(),

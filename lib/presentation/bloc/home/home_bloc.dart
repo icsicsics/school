@@ -66,7 +66,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onChangeLanguageEvent(
       ChangeLanguageEvent event, Emitter<HomeState> emit) async {
-    await SharedPreferencesManager.setLanguageCode(event.language);
+    if (event.language == "en") {
+      await SharedPreferencesManager.setLanguageCode("ar");
+    } else {
+      await SharedPreferencesManager.setLanguageCode("en");
+    }
     emit(ChangeLanguageSuccessState());
   }
 

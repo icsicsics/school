@@ -115,7 +115,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } else {
       await SharedPreferencesManager.setLanguageCode("en");
     }
-    ChangeLanguageSuccessState();
+    emit(ChangeLanguageSuccessState());
   }
 
   FutureOr<void> _onNavigateBackEvent(

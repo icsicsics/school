@@ -62,7 +62,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                   _rowOfTitleAndValue(
                       title: S.of(context).teachers, value: teachersValue),
                   const SizedBox(
-                    height: 30,
+                    height: 16,
                   ),
                   _rowOfTitleAndValue(
                       title: S.of(context).points,
@@ -71,7 +71,7 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                       titleColor: ColorsManager.borderColor,
                       titleSize: 17),
                   SizedBox(
-                    height: 12,
+                    height: 8,
                   ),
                 RatingBar.builder(
                   initialRating: 3,
