@@ -132,6 +132,9 @@
   "dateAndTime": "التاريخ والوقت",
   "requestMeeting": "طلب اجتماع",
   "from": "من",
-  "to": "الى"
+  "to": "الى",
+  "positive": "إيجابي",
+  "negative": "سلبي"
+
 
 }

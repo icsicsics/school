@@ -106,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myHouses": MessageLookupByLibrary.simpleMessage("الفرق"),
         "myMedia": MessageLookupByLibrary.simpleMessage("الميديا"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي"),
+        "negative": MessageLookupByLibrary.simpleMessage("سلبي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
@@ -135,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
+        "positive": MessageLookupByLibrary.simpleMessage("إيجابي"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "requestMeeting": MessageLookupByLibrary.simpleMessage("طلب اجتماع"),
         "resend": MessageLookupByLibrary.simpleMessage("إعادة إرسال"),

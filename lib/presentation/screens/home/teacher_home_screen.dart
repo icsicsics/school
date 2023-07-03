@@ -87,9 +87,11 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                               }));
                             },
                             child: SvgPicture.asset(
-                              ImagesPath.menuIcon,
-                              width: 24,
-                              height: 24,
+                              ImagesPath.menu,
+                              width: 25,
+                              height: 25,
+                              matchTextDirection: true,
+                              color: Color(0xff3bbbac),
                             ),
                           ),
                         ),

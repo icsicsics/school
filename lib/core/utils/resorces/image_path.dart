@@ -46,4 +46,7 @@ class ImagesPath {
   static const String ejabiChannelIcon = "${_basePath}ic_ejabi_channel.svg";
   static const String ratingStarIcon = "${_basePath}ic_rating_star.svg";
 
+  static const String positiveIcon = "${_basePath}ic_positive.png";
+  static const String negativeIcon = "${_basePath}ic_negative.png";
+
 }

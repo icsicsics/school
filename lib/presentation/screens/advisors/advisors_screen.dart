@@ -4,6 +4,7 @@ import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/screens/advisors/utils/open_request_meeting_bottom_sheet.dart';
 import 'package:schools/presentation/screens/advisors/widgets/advisor_widget.dart';
+import 'package:schools/presentation/widgets/utils/open_notes_bottom_sheet.dart';
 
 class AdvisorsScreen extends StatefulWidget {
   const AdvisorsScreen({Key? key}) : super(key: key);
@@ -23,6 +24,10 @@ class _AdvisorsScreenState extends State<AdvisorsScreen> {
             context: context,
             height: 350,
           );
+          // openNotesBottomSheet(
+          //   context: context,
+          //   height: 350,
+          // );
         },
         child: Container(
             height: 40,

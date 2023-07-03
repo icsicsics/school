@@ -106,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myHouses": MessageLookupByLibrary.simpleMessage("My Houses"),
         "myMedia": MessageLookupByLibrary.simpleMessage("My Media"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
+        "negative": MessageLookupByLibrary.simpleMessage("Negative"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
@@ -135,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Please type verification code sent to your\nphone"),
         "points": MessageLookupByLibrary.simpleMessage("Points"),
+        "positive": MessageLookupByLibrary.simpleMessage("Positive"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "requestMeeting":
             MessageLookupByLibrary.simpleMessage("Request Meeting"),

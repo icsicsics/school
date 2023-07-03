@@ -1379,6 +1379,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Positive`
+  String get positive {
+    return Intl.message(
+      'Positive',
+      name: 'positive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Negative`
+  String get negative {
+    return Intl.message(
+      'Negative',
+      name: 'negative',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

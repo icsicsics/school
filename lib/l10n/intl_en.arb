@@ -131,6 +131,8 @@
   "dateAndTime": "Date & Time",
   "requestMeeting": "Request Meeting",
   "from": "From",
-  "to": "To"
+  "to": "To",
+  "positive": "Positive",
+  "negative": "Negative"
 
 }
