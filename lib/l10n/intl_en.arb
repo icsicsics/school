@@ -127,6 +127,10 @@
   "myClasses": "My Classes",
   "myHouses": "My Houses",
   "myMedia": "My Media",
-  "advisors": "ِAdvisors"
+  "advisors": "ِAdvisors",
+  "dateAndTime": "Date & Time",
+  "requestMeeting": "Request Meeting",
+  "from": "From",
+  "to": "To"
 
 }

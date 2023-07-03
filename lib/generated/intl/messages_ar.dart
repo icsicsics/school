@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "connectLikeMindedPeople":
             MessageLookupByLibrary.simpleMessage("تواصل مثل العقول"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "dateAndTime": MessageLookupByLibrary.simpleMessage("التاريخ والوقت"),
         "dec": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "didntReceiveVerificationCode":
             MessageLookupByLibrary.simpleMessage("لم تتلق رمز التحقق؟"),
@@ -73,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "findNearbyEvents":
             MessageLookupByLibrary.simpleMessage("البحث عن الأحداث القريبة"),
         "friday": MessageLookupByLibrary.simpleMessage("الجمعة"),
+        "from": MessageLookupByLibrary.simpleMessage("من"),
         "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
         "getStart": MessageLookupByLibrary.simpleMessage("ابدأ"),
         "honesty": MessageLookupByLibrary.simpleMessage("أمانة"),
@@ -134,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "requestMeeting": MessageLookupByLibrary.simpleMessage("طلب اجتماع"),
         "resend": MessageLookupByLibrary.simpleMessage("إعادة إرسال"),
         "reward": MessageLookupByLibrary.simpleMessage("مكافأة"),
         "saturday": MessageLookupByLibrary.simpleMessage("السبت"),
@@ -163,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صحيح"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الاسبوع"),
         "thursday": MessageLookupByLibrary.simpleMessage("الخميس"),
+        "to": MessageLookupByLibrary.simpleMessage("الى"),
         "toEnterApp":
             MessageLookupByLibrary.simpleMessage("للدخول الى التطبيق"),
         "toLearnMoreAboutEjabi":

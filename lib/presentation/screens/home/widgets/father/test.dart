@@ -258,8 +258,9 @@ class _TestState extends State<Test> {
             errorBuilder: (context, error, stackTrace) {
               return Image.asset(
                 ImagesPath.logo,
+                height: 200,
                 width: MediaQuery.of(context).size.width * 0.8,
-                fit: BoxFit.cover,
+                fit: BoxFit.scaleDown,
               );
             },
           ),

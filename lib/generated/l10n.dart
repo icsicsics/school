@@ -1339,6 +1339,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Date & Time`
+  String get dateAndTime {
+    return Intl.message(
+      'Date & Time',
+      name: 'dateAndTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Meeting`
+  String get requestMeeting {
+    return Intl.message(
+      'Request Meeting',
+      name: 'requestMeeting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From`
+  String get from {
+    return Intl.message(
+      'From',
+      name: 'from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To`
+  String get to {
+    return Intl.message(
+      'To',
+      name: 'to',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

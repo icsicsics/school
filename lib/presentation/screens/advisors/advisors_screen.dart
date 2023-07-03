@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/screens/advisors/utils/open_request_meeting_bottom_sheet.dart';
 import 'package:schools/presentation/screens/advisors/widgets/advisor_widget.dart';
 
@@ -51,7 +52,7 @@ class _AdvisorsScreenState extends State<AdvisorsScreen> {
                   width: 5,
                 ),
                 Text(
-                  "Request Meeting",
+                  S.of(context).requestMeeting,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 11,
@@ -89,6 +90,7 @@ class _AdvisorsScreenState extends State<AdvisorsScreen> {
           fit: BoxFit.scaleDown,
           width: 20,
           height: 20,
+          matchTextDirection: true,
           color: Colors.black,
         ),
       ),

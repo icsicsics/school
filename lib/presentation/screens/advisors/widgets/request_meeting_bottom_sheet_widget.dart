@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:schools/config/utils/android_date_picker.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:wheel_chooser/wheel_chooser.dart';
 
 class RequestMeetingBottomSheetWidget extends StatefulWidget {
@@ -20,10 +22,11 @@ class RequestMeetingBottomSheetWidget extends StatefulWidget {
 
 class _RequestMeetingBottomSheetWidgetState
     extends State<RequestMeetingBottomSheetWidget> {
+  DateTime? selectedDate;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 415,
+      height: 500 ,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -34,7 +37,7 @@ class _RequestMeetingBottomSheetWidgetState
             Row(
               children: [
                 Text(
-                  "Advisors",
+                  S.of(context).advisors,
                   style: TextStyle(
                     color: Color.fromRGBO(34, 34, 34, 1),
                     letterSpacing: -0.14,
@@ -103,7 +106,7 @@ class _RequestMeetingBottomSheetWidgetState
             Row(
               children: [
                 Text(
-                  "Date & Time",
+                  S.of(context).dateAndTime,
                   style: TextStyle(
                     color: Color.fromRGBO(34, 34, 34, 1),
                     letterSpacing: -0.14,
@@ -113,11 +116,38 @@ class _RequestMeetingBottomSheetWidgetState
                 ),
                 Expanded(child: SizedBox()),
                 InkWell(
-                  onTap: () {
-                    //Show Date Time
+                  onTap: () async {
+                    var chosenDateTime = await androidDatePicker(
+                      context: context,
+                      selectedDate: selectedDate ?? DateTime.now(),
+                    );
+                    setState(() {
+                      selectedDate = chosenDateTime;
+                    });
                   },
                   child: SvgPicture.asset(
                     ImagesPath.calendar,
+                  ),
+                ),
+                SizedBox(width: 8,  ),
+                InkWell(
+                  onTap: () async {
+                    var chosenDateTime = await androidDatePicker(
+                      context: context,
+                      selectedDate: selectedDate ?? DateTime.now(),
+                    );
+                    setState(() {
+                      selectedDate = chosenDateTime;
+                    });
+                  },
+                  child: Text(
+                    DateFormat("dd-MM-yyyy").format(selectedDate ?? DateTime.now()),
+                    style: TextStyle(
+                      color: Color(0xFFF39A4A),
+                      letterSpacing: -0.14,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],
@@ -217,6 +247,31 @@ class _RequestMeetingBottomSheetWidgetState
                     selectTextStyle: TextStyle(
                         color: ColorsManager.primaryColor, fontSize: 11),
                   )),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              height: 45,
+              color: Color.fromRGBO(34, 34, 34, 0.1),
+              child: Row(
+                children: [
+                  SizedBox(width: 64),
+                  Text(S.of(context).from,style:TextStyle(
+                    color: ColorsManager.blackColor,
+                    letterSpacing: -0.14,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),),
+                  Expanded(child: SizedBox()),
+                  Text(S.of(context).to,style:TextStyle(
+                    color: ColorsManager.blackColor,
+                    letterSpacing: -0.14,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),),
+                  SizedBox(width: 64),
+
                 ],
               ),
             ),

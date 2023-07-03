@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "connectLikeMindedPeople":
             MessageLookupByLibrary.simpleMessage("Connect Like Minded People"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "dateAndTime": MessageLookupByLibrary.simpleMessage("Date & Time"),
         "dec": MessageLookupByLibrary.simpleMessage("december"),
         "didntReceiveVerificationCode": MessageLookupByLibrary.simpleMessage(
             "Didn\'t Receive Verification code ?"),
@@ -74,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "findNearbyEvents":
             MessageLookupByLibrary.simpleMessage("Find Nearby Events"),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "from": MessageLookupByLibrary.simpleMessage("From"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "getStart": MessageLookupByLibrary.simpleMessage("Get Start"),
         "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
@@ -134,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please type verification code sent to your\nphone"),
         "points": MessageLookupByLibrary.simpleMessage("Points"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "requestMeeting":
+            MessageLookupByLibrary.simpleMessage("Request Meeting"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "reward": MessageLookupByLibrary.simpleMessage("Reward"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
@@ -163,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The phone number is wrong"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "to": MessageLookupByLibrary.simpleMessage("To"),
         "toEnterApp": MessageLookupByLibrary.simpleMessage("To Enter the App"),
         "toLearnMoreAboutEjabi":
             MessageLookupByLibrary.simpleMessage("To learn more about Ejabi"),

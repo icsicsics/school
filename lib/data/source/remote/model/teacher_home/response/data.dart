@@ -5,6 +5,7 @@ class Data {
   List<TeacherHomePage>? teacherHomePage;
   String? schoolName;
   GetLogo? getLogo;
+  String? indicator;
   Data({
       this.teacherHomePage, 
       this.schoolName, 
@@ -19,6 +20,7 @@ class Data {
     }
     schoolName = json['schoolName'];
     getLogo = json['getLogo'] != null ? GetLogo.fromJson(json['getLogo']) : null;
+    indicator = json['indicator'];
   }
 
 
@@ -31,6 +33,7 @@ class Data {
     if (getLogo != null) {
       map['getLogo'] = getLogo!.toJson();
     }
+    map['indicator'] = indicator;
     return map;
   }
 
