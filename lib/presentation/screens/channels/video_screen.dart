@@ -170,7 +170,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                     ),
                                   ),
                                   Container(
-                                    margin: const EdgeInsets.only(right: 16),
+                                    margin: const EdgeInsets.symmetric(horizontal: 16),
                                     child: InkWell(
                                       onTap: () {
                                         BlocProvider.of<ChannelsBloc>(context)
