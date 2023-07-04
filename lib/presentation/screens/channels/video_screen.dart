@@ -56,7 +56,10 @@ class _VideoScreenState extends State<VideoScreen> {
       looping: false,
     );
     selectedChewieVideoController.play();
+
   }
+
+
 
   // void _initializeVideos() {
   //   controllers.clear();
@@ -203,9 +206,12 @@ class _VideoScreenState extends State<VideoScreen> {
         Container(
           height: 250,
           width: double.infinity,
-          child: Chewie(
-            controller: selectedChewieVideoController,
-          ),
+          child: selectedChewieVideoController
+                  .videoPlayerController.value.isInitialized
+              ? Chewie(
+                  controller: selectedChewieVideoController,
+                )
+              : Container(),
         ),
         const SizedBox(height: 12),
         Padding(
@@ -249,6 +255,8 @@ class _VideoScreenState extends State<VideoScreen> {
     //   chewieControllers[controllers.indexOf(controller)].pause();
     //   chewieControllers[controllers.indexOf(controller)].dispose();
     // }
+    selectedVideoController.pause();
+    selectedVideoController.dispose();
     selectedChewieVideoController.pause();
     selectedChewieVideoController.dispose();
   }
