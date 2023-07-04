@@ -86,6 +86,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                       ImagesPath.arrowBackIcon,
                       height: 20,
                       width: 20,
+                      matchTextDirection: true,
                       fit: BoxFit.scaleDown,
                     ))
                 : null,
