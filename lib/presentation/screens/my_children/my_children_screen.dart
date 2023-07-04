@@ -8,6 +8,7 @@ import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
+import 'package:schools/presentation/screens/advisors/advisors_screen.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
@@ -111,6 +112,18 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         ),
         centerTitle: false,
         actions: [
+          InkWell(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return AdvisorsScreen(advisors: _teacherStudentProfileInSchoolHouseResponse.data?.advisors ?? []);
+              }));
+            },
+            child: Icon(
+              Icons.person,
+              color: Color(0xff3bbbac),
+              size: 30,
+            ),
+          ),
           Stack(
             alignment: Alignment.center,
             children: [

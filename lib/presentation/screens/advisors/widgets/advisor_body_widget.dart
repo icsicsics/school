@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/advisor.dart';
 
 class AdvisorBodyWidget extends StatelessWidget {
-  const AdvisorBodyWidget({Key? key}) : super(key: key);
+  final Advisor advisor;
+
+  const AdvisorBodyWidget({
+    Key? key,
+    required this.advisor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class AdvisorBodyWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Name of advisor",
+                          advisor.groupName ?? "",
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Color.fromRGBO(34, 34, 34, 1),

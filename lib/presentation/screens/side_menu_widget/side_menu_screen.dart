@@ -107,7 +107,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
           }));
         } else if (state is NavigateToAdvisorsScreenState) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const AdvisorsScreen();
+            return AdvisorsScreen(advisors: [],);
           }));
         }
       },

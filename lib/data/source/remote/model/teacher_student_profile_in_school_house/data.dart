@@ -1,4 +1,5 @@
 import 'package:schools/data/source/remote/model/teacher_home/response/get_logo.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/advisor.dart';
 
 import 'get_image.dart';
 import 'points.dart';
@@ -15,6 +16,7 @@ class Data {
   GetImage? getImage;
   GetLogo? getLogo;
   List<Points>? points;
+  List<Advisor>? advisors;
 
   Data({
     this.sectionName,
@@ -28,6 +30,7 @@ class Data {
     this.getImage,
     this.getLogo,
     this.points,
+    this.advisors,
   });
 
   Data.fromJson(dynamic json) {
@@ -46,6 +49,12 @@ class Data {
       points = [];
       json['points'].forEach((v) {
         points!.add(Points.fromJson(v));
+      });
+    }
+    if (json['studentGuideList'] != null) {
+      advisors = [];
+      json['studentGuideList'].forEach((v) {
+        advisors!.add(Advisor.fromJson(v));
       });
     }
   }
@@ -68,6 +77,9 @@ class Data {
     }
     if (points != null) {
       map['points'] = points!.map((v) => v.toJson()).toList();
+    }
+    if (advisors != null) {
+      map['advisors'] = advisors!.map((v) => v.toJson()).toList();
     }
     return map;
   }

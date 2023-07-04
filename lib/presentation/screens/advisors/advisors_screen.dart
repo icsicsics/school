@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/advisor.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/screens/advisors/utils/open_request_meeting_bottom_sheet.dart';
 import 'package:schools/presentation/screens/advisors/widgets/advisor_widget.dart';
 import 'package:schools/presentation/widgets/utils/open_notes_bottom_sheet.dart';
 
 class AdvisorsScreen extends StatefulWidget {
-  const AdvisorsScreen({Key? key}) : super(key: key);
+  final List<Advisor> advisors;
+
+  const AdvisorsScreen({
+    Key? key,
+    required this.advisors,
+  }) : super(key: key);
 
   @override
   State<AdvisorsScreen> createState() => _AdvisorsScreenState();
@@ -69,9 +75,9 @@ class _AdvisorsScreenState extends State<AdvisorsScreen> {
             )),
       ),
       body: ListView.builder(
-        itemCount: 2,
+        itemCount: 1,
         itemBuilder: (context, index) {
-          return AdvisorWidget();
+          return AdvisorWidget(advisors : widget.advisors);
         },
       ),
     );
