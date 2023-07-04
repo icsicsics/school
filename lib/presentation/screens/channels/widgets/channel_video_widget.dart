@@ -50,10 +50,14 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
             child: SizedBox(
               width: double.infinity,
               height: 200,
-              child: Image.asset(
-                widget.channelsData.thumbnail ?? "",
-                fit: BoxFit.cover,
-              ),
+              child: Image.network(widget.channelsData.image?.mediaUrl ?? "",
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                return Image.asset(
+                  "assets/images/ic_video_placeholder.png",
+                  fit: BoxFit.cover,
+                );
+              }),
             ),
           ),
           const SizedBox(height: 12),
@@ -69,7 +73,7 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
           Row(
             children: [
               Text(
-                widget.channelsData.description ?? "",
+                widget.channelsData.title ?? "",
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -77,14 +81,17 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
                 ),
               ),
               const Expanded(child: SizedBox()),
-              InkWell(
-                onTap: () {
-                  BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
-                      url: widget.channelsData.video?.mediaUrl ?? ""));
-                },
-                child: SvgPicture.asset(
-                  ImagesPath.shareIcon,
-                  matchTextDirection: true,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: InkWell(
+                  onTap: () {
+                    BlocProvider.of<ChannelsBloc>(context).add(ShareVideEvent(
+                        url: widget.channelsData.video?.mediaUrl ?? ""));
+                  },
+                  child: SvgPicture.asset(
+                    ImagesPath.shareIcon,
+                    matchTextDirection: true,
+                  ),
                 ),
               ),
             ],

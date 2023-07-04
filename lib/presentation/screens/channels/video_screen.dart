@@ -43,11 +43,11 @@ class _VideoScreenState extends State<VideoScreen> {
   }
 
   void _initializeSelectedVideo() {
-    selectedVideoController =
-        VideoPlayerController.network(selectedVideo.video?.mediaUrl ?? "",)
-          ..initialize().then((_) {
-            setState(() {});
-          });
+    selectedVideoController = VideoPlayerController.network(
+      selectedVideo.video?.mediaUrl ?? "",
+    )..initialize().then((_) {
+        setState(() {});
+      });
 
     selectedChewieVideoController = ChewieController(
       videoPlayerController: selectedVideoController,
@@ -134,10 +134,15 @@ class _VideoScreenState extends State<VideoScreen> {
                         flex: 3,
                         child: SizedBox(
                           height: 200,
-                          child: Image.asset(
-                            widget.channelsData.thumbnail ?? "",
-                            fit: BoxFit.cover,
-                          ),
+                          child: Image.network(
+                              widget.channelsData.image?.mediaUrl ?? "",
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              "assets/images/ic_video_placeholder.png",
+                              fit: BoxFit.cover,
+                            );
+                          }),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -170,7 +175,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                                 url: e.video?.mediaUrl ?? ""));
                                       },
                                       child: SvgPicture.asset(
-                                          ImagesPath.shareIcon,matchTextDirection: true),
+                                          ImagesPath.shareIcon,
+                                          matchTextDirection: true),
                                     ),
                                   ),
                                 ],
@@ -220,7 +226,10 @@ class _VideoScreenState extends State<VideoScreen> {
                   BlocProvider.of<ChannelsBloc>(context).add(
                       ShareVideEvent(url: selectedVideo.video?.mediaUrl ?? ""));
                 },
-                child: SvgPicture.asset(ImagesPath.shareIcon,matchTextDirection: true,),
+                child: SvgPicture.asset(
+                  ImagesPath.shareIcon,
+                  matchTextDirection: true,
+                ),
               ),
             ],
           ),

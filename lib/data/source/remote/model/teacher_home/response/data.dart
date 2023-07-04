@@ -20,7 +20,7 @@ class Data {
     }
     schoolName = json['schoolName'];
     getLogo = json['getLogo'] != null ? GetLogo.fromJson(json['getLogo']) : null;
-    indicator = json['indicator'];
+    indicator = json['indecator'];
   }
 
 
@@ -33,7 +33,7 @@ class Data {
     if (getLogo != null) {
       map['getLogo'] = getLogo!.toJson();
     }
-    map['indicator'] = indicator;
+    map['indecator'] = indicator;
     return map;
   }
 

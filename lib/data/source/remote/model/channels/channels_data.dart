@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:schools/data/source/remote/model/children_by_parent/response/getImage.dart';
+
 import 'video.dart';
 
 class ChannelsData {
@@ -7,7 +11,7 @@ class ChannelsData {
   int? status;
   Video? video;
   bool? isPlay;
-  String? thumbnail;
+  GetImage? image;
 
   ChannelsData({
     this.id,
@@ -16,7 +20,7 @@ class ChannelsData {
     this.status,
     this.video,
     this.isPlay = false,
-    this.thumbnail = "assets/images/ic_video_placeholder.png",
+    this.image,
   });
 
   ChannelsData.fromJson(dynamic json) {
@@ -26,7 +30,7 @@ class ChannelsData {
     status = json['status'];
     video = json['getVideo'] != null ? Video.fromJson(json['getVideo']) : null;
     isPlay = false;
-    thumbnail = "assets/images/ic_video_placeholder.png";
+    image = json['getImage'] != null ? GetImage.fromJson(json['getVideo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -37,6 +41,9 @@ class ChannelsData {
     map['status'] = status;
     if (video != null) {
       map['getVideo'] = video!.toJson();
+    }
+    if (image != null) {
+      map['getImage'] = image!.toJson();
     }
     return map;
   }
