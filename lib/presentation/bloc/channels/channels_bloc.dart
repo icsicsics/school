@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/data/source/remote/model/channels/video.dart';
 import 'package:schools/data/source/remote/repository/channels_repository.dart';
@@ -26,7 +27,8 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
   FutureOr<void> _onGetChannelsEvent(
       GetChannelsEvent event, Emitter<ChannelsState> emit) async {
     emit(ShowLoadingState());
-    emit(await _channelsRepository.getChannels(true));
+    String language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
+    emit(await _channelsRepository.getChannels(language == "en" ? true : false));
     emit(HideLoadingState());
   }
 

@@ -138,7 +138,7 @@ class _VideoScreenState extends State<VideoScreen> {
                         child: SizedBox(
                           height: 200,
                           child: Image.network(
-                              widget.channelsData.image?.mediaUrl ?? "",
+                              e.image?.mediaUrl ?? "",
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                             return Image.asset(
