@@ -30,7 +30,7 @@ class ChannelsData {
     status = json['status'];
     video = json['getVideo'] != null ? Video.fromJson(json['getVideo']) : null;
     isPlay = false;
-    image = json['getImage'] != null ? GetImage.fromJson(json['getVideo']) : null;
+    image = json['getImage'] != null ? GetImage.fromJson(json['getImage']) : null;
   }
 
   Map<String, dynamic> toJson() {

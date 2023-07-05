@@ -72,15 +72,18 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
           // const SizedBox(height: 8),
           Row(
             children: [
-              Text(
-                widget.channelsData.title ?? "",
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              Expanded(
+                child: Text(
+                  widget.channelsData.title ?? "",
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const Expanded(child: SizedBox()),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: InkWell(

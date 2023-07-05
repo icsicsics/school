@@ -245,7 +245,8 @@ class DioHelper {
   }
 
   static Future<Response> getChannels(bool language) async {
-    return dio.get("${ApiKey.getEjabiChannels}?isEnglishLagnuage=$language",
+    print(language);
+    return dio.get("${ApiKey.getEjabiChannels}?isEnglishLanguage=$language",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
