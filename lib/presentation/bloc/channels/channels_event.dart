@@ -7,7 +7,13 @@ abstract class ChannelsEvent extends Equatable {
   List<Object?> get props => [identityHashCode(this)];
 }
 
-class GetChannelsEvent extends ChannelsEvent {}
+class GetChannelsEvent extends ChannelsEvent {
+  final String type;
+
+  const GetChannelsEvent({
+    required this.type,
+  });
+}
 
 class NavigateBackEvent extends ChannelsEvent {}
 

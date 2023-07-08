@@ -12,7 +12,12 @@ import 'package:schools/presentation/screens/channels/widgets/channel_video_widg
 import 'package:share_plus/share_plus.dart';
 
 class ChannelsScreen extends BaseStatefulWidget {
-  const ChannelsScreen({Key? key}) : super(key: key);
+  final String type;
+
+  const ChannelsScreen({
+    Key? key,
+    required this.type,
+  }) : super(key: key);
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() {
@@ -151,7 +156,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                 backgroundColor: const Color.fromRGBO(59, 187, 172, 1),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6))),
-            onPressed: ()  {
+            onPressed: () {
               _bloc.add(const NavigateToLoginScreenEvent());
             },
             child: Text(
@@ -165,7 +170,9 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   }
 
   void _getChannels() {
-    _bloc.add(GetChannelsEvent());
+    _bloc.add(GetChannelsEvent(
+      type: widget.type,
+    ));
   }
 
   void _getToken() async {

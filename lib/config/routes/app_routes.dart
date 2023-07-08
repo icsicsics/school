@@ -12,6 +12,7 @@ class AppRoutes {
   static const String onBoarding = "/onBoarding";
   static const String channels = "/channels";
   static const String login = "/login";
+  static const String teacherHome = "/teacherHome";
   static const String home = "/home";
   static const String verify = "/verify";
 
@@ -22,11 +23,15 @@ class AppRoutes {
       case onBoarding:
         return _materialRoute(const OnBoardingScreen());
       case channels:
-        return _materialRoute(const ChannelsScreen());
+        return _materialRoute(ChannelsScreen(
+          type: settings.arguments as String,
+        ));
       case login:
         return _materialRoute(const LoginScreen());
-      case home:
+      case teacherHome:
         return _materialRoute(const TeacherHomeScreen());
+      case home:
+        return _materialRoute(const HomeScreen());
       case verify:
         Map<String, dynamic> arg = settings.arguments as Map<String, dynamic>;
 

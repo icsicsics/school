@@ -20,11 +20,18 @@ class SplashScreen extends BaseStatefulWidget {
 
 class _SplashScreenState extends BaseState<SplashScreen> {
   SplashBloc get _bloc => BlocProvider.of<SplashBloc>(context);
+  bool isFather = false;
 
   @override
   void initState() {
     _init();
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    isFather = await SharedPreferencesManager.getIsFather() ?? false;
   }
 
   @override
@@ -76,11 +83,19 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   }
 
   void _navigateToHomeScreen() {
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      AppRoutes.home,
-      (route) => false,
-    );
+    if (isFather) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.home,
+        (route) => false,
+      );
+    } else {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.teacherHome,
+        (route) => false,
+      );
+    }
   }
 
   void _navigateToOnBoardingScreen() {

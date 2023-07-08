@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:schools/config/routes/app_routes.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
@@ -12,6 +13,7 @@ import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
+import 'package:schools/presentation/screens/side_menu_widget/side_menu_screen.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class TeacherHomeScreen extends BaseStatefulWidget {
@@ -25,6 +27,7 @@ class TeacherHomeScreen extends BaseStatefulWidget {
 
 class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
   HomeBloc get _homeBloc => BlocProvider.of<HomeBloc>(context);
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
   WeatherResponse _weatherResponse = WeatherResponse();
@@ -66,6 +69,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
+            key: _key,
+            drawer: const SideMenuScreen(),
             backgroundColor: ColorsManager.whiteColor,
             body: SingleChildScrollView(
               child: Column(
@@ -81,10 +86,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                           left: 16,
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return HomeScreen();
-                              }));
+                              _key.currentState?.openDrawer();
                             },
                             child: SvgPicture.asset(
                               ImagesPath.menu,
@@ -297,6 +299,12 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                       _buildHomeCard(
                         image: ImagesPath.classesIcon,
                         title: S.of(context).myClasses,
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.home,
+                          );
+                        },
                       ),
                       SizedBox(
                         width: 16,
@@ -304,6 +312,9 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                       _buildHomeCard(
                         image: ImagesPath.housesIcon,
                         title: S.of(context).myHouses,
+                        onTap: () {
+
+                        },
                       ),
                     ],
                   ),
@@ -315,6 +326,9 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                       _buildHomeCard(
                         image: ImagesPath.mediaIcon,
                         title: S.of(context).myMedia,
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.channels,arguments: "media");
+                        },
                       ),
                       SizedBox(
                         width: 16,
@@ -322,6 +336,9 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                       _buildHomeCard(
                         image: ImagesPath.ejabiChannelIcon,
                         title: S.of(context).ejabiChannel,
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.channels,arguments: "ejabi");
+                        },
                       ),
                     ],
                   ),
@@ -334,62 +351,66 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
     );
   }
 
-  Expanded _buildHomeCard({
+  Widget _buildHomeCard({
     required String image,
     required String title,
+    required Function() onTap,
   }) {
     return Expanded(
-      child: Container(
-        height: 150,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-                colors: [
-                  ColorsManager.whiteColor,
-                  Color.fromRGBO(224, 224, 224, 0.31),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.3, 0.9]),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.12),
-                spreadRadius: 0,
-                blurRadius: 24,
-                offset: Offset(0, 4), // changes position of shadow
-              )
-            ]),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 16,
-            ),
-            Container(
-              width: 45,
-              height: 45,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color.fromRGBO(59, 187, 172, 1),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          height: 150,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: LinearGradient(
+                  colors: [
+                    ColorsManager.whiteColor,
+                    Color.fromRGBO(224, 224, 224, 0.31),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.3, 0.9]),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.12),
+                  spreadRadius: 0,
+                  blurRadius: 24,
+                  offset: Offset(0, 4), // changes position of shadow
+                )
+              ]),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 16,
               ),
-              child: SvgPicture.asset(
-                image,
-                width: 28,
-                height: 28,
-                fit: BoxFit.scaleDown,
+              Container(
+                width: 45,
+                height: 45,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color.fromRGBO(59, 187, 172, 1),
+                ),
+                child: SvgPicture.asset(
+                  image,
+                  width: 28,
+                  height: 28,
+                  fit: BoxFit.scaleDown,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                  fontSize: 14,
-                  color: ColorsManager.blackColor,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: -0.13),
-            ),
-          ],
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 14,
+                    color: ColorsManager.blackColor,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -0.13),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -101,10 +101,6 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         } else if (state is NavigateToAboutScreenState) {
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => AboutScreen()));
-        } else if (state is NavigateToChannelsScreenState) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const ChannelsScreen();
-          }));
         } else if (state is NavigateToAdvisorsScreenState) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return AdvisorsScreen(advisors: [],);
@@ -170,7 +166,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
     _bloc.teacherInfoResponse = TeacherInfoResponse();
     _bloc.add(ClearTokenEvent());
     Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (_) => ChannelsScreen()), (route) => false);
+        MaterialPageRoute(builder: (_) => ChannelsScreen(type: "ejabi",)), (route) => false);
   }
 
   void _onGetTeacherInfoFillState(String error) =>

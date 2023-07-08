@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/config/routes/app_routes.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/verify/verify_bloc.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
@@ -40,10 +42,9 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
       backgroundColor: ColorsManager.whiteColor,
       body: BlocConsumer<VerifyBloc, VerifyState>(
         listener: (context, state) {
-          if(state is ShowLoadingState) {
+          if (state is ShowLoadingState) {
             showLoading();
-          }
-          else if(state is HideLoadingState) {
+          } else if (state is HideLoadingState) {
             hideLoading();
           } else if (state is GetLanguageSuccessState) {
             _language = state.language;
@@ -53,8 +54,7 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
             showErrorDialogFunction(
                 context: context, textMessage: S.of(context).errorVerifyCode);
           } else if (state is UpdateDeviceTokenSuccessState) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+            _navigateToHomeScreen();
           } else if (state is UpdateDeviceTokenFailState) {
             showErrorDialogFunction(
                 context: context, textMessage: state.errorMessage);
@@ -69,6 +69,15 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
         },
       ),
     );
+  }
+
+  void _navigateToHomeScreen() async {
+    bool isFather = await SharedPreferencesManager.getIsFather() ?? false;
+    if (isFather) {
+      Navigator.pushNamed(context, AppRoutes.home);
+    } else {
+      Navigator.pushNamed(context, AppRoutes.teacherHome);
+    }
   }
 
   PreferredSizeWidget _appBar() {
