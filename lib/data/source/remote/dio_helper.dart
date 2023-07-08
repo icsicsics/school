@@ -245,12 +245,23 @@ class DioHelper {
   }
 
   static Future<Response> getChannels(bool language) async {
-    print(language);
     return dio.get("${ApiKey.getEjabiChannels}?isEnglishLanguage=$language",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
+          },
+        ));
+  }
+
+  static Future<Response> getTeacherChannel(bool language,String token) async {
+    return dio.get("${ApiKey.getTeacherEjabiChannels}?isEnglishLanguage=$language",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+
           },
         ));
   }

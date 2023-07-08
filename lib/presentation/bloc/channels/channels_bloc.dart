@@ -28,7 +28,12 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
       GetChannelsEvent event, Emitter<ChannelsState> emit) async {
     emit(ShowLoadingState());
     String language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
-    emit(await _channelsRepository.getChannels(language == "en" ? true : false));
+    String token = await SharedPreferencesManager.getTokenDio() ?? "";
+    if(token.isEmpty){
+      emit(await _channelsRepository.getChannels(language == "en" ? true : false));
+    } else {
+      emit(await _channelsRepository.getTeacherChannels(language == "en" ? true : false));
+    }
     emit(HideLoadingState());
   }
 

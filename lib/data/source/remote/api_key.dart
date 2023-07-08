@@ -22,4 +22,5 @@ class ApiKey{
   static const String updateNotification = "Notifications/UpdateNotification";
   static const String changeClassRoomSectionPhoto = "Teacher/ChangeClassroomToSectionPhoto";
   static const String getEjabiChannels = "Accounts/GetEjabiChannels";
+  static const String getTeacherEjabiChannels = "Teacher/GetEjabiChannels";
 }

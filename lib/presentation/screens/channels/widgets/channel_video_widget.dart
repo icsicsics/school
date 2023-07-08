@@ -4,16 +4,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
+import 'package:schools/presentation/screens/channels/full_video_screen.dart';
 import 'package:schools/presentation/screens/channels/video_screen.dart';
 
 class ChannelsVideoWidget extends StatefulWidget {
   final List<ChannelsData> channels;
   final ChannelsData channelsData;
+  final String token;
 
   const ChannelsVideoWidget({
     Key? key,
     required this.channels,
     required this.channelsData,
+    required this.token,
   }) : super(key: key);
 
   @override
@@ -35,17 +38,30 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
         children: [
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return VideoScreen(
-                      channels: widget.channels,
-                      channelsData: widget.channelsData,
-                    );
-                  },
-                ),
-              );
+              if (widget.token.isEmpty) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return VideoScreen(
+                        channels: widget.channels,
+                        channelsData: widget.channelsData,
+                      );
+                    },
+                  ),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FullVideoScreen(
+                        channelsData: widget.channelsData,
+                      );
+                    },
+                  ),
+                );
+              }
             },
             child: SizedBox(
               width: double.infinity,

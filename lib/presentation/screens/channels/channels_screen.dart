@@ -27,12 +27,6 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   String _token = "";
 
   @override
-  void initState() {
-    super.initState();
-    _getChannels();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _getToken();
@@ -103,6 +97,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                       return ChannelsVideoWidget(
                         channelsData: _channels[index],
                         channels: _channels,
+                        token: _token,
                       );
                     },
                   ),
@@ -175,6 +170,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
 
   void _getToken() async {
     _token = await SharedPreferencesManager.getTokenDio() ?? "";
+    _getChannels();
   }
 
   void _navigateToLoginScreen() {
