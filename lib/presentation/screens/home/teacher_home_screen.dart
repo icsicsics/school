@@ -7,6 +7,7 @@ import 'package:schools/config/routes/app_routes.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
@@ -16,6 +17,7 @@ import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
 import 'package:schools/presentation/screens/school_houses/school_houses_screen.dart';
 import 'package:schools/presentation/screens/side_menu_widget/side_menu_screen.dart';
+import 'package:schools/presentation/widgets/restart_widget.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class TeacherHomeScreen extends BaseStatefulWidget {
@@ -33,8 +35,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
 
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
-
   WeatherResponse _weatherResponse = WeatherResponse();
+  List<String> _roles = [];
 
   @override
   void initState() {
@@ -42,6 +44,12 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
     _homeBloc.add(GetWeatherEvent());
     _homeBloc.add(GetTeacherHomeEvent(token: ""));
     _homeBloc.add(GetTeacherInfoEvent(token: ""));
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    _roles = await SharedPreferencesManager.getRoles() ?? [];
   }
 
   String dateFormatter(DateTime date) {
@@ -71,6 +79,15 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
           _weatherResponse = state.weather;
         } else if (state is GetTeacherInfoSuccessState) {
           _teacherInfoResponse = state.response;
+        } else if (state is GetTeacherInfoFillState){
+
+        } else if(state is GetWeatherFillState){
+
+        } else if(state is GetTeacherHomeFillState){
+
+        }
+        else if (state is SwitchAccountState){
+          _switchAccount();
         }
       },
       builder: (context, state) {
@@ -91,17 +108,34 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         Positioned(
                           top: 48,
                           left: 16,
-                          child: InkWell(
-                            onTap: () {
-                              _key.currentState?.openDrawer();
-                            },
-                            child: SvgPicture.asset(
-                              ImagesPath.menu,
-                              width: 25,
-                              height: 25,
-                              matchTextDirection: true,
-                              color: Color(0xff3bbbac),
-                            ),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  _key.currentState?.openDrawer();
+                                },
+                                child: SvgPicture.asset(
+                                  ImagesPath.menu,
+                                  width: 22,
+                                  height: 22,
+                                  matchTextDirection: true,
+                                  color: Color(0xff3bbbac),
+                                ),
+                              ),
+                              SizedBox(width: 0,),
+                              if (_roles.length > 1)
+                                IconButton(
+                                  onPressed: () {
+                                    BlocProvider.of<HomeBloc>(context).add(SwitchAccountEvent());
+                                  },
+                                  icon: const Icon(
+                                    Icons.supervised_user_circle,
+                                    color: ColorsManager.secondaryColor,
+                                    size: 30,
+                                  ),
+                                ),
+
+                            ],
                           ),
                         ),
                         Padding(
@@ -470,5 +504,10 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
             fit: BoxFit.cover, height: double.infinity),
       ),
     );
+  }
+
+  void _switchAccount() async {
+    await SharedPreferencesManager.setIsFather(!((await SharedPreferencesManager.getIsFather()) ?? false));
+    RestartWidget.restartApp(context);
   }
 }

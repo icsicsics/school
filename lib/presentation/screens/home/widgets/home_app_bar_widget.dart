@@ -41,16 +41,18 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16,),
+      margin: EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
       height: 120,
       child: Row(
         children: [
           InkWell(
             onTap: () {
-              widget.onTapMenu();
+              _isFather ? widget.onTapMenu() : Navigator.pop(context);
             },
             child: SvgPicture.asset(
-              ImagesPath.menu,
+              _isFather ? ImagesPath.menu : ImagesPath.arrowBackIcon,
               width: 25,
               height: 25,
               matchTextDirection: true,
@@ -58,7 +60,7 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
             ),
           ),
           const SizedBox(width: 5),
-          if (_roles.length > 1)
+          if (_roles.length > 1 && _isFather)
             IconButton(
               onPressed: () {
                 BlocProvider.of<HomeBloc>(context).add(SwitchAccountEvent());
@@ -74,7 +76,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildSchoolLogo(),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               MediumTextWidget(
                 textAlign: TextAlign.center,
                 text: widget.schoolName,
