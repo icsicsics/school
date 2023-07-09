@@ -89,9 +89,7 @@ class HomeTitleWidget extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => SchoolHousesScreen(
-                                        token: token,
                                         classRoomId: bloc.branchId,
-                                        language: language,
                                         isComingFromHome: false)));
                           },
                           child: MediumTextWidget(

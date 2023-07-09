@@ -120,8 +120,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onGetTeacherInfoEvent(
       GetTeacherInfoEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
+    String token = await SharedPreferencesManager.getTokenDio() ?? "";
     HomeState state =
-        (await _repository.getTeacherInfo(event.token)) as HomeState;
+        (await _repository.getTeacherInfo(token)) as HomeState;
     if (state is GetTeacherInfoSuccessState) {
       emit(GetTeacherInfoSuccessState(response: state.response));
     } else if (state is GetTeacherInfoFillState) {

@@ -93,11 +93,9 @@ class _TestState extends State<Test> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => SchoolHousesScreen(
-                                      token: widget.token,
                                       classRoomId: widget.parentHomeResponse
                                               .data![_current].branchId ??
                                           "",
-                                      language: widget.language,
                                       isComingFromHome: true,
                                     )));
                       },

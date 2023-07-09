@@ -181,9 +181,7 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                       context,
                       MaterialPageRoute(
                           builder: (_) => SchoolHousesScreen(
-                            token: widget.token,
                             classRoomId: item.branchId ?? "",
-                            language: widget.language,
                             isComingFromHome: true,
                           )));
                 },

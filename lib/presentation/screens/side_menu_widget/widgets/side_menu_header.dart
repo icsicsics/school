@@ -42,7 +42,7 @@ class SideMenuHeader extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 15,
+                height: 12,
               ),
               BoldTextWidget(
                   text: isFather != true

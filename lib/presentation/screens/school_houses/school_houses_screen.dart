@@ -25,16 +25,12 @@ import 'package:schools/presentation/screens/school_houses/widgets/school_houses
 import 'package:schools/presentation/screens/student_houses/student_houses_screen.dart';
 
 class SchoolHousesScreen extends BaseStatefulWidget {
-  final String token;
   final String classRoomId;
-  final String language;
   final bool isComingFromHome;
 
   const SchoolHousesScreen(
       {super.key,
-      required this.token,
       required this.classRoomId,
-      required this.language,
       required this.isComingFromHome});
 
   @override
@@ -50,17 +46,10 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   GetStudentHousesResponse getStudentHousesResponse =
       GetStudentHousesResponse();
   bool isFather = false;
+  String token = "";
+  String language = "";
   @override
   void initState() {
-    if (widget.isComingFromHome != true) {
-      _schoolHousesBloc.add(GetStudentHousesEvent(
-          classroomToSectionId: widget.classRoomId, token: widget.token));
-    }
-    _schoolHousesBloc.add(GetSchoolHousesEvent(
-      token: widget.token,
-      classRoomId: widget.classRoomId,
-      isComingFromHome: widget.isComingFromHome,
-      search: _selectedValue.id,));
     super.initState();
   }
 
@@ -68,6 +57,18 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     isFather = await SharedPreferencesManager.getIsFather() ?? false;
+    token = await SharedPreferencesManager.getTokenDio() ?? "";
+    language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "";
+    if (widget.isComingFromHome != true) {
+      _schoolHousesBloc.add(GetStudentHousesEvent(
+          classroomToSectionId: widget.classRoomId, token: token));
+    }
+    _schoolHousesBloc.add(GetSchoolHousesEvent(
+      token: token,
+      classRoomId: widget.classRoomId,
+      isComingFromHome: widget.isComingFromHome,
+      search: _selectedValue.id,));
+
   }
 
   @override
@@ -106,7 +107,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                   setState(() {
                     _selectedValue = value;
                     _schoolHousesBloc.add(GetSchoolHousesEvent(
-                      token: widget.token,
+                      token: token,
                       classRoomId: widget.classRoomId,
                       isComingFromHome: widget.isComingFromHome,
                       search: _selectedValue.id,));
@@ -139,12 +140,12 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                       ? SchoolHousesContentWidget(
                     schoolHousesBloc: _schoolHousesBloc,
                     getClassHousesResponse: getClassHousesResponse,
-                    language: widget.language,
-                    token: widget.token,
+                    language: language,
+                    token: token,
                   )
                       : isFather ? SizedBox.shrink() : IsNotComingFromHomeContentWidget(
                       schoolHousesBloc: _schoolHousesBloc,
-                      token: widget.token,
+                      token: token,
                       getStudentHousesResponse:
                       getStudentHousesResponse)
                 ],
@@ -170,12 +171,12 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                           ? SchoolHousesContentWidget(
                               schoolHousesBloc: _schoolHousesBloc,
                               getClassHousesResponse: getClassHousesResponse,
-                              language: widget.language,
-                              token: widget.token,
+                              language: language,
+                              token: token,
                             )
                           : IsNotComingFromHomeContentWidget(
                               schoolHousesBloc: _schoolHousesBloc,
-                              token: widget.token,
+                              token: token,
                               getStudentHousesResponse:
                                   getStudentHousesResponse)
                     ],
@@ -220,7 +221,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           InkWell(
             onTap: () {
               _schoolHousesBloc.add(GetSearchValuesEvent(
-                token: widget.token,
+                token: token,
               ));
             },
             child: SvgPicture.asset(
@@ -304,9 +305,9 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       context,
       MaterialPageRoute(
           builder: (_) => StudentHousesScreen(
-              token: widget.token,
+              token: token,
               classroomToSectionId: s,
-              language: widget.language)));
+              language: language)));
 
   void _navigateToMyChildrenScreen(studentId, classroomToSectionId) =>
       Navigator.push(
@@ -314,7 +315,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
           MaterialPageRoute(
               builder: (_) => MyChildrenScreen(
                     studentId: studentId,
-                    language: widget.language,
+                    language: language,
                     classroomId: getStudentHousesResponse.data!.classroomId!,
                     classroomSectionStudentsId: classroomToSectionId.toString(),
                     isParent: false,

@@ -8,11 +8,13 @@ import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
+import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/screens/home/home_screen.dart';
+import 'package:schools/presentation/screens/school_houses/school_houses_screen.dart';
 import 'package:schools/presentation/screens/side_menu_widget/side_menu_screen.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -30,6 +32,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
+  TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
+
   WeatherResponse _weatherResponse = WeatherResponse();
 
   @override
@@ -37,6 +41,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
     super.initState();
     _homeBloc.add(GetWeatherEvent());
     _homeBloc.add(GetTeacherHomeEvent(token: ""));
+    _homeBloc.add(GetTeacherInfoEvent(token: ""));
   }
 
   String dateFormatter(DateTime date) {
@@ -64,6 +69,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
           _teacherHomeResponse = state.response;
         } else if (state is GetWeatherSuccessState) {
           _weatherResponse = state.weather;
+        } else if (state is GetTeacherInfoSuccessState) {
+          _teacherInfoResponse = state.response;
         }
       },
       builder: (context, state) {
@@ -106,7 +113,9 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                               SizedBox(
                                 height: 16,
                               ),
-                              _buildSchoolLogo(_teacherHomeResponse.data?.getLogo?.mediaUrl ?? ""),
+                              _buildSchoolLogo(_teacherHomeResponse
+                                      .data?.getLogo?.mediaUrl ??
+                                  ""),
                               SizedBox(
                                 height: 6,
                               ),
@@ -289,7 +298,10 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                               ),
                             ],
                             pointers: <GaugePointer>[
-                              NeedlePointer(value: _getValue(_teacherHomeResponse.data?.indicator ?? ""))
+                              NeedlePointer(
+                                  value: _getValue(
+                                      _teacherHomeResponse.data?.indicator ??
+                                          ""))
                             ])
                       ],
                     ),
@@ -313,7 +325,16 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         image: ImagesPath.housesIcon,
                         title: S.of(context).myHouses,
                         onTap: () {
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => SchoolHousesScreen(
+                                classRoomId:
+                                    _teacherInfoResponse.data!.branchId!,
+                                isComingFromHome: true,
+                              ),
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -327,7 +348,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         image: ImagesPath.mediaIcon,
                         title: S.of(context).myMedia,
                         onTap: () {
-                          Navigator.pushNamed(context, AppRoutes.channels,arguments: "media");
+                          Navigator.pushNamed(context, AppRoutes.channels,
+                              arguments: "media");
                         },
                       ),
                       SizedBox(
@@ -337,7 +359,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         image: ImagesPath.ejabiChannelIcon,
                         title: S.of(context).ejabiChannel,
                         onTap: () {
-                          Navigator.pushNamed(context, AppRoutes.channels,arguments: "ejabi");
+                          Navigator.pushNamed(context, AppRoutes.channels,
+                              arguments: "ejabi");
                         },
                       ),
                     ],
@@ -416,10 +439,10 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
     );
   }
 
-  double _getValue(String indicator){
-    if(indicator.toLowerCase() == "red") return 83;
-    if(indicator.toLowerCase() == "yellow") return 50;
-    if(indicator.toLowerCase() == "green") return 13;
+  double _getValue(String indicator) {
+    if (indicator.toLowerCase() == "red") return 83;
+    if (indicator.toLowerCase() == "yellow") return 50;
+    if (indicator.toLowerCase() == "green") return 13;
     return 0;
   }
 

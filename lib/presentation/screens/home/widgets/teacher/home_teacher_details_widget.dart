@@ -68,25 +68,23 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                                   fontSize: 16,
                                   color: ColorsManager.whiteColor)
                               : Container(),
-                          const Spacer(),
-                          GestureDetector(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => SchoolHousesScreen(
-                                        token: widget.token,
-                                        classRoomId: widget
-                                            .homeBloc
-                                            .teacherInfoResponse
-                                            .data!
-                                            .branchId!,
-                                        language: widget.language,
-                                        isComingFromHome: true))),
-                            child: MediumTextWidget(
-                                text: S.of(context).viewHouses,
-                                fontSize: 16,
-                                color: ColorsManager.whiteColor),
-                          ),
+                          // const Spacer(),
+                          // GestureDetector(
+                          //   onTap: () => Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (_) => SchoolHousesScreen(
+                          //               classRoomId: widget
+                          //                   .homeBloc
+                          //                   .teacherInfoResponse
+                          //                   .data!
+                          //                   .branchId!,
+                          //               isComingFromHome: true))),
+                          //   child: MediumTextWidget(
+                          //       text: S.of(context).viewHouses,
+                          //       fontSize: 16,
+                          //       color: ColorsManager.whiteColor),
+                          // ),
                         ],
                       ))),
               GridView.builder(
@@ -107,13 +105,11 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => SchoolHousesScreen(
-                                      token: widget.token,
                                       classRoomId: widget
                                           .teacherHomeResponse
                                           .data!
                                           .teacherHomePage![index]
                                           .classroomToSectionId!,
-                                      language: widget.language,
                                       isComingFromHome: false,
                                     )));
                       },
