@@ -9,10 +9,12 @@ import 'package:schools/config/utils/constants.dart';
 import 'package:schools/config/utils/notification_service.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/advisor.dart';
 import 'package:schools/di/injector.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
+import 'package:schools/presentation/bloc/advisors/advisors_bloc.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/localization/localization/app_localization_cubit.dart';
@@ -80,6 +82,9 @@ class _MyAppState extends State<MyApp> {
             create: (BuildContext context) => injector()),
         BlocProvider<ChannelsBloc>(
             create: (BuildContext context) => injector()),
+        BlocProvider<AdvisorsBloc>(
+            create: (BuildContext context) => injector()),
+
       ],
       child: BlocBuilder<LocalizationCubit, Locale>(
         builder: (context, state) {

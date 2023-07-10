@@ -23,4 +23,7 @@ class ApiKey{
   static const String changeClassRoomSectionPhoto = "Teacher/ChangeClassroomToSectionPhoto";
   static const String getEjabiChannels = "Accounts/GetEjabiChannels";
   static const String getTeacherEjabiChannels = "Teacher/GetEjabiChannels";
+  static const String getGuidesByBranch = "Guide/GetGuidesByBranch";
+  static const String createGuideMeeting = "Guide/CreateGuideMeeting";
+  static const String createNotesStudents = "Guide/CreateNotesStudents";
 }

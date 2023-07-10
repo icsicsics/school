@@ -11,6 +11,7 @@ import 'package:schools/domain/usecases/set_teacher_profile_image_in_shared_pref
 import 'package:schools/domain/usecases/set_token_use_case.dart';
 import 'package:schools/presentation/bloc/about/about_bloc.dart';
 import 'package:schools/presentation/bloc/add_point/add_point_bloc.dart';
+import 'package:schools/presentation/bloc/advisors/advisors_bloc.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/localization/localization/app_localization_cubit.dart';
@@ -98,4 +99,6 @@ Future<void> initializeDependencies() async {
   injector.registerFactory<AddPointBloc>(() => AddPointBloc());
 
   injector.registerFactory<ChannelsBloc>(() => ChannelsBloc());
+  injector.registerFactory<AdvisorsBloc>(() => AdvisorsBloc());
+
 }

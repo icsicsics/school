@@ -103,7 +103,15 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
               context, MaterialPageRoute(builder: (_) => AboutScreen()));
         } else if (state is NavigateToAdvisorsScreenState) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return AdvisorsScreen(advisors: [],);
+            return AdvisorsScreen(
+              advisors: [],
+              studentName: "",
+              studentImage: "",
+              branchId: "",
+              studentId: "",
+              classroomToSectionId: "",
+              teacherId: "",
+            );
           }));
         }
       },
@@ -135,7 +143,6 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
 
   void _onSideMenuHomeState(context) {
     Navigator.pop(context);
-
   }
 
   void _onSideMenuProfileState(context) {
@@ -165,8 +172,13 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
     _bloc.fatherInfoResponse = FatherInfoResponse();
     _bloc.teacherInfoResponse = TeacherInfoResponse();
     _bloc.add(ClearTokenEvent());
-    Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (_) => ChannelsScreen(type: "ejabi",)), (route) => false);
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (_) => ChannelsScreen(
+                  type: "ejabi",
+                )),
+        (route) => false);
   }
 
   void _onGetTeacherInfoFillState(String error) =>

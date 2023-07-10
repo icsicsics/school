@@ -366,6 +366,9 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                 classRoomId:
                                     _teacherInfoResponse.data!.branchId!,
                                 isComingFromHome: true,
+                                branchId: "",
+                                classroomToSectionId: "",
+                                teacherId: "",
                               ),
                             ),
                           );

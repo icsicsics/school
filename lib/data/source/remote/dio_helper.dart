@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:schools/core/utils/network/interceptor.dart';
 import 'package:schools/data/source/remote/api_key.dart';
+import 'package:schools/data/source/remote/model/advisors/request/create_meeting_request.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
 import 'package:schools/data/source/remote/model/notification/request/notification_request.dart';
@@ -254,14 +255,40 @@ class DioHelper {
         ));
   }
 
-  static Future<Response> getTeacherChannel(bool language,String token) async {
-    return dio.get("${ApiKey.getTeacherEjabiChannels}?isEnglishLanguage=$language",
+  static Future<Response> getTeacherChannel(bool language, String token) async {
+    return dio.get(
+        "${ApiKey.getTeacherEjabiChannels}?isEnglishLanguage=$language",
         options: Options(
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': 'Bearer $token',
+          },
+        ));
+  }
 
+  static Future<Response> getGuides(String branchId, String token) async {
+    return dio.get("${ApiKey.getGuidesByBranch}?BranchId=$branchId",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
+  static Future<Response> createGuideMeeting(
+    token,
+    CreateMeetingRequest request,
+  ) async {
+    return dio.post(ApiKey.createGuideMeeting,
+        data: request,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
           },
         ));
   }

@@ -96,7 +96,10 @@ class _TestState extends State<Test> {
                                       classRoomId: widget.parentHomeResponse
                                               .data![_current].branchId ??
                                           "",
+                                      classroomToSectionId: "",
+                                      teacherId: "",
                                       isComingFromHome: true,
+                                  branchId: "",
                                     )));
                       },
                       child: Column(

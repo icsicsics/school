@@ -79,7 +79,7 @@ class Data {
       map['points'] = points!.map((v) => v.toJson()).toList();
     }
     if (advisors != null) {
-      map['advisors'] = advisors!.map((v) => v.toJson()).toList();
+      map['studentGuideList'] = advisors!.map((v) => v.toJson()).toList();
     }
     return map;
   }

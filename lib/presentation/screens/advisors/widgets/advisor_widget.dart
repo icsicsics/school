@@ -4,10 +4,14 @@ import 'package:schools/presentation/screens/advisors/widgets/advisor_body_widge
 import 'package:schools/presentation/screens/advisors/widgets/advisor_header_widget.dart';
 
 class AdvisorWidget extends StatelessWidget {
+  final String studentName;
+  final String studentImage;
   final List<Advisor> advisors;
 
   const AdvisorWidget({
     Key? key,
+    required this.studentName,
+    required this.studentImage,
     required this.advisors,
   }) : super(key: key);
 
@@ -15,7 +19,10 @@ class AdvisorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AdvisorHeaderWidget(),
+        AdvisorHeaderWidget(
+          studentName: studentName,
+          studentImage: studentImage,
+        ),
         const SizedBox(height: 16),
         ListView.builder(
             itemCount: advisors.length,

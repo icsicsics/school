@@ -111,6 +111,21 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
                                           .teacherHomePage![index]
                                           .classroomToSectionId!,
                                       isComingFromHome: false,
+                                      branchId: widget
+                                              .homeBloc
+                                              .teacherInfoResponse
+                                              .data!
+                                              .branchId ??
+                                          "",
+                                      teacherId: widget.homeBloc
+                                              .teacherInfoResponse.data!.id ??
+                                          "",
+                                      classroomToSectionId: widget
+                                              .teacherHomeResponse
+                                              .data!
+                                              .teacherHomePage![index]
+                                              .classroomToSectionId ??
+                                          "",
                                     )));
                       },
                       child: CardWidget(

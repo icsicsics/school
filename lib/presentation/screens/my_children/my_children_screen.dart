@@ -21,14 +21,21 @@ class MyChildrenScreen extends BaseStatefulWidget {
   final String classroomId;
   final String classroomSectionStudentsId;
   final bool isParent;
+  final String? branchId;
+  final String? classroomToSectionId;
+  final String? teacherId;
 
-  const MyChildrenScreen(
-      {super.key,
-      required this.studentId,
-      required this.language,
-      required this.classroomId,
-      required this.classroomSectionStudentsId,
-      required this.isParent});
+  const MyChildrenScreen({
+    super.key,
+    required this.studentId,
+    required this.language,
+    required this.classroomId,
+    required this.classroomSectionStudentsId,
+    required this.isParent,
+    this.branchId = "",
+    this.classroomToSectionId = "",
+    this.teacherId = "",
+  });
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _MyChildrenScreenState();
@@ -83,13 +90,14 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           hideLoading();
         } else if (state is GetTeacherPrinciplByClassroomIdFillState) {
           _onGetTeacherPrinciplByClassroomIdFillState(state.error);
-        }else if(state is MyChildrenFilterState){
-        _teacherStudentProfileInSchoolHouseResponse.data!.points = state.filter;
+        } else if (state is MyChildrenFilterState) {
+          _teacherStudentProfileInSchoolHouseResponse.data!.points =
+              state.filter;
         }
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: ColorsManager.backgroundColor,
+            backgroundColor: ColorsManager.backgroundColor,
             floatingActionButton: _points(),
             appBar: _appBar(),
             body: _teacherStudentProfileInSchoolHouseResponse.data != null
@@ -113,9 +121,24 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         centerTitle: false,
         actions: [
           InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return AdvisorsScreen(advisors: _teacherStudentProfileInSchoolHouseResponse.data?.advisors ?? []);
+                return AdvisorsScreen(
+                  studentName: _teacherStudentProfileInSchoolHouseResponse
+                          .data?.studentName ??
+                      "",
+                  studentImage: _teacherStudentProfileInSchoolHouseResponse
+                          .data?.getImage?.mediaUrl ??
+                      "",
+                  branchId: widget.branchId ?? "",
+                  studentId: _teacherStudentProfileInSchoolHouseResponse
+                      .data?.studentId ?? "",
+                  advisors: _teacherStudentProfileInSchoolHouseResponse
+                          .data?.advisors ??
+                      [],
+                  teacherId: widget.teacherId ?? "",
+                  classroomToSectionId: widget.classroomToSectionId ?? "",
+                );
               }));
             },
             child: Icon(
@@ -128,8 +151,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
             alignment: Alignment.center,
             children: [
               InkWell(
-                onTap: (){
-                  _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: false));
+                onTap: () {
+                  _bloc.add(NavigateToNotificationScreenEvent(
+                      isNotificationSelected: false));
                 },
                 child: Icon(
                   Icons.mail,
@@ -143,8 +167,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                   top: 8,
                   right: -5,
                   child: InkWell(
-                    onTap: (){
-                      _bloc.add(NavigateToNotificationScreenEvent(isNotificationSelected: true));
+                    onTap: () {
+                      _bloc.add(NavigateToNotificationScreenEvent(
+                          isNotificationSelected: true));
                     },
                     child: const Icon(
                       Icons.notifications,
@@ -197,18 +222,26 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       showAddPointFunction(
           isParent: widget.isParent,
           context: context,
-          childName: _teacherStudentProfileInSchoolHouseResponse.data!.studentName ?? "",
+          childName:
+              _teacherStudentProfileInSchoolHouseResponse.data!.studentName ??
+                  "",
           token: _token,
           classroomId: classroomId,
           classroomSectionStudentsId: classroomSectionStudentsId,
-          studentId: widget.studentId, onCreatePointSuccess: () {
-        _bloc.add(GetTeacherStudentProfileInSchoolHouseEvent(
-            token: _token, studentId: widget.studentId));
-      });
+          studentId: widget.studentId,
+          onCreatePointSuccess: () {
+            _bloc.add(GetTeacherStudentProfileInSchoolHouseEvent(
+                token: _token, studentId: widget.studentId));
+          });
 
-  void _navigateToNotificationScreen(bool isNotificationSelected) => Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => NotificationsScreen(isNotificationSelected: isNotificationSelected,)),);
+  void _navigateToNotificationScreen(bool isNotificationSelected) =>
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => NotificationsScreen(
+                  isNotificationSelected: isNotificationSelected,
+                )),
+      );
 
   void _onGetTeacherStudentProfileInSchoolHouseFailState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);

@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 
 class AdvisorHeaderWidget extends StatelessWidget {
-  const AdvisorHeaderWidget({Key? key}) : super(key: key);
+  final String studentName;
+  final String studentImage;
+
+  const AdvisorHeaderWidget({
+    Key? key,
+    required this.studentName,
+    required this.studentImage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,23 +23,22 @@ class AdvisorHeaderWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage(
-                    ImagesPath.advisorPlaceHolder,
-                  ),
-                  fit: BoxFit.fill),
+          ClipOval(
+            child: Image.network(
+              studentImage,
+              width: 45,
+              height: 45,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset(ImagesPath.advisorPlaceHolder);
+              },
             ),
           ),
           const SizedBox(
             width: 16,
           ),
-          const Text(
-            "Name of Student",
+          Text(
+            studentName,
             style: TextStyle(
               color: Colors.white,
               fontSize: 15,

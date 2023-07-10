@@ -43,7 +43,7 @@ class AdvisorBodyWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          advisor.groupName ?? "",
+                          advisor.advisorName ?? "",
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Color.fromRGBO(34, 34, 34, 1),
@@ -70,7 +70,7 @@ class AdvisorBodyWidget extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "Title is here",
+                      advisor.reportName ?? "",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color.fromRGBO(243, 154, 74, 1),
@@ -82,7 +82,7 @@ class AdvisorBodyWidget extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "Description is here",
+                      advisor.description ?? "",
                       style: TextStyle(
                         fontWeight: FontWeight.normal,
                         color: Color.fromRGBO(152, 152, 152, 1),

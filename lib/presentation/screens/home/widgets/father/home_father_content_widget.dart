@@ -183,6 +183,9 @@ class _HomeFatherContentWidgetState extends State<HomeFatherContentWidget> {
                           builder: (_) => SchoolHousesScreen(
                             classRoomId: item.branchId ?? "",
                             isComingFromHome: true,
+                            branchId: "",
+                            teacherId: "",
+                            classroomToSectionId: "",
                           )));
                 },
                 child: Column(

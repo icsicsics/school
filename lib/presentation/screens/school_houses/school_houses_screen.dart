@@ -27,11 +27,18 @@ import 'package:schools/presentation/screens/student_houses/student_houses_scree
 class SchoolHousesScreen extends BaseStatefulWidget {
   final String classRoomId;
   final bool isComingFromHome;
+  final String branchId;
+  final String teacherId;
+  final String classroomToSectionId;
 
-  const SchoolHousesScreen(
-      {super.key,
-      required this.classRoomId,
-      required this.isComingFromHome});
+  const SchoolHousesScreen({
+    super.key,
+    required this.classRoomId,
+    required this.isComingFromHome,
+    required this.branchId,
+    required this.teacherId,
+    required this.classroomToSectionId,
+  });
 
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _SchoolHousesScreenState();
@@ -48,8 +55,10 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   bool isFather = false;
   String token = "";
   String language = "";
+
   @override
   void initState() {
+    print(widget.branchId);
     super.initState();
   }
 
@@ -67,8 +76,8 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       token: token,
       classRoomId: widget.classRoomId,
       isComingFromHome: widget.isComingFromHome,
-      search: _selectedValue.id,));
-
+      search: _selectedValue.id,
+    ));
   }
 
   @override
@@ -90,7 +99,10 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
             _navigateToStudentHousesScreen(state.data.classroomToSectionId!);
           } else if (state is NavigateToMyChildrenScreenState) {
             _navigateToMyChildrenScreen(
-                state.studentId, state.classroomToSectionId);
+              state.studentId,
+              state.classroomToSectionId,
+              widget.branchId,
+            );
           } else if (state is GetStudentHousesSuccessState) {
             getStudentHousesResponse = state.response;
             hideLoading();
@@ -110,13 +122,14 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                       token: token,
                       classRoomId: widget.classRoomId,
                       isComingFromHome: widget.isComingFromHome,
-                      search: _selectedValue.id,));
+                      search: _selectedValue.id,
+                    ));
                   });
                 });
           } else if (state is GetSearchValuesFailState) {}
         },
         builder: (context, state) {
-          if(state is GetSchoolHousesLoadingState) {
+          if (state is GetSchoolHousesLoadingState) {
             return Container();
           }
 
@@ -127,27 +140,29 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                   Container(
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [
-                              ColorsManager.primaryColor,
-                              ColorsManager.secondaryColor,
-                            ],
-                            stops: [0.5, 0.8],
-                          )),
+                        colors: [
+                          ColorsManager.primaryColor,
+                          ColorsManager.secondaryColor,
+                        ],
+                        stops: [0.5, 0.8],
+                      )),
                       height: 500,
                       child: SchoolHousesChartWidget(
                           schoolHousesBloc: _schoolHousesBloc)),
                   widget.isComingFromHome
                       ? SchoolHousesContentWidget(
-                    schoolHousesBloc: _schoolHousesBloc,
-                    getClassHousesResponse: getClassHousesResponse,
-                    language: language,
-                    token: token,
-                  )
-                      : isFather ? SizedBox.shrink() : IsNotComingFromHomeContentWidget(
-                      schoolHousesBloc: _schoolHousesBloc,
-                      token: token,
-                      getStudentHousesResponse:
-                      getStudentHousesResponse)
+                          schoolHousesBloc: _schoolHousesBloc,
+                          getClassHousesResponse: getClassHousesResponse,
+                          language: language,
+                          token: token,
+                        )
+                      : isFather
+                          ? SizedBox.shrink()
+                          : IsNotComingFromHomeContentWidget(
+                              schoolHousesBloc: _schoolHousesBloc,
+                              token: token,
+                              getStudentHousesResponse:
+                                  getStudentHousesResponse)
                 ],
               ));
           return getClassHousesResponse.data?.isNotEmpty ?? false
@@ -229,15 +244,17 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
               color: ColorsManager.secondaryColor,
             ),
           ),
-          SizedBox(width: 6,),
+          SizedBox(
+            width: 6,
+          ),
           Stack(
             alignment: Alignment.center,
-
             children: [
               InkWell(
                 onTap: () {
-                  BlocProvider.of<SchoolHousesBloc>(context)
-                      .add(NavigateToNotificationScreenEvent(isNotificationSelected : false));
+                  BlocProvider.of<SchoolHousesBloc>(context).add(
+                      NavigateToNotificationScreenEvent(
+                          isNotificationSelected: false));
                 },
                 child: Icon(
                   Icons.mail,
@@ -252,8 +269,10 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                   right: -5,
                   child: InkWell(
                     onTap: () {
-                      BlocProvider.of<SchoolHousesBloc>(context)
-                          .add(NavigateToNotificationScreenEvent(isNotificationSelected : true));                    },
+                      BlocProvider.of<SchoolHousesBloc>(context).add(
+                          NavigateToNotificationScreenEvent(
+                              isNotificationSelected: true));
+                    },
                     child: const Icon(
                       Icons.notifications,
                       color: ColorsManager.yellow,
@@ -293,10 +312,14 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
             text: S.of(context).schoolHouses),
       );
 
-  void _navigateToNotificationScreen(bool isNotificationSelected) => Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => NotificationsScreen(isNotificationSelected: isNotificationSelected,)),
-  );
+  void _navigateToNotificationScreen(bool isNotificationSelected) =>
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => NotificationsScreen(
+                  isNotificationSelected: isNotificationSelected,
+                )),
+      );
 
   void _onGetSchoolHousesFillState(String error) =>
       showErrorDialogFunction(context: context, textMessage: error);
@@ -305,11 +328,9 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
       context,
       MaterialPageRoute(
           builder: (_) => StudentHousesScreen(
-              token: token,
-              classroomToSectionId: s,
-              language: language)));
+              token: token, classroomToSectionId: s, language: language)));
 
-  void _navigateToMyChildrenScreen(studentId, classroomToSectionId) =>
+  void _navigateToMyChildrenScreen(studentId, classroomToSectionId, branchId) =>
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -319,6 +340,9 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                     classroomId: getStudentHousesResponse.data!.classroomId!,
                     classroomSectionStudentsId: classroomToSectionId.toString(),
                     isParent: false,
+                    branchId: branchId,
+                classroomToSectionId: widget.classroomToSectionId,
+                teacherId: widget.teacherId,
                   )));
 
   void _onGetStudentHousesFillState(String error) =>
