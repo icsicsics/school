@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/remote/model/advisors/response/guide.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/generated/l10n.dart';
@@ -52,10 +53,13 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
   MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
   bool _isFather = false;
   String _token = '';
+  List<String> _guides = [];
 
   @override
   void initState() {
     _bloc.add(GetIsFatherEvent());
+    if ((widget.branchId ?? "").isNotEmpty)
+      _bloc.add(GetGuidesEvent(branchId: widget.branchId ?? ""));
     super.initState();
   }
 
@@ -93,7 +97,12 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         } else if (state is MyChildrenFilterState) {
           _teacherStudentProfileInSchoolHouseResponse.data!.points =
               state.filter;
-        }
+        } else if (state is GetGuidesSuccessState) {
+          _guides= [];
+          for (var item in state.guides) {
+            _guides.add(item.guideId ?? "");
+          }
+        } else if (state is GetGuidesErrorState) {}
       },
       builder: (context, state) {
         return Scaffold(
@@ -105,7 +114,11 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                     teacherStudentProfileInSchoolHouseResponse:
                         _teacherStudentProfileInSchoolHouseResponse,
                     getTeacherPrinciplByClassroomIdResponse:
-                        _getTeacherPrinciplByClassroomIdResponse)
+                        _getTeacherPrinciplByClassroomIdResponse,
+                    guides: _guides,
+                    studentId: widget.studentId,
+                    teacherId: widget.teacherId ?? "",
+                  )
                 : Container());
       },
     );
@@ -132,7 +145,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                       "",
                   branchId: widget.branchId ?? "",
                   studentId: _teacherStudentProfileInSchoolHouseResponse
-                      .data?.studentId ?? "",
+                          .data?.studentId ??
+                      "",
                   advisors: _teacherStudentProfileInSchoolHouseResponse
                           .data?.advisors ??
                       [],

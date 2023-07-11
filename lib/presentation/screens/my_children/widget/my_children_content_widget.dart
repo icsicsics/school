@@ -9,12 +9,18 @@ class MyChildrenContentWidget extends StatefulWidget {
       teacherStudentProfileInSchoolHouseResponse;
   final GetTeacherPrinciplByClassroomIdResponse
       getTeacherPrinciplByClassroomIdResponse;
+  final List<String> guides;
+  final String studentId;
+  final String teacherId;
 
-  const MyChildrenContentWidget(
-      {Key? key,
-      required this.teacherStudentProfileInSchoolHouseResponse,
-      required this.getTeacherPrinciplByClassroomIdResponse})
-      : super(key: key);
+  const MyChildrenContentWidget({
+    Key? key,
+    required this.teacherStudentProfileInSchoolHouseResponse,
+    required this.getTeacherPrinciplByClassroomIdResponse,
+    required this.guides,
+    required this.studentId,
+    required this.teacherId,
+  }) : super(key: key);
 
   @override
   State<MyChildrenContentWidget> createState() =>
@@ -31,10 +37,14 @@ class _MyChildrenContentWidgetState extends State<MyChildrenContentWidget> {
               teacherStudentProfileInSchoolHouseResponse:
                   widget.teacherStudentProfileInSchoolHouseResponse),
           MyChildrenBodyWidget(
-              points: widget
-                  .teacherStudentProfileInSchoolHouseResponse.data!.points!,
-              getTeacherPrinciplByClassroomIdResponse:
-                  widget.getTeacherPrinciplByClassroomIdResponse)
+            points:
+                widget.teacherStudentProfileInSchoolHouseResponse.data!.points!,
+            getTeacherPrinciplByClassroomIdResponse:
+                widget.getTeacherPrinciplByClassroomIdResponse,
+            guides: widget.guides,
+            studentId: widget.studentId,
+            teacherId: widget.teacherId,
+          )
         ],
       ),
     );

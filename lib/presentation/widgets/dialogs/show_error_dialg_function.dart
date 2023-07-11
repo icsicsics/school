@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:schools/presentation/widgets/dialogs/error_dialog_widget.dart';
 
-Future<void> showErrorDialogFunction(
-    {required BuildContext context, required String textMessage,bool isGift=false}) =>
+Future<void> showErrorDialogFunction({
+  required BuildContext context,
+  required String textMessage,
+  bool isGift = false,
+}) =>
     showDialog(
         barrierDismissible: true,
         context: context,
@@ -11,5 +14,5 @@ Future<void> showErrorDialogFunction(
             backgroundColor: Colors.transparent,
             child: ErrorDialogWidget(
               textMessage: textMessage,
-              isGift:isGift,
+              isGift: isGift,
             )));

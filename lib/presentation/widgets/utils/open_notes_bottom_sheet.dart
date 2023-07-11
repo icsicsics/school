@@ -6,6 +6,9 @@ import 'package:schools/presentation/widgets/utils/notes_bottom_sheet_widget.dar
 Future openNotesBottomSheet({
   required BuildContext context,
   required double height,
+  required List<String> guides,
+  required String studentId,
+  required String teacherId,
 }) async {
   await showModalBottomSheet(
       isDismissible: false,
@@ -13,10 +16,13 @@ Future openNotesBottomSheet({
       enableDrag: false,
       isScrollControlled: true,
       builder: (context) => Padding(
-        padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: NotesBottomSheetWidget(
-          height: height,
-        ),
-      ));
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: NotesBottomSheetWidget(
+              height: height,
+              guides: guides,
+              studentId: studentId,
+              teacherId: teacherId,
+            ),
+          ));
 }

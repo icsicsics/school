@@ -4,6 +4,7 @@ import 'package:schools/data/source/remote/api_key.dart';
 import 'package:schools/data/source/remote/model/advisors/request/create_meeting_request.dart';
 import 'package:schools/data/source/remote/model/father_point/request/father_add_point_request.dart';
 import 'package:schools/data/source/remote/model/get_token/request/get_token_request.dart';
+import 'package:schools/data/source/remote/model/notes/request/create_note_request.dart';
 import 'package:schools/data/source/remote/model/notification/request/notification_request.dart';
 import 'package:schools/data/source/remote/model/teacher_point/request/teacher_add_point_request.dart';
 import 'package:schools/data/source/remote/model/verfiy_phone/request/verify_phone_request.dart';
@@ -283,6 +284,21 @@ class DioHelper {
     CreateMeetingRequest request,
   ) async {
     return dio.post(ApiKey.createGuideMeeting,
+        data: request,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
+
+  static Future<Response> createNote(
+    token,
+    CreateNoteRequest request,
+  ) async {
+    return dio.post(ApiKey.createNotesStudents,
         data: request,
         options: Options(
           headers: {

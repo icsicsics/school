@@ -1,15 +1,15 @@
-class CreateMeetingResponse {
+class CreateNoteResponse {
   int? errorCode;
   String? errorMessage;
   String? data;
 
-  CreateMeetingResponse({
+  CreateNoteResponse({
     this.errorCode,
     this.errorMessage,
     this.data,
   });
 
-  CreateMeetingResponse.fromJson(dynamic json) {
+  CreateNoteResponse.fromJson(dynamic json) {
     errorCode = json['errorCode'];
     errorMessage = json['errorMessage'];
     data = json['data'];

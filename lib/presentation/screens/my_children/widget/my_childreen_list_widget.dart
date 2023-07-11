@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/utils/awesome/fa_icon.dart';
 import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/points.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/widgets/medium_text_widget.dart';
+import 'package:schools/presentation/widgets/utils/open_notes_bottom_sheet.dart';
 
 class MyChildrenWidget extends StatefulWidget {
   final List<Points> points;
   final GetTeacherPrinciplByClassroomIdResponse
       getTeacherPrinciplByClassroomIdResponse;
+  final List<String> guides;
+  final String studentId;
+  final String teacherId;
 
-  const MyChildrenWidget(
-      {Key? key,
-      required this.points,
-      required this.getTeacherPrinciplByClassroomIdResponse})
-      : super(key: key);
+  const MyChildrenWidget({
+    Key? key,
+    required this.points,
+    required this.getTeacherPrinciplByClassroomIdResponse,
+    required this.guides,
+    required this.studentId,
+    required this.teacherId,
+  }) : super(key: key);
 
   @override
   State<MyChildrenWidget> createState() => _MyChildrenWidgetState();
@@ -80,8 +89,9 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 110,
+        height: 130,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,6 +102,21 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: _list.map((e) => _checkIndexForValues(e)).toList(),
+            ),
+            InkWell(
+              onTap: () {
+                openNotesBottomSheet(
+                  context: context,
+                  height: 350,
+                  guides: widget.guides,
+                  studentId: widget.studentId,
+                  teacherId: widget.teacherId,
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(ImagesPath.notesIcon),
+              ),
             ),
           ],
         ));
@@ -109,14 +134,15 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
             children: [
               MediumTextWidget(
                   text: model.title, fontSize: 15, color: _getColor(model)),
-              if(model.isSelected) SizedBox(width: 4,),
+              if (model.isSelected)
+                SizedBox(
+                  width: 4,
+                ),
               if (model.isSelected)
                 MediumTextWidget(
                     text: "${filter.length}",
                     fontSize: 14,
                     color: _getColor(model))
-
-
             ],
           ),
         ),

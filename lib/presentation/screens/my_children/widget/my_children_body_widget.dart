@@ -9,12 +9,18 @@ class MyChildrenBodyWidget extends StatefulWidget {
   final List<Points> points;
   final GetTeacherPrinciplByClassroomIdResponse
       getTeacherPrinciplByClassroomIdResponse;
+  final List<String> guides;
+  final String studentId;
+  final String teacherId;
 
-  const MyChildrenBodyWidget(
-      {Key? key,
-      required this.points,
-      required this.getTeacherPrinciplByClassroomIdResponse})
-      : super(key: key);
+  const MyChildrenBodyWidget({
+    Key? key,
+    required this.points,
+    required this.getTeacherPrinciplByClassroomIdResponse,
+    required this.guides,
+    required this.studentId,
+    required this.teacherId,
+  }) : super(key: key);
 
   @override
   State<MyChildrenBodyWidget> createState() => _MyChildrenBodyWidgetState();
@@ -23,20 +29,26 @@ class MyChildrenBodyWidget extends StatefulWidget {
 class _MyChildrenBodyWidgetState extends State<MyChildrenBodyWidget> {
   @override
   Widget build(BuildContext context) {
-    return widget.getTeacherPrinciplByClassroomIdResponse.data!=null?Container(
-      color: ColorsManager.backgroundColor,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            MyChildrenWidget(
-                points: widget.points,
-                getTeacherPrinciplByClassroomIdResponse:
-                    widget.getTeacherPrinciplByClassroomIdResponse),
-            PointsScreenWidget(points: widget.points),
-          ],
-        ),
-      ),
-    ): Container();
+    return widget.getTeacherPrinciplByClassroomIdResponse.data != null
+        ? Container(
+            color: ColorsManager.backgroundColor,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  MyChildrenWidget(
+                    points: widget.points,
+                    getTeacherPrinciplByClassroomIdResponse:
+                        widget.getTeacherPrinciplByClassroomIdResponse,
+                    guides: widget.guides,
+                    studentId: widget.studentId,
+                    teacherId: widget.teacherId,
+                  ),
+                  PointsScreenWidget(points: widget.points),
+                ],
+              ),
+            ),
+          )
+        : Container();
   }
 }

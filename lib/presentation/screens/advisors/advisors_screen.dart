@@ -3,14 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
-import 'package:schools/data/source/remote/model/advisors/response/guide.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/advisor.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/advisors/advisors_bloc.dart';
 import 'package:schools/presentation/screens/advisors/utils/open_request_meeting_bottom_sheet.dart';
 import 'package:schools/presentation/screens/advisors/widgets/advisor_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
-import 'package:schools/presentation/widgets/utils/open_notes_bottom_sheet.dart';
 
 class AdvisorsScreen extends BaseStatefulWidget {
   final List<Advisor> advisors;
@@ -76,10 +74,6 @@ class _AdvisorsScreenState extends BaseState<AdvisorsScreen> {
           floatingActionButton: InkWell(
             onTap: () {
               _bloc.add(GetGuidesEvent(branchId: widget.branchId));
-              // openNotesBottomSheet(
-              //   context: context,
-              //   height: 350,
-              // );
             },
             child: Container(
                 height: 40,

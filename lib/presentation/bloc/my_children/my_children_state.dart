@@ -69,3 +69,19 @@ class MyChildrenFilterState extends MyChildrenState {
   final List<Points> filter;
   MyChildrenFilterState({required this.filter});
 }
+
+class GetGuidesSuccessState extends MyChildrenState {
+  final List<Guide> guides;
+
+   GetGuidesSuccessState({
+    required this.guides,
+  });
+}
+
+class GetGuidesErrorState extends MyChildrenState {
+  final String errorMessage;
+
+  GetGuidesErrorState({
+    required this.errorMessage,
+  });
+}

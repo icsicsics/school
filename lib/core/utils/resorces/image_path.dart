@@ -48,5 +48,6 @@ class ImagesPath {
 
   static const String positiveIcon = "${_basePath}ic_positive.png";
   static const String negativeIcon = "${_basePath}ic_negative.png";
+  static const String notesIcon = "${_basePath}ic_notes.svg";
 
 }

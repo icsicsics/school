@@ -16,7 +16,7 @@ class OpenAddPointAlertEvent extends MyChildrenEvent {}
 class NavigateToNotificationScreenEvent extends MyChildrenEvent {
   final bool isNotificationSelected;
 
-   NavigateToNotificationScreenEvent({
+  NavigateToNotificationScreenEvent({
     required this.isNotificationSelected,
   });
 }
@@ -46,5 +46,14 @@ class MyChildrenFilterEvent extends MyChildrenEvent {
 
   MyChildrenFilterEvent({required this.filter});
 }
+
+class GetGuidesEvent extends MyChildrenEvent {
+  final String branchId;
+
+  GetGuidesEvent({
+    required this.branchId,
+  });
+}
+
 
 
