@@ -241,8 +241,14 @@ class DioHelper {
   }
 
   static Future<Response> getWeather(lat, lon, lan) async {
-    return dio.get(
-      'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=9417a6b6e67474512aca9f713dc57937&lang=$lan',
+    Dio dioWeather = Dio(BaseOptions(
+      baseUrl: "https://api.openweathermap.org/data/2.5/",
+      receiveDataWhenStatusError: true,
+    ));
+    dioWeather.interceptors.add(CustomInterceptors());
+
+    return dioWeather.get(
+      'weather?lat=$lat&lon=$lon&appid=9417a6b6e67474512aca9f713dc57937&lang=$lan',
     );
   }
 

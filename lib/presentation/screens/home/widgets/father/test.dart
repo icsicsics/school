@@ -19,6 +19,7 @@ import 'package:schools/presentation/screens/home/widgets/father/father_heder_wi
 import 'package:intl/intl.dart';
 import 'package:schools/presentation/screens/my_children/my_children_screen.dart';
 import 'package:schools/presentation/screens/school_houses/school_houses_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Test extends StatefulWidget {
   final GetChildrenByParentResponse parentHomeResponse;
@@ -54,8 +55,6 @@ class _TestState extends State<Test> {
       widget.homeBloc.branchId =
           widget.parentHomeResponse.data![_current].classroomToSectionId ?? "";
     }
-
-
   }
 
   @override
@@ -99,7 +98,7 @@ class _TestState extends State<Test> {
                                       classroomToSectionId: "",
                                       teacherId: "",
                                       isComingFromHome: true,
-                                  branchId: "",
+                                      branchId: "",
                                     )));
                       },
                       child: Column(
@@ -149,7 +148,8 @@ class _TestState extends State<Test> {
                                     .map((point) => Column(
                                           children: [
                                             Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 CircleAvatar(
                                                   backgroundColor: Colors.white,
@@ -227,6 +227,35 @@ class _TestState extends State<Test> {
         ));
   }
 
+  Widget _item({
+    required IconData icon,
+    required Function() onTap,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: InkWell(
+        onTap: onTap,
+        child: Icon(
+          icon,
+          size: 20,
+          color: ColorsManager.primaryColor,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  void launchWhatsapp(String whatsappNumber) async {
+    await canLaunchUrl(Uri.parse(whatsappNumber))
+        ? launchUrl(Uri.parse(whatsappNumber))
+        : launch("https://wa.me/$whatsappNumber");
+  }
+
   Stack _buildImageSection() {
     return Stack(
       clipBehavior: Clip.none,
@@ -264,6 +293,43 @@ class _TestState extends State<Test> {
                 fit: BoxFit.scaleDown,
               );
             },
+          ),
+        ),
+        Positioned(
+          top: 8,
+          left: 8,
+          right: 8,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _item(
+                  onTap: () {
+                    _launchUrl(widget.parentHomeResponse.data![_current].facebookURL ?? "https://www.facebook.com/");
+                  },
+                  icon: FontAwesomeIcons.facebook),
+              _item(
+                  onTap: () {
+                    _launchUrl(widget.parentHomeResponse.data![_current].instagramURL ?? "https://www.instagram.com/");
+                  },
+                  icon: FontAwesomeIcons.instagram),
+              _item(
+                  onTap: () {
+                    print(widget.parentHomeResponse.data![_current].tweeterURL);
+                    _launchUrl(widget.parentHomeResponse.data![_current].tweeterURL ?? "https://twitter.com/");
+                  },
+                  icon: FontAwesomeIcons.twitter),
+              _item(
+                  onTap: () {
+                    _launchUrl(widget.parentHomeResponse.data![_current].snapchatURL ?? "https://www.snapchat.com/");
+                  },
+                  icon: FontAwesomeIcons.snapchat),
+              _item(
+                  onTap: () {
+                    _launchUrl(widget.parentHomeResponse.data![_current].websiteURL ?? "");
+                  },
+                  icon: FontAwesomeIcons.globe),
+            ],
           ),
         ),
         Positioned(

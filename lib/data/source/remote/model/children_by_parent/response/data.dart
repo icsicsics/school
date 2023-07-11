@@ -9,6 +9,11 @@ class Data {
   String? studentId;
   String? classroomId;
   GetImage? getImage;
+  String? facebookURL;
+  String? instagramURL;
+  String? tweeterURL;
+  String? snapchatURL;
+  String? websiteURL;
 
   Data({
     this.branchName,
@@ -19,6 +24,11 @@ class Data {
     this.studentId,
     this.classroomId,
     this.getImage,
+    this.facebookURL,
+    this.instagramURL,
+    this.tweeterURL,
+    this.snapchatURL,
+    this.websiteURL,
   });
 
   Data.fromJson(dynamic json) {
@@ -27,6 +37,11 @@ class Data {
     classroomSectionStudentsId = json['classroomSectionStudentsId'];
     classroomToSectionId = json['classroomToSectionId'];
     studentName = json['studentName'];
+    facebookURL = json['facebookURL'];
+    instagramURL = json['instagramURL'];
+    tweeterURL = json['tweeterURL'];
+    snapchatURL = json['snapchatURL'];
+    websiteURL = json['websiteURL'];
     studentId = json['studentId'];
     classroomId = json['classroomId'];
     getImage =
@@ -40,6 +55,11 @@ class Data {
     map['classroomSectionStudentsId'] = classroomSectionStudentsId;
     map['classroomToSectionId'] = classroomToSectionId;
     map['studentName'] = studentName;
+    map['facebookURL'] = facebookURL;
+    map['instagramURL'] = instagramURL;
+    map['tweeterURL'] = tweeterURL;
+    map['snapchatURL'] = snapchatURL;
+    map['websiteURL'] = websiteURL;
     map['studentId'] = studentId;
     map['classroomId'] = classroomId;
     if (getImage != null) {

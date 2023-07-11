@@ -1,6 +1,6 @@
 class Main {
   double? temp;
-  double? feelsLike;
+  int? feelsLike;
   double? tempMin;
   double? tempMax;
   int? pressure;

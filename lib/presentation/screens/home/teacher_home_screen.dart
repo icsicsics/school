@@ -280,8 +280,20 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){
-                          // OPEN Dialog With Info Will send by abanoub
+                        onTap: () {
+                          // OPEN Dialog With Info Will send by abanoub\
+                          /*
+                           showDialog(
+                barrierDismissible: true,
+                context: context,
+                builder: (BuildContext context) => Dialog(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    child: PhoneErrorDialogWidget(
+                      textMessage: S.of(context).phoneErrorMessage,
+                      language: _language,
+                    )));
+                           */
                         },
                         child: Icon(
                           Icons.info_outline,
