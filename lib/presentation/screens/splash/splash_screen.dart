@@ -109,6 +109,7 @@ class _SplashScreenState extends BaseState<SplashScreen> {
     Navigator.pushReplacementNamed(
       context,
       AppRoutes.channels,
+      arguments: "ejabi"
     );
   }
 }

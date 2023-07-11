@@ -151,6 +151,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       context,
       AppRoutes.channels,
       (route) => false,
+      arguments: "ejabi"
     );
   }
 }
