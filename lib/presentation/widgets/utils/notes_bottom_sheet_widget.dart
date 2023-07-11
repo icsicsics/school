@@ -36,13 +36,14 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 240,
+      height: 250,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 16,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -101,7 +102,7 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                     ),
                   ),
                   focusColor: ColorsManager.primaryColor,
-                  hintText: "Notes",
+                  hintText: S.of(context).notes,
                   hintStyle: const TextStyle(
                     fontSize: 13,
                     color: ColorsManager.sameBlack,
@@ -110,20 +111,66 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                 controller: textEditingController,
                 onChanged: (value1) {
                   errorText = null;
+                  _selectedValue = null;
                   note = value1;
                   setState(() {});
                 },
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                _buildConfirmButton(
-                  ImagesPath.positiveIcon,
+            _buildConfirmButton()
+            // Row(
+            //   children: [
+            //     _buildConfirmButton(
+            //       ImagesPath.positiveIcon,
+            //       S.of(context).positive,
+            //       () async {
+            //
+            //       },
+            //     ),
+            //     SizedBox(
+            //       width: 40,
+            //     ),
+            //     _buildConfirmButton(
+            //       ImagesPath.negativeIcon,
+            //       S.of(context).negative,
+            //       () async {
+            //
+            //       },
+            //     ),
+            //   ],
+            // )
+          ],
+        ),
+      ),
+    );
+  }
+
+  String? _selectedValue;
+
+  Widget _buildConfirmButton() {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        unselectedWidgetColor: ColorsManager.grayColor,
+      ),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ListTile(
+                horizontalTitleGap: 0,
+                title: Text(
                   S.of(context).positive,
-                  () async {
+                  style: TextStyle(fontSize: 14),
+                ),
+                leading: Radio(
+                  value: S.of(context).positive,
+                  activeColor: ColorsManager.primaryColor,
+                  groupValue: _selectedValue,
+                  onChanged: (String? value) async {
+                    _selectedValue = value ?? "";
+                    setState(() {});
                     String token =
                         await SharedPreferencesManager.getTokenDio() ?? "";
                     CreateNoteRequest request = CreateNoteRequest(
@@ -142,7 +189,9 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                               CreateNoteResponse.fromJson(res.data);
                           showErrorDialogFunction(
                               context: context,
-                              textMessage: createNoteResponse.data ?? "");
+                              textMessage: createNoteResponse.data ?? "",onPressed: () {
+                            Navigator.pop(context);
+                          });
                         } else {
                           CreateNoteResponse createNoteResponse =
                               CreateNoteResponse.fromJson(res.data);
@@ -157,18 +206,27 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                             textMessage: "Something went wrong.");
                       }
                     } else {
-                      errorText = "Please enter note";
+                      errorText = S.of(context).pleasEnterNote;
                       setState(() {});
                     }
                   },
                 ),
-                SizedBox(
-                  width: 40,
-                ),
-                _buildConfirmButton(
-                  ImagesPath.negativeIcon,
+              ),
+            ),
+            Expanded(
+              child: ListTile(
+                horizontalTitleGap: 0,
+                title: Text(
                   S.of(context).negative,
-                  () async {
+                  style: TextStyle(fontSize: 14),
+                ),
+                leading: Radio(
+                  value: S.of(context).negative,
+                  activeColor: ColorsManager.primaryColor,
+                  groupValue: _selectedValue,
+                  onChanged: (String? value) async {
+                    _selectedValue = value ?? "";
+                    setState(() {});
                     String token =
                         await SharedPreferencesManager.getTokenDio() ?? "";
                     CreateNoteRequest request = CreateNoteRequest(
@@ -184,17 +242,20 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                             await DioHelper.createNote(token, request);
                         if (res.statusCode == 200) {
                           CreateNoteResponse createNoteResponse =
-                          CreateNoteResponse.fromJson(res.data);
+                              CreateNoteResponse.fromJson(res.data);
                           showErrorDialogFunction(
                               context: context,
-                              textMessage: createNoteResponse.data ?? "");
+                              textMessage: createNoteResponse.data ?? "",onPressed: () {
+                            Navigator.pop(context);
+                          });
                         } else {
                           CreateNoteResponse createNoteResponse =
-                          CreateNoteResponse.fromJson(res.data);
+                              CreateNoteResponse.fromJson(res.data);
                           showErrorDialogFunction(
                               context: context,
                               textMessage:
-                              createNoteResponse.errorMessage ?? "");
+                                  createNoteResponse.errorMessage ?? "",
+                              );
                         }
                       } catch (e) {
                         showErrorDialogFunction(
@@ -207,38 +268,38 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                     }
                   },
                 ),
-              ],
-            )
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildConfirmButton(String image, String text, Function() onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        children: [
-          Image.asset(
-            image,
-            width: 30,
-            height: 30,
-          ),
-          SizedBox(
-            width: 8,
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: 14,
-              color: ColorsManager.black,
-              fontWeight: FontWeight.w500,
-              letterSpacing: -0.13,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+// Widget _buildConfirmButton(String image, String text, Function() onTap) {
+//   return InkWell(
+//     onTap: onTap,
+//     child: Row(
+//       children: [
+//         Image.asset(
+//           image,
+//           width: 30,
+//           height: 30,
+//         ),
+//         SizedBox(
+//           width: 8,
+//         ),
+//         Text(
+//           text,
+//           style: TextStyle(
+//             fontSize: 14,
+//             color: ColorsManager.black,
+//             fontWeight: FontWeight.w500,
+//             letterSpacing: -0.13,
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
 }

@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رمز تفعيل الخطأ"),
         "errorVerifyCode":
             MessageLookupByLibrary.simpleMessage("رمز التحقق غير صحيح"),
+        "excellent": MessageLookupByLibrary.simpleMessage("ممتاز"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("اب ل"),
         "feb": MessageLookupByLibrary.simpleMessage("فبراير"),
         "findNearbyEvents":
@@ -77,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "from": MessageLookupByLibrary.simpleMessage("من"),
         "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
         "getStart": MessageLookupByLibrary.simpleMessage("ابدأ"),
+        "good": MessageLookupByLibrary.simpleMessage("جيد"),
         "honesty": MessageLookupByLibrary.simpleMessage("أمانة"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage("قرأت وأقبل ب"),
@@ -109,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "negative": MessageLookupByLibrary.simpleMessage("سلبي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
+        "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "nov": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
@@ -128,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNotCorrect":
             MessageLookupByLibrary.simpleMessage("الرقم غير صحيح"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "pleasEnterNote":
+            MessageLookupByLibrary.simpleMessage("يرجى ادخال ملاحظة"),
         "pleaseEnterThePhoneNumber":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم الهاتف"),
         "pleaseSelectWhyThisPointFirst":
@@ -136,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "الرجاء كتابة رمز التحقق المرسل إلى \n هاتفك"),
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
+        "poor": MessageLookupByLibrary.simpleMessage("ضعيف"),
         "positive": MessageLookupByLibrary.simpleMessage("إيجابي"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "requestMeeting": MessageLookupByLibrary.simpleMessage("طلب اجتماع"),
@@ -159,7 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "teacherOf": MessageLookupByLibrary.simpleMessage("معلم ل"),
         "teachers": MessageLookupByLibrary.simpleMessage("معلمون"),
         "teachersPerformance":
-            MessageLookupByLibrary.simpleMessage("اداء المدرسين"),
+            MessageLookupByLibrary.simpleMessage("اداء المدرس"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("الأحكام والشروط"),

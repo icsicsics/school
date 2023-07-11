@@ -48,7 +48,10 @@ class _RequestMeetingBottomSheetWidgetState
         } else if (state is HideLoadingState) {
           // hideLoading();
         } else if (state is CreateMeetingSuccessState) {
-          showErrorDialogFunction(context: context, textMessage: state.message);
+          showErrorDialogFunction(
+              context: context,
+              textMessage: state.message,
+              onPressed: () => Navigator.pop(context));
         } else if (state is CreateMeetingErrorState) {
           showErrorDialogFunction(
               context: context, textMessage: state.errorMessage);
@@ -58,7 +61,7 @@ class _RequestMeetingBottomSheetWidgetState
       },
       builder: (context, state) {
         return SizedBox(
-          height: 500,
+          height: 510,
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -93,7 +96,7 @@ class _RequestMeetingBottomSheetWidgetState
                   height: 16,
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 110,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: widget.guides.length,

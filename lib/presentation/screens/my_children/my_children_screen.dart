@@ -10,6 +10,7 @@ import 'package:schools/data/source/remote/model/teacher_student_profile_in_scho
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/my_children/my_children_bloc.dart';
 import 'package:schools/presentation/screens/advisors/advisors_screen.dart';
+import 'package:schools/presentation/screens/advisors/utils/open_request_meeting_bottom_sheet.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
@@ -53,7 +54,8 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
   MyChildrenBloc get _bloc => BlocProvider.of<MyChildrenBloc>(context);
   bool _isFather = false;
   String _token = '';
-  List<String> _guides = [];
+  List<String> _guidesId = [];
+  List<Guide> _guides = [];
 
   @override
   void initState() {
@@ -98,9 +100,10 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
           _teacherStudentProfileInSchoolHouseResponse.data!.points =
               state.filter;
         } else if (state is GetGuidesSuccessState) {
-          _guides= [];
+          _guides = state.guides;
+          _guidesId= [];
           for (var item in state.guides) {
-            _guides.add(item.guideId ?? "");
+            _guidesId.add(item.guideId ?? "");
           }
         } else if (state is GetGuidesErrorState) {}
       },
@@ -115,7 +118,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
                         _teacherStudentProfileInSchoolHouseResponse,
                     getTeacherPrinciplByClassroomIdResponse:
                         _getTeacherPrinciplByClassroomIdResponse,
-                    guides: _guides,
+                    guides: _guidesId,
                     studentId: widget.studentId,
                     teacherId: widget.teacherId ?? "",
                   )
@@ -135,25 +138,35 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return AdvisorsScreen(
-                  studentName: _teacherStudentProfileInSchoolHouseResponse
-                          .data?.studentName ??
-                      "",
-                  studentImage: _teacherStudentProfileInSchoolHouseResponse
-                          .data?.getImage?.mediaUrl ??
-                      "",
-                  branchId: widget.branchId ?? "",
-                  studentId: _teacherStudentProfileInSchoolHouseResponse
-                          .data?.studentId ??
-                      "",
-                  advisors: _teacherStudentProfileInSchoolHouseResponse
-                          .data?.advisors ??
-                      [],
-                  teacherId: widget.teacherId ?? "",
-                  classroomToSectionId: widget.classroomToSectionId ?? "",
-                );
-              }));
+              openRequestMeetingBottomSheet(
+                context: context,
+                height: 350,
+                guides: _guides,
+                studentId: _teacherStudentProfileInSchoolHouseResponse
+                            .data?.studentId ?? "",
+                classroomToSectionId: widget.classroomToSectionId ?? "",
+                teacherId: widget.teacherId ?? "",
+              );
+              // Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //   return AdvisorsScreen(
+              //     studentName: _teacherStudentProfileInSchoolHouseResponse
+              //             .data?.studentName ??
+              //         "",
+              //     studentImage: _teacherStudentProfileInSchoolHouseResponse
+              //             .data?.getImage?.mediaUrl ??
+              //         "",
+              //     branchId: widget.branchId ?? "",
+              //     studentId: _teacherStudentProfileInSchoolHouseResponse
+              //             .data?.studentId ??
+              //         "",
+              //     advisors: _teacherStudentProfileInSchoolHouseResponse
+              //             .data?.advisors ??
+              //         [],
+              //     teacherId: widget.teacherId ?? "",
+              //     classroomToSectionId: widget.classroomToSectionId ?? "",
+              //   );
+              // }));
+
             },
             child: Icon(
               Icons.person,

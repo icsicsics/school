@@ -74,9 +74,9 @@ class _VerifyScreenState extends BaseState<VerifyScreen> {
   void _navigateToHomeScreen() async {
     bool isFather = await SharedPreferencesManager.getIsFather() ?? false;
     if (isFather) {
-      Navigator.pushNamed(context, AppRoutes.home);
+      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (route) => false);
     } else {
-      Navigator.pushNamed(context, AppRoutes.teacherHome);
+      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.teacherHome, (route) => false);
     }
   }
 

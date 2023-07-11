@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error activation code"),
         "errorVerifyCode": MessageLookupByLibrary.simpleMessage(
             "The verification code is incorrect"),
+        "excellent": MessageLookupByLibrary.simpleMessage("Excellent"),
         "fatherOf": MessageLookupByLibrary.simpleMessage("Father Of"),
         "feb": MessageLookupByLibrary.simpleMessage("february"),
         "findNearbyEvents":
@@ -78,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "from": MessageLookupByLibrary.simpleMessage("From"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "getStart": MessageLookupByLibrary.simpleMessage("Get Start"),
+        "good": MessageLookupByLibrary.simpleMessage("Good"),
         "honesty": MessageLookupByLibrary.simpleMessage("Honesty"),
         "ihaveReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage(" I have read and accept the"),
@@ -109,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "negative": MessageLookupByLibrary.simpleMessage("Negative"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "notes": MessageLookupByLibrary.simpleMessage("Notes"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "nov": MessageLookupByLibrary.simpleMessage("november"),
         "number": MessageLookupByLibrary.simpleMessage("Number"),
@@ -128,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNotCorrect":
             MessageLookupByLibrary.simpleMessage("Phone number is not correct"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "pleasEnterNote":
+            MessageLookupByLibrary.simpleMessage("Please enter note"),
         "pleaseEnterThePhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone number"),
         "pleaseSelectWhyThisPointFirst":
@@ -136,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Please type verification code sent to your\nphone"),
         "points": MessageLookupByLibrary.simpleMessage("Points"),
+        "poor": MessageLookupByLibrary.simpleMessage("Poor"),
         "positive": MessageLookupByLibrary.simpleMessage("Positive"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "requestMeeting":
@@ -160,7 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "teacherOf": MessageLookupByLibrary.simpleMessage("Teacher Of"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "teachersPerformance":
-            MessageLookupByLibrary.simpleMessage("Teachers Performance"),
+            MessageLookupByLibrary.simpleMessage("Teacher Performance"),
         "termOfUse": MessageLookupByLibrary.simpleMessage("Term of Use"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("Terms And Conditions"),

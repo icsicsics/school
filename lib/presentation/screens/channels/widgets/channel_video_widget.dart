@@ -10,13 +10,13 @@ import 'package:schools/presentation/screens/channels/video_screen.dart';
 class ChannelsVideoWidget extends StatefulWidget {
   final List<ChannelsData> channels;
   final ChannelsData channelsData;
-  final String token;
+  final String type;
 
   const ChannelsVideoWidget({
     Key? key,
     required this.channels,
     required this.channelsData,
-    required this.token,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -38,7 +38,7 @@ class _ChannelsVideoWidgetState extends State<ChannelsVideoWidget> {
         children: [
           InkWell(
             onTap: () {
-              if (widget.token.isEmpty) {
+              if (widget.type == "ejabi") {
                 Navigator.push(
                   context,
                   MaterialPageRoute(

@@ -4,6 +4,7 @@ import 'package:schools/presentation/widgets/dialogs/error_dialog_widget.dart';
 Future<void> showErrorDialogFunction({
   required BuildContext context,
   required String textMessage,
+  Function()? onPressed,
   bool isGift = false,
 }) =>
     showDialog(
@@ -15,4 +16,5 @@ Future<void> showErrorDialogFunction({
             child: ErrorDialogWidget(
               textMessage: textMessage,
               isGift: isGift,
+              onPressed: onPressed,
             )));

@@ -79,14 +79,10 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
           _weatherResponse = state.weather;
         } else if (state is GetTeacherInfoSuccessState) {
           _teacherInfoResponse = state.response;
-        } else if (state is GetTeacherInfoFillState){
-
-        } else if(state is GetWeatherFillState){
-
-        } else if(state is GetTeacherHomeFillState){
-
-        }
-        else if (state is SwitchAccountState){
+        } else if (state is GetTeacherInfoFillState) {
+        } else if (state is GetWeatherFillState) {
+        } else if (state is GetTeacherHomeFillState) {
+        } else if (state is SwitchAccountState) {
           _switchAccount();
         }
       },
@@ -108,6 +104,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         Positioned(
                           top: 48,
                           left: 16,
+                          right: 16,
                           child: Row(
                             children: [
                               InkWell(
@@ -122,11 +119,14 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                   color: Color(0xff3bbbac),
                                 ),
                               ),
-                              SizedBox(width: 0,),
+                              SizedBox(
+                                width: 0,
+                              ),
                               if (_roles.length > 1)
                                 IconButton(
                                   onPressed: () {
-                                    BlocProvider.of<HomeBloc>(context).add(SwitchAccountEvent());
+                                    BlocProvider.of<HomeBloc>(context)
+                                        .add(SwitchAccountEvent());
                                   },
                                   icon: const Icon(
                                     Icons.supervised_user_circle,
@@ -134,7 +134,6 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                     size: 30,
                                   ),
                                 ),
-
                             ],
                           ),
                         ),
@@ -266,18 +265,31 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                   SizedBox(
                     height: 16,
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16),
-                    width: double.infinity,
-                    child: Text(
-                      S.of(context).teachersPerformance,
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: ColorsManager.blackColor,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: -0.13),
-                      textAlign: TextAlign.start,
-                    ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          S.of(context).teachersPerformance,
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: ColorsManager.blackColor,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: -0.13),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          // OPEN Dialog With Info Will send by abanoub
+                        },
+                        child: Icon(
+                          Icons.info_outline,
+                          color: ColorsManager.primaryColor,
+                          size: 24,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 64,
@@ -300,7 +312,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                               GaugeRange(
                                 startValue: 0,
                                 endValue: 33,
-                                color: Color.fromRGBO(59, 187, 172, 1),
+                                color: Color.fromRGBO(243, 154, 74, 1),
                                 label: '',
                                 labelStyle: GaugeTextStyle(
                                     fontFamily: 'Times', fontSize: 20),
@@ -311,7 +323,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                               GaugeRange(
                                 startValue: 33,
                                 endValue: 66,
-                                color: Color.fromRGBO(243, 154, 74, 1),
+                                color: Color.fromRGBO(59, 187, 172, 1),
                                 label: '',
                                 labelStyle: GaugeTextStyle(
                                     fontFamily: 'Times', fontSize: 20),
@@ -339,6 +351,27 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                             ])
                       ],
                     ),
+                  ),
+                  _buildLegend(
+                    value: S.of(context).excellent,
+                    color: Color.fromRGBO(243, 154, 74, 1),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  _buildLegend(
+                    value: S.of(context).good,
+                    color: Color.fromRGBO(59, 187, 172, 1),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  _buildLegend(
+                    value: S.of(context).poor,
+                    color: Color.fromRGBO(249, 65, 68, 1),
+                  ),
+                  SizedBox(
+                    height: 16,
                   ),
                   Row(
                     children: [
@@ -408,6 +441,40 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
           ),
         );
       },
+    );
+  }
+
+  Padding _buildLegend({
+    required String value,
+    required Color color,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 16,
+            height: 16,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: color,
+            ),
+          ),
+          const SizedBox(
+            width: 12,
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 15,
+              color: ColorsManager.blackColor,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -510,7 +577,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
   }
 
   void _switchAccount() async {
-    await SharedPreferencesManager.setIsFather(!((await SharedPreferencesManager.getIsFather()) ?? false));
+    await SharedPreferencesManager.setIsFather(
+        !((await SharedPreferencesManager.getIsFather()) ?? false));
     RestartWidget.restartApp(context);
   }
 }

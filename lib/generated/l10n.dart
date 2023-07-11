@@ -1290,10 +1290,10 @@ class S {
     );
   }
 
-  /// `Teachers Performance`
+  /// `Teacher Performance`
   String get teachersPerformance {
     return Intl.message(
-      'Teachers Performance',
+      'Teacher Performance',
       name: 'teachersPerformance',
       desc: '',
       args: [],
@@ -1395,6 +1395,56 @@ class S {
     return Intl.message(
       'Negative',
       name: 'negative',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Excellent`
+  String get excellent {
+    return Intl.message(
+      'Excellent',
+      name: 'excellent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good`
+  String get good {
+    return Intl.message(
+      'Good',
+      name: 'good',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poor`
+  String get poor {
+    return Intl.message(
+      'Poor',
+      name: 'poor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes`
+  String get notes {
+    return Intl.message(
+      'Notes',
+      name: 'notes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter note`
+  String get pleasEnterNote {
+    return Intl.message(
+      'Please enter note',
+      name: 'pleasEnterNote',
       desc: '',
       args: [],
     );

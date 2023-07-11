@@ -123,7 +123,7 @@
   "welcomeToEjabiChannelEnglish": "Welcome to Ejabi Channel",
   "videos": "فيديوهات إيجابي",
   "moreAboutEjabi": "More about Ejabi – المزيد عن إيجابي",
-  "teachersPerformance": "اداء المدرسين",
+  "teachersPerformance": "اداء المدرس",
   "myClasses": "الفصول",
   "myHouses": "الفرق",
   "ejabjChannel": "قناة ايجابي",
@@ -134,7 +134,13 @@
   "from": "من",
   "to": "الى",
   "positive": "إيجابي",
-  "negative": "سلبي"
+  "negative": "سلبي",
+  "excellent": "ممتاز",
+  "good": "جيد",
+  "poor": "ضعيف",
+  "notes": "ملاحظات",
+  "pleasEnterNote": "يرجى ادخال ملاحظة"
+
 
 
 }

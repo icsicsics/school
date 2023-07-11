@@ -7,10 +7,14 @@ import 'package:schools/presentation/widgets/custom_button_widget.dart';
 class ErrorDialogWidget extends StatefulWidget {
   final String textMessage;
   final bool isGift;
+  final Function()? onPressed;
 
-  const ErrorDialogWidget(
-      {Key? key, required this.textMessage, this.isGift = false})
-      : super(key: key);
+  const ErrorDialogWidget({
+    Key? key,
+    required this.textMessage,
+    this.isGift = false,
+    this.onPressed,
+  }) : super(key: key);
 
   @override
   State<ErrorDialogWidget> createState() => _ErrorDialogWidgetState();
@@ -43,7 +47,12 @@ class _ErrorDialogWidgetState extends State<ErrorDialogWidget> {
             const Spacer(),
             CustomButtonWidget(
                 buttonWidth: MediaQuery.of(context).size.width / 3,
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  Navigator.pop(context);
+                  if (widget.onPressed != null) {
+                    widget.onPressed!();
+                  }
+                },
                 buttonText: S.of(context).ok,
                 borderRadius: 25,
                 buttonColor: ColorsManager.secondaryColor,

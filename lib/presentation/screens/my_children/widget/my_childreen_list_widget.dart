@@ -89,7 +89,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 130,
+        height: 150,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [

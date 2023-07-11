@@ -87,7 +87,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                       width: 20,
                       matchTextDirection: true,
                       fit: BoxFit.scaleDown,
-                    ))
+                    ),)
                 : null,
           ),
           body: SizedBox(
@@ -102,7 +102,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                       return ChannelsVideoWidget(
                         channelsData: _channels[index],
                         channels: _channels,
-                        token: _token,
+                        type: widget.type,
                       );
                     },
                   ),

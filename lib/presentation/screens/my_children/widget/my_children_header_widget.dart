@@ -73,21 +73,23 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: 10),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     BoldTextWidget(
-                        text: widget.teacherStudentProfileInSchoolHouseResponse
-                                .data!.studentName ??
-                            "",
-                        fontSize: 25,
-                        color: ColorsManager.whiteColor),
+                      text: widget.teacherStudentProfileInSchoolHouseResponse
+                              .data!.studentName ??
+                          "",
+                      fontSize: 20,
+                      color: ColorsManager.whiteColor,
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: MediumTextWidget(
-                          text: "${widget.teacherStudentProfileInSchoolHouseResponse.data!.houseName ?? ""}",
+                          text:
+                              "${widget.teacherStudentProfileInSchoolHouseResponse.data!.houseName ?? ""}",
                           fontSize: 18,
                           textAlign: TextAlign.center,
                           color: ColorsManager.whiteColor),
@@ -98,6 +100,7 @@ class _MyChildrenHeaderWidgetState extends State<MyChildrenHeaderWidget> {
                           text:
                               "${widget.teacherStudentProfileInSchoolHouseResponse.data!.schoolName ?? ""} - ${widget.teacherStudentProfileInSchoolHouseResponse.data!.classroomName ?? ""} - Section ${widget.teacherStudentProfileInSchoolHouseResponse.data!.sectionName ?? ""}",
                           fontSize: 16,
+                          textAlign: TextAlign.center,
                           color: ColorsManager.whiteColor),
                     )
                   ]),
