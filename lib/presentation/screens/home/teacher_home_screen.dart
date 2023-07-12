@@ -468,7 +468,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         title: S.of(context).myMedia,
                         onTap: () {
                           Navigator.pushNamed(context, AppRoutes.channels,
-                              arguments: "media");
+                              arguments: "ejabi");
                         },
                       ),
                       SizedBox(
@@ -479,7 +479,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         title: S.of(context).ejabiChannel,
                         onTap: () {
                           Navigator.pushNamed(context, AppRoutes.channels,
-                              arguments: "ejabi");
+                              arguments: "media");
                         },
                       ),
                     ],
