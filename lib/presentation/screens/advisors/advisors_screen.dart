@@ -38,10 +38,20 @@ class AdvisorsScreen extends BaseStatefulWidget {
 
 class _AdvisorsScreenState extends BaseState<AdvisorsScreen> {
   AdvisorsBloc get _bloc => BlocProvider.of<AdvisorsBloc>(context);
+  List<Advisor> _advisors = [];
 
   @override
   void initState() {
     super.initState();
+    if (widget.advisors.isNotEmpty) {
+      _advisors = _advisors;
+    } else {
+      _bloc.add(
+        GetAdvisorsEvent(
+          classroomToSectionId: '4f261749-acae-4e44-e47e-08db18c1787d',
+        ),
+      );
+    }
   }
 
   @override
@@ -62,10 +72,16 @@ class _AdvisorsScreenState extends BaseState<AdvisorsScreen> {
             teacherId: widget.teacherId,
           );
         } else if (state is GetGuidesErrorState) {
-          showErrorDialogFunction(context: context, textMessage: state.errorMessage);
+          showErrorDialogFunction(
+              context: context, textMessage: state.errorMessage);
         } else if (state is OpenRequestMeetingBottomSheetState) {
         } else if (state is NavigateBackState) {
           Navigator.pop(context);
+        } else if (state is GetAdvisorsSuccessState) {
+          _advisors = state.advisors;
+        } else if (state is GetAdvisorsErrorState) {
+          showErrorDialogFunction(
+              context: context, textMessage: state.errorMessage);
         }
       },
       builder: (context, state) {
@@ -115,12 +131,14 @@ class _AdvisorsScreenState extends BaseState<AdvisorsScreen> {
                 )),
           ),
           body: ListView.builder(
-            itemCount: 1,
+            itemCount: _advisors.length,
             itemBuilder: (context, index) {
               return AdvisorWidget(
-                studentName: widget.studentName,
+                studentName: _advisors[index].reportName ?? "",
+                // studentName: widget.studentName,
                 studentImage: widget.studentImage,
-                advisors: widget.advisors,
+                // advisors: widget.advisors,
+                advisors: _advisors,
               );
             },
           ),

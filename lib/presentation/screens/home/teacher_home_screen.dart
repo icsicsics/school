@@ -38,6 +38,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
   WeatherResponse _weatherResponse = WeatherResponse();
   List<String> _roles = [];
   String language = "";
+
   @override
   void initState() {
     super.initState();
@@ -91,7 +92,9 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
         return SafeArea(
           child: Scaffold(
             key: _key,
-            drawer: const SideMenuScreen(),
+            drawer:  SideMenuScreen(
+              branchId: _teacherInfoResponse.data?.branchId ?? "",
+            ),
             backgroundColor: ColorsManager.whiteColor,
             body: SingleChildScrollView(
               child: Column(
@@ -290,7 +293,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                 backgroundColor: Colors.transparent,
                                 child: Container(
                                   height: language == "en" ? 400 : 600,
-                                  padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 16),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.95),
                                     borderRadius: BorderRadius.all(
@@ -298,32 +302,45 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                     ),
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text("Yellow"),
-                                      SizedBox(height: 4,),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
                                       Text("Overuse"),
-                                      SizedBox(height: 4,),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
                                       Text(
-                                          "ImageYou're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
+                                          "You're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
                                       SizedBox(
                                         height: 16,
                                       ),
                                       Text("Green"),
-                                      SizedBox(height: 4,),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
                                       Text("convenient use"),
-                                      SizedBox(height: 4,),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
                                       Text(
-                                          "ImageYou're perfectly using the house points system. Keep up!."),
+                                          "You're perfectly using the house points system. Keep up!."),
                                       SizedBox(
                                         height: 16,
                                       ),
                                       Text("Red"),
-                                      SizedBox(height: 4,),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
                                       Text("Insufficient use"),
-                                      SizedBox(height: 4,),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
                                       Text(
-                                          "ImageYou're below the expectation of using a house points system, Reward some points to your students.."),
+                                          "You're below the expectation of using a house points system, Reward some points to your students.."),
                                     ],
                                   ),
                                 )),

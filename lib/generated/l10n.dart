@@ -1449,6 +1449,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Please Select Guide`
+  String get pleaseSelectGuide {
+    return Intl.message(
+      'Please Select Guide',
+      name: 'pleaseSelectGuide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

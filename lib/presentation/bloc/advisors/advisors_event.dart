@@ -27,6 +27,14 @@ class CreateMeetingEvent extends AdvisorsEvent {
   });
 }
 
+class GetAdvisorsEvent extends AdvisorsEvent {
+  final String classroomToSectionId;
+
+  const GetAdvisorsEvent({
+    required this.classroomToSectionId,
+  });
+}
+
 class NavigateBackEvent extends AdvisorsEvent {
   const NavigateBackEvent();
 }

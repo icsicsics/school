@@ -1,3 +1,5 @@
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/advisor.dart';
+
 import 'students.dart';
 
 class Data {
@@ -7,12 +9,16 @@ class Data {
   int? numberofStudentsHouse;
   String? classroomId;
   List<Students>? students;
+  List<Advisor>? advisors;
+
   Data({
-      this.houseName, 
-      this.sectionName, 
-      this.numberofStudentsHouse, 
-      this.classroomId, 
-      this.students,});
+    this.houseName,
+    this.sectionName,
+    this.numberofStudentsHouse,
+    this.classroomId,
+    this.students,
+    this.advisors,
+  });
 
   Data.fromJson(dynamic json) {
     houseName = json['houseName'];
@@ -26,8 +32,13 @@ class Data {
         students!.add(Students.fromJson(v));
       });
     }
+    if (json['studentGuideList'] != null) {
+      advisors = [];
+      json['studentGuideList'].forEach((v) {
+        advisors!.add(Advisor.fromJson(v));
+      });
+    }
   }
-
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -39,7 +50,9 @@ class Data {
     if (students != null) {
       map['students'] = students!.map((v) => v.toJson()).toList();
     }
+    if (advisors != null) {
+      map['studentGuideList'] = advisors!.map((v) => v.toJson()).toList();
+    }
     return map;
   }
-
 }

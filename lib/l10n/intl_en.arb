@@ -138,6 +138,8 @@
   "good": "Good",
   "poor": "Poor",
   "notes": "Notes",
-  "pleasEnterNote": "Please enter note"
+  "pleasEnterNote": "Please enter note",
+  "pleaseSelectGuide": "Please Select Guide",
+  "send": "Send"
 
 }

@@ -139,7 +139,10 @@
   "good": "جيد",
   "poor": "ضعيف",
   "notes": "ملاحظات",
-  "pleasEnterNote": "يرجى ادخال ملاحظة"
+  "pleasEnterNote": "يرجى ادخال ملاحظة",
+  "pleaseSelectGuide": "يرجى اختيار مرشد",
+  "send": "إرسال"
+
 
 
 

@@ -3,6 +3,8 @@ import 'package:schools/presentation/bloc/advisors/advisors_bloc.dart';
 
 abstract class AdvisorsRepository {
 
+  Future<AdvisorsState> getAdvisors(String classRoomToSectionId,bool language);
+
   Future<AdvisorsState> getGuides(String branchId,bool language);
 
   Future<AdvisorsState> createMeeting(CreateMeetingRequest request);

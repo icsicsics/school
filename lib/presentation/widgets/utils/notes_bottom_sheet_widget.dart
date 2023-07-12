@@ -8,6 +8,7 @@ import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/notes/request/create_note_request.dart';
 import 'package:schools/data/source/remote/model/notes/response/create_note_response.dart';
 import 'package:schools/generated/l10n.dart';
+import 'package:schools/presentation/widgets/custom_button_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 
 class NotesBottomSheetWidget extends StatefulWidget {
@@ -36,7 +37,7 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 290,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -117,28 +118,57 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                 },
               ),
             ),
-            _buildConfirmButton()
-            // Row(
-            //   children: [
-            //     _buildConfirmButton(
-            //       ImagesPath.positiveIcon,
-            //       S.of(context).positive,
-            //       () async {
-            //
-            //       },
-            //     ),
-            //     SizedBox(
-            //       width: 40,
-            //     ),
-            //     _buildConfirmButton(
-            //       ImagesPath.negativeIcon,
-            //       S.of(context).negative,
-            //       () async {
-            //
-            //       },
-            //     ),
-            //   ],
-            // )
+            _buildConfirmButton(),
+            SizedBox(
+              height: 16,
+            ),
+            CustomButtonWidget(
+              onPressed: () async {
+                if(note.isEmpty){
+                  errorText = S.of(context).pleasEnterNote;
+                  setState(() {});
+                } else if(_selectedValue == null) {
+                  showErrorDialogFunction(context: context, textMessage: "Please choose note status");
+                } else {
+                  String token =
+                      await SharedPreferencesManager.getTokenDio() ?? "";
+                  CreateNoteRequest request = CreateNoteRequest(
+                    teacherId: widget.teacherId,
+                    guideList: widget.guides,
+                    noteDetails: note,
+                    noteStatus: _selectedValue?.trim() == S.of(context).positive ? true : false,
+                    studentId: widget.studentId,
+                  );
+
+                  try {
+                    Response res =
+                    await DioHelper.createNote(token, request);
+                    if (res.statusCode == 200) {
+                      CreateNoteResponse createNoteResponse =
+                      CreateNoteResponse.fromJson(res.data);
+                      showErrorDialogFunction(
+                          context: context,
+                          textMessage: createNoteResponse.data ?? "",
+                          onPressed: () {
+                            Navigator.pop(context);
+                          });
+                    } else {
+                      CreateNoteResponse createNoteResponse =
+                      CreateNoteResponse.fromJson(res.data);
+                      showErrorDialogFunction(
+                          context: context,
+                          textMessage:
+                          createNoteResponse.errorMessage ?? "");
+                    }
+                  } catch (e) {
+                    showErrorDialogFunction(
+                        context: context,
+                        textMessage: "Something went wrong.");
+                  }
+                }
+              },
+              buttonText: S.of(context).send,
+            )
           ],
         ),
       ),
@@ -170,44 +200,6 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                   onChanged: (String? value) async {
                     _selectedValue = value ?? "";
                     setState(() {});
-                    String token =
-                        await SharedPreferencesManager.getTokenDio() ?? "";
-                    CreateNoteRequest request = CreateNoteRequest(
-                      teacherId: widget.teacherId,
-                      guideList: widget.guides,
-                      noteDetails: note,
-                      noteStatus: true,
-                      studentId: widget.studentId,
-                    );
-                    if (note.isNotEmpty) {
-                      try {
-                        Response res =
-                            await DioHelper.createNote(token, request);
-                        if (res.statusCode == 200) {
-                          CreateNoteResponse createNoteResponse =
-                              CreateNoteResponse.fromJson(res.data);
-                          showErrorDialogFunction(
-                              context: context,
-                              textMessage: createNoteResponse.data ?? "",onPressed: () {
-                            Navigator.pop(context);
-                          });
-                        } else {
-                          CreateNoteResponse createNoteResponse =
-                              CreateNoteResponse.fromJson(res.data);
-                          showErrorDialogFunction(
-                              context: context,
-                              textMessage:
-                                  createNoteResponse.errorMessage ?? "");
-                        }
-                      } catch (e) {
-                        showErrorDialogFunction(
-                            context: context,
-                            textMessage: "Something went wrong.");
-                      }
-                    } else {
-                      errorText = S.of(context).pleasEnterNote;
-                      setState(() {});
-                    }
                   },
                 ),
               ),
@@ -226,45 +218,6 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
                   onChanged: (String? value) async {
                     _selectedValue = value ?? "";
                     setState(() {});
-                    String token =
-                        await SharedPreferencesManager.getTokenDio() ?? "";
-                    CreateNoteRequest request = CreateNoteRequest(
-                      teacherId: widget.teacherId,
-                      guideList: widget.guides,
-                      noteDetails: note,
-                      noteStatus: false,
-                      studentId: widget.studentId,
-                    );
-                    if (note.isNotEmpty) {
-                      try {
-                        Response res =
-                            await DioHelper.createNote(token, request);
-                        if (res.statusCode == 200) {
-                          CreateNoteResponse createNoteResponse =
-                              CreateNoteResponse.fromJson(res.data);
-                          showErrorDialogFunction(
-                              context: context,
-                              textMessage: createNoteResponse.data ?? "",onPressed: () {
-                            Navigator.pop(context);
-                          });
-                        } else {
-                          CreateNoteResponse createNoteResponse =
-                              CreateNoteResponse.fromJson(res.data);
-                          showErrorDialogFunction(
-                              context: context,
-                              textMessage:
-                                  createNoteResponse.errorMessage ?? "",
-                              );
-                        }
-                      } catch (e) {
-                        showErrorDialogFunction(
-                            context: context,
-                            textMessage: "Something went wrong.");
-                      }
-                    } else {
-                      errorText = "Please enter note";
-                      setState(() {});
-                    }
                   },
                 ),
               ),
@@ -275,30 +228,4 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
     );
   }
 
-// Widget _buildConfirmButton(String image, String text, Function() onTap) {
-//   return InkWell(
-//     onTap: onTap,
-//     child: Row(
-//       children: [
-//         Image.asset(
-//           image,
-//           width: 30,
-//           height: 30,
-//         ),
-//         SizedBox(
-//           width: 8,
-//         ),
-//         Text(
-//           text,
-//           style: TextStyle(
-//             fontSize: 14,
-//             color: ColorsManager.black,
-//             fontWeight: FontWeight.w500,
-//             letterSpacing: -0.13,
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
 }

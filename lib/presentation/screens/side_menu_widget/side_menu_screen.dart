@@ -18,8 +18,10 @@ import 'package:schools/presentation/screens/side_menu_widget/widgets/curve.dart
 import 'package:schools/presentation/screens/web_view/web_view_screen.dart';
 
 class SideMenuScreen extends StatefulWidget {
+  final String branchId;
   const SideMenuScreen({
     Key? key,
+    this.branchId = "",
   }) : super(key: key);
 
   @override
@@ -107,7 +109,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
               advisors: [],
               studentName: "",
               studentImage: "",
-              branchId: "",
+              branchId: widget.branchId,
               studentId: "",
               classroomToSectionId: "",
               teacherId: "",

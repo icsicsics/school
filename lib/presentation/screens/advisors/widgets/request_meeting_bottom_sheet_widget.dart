@@ -367,7 +367,7 @@ class _RequestMeetingBottomSheetWidgetState
                         if (selectedGuide.guideId == null) {
                           showErrorDialogFunction(
                             context: context,
-                            textMessage: "Please select a guide",
+                            textMessage: S.of(context).pleaseSelectGuide,
                           );
                         } else {
                           CreateMeetingRequest request = CreateMeetingRequest(
@@ -388,7 +388,7 @@ class _RequestMeetingBottomSheetWidgetState
                         ),
                       ),
                       child: Text(
-                        "Send",
+                        S.of(context).send,
                         style: TextStyle(
                           color: Colors.white,
                           letterSpacing: -0.14,

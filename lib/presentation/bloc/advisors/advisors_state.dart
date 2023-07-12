@@ -50,4 +50,20 @@ class CreateMeetingErrorState extends AdvisorsState {
 
 class OpenRequestMeetingBottomSheetState extends AdvisorsState {}
 
+class GetAdvisorsSuccessState extends AdvisorsState {
+  final List<Advisor> advisors;
+
+  const GetAdvisorsSuccessState({
+    required this.advisors,
+  });
+}
+
+class GetAdvisorsErrorState extends AdvisorsState {
+  final String errorMessage;
+
+  const GetAdvisorsErrorState({
+    required this.errorMessage,
+  });
+}
+
 class NavigateBackState extends AdvisorsState {}

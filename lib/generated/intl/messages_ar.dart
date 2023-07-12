@@ -135,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى ادخال ملاحظة"),
         "pleaseEnterThePhoneNumber":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم الهاتف"),
+        "pleaseSelectGuide":
+            MessageLookupByLibrary.simpleMessage("يرجى اختيار مرشد"),
         "pleaseSelectWhyThisPointFirst":
             MessageLookupByLibrary.simpleMessage("أكتب تعليقا"),
         "pleaseTypeVerificationCodeSentToYourPhone":
@@ -151,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "schoolHomes": MessageLookupByLibrary.simpleMessage("فرق المدرسة"),
         "schoolHouses": MessageLookupByLibrary.simpleMessage("فرق المدرسة"),
         "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
+        "send": MessageLookupByLibrary.simpleMessage("إرسال"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("أرسل OTP"),
         "sep": MessageLookupByLibrary.simpleMessage("سبتمبر"),
