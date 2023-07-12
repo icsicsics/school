@@ -373,8 +373,7 @@ class _RequestMeetingBottomSheetWidgetState
                           CreateMeetingRequest request = CreateMeetingRequest(
                             guideId: selectedGuide.guideId,
                             studentId: widget.studentId,
-                            // meetingTime: selectedDate.toUtc().toString(),
-                            meetingTime: "2023-07-12T11:52:17Z",
+                            meetingTime: selectedDate.toUtc().toString().replaceAll(' ', "T"),
                             classroomToSectionId: widget.classroomToSectionId,
                             teacherId: widget.teacherId,
                           );
