@@ -59,8 +59,7 @@ class HomeRepositoryImp extends BaseHomeRepository {
       state = GetFatherInfoFillState(
           error: fatherInfoResponse.errorMessage ?? "Error");
     }
-    return state  ?? GetFatherInfoFillState(
-        error: "Error");
+    return state ?? GetFatherInfoFillState(error: "Error");
   }
 
   @override
@@ -81,7 +80,7 @@ class HomeRepositoryImp extends BaseHomeRepository {
   }
 
   @override
-  Future<HomeState> getWeather(late, long,lan) async {
+  Future<HomeState> getWeather(late, long, lan) async {
     HomeState? state;
     WeatherResponse weather = WeatherResponse();
     try {
