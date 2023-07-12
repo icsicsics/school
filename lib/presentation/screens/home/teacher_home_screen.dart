@@ -289,7 +289,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                 elevation: 0,
                                 backgroundColor: Colors.transparent,
                                 child: Container(
-                                  height: language == "en" ? 370 : 600,
+                                  height: language == "en" ? 400 : 600,
                                   padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.95),
@@ -309,21 +309,21 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 16,
                                       ),
-                                      Text("Yellow"),
+                                      Text("Green"),
                                       SizedBox(height: 4,),
-                                      Text("Overuse"),
+                                      Text("convenient use"),
                                       SizedBox(height: 4,),
                                       Text(
-                                          "ImageYou're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
+                                          "ImageYou're perfectly using the house points system. Keep up!."),
                                       SizedBox(
                                         height: 16,
                                       ),
-                                      Text("Yellow"),
+                                      Text("Red"),
                                       SizedBox(height: 4,),
-                                      Text("Overuse"),
+                                      Text("Insufficient use"),
                                       SizedBox(height: 4,),
                                       Text(
-                                          "ImageYou're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
+                                          "ImageYou're below the expectation of using a house points system, Reward some points to your students.."),
                                     ],
                                   ),
                                 )),
