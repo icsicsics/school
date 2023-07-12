@@ -96,7 +96,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         } else if (state is GetWeatherSuccessState) {
           _weatherResponse = state.weather;
         } else if (state is GetWeatherFillState) {
-          _onGetWeatherFillState(state.error);
+          // _onGetWeatherFillState(state.error);
         } else if (state is SwitchAccountState) {
           _switchAccount(context);
         } else if (state is GetTeacherStudentProfileInSchoolHouseSuccessState) {

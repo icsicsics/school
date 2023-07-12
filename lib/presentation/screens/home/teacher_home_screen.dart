@@ -281,19 +281,52 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          // OPEN Dialog With Info Will send by abanoub\
-                          /*
-                           showDialog(
-                barrierDismissible: true,
-                context: context,
-                builder: (BuildContext context) => Dialog(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    child: PhoneErrorDialogWidget(
-                      textMessage: S.of(context).phoneErrorMessage,
-                      language: _language,
-                    )));
-                           */
+                          showDialog(
+                            barrierDismissible: true,
+                            context: context,
+                            builder: (BuildContext context) => Dialog(
+                                elevation: 0,
+                                backgroundColor: Colors.transparent,
+                                child: Container(
+                                  height: 370,
+                                  padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.95),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Yellow"),
+                                      SizedBox(height: 4,),
+                                      Text("Overuse"),
+                                      SizedBox(height: 4,),
+                                      Text(
+                                          "ImageYou're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      Text("Yellow"),
+                                      SizedBox(height: 4,),
+                                      Text("Overuse"),
+                                      SizedBox(height: 4,),
+                                      Text(
+                                          "ImageYou're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      Text("Yellow"),
+                                      SizedBox(height: 4,),
+                                      Text("Overuse"),
+                                      SizedBox(height: 4,),
+                                      Text(
+                                          "ImageYou're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
+                                    ],
+                                  ),
+                                )),
+                          );
                         },
                         child: Icon(
                           Icons.info_outline,
@@ -365,21 +398,24 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                     ),
                   ),
                   _buildLegend(
-                    value: S.of(context).excellent,
+                    // value: S.of(context).excellent,
+                    value: "Overuse",
                     color: Color.fromRGBO(243, 154, 74, 1),
                   ),
                   SizedBox(
                     height: 8,
                   ),
                   _buildLegend(
-                    value: S.of(context).good,
+                    // value: S.of(context).good,
+                    value: "Convenient use",
                     color: Color.fromRGBO(59, 187, 172, 1),
                   ),
                   SizedBox(
                     height: 8,
                   ),
                   _buildLegend(
-                    value: S.of(context).poor,
+                    // value: S.of(context).poor,
+                    value: "Insufficient use",
                     color: Color.fromRGBO(249, 65, 68, 1),
                   ),
                   SizedBox(
