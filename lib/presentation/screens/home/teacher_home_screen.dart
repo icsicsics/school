@@ -37,7 +37,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
   WeatherResponse _weatherResponse = WeatherResponse();
   List<String> _roles = [];
-
+  String language = "";
   @override
   void initState() {
     super.initState();
@@ -50,6 +50,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     _roles = await SharedPreferencesManager.getRoles() ?? [];
+    language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
   }
 
   String dateFormatter(DateTime date) {
@@ -288,7 +289,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                 elevation: 0,
                                 backgroundColor: Colors.transparent,
                                 child: Container(
-                                  height: 370,
+                                  height: language == "en" ? 370 : 600,
                                   padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.95),
