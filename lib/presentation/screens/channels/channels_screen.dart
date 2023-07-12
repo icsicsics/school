@@ -68,7 +68,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              S.of(context).ejabiChannel,
+              widget.type == "media" ? S.of(context).myMedia: S.of(context).ejabiChannel,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

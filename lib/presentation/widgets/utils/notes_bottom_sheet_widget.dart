@@ -153,7 +153,6 @@ class _NotesBottomSheetWidgetState extends State<NotesBottomSheetWidget> {
         unselectedWidgetColor: ColorsManager.grayColor,
       ),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.6,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
