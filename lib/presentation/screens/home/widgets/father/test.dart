@@ -230,18 +230,21 @@ class _TestState extends State<Test> {
   Widget _item({
     required IconData icon,
     required Function() onTap,
+    required bool showItem,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: InkWell(
-        onTap: onTap,
-        child: Icon(
-          icon,
-          size: 20,
-          color: ColorsManager.primaryColor,
-        ),
-      ),
-    );
+    return showItem
+        ? Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: InkWell(
+              onTap: onTap,
+              child: Icon(
+                icon,
+                size: 20,
+                color: ColorsManager.primaryColor,
+              ),
+            ),
+          )
+        : const SizedBox.shrink();
   }
 
   Future<void> _launchUrl(String url) async {
@@ -304,31 +307,70 @@ class _TestState extends State<Test> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _item(
-                  onTap: () {
-                    _launchUrl(widget.parentHomeResponse.data![_current].facebookURL ?? "https://www.facebook.com/");
-                  },
-                  icon: FontAwesomeIcons.facebook),
+                onTap: () {
+                  _launchUrl(
+                      widget.parentHomeResponse.data![_current].facebookURL ??
+                          "https://www.facebook.com/");
+                },
+                icon: FontAwesomeIcons.facebook,
+                showItem:
+                    widget.parentHomeResponse.data![_current].facebookURL !=
+                            null ||
+                        (widget.parentHomeResponse.data![_current].facebookURL ?? "")
+                            .isNotEmpty,
+              ),
               _item(
-                  onTap: () {
-                    _launchUrl(widget.parentHomeResponse.data![_current].instagramURL ?? "https://www.instagram.com/");
-                  },
-                  icon: FontAwesomeIcons.instagram),
+                onTap: () {
+                  _launchUrl(
+                      widget.parentHomeResponse.data![_current].instagramURL ??
+                          "https://www.instagram.com/");
+                },
+                icon: FontAwesomeIcons.instagram,
+                showItem:
+                    widget.parentHomeResponse.data![_current].instagramURL !=
+                            null ||
+                        (widget.parentHomeResponse.data![_current].instagramURL ?? "")
+                            .isNotEmpty,
+              ),
               _item(
-                  onTap: () {
-                    print(widget.parentHomeResponse.data![_current].tweeterURL);
-                    _launchUrl(widget.parentHomeResponse.data![_current].tweeterURL ?? "https://twitter.com/");
-                  },
-                  icon: FontAwesomeIcons.twitter),
+                onTap: () {
+                  _launchUrl(
+                      widget.parentHomeResponse.data![_current].tweeterURL ??
+                          "https://twitter.com/");
+                },
+                icon: FontAwesomeIcons.twitter,
+                showItem:
+                    widget.parentHomeResponse.data![_current].tweeterURL !=
+                            null ||
+                        (widget.parentHomeResponse.data![_current].tweeterURL ?? "")
+                            .isNotEmpty,
+              ),
               _item(
-                  onTap: () {
-                    _launchUrl(widget.parentHomeResponse.data![_current].snapchatURL ?? "https://www.snapchat.com/");
-                  },
-                  icon: FontAwesomeIcons.snapchat),
+                onTap: () {
+                  _launchUrl(
+                      widget.parentHomeResponse.data![_current].snapchatURL ??
+                          "https://www.snapchat.com/");
+                },
+                icon: FontAwesomeIcons.snapchat,
+                showItem:
+                    widget.parentHomeResponse.data![_current].snapchatURL !=
+                            null ||
+                        (widget.parentHomeResponse.data![_current].snapchatURL ?? "")
+                            .isNotEmpty,
+              ),
               _item(
-                  onTap: () {
-                    _launchUrl(widget.parentHomeResponse.data![_current].websiteURL ?? "");
-                  },
-                  icon: FontAwesomeIcons.globe),
+                onTap: () {
+                  _launchUrl(
+                      widget.parentHomeResponse.data![_current].websiteURL ??
+                          "");
+                },
+                icon: FontAwesomeIcons.globe,
+                showItem:
+                    widget.parentHomeResponse.data![_current].websiteURL !=
+                            null ||
+                        (widget.parentHomeResponse.data![_current].websiteURL ?? "")
+                            .isNotEmpty,
+              ),
             ],
           ),
         ),

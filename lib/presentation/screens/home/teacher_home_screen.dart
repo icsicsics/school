@@ -86,13 +86,15 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
         } else if (state is GetTeacherHomeFillState) {
         } else if (state is SwitchAccountState) {
           _switchAccount();
+        } else if (state is ChangeLanguageSuccessState) {
+          RestartWidget.restartApp(context);
         }
       },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
             key: _key,
-            drawer:  SideMenuScreen(
+            drawer: SideMenuScreen(
               branchId: _teacherInfoResponse.data?.branchId ?? "",
             ),
             backgroundColor: ColorsManager.whiteColor,
@@ -167,6 +169,14 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                               ),
                             ],
                           ),
+                        ),
+                        Positioned.directional(
+                          top: 55,
+                          end: 16,
+                          textDirection: Directionality.of(context),
+                          child: InkWell(
+                              onTap: () => _changeLanguage(),
+                              child: _languageImage()),
                         ),
                       ],
                     ),
@@ -305,11 +315,17 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Yellow"),
+                                      Text(
+                                        "Yellow",
+                                        style: TextStyle(color: Colors.yellow),
+                                      ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text("Overuse"),
+                                      Container(
+                                        color: Colors.yellow,
+                                        child: Text("Overuse"),
+                                      ),
                                       SizedBox(
                                         height: 4,
                                       ),
@@ -318,11 +334,16 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 16,
                                       ),
-                                      Text("Green"),
+                                      Text(
+                                        "Green",
+                                        style: TextStyle(color: Colors.green),
+                                      ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text("convenient use"),
+                                      Container(
+                                          color: Colors.green,
+                                          child: Text("convenient use")),
                                       SizedBox(
                                         height: 4,
                                       ),
@@ -331,11 +352,17 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 16,
                                       ),
-                                      Text("Red"),
+                                      Text(
+                                        "Red",
+                                        style: TextStyle(color: Colors.red),
+                                      ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text("Insufficient use"),
+                                      Container(
+                                        child: Text("Insufficient use"),
+                                        color: Colors.red,
+                                      ),
                                       SizedBox(
                                         height: 4,
                                       ),
@@ -409,32 +436,41 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                             pointers: <GaugePointer>[
                               NeedlePointer(
                                   value: _getValue(
-                                      _teacherHomeResponse.data?.indicator ??
+                                      _teacherHomeResponse.data?.indicator?.color ??
                                           ""))
                             ])
                       ],
                     ),
                   ),
-                  _buildLegend(
-                    // value: S.of(context).excellent,
-                    value: "Overuse",
-                    color: Color.fromRGBO(243, 154, 74, 1),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  _buildLegend(
-                    // value: S.of(context).good,
-                    value: "Convenient use",
-                    color: Color.fromRGBO(59, 187, 172, 1),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  _buildLegend(
-                    // value: S.of(context).poor,
-                    value: "Insufficient use",
-                    color: Color.fromRGBO(249, 65, 68, 1),
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        _buildLegend(
+                          // value: S.of(context).excellent,
+                          value: "Overuse",
+                          color: Color.fromRGBO(243, 154, 74, 1),
+                        ),
+                        SizedBox(
+                          width: 24,
+                        ),
+                        _buildLegend(
+                          // value: S.of(context).good,
+                          value: "Convenient use",
+                          color: Color.fromRGBO(59, 187, 172, 1),
+                        ),
+                        SizedBox(
+                          width: 24,
+                        ),
+                        _buildLegend(
+                          // value: S.of(context).poor,
+                          value: "Insufficient use",
+                          color: Color.fromRGBO(249, 65, 68, 1),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 16,
@@ -510,37 +546,34 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
     );
   }
 
-  Padding _buildLegend({
+  Widget _buildLegend({
     required String value,
     required Color color,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 16,
-            height: 16,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: color,
-            ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 16,
+          height: 16,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: color,
           ),
-          const SizedBox(
-            width: 12,
+        ),
+        const SizedBox(
+          width: 12,
+        ),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 15,
+            color: ColorsManager.blackColor,
+            fontWeight: FontWeight.w500,
           ),
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 15,
-              color: ColorsManager.blackColor,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -646,5 +679,29 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
     await SharedPreferencesManager.setIsFather(
         !((await SharedPreferencesManager.getIsFather()) ?? false));
     RestartWidget.restartApp(context);
+  }
+
+  Widget _languageImage() {
+    return language == "en"
+        ? Image.asset(
+            ImagesPath.ar,
+            height: 30,
+            width: 30,
+            color: Color(0xff3bbbac),
+          )
+        : Image.asset(
+            ImagesPath.en,
+            height: 30,
+            width: 30,
+            color: Color(0xff3bbbac),
+          );
+  }
+
+  void _changeLanguage() {
+    BlocProvider.of<HomeBloc>(context).add(
+      ChangeLanguageEvent(
+        language,
+      ),
+    );
   }
 }

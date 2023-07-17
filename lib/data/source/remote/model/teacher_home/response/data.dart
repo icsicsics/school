@@ -1,3 +1,5 @@
+import 'package:schools/data/source/remote/model/teacher_home/response/indicator.dart';
+
 import 'teacher_home_page.dart';
 import 'get_logo.dart';
 
@@ -5,7 +7,7 @@ class Data {
   List<TeacherHomePage>? teacherHomePage;
   String? schoolName;
   GetLogo? getLogo;
-  String? indicator;
+  Indicator? indicator;
   Data({
       this.teacherHomePage, 
       this.schoolName, 
@@ -20,7 +22,7 @@ class Data {
     }
     schoolName = json['schoolName'];
     getLogo = json['getLogo'] != null ? GetLogo.fromJson(json['getLogo']) : null;
-    indicator = json['indecator'];
+    indicator = json['indecator'] != null ? Indicator.fromJson(json['indecator']) : null;
   }
 
 
@@ -33,7 +35,9 @@ class Data {
     if (getLogo != null) {
       map['getLogo'] = getLogo!.toJson();
     }
-    map['indecator'] = indicator;
+    if (indicator != null) {
+      map['indecator'] = indicator!.toJson();
+    }
     return map;
   }
 
