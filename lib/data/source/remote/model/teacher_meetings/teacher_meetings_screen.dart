@@ -122,10 +122,10 @@ class _TeacherMeetingsScreenState extends State<TeacherMeetingsScreen> {
                   ),
                   CustomButtonWidget(
                     onPressed: () {},
-                    buttonText: "Done",
+                    buttonText: meeting.status ?? "",
                     buttonTextColor: ColorsManager.whiteColor,
                     buttonHeight: 40,
-                    buttonWidth: 80,
+                    buttonWidth: 95,
                   ),
                 ],
               )
