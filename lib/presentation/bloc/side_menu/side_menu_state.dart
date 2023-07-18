@@ -100,3 +100,5 @@ class NavigateToAboutScreenState extends SideMenuState {}
 class NavigateToChannelsScreenState extends SideMenuState {}
 
 class NavigateToAdvisorsScreenState extends SideMenuState {}
+
+class NavigateToTeacherMeetingsScreenState extends SideMenuState {}

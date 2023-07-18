@@ -74,6 +74,14 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                                 ),
                           ),
                           SideMenuItem(
+                            icon: Icons.home_filled,
+                            title: S.of(context).teacherMeetings,
+                            onTap: () =>
+                                BlocProvider.of<SideMenuBloc>(context).add(
+                                  NavigateToTeacherMeetingsEvent(),
+                                ),
+                          ),
+                          SideMenuItem(
                             icon: Icons.person,
                             title: S.of(context).myProfile,
                             onTap: () =>

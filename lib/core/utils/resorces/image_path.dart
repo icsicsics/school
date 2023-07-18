@@ -50,4 +50,9 @@ class ImagesPath {
   static const String negativeIcon = "${_basePath}ic_negative.png";
   static const String notesIcon = "${_basePath}ic_notes.svg";
 
+  static const String teacher = "${_basePath}ic_teacher.svg";
+  static const String phone = "${_basePath}ic_phone.svg";
+  static const String calendarMeeting = "${_basePath}ic_calendar_meeting.svg";
+
+
 }

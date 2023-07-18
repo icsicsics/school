@@ -166,6 +166,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Students Profile"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
+        "teacherMeetings":
+            MessageLookupByLibrary.simpleMessage("Teacher Meetings"),
         "teacherOf": MessageLookupByLibrary.simpleMessage("Teacher Of"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "teachersPerformance":

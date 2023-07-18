@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_home/response/teacher_meeting.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_meetings/teacher_meetings_screen.dart';
 import 'package:schools/presentation/bloc/side_menu/side_menu_bloc.dart';
 import 'package:schools/presentation/screens/about/about_screen.dart';
 import 'package:schools/presentation/screens/advisors/advisors_screen.dart';
@@ -19,9 +21,12 @@ import 'package:schools/presentation/screens/web_view/web_view_screen.dart';
 
 class SideMenuScreen extends StatefulWidget {
   final String branchId;
+  final List<TeacherMeeting> meetings;
+
   const SideMenuScreen({
     Key? key,
     this.branchId = "",
+    required this.meetings
   }) : super(key: key);
 
   @override
@@ -113,6 +118,12 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
               studentId: "",
               classroomToSectionId: "",
               teacherId: "",
+            );
+          }));
+        } else if (state is NavigateToTeacherMeetingsScreenState) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return TeacherMeetingsScreen(
+              meetings: widget.meetings,
             );
           }));
         }

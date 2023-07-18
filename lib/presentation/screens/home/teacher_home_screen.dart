@@ -96,6 +96,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
             key: _key,
             drawer: SideMenuScreen(
               branchId: _teacherInfoResponse.data?.branchId ?? "",
+              meetings: _teacherHomeResponse.data?.meetings ?? [],
             ),
             backgroundColor: ColorsManager.whiteColor,
             body: SingleChildScrollView(
@@ -435,9 +436,9 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                             ],
                             pointers: <GaugePointer>[
                               NeedlePointer(
-                                  value: _getValue(
-                                      _teacherHomeResponse.data?.indicator?.color ??
-                                          ""))
+                                  value: _getValue(_teacherHomeResponse
+                                          .data?.indicator?.color ??
+                                      ""))
                             ])
                       ],
                     ),

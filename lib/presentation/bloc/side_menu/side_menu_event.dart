@@ -52,3 +52,5 @@ class OpenWebViewEvent extends SideMenuEvent {
 class NavigateToAboutScreenEvent extends SideMenuEvent {}
 
 class NavigateToAdvisorsScreenEvent extends SideMenuEvent {}
+
+class NavigateToTeacherMeetingsEvent extends SideMenuEvent {}

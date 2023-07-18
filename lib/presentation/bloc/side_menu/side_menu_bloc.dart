@@ -47,6 +47,7 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
     on<ClearTokenEvent>(_onClearTokenEvent);
     on<NavigateToAboutScreenEvent>(_onNavigateToAboutScreenEvent);
     on<NavigateToAdvisorsScreenEvent>(_onNavigateToAdvisorsScreenEvent);
+    on<NavigateToTeacherMeetingsEvent>(_onNavigateToTeacherMeetingsEvent);
   }
 
   FutureOr<void> _onGetSideMenuEvent(
@@ -164,5 +165,9 @@ class SideMenuBloc extends Bloc<SideMenuEvent, SideMenuState> {
   FutureOr<void> _onNavigateToAdvisorsScreenEvent(
       NavigateToAdvisorsScreenEvent event, Emitter<SideMenuState> emit) {
     emit(NavigateToAdvisorsScreenState());
+  }
+
+  FutureOr<void> _onNavigateToTeacherMeetingsEvent(NavigateToTeacherMeetingsEvent event, Emitter<SideMenuState> emit) {
+    emit(NavigateToTeacherMeetingsScreenState());
   }
 }
