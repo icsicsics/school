@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/teacher_meeting.dart';
@@ -56,7 +56,9 @@ class _TeacherMeetingsScreenState extends State<TeacherMeetingsScreen> {
       ),
       child: Column(
         children: [
-          SizedBox(height: 16,),
+          SizedBox(
+            height: 16,
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -95,19 +97,26 @@ class _TeacherMeetingsScreenState extends State<TeacherMeetingsScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildItem(meeting.parentName ?? "", ImagesPath.teacher),
+                  _buildItem(
+                      teacherName: meeting.parentName ?? "",
+                      imagePath: ImagesPath.teacher),
                   const SizedBox(
                     height: 20,
                   ),
-                  _buildItem(_formatDate(meeting.meetingTimeStr ?? ""),
-                      ImagesPath.calendarMeeting),
+                  _buildItem(
+                      teacherName: _formatDate(meeting.meetingTimeStr ?? ""),
+                      imagePath: ImagesPath.calendarMeeting),
                 ],
               ),
               const Expanded(child: SizedBox()),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildItem(meeting.parentPhone ?? "", ImagesPath.phone),
+                  _buildItem(
+                    teacherName: meeting.parentPhone ?? "",
+                    imagePath: ImagesPath.phone,
+                    textDirection: TextDirection.ltr,
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -134,10 +143,13 @@ class _TeacherMeetingsScreenState extends State<TeacherMeetingsScreen> {
     if (date.isEmpty) return "";
     DateTime dateTime = DateTime.parse(date);
 
-    return DateFormat("dd/MM/yyyy").format(dateTime);
+    return intl.DateFormat("dd/MM/yyyy").format(dateTime);
   }
 
-  Row _buildItem(String teacherName, String imagePath) {
+  Row _buildItem(
+      {required String teacherName,
+      required String imagePath,
+      TextDirection? textDirection}) {
     return Row(
       children: [
         SvgPicture.asset(
@@ -158,6 +170,7 @@ class _TeacherMeetingsScreenState extends State<TeacherMeetingsScreen> {
             letterSpacing: -0.13,
             fontWeight: FontWeight.w500,
           ),
+          textDirection: textDirection,
         )
       ],
     );
