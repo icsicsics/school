@@ -336,8 +336,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text(
-                                          "You're above the expectation of giving the points to your students, Reward the point to who really deserves it."),
+                                      Text(S.of(context).overUserDescription),
                                       SizedBox(
                                         height: 16,
                                       ),
@@ -360,8 +359,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text(
-                                          "You're perfectly using the house points system. Keep up!."),
+                                      Text(S.of(context).convenientUseDescription),
                                       SizedBox(
                                         height: 16,
                                       ),
@@ -384,8 +382,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text(
-                                          "You're below the expectation of using a house points system, Reward some points to your students."),
+                                      Text(S.of(context).insufficientUse),
                                     ],
                                   ),
                                 )),

@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "connectLikeMindedPeople":
             MessageLookupByLibrary.simpleMessage("تواصل مثل العقول"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "convenientUseDescription": MessageLookupByLibrary.simpleMessage(
+            "أنت تستخدم نظام نقاط المنزل بشكل مثالي. استمر!"),
         "dateAndTime": MessageLookupByLibrary.simpleMessage("التاريخ والوقت"),
         "dec": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "didntReceiveVerificationCode":
@@ -84,6 +86,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("قرأت وأقبل ب"),
         "inbox": MessageLookupByLibrary.simpleMessage("صندوق الوارد"),
         "initiative": MessageLookupByLibrary.simpleMessage("مبادرة"),
+        "insufficientUse": MessageLookupByLibrary.simpleMessage(
+            "أنت أقل من توقعات استخدام نظام نقاط المنزل، كافئ بعض النقاط لطلابك."),
         "interactive": MessageLookupByLibrary.simpleMessage("تفاعلي"),
         "interactiveSchoolCounselling":
             MessageLookupByLibrary.simpleMessage("إرشاد مدرسي تفاعلي"),
@@ -117,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
         "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
+        "overUserDescription": MessageLookupByLibrary.simpleMessage(
+            " أنت فوق توقعات منح النقاط لطلابك ، كافئ النقطة لمن يستحقها حقا."),
         "pageOne": MessageLookupByLibrary.simpleMessage(
             "اول تطبيق هاتفي تفاعلي بين المدرسة والبيت.\nيخلق جوا تفاعليا بين الاهل والمدرسة مع سلوك الايجابي."),
         "pageThree": MessageLookupByLibrary.simpleMessage(

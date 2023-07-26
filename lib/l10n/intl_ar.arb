@@ -142,8 +142,10 @@
   "pleasEnterNote": "يرجى ادخال ملاحظة",
   "pleaseSelectGuide": "يرجى اختيار مرشد",
   "send": "إرسال",
-  "teacherMeetings":"اجتماعات المدرس"
-
+  "teacherMeetings":"اجتماعات المدرس",
+  "overUserDescription" : " أنت فوق توقعات منح النقاط لطلابك ، كافئ النقطة لمن يستحقها حقا.",
+  "convenientUseDescription" : "أنت تستخدم نظام نقاط المنزل بشكل مثالي. استمر!",
+  "insufficientUse" : "أنت أقل من توقعات استخدام نظام نقاط المنزل، كافئ بعض النقاط لطلابك."
 
 
 }

@@ -1479,6 +1479,36 @@ class S {
       args: [],
     );
   }
+
+  /// `You're above the expectation of giving the points to your students, Reward the point to who really deserves it.`
+  String get overUserDescription {
+    return Intl.message(
+      'You\'re above the expectation of giving the points to your students, Reward the point to who really deserves it.',
+      name: 'overUserDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You're perfectly using the house points system. Keep up!`
+  String get convenientUseDescription {
+    return Intl.message(
+      'You\'re perfectly using the house points system. Keep up!',
+      name: 'convenientUseDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You're below the expectation of using a house points system, Reward some points to your students.`
+  String get insufficientUse {
+    return Intl.message(
+      'You\'re below the expectation of using a house points system, Reward some points to your students.',
+      name: 'insufficientUse',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

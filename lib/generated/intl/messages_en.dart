@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "connectLikeMindedPeople":
             MessageLookupByLibrary.simpleMessage("Connect Like Minded People"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "convenientUseDescription": MessageLookupByLibrary.simpleMessage(
+            "You\'re perfectly using the house points system. Keep up!"),
         "dateAndTime": MessageLookupByLibrary.simpleMessage("Date & Time"),
         "dec": MessageLookupByLibrary.simpleMessage("december"),
         "didntReceiveVerificationCode": MessageLookupByLibrary.simpleMessage(
@@ -85,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" I have read and accept the"),
         "inbox": MessageLookupByLibrary.simpleMessage("Inbox"),
         "initiative": MessageLookupByLibrary.simpleMessage("Initiative"),
+        "insufficientUse": MessageLookupByLibrary.simpleMessage(
+            "You\'re below the expectation of using a house points system, Reward some points to your students."),
         "interactive": MessageLookupByLibrary.simpleMessage("Interactive"),
         "interactiveSchoolCounselling": MessageLookupByLibrary.simpleMessage(
             "Interactive School Counselling"),
@@ -117,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("Number"),
         "oct": MessageLookupByLibrary.simpleMessage("october"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "overUserDescription": MessageLookupByLibrary.simpleMessage(
+            "You\'re above the expectation of giving the points to your students, Reward the point to who really deserves it."),
         "pageOne": MessageLookupByLibrary.simpleMessage(
             "The first interactive mobile application between school and home.\nCreates an interactive atmosphere between parents and school with positive behavior."),
         "pageThree": MessageLookupByLibrary.simpleMessage(
