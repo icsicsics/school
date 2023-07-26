@@ -42,7 +42,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   List<Points> filter = [];
   final List<_ChildIconsModel> _list = [];
   String userId = "";
-
+  bool isFather = true;
   @override
   void initState() {
     super.initState();
@@ -52,7 +52,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     userId = await SharedPreferencesManager.getUserId() ?? "";
-
+    isFather = await SharedPreferencesManager.getIsFather() ?? false;
     points = widget.points;
     _list.add(_ChildIconsModel(
         id: "-1", isSelected: true, title: S.current.all, icon: ""));
@@ -103,7 +103,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: _list.map((e) => _checkIndexForValues(e)).toList(),
             ),
-            InkWell(
+            isFather ? SizedBox.shrink() : InkWell(
               onTap: () {
                 openNotesBottomSheet(
                   context: context,

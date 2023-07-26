@@ -23,18 +23,18 @@ class OnBoardingPageWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(imagePath),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: ColorsManager.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
+          // Text(
+          //   title,
+          //   style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          //         color: ColorsManager.black,
+          //         fontSize: 16,
+          //         fontWeight: FontWeight.w600,
+          //       ),
+          //   textAlign: TextAlign.center,
+          // ),
+          // const SizedBox(
+          //   height: 16,
+          // ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 48),
             child: Text(

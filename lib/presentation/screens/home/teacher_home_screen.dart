@@ -231,7 +231,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                             ),
                           ],
                         ),
-                        Column(
+                        //Weather
+                        /*Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
@@ -273,7 +274,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                               height: 16,
                             ),
                           ],
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -303,7 +304,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                 elevation: 0,
                                 backgroundColor: Colors.transparent,
                                 child: Container(
-                                  height: language == "en" ? 400 : 600,
+                                  height: language == "en" ? 320 : 420,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 16),
                                   decoration: BoxDecoration(
@@ -316,16 +317,21 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "Yellow",
-                                        style: TextStyle(color: Colors.yellow),
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Container(
-                                        color: Colors.yellow,
-                                        child: Text("Overuse"),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color : Colors.yellow,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            width: 16,
+                                            height: 16,
+                                          ),
+                                          SizedBox(width: 8,),
+                                          Text("Overuse",style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                          ),),
+                                        ],
                                       ),
                                       SizedBox(
                                         height: 4,
@@ -335,16 +341,22 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 16,
                                       ),
-                                      Text(
-                                        "Green",
-                                        style: TextStyle(color: Colors.green),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color : Colors.green,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            width: 16,
+                                            height: 16,
+                                          ),
+                                          SizedBox(width: 8,),
+                                          Text("convenient use",style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                          ),),
+                                        ],
                                       ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Container(
-                                          color: Colors.green,
-                                          child: Text("convenient use")),
                                       SizedBox(
                                         height: 4,
                                       ),
@@ -353,22 +365,27 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 16,
                                       ),
-                                      Text(
-                                        "Red",
-                                        style: TextStyle(color: Colors.red),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color : Colors.red,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            width: 16,
+                                            height: 16,
+                                          ),
+                                          SizedBox(width: 8,),
+                                          Text("Insufficient use",style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                          ),),
+                                        ],
                                       ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Container(
-                                        child: Text("Insufficient use"),
-                                        color: Colors.red,
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
                                       Text(
-                                          "You're below the expectation of using a house points system, Reward some points to your students.."),
+                                          "You're below the expectation of using a house points system, Reward some points to your students."),
                                     ],
                                   ),
                                 )),

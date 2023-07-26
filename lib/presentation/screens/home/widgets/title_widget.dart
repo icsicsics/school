@@ -53,13 +53,12 @@ class HomeTitleWidget extends StatelessWidget {
         )),
         height: 120,
         child: Padding(
-          padding: const EdgeInsets.all(0),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
@@ -102,46 +101,47 @@ class HomeTitleWidget extends StatelessWidget {
                         ),
                     ],
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MediumTextWidget(
-                          text: S.of(context).weather,
-                          fontSize: 16,
-                          color: ColorsManager.whiteColor),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                              decoration: const BoxDecoration(
-                                  color: ColorsManager.whiteColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                              child: const Padding(
-                                padding: EdgeInsets.all(1),
-                                child: Icon(
-                                  Icons.sunny,
-                                  color: ColorsManager.yellow,
-                                  size: 15,
-                                ),
-                              )),
-                          const SizedBox(
-                            width: 2,
-                          ),
-                          weatherResponse.weather != null
-                              ? MediumTextWidget(
-                                  text:
-                                      "${(weatherResponse.main!.temp! - 273.15).round().toString()}\u2103 ${weatherResponse.weather![0].description.toString()}",
-                                  fontSize: 15,
-                                  color: ColorsManager.whiteColor)
-                              : const SizedBox(),
-                        ],
-                      ),
-                    ],
-                  ),
+                  //Weather
+                  // Column(
+                  //   mainAxisAlignment: MainAxisAlignment.start,
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     MediumTextWidget(
+                  //         text: S.of(context).weather,
+                  //         fontSize: 16,
+                  //         color: ColorsManager.whiteColor),
+                  //     const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     Row(
+                  //       children: [
+                  //         Container(
+                  //             decoration: const BoxDecoration(
+                  //                 color: ColorsManager.whiteColor,
+                  //                 borderRadius:
+                  //                     BorderRadius.all(Radius.circular(15))),
+                  //             child: const Padding(
+                  //               padding: EdgeInsets.all(1),
+                  //               child: Icon(
+                  //                 Icons.sunny,
+                  //                 color: ColorsManager.yellow,
+                  //                 size: 15,
+                  //               ),
+                  //             )),
+                  //         const SizedBox(
+                  //           width: 2,
+                  //         ),
+                  //         weatherResponse.weather != null
+                  //             ? MediumTextWidget(
+                  //                 text:
+                  //                     "${(weatherResponse.main!.temp! - 273.15).round().toString()}\u2103 ${weatherResponse.weather![0].description.toString()}",
+                  //                 fontSize: 15,
+                  //                 color: ColorsManager.whiteColor)
+                  //             : const SizedBox(),
+                  //       ],
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ],

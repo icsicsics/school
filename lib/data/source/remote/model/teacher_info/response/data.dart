@@ -5,10 +5,15 @@ class Data {
   String? id;
   String? branchId;
   String? name;
-  String? phoneNumber;
   String? houseIcon;
+  String? phoneNumber;
   String? email;
   String? houseName;
+  String? facebookURL;
+  String? instagramURL;
+  String? tweeterURL;
+  String? snapchatURL;
+  String? websiteURL;
   GetImage? getImage;
   List<ClassroomsTeacher>? classroomsTeacher;
 
@@ -20,6 +25,11 @@ class Data {
     this.houseIcon,
     this.email,
     this.houseName,
+    this.facebookURL,
+    this.instagramURL,
+    this.tweeterURL,
+    this.snapchatURL,
+    this.websiteURL,
     this.getImage,
     this.classroomsTeacher,
   });
@@ -32,6 +42,11 @@ class Data {
     phoneNumber = json['phoneNumber'];
     email = json['email'];
     houseName = json['houseName'];
+    facebookURL = json['facebookURL'];
+    instagramURL = json['instagramURL'];
+    tweeterURL = json['tweeterURL'];
+    snapchatURL = json['snapchatURL'];
+    websiteURL = json['websiteURL'];
     getImage =
         json['getImage'] != null ? GetImage.fromJson(json['getImage']) : null;
     if (json['classroomsTeacher'] != null) {
@@ -51,6 +66,11 @@ class Data {
     map['houseIcon'] = houseIcon;
     map['email'] = email;
     map['houseName'] = houseName;
+    map['facebookURL'] = facebookURL;
+    map['instagramURL'] = instagramURL;
+    map['tweeterURL'] = tweeterURL;
+    map['snapchatURL'] = snapchatURL;
+    map['websiteURL'] = websiteURL;
     if (getImage != null) {
       map['getImage'] = getImage!.toJson();
     }

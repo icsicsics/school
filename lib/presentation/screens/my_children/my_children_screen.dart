@@ -136,7 +136,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         ),
         centerTitle: false,
         actions: [
-          InkWell(
+          _isFather ? SizedBox.shrink() : InkWell(
             onTap: () {
               openRequestMeetingBottomSheet(
                 context: context,

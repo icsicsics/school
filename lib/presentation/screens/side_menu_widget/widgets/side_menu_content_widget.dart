@@ -57,7 +57,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SideMenuItem(
+                          widget.isFather ? SizedBox.shrink() : SideMenuItem(
                             icon: Icons.home_filled,
                             title: S.of(context).schoolHomes,
                             onTap: () =>
@@ -65,7 +65,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                               SideMenuHomeEvent(),
                             ),
                           ),
-                          SideMenuItem(
+                          widget.isFather ? SizedBox.shrink() : SideMenuItem(
                             icon: Icons.home_filled,
                             title: S.of(context).advisors,
                             onTap: () =>
@@ -73,7 +73,7 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                                   NavigateToAdvisorsScreenEvent(),
                                 ),
                           ),
-                          SideMenuItem(
+                          widget.isFather ? SizedBox.shrink() : SideMenuItem(
                             icon: Icons.home_filled,
                             title: S.of(context).teacherMeetings,
                             onTap: () =>
