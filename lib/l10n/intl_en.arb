@@ -144,6 +144,9 @@
   "teacherMeetings":"Teacher Meetings",
   "overUserDescription" : "You're above the expectation of giving the points to your students, Reward the point to who really deserves it.",
   "convenientUseDescription" : "You're perfectly using the house points system. Keep up!",
-  "insufficientUse" : "You're below the expectation of using a house points system, Reward some points to your students."
+  "insufficientUseDescription" : "You're below the expectation of using a house points system, Reward some points to your students.",
+  "overUser" : "Overuse",
+  "convenientUse" : "Convenient use",
+  "insufficientUse" : "Insufficient use"
 
 }

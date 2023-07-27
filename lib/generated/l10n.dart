@@ -1501,9 +1501,39 @@ class S {
   }
 
   /// `You're below the expectation of using a house points system, Reward some points to your students.`
-  String get insufficientUse {
+  String get insufficientUseDescription {
     return Intl.message(
       'You\'re below the expectation of using a house points system, Reward some points to your students.',
+      name: 'insufficientUseDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overuse`
+  String get overUser {
+    return Intl.message(
+      'Overuse',
+      name: 'overUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Convenient use`
+  String get convenientUse {
+    return Intl.message(
+      'Convenient use',
+      name: 'convenientUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient use`
+  String get insufficientUse {
+    return Intl.message(
+      'Insufficient use',
       name: 'insufficientUse',
       desc: '',
       args: [],

@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "connectLikeMindedPeople":
             MessageLookupByLibrary.simpleMessage("تواصل مثل العقول"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "convenientUse": MessageLookupByLibrary.simpleMessage("استخدام مناسب"),
         "convenientUseDescription": MessageLookupByLibrary.simpleMessage(
             "أنت تستخدم نظام نقاط المنزل بشكل مثالي. استمر!"),
         "dateAndTime": MessageLookupByLibrary.simpleMessage("التاريخ والوقت"),
@@ -86,7 +87,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("قرأت وأقبل ب"),
         "inbox": MessageLookupByLibrary.simpleMessage("صندوق الوارد"),
         "initiative": MessageLookupByLibrary.simpleMessage("مبادرة"),
-        "insufficientUse": MessageLookupByLibrary.simpleMessage(
+        "insufficientUse":
+            MessageLookupByLibrary.simpleMessage("ستخدام غير مناسب"),
+        "insufficientUseDescription": MessageLookupByLibrary.simpleMessage(
             "أنت أقل من توقعات استخدام نظام نقاط المنزل، كافئ بعض النقاط لطلابك."),
         "interactive": MessageLookupByLibrary.simpleMessage("تفاعلي"),
         "interactiveSchoolCounselling":
@@ -121,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
         "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
+        "overUser": MessageLookupByLibrary.simpleMessage("استخدام زائد"),
         "overUserDescription": MessageLookupByLibrary.simpleMessage(
             " أنت فوق توقعات منح النقاط لطلابك ، كافئ النقطة لمن يستحقها حقا."),
         "pageOne": MessageLookupByLibrary.simpleMessage(

@@ -328,7 +328,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                             height: 16,
                                           ),
                                           SizedBox(width: 8,),
-                                          Text("Overuse",style: TextStyle(
+                                          Text(S.of(context).overUser,style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                           ),),
                                         ],
@@ -351,7 +351,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                             height: 16,
                                           ),
                                           SizedBox(width: 8,),
-                                          Text("convenient use",style: TextStyle(
+                                          Text(S.of(context).convenientUse,style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                           ),),
                                         ],
@@ -374,7 +374,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                             height: 16,
                                           ),
                                           SizedBox(width: 8,),
-                                          Text("Insufficient use",style: TextStyle(
+                                          Text(S.of(context).insufficientUse,style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                           ),),
                                         ],
@@ -382,7 +382,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text(S.of(context).insufficientUse),
+                                      Text(S.of(context).insufficientUseDescription),
                                     ],
                                   ),
                                 )),
@@ -465,7 +465,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                       children: [
                         _buildLegend(
                           // value: S.of(context).excellent,
-                          value: "Overuse",
+                          value: S.of(context).overUser,
                           color: Color.fromRGBO(243, 154, 74, 1),
                         ),
                         SizedBox(
@@ -473,7 +473,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         ),
                         _buildLegend(
                           // value: S.of(context).good,
-                          value: "Convenient use",
+                          value: S.of(context).convenientUse,
                           color: Color.fromRGBO(59, 187, 172, 1),
                         ),
                         SizedBox(
@@ -481,7 +481,7 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         ),
                         _buildLegend(
                           // value: S.of(context).poor,
-                          value: "Insufficient use",
+                          value: S.of(context).insufficientUse,
                           color: Color.fromRGBO(249, 65, 68, 1),
                         ),
                       ],
