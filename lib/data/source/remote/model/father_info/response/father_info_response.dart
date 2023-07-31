@@ -1,9 +1,9 @@
-import 'data.dart';
+import 'father_info_data.dart';
 
 class FatherInfoResponse {
   int? errorCode;
   String? errorMessage;
-  Data? data;
+  FatherInfoData? data;
 
   FatherInfoResponse({
     this.errorCode,
@@ -14,7 +14,7 @@ class FatherInfoResponse {
   FatherInfoResponse.fromJson(dynamic json) {
     errorCode = json['errorCode'];
     errorMessage = json['errorMessage'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? FatherInfoData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {

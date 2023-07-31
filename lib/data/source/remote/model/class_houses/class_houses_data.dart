@@ -1,4 +1,6 @@
-class Data {
+import 'dart:convert';
+
+class ClassHousesData {
   String? houseName;
   String? houseIcon;
   int? numberStudentsHouse;
@@ -7,7 +9,7 @@ class Data {
   String? houseId;
   String? classroomToSectionId;
 
-  Data({
+  ClassHousesData({
     this.houseName,
     this.houseIcon,
     this.numberStudentsHouse,
@@ -17,7 +19,7 @@ class Data {
     this.classroomToSectionId,
   });
 
-  Data.fromJson(dynamic json) {
+  ClassHousesData.fromJson(dynamic json) {
     houseName = json['houseName'];
     houseIcon = json['houseIcon'];
     numberStudentsHouse = json['numberStudentsHouse'];
@@ -37,5 +39,15 @@ class Data {
     map['houseId'] = houseId;
     map['classroomToSectionId'] = classroomToSectionId;
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static ClassHousesData fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return ClassHousesData.fromJson(data);
   }
 }

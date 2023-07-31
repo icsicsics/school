@@ -1,19 +1,19 @@
 import 'points.dart';
 
-class Data {
+class StudentProfileTeacher {
   String? studentId;
   String? studentName;
   dynamic? getImage;
   List<Points>? points;
 
-  Data({
+  StudentProfileTeacher({
     this.studentId,
     this.studentName,
     this.getImage,
     this.points,
   });
 
-  Data.fromJson(dynamic json) {
+  StudentProfileTeacher.fromJson(dynamic json) {
     studentId = json['studentId'];
     studentName = json['studentName'];
     getImage = json['getImage'];

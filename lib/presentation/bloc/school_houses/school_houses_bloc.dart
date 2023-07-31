@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:schools/data/source/remote/model/class_houses/data.dart';
+import 'package:schools/data/source/remote/model/class_houses/class_houses_data.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/search_item.dart';

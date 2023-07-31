@@ -1,9 +1,9 @@
-import 'data.dart';
+import 'class_houses_data.dart';
 
 class GetClassHousesResponse {
   int? errorCode;
   String? errorMessage;
-  List<Data>? data;
+  List<ClassHousesData>? data;
   GetClassHousesResponse({
       this.errorCode, 
       this.errorMessage, 
@@ -15,7 +15,7 @@ class GetClassHousesResponse {
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(ClassHousesData.fromJson(v));
       });
     }
   }

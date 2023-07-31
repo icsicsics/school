@@ -1,17 +1,19 @@
-class Data {
+import 'dart:convert';
+
+class TeacherPrincipleData {
   String? id;
   String? principleId;
   String? name;
   String? icon;
 
-  Data({
+  TeacherPrincipleData({
     this.id,
     this.principleId,
     this.name,
     this.icon,
   });
 
-  Data.fromJson(dynamic json) {
+  TeacherPrincipleData.fromJson(dynamic json) {
     id = json['id'];
     principleId = json['principleId'];
     name = json['name'];
@@ -25,5 +27,15 @@ class Data {
     map['name'] = name;
     map['icon'] = icon;
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static TeacherPrincipleData fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return TeacherPrincipleData.fromJson(data);
   }
 }

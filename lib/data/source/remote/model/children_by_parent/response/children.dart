@@ -1,6 +1,6 @@
 import 'getImage.dart';
 
-class Data {
+class Children {
   String? branchName;
   String? branchId;
   String? classroomSectionStudentsId;
@@ -15,7 +15,7 @@ class Data {
   String? snapchatURL;
   String? websiteURL;
 
-  Data({
+  Children({
     this.branchName,
     this.branchId,
     this.classroomSectionStudentsId,
@@ -31,7 +31,7 @@ class Data {
     this.websiteURL,
   });
 
-  Data.fromJson(dynamic json) {
+  Children.fromJson(dynamic json) {
     branchName = json['branchName'];
     branchId = json['branchId'];
     classroomSectionStudentsId = json['classroomSectionStudentsId'];

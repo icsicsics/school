@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class TeacherMeeting {
   String? id;
   String? guideId;
@@ -81,5 +83,15 @@ class TeacherMeeting {
     data['modifiedBy'] = this.modifiedBy;
     data['creationDate'] = this.creationDate;
     return data;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static TeacherMeeting fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return TeacherMeeting.fromJson(data);
   }
 }

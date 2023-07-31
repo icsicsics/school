@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'get_image.dart';
 import 'classrooms_teacher.dart';
 
-class Data {
+class TeacherInfoData {
   String? id;
   String? branchId;
   String? name;
@@ -17,7 +19,7 @@ class Data {
   GetImage? getImage;
   List<ClassroomsTeacher>? classroomsTeacher;
 
-  Data({
+  TeacherInfoData({
     this.id,
     this.branchId,
     this.name,
@@ -34,7 +36,7 @@ class Data {
     this.classroomsTeacher,
   });
 
-  Data.fromJson(dynamic json) {
+  TeacherInfoData.fromJson(dynamic json) {
     id = json['id'];
     houseIcon = json['houseIcon'];
     branchId = json['branchId'];
@@ -79,5 +81,15 @@ class Data {
           classroomsTeacher!.map((v) => v.toJson()).toList();
     }
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static TeacherInfoData fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return TeacherInfoData.fromJson(data);
   }
 }

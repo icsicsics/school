@@ -17,7 +17,7 @@ class GetSearchValuesResponse {
     if (json['data'] != null) {
       data = <SearchItem>[];
       json['data'].forEach((v) {
-        data!.add(new SearchItem.fromMap(v));
+        data!.add(new SearchItem.fromJson(v));
       });
     }
   }
@@ -27,7 +27,7 @@ class GetSearchValuesResponse {
     data['errorCode'] = this.errorCode;
     data['errorMessage'] = this.errorMessage;
     if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toMap()).toList();
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     return data;
   }

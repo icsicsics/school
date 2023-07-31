@@ -26,4 +26,5 @@ class ApiKey{
   static const String getGuidesByBranch = "Guide/GetGuidesByBranch";
   static const String createGuideMeeting = "Guide/CreateGuideMeeting";
   static const String createNotesStudents = "Guide/CreateNotesStudents";
+  static const String getTeacherOffline = "Teacher/GetTeacherInformationOffline";
 }

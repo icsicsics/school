@@ -88,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "inbox": MessageLookupByLibrary.simpleMessage("صندوق الوارد"),
         "initiative": MessageLookupByLibrary.simpleMessage("مبادرة"),
         "insufficientUse":
-            MessageLookupByLibrary.simpleMessage("ستخدام غير مناسب"),
+            MessageLookupByLibrary.simpleMessage("استخدام غير مناسب"),
         "insufficientUseDescription": MessageLookupByLibrary.simpleMessage(
             "أنت أقل من توقعات استخدام نظام نقاط المنزل، كافئ بعض النقاط لطلابك."),
         "interactive": MessageLookupByLibrary.simpleMessage("تفاعلي"),
@@ -162,6 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saturday": MessageLookupByLibrary.simpleMessage("السبت"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("فرق المدرسة"),
         "schoolHouses": MessageLookupByLibrary.simpleMessage("فرق المدرسة"),
+        "schoolHousesTitle": MessageLookupByLibrary.simpleMessage("طلاب الصف"),
         "sections": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "send": MessageLookupByLibrary.simpleMessage("إرسال"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("ارسلها مرة أخرى"),

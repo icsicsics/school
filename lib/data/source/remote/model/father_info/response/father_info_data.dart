@@ -2,20 +2,20 @@ import 'package:schools/data/source/remote/model/children_by_parent/response/get
 
 import 'childrens.dart';
 
-class Data {
+class FatherInfoData {
   String? phoneNumber;
   String? parentName;
   List<Childrens>? childrens;
   GetImage? getImage;
 
-  Data({
+  FatherInfoData({
     this.phoneNumber,
     this.parentName,
     this.childrens,
     this.getImage,
   });
 
-  Data.fromJson(dynamic json) {
+  FatherInfoData.fromJson(dynamic json) {
     phoneNumber = json['phoneNumber'];
     parentName = json['parentName'];
     if (json['childrens'] != null) {

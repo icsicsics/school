@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/authentication/verify/verify_screen.dart';
 import 'package:schools/presentation/screens/channels/channels_screen.dart';
@@ -23,8 +24,11 @@ class AppRoutes {
       case onBoarding:
         return _materialRoute(const OnBoardingScreen());
       case channels:
+        Map<String, dynamic> arg = settings.arguments as Map<String, dynamic>;
+
         return _materialRoute(ChannelsScreen(
-          type: settings.arguments as String,
+          type: arg["type"] as String,
+          videos: arg["videos"] as List<ChannelsData>,
         ));
       case login:
         return _materialRoute(const LoginScreen());

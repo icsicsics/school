@@ -134,3 +134,19 @@ class ClassSectionChangePhotoFailState extends HomeState {
     required this.errorMessage,
   });
 }
+
+class GetTeacherOfflineDataSuccessState extends HomeState {
+  final TeacherOfflineResponse response;
+
+  GetTeacherOfflineDataSuccessState({
+    required this.response,
+  });
+}
+
+class GetTeacherOfflineDataErrorState extends HomeState {
+  final String error;
+
+  GetTeacherOfflineDataErrorState({
+    required this.error,
+  });
+}

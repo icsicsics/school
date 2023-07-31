@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'coord.dart';
 import 'weather.dart';
 import 'main.dart';
@@ -85,5 +87,15 @@ class WeatherResponse {
     map['name'] = name;
     map['cod'] = cod;
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static WeatherResponse fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return WeatherResponse.fromJson(data);
   }
 }

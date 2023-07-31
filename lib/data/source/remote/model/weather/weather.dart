@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Weather {
   int? id;
   String? main;
@@ -25,5 +27,15 @@ class Weather {
     map['description'] = description;
     map['icon'] = icon;
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Weather fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Weather.fromJson(data);
   }
 }

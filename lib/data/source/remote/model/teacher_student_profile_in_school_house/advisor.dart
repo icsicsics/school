@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Advisor {
   String? reportName;
   String? description;
@@ -21,5 +23,15 @@ class Advisor {
     data['description'] = this.description;
     data['advisorName'] = this.advisorName;
     return data;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Advisor fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Advisor.fromJson(data);
   }
 }

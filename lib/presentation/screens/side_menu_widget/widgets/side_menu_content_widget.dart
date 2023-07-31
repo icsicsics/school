@@ -65,14 +65,14 @@ class _SideMenuContentWidgetState extends State<SideMenuContentWidget> {
                               SideMenuHomeEvent(),
                             ),
                           ),
-                          widget.isFather ? SizedBox.shrink() : SideMenuItem(
-                            icon: Icons.home_filled,
-                            title: S.of(context).advisors,
-                            onTap: () =>
-                                BlocProvider.of<SideMenuBloc>(context).add(
-                                  NavigateToAdvisorsScreenEvent(),
-                                ),
-                          ),
+                          // widget.isFather ? SizedBox.shrink() : SideMenuItem(
+                          //   icon: Icons.home_filled,
+                          //   title: S.of(context).advisors,
+                          //   onTap: () =>
+                          //       BlocProvider.of<SideMenuBloc>(context).add(
+                          //         NavigateToAdvisorsScreenEvent(),
+                          //       ),
+                          // ),
                           widget.isFather ? SizedBox.shrink() : SideMenuItem(
                             icon: Icons.home_filled,
                             title: S.of(context).teacherMeetings,

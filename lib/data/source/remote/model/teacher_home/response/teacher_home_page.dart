@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'get_logo.dart';
 
 class TeacherHomePage {
@@ -32,6 +34,16 @@ class TeacherHomePage {
       map['getLogo'] = getLogo!.toJson();
     }
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static TeacherHomePage fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return TeacherHomePage.fromJson(data);
   }
 
 }

@@ -1,9 +1,9 @@
-import 'data.dart';
+import 'student_profile_in_school_house.dart';
 
 class TeacherStudentProfileInSchoolHouseResponse {
   int? errorCode;
   String? errorMessage;
-  Data? data;
+  StudentProfileInSchoolHouseData? data;
 
   TeacherStudentProfileInSchoolHouseResponse({
     this.errorCode,
@@ -14,7 +14,7 @@ class TeacherStudentProfileInSchoolHouseResponse {
   TeacherStudentProfileInSchoolHouseResponse.fromJson(dynamic json) {
     errorCode = json['errorCode'];
     errorMessage = json['errorMessage'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? StudentProfileInSchoolHouseData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {

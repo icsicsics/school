@@ -30,7 +30,7 @@ class NavigateToNotificationScreenState extends SchoolHousesState {
 }
 
 class NavigateToStudentHousesScreenState extends SchoolHousesState {
-  final Data data;
+  final ClassHousesData data;
 
   NavigateToStudentHousesScreenState({required this.data});
 }

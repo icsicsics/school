@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class NotificationsResponse {
   int? errorCode;
   String? errorMessage;
@@ -29,6 +31,18 @@ class NotificationsResponse {
     }
     return data;
   }
+
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static NotificationsResponse fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return NotificationsResponse.fromJson(data);
+  }
+
 }
 
 class NotificationItem {
@@ -81,5 +95,15 @@ class NotificationItem {
     data['modificationDate'] = this.modificationDate;
     data['id'] = this.id;
     return data;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static NotificationItem fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return NotificationItem.fromJson(data);
   }
 }

@@ -1,9 +1,9 @@
-import 'data.dart';
+import 'student_houses.dart';
 
 class GetStudentHousesResponse {
   int ?errorCode;
   String? errorMessage;
-  Data ?data;
+  StudentHouses ?data;
   GetStudentHousesResponse({
       this.errorCode, 
       this.errorMessage, 
@@ -12,7 +12,7 @@ class GetStudentHousesResponse {
   GetStudentHousesResponse.fromJson(dynamic json) {
     errorCode = json['errorCode'];
     errorMessage = json['errorMessage'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? StudentHouses.fromJson(json['data']) : null;
   }
 
 

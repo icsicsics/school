@@ -1,9 +1,9 @@
-import 'data.dart';
+import 'children.dart';
 
 class GetChildrenByParentResponse {
   int? errorCode;
   String? errorMessage;
-  List<Data>? data;
+  List<Children>? data;
   GetChildrenByParentResponse({
       this.errorCode, 
       this.errorMessage, 
@@ -15,7 +15,7 @@ class GetChildrenByParentResponse {
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(Children.fromJson(v));
       });
     }
   }

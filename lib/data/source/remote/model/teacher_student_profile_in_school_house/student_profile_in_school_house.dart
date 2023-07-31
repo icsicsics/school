@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:schools/data/source/remote/model/teacher_home/response/get_logo.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/advisor.dart';
 
 import 'get_image.dart';
 import 'points.dart';
 
-class Data {
+class StudentProfileInSchoolHouseData {
   String? sectionName;
   String? classroomName;
   String? schoolName;
@@ -18,7 +20,7 @@ class Data {
   List<Points>? points;
   List<Advisor>? advisors;
 
-  Data({
+  StudentProfileInSchoolHouseData({
     this.sectionName,
     this.classroomName,
     this.schoolName,
@@ -33,7 +35,7 @@ class Data {
     this.advisors,
   });
 
-  Data.fromJson(dynamic json) {
+  StudentProfileInSchoolHouseData.fromJson(dynamic json) {
     sectionName = json['sectionName'];
     classroomName = json['classroomName'];
     schoolName = json['schoolName'];
@@ -82,5 +84,15 @@ class Data {
       map['studentGuideList'] = advisors!.map((v) => v.toJson()).toList();
     }
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static StudentProfileInSchoolHouseData fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return StudentProfileInSchoolHouseData.fromJson(data);
   }
 }

@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:schools/core/utils/awesome/name_icon_mapping.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
+import 'package:schools/data/source/remote/model/weather/main.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
@@ -51,15 +54,14 @@ class HomeTitleWidget extends StatelessWidget {
           ],
           stops: [0.5, 0.8],
         )),
-        height: 120,
+        height: 115,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -101,6 +103,34 @@ class HomeTitleWidget extends StatelessWidget {
                         ),
                     ],
                   ),
+                  isFather ? const SizedBox.shrink(): Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            getIconFromCss(bloc.teacherInfoResponse
+                                .data?.houseIcon ??
+                                ""),
+                            size: 24,
+                            color: ColorsManager.whiteColor,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          bloc.teacherInfoResponse.data != null
+                              ? MediumTextWidget(
+                              text: bloc.teacherInfoResponse
+                                  .data!.houseName,
+                              fontSize: 16,
+                              color: ColorsManager.whiteColor)
+                              : Container(),
+                        ],
+                      ),
+                    ],
+                  )
                   //Weather
                   // Column(
                   //   mainAxisAlignment: MainAxisAlignment.start,

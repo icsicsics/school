@@ -2,7 +2,7 @@ import 'package:schools/data/source/remote/model/teacher_student_profile_in_scho
 
 import 'students.dart';
 
-class Data {
+class StudentHouses {
   String? houseName;
   String? houseIcon;
   String? sectionName;
@@ -11,7 +11,7 @@ class Data {
   List<Students>? students;
   List<Advisor>? advisors;
 
-  Data({
+  StudentHouses({
     this.houseName,
     this.sectionName,
     this.numberofStudentsHouse,
@@ -20,7 +20,7 @@ class Data {
     this.advisors,
   });
 
-  Data.fromJson(dynamic json) {
+  StudentHouses.fromJson(dynamic json) {
     houseName = json['houseName'];
     houseIcon = json['houseIcon'];
     sectionName = json['sectionName'];

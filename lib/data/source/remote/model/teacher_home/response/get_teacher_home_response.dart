@@ -1,9 +1,11 @@
-import 'data.dart';
+import 'dart:convert';
+
+import 'teacher_home_data.dart';
 
 class GetTeacherHomeResponse {
   int? errorCode;
   String? errorMessage;
-  Data ?data;
+  TeacherHomeData ?data;
   GetTeacherHomeResponse({
       this.errorCode, 
       this.errorMessage, 
@@ -12,7 +14,7 @@ class GetTeacherHomeResponse {
   GetTeacherHomeResponse.fromJson(dynamic json) {
     errorCode = json['errorCode'];
     errorMessage = json['errorMessage'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? TeacherHomeData.fromJson(json['data']) : null;
   }
 
 
@@ -24,6 +26,16 @@ class GetTeacherHomeResponse {
       map['data'] = data!.toJson();
     }
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static GetTeacherHomeResponse fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return GetTeacherHomeResponse.fromJson(data);
   }
 
 }

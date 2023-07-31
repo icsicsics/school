@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
-import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/teacher_principle_data.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
 import 'package:schools/presentation/widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/screens/school_houses/widgets/is_not_coming_from_home/item.dart';
@@ -24,7 +24,7 @@ class IsNotComingFromHomeBodyWidget extends StatefulWidget {
 
 class _IsNotComingFromHomeBodyWidgetState
     extends State<IsNotComingFromHomeBodyWidget> {
-  Data valueFromAlert = Data();
+  TeacherPrincipleData valueFromAlert = TeacherPrincipleData();
 
   @override
   Widget build(BuildContext context) {

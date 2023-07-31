@@ -1050,6 +1050,16 @@ class S {
     );
   }
 
+  /// `Student Classes`
+  String get schoolHousesTitle {
+    return Intl.message(
+      'Student Classes',
+      name: 'schoolHousesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `The verification code is incorrect`
   String get errorVerifyCode {
     return Intl.message(

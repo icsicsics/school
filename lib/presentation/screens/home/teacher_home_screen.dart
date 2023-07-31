@@ -7,14 +7,15 @@ import 'package:schools/config/routes/app_routes.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
+import 'package:schools/data/source/local/database_helper.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
-import 'package:schools/presentation/screens/home/home_screen.dart';
 import 'package:schools/presentation/screens/school_houses/school_houses_screen.dart';
 import 'package:schools/presentation/screens/side_menu_widget/side_menu_screen.dart';
 import 'package:schools/presentation/widgets/restart_widget.dart';
@@ -42,7 +43,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
   @override
   void initState() {
     super.initState();
-    _homeBloc.add(GetWeatherEvent());
+    _homeBloc.add(GetTeacherOfflineDataEvent());
+    // _homeBloc.add(GetWeatherEvent());
     _homeBloc.add(GetTeacherHomeEvent(token: ""));
     _homeBloc.add(GetTeacherInfoEvent(token: ""));
   }
@@ -88,7 +90,8 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
           _switchAccount();
         } else if (state is ChangeLanguageSuccessState) {
           RestartWidget.restartApp(context);
-        }
+        } else if (state is GetTeacherOfflineDataSuccessState) {
+        } else if (state is GetTeacherOfflineDataErrorState) {}
       },
       builder: (context, state) {
         return SafeArea(
@@ -321,16 +324,21 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                         children: [
                                           Container(
                                             decoration: BoxDecoration(
-                                              color : Colors.yellow,
+                                              color: Colors.yellow,
                                               shape: BoxShape.circle,
                                             ),
                                             width: 16,
                                             height: 16,
                                           ),
-                                          SizedBox(width: 8,),
-                                          Text(S.of(context).overUser,style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                          ),),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text(
+                                            S.of(context).overUser,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                       SizedBox(
@@ -344,22 +352,29 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                         children: [
                                           Container(
                                             decoration: BoxDecoration(
-                                              color : Colors.green,
+                                              color: Colors.green,
                                               shape: BoxShape.circle,
                                             ),
                                             width: 16,
                                             height: 16,
                                           ),
-                                          SizedBox(width: 8,),
-                                          Text(S.of(context).convenientUse,style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                          ),),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text(
+                                            S.of(context).convenientUse,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text(S.of(context).convenientUseDescription),
+                                      Text(S
+                                          .of(context)
+                                          .convenientUseDescription),
                                       SizedBox(
                                         height: 16,
                                       ),
@@ -367,22 +382,29 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                                         children: [
                                           Container(
                                             decoration: BoxDecoration(
-                                              color : Colors.red,
+                                              color: Colors.red,
                                               shape: BoxShape.circle,
                                             ),
                                             width: 16,
                                             height: 16,
                                           ),
-                                          SizedBox(width: 8,),
-                                          Text(S.of(context).insufficientUse,style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                          ),),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text(
+                                            S.of(context).insufficientUse,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text(S.of(context).insufficientUseDescription),
+                                      Text(S
+                                          .of(context)
+                                          .insufficientUseDescription),
                                     ],
                                   ),
                                 )),
@@ -460,25 +482,31 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                   Container(
                     width: double.infinity,
                     margin: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Wrap(
-                      direction: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildLegend(
                           // value: S.of(context).excellent,
                           value: S.of(context).overUser,
                           color: Color.fromRGBO(243, 154, 74, 1),
                         ),
-                        SizedBox(
-                          width: 24,
-                        ),
                         _buildLegend(
                           // value: S.of(context).good,
                           value: S.of(context).convenientUse,
                           color: Color.fromRGBO(59, 187, 172, 1),
                         ),
-                        SizedBox(
-                          width: 24,
-                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
                         _buildLegend(
                           // value: S.of(context).poor,
                           value: S.of(context).insufficientUse,
@@ -536,7 +564,11 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         title: S.of(context).myMedia,
                         onTap: () {
                           Navigator.pushNamed(context, AppRoutes.channels,
-                              arguments: "media");
+                              arguments: {
+                                "type": "media",
+                                "videos":
+                                    _teacherHomeResponse.data?.videos ?? [],
+                              });
                         },
                       ),
                       SizedBox(
@@ -546,8 +578,12 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
                         image: ImagesPath.ejabiChannelIcon,
                         title: S.of(context).ejabiChannel,
                         onTap: () {
+                          List<ChannelsData> channelsData = [];
                           Navigator.pushNamed(context, AppRoutes.channels,
-                              arguments: "ejabi");
+                              arguments: {
+                                "type": "ejabi",
+                                "videos": channelsData,
+                              });
                         },
                       ),
                     ],

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Points {
   String? creationDate;
   String? createdBy;
@@ -41,5 +43,15 @@ class Points {
     map['principleIcon'] = principleIcon;
     map['createdByName'] = createdByName;
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Points fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Points.fromJson(data);
   }
 }

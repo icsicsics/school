@@ -10,6 +10,7 @@ import 'package:schools/data/source/remote/model/children_by_parent/response/get
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
+import 'package:schools/data/source/remote/model/teacher_offline/teacher_offline_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
@@ -18,6 +19,7 @@ import 'package:schools/domain/usecases/get_language_use_case.dart';
 import 'package:schools/domain/usecases/get_profile_image_use_case.dart';
 import 'package:schools/domain/usecases/get_token_use_case.dart';
 import 'package:share_plus/share_plus.dart';
+
 part 'home_event.dart';
 
 part 'home_state.dart';
@@ -30,9 +32,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetTokenUseCase _getTokenUseCase;
   final GetProfileImageUseCase _profileImageUseCase;
 
-  String childName ="";
-  String branchId ="";
-  String schoolLogo ="";
+  String childName = "";
+  String branchId = "";
+  String schoolLogo = "";
+
   HomeBloc(
     this._getLanguageCodeUseCase,
     this._getTokenUseCase,
@@ -54,6 +57,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<OpenCameraGalleryBottomSheetEvent>(_onOpenCameraGalleryBottomSheetEvent);
     on<SelectImageEvent>(_onSelectImageEvent);
     on<ClassSectionChangePhotoEvent>(_onClassSectionChangePhotoEvent);
+    on<GetTeacherOfflineDataEvent>(_onGetTeacherOfflineDataEvent);
   }
 
   FutureOr<void> _onGetHomeEvent(GetHomeEvent event, Emitter<HomeState> emit) {}
@@ -89,8 +93,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetTeacherHomeEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
     String token = await SharedPreferencesManager.getTokenDio() ?? "";
-    HomeState state =
-        (await _repository.getTeacherHome(token)) as HomeState;
+    HomeState state = (await _repository.getTeacherHome(token)) as HomeState;
     if (state is GetTeacherHomeSuccessState) {
       emit(GetTeacherHomeSuccessState(response: state.response));
     } else if (state is GetTeacherHomeFillState) {
@@ -121,8 +124,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetTeacherInfoEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
     String token = await SharedPreferencesManager.getTokenDio() ?? "";
-    HomeState state =
-        (await _repository.getTeacherInfo(token)) as HomeState;
+    HomeState state = (await _repository.getTeacherInfo(token)) as HomeState;
     if (state is GetTeacherInfoSuccessState) {
       emit(GetTeacherInfoSuccessState(response: state.response));
     } else if (state is GetTeacherInfoFillState) {
@@ -145,8 +147,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onGetWeatherEvent(
       GetWeatherEvent event, Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
-    HomeState state =
-        (await _repository.getWeather("32.332687", "35.751785", await _getLanguageCodeUseCase() ?? '')) as HomeState;
+    HomeState state = (await _repository.getWeather(
+            "32.332687", "35.751785", await _getLanguageCodeUseCase() ?? ''))
+        as HomeState;
     if (state is GetWeatherSuccessState) {
       emit(GetWeatherSuccessState(weather: state.weather));
     } else if (state is GetWeatherFillState) {
@@ -179,7 +182,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onOpenCameraGalleryBottomSheetEvent(
       OpenCameraGalleryBottomSheetEvent event, Emitter<HomeState> emit) {
-    emit(OpenCameraGalleryBottomSheetState(id : event.classroomToSectionId));
+    emit(OpenCameraGalleryBottomSheetState(id: event.classroomToSectionId));
   }
 
   FutureOr<void> _onSelectImageEvent(
@@ -188,7 +191,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (image?.path.isEmpty ?? true) {
       emit(FailedSelectImageState());
     } else {
-      emit(SuccessSelectImageState(image: image!,id:event.id));
+      emit(SuccessSelectImageState(image: image!, id: event.id));
     }
   }
 
@@ -200,11 +203,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       "Image": await MultipartFile.fromFile(event.xFile.path),
     });
     Response response = await DioHelper.changeClassRoomSectionPhoto(
-        await _getTokenUseCase(), formData,event.sectionId);
-    if(response.statusCode == 200){
+        await _getTokenUseCase(), formData, event.sectionId);
+    if (response.statusCode == 200) {
       emit(ClassSectionChangePhotoSuccessState());
     } else {
       emit(ClassSectionChangePhotoFailState(errorMessage: "Error"));
     }
+  }
+
+  FutureOr<void> _onGetTeacherOfflineDataEvent(
+      GetTeacherOfflineDataEvent event, Emitter<HomeState> emit) async {
+    emit(GetHomeLoadingState());
+    String token = await SharedPreferencesManager.getTokenDio() ?? "";
+    String languageCode = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
+    HomeState state =
+    (await _repository.getTeacherOffline(token, languageCode == "en" ? true : false,1));
+    emit(state);
   }
 }

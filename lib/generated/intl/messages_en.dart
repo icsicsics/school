@@ -163,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "schoolHomes": MessageLookupByLibrary.simpleMessage("School Homes"),
         "schoolHouses": MessageLookupByLibrary.simpleMessage("School Houses"),
+        "schoolHousesTitle":
+            MessageLookupByLibrary.simpleMessage("Student Classes"),
         "sections": MessageLookupByLibrary.simpleMessage("Sections"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendItAgain": MessageLookupByLibrary.simpleMessage("Send it again"),

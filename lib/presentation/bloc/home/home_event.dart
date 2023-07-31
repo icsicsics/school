@@ -78,3 +78,7 @@ class ClassSectionChangePhotoEvent extends HomeEvent {
     required this.sectionId,
   });
 }
+
+class GetTeacherOfflineDataEvent extends HomeEvent {
+  GetTeacherOfflineDataEvent();
+}

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Guide {
   String? guideId;
   String? guideName;
@@ -20,5 +22,15 @@ class Guide {
     data['guideId'] = this.guideId;
     data['guideName'] = this.guideName;
     return data;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Guide fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Guide.fromJson(data);
   }
 }

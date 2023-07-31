@@ -13,10 +13,11 @@ import 'package:share_plus/share_plus.dart';
 
 class ChannelsScreen extends BaseStatefulWidget {
   final String type;
-
+  final List<ChannelsData> videos;
   const ChannelsScreen({
     Key? key,
     required this.type,
+    this.videos = const [],
   }) : super(key: key);
 
   @override
@@ -170,9 +171,13 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   }
 
   void _getChannels() {
-    _bloc.add(GetChannelsEvent(
-      type: widget.type,
-    ));
+    if(widget.type == "media"){
+      _bloc.emit(GetChannelsSuccessState(channelsData: widget.videos));
+    } else {
+      _bloc.add(GetChannelsEvent(
+        type: widget.type,
+      ));
+    }
   }
 
   void _getToken() async {

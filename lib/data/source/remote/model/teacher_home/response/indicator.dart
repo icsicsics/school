@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Indicator {
   String? color;
   int? minimumPointsPerWeek;
@@ -24,5 +26,15 @@ class Indicator {
     data['maximumPointsPerWeek'] = this.maximumPointsPerWeek;
     data['totalPointsPerWeek'] = this.totalPointsPerWeek;
     return data;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Indicator fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Indicator.fromJson(data);
   }
 }

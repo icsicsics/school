@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Coord {
   double? lon;
   double? lat;
@@ -17,5 +19,16 @@ class Coord {
     map['lon'] = lon;
     map['lat'] = lat;
     return map;
+  }
+
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Coord fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Coord.fromJson(data);
   }
 }

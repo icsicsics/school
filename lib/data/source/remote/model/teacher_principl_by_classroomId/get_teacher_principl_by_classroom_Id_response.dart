@@ -1,9 +1,9 @@
-import 'data.dart';
+import 'teacher_principle_data.dart';
 
 class GetTeacherPrinciplByClassroomIdResponse {
   int? errorCode;
   String? errorMessage;
-  List<Data>? data;
+  List<TeacherPrincipleData>? data;
 
   GetTeacherPrinciplByClassroomIdResponse({
     this.errorCode,
@@ -17,7 +17,7 @@ class GetTeacherPrinciplByClassroomIdResponse {
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(TeacherPrincipleData.fromJson(v));
       });
     }
   }

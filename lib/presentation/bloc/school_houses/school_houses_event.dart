@@ -26,7 +26,7 @@ class NavigateToNotificationScreenEvent extends SchoolHousesEvent {
 }
 
 class NavigateToAddPointsScreenEvent extends SchoolHousesEvent {
-  final Data data;
+  final ClassHousesData data;
 
   NavigateToAddPointsScreenEvent({required this.data});
 }

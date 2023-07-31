@@ -76,7 +76,7 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
           showLogoutFunction(context: context, yesAction: () => _logout());
         } else if (state is GetTeacherInfoSuccessState) {
           _bloc.add(SetProfileImageInShearedPrefranceEvent(
-              image: state.response.data!.getImage!.mediaUrl.toString()));
+              image: state.response.data?.getImage?.mediaUrl ?? ""));
         } else if (state is GetTeacherInfoFillState) {
           _onGetTeacherInfoFillState(state.error);
           Navigator.pop(context);

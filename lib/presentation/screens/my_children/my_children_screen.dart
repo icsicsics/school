@@ -169,9 +169,9 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
 
             },
             child: Icon(
-              Icons.person,
+              Icons.edit_calendar_sharp,
               color: Color(0xff3bbbac),
-              size: 30,
+              size: 28,
             ),
           ),
           Stack(

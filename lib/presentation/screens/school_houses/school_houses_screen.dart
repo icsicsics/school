@@ -309,7 +309,7 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
         title: BoldTextWidget(
             color: ColorsManager.secondaryColor,
             fontSize: 20,
-            text: S.of(context).schoolHouses),
+            text: S.of(context).schoolHousesTitle),
       );
 
   void _navigateToNotificationScreen(bool isNotificationSelected) =>

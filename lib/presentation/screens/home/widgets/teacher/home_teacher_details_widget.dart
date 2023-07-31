@@ -37,56 +37,56 @@ class _HomeTeacherDetailsWidgetState extends State<HomeTeacherDetailsWidget> {
         ? Column(
             children: [
               const SizedBox(height: 2),
-              Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                    colors: [
-                      ColorsManager.primaryColor,
-                      ColorsManager.secondaryColor,
-                    ],
-                    stops: [0.5, 0.8],
-                  )),
-                  height: 50,
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 40, right: 40),
-                      child: Row(
-                        children: [
-                          FaIcon(
-                            getIconFromCss(widget.homeBloc.teacherInfoResponse
-                                    .data?.houseIcon ??
-                                ""),
-                            size: 24,
-                            color: ColorsManager.whiteColor,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          widget.homeBloc.teacherInfoResponse.data != null
-                              ? MediumTextWidget(
-                                  text: widget.homeBloc.teacherInfoResponse
-                                      .data!.houseName,
-                                  fontSize: 16,
-                                  color: ColorsManager.whiteColor)
-                              : Container(),
-                          // const Spacer(),
-                          // GestureDetector(
-                          //   onTap: () => Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (_) => SchoolHousesScreen(
-                          //               classRoomId: widget
-                          //                   .homeBloc
-                          //                   .teacherInfoResponse
-                          //                   .data!
-                          //                   .branchId!,
-                          //               isComingFromHome: true))),
-                          //   child: MediumTextWidget(
-                          //       text: S.of(context).viewHouses,
-                          //       fontSize: 16,
-                          //       color: ColorsManager.whiteColor),
-                          // ),
-                        ],
-                      ))),
+              // Container(
+              //     decoration: const BoxDecoration(
+              //         gradient: LinearGradient(
+              //       colors: [
+              //         ColorsManager.primaryColor,
+              //         ColorsManager.secondaryColor,
+              //       ],
+              //       stops: [0.5, 0.8],
+              //     )),
+              //     height: 50,
+              //     child: Padding(
+              //         padding: const EdgeInsets.only(left: 40, right: 40),
+              //         child: Row(
+              //           children: [
+              //             FaIcon(
+              //               getIconFromCss(widget.homeBloc.teacherInfoResponse
+              //                       .data?.houseIcon ??
+              //                   ""),
+              //               size: 24,
+              //               color: ColorsManager.whiteColor,
+              //             ),
+              //             const SizedBox(
+              //               width: 8,
+              //             ),
+              //             widget.homeBloc.teacherInfoResponse.data != null
+              //                 ? MediumTextWidget(
+              //                     text: widget.homeBloc.teacherInfoResponse
+              //                         .data!.houseName,
+              //                     fontSize: 16,
+              //                     color: ColorsManager.whiteColor)
+              //                 : Container(),
+              //             // const Spacer(),
+              //             // GestureDetector(
+              //             //   onTap: () => Navigator.push(
+              //             //       context,
+              //             //       MaterialPageRoute(
+              //             //           builder: (_) => SchoolHousesScreen(
+              //             //               classRoomId: widget
+              //             //                   .homeBloc
+              //             //                   .teacherInfoResponse
+              //             //                   .data!
+              //             //                   .branchId!,
+              //             //               isComingFromHome: true))),
+              //             //   child: MediumTextWidget(
+              //             //       text: S.of(context).viewHouses,
+              //             //       fontSize: 16,
+              //             //       color: ColorsManager.whiteColor),
+              //             // ),
+              //           ],
+              //         ))),
               GridView.builder(
                 physics: const BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

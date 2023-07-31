@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:schools/data/source/remote/model/teacher_home/response/get_logo.dart';
 
 class ClassroomsTeacher {
@@ -32,4 +34,15 @@ class ClassroomsTeacher {
     }
     return map;
   }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static ClassroomsTeacher fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return ClassroomsTeacher.fromJson(data);
+  }
+
 }

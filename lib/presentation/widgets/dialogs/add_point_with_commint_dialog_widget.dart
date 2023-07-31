@@ -14,7 +14,7 @@ import 'package:schools/presentation/widgets/custom_button_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/widgets/medium_text_widget.dart';
 import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/get_teacher_principl_by_classroom_Id_response.dart';
-import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/teacher_principle_data.dart';
 
 class AddPointDialogWidget extends StatefulWidget {
   final bool isGift;
@@ -49,12 +49,12 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
   GetTeacherPrinciplByClassroomIdResponse
       _getTeacherPrinciplByClassroomIdResponse =
       GetTeacherPrinciplByClassroomIdResponse();
-  Data value = Data();
+  TeacherPrincipleData value = TeacherPrincipleData();
   String? errorMessage;
 
   AddPointBloc get _addPointBloc => BlocProvider.of<AddPointBloc>(context);
 
-  final List<Data> _listOfItems = [];
+  final List<TeacherPrincipleData> _listOfItems = [];
 
   @override
   void initState() {
@@ -203,7 +203,7 @@ class _AddPointDialogWidgetState extends State<AddPointDialogWidget> {
                                     .valueNameCannotExceedCharacters;
                               } else {
                                 errorMessage = null;
-                                value = Data(
+                                value = TeacherPrincipleData(
                                     name: value1,
                                     id: "1c70fb02-e34c-43fe-7215-08db46379640");
                               }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class SearchItem {
   final int id;
   final String name;
@@ -33,17 +35,27 @@ class SearchItem {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'id': this.id,
       'name': this.name,
     };
   }
 
-  factory SearchItem.fromMap(Map<String, dynamic> map) {
+  factory SearchItem.fromJson(Map<String, dynamic> map) {
     return SearchItem(
       id: map['id'] as int,
       name: map['name'] as String,
     );
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static SearchItem fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return SearchItem.fromJson(data);
   }
 }

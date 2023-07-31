@@ -73,21 +73,21 @@ class SchoolHousesCardItemWidget extends StatelessWidget {
                   SizedBox(
                     height: 8,
                   ),
-                RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemSize: 20,
-                  wrapAlignment: WrapAlignment.center,
-                  glowRadius: 0.6,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                  itemBuilder: (context, _) => SvgPicture.asset(ImagesPath.ratingStarIcon,width: 18,height: 18,),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                ),
+                // RatingBar.builder(
+                //   initialRating: 3,
+                //   minRating: 1,
+                //   direction: Axis.horizontal,
+                //   allowHalfRating: true,
+                //   itemCount: 5,
+                //   itemSize: 20,
+                //   wrapAlignment: WrapAlignment.center,
+                //   glowRadius: 0.6,
+                //   itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                //   itemBuilder: (context, _) => SvgPicture.asset(ImagesPath.ratingStarIcon,width: 18,height: 18,),
+                //   onRatingUpdate: (rating) {
+                //     print(rating);
+                //   },
+                // ),
                 ],
               ),
             ),

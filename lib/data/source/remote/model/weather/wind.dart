@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Wind {
   double? speed;
   int? deg;
@@ -17,5 +19,15 @@ class Wind {
     map['speed'] = speed;
     map['deg'] = deg;
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Wind fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Wind.fromJson(data);
   }
 }

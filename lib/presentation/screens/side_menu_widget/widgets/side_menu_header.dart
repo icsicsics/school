@@ -103,7 +103,7 @@ class SideMenuHeader extends StatelessWidget {
           ? _buildProfilePlaceHolder()
           : ClipOval(
               child: Image.network(
-                bloc.teacherInfoResponse.data!.getImage!.mediaUrl ?? "",
+                bloc.teacherInfoResponse.data?.getImage?.mediaUrl ?? "",
                 height: 70,
                 width: 70,
                 fit: BoxFit.fill,

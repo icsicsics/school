@@ -84,7 +84,6 @@ class _MyAppState extends State<MyApp> {
             create: (BuildContext context) => injector()),
         BlocProvider<AdvisorsBloc>(
             create: (BuildContext context) => injector()),
-
       ],
       child: BlocBuilder<LocalizationCubit, Locale>(
         builder: (context, state) {

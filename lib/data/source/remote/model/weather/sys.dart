@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Sys {
   int? type;
   int? id;
@@ -29,5 +31,15 @@ class Sys {
     map['sunrise'] = sunrise;
     map['sunset'] = sunset;
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Sys fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Sys.fromJson(data);
   }
 }

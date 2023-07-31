@@ -99,6 +99,7 @@
   "skills": "مهارات",
   "teacherOf": "معلم ل",
   "schoolHouses": "فرق المدرسة",
+  "schoolHousesTitle": "طلاب الصف",
   "errorVerifyCode": "رمز التحقق غير صحيح",
   "termsAndConditions": "الأحكام والشروط",
   "addedSuccessfully": "اضيف بنجاح",
@@ -148,7 +149,7 @@
   "insufficientUseDescription" : "أنت أقل من توقعات استخدام نظام نقاط المنزل، كافئ بعض النقاط لطلابك.",
   "overUser" : "استخدام زائد",
   "convenientUse" : "استخدام مناسب",
-  "insufficientUse" : "ستخدام غير مناسب"
+  "insufficientUse" : "استخدام غير مناسب"
 
 
 

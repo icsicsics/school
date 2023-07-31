@@ -3,7 +3,7 @@ import 'package:schools/data/source/remote/model/student_houses/get_student_hous
 import 'package:schools/presentation/bloc/student_houses/student_houses_bloc.dart';
 import 'package:schools/presentation/widgets/dialogs/show_add_point_function.dart';
 import 'package:schools/presentation/screens/student_houses/widgets/student_houses_item_widget.dart';
-import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/data.dart';
+import 'package:schools/data/source/remote/model/teacher_principl_by_classroomId/teacher_principle_data.dart';
 
 class StudentHousesListWidget extends StatefulWidget {
   final GetStudentHousesResponse getStudentHousesResponse;
@@ -23,7 +23,7 @@ class StudentHousesListWidget extends StatefulWidget {
 }
 
 class _StudentHousesListWidgetState extends State<StudentHousesListWidget> {
-  Data valueFromAlert = Data();
+  TeacherPrincipleData valueFromAlert = TeacherPrincipleData();
 
   @override
   Widget build(BuildContext context) {

@@ -89,7 +89,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 150,
+        height: isFather ? 100  : 130,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -114,7 +114,7 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
                 );
               },
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: SvgPicture.asset(ImagesPath.notesIcon),
               ),
             ),
