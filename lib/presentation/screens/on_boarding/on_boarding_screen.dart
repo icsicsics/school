@@ -4,6 +4,7 @@ import 'package:schools/config/routes/app_routes.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/channels/channels_screen.dart';
@@ -147,11 +148,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   void _navigateToChannelsScreen() {
+    List<ChannelsData> videos = [];
     Navigator.pushNamedAndRemoveUntil(
       context,
       AppRoutes.channels,
       (route) => false,
-      arguments: "ejabi"
+      arguments: {
+        "type" : "ejabi",
+        "videos" : videos,
+      }
     );
   }
 }

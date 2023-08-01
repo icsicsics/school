@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:schools/config/routes/app_routes.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/channels/channels_data.dart';
 import 'package:schools/presentation/bloc/splash/splash_bloc.dart';
 import 'package:schools/presentation/screens/authentication/login/login_screen.dart';
 import 'package:schools/presentation/screens/channels/channels_screen.dart';
@@ -106,10 +107,15 @@ class _SplashScreenState extends BaseState<SplashScreen> {
   }
 
   void _navigationToChannelsScreen() {
+    List<ChannelsData> videos = [];
+
     Navigator.pushReplacementNamed(
       context,
       AppRoutes.channels,
-      arguments: "ejabi"
+        arguments: {
+          "type" : "ejabi",
+          "videos" : videos,
+        }
     );
   }
 }
