@@ -62,13 +62,13 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
             children: [
               _item(
                 onTap: () {
-                  _launchUrl(widget.teacherInfoResponse.data!.facebookURL ??
+                  _launchUrl(widget.teacherInfoResponse.data?.facebookURL ??
                       "https://www.facebook.com/");
                 },
                 icon: FontAwesomeIcons.facebook,
                 showItem:
-                    widget.teacherInfoResponse.data!.facebookURL != null ||
-                        (widget.teacherInfoResponse.data!.facebookURL ?? "")
+                    widget.teacherInfoResponse.data?.facebookURL != null ||
+                        (widget.teacherInfoResponse.data?.facebookURL ?? "")
                             .isNotEmpty,
               ),
               _item(
@@ -78,38 +78,38 @@ class _ProfileContentWidgetState extends State<ProfileContentWidget> {
                 },
                 icon: FontAwesomeIcons.instagram,
                 showItem:
-                    widget.teacherInfoResponse.data!.instagramURL != null ||
-                        (widget.teacherInfoResponse.data!.instagramURL ?? "")
+                    widget.teacherInfoResponse.data?.instagramURL != null ||
+                        (widget.teacherInfoResponse.data?.instagramURL ?? "")
                             .isNotEmpty,
               ),
               _item(
                 onTap: () {
-                  _launchUrl(widget.teacherInfoResponse.data!.tweeterURL ??
+                  _launchUrl(widget.teacherInfoResponse.data?.tweeterURL ??
                       "https://twitter.com/");
                 },
                 icon: FontAwesomeIcons.twitter,
-                showItem: widget.teacherInfoResponse.data!.tweeterURL != null ||
-                    (widget.teacherInfoResponse.data!.tweeterURL ?? "")
+                showItem: widget.teacherInfoResponse.data?.tweeterURL != null ||
+                    (widget.teacherInfoResponse.data?.tweeterURL ?? "")
                         .isNotEmpty,
               ),
               _item(
                 onTap: () {
-                  _launchUrl(widget.teacherInfoResponse.data!.snapchatURL ??
+                  _launchUrl(widget.teacherInfoResponse.data?.snapchatURL ??
                       "https://www.snapchat.com/");
                 },
                 icon: FontAwesomeIcons.snapchat,
                 showItem:
-                    widget.teacherInfoResponse.data!.snapchatURL != null ||
-                        (widget.teacherInfoResponse.data!.snapchatURL ?? "")
+                    widget.teacherInfoResponse.data?.snapchatURL != null ||
+                        (widget.teacherInfoResponse.data?.snapchatURL ?? "")
                             .isNotEmpty,
               ),
               _item(
                 onTap: () {
-                  _launchUrl(widget.teacherInfoResponse.data!.websiteURL ?? "");
+                  _launchUrl(widget.teacherInfoResponse.data?.websiteURL ?? "");
                 },
                 icon: FontAwesomeIcons.globe,
-                showItem: widget.teacherInfoResponse.data!.websiteURL != null ||
-                    (widget.teacherInfoResponse.data!.websiteURL ?? "")
+                showItem: widget.teacherInfoResponse.data?.websiteURL != null ||
+                    (widget.teacherInfoResponse.data?.websiteURL ?? "")
                         .isNotEmpty,
               ),
             ],

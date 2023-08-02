@@ -118,7 +118,7 @@ class ProfileHeaderWidget extends StatelessWidget {
           : SizedBox(
               width: 150,
               height: 150,
-              child: image(teacherInfoResponse!.data!.getImage!.mediaUrl ?? ""),
+              child: image(teacherInfoResponse!.data!.getImage?.mediaUrl ?? ""),
             );
     }
 

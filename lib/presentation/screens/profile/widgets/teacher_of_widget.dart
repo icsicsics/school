@@ -58,7 +58,7 @@ class TeacherOfWidget extends StatelessWidget {
                                     child: ChildItemWidget(
                                       isStartVisible: false,
                                       imageUrl:teacherInfoResponse.data!
-                                          .classroomsTeacher![index].getLogo!.mediaUrl ??
+                                          .classroomsTeacher![index].getLogo?.mediaUrl ??
                                           "",
                                       childName: teacherInfoResponse.data!
                                               .classroomsTeacher![index].classroomName ??

@@ -25,7 +25,7 @@ class SideMenuRepositoryImp extends BaseSideMenuRepository {
         Response response = await DioHelper.getTeacherInfo(token);
         teacherInfoResponse = TeacherInfoResponse.fromJson(response.data);
         if (teacherInfoResponse.data != null) {
-          return GetTeacherInfoSuccessState(response: teacherInfoResponse);
+          state =  GetTeacherInfoSuccessState(response: teacherInfoResponse);
         }
       } catch (error) {
         state = GetTeacherInfoFillState(

@@ -1,4 +1,6 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:schools/data/source/local/database_helper.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_search_values_response.dart';
@@ -12,17 +14,27 @@ class SchoolHousesRepositoryImp extends BaseSchoolHousesRepository {
       String token, String classRoomId, bool isComingFromHome,int search) async {
     SchoolHousesState? state;
     GetClassHousesResponse getClassHousesResponse = GetClassHousesResponse();
-    try {
-      Response response =
-          await DioHelper.getClassHouses(token, classRoomId, isComingFromHome,search);
-      getClassHousesResponse = GetClassHousesResponse.fromJson(response.data);
-      if (getClassHousesResponse.data != null) {
-        return GetSchoolHousesSuccessState(response: getClassHousesResponse);
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    DatabaseHelper databaseHelper = DatabaseHelper.instance;
+    if(connectivityResult == ConnectivityResult.none){
+      getClassHousesResponse.data = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.schoolHouses ?? [];
+      getClassHousesResponse.errorCode = 200;
+      getClassHousesResponse.errorMessage = "Success";
+      state = GetSchoolHousesSuccessState(response: getClassHousesResponse);
+    } else {
+      try {
+        Response response =
+        await DioHelper.getClassHouses(token, classRoomId, isComingFromHome,search);
+        getClassHousesResponse = GetClassHousesResponse.fromJson(response.data);
+        if (getClassHousesResponse.data != null) {
+          state =  GetSchoolHousesSuccessState(response: getClassHousesResponse);
+        }
+      } catch (error) {
+        state = GetSchoolHousesFillState(
+            error: getClassHousesResponse.errorMessage ?? "Error");
       }
-    } catch (error) {
-      state = GetSchoolHousesFillState(
-          error: getClassHousesResponse.errorMessage ?? "Error");
     }
+
     return state!;
   }
 
@@ -52,19 +64,29 @@ class SchoolHousesRepositoryImp extends BaseSchoolHousesRepository {
     SchoolHousesState? state;
     GetSearchValuesResponse getSearchValuesResponse =
     GetSearchValuesResponse();
-    try {
-      Response response =
-          await DioHelper.getSearchValues(token);
-      getSearchValuesResponse =
-          GetSearchValuesResponse.fromJson(response.data);
-      if (getSearchValuesResponse.data != null) {
-        return GetSearchValuesSuccessState(values: getSearchValuesResponse.data?? []);
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    DatabaseHelper databaseHelper = DatabaseHelper.instance;
+    if(connectivityResult == ConnectivityResult.none){
+      getSearchValuesResponse.data = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.searchByDateEnum ?? [];
+      getSearchValuesResponse.errorCode = 200;
+      getSearchValuesResponse.errorMessage = "Success";
+      state = GetSearchValuesSuccessState(values: getSearchValuesResponse.data?? []);
+    } else {
+      try {
+        Response response =
+        await DioHelper.getSearchValues(token);
+        getSearchValuesResponse =
+            GetSearchValuesResponse.fromJson(response.data);
+        if (getSearchValuesResponse.data != null) {
+          return GetSearchValuesSuccessState(values: getSearchValuesResponse.data?? []);
+        }
+      } catch (error) {
+        print("${error.toString()}");
+        state = GetSearchValuesFailState(
+            error: getSearchValuesResponse.errorMessage ?? "Error");
       }
-    } catch (error) {
-      print("${error.toString()}");
-      state = GetSearchValuesFailState(
-          error: getSearchValuesResponse.errorMessage ?? "Error");
     }
+
     return state!;
   }
 }
