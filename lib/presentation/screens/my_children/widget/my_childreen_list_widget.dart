@@ -185,8 +185,11 @@ class _MyChildrenWidgetState extends State<MyChildrenWidget> {
   }
 
   Color _getColor(_ChildIconsModel model) {
-    if (model.isSelected) {
+    if (model.isSelected && model.id == "-1") {
+      return ColorsManager.yellow;
+    } else if(model.isSelected) {
       return _selectedColor;
+
     } else {
       return _unselectedColor;
     }

@@ -111,90 +111,91 @@ class _VideoScreenState extends State<VideoScreen> {
               fit: BoxFit.scaleDown,
             )),
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            _buildSelectedVideo(context),
-            const SizedBox(height: 16),
-            Column(
-              children: widget.channels.map((e) {
-                if (e == selectedVideo) {
-                  return const SizedBox.shrink();
-                }
-                return InkWell(
-                  onTap: () {
-                    _clearVideosController();
-                    selectedVideo = e;
-                    _initializeSelectedVideo();
-                    // _initializeVideos();
-                    // _initializeChewieControllers();
-                    setState(() {});
-                  },
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: SizedBox(
-                          height: 200,
-                          child: Image.network(
-                              e.image?.mediaUrl ?? "",
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              "assets/images/ic_video_placeholder.png",
-                              fit: BoxFit.cover,
-                            );
-                          }),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          height: 200,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      e.title ?? "",
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                                    child: InkWell(
-                                      onTap: () {
-                                        BlocProvider.of<ChannelsBloc>(context)
-                                            .add(ShareVideEvent(
-                                                url: e.video?.mediaUrl ?? ""));
-                                      },
-                                      child: SvgPicture.asset(
-                                          ImagesPath.shareIcon,
-                                          matchTextDirection: true),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+      body: Column(
+        children: [
+          _buildSelectedVideo(context),
+          const SizedBox(height: 16),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: widget.channels.map((e) {
+                  if (e == selectedVideo) {
+                    return const SizedBox.shrink();
+                  }
+                  return InkWell(
+                    onTap: () {
+                      _clearVideosController();
+                      selectedVideo = e;
+                      _initializeSelectedVideo();
+                      // _initializeVideos();
+                      // _initializeChewieControllers();
+                      setState(() {});
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: SizedBox(
+                            height: 200,
+                            child: Image.network(
+                                e.image?.mediaUrl ?? "",
+                                fit: BoxFit.fill,
+                                errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                "assets/images/ic_video_placeholder.png",
+                                fit: BoxFit.fill,
+                              );
+                            }),
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                );
-              }).toList(),
-            )
-          ],
-        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            height: 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        e.title ?? "",
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                                      child: InkWell(
+                                        onTap: () {
+                                          BlocProvider.of<ChannelsBloc>(context)
+                                              .add(ShareVideEvent(
+                                                  url: e.video?.mediaUrl ?? ""));
+                                        },
+                                        child: SvgPicture.asset(
+                                            ImagesPath.shareIcon,
+                                            matchTextDirection: true),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -218,12 +219,16 @@ class _VideoScreenState extends State<VideoScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text(
-                selectedVideo.description ?? "",
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.85,
+                child: Text(
+                  selectedVideo.description ?? "",
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  maxLines: 3,
                 ),
               ),
               const Expanded(child: SizedBox()),

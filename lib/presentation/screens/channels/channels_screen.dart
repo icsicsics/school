@@ -10,7 +10,8 @@ import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/channels/channels_bloc.dart';
 import 'package:schools/presentation/screens/channels/widgets/channel_video_widget.dart';
 import 'package:share_plus/share_plus.dart';
-
+import 'package:video_player/video_player.dart';
+import 'dart:io';
 class ChannelsScreen extends BaseStatefulWidget {
   final String type;
   final List<ChannelsData> videos;
@@ -30,6 +31,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
   ChannelsBloc get _bloc => BlocProvider.of<ChannelsBloc>(context);
 
   List<ChannelsData> _channels = [];
+  List<VideoPlayerController> _videosControllers = [];
   String _token = "";
 
   @override
@@ -47,7 +49,7 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
         } else if (state is HideLoadingState) {
           hideLoading();
         } else if (state is GetChannelsSuccessState) {
-          _channels = state.channelsData;
+            test(state);
         } else if (state is GetChannelsErrorState) {
           //Todo show error
         } else if (state is NavigateBackState) {
@@ -100,9 +102,10 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
                     shrinkWrap: true,
                     itemCount: _channels.length,
                     itemBuilder: (context, index) {
-                      return ChannelsVideoWidget(
+                      return  ChannelsVideoWidget(
                         channelsData: _channels[index],
                         channels: _channels,
+                        // controller: _videosControllers[index],
                         type: widget.type,
                       );
                     },
@@ -114,6 +117,40 @@ class _ChannelsScreenState extends BaseState<ChannelsScreen> {
         );
       },
     );
+  }
+
+  void test(GetChannelsSuccessState state) async {
+    _channels = state.channelsData;
+    await _initializeVideoPlayerControllers(_channels);
+    setState(() {
+
+    });
+  }
+
+  Future<void> _initializeVideoPlayerControllers(List<ChannelsData> channelsData) async {
+    final futures = channelsData.map((channelData) => _initializeVideoPlayerController(channelData.video?.mediaUrl ??""));
+    final controllers = await Future.wait<VideoPlayerController>(futures);
+
+    setState(() {
+      _videosControllers = controllers;
+    });
+  }
+
+  Future<VideoPlayerController> _initializeVideoPlayerController(String videoUrl) async {
+    final controller = VideoPlayerController.network(videoUrl);
+    await controller.initialize();
+    return controller;
+  }
+  Future<void> _testVideo(List<ChannelsData> channel) async {
+    for(var item in channel)  {
+      print("test");
+      VideoPlayerController _controller = VideoPlayerController.network(item.video?.mediaUrl ?? "");
+      await _controller.initialize();
+      _videosControllers.add(_controller);
+    }
+    setState(() {
+
+    });
   }
 
   Container _buildHeaderSection(BuildContext context) {
