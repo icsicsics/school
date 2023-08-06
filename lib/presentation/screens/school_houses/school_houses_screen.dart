@@ -5,6 +5,7 @@ import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/advisors/response/guide.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/search_item.dart';
@@ -12,6 +13,7 @@ import 'package:schools/data/source/remote/model/weather/main.dart';
 import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/bloc/school_houses/school_houses_bloc.dart';
+import 'package:schools/presentation/screens/advisors/utils/open_request_meeting_bottom_sheet.dart';
 import 'package:schools/presentation/widgets/bold_text_widget.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/widgets/regular_text_widget.dart';
@@ -55,10 +57,13 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
   bool isFather = false;
   String token = "";
   String language = "";
+  List<String> _guidesId = [];
+  List<Guide> _guides = [];
 
   @override
   void initState() {
-    print(widget.branchId);
+    if ((widget.branchId ?? "").isNotEmpty)
+      _schoolHousesBloc.add(GetGuidesEvent(branchId: widget.branchId ?? ""));
     super.initState();
   }
 
@@ -126,7 +131,14 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                     ));
                   });
                 });
-          } else if (state is GetSearchValuesFailState) {}
+          } else if (state is GetSearchValuesFailState) {
+          } else if (state is GetGuidesSuccessState) {
+            _guides = state.guides;
+            _guidesId = [];
+            for (var item in state.guides) {
+              _guidesId.add(item.guideId ?? "");
+            }
+          } else if (state is GetGuidesErrorState) {}
         },
         builder: (context, state) {
           if (state is GetSchoolHousesLoadingState) {
@@ -233,6 +245,48 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
         ),
         centerTitle: false,
         actions: [
+          isFather
+              ? SizedBox.shrink()
+              : InkWell(
+                  onTap: () {
+                    openRequestMeetingBottomSheet(
+                      context: context,
+                      height: 350,
+                      guides: _guides,
+                      studentId: "",
+                      classroomToSectionId: widget.classroomToSectionId ?? "",
+                      teacherId: widget.teacherId ?? "",
+                    );
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    //   return AdvisorsScreen(
+                    //     studentName: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.studentName ??
+                    //         "",
+                    //     studentImage: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.getImage?.mediaUrl ??
+                    //         "",
+                    //     branchId: widget.branchId ?? "",
+                    //     studentId: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.studentId ??
+                    //         "",
+                    //     advisors: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.advisors ??
+                    //         [],
+                    //     teacherId: widget.teacherId ?? "",
+                    //     classroomToSectionId: widget.classroomToSectionId ?? "",
+                    //   );
+                    // }));
+                  },
+                  child: Icon(
+                    Icons.edit_calendar_sharp,
+                    color: Color(0xff3bbbac),
+                    size: 28,
+                  ),
+                ),
+
+          SizedBox(
+            width: 6,
+          ),
           InkWell(
             onTap: () {
               _schoolHousesBloc.add(GetSearchValuesEvent(
@@ -341,8 +395,8 @@ class _SchoolHousesScreenState extends BaseState<SchoolHousesScreen> {
                     classroomSectionStudentsId: classroomToSectionId.toString(),
                     isParent: false,
                     branchId: branchId,
-                classroomToSectionId: widget.classroomToSectionId,
-                teacherId: widget.teacherId,
+                    classroomToSectionId: widget.classroomToSectionId,
+                    teacherId: widget.teacherId,
                   )));
 
   void _onGetStudentHousesFillState(String error) =>

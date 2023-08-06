@@ -70,3 +70,19 @@ class GetSearchValuesFailState extends SchoolHousesState {
     required this.error,
   });
 }
+
+class GetGuidesSuccessState extends SchoolHousesState {
+  final List<Guide> guides;
+
+  GetGuidesSuccessState({
+    required this.guides,
+  });
+}
+
+class GetGuidesErrorState extends SchoolHousesState {
+  final String errorMessage;
+
+  GetGuidesErrorState({
+    required this.errorMessage,
+  });
+}

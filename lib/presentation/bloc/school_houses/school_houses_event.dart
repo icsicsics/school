@@ -54,3 +54,11 @@ class GetSearchValuesEvent extends SchoolHousesEvent {
     required this.token,
   });
 }
+
+class GetGuidesEvent extends SchoolHousesEvent {
+  final String branchId;
+
+  GetGuidesEvent({
+    required this.branchId,
+  });
+}

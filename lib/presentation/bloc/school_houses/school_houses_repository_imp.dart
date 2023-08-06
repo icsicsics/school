@@ -1,7 +1,9 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:schools/data/source/local/database_helper.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
+import 'package:schools/data/source/remote/model/advisors/response/guide_model.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_search_values_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
@@ -88,5 +90,20 @@ class SchoolHousesRepositoryImp extends BaseSchoolHousesRepository {
     }
 
     return state!;
+  }
+
+  @override
+  Future<SchoolHousesState> getGuides(String branchId, bool language) async {
+    String token = await SharedPreferencesManager.getTokenDio() ?? "";
+    Response response = await DioHelper.getGuides(
+      branchId,
+      token,
+    );
+    GuideModel guideModel = GuideModel.fromJson(response.data);
+    if (response.statusCode == 200) {
+      return GetGuidesSuccessState(guides: guideModel.guides!);
+    } else {
+      return GetGuidesErrorState(errorMessage: guideModel.errorMessage!);
+    }
   }
 }

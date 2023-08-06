@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
+import 'package:schools/data/source/remote/model/advisors/response/guide.dart';
 import 'package:schools/data/source/remote/model/class_houses/class_houses_data.dart';
 import 'package:schools/data/source/remote/model/class_houses/get_class_houses_response.dart';
 import 'package:schools/data/source/remote/model/student_houses/get_student_houses_response.dart';
@@ -24,6 +26,8 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
     on<NavigateToMyChildrenScreenEvent>(_onNavigateToMyChildrenScreenEvent);
     on<GetStudentHousesEvent>(_onGetStudentHousesEvent);
     on<GetSearchValuesEvent>(_onGetSearchValuesEvent);
+    on<GetGuidesEvent>(_onGetGuidesEvent);
+
   }
 
   FutureOr<void> _onGetSchoolHousesEvent(
@@ -84,5 +88,16 @@ class SchoolHousesBloc extends Bloc<SchoolHousesEvent, SchoolHousesState> {
     } else if (state is GetStudentHousesFillState) {
       emit(GetStudentHousesFillState(error: state.error));
     }
+  }
+
+  FutureOr<void> _onGetGuidesEvent(GetGuidesEvent event, Emitter<SchoolHousesState> emit) async {
+    emit(GetSchoolHousesLoadingState());
+    String language =
+        await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
+
+    emit(await _repository.getGuides(
+        event.branchId, language == "en" ? true : false));
+    emit(SchoolHousesInitialState());
+
   }
 }

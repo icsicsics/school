@@ -10,6 +10,7 @@ class DatabaseHelper {
   static const _databaseVersion = 1;
 
   static const teacherOfflineData = 'teacher_offline_data';
+  static const parentOfflineData = 'parent_offline_data';
   // static const teacherInfoTable = 'teacher_info';
   // static const teacherHomeTable = 'teacher_home';
   // static const weatherTable = 'weather';
@@ -43,6 +44,13 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE $teacherOfflineData (
+        $columnId INTEGER PRIMARY KEY,
+        $columnData TEXT NOT NULL
+      )
+      ''');
+
+    await db.execute('''
+      CREATE TABLE $parentOfflineData (
         $columnId INTEGER PRIMARY KEY,
         $columnData TEXT NOT NULL
       )
@@ -92,66 +100,25 @@ class DatabaseHelper {
   }
 
 
-  // Future<int> insertTeacherInfo(TeacherInfoResponse teacherInfo) async {
-  //   Database db = await database;
-  //   Map<String, dynamic> row = {
-  //     columnId: 1,
-  //     columnData: teacherInfo.toJsonString(),
-  //     // Convert to JSON string to store in the database.
-  //   };
-  //   return await db.insert(
-  //     teacherInfoTable,
-  //     row,
-  //     conflictAlgorithm: ConflictAlgorithm.replace,
-  //   );
-  // }
-  //
-  // Future<TeacherInfoResponse> getTeacherInfo() async {
-  //   Database db = await database;
-  //   List<Map> maps = await db.query(teacherInfoTable);
-  //   return TeacherInfoResponse.fromJsonString(maps[0][columnData]);
-  // }
-  //
-  //
-  //
-  // Future<int> insertTeacherHomePage(GetTeacherHomeResponse teacherHomeResponse) async {
-  //   Database db = await database;
-  //   Map<String, dynamic> row = {
-  //     columnId: 1,
-  //     columnData: teacherHomeResponse.toJsonString(),
-  //     // Convert to JSON string to store in the database.
-  //   };
-  //   return await db.insert(
-  //     teacherHomeTable,
-  //     row,
-  //     conflictAlgorithm: ConflictAlgorithm.replace,
-  //   );
-  // }
-  //
-  // Future<GetTeacherHomeResponse> getTeacherHomePage() async {
-  //   Database db = await database;
-  //   List<Map> maps = await db.query(teacherHomeTable);
-  //   return GetTeacherHomeResponse.fromJsonString(maps[0][columnData]);
-  // }
-  //
-  //
-  // Future<int> insertWeather(WeatherResponse weatherResponse) async {
-  //   Database db = await database;
-  //   Map<String, dynamic> row = {
-  //     columnId: 1,
-  //     columnData: weatherResponse.toJsonString(),
-  //     // Convert to JSON string to store in the database.
-  //   };
-  //   return await db.insert(
-  //     weatherTable,
-  //     row,
-  //     conflictAlgorithm: ConflictAlgorithm.replace,
-  //   );
-  // }
-  //
-  // Future<WeatherResponse> getWeather() async {
-  //   Database db = await database;
-  //   List<Map> maps = await db.query(weatherTable);
-  //   return WeatherResponse.fromJsonString(maps[0][columnData]);
-  // }
+  Future<int> insertParentOfflineData(TeacherOfflineResponse teacherOfflineResponse) async {
+    Database db = await database;
+    Map<String, dynamic> row = {
+      columnId: 1,
+      columnData: teacherOfflineResponse.toJsonString(),
+      // Convert to JSON string to store in the database.
+    };
+    return await db.insert(
+      parentOfflineData,
+      row,
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<TeacherOfflineResponse> getParentOfflineData() async {
+    Database db = await database;
+    List<Map> maps = await db.query(parentOfflineData);
+    return TeacherOfflineResponse.fromJsonString(maps[0][columnData]);
+  }
+
+
 }

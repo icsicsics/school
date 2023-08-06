@@ -16,6 +16,7 @@ import 'package:schools/presentation/widgets/dialogs/show_add_point_function.dar
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/screens/my_children/widget/my_children_content_widget.dart';
 import 'package:schools/presentation/screens/notifications/notifications_screen.dart';
+import 'package:schools/presentation/widgets/utils/open_notes_bottom_sheet.dart';
 
 class MyChildrenScreen extends BaseStatefulWidget {
   final String studentId;
@@ -101,7 +102,7 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
               state.filter;
         } else if (state is GetGuidesSuccessState) {
           _guides = state.guides;
-          _guidesId= [];
+          _guidesId = [];
           for (var item in state.guides) {
             _guidesId.add(item.guideId ?? "");
           }
@@ -110,7 +111,30 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
       builder: (context, state) {
         return Scaffold(
             backgroundColor: ColorsManager.backgroundColor,
-            floatingActionButton: _points(),
+            floatingActionButton: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                    padding: const EdgeInsetsDirectional.only(start: 25),
+                    child: InkWell(
+                      onTap: () {
+                        openNotesBottomSheet(
+                          context: context,
+                          height: 350,
+                          guides: _guidesId,
+                          studentId: widget.studentId,
+                          teacherId: widget.teacherId ?? "",
+                        );
+                      },
+                      child: SvgPicture.asset(
+                        ImagesPath.notesIcon,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    )),
+                const Expanded(child: SizedBox()),
+                _points(),
+              ],
+            ),
             appBar: _appBar(),
             body: _teacherStudentProfileInSchoolHouseResponse.data != null
                 ? MyChildrenContentWidget(
@@ -136,44 +160,46 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
         ),
         centerTitle: false,
         actions: [
-          _isFather ? SizedBox.shrink() : InkWell(
-            onTap: () {
-              openRequestMeetingBottomSheet(
-                context: context,
-                height: 350,
-                guides: _guides,
-                studentId: _teacherStudentProfileInSchoolHouseResponse
-                            .data?.studentId ?? "",
-                classroomToSectionId: widget.classroomToSectionId ?? "",
-                teacherId: widget.teacherId ?? "",
-              );
-              // Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //   return AdvisorsScreen(
-              //     studentName: _teacherStudentProfileInSchoolHouseResponse
-              //             .data?.studentName ??
-              //         "",
-              //     studentImage: _teacherStudentProfileInSchoolHouseResponse
-              //             .data?.getImage?.mediaUrl ??
-              //         "",
-              //     branchId: widget.branchId ?? "",
-              //     studentId: _teacherStudentProfileInSchoolHouseResponse
-              //             .data?.studentId ??
-              //         "",
-              //     advisors: _teacherStudentProfileInSchoolHouseResponse
-              //             .data?.advisors ??
-              //         [],
-              //     teacherId: widget.teacherId ?? "",
-              //     classroomToSectionId: widget.classroomToSectionId ?? "",
-              //   );
-              // }));
-
-            },
-            child: Icon(
-              Icons.edit_calendar_sharp,
-              color: Color(0xff3bbbac),
-              size: 28,
-            ),
-          ),
+          _isFather
+              ? SizedBox.shrink()
+              : InkWell(
+                  onTap: () {
+                    openRequestMeetingBottomSheet(
+                      context: context,
+                      height: 350,
+                      guides: _guides,
+                      studentId: _teacherStudentProfileInSchoolHouseResponse
+                              .data?.studentId ??
+                          "",
+                      classroomToSectionId: widget.classroomToSectionId ?? "",
+                      teacherId: widget.teacherId ?? "",
+                    );
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    //   return AdvisorsScreen(
+                    //     studentName: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.studentName ??
+                    //         "",
+                    //     studentImage: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.getImage?.mediaUrl ??
+                    //         "",
+                    //     branchId: widget.branchId ?? "",
+                    //     studentId: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.studentId ??
+                    //         "",
+                    //     advisors: _teacherStudentProfileInSchoolHouseResponse
+                    //             .data?.advisors ??
+                    //         [],
+                    //     teacherId: widget.teacherId ?? "",
+                    //     classroomToSectionId: widget.classroomToSectionId ?? "",
+                    //   );
+                    // }));
+                  },
+                  child: Icon(
+                    Icons.edit_calendar_sharp,
+                    color: Color(0xff3bbbac),
+                    size: 28,
+                  ),
+                ),
           Stack(
             alignment: Alignment.center,
             children: [
@@ -227,15 +253,12 @@ class _MyChildrenScreenState extends BaseState<MyChildrenScreen> {
               color: ColorsManager.whiteColor,
               border: Border.all(color: ColorsManager.grayColor, width: 1),
               borderRadius: const BorderRadius.all(Radius.circular(40))),
-          child: Padding(
-            padding: const EdgeInsets.all(2),
-            child: Container(
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(2),
               child: Container(
-                height: 20,
-                width: 20,
-                color: Colors.transparent,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50))),
                 child: SvgPicture.asset(ImagesPath.star, height: 25, width: 25),
               ),
             ),
