@@ -123,7 +123,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "nov": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "number": MessageLookupByLibrary.simpleMessage("المحمول"),
         "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
+        "offlineMode":
+            MessageLookupByLibrary.simpleMessage("وضع دون اتصال بالأنترنت"),
         "ok": MessageLookupByLibrary.simpleMessage("تم"),
+        "onlineMode":
+            MessageLookupByLibrary.simpleMessage("وضع اتصال بالأنترنت"),
         "overUser": MessageLookupByLibrary.simpleMessage("استخدام زائد"),
         "overUserDescription": MessageLookupByLibrary.simpleMessage(
             " أنت فوق توقعات منح النقاط لطلابك ، كافئ النقطة لمن يستحقها حقا."),

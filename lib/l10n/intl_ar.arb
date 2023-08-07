@@ -149,7 +149,10 @@
   "insufficientUseDescription" : "أنت أقل من توقعات استخدام نظام نقاط المنزل، كافئ بعض النقاط لطلابك.",
   "overUser" : "استخدام زائد",
   "convenientUse" : "استخدام مناسب",
-  "insufficientUse" : "استخدام غير مناسب"
+  "insufficientUse" : "استخدام غير مناسب",
+  "offlineMode": "وضع دون اتصال بالأنترنت",
+  "onlineMode" : "وضع اتصال بالأنترنت"
+
 
 
 

@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/core/base/internet_connectivity.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/remote/model/notification/request/notification_request.dart';
@@ -22,7 +26,7 @@ class NotificationsScreen extends BaseStatefulWidget {
       _NotificationsScreenState();
 }
 
-class _NotificationsScreenState extends BaseState<NotificationsScreen> {
+class _NotificationsScreenState extends BaseState<NotificationsScreen> with InternetConnectivity{
   NotificationsBloc get _bloc => BlocProvider.of<NotificationsBloc>(context);
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   bool _isFather = false;
@@ -30,13 +34,42 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
   String _token = '';
   List<NotificationItem> notifications = List.empty(growable: true);
   List<NotificationItem> inboxNotifications = List.empty(growable: true);
+  late StreamSubscription<ConnectivityResult> subscription;
 
   @override
   void initState() {
+    super.initState();
     _bloc.add(GetIsFatherEvent());
     _bloc.add(GetLanguageEvent());
-    super.initState();
+    // subscription = Connectivity()
+    //     .onConnectivityChanged
+    //     .listen((ConnectivityResult result) {
+      // if (result == ConnectivityResult.none) {
+      //   ScaffoldMessenger.of(context)
+      //       .showSnackBar(SnackBar(content: Text(S.current.offlineMode),backgroundColor: Colors.red.withOpacity(0.4),));
+      //   print("object 5");
+      // } else {
+      //   print("object 6");
+      //   ScaffoldMessenger.of(context)
+      //       .showSnackBar(SnackBar(content: Text(S.current.onlineMode),backgroundColor: Colors.green.withOpacity(0.4)));
+      // }
+    // });
+
   }
+  //
+  // @override
+  // void didChangeDependencies() async{
+  //   super.didChangeDependencies();
+  //   if((await checkInternetConnectivity()) == ConnectivityResult.none ) {
+  //     ScaffoldMessenger.of(context)
+  //       .showSnackBar(SnackBar(content: Text(S.current.offlineMode),backgroundColor: Colors.red.withOpacity(0.4),));
+  //
+  //   } else {
+  //     ScaffoldMessenger.of(context)
+  //       .showSnackBar(SnackBar(content: Text(S.current.onlineMode),backgroundColor: Colors.green.withOpacity(0.4)));
+  //
+  //   }
+  // }
 
   @override
   Widget baseBuild(BuildContext context) {
@@ -113,4 +146,10 @@ class _NotificationsScreenState extends BaseState<NotificationsScreen> {
                 : S.of(context).inbox
             : S.of(context).inbox,
       ));
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription.cancel();
+  }
 }

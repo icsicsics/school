@@ -123,7 +123,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "nov": MessageLookupByLibrary.simpleMessage("november"),
         "number": MessageLookupByLibrary.simpleMessage("Number"),
         "oct": MessageLookupByLibrary.simpleMessage("october"),
+        "offlineMode": MessageLookupByLibrary.simpleMessage("Offline Mode"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "onlineMode": MessageLookupByLibrary.simpleMessage("Online Mode"),
         "overUser": MessageLookupByLibrary.simpleMessage("Overuse"),
         "overUserDescription": MessageLookupByLibrary.simpleMessage(
             "You\'re above the expectation of giving the points to your students, Reward the point to who really deserves it."),

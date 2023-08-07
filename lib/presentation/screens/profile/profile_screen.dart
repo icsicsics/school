@@ -1,6 +1,10 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:schools/core/base/internet_connectivity.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
@@ -22,7 +26,7 @@ class ProfileScreen extends BaseStatefulWidget {
   BaseState<BaseStatefulWidget> baseCreateState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends BaseState<ProfileScreen> {
+class _ProfileScreenState extends BaseState<ProfileScreen> with InternetConnectivity{
   ProfileBloc get _bloc => BlocProvider.of<ProfileBloc>(context);
   bool _isFather = false;
   String _profileImage = "";
@@ -31,13 +35,40 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   String language = '';
   String _token = '';
   String _imagePath = '';
+  late StreamSubscription<ConnectivityResult> subscription;
 
   @override
   void initState() {
     _invokeInit();
+    // subscription = Connectivity()
+    //     .onConnectivityChanged
+    //     .listen((ConnectivityResult result) {
+    //   if (result == ConnectivityResult.none) {
+    //     ScaffoldMessenger.of(context)
+    //         .showSnackBar(SnackBar(content: Text(S.current.offlineMode),backgroundColor: Colors.red.withOpacity(0.4),));
+    //     print("object 3");
+    //   } else {
+    //     print("object 4");
+    //     ScaffoldMessenger.of(context)
+    //         .showSnackBar(SnackBar(content: Text(S.current.onlineMode),backgroundColor: Colors.green.withOpacity(0.4)));
+    //   }
+    // });
     super.initState();
   }
 
+  // @override
+  // void didChangeDependencies() async {
+  //   super.didChangeDependencies();
+  //   if((await checkInternetConnectivity()) == ConnectivityResult.none ) {
+  //     ScaffoldMessenger.of(context)
+  //         .showSnackBar(SnackBar(content: Text(S.current.offlineMode),backgroundColor: Colors.red.withOpacity(0.4),));
+  //
+  //   } else {
+  //     ScaffoldMessenger.of(context)
+  //         .showSnackBar(SnackBar(content: Text(S.current.onlineMode),backgroundColor: Colors.green.withOpacity(0.4)));
+  //
+  //   }
+  // }
   @override
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<ProfileBloc, ProfileState>(
@@ -222,5 +253,11 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
   void _restartApp() {
     RestartWidget.restartApp(context);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription.cancel();
   }
 }

@@ -148,6 +148,8 @@
   "insufficientUseDescription" : "You're below the expectation of using a house points system, Reward some points to your students.",
   "overUser" : "Overuse",
   "convenientUse" : "Convenient use",
-  "insufficientUse" : "Insufficient use"
+  "insufficientUse" : "Insufficient use",
+  "offlineMode": "Offline Mode",
+  "onlineMode" : "Online Mode"
 
 }

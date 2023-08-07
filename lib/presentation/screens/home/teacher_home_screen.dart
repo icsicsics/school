@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schools/config/routes/app_routes.dart';
+import 'package:schools/core/base/internet_connectivity.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
@@ -30,15 +33,18 @@ class TeacherHomeScreen extends BaseStatefulWidget {
   }
 }
 
-class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
+class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen>
+    with InternetConnectivity {
   HomeBloc get _homeBloc => BlocProvider.of<HomeBloc>(context);
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+  late StreamSubscription<ConnectivityResult> subscription;
 
   GetTeacherHomeResponse _teacherHomeResponse = GetTeacherHomeResponse();
   TeacherInfoResponse _teacherInfoResponse = TeacherInfoResponse();
   WeatherResponse _weatherResponse = WeatherResponse();
   List<String> _roles = [];
   String language = "";
+  bool isOffline = false;
 
   @override
   void initState() {
@@ -47,14 +53,39 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
     // _homeBloc.add(GetWeatherEvent());
     _homeBloc.add(GetTeacherHomeEvent(token: ""));
     _homeBloc.add(GetTeacherInfoEvent(token: ""));
+    subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.none) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(S.current.offlineMode),
+          backgroundColor: Colors.red.withOpacity(0.4),
+        ));
+        isOffline = true;
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(S.current.onlineMode),
+            backgroundColor: Colors.green.withOpacity(0.4)));
+        isOffline = false;
+      }
+    });
   }
 
-  @override
-  void didChangeDependencies() async {
-    super.didChangeDependencies();
-    _roles = await SharedPreferencesManager.getRoles() ?? [];
-    language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
-  }
+  // @override
+  // void didChangeDependencies() async {
+  //   super.didChangeDependencies();
+  //   _roles = await SharedPreferencesManager.getRoles() ?? [];
+  //   language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
+  //   if((await checkInternetConnectivity()) == ConnectivityResult.none ) {
+  //     ScaffoldMessenger.of(context)
+  //         .showSnackBar(SnackBar(content: Text(S.current.offlineMode),backgroundColor: Colors.red.withOpacity(0.4),));
+  //
+  //   } else {
+  //     ScaffoldMessenger.of(context)
+  //         .showSnackBar(SnackBar(content: Text(S.current.onlineMode),backgroundColor: Colors.green.withOpacity(0.4)));
+  //
+  //   }
+  // }
 
   String dateFormatter(DateTime date) {
     dynamic dayData =
@@ -754,5 +785,11 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen> {
         language,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription.cancel();
   }
 }
