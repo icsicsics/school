@@ -169,19 +169,19 @@ class _VideoScreenState extends State<VideoScreen> {
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                                      child: InkWell(
-                                        onTap: () {
-                                          BlocProvider.of<ChannelsBloc>(context)
-                                              .add(ShareVideEvent(
-                                                  url: e.video?.mediaUrl ?? ""));
-                                        },
-                                        child: SvgPicture.asset(
-                                            ImagesPath.shareIcon,
-                                            matchTextDirection: true),
-                                      ),
-                                    ),
+                                    // Container(
+                                    //   margin: const EdgeInsets.symmetric(horizontal: 16),
+                                    //   child: InkWell(
+                                    //     onTap: () {
+                                    //       BlocProvider.of<ChannelsBloc>(context)
+                                    //           .add(ShareVideEvent(
+                                    //               url: e.video?.mediaUrl ?? ""));
+                                    //     },
+                                    //     child: SvgPicture.asset(
+                                    //         ImagesPath.shareIcon,
+                                    //         matchTextDirection: true),
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ],
@@ -232,16 +232,16 @@ class _VideoScreenState extends State<VideoScreen> {
                 ),
               ),
               const Expanded(child: SizedBox()),
-              InkWell(
-                onTap: () {
-                  BlocProvider.of<ChannelsBloc>(context).add(
-                      ShareVideEvent(url: selectedVideo.video?.mediaUrl ?? ""));
-                },
-                child: SvgPicture.asset(
-                  ImagesPath.shareIcon,
-                  matchTextDirection: true,
-                ),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     BlocProvider.of<ChannelsBloc>(context).add(
+              //         ShareVideEvent(url: selectedVideo.video?.mediaUrl ?? ""));
+              //   },
+              //   child: SvgPicture.asset(
+              //     ImagesPath.shareIcon,
+              //     matchTextDirection: true,
+              //   ),
+              // ),
             ],
           ),
         ),

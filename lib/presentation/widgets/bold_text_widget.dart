@@ -29,7 +29,7 @@ class BoldTextWidget extends StatelessWidget {
         initialData: FontFamily.fontWeightBoldEnglish,
         future: languageFontBoldWeight(),
         builder: (context, snapshot) => Text(
-              text!,
+              text ?? "",
               overflow: textOverflow,
               style: TextStyle(
                 decoration: textDecoration,

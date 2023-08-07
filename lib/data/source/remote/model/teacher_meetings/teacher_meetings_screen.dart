@@ -4,6 +4,7 @@ import 'package:intl/intl.dart' as intl;
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/core/utils/resorces/image_path.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/teacher_meeting.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/widgets/custom_button_widget.dart';
 
 class TeacherMeetingsScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _TeacherMeetingsScreenState extends State<TeacherMeetingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(widget.meetings.first.teacherName ?? ""),
+      appBar: _buildAppBar(widget.meetings.isNotEmpty ? widget.meetings.first.teacherName ?? "" : S.of(context).teacherMeetings),
       body: ListView.builder(
         itemCount: widget.meetings.length,
         itemBuilder: (context, index) {

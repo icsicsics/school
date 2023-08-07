@@ -150,3 +150,21 @@ class GetTeacherOfflineDataErrorState extends HomeState {
     required this.error,
   });
 }
+
+
+class GetParentOfflineDataSuccessState extends HomeState {
+  final ParentOfflineResponse response;
+
+  GetParentOfflineDataSuccessState({
+    required this.response,
+  });
+}
+
+class GetParentOfflineDataErrorState extends HomeState {
+  final String error;
+
+  GetParentOfflineDataErrorState({
+    required this.error,
+  });
+}
+

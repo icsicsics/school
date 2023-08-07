@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'father_info_data.dart';
 
 class FatherInfoResponse {
@@ -25,5 +27,15 @@ class FatherInfoResponse {
       map['data'] = data!.toJson();
     }
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static FatherInfoResponse fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return FatherInfoResponse.fromJson(data);
   }
 }

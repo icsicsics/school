@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:schools/data/source/remote/model/children_by_parent/response/getImage.dart';
 
 import 'childrens.dart';
@@ -40,5 +42,15 @@ class FatherInfoData {
       map['getImage'] = getImage!.toJson();
     }
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static FatherInfoData fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return FatherInfoData.fromJson(data);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'getImage.dart';
 
 class Childrens {
@@ -37,5 +39,15 @@ class Childrens {
       map['getImage'] = getImage!.toJson();
     }
     return map;
+  }
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static Childrens fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return Childrens.fromJson(data);
   }
 }

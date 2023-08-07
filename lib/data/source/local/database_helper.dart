@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:schools/data/source/remote/model/parent_offline/parent_offline_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_offline/teacher_offline_response.dart';
@@ -100,11 +101,11 @@ class DatabaseHelper {
   }
 
 
-  Future<int> insertParentOfflineData(TeacherOfflineResponse teacherOfflineResponse) async {
+  Future<int> insertParentOfflineData(ParentOfflineResponse parentOfflineResponse) async {
     Database db = await database;
     Map<String, dynamic> row = {
       columnId: 1,
-      columnData: teacherOfflineResponse.toJsonString(),
+      columnData: parentOfflineResponse.toJsonString(),
       // Convert to JSON string to store in the database.
     };
     return await db.insert(
@@ -114,10 +115,10 @@ class DatabaseHelper {
     );
   }
 
-  Future<TeacherOfflineResponse> getParentOfflineData() async {
+  Future<ParentOfflineResponse> getParentOfflineData() async {
     Database db = await database;
     List<Map> maps = await db.query(parentOfflineData);
-    return TeacherOfflineResponse.fromJsonString(maps[0][columnData]);
+    return ParentOfflineResponse.fromJsonString(maps[0][columnData]);
   }
 
 

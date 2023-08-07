@@ -82,3 +82,8 @@ class ClassSectionChangePhotoEvent extends HomeEvent {
 class GetTeacherOfflineDataEvent extends HomeEvent {
   GetTeacherOfflineDataEvent();
 }
+
+class GetParentOfflineDataEvent extends HomeEvent {
+  GetParentOfflineDataEvent();
+}
+

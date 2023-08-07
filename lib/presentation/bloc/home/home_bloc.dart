@@ -8,6 +8,7 @@ import 'package:schools/data/source/local/shared_preferences/shared_preferences_
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
+import 'package:schools/data/source/remote/model/parent_offline/parent_offline_response.dart';
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_offline/teacher_offline_response.dart';
@@ -58,6 +59,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SelectImageEvent>(_onSelectImageEvent);
     on<ClassSectionChangePhotoEvent>(_onClassSectionChangePhotoEvent);
     on<GetTeacherOfflineDataEvent>(_onGetTeacherOfflineDataEvent);
+    on<GetParentOfflineDataEvent>(_onGetParentOfflineDataEvent);
   }
 
   FutureOr<void> _onGetHomeEvent(GetHomeEvent event, Emitter<HomeState> emit) {}
@@ -219,5 +221,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeState state =
     (await _repository.getTeacherOffline(token, languageCode == "en" ? true : false,1));
     emit(state);
+  }
+
+  FutureOr<void> _onGetParentOfflineDataEvent(GetParentOfflineDataEvent event, Emitter<HomeState> emit) async {
+    emit(GetHomeLoadingState());
+    String token = await SharedPreferencesManager.getTokenDio() ?? "";
+    String languageCode = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
+    HomeState state =
+    (await _repository.getParentOffline(token, languageCode == "en" ? true : false,1));
+    emit(state);
+
   }
 }

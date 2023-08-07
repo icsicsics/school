@@ -66,6 +66,7 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           _token = state.token;
           if (_isFather) {
             _homeBloc.add(GetFatherHomeEvent(token: state.token));
+            _homeBloc.add(GetParentOfflineDataEvent());
           } else {
             _homeBloc.add(GetTeacherHomeEvent(token: state.token));
           }

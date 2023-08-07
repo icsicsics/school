@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class GetImage {
   String? id;
   String? caption;
@@ -20,6 +22,17 @@ class GetImage {
     map['caption'] = caption;
     map['mediaUrl'] = mediaUrl;
     return map;
+  }
+
+
+  String toJsonString() {
+    Map<String, dynamic> data = toJson();
+    return json.encode(data);
+  }
+
+  static GetImage fromJsonString(String jsonString) {
+    Map<String, dynamic> data = json.decode(jsonString);
+    return GetImage.fromJson(data);
   }
 
 }

@@ -7,4 +7,5 @@ abstract class BaseHomeRepository {
   Future<HomeState> getTeacherInfo(String token);
   Future<HomeState> getWeather(late,long,lan);
   Future<HomeState> getTeacherOffline(String token,bool language,int search);
+  Future<HomeState> getParentOffline(String token,bool language,int search);
 }

@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:schools/data/source/local/database_helper.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
+import 'package:schools/data/source/remote/model/father_info/response/father_info_data.dart';
 import 'package:schools/data/source/remote/model/father_info/response/father_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_data.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
@@ -39,15 +40,24 @@ class SideMenuRepositoryImp extends BaseSideMenuRepository {
   Future<SideMenuState> getFatherInfo(String token) async {
     SideMenuState? state;
     FatherInfoResponse fatherInfoResponse = FatherInfoResponse();
-    try {
-      Response response = await DioHelper.getFatherInfo(token);
-      fatherInfoResponse = FatherInfoResponse.fromJson(response.data);
-      if (fatherInfoResponse.data != null) {
-        return GetFatherInfoSuccessState(response: fatherInfoResponse);
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    DatabaseHelper databaseHelper = DatabaseHelper.instance;
+    if(connectivityResult == ConnectivityResult.none){
+      fatherInfoResponse.data = (await databaseHelper.getParentOfflineData()).parentOfflineData?.fatherInfoData ?? FatherInfoData();
+      fatherInfoResponse.errorCode = 200;
+      fatherInfoResponse.errorMessage = "Success";
+      state = GetFatherInfoSuccessState(response: fatherInfoResponse);
+    } else {
+      try {
+        Response response = await DioHelper.getFatherInfo(token);
+        fatherInfoResponse = FatherInfoResponse.fromJson(response.data);
+        if (fatherInfoResponse.data != null) {
+          state = GetFatherInfoSuccessState(response: fatherInfoResponse);
+        }
+      } catch (error) {
+        state = GetFatherInfoFillState(
+            error: fatherInfoResponse.errorMessage ?? "Error");
       }
-    } catch (error) {
-      state = GetFatherInfoFillState(
-          error: fatherInfoResponse.errorMessage ?? "Error");
     }
     return state!;
   }
