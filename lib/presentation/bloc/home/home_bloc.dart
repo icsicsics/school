@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:schools/data/source/local/database_helper.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
 import 'package:schools/data/source/remote/dio_helper.dart';
 import 'package:schools/data/source/remote/model/children_by_parent/response/get_children_by_parent_response.dart';
@@ -12,6 +14,7 @@ import 'package:schools/data/source/remote/model/parent_offline/parent_offline_r
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_info/response/teacher_info_response.dart';
 import 'package:schools/data/source/remote/model/teacher_offline/teacher_offline_response.dart';
+import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/student_profile_in_school_house.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
 import 'package:schools/data/source/remote/repository/home_repository.dart';
@@ -168,18 +171,39 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetStudentProfileInSchoolHouseEvent event,
       Emitter<HomeState> emit) async {
     emit(GetHomeLoadingState());
-    Response response = await DioHelper.getTeacherStudentProfileInSchoolHouse(
-        await _getTokenUseCase(), event.studentId);
-    TeacherStudentProfileInSchoolHouseResponse
-        teacherStudentProfileInSchoolHouseResponse =
-        TeacherStudentProfileInSchoolHouseResponse.fromJson(response.data);
-
-    if (response.data != null) {
+    TeacherStudentProfileInSchoolHouseResponse?
+    teacherStudentProfileInSchoolHouseResponse = TeacherStudentProfileInSchoolHouseResponse();
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    DatabaseHelper databaseHelper = DatabaseHelper.instance;
+    if (connectivityResult == ConnectivityResult.none) {
+      List<StudentProfileInSchoolHouseData> students = (await databaseHelper.getParentOfflineData())
+          .parentOfflineData
+          ?.teacherStudentsSection ??
+          [];
+      teacherStudentProfileInSchoolHouseResponse.data = students[students.indexWhere((element) => element.studentId == event.studentId)];
+      teacherStudentProfileInSchoolHouseResponse.errorCode = 200;
+      teacherStudentProfileInSchoolHouseResponse.errorMessage = "Success";
       emit(GetTeacherStudentProfileInSchoolHouseSuccessState(
           response: teacherStudentProfileInSchoolHouseResponse));
     } else {
-      emit(GetTeacherStudentProfileInSchoolHouseFailState(error: "Error"));
+      try {
+        Response response = await DioHelper.getTeacherStudentProfileInSchoolHouse(
+            await _getTokenUseCase(), event.studentId);
+        TeacherStudentProfileInSchoolHouseResponse
+        teacherStudentProfileInSchoolHouseResponse =
+        TeacherStudentProfileInSchoolHouseResponse.fromJson(response.data);
+        if (response.data != null) {
+          emit(GetTeacherStudentProfileInSchoolHouseSuccessState(
+              response: teacherStudentProfileInSchoolHouseResponse));
+        } else {
+          emit(GetTeacherStudentProfileInSchoolHouseFailState(error: "Error"));
+        }
+      } catch (e) {
+        emit(GetTeacherStudentProfileInSchoolHouseFailState(error: "Error"));
+      }
     }
+
+
   }
 
   FutureOr<void> _onOpenCameraGalleryBottomSheetEvent(

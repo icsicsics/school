@@ -27,4 +27,5 @@ class ApiKey{
   static const String createGuideMeeting = "Guide/CreateGuideMeeting";
   static const String createNotesStudents = "Guide/CreateNotesStudents";
   static const String getTeacherOffline = "Teacher/GetTeacherInformationOffline";
+  static const String getParentOffline = "Parent/GetParentInformationOffline";
 }

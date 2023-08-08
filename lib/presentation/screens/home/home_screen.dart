@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schools/core/base/internet_connectivity.dart';
 import 'package:schools/core/base/widget/base_stateful_widget.dart';
 import 'package:schools/core/utils/resorces/color_manager.dart';
 import 'package:schools/data/source/local/shared_preferences/shared_preferences_manager.dart';
@@ -7,6 +11,7 @@ import 'package:schools/data/source/remote/model/children_by_parent/response/get
 import 'package:schools/data/source/remote/model/teacher_home/response/get_teacher_home_response.dart';
 import 'package:schools/data/source/remote/model/teacher_student_profile_in_school_house/teacher_student_profile_in_school_house_response.dart';
 import 'package:schools/data/source/remote/model/weather/weather_response.dart';
+import 'package:schools/generated/l10n.dart';
 import 'package:schools/presentation/bloc/home/home_bloc.dart';
 import 'package:schools/presentation/widgets/dialogs/show_error_dialg_function.dart';
 import 'package:schools/presentation/widgets/restart_widget.dart';
@@ -22,7 +27,7 @@ class HomeScreen extends BaseStatefulWidget {
   BaseState<BaseStatefulWidget> baseCreateState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends BaseState<HomeScreen> {
+class _HomeScreenState extends BaseState<HomeScreen> with InternetConnectivity {
   HomeBloc get _homeBloc => BlocProvider.of<HomeBloc>(context);
   bool _isFather = true;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -36,6 +41,9 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   String _language = '';
   String _token = '';
   List<String> roles = [];
+  late StreamSubscription<ConnectivityResult> subscription;
+  bool isOffline = false;
+
   @override
   void initState() {
     _homeBloc.add(GetIsFatherEvent());
@@ -67,6 +75,22 @@ class _HomeScreenState extends BaseState<HomeScreen> {
           if (_isFather) {
             _homeBloc.add(GetFatherHomeEvent(token: state.token));
             _homeBloc.add(GetParentOfflineDataEvent());
+            subscription = Connectivity()
+                .onConnectivityChanged
+                .listen((ConnectivityResult result) {
+              if (result == ConnectivityResult.none) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(S.current.offlineMode),
+                  backgroundColor: Colors.red.withOpacity(0.4),
+                ));
+                isOffline = true;
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(S.current.onlineMode),
+                    backgroundColor: Colors.green.withOpacity(0.4)));
+                isOffline = false;
+              }
+            });
           } else {
             _homeBloc.add(GetTeacherHomeEvent(token: state.token));
           }
@@ -162,5 +186,11 @@ class _HomeScreenState extends BaseState<HomeScreen> {
   void _switchAccount(context) async {
     await SharedPreferencesManager.setIsFather(!((await SharedPreferencesManager.getIsFather()) ?? false));
     RestartWidget.restartApp(context);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription.cancel();
   }
 }

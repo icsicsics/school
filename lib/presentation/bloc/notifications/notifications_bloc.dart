@@ -41,7 +41,12 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     DatabaseHelper databaseHelper = DatabaseHelper.instance;
     if(connectivityResult == ConnectivityResult.none){
       NotificationsResponse notificationResponse = NotificationsResponse();
-      notificationResponse.notificationItem = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.notifications ?? [];
+      final isFather = await SharedPreferencesManager.getIsFather() ?? false;
+      if(isFather){
+        notificationResponse.notificationItem = (await databaseHelper.getParentOfflineData()).parentOfflineData?.notifications ?? [];
+      } else {
+        notificationResponse.notificationItem = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.notifications ?? [];
+      }
       notificationResponse.errorCode = 200;
       notificationResponse.errorMessage = "Success";
       emit(GetNotificationsSuccessState(
@@ -77,6 +82,12 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     DatabaseHelper databaseHelper = DatabaseHelper.instance;
     if(connectivityResult == ConnectivityResult.none){
       NotificationsResponse notificationResponse = NotificationsResponse();
+      final isFather = await SharedPreferencesManager.getIsFather() ?? false;
+      if(isFather){
+        notificationResponse.notificationItem = (await databaseHelper.getParentOfflineData()).parentOfflineData?.inboxNotifications ?? [];
+      } else {
+        notificationResponse.notificationItem = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.inboxNotifications ?? [];
+      }
       notificationResponse.notificationItem = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.inboxNotifications ?? [];
       notificationResponse.errorCode = 200;
       notificationResponse.errorMessage = "Success";

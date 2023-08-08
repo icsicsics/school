@@ -19,7 +19,12 @@ class SchoolHousesRepositoryImp extends BaseSchoolHousesRepository {
     final connectivityResult = await (Connectivity().checkConnectivity());
     DatabaseHelper databaseHelper = DatabaseHelper.instance;
     if(connectivityResult == ConnectivityResult.none){
-      getClassHousesResponse.data = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.schoolHouses ?? [];
+      bool isFather = await SharedPreferencesManager.getIsFather()  ?? false;
+      if(isFather){
+        getClassHousesResponse.data = (await databaseHelper.getParentOfflineData()).parentOfflineData?.schoolHouses ?? [];
+      } else {
+        getClassHousesResponse.data = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.schoolHouses ?? [];
+      }
       getClassHousesResponse.errorCode = 200;
       getClassHousesResponse.errorMessage = "Success";
       state = GetSchoolHousesSuccessState(response: getClassHousesResponse);
@@ -69,7 +74,12 @@ class SchoolHousesRepositoryImp extends BaseSchoolHousesRepository {
     final connectivityResult = await (Connectivity().checkConnectivity());
     DatabaseHelper databaseHelper = DatabaseHelper.instance;
     if(connectivityResult == ConnectivityResult.none){
-      getSearchValuesResponse.data = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.searchByDateEnum ?? [];
+      bool isFather = await SharedPreferencesManager.getIsFather()  ?? false;
+      if(isFather){
+        getSearchValuesResponse.data = (await databaseHelper.getParentOfflineData()).parentOfflineData?.searchByDateEnum ?? [];
+      } else {
+        getSearchValuesResponse.data = (await databaseHelper.getTeacherOfflineData()).teacherOfflineData?.searchByDateEnum ?? [];
+      }
       getSearchValuesResponse.errorCode = 200;
       getSearchValuesResponse.errorMessage = "Success";
       state = GetSearchValuesSuccessState(values: getSearchValuesResponse.data?? []);

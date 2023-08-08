@@ -60,6 +60,9 @@ class HomeRepositoryImp extends BaseHomeRepository {
                   .parentOfflineData
                   ?.children ??
               [];
+      print((await databaseHelper.getParentOfflineData()).parentOfflineData?.fatherInfoData?.parentName);
+      print((await databaseHelper.getParentOfflineData()).parentOfflineData?.fatherInfoData?.phoneNumber);
+      print((await databaseHelper.getParentOfflineData()).parentOfflineData?.fatherInfoData?.childrens);
       getChildrenByParentResponse.errorCode = 200;
       getChildrenByParentResponse.errorMessage = "Success";
       state = GetParentHomeSuccessState(response: getChildrenByParentResponse);
@@ -160,7 +163,6 @@ class HomeRepositoryImp extends BaseHomeRepository {
     HomeState? state;
     TeacherOfflineResponse teacherOfflineResponse = TeacherOfflineResponse();
     DatabaseHelper databaseHelper = DatabaseHelper.instance;
-
     try {
       Response response =
           await DioHelper.getTeacherOffline(token, language, search);
@@ -184,7 +186,7 @@ class HomeRepositoryImp extends BaseHomeRepository {
     DatabaseHelper databaseHelper = DatabaseHelper.instance;
     try {
       Response response =
-          await DioHelper.getTeacherOffline(token, language, search);
+          await DioHelper.getParentOffline(token, language, search);
       parentOfflineResponse = ParentOfflineResponse.fromJson(response.data);
       if (parentOfflineResponse.parentOfflineData != null) {
         databaseHelper.insertParentOfflineData(parentOfflineResponse);

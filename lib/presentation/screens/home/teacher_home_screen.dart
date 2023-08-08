@@ -71,21 +71,21 @@ class _TeacherHomeScreenState extends BaseState<TeacherHomeScreen>
     });
   }
 
-  // @override
-  // void didChangeDependencies() async {
-  //   super.didChangeDependencies();
-  //   _roles = await SharedPreferencesManager.getRoles() ?? [];
-  //   language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
-  //   if((await checkInternetConnectivity()) == ConnectivityResult.none ) {
-  //     ScaffoldMessenger.of(context)
-  //         .showSnackBar(SnackBar(content: Text(S.current.offlineMode),backgroundColor: Colors.red.withOpacity(0.4),));
-  //
-  //   } else {
-  //     ScaffoldMessenger.of(context)
-  //         .showSnackBar(SnackBar(content: Text(S.current.onlineMode),backgroundColor: Colors.green.withOpacity(0.4)));
-  //
-  //   }
-  // }
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    _roles = await SharedPreferencesManager.getRoles() ?? [];
+    language = await SharedPreferencesManager.getLanguageCodeHelper() ?? "en";
+    // if((await checkInternetConnectivity()) == ConnectivityResult.none ) {
+    //   ScaffoldMessenger.of(context)
+    //       .showSnackBar(SnackBar(content: Text(S.current.offlineMode),backgroundColor: Colors.red.withOpacity(0.4),));
+    //
+    // } else {
+    //   ScaffoldMessenger.of(context)
+    //       .showSnackBar(SnackBar(content: Text(S.current.onlineMode),backgroundColor: Colors.green.withOpacity(0.4)));
+    //
+    // }
+  }
 
   String dateFormatter(DateTime date) {
     dynamic dayData =

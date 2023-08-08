@@ -12,9 +12,6 @@ class DatabaseHelper {
 
   static const teacherOfflineData = 'teacher_offline_data';
   static const parentOfflineData = 'parent_offline_data';
-  // static const teacherInfoTable = 'teacher_info';
-  // static const teacherHomeTable = 'teacher_home';
-  // static const weatherTable = 'weather';
 
   static const columnId = 'id';
   static const columnData = 'data';
@@ -57,27 +54,6 @@ class DatabaseHelper {
       )
       ''');
 
-    // await db.execute('''
-    //   CREATE TABLE $teacherInfoTable (
-    //     $columnId INTEGER PRIMARY KEY,
-    //     $columnData TEXT NOT NULL
-    //   )
-    //   ''');
-    //
-    // await db.execute('''
-    //   CREATE TABLE $teacherHomeTable (
-    //     $columnId INTEGER PRIMARY KEY,
-    //     $columnData TEXT NOT NULL
-    //   )
-    //   ''');
-    //
-    //
-    // await db.execute('''
-    //   CREATE TABLE $weatherTable (
-    //     $columnId INTEGER PRIMARY KEY,
-    //     $columnData TEXT NOT NULL
-    //   )
-    //   ''');
   }
 
   Future<int> insertTeacherOfflineData(TeacherOfflineResponse teacherOfflineResponse) async {

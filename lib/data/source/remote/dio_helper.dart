@@ -327,4 +327,18 @@ class DioHelper {
           },
         ));
   }
+
+
+  static Future<Response> getParentOffline(
+      token, bool language, int search) async {
+    return dio.get(
+        "${ApiKey.getParentOffline}?isEnglishLanguage=$language&Search=$search",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ));
+  }
 }
